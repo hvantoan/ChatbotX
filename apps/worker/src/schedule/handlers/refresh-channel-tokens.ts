@@ -31,6 +31,7 @@ const refreshTokenAdapter: Record<
   webchat: undefined,
   smtp: undefined,
   telegram: undefined,
+  zalo_personal: undefined,
   api: undefined,
 }
 

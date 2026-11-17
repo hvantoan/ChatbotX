@@ -76,6 +76,7 @@ import {
 } from "@/features/integration-whatsapp/message-templates/api/public"
 import { whatsappPaymentPublicRouter } from "@/features/integration-whatsapp/payment/api/public"
 import { zaloChannelsPublicRouter } from "@/features/integration-zalo/api/public"
+import { zaloPersonalChannelsPublicRouter } from "@/features/integration-zalo-personal/api/public"
 import { integrationsPublicRouter } from "@/features/integrations/api/public"
 import { leaderboardsPublicRouter } from "@/features/leaderboards/api/public"
 import { magicLinksPublicRouter } from "@/features/magic-links/api/public"
@@ -253,5 +254,6 @@ export const publicRouter = {
   workspaceMembers: workspaceMembersPublicRouter,
   workspaceSettings: workspaceSettingsPublicRouter,
   lineChannels: lineChannelsPublicRouter,
+  zaloPersonalChannels: zaloPersonalChannelsPublicRouter,
   zaloChannels: zaloChannelsPublicRouter,
 }

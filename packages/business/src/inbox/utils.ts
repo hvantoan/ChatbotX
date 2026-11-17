@@ -141,6 +141,7 @@ export function buildInboxLink(
       refKey: "ref",
       refValue,
     },
+    zalo_personal: undefined,
     // LINE has no deep-link ref parameter, so `refValue` stays unset.
     line: inbox.integrationLine?.basicId
       ? {
@@ -203,6 +204,7 @@ export function buildPostLink(channel: ChannelType, postId: string): string {
     whatsapp: "",
     telegram: "",
     zalo: "",
+    zalo_personal: "",
     line: "",
     tiktok: "",
     webchat: "",
@@ -225,6 +227,7 @@ export function buildMessageLink(
     whatsapp: "",
     telegram: "",
     zalo: "",
+    zalo_personal: "",
     line: "",
     tiktok: "",
     webchat: "",

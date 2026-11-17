@@ -42,6 +42,9 @@ export async function getContactInboxes(
   const inboxes = await db.query.inboxModel.findMany({
     where: {
       workspaceId,
+      channel: {
+        ne: "zalo_personal",
+      },
     },
     columns: {
       id: true,

@@ -107,6 +107,28 @@ services:
     volumes:
       - redis-ui-data:/data
 
+  zalo-personal-gateway:
+    <<: *network
+    profiles: ["zalo-personal"]
+    image: node:24-alpine
+    working_dir: /app
+    command: ["node", "apps/zalo-personal-gateway/dist/index.mjs"]
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "${ZALO_PERSONAL_GATEWAY_PORT:-3220}:3220"
+    environment:
+      - PORT=3220
+      - HOST=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:-change-me-in-production-at-least-32-chars}
+      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:-change-me-in-production-at-least-16-chars}
+      - ZALO_PERSONAL_PROXY_URL=${ZALO_PERSONAL_PROXY_URL:-}
+      - ZALO_PERSONAL_MAX_ACCOUNTS=${ZALO_PERSONAL_MAX_ACCOUNTS:-5}
+    volumes:
+      - .:/app:ro
+
 networks:
   chatbotx-network:
     driver: bridge

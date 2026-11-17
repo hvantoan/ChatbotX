@@ -1,0 +1,255 @@
+name: chatbotx-dev
+
+x-network: &network
+  networks:
+    - chatbotx-network
+
+x-service-common: &service-common
+  platform: linux/amd64
+  restart: unless-stopped
+  env_file:
+    - path: ../.env
+      required: false
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  networks:
+    - chatbotx-network
+
+x-rustfs-environment: &rustfs-environment
+  RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:-chatbotx}
+  RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:-secretkey}
+  RUSTFS_API_CORS_ALLOW_ORIGIN: ${RUSTFS_API_CORS_ALLOW_ORIGIN:-*}
+
+services:
+  # ─────────────────────────────────────────────
+  # Infrastructure (Dev)
+  # ─────────────────────────────────────────────
+  postgres:
+    <<: *network
+    image: timescale/timescaledb-ha:pg18-all
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db-data-dev:/home/postgres/pgdata
+    command: ["postgres", "-c", "log_statement=${POSTGRES_LOG_STATEMENT:-none}"]
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-chatbotx}
+      - POSTGRES_USER=${POSTGRES_USER:-chatbotx}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secretkey}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  redis:
+    <<: *network
+    image: redis:8-alpine
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - cache-data-dev:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  filesystem:
+    <<: *network
+    image: rustfs/rustfs:latest
+    command: server /data --console-address ":9001"
+    ports:
+      - "${S3_PORT:-9000}:9000"
+      - "${S3_CONSOLE_PORT:-9001}:9001"
+    environment:
+      <<: *rustfs-environment
+    volumes:
+      - filesystem-data-dev:/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "sh",
+          "-c",
+          "curl -f http://127.0.0.1:9000/health && curl -f http://127.0.0.1:9001/rustfs/console/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  filesystem-init:
+    <<: *network
+    image: rustfs/rc:latest
+    depends_on:
+      filesystem:
+        condition: service_healthy
+    environment:
+      <<: *rustfs-environment
+    entrypoint: >
+      /bin/sh -c "rc alias set local http://filesystem:9000
+      $${RUSTFS_ACCESS_KEY} $${RUSTFS_SECRET_KEY}; rc mb local/chatbotx
+      --ignore-existing; touch /tmp/empty && rc cp /tmp/empty
+      local/chatbotx/public/; rc anonymous set public local/chatbotx/public;"
+
+  # Dev-only tooling
+  adminer:
+    <<: *network
+    image: adminer:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+
+  mailhog:
+    <<: *network
+    image: mailhog/mailhog
+    ports:
+      - "${MAILHOG_SMTP_PORT:-1025}:1025"
+      - "${MAILHOG_UI_PORT:-8025}:8025"
+
+  redis-ui:
+    <<: *network
+    image: redis/redisinsight:latest
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "${REDIS_UI_PORT:-5540}:5540"
+    volumes:
+      - redis-ui-data-dev:/data
+
+  # ─────────────────────────────────────────────
+  # Applications (Dev)
+  # ─────────────────────────────────────────────
+  builder:
+    <<: *service-common
+    image: node:24.22.1-trixie-slim
+    working_dir: /app
+    volumes:
+      - ..:/app
+    command:
+      [
+        "/bin/sh",
+        "-c",
+        "cd apps/builder && ./node_modules/.bin/next dev -p 3000",
+      ]
+    ports:
+      - "${BUILDER_PORT:-3123}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      filesystem:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    environment:
+      - RUN_DB_MIGRATE=true
+      - RUN_DB_SEED=true
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-chatbotx}:${POSTGRES_PASSWORD:-secretkey}@postgres:5432/${POSTGRES_DB:-chatbotx}?schema=public
+      - REDIS_URL=redis://redis:6379
+      - S3_ENDPOINT=http://filesystem:9000
+      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+
+  worker:
+    <<: *service-common
+    build:
+      context: ..
+      dockerfile: apps/worker/docker/Dockerfile
+    networks:
+      - chatbotx-network
+      - javascript-executor-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      filesystem:
+        condition: service_healthy
+      javascript-executor:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-chatbotx}:${POSTGRES_PASSWORD:-secretkey}@postgres:5432/${POSTGRES_DB:-chatbotx}?schema=public
+      - REDIS_URL=redis://redis:6379
+      - S3_ENDPOINT=http://filesystem:9000
+      - JAVASCRIPT_EXECUTOR_URL=http://javascript-executor:3210
+      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+
+  javascript-executor:
+    platform: linux/amd64
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: apps/javascript-executor/docker/Dockerfile
+    ports:
+      - "${JS_EXECUTOR_PORT:-3210}:3210"
+    environment:
+      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:-change-me-in-production-at-least-32-chars}
+      MAX_CONCURRENCY: ${MAX_CONCURRENCY:-2}
+    networks:
+      - javascript-executor-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  realtime:
+    <<: *service-common
+    build:
+      context: ..
+      dockerfile: apps/realtime/docker/Dockerfile
+    ports:
+      - "${REALTIME_PORT:-1999}:1999"
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_URL: redis://redis:6379
+      NEXT_PUBLIC_BUILDER_URL: http://builder:3000
+      REALTIME_BUILDER_URL: http://builder:3000
+
+  zalo-personal-gateway:
+    <<: *service-common
+    build:
+      context: ..
+      dockerfile: apps/zalo-personal-gateway/docker/Dockerfile
+    ports:
+      - "${ZALO_PERSONAL_GATEWAY_PORT:-3220}:3220"
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - PORT=3220
+      - HOST=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:-change-me-in-production-at-least-32-chars}
+      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:-change-me-in-production-at-least-16-chars}
+      - ZALO_PERSONAL_PROXY_URL=${ZALO_PERSONAL_PROXY_URL:-}
+      - ZALO_PERSONAL_MAX_ACCOUNTS=${ZALO_PERSONAL_MAX_ACCOUNTS:-5}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3220/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  chatbotx-network:
+    driver: bridge
+  javascript-executor-network:
+    driver: bridge
+    internal: true
+
+volumes:
+  db-data-dev:
+  filesystem-data-dev:
+  cache-data-dev:
+  redis-ui-data-dev:

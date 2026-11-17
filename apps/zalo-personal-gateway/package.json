@@ -1,0 +1,33 @@
+{
+  "name": "zalo-personal-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsdown",
+    "check-types": "tsc --noEmit",
+    "dev": "dotenv -e ../../.env -- tsx --watch src/index.ts",
+    "start": "node dist/index.mjs",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chatbotx.io/logger": "workspace:*",
+    "@chatbotx.io/utils": "workspace:*",
+    "@t3-oss/env-core": "catalog:",
+    "dotenv": "^17.4.2",
+    "ioredis": "catalog:",
+    "zca-js": "^2.3.0",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@chatbotx.io/typescript-config": "workspace:*",
+    "@chatbotx.io/vitest-config": "workspace:*",
+    "@types/node": "catalog:",
+    "dotenv-cli": "catalog:",
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

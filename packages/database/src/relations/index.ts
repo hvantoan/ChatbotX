@@ -123,6 +123,7 @@ import { integrationTiktokRelations } from "./integration-tiktok"
 import { integrationWebchatRelations } from "./integration-webchat"
 import { integrationWhatsappRelations } from "./integration-whatsapp"
 import { integrationZaloRelations } from "./integration-zalo"
+import { integrationZaloPersonalRelations } from "./integration-zalo-personal"
 import { leaderboardRelations } from "./leaderboard"
 import { leaderboardAuditLogRelations } from "./leaderboard-audit-log"
 import { leaderboardParticipantRelations } from "./leaderboard-participant"
@@ -266,6 +267,7 @@ export const relations = {
   ...messengerMessageTemplateRelations,
   ...integrationWebchatRelations,
   ...integrationZaloRelations,
+  ...integrationZaloPersonalRelations,
   ...integrationLineRelations,
   ...invitationRelations,
   ...emailTopicRelations,

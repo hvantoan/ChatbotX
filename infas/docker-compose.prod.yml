@@ -1,0 +1,248 @@
+name: chatbotx-prod
+
+x-network: &network
+  networks:
+    - chatbotx-network
+
+x-service-common: &service-common
+  platform: linux/amd64
+  restart: always
+  env_file:
+    - path: ../.env
+      required: false
+  networks:
+    - chatbotx-network
+
+x-rustfs-environment: &rustfs-environment
+  RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:?RUSTFS_ACCESS_KEY is required}
+  RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:?RUSTFS_SECRET_KEY is required}
+  RUSTFS_API_CORS_ALLOW_ORIGIN: ${RUSTFS_API_CORS_ALLOW_ORIGIN:-*}
+
+services:
+  # ─────────────────────────────────────────────
+  # Infrastructure (Prod - internal only, no exposed DB/cache ports)
+  # ─────────────────────────────────────────────
+  postgres:
+    <<: *network
+    image: timescale/timescaledb-ha:pg18-all
+    restart: always
+    volumes:
+      - db-data-prod:/home/postgres/pgdata
+    command: ["postgres", "-c", "log_statement=none"]
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:?POSTGRES_DB is required}
+      - POSTGRES_USER=${POSTGRES_USER:?POSTGRES_USER is required}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  redis:
+    <<: *network
+    image: redis:8-alpine
+    restart: always
+    volumes:
+      - cache-data-prod:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  filesystem:
+    <<: *network
+    image: rustfs/rustfs:latest
+    restart: always
+    command: server /data --console-address ":9001"
+    ports:
+      - "${S3_PUBLIC_PORT:-9000}:9000"
+    environment:
+      <<: *rustfs-environment
+    volumes:
+      - filesystem-data-prod:/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "sh",
+          "-c",
+          "curl -f http://127.0.0.1:9000/health && curl -f http://127.0.0.1:9001/rustfs/console/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  filesystem-init:
+    <<: *network
+    image: rustfs/rc:latest
+    depends_on:
+      filesystem:
+        condition: service_healthy
+    environment:
+      <<: *rustfs-environment
+    entrypoint: >
+      /bin/sh -c "rc alias set local http://filesystem:9000
+      $${RUSTFS_ACCESS_KEY} $${RUSTFS_SECRET_KEY}; rc mb local/chatbotx
+      --ignore-existing; touch /tmp/empty && rc cp /tmp/empty
+      local/chatbotx/public/; rc anonymous set public local/chatbotx/public;"
+
+  # ─────────────────────────────────────────────
+  # Applications (Prod - hardened)
+  # ─────────────────────────────────────────────
+  builder:
+    <<: *service-common
+    image: ${CHATBOTX_BUILDER_IMAGE:-chatbotx-builder:latest}
+    build:
+      context: ..
+      dockerfile: apps/builder/docker/Dockerfile
+    ports:
+      - "${BUILDER_PORT:-3000}:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      filesystem:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    environment:
+      - NODE_ENV=production
+      - RUN_DB_MIGRATE=${RUN_DB_MIGRATE:-false}
+      - RUN_DB_SEED=false
+      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  worker:
+    <<: *service-common
+    image: ${CHATBOTX_WORKER_IMAGE:-chatbotx-worker:latest}
+    build:
+      context: ..
+      dockerfile: apps/worker/docker/Dockerfile
+    networks:
+      - chatbotx-network
+      - javascript-executor-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      filesystem:
+        condition: service_healthy
+      javascript-executor:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - JAVASCRIPT_EXECUTOR_URL=http://javascript-executor:3210
+      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  javascript-executor:
+    platform: linux/amd64
+    restart: always
+    image: ${CHATBOTX_JS_EXECUTOR_IMAGE:-chatbotx-javascript-executor:latest}
+    build:
+      context: ..
+      dockerfile: apps/javascript-executor/docker/Dockerfile
+    environment:
+      NODE_ENV: production
+      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:?JAVASCRIPT_EXECUTOR_TOKEN is required}
+      MAX_CONCURRENCY: ${MAX_CONCURRENCY:-2}
+    networks:
+      - javascript-executor-network
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 512M
+          pids: 128
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3210/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  realtime:
+    <<: *service-common
+    image: ${CHATBOTX_REALTIME_IMAGE:-chatbotx-realtime:latest}
+    build:
+      context: ..
+      dockerfile: apps/realtime/docker/Dockerfile
+    ports:
+      - "${REALTIME_PORT:-1999}:1999"
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      NEXT_PUBLIC_BUILDER_URL: http://builder:3000
+      REALTIME_BUILDER_URL: http://builder:3000
+
+  zalo-personal-gateway:
+    <<: *service-common
+    image: ${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-chatbotx-zalo-personal-gateway:latest}
+    build:
+      context: ..
+      dockerfile: apps/zalo-personal-gateway/docker/Dockerfile
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - PORT=3220
+      - HOST=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:?ZALO_PERSONAL_GATEWAY_TOKEN is required}
+      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:?ZALO_PERSONAL_WEBHOOK_SECRET is required}
+      - ZALO_PERSONAL_PROXY_URL=${ZALO_PERSONAL_PROXY_URL:-}
+      - ZALO_PERSONAL_MAX_ACCOUNTS=${ZALO_PERSONAL_MAX_ACCOUNTS:-5}
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3220/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  chatbotx-network:
+    driver: bridge
+  javascript-executor-network:
+    driver: bridge
+    internal: true
+
+volumes:
+  db-data-prod:
+  filesystem-data-prod:
+  cache-data-prod:
