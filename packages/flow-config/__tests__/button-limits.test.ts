@@ -72,6 +72,7 @@ const EXPECTED_LIMITS = {
   webchat: [3, 3],
   whatsapp: [3, 3],
   zalo: [3, 3],
+  zalo_personal: [0, 0],
 } as const
 
 describe("button limits", () => {

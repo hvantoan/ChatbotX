@@ -62,12 +62,15 @@ export const webhookHandler = async (
     throw new ZaloPersonalWebhookException("Empty webhook payload")
   }
 
-  if (config.webhookSecret) {
-    const presentedSig = req.headers.get("X-Zalo-Personal-Signature")
-    const expectedSig = await computeHmacSha256Hex(config.webhookSecret, body)
-    if (!(presentedSig && timingSafeStringEqual(presentedSig, expectedSig))) {
-      throw new ZaloPersonalWebhookException("Invalid webhook signature")
-    }
+  // Fail closed: without a secret the payload is unverifiable, and accepting
+  // it would let anyone who learns the webhook URL forge messages.
+  if (!config.webhookSecret) {
+    throw new ZaloPersonalWebhookException("Missing webhook secret")
+  }
+  const presentedSig = req.headers.get("X-Zalo-Personal-Signature")
+  const expectedSig = await computeHmacSha256Hex(config.webhookSecret, body)
+  if (!(presentedSig && timingSafeStringEqual(presentedSig, expectedSig))) {
+    throw new ZaloPersonalWebhookException("Invalid webhook signature")
   }
 
   const payload = zaloPersonalWebhookPayloadSchema.parse(JSON.parse(body))

@@ -3,8 +3,26 @@ import https from "node:https"
 import net from "node:net"
 import type { Duplex } from "node:stream"
 import tls from "node:tls"
+import { ProxyAgent, fetch as undiciFetch } from "undici"
 
 const HTTP_200_STATUS_RE = /^HTTP\/\d\.\d 200\b/
+
+/**
+ * Fetch polyfill that routes requests through the proxy. zca-js uses its
+ * `polyfill` for every REST call and ignores `agent` there (undici wants a
+ * `dispatcher`), so the CONNECT `agent` below only covers the WS listener.
+ */
+export function createProxyFetch(proxyUrl: string): typeof fetch {
+  const dispatcher = new ProxyAgent(proxyUrl)
+  return ((input: RequestInfo | URL, init?: RequestInit) =>
+    undiciFetch(
+      input as Parameters<typeof undiciFetch>[0],
+      {
+        ...init,
+        dispatcher,
+      } as Parameters<typeof undiciFetch>[1],
+    )) as typeof fetch
+}
 
 /**
  * Minimal HTTP CONNECT tunneling agent for http/https proxy URLs without extra deps.

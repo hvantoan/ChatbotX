@@ -48,13 +48,30 @@ export async function connectZaloPersonalWithCredentials(input: {
       integrationId: created.id,
       zaloUid: created.zaloUid,
       credentials: input.credentials,
+      webhookSecret,
       ...(proxyUrl ? { proxyUrl } : {}),
     })
   } catch (err) {
+    // Compensate: a channel whose listener never started would receive no
+    // messages while looking connected in the UI, so roll the insert back and
+    // surface the failure (e.g. the gateway's account cap) to the caller.
     logger.error(
       { err, integrationId: created.id, zaloUid: created.zaloUid },
       "Failed to start Zalo personal gateway listener after connect",
     )
+    await integrationZaloPersonalService
+      .delete({ id: created.id, workspaceId: input.workspaceId })
+      .catch((cleanupErr) => {
+        logger.warn(
+          {
+            err: cleanupErr,
+            integrationId: created.id,
+            zaloUid: created.zaloUid,
+          },
+          "Failed to roll back Zalo personal integration after gateway start failure",
+        )
+      })
+    throw err
   }
 
   return created

@@ -217,9 +217,8 @@ export function createGatewayServer(deps: GatewayServerDeps): http.Server {
         })
         return
       }
-      const message = err instanceof Error ? err.message : "Internal error"
       logger.error({ err }, "Gateway HTTP request failed")
-      sendJson(res, 500, { error: message })
+      sendJson(res, 500, { error: "Internal error" })
     }
   })
 }

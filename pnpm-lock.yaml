@@ -1124,6 +1124,9 @@ importers:
       ioredis:
         specifier: 'catalog:'
         version: 5.10.1
+      undici:
+        specifier: ^8.12.2
+        version: 8.12.3
       zca-js:
         specifier: ^2.3.0
         version: 2.3.0

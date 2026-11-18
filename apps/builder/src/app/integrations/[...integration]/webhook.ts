@@ -18,6 +18,7 @@ import type {
   TiktokAuthValue,
   TiktokConfig,
 } from "@chatbotx.io/integration-tiktok"
+import type { ZaloPersonalConfig } from "@chatbotx.io/integration-zalo-personal"
 import { type ContextQueue, SdkException } from "@chatbotx.io/sdk"
 import {
   IntegrationJobAction,
@@ -581,14 +582,13 @@ const handleZaloPersonalWebhook = async (req: NextRequest) => {
   const auth = row.auth as { webhookSecret?: string }
 
   try {
+    const config: ZaloPersonalConfig = {
+      zaloUid: row.zaloUid,
+      webhookSecret: auth.webhookSecret,
+      groupReplyConfig: row.groupReplyConfig ?? undefined,
+    }
     const result = await integration.handleRequest({
-      config: {
-        zaloUid: row.zaloUid,
-        webhookSecret:
-          auth.webhookSecret ?? process.env.ZALO_PERSONAL_WEBHOOK_SECRET,
-        groupReplyConfig: row.groupReplyConfig ?? undefined,
-        // biome-ignore lint/suspicious/noExplicitAny: safe pass value
-      } as any,
+      config,
       req,
       queue: integrationQueue,
     })

@@ -7,9 +7,6 @@ const getGatewayUrl = (): string =>
 const getGatewayToken = (): string =>
   process.env.ZALO_PERSONAL_GATEWAY_TOKEN ?? ""
 
-export const getZaloPersonalWebhookSecret = (): string =>
-  process.env.ZALO_PERSONAL_WEBHOOK_SECRET ?? ""
-
 export function buildZaloPersonalWebhookUrl(zaloUid: string): string {
   const url = new URL("/integrations/zalo_personal/webhook", getBrokerOrigin())
   url.searchParams.set("zaloUid", zaloUid)
@@ -109,25 +106,23 @@ export const zaloPersonalGateway = {
     integrationId: string
     zaloUid: string
     credentials: { imei: string; cookie: unknown; userAgent: string }
+    webhookSecret: string
     proxyUrl?: string
-  }) => {
-    const webhookSecret = getZaloPersonalWebhookSecret()
-    return callGateway(
+  }) =>
+    callGateway(
       "/accounts/start",
       {
         method: "POST",
         body: {
           ...input,
           webhookUrl: buildZaloPersonalWebhookUrl(input.zaloUid),
-          ...(webhookSecret ? { webhookSecret } : {}),
         },
       },
       z.object({
         zaloUid: z.string(),
         state: z.enum(["connecting", "connected", "disconnected", "error"]),
       }),
-    )
-  },
+    ),
 
   stopAccount: (zaloUid: string) =>
     callGateway(

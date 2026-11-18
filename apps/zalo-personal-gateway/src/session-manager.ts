@@ -11,7 +11,7 @@ import {
 } from "zca-js"
 import type { LockHandle, RedisListenerLock } from "./lock"
 import { logger } from "./logger"
-import { createProxyAgent } from "./proxy"
+import { createProxyAgent, createProxyFetch } from "./proxy"
 
 export type AccountCredentials = {
   imei: string
@@ -287,7 +287,12 @@ export class ZaloSessionManager {
       selfListen: false,
       checkUpdate: false,
       logging: false,
-      ...(effectiveProxy ? { agent: createProxyAgent(effectiveProxy) } : {}),
+      ...(effectiveProxy
+        ? {
+            agent: createProxyAgent(effectiveProxy),
+            polyfill: createProxyFetch(effectiveProxy),
+          }
+        : {}),
     })
 
     try {
@@ -425,7 +430,12 @@ export class ZaloSessionManager {
       selfListen: false,
       checkUpdate: false,
       logging: false,
-      ...(effectiveProxy ? { agent: createProxyAgent(effectiveProxy) } : {}),
+      ...(effectiveProxy
+        ? {
+            agent: createProxyAgent(effectiveProxy),
+            polyfill: createProxyFetch(effectiveProxy),
+          }
+        : {}),
     })
     const api = await zalo.login(credentials)
     const zaloUid = api.getOwnId()

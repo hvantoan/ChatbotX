@@ -1,13 +1,13 @@
 import { db, eq } from "@chatbotx.io/database/client"
 import { channelTypes } from "@chatbotx.io/database/partials"
 import {
-  inboxModel,
   integrationZaloPersonalModel,
   type ZaloPersonalGroupReplyConfig,
 } from "@chatbotx.io/database/schema"
 import { type EncryptedData, encryptUtils } from "@chatbotx.io/encryption"
 import { createId } from "@chatbotx.io/utils"
 import { z } from "zod"
+import { channelDuplicatedException } from "../errors"
 import { inboxService } from "../inbox"
 
 export const zaloPersonalRawCredentialsSchema = z.object({
@@ -93,15 +93,29 @@ export const integrationZaloPersonalService = {
       encryptedCredentials,
     }
 
+    const workspace = await db.query.workspaceModel.findFirst({
+      where: { id: input.workspaceId },
+      columns: { ownerId: true },
+    })
+
     const row = await db.transaction(async (tx) => {
-      const inboxId = createId()
-      await tx.insert(inboxModel).values({
-        id: inboxId,
-        workspaceId: input.workspaceId,
-        channel: channelTypes.enum.zalo_personal,
-        sourceId: input.zaloUid,
-        name: input.name,
+      // `create` revives a disconnected inbox in place (keeping its contacts
+      // and conversations) instead of colliding on the sourceId identity —
+      // and a still-connected one means the account is already linked, which
+      // surfaces as a friendly conflict rather than a raw unique violation.
+      const { inbox, wasCreated } = await inboxService.create({
+        tx,
+        ownerId: workspace?.ownerId ?? input.workspaceId,
+        data: {
+          workspaceId: input.workspaceId,
+          channel: channelTypes.enum.zalo_personal,
+          sourceId: input.zaloUid,
+          name: input.name,
+        },
       })
+      if (!wasCreated) {
+        throw channelDuplicatedException()
+      }
 
       const integrationId = createId()
       const [inserted] = await tx
@@ -109,7 +123,7 @@ export const integrationZaloPersonalService = {
         .values({
           id: integrationId,
           workspaceId: input.workspaceId,
-          inboxId,
+          inboxId: inbox.id,
           zaloUid: input.zaloUid,
           name: input.name,
           avatar: input.avatar ?? null,
@@ -183,10 +197,11 @@ export const integrationZaloPersonalService = {
         .returning()
 
       if (input.name !== undefined) {
-        await tx
-          .update(inboxModel)
-          .set({ name: input.name })
-          .where(eq(inboxModel.id, existing.inboxId))
+        await inboxService.updateName({
+          id: existing.inboxId,
+          name: input.name,
+          tx,
+        })
       }
 
       return row
