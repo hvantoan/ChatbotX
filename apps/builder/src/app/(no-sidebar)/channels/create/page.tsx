@@ -17,6 +17,7 @@ import { SimpleCreateWebchat } from "@/features/integration-webchat/simple-creat
 import WhatsappCreate from "@/features/integration-whatsapp/components/whatsapp-create"
 import { WHATSAPP_OAUTH_CALLBACK_PATH } from "@/features/integration-whatsapp/libs/embedded-signup"
 import { generateZaloRedirectUri } from "@/features/integration-zalo/libs/zalo"
+import { ZaloPersonalConnect } from "@/features/integration-zalo-personal/components/zalo-personal-connect"
 import { continuesInstallIntent } from "@/features/templates/lib/install-intent-marker"
 import { requireWorkspacePermission } from "@/lib/auth/require-workspace-permission"
 import { getCurrentUserId } from "@/lib/auth/utils"
@@ -88,6 +89,14 @@ export default async function CreateChannelPage(props: CreateChannelPageProps) {
 
   if (selectedChannel === "line" && isVisible("line")) {
     return <LineConnect autoOpen={true} workspaceId={workspaceId} />
+  }
+
+  if (
+    selectedChannel === "zalo_personal" &&
+    workspaceId &&
+    isVisible("zalo_personal")
+  ) {
+    return <ZaloPersonalConnect autoOpen={true} workspaceId={workspaceId} />
   }
 
   if (selectedChannel === "webchat" && isVisible("webchat")) {

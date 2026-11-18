@@ -58,6 +58,10 @@ export const sourceIdentityConfigByChannel = {
     labelKey: "fields.channelIdentity.channelId",
     hideWhenSourceUserIdKeyed: false,
   },
+  [channelTypes.enum.zalo_personal]: {
+    labelKey: "fields.userId.placeholders.zalo_personal",
+    hideWhenSourceUserIdKeyed: false,
+  },
 } as const satisfies Record<
   ChannelType,
   { labelKey: string; hideWhenSourceUserIdKeyed: boolean }

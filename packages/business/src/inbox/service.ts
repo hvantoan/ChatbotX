@@ -79,6 +79,7 @@ class InboxService extends BaseService {
     integrationTelegram: true,
     integrationSmtp: true,
     integrationTiktok: true,
+    integrationZaloPersonal: true,
   }
 
   /**
@@ -205,6 +206,19 @@ class InboxService extends BaseService {
       throw notFoundException("Inbox not found")
     }
     return inbox
+  }
+
+  /** Renames an inbox, e.g. to mirror an integration rename (zalo_personal update). */
+  async updateName(props: {
+    id: string
+    name: string
+    tx?: DatabaseClient
+  }): Promise<void> {
+    const client = props.tx ?? db
+    await client
+      .update(inboxModel)
+      .set({ name: props.name })
+      .where(eq(inboxModel.id, props.id))
   }
 
   async updateMarkReadOnOutbound(props: {

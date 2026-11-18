@@ -119,6 +119,8 @@ export type WhatsappBusinessAccountModel =
   typeof schema.whatsappBusinessAccountModel.$inferSelect
 export type IntegrationZaloModel =
   typeof schema.integrationZaloModel.$inferSelect
+export type IntegrationZaloPersonalModel =
+  typeof schema.integrationZaloPersonalModel.$inferSelect
 export type IntegrationLineModel =
   typeof schema.integrationLineModel.$inferSelect
 export type IntegrationTelegramModel =
@@ -302,6 +304,7 @@ export type InboxWithIntegrations = InboxModel & {
   integrationWebchat?: IntegrationWebchatModel | null
   integrationWhatsapp?: IntegrationWhatsappModel | null
   integrationZalo?: IntegrationZaloModel | null
+  integrationZaloPersonal?: IntegrationZaloPersonalModel | null
   integrationLine?: IntegrationLineModel | null
   integrationSmtp?: IntegrationSmtpModel | null
   integrationTiktok?: IntegrationTiktokModel | null

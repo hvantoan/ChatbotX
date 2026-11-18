@@ -1321,7 +1321,8 @@
       "threads": "此Threads帐户已连接到另一个工作区。",
       "tiktok": "此TikTok帐户已连接到另一个工作区。",
       "whatsapp": "此 WhatsApp 号码已连接到另一个工作区。",
-      "zalo": "此Zalo OA 已连接到另一个工作区。"
+      "zalo": "此Zalo OA 已连接到另一个工作区。",
+      "zalo_personal": "This personal Zalo account is already connected to another workspace."
     },
     "missingScopes": {
       "generic": "连接已取消：部分权限未授予。请重新连接并接受所有请求的权限。",
@@ -3735,7 +3736,8 @@
         "line": "LINE user ID",
         "telegram": "Telegram 聊天 ID",
         "tiktok": "TikTok 用户 ID",
-        "zalo": "Zalo 用户 ID"
+        "zalo": "Zalo 用户 ID",
+        "zalo_personal": "Zalo user or group thread ID"
       }
     },
     "userMessage": {
@@ -4032,6 +4034,40 @@
         "skip": "未找到",
         "error": "失败"
       }
+    },
+    "zalo_personal": {
+      "label": "Zalo Personal",
+      "connectTitle": "Connect Zalo Personal",
+      "connectDescription": "Connect a personal Zalo account via QR scan or stored credentials.",
+      "qrTab": "QR Code",
+      "cookieTab": "Credentials (Cookie / IMEI)",
+      "generateQr": "Generate QR Code",
+      "regenerateQr": "Regenerate QR Code",
+      "qrHint": "Open Zalo on your phone and scan this QR code to log in.",
+      "qrPending": "Waiting for scan...",
+      "qrScanned": "QR scanned! Confirm login on your phone.",
+      "qrConfirmed": "Login confirmed! Connecting account...",
+      "qrExpired": "QR code expired. Please generate a new one.",
+      "accountName": "Account Name",
+      "accountNamePlaceholder": "e.g. Sales Support Zalo",
+      "imei": "IMEI",
+      "imeiPlaceholder": "Zalo device IMEI",
+      "cookie": "Cookie (JSON)",
+      "cookiePlaceholder": "Paste Zalo cookie JSON",
+      "userAgent": "User-Agent",
+      "userAgentPlaceholder": "Browser User-Agent string",
+      "proxyUrl": "Proxy URL (optional)",
+      "proxyUrlPlaceholder": "http://user:pass@host:port",
+      "groupReplyMode": "Group Reply Filter",
+      "groupReplyModeAll": "Reply to all group messages",
+      "groupReplyModeMentions": "Reply only when mentioned",
+      "groupReplyModeAllowlist": "Reply only in allowed groups",
+      "groupReplyModeDisabled": "Ignore group messages (1-1 DMs only)",
+      "allowedGroupIds": "Allowed Group Thread IDs (comma-separated)",
+      "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
+      "saveSettings": "Save Settings",
+      "status": "Gateway Status",
+      "zaloUid": "Zalo UID"
     }
   },
   "flowAnalytics": {

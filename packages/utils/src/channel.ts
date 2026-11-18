@@ -21,6 +21,7 @@ export const channelTypes = z.enum([
   "messenger",
   "whatsapp",
   "zalo",
+  "zalo_personal",
   "smtp",
   "telegram",
   "instagram",
@@ -166,6 +167,13 @@ export const CHANNEL_CAPABILITIES: Record<ChannelType, ChannelCapability> = {
     manageable: true,
     requiresCredential: true,
     order: 8,
+    callable: false,
+  },
+  zalo_personal: {
+    creatable: true,
+    manageable: true,
+    requiresCredential: false,
+    order: 9,
     callable: false,
   },
   line: {

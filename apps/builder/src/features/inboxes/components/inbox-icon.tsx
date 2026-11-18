@@ -86,6 +86,11 @@ export const INBOX_ICON_CONFIG: Record<ChannelType, InboxIconConfig> = {
     fill: SiZaloHex,
     defaultLabelKey: "fields.zalo.label",
   },
+  zalo_personal: {
+    Icon: SiZalo,
+    fill: SiZaloHex,
+    defaultLabelKey: "fields.zalo_personal.label",
+  },
   line: {
     Icon: SiLine,
     fill: SiLineHex,

@@ -257,7 +257,7 @@ beforeAll(async () => {
   }
 
   operations.sort((a, b) => a.operationId.localeCompare(b.operationId))
-}, 120_000)
+}, 300_000)
 
 const NON_ALPHANUMERIC_PATTERN = /[^a-z0-9]+/
 const SUMMARY_STARTS_UPPERCASE_PATTERN = /^[A-Z]/

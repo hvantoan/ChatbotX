@@ -927,7 +927,8 @@
         "line": "LINE user ID",
         "telegram": "Telegram 聊天 ID",
         "tiktok": "TikTok 使用者 ID",
-        "zalo": "Zalo 使用者 ID"
+        "zalo": "Zalo 使用者 ID",
+        "zalo_personal": "Zalo user or group thread ID"
       }
     },
     "userTags": {
@@ -1687,6 +1688,40 @@
         "skip": "找不到",
         "error": "失敗"
       }
+    },
+    "zalo_personal": {
+      "label": "Zalo Personal",
+      "connectTitle": "Connect Zalo Personal",
+      "connectDescription": "Connect a personal Zalo account via QR scan or stored credentials.",
+      "qrTab": "QR Code",
+      "cookieTab": "Credentials (Cookie / IMEI)",
+      "generateQr": "Generate QR Code",
+      "regenerateQr": "Regenerate QR Code",
+      "qrHint": "Open Zalo on your phone and scan this QR code to log in.",
+      "qrPending": "Waiting for scan...",
+      "qrScanned": "QR scanned! Confirm login on your phone.",
+      "qrConfirmed": "Login confirmed! Connecting account...",
+      "qrExpired": "QR code expired. Please generate a new one.",
+      "accountName": "Account Name",
+      "accountNamePlaceholder": "e.g. Sales Support Zalo",
+      "imei": "IMEI",
+      "imeiPlaceholder": "Zalo device IMEI",
+      "cookie": "Cookie (JSON)",
+      "cookiePlaceholder": "Paste Zalo cookie JSON",
+      "userAgent": "User-Agent",
+      "userAgentPlaceholder": "Browser User-Agent string",
+      "proxyUrl": "Proxy URL (optional)",
+      "proxyUrlPlaceholder": "http://user:pass@host:port",
+      "groupReplyMode": "Group Reply Filter",
+      "groupReplyModeAll": "Reply to all group messages",
+      "groupReplyModeMentions": "Reply only when mentioned",
+      "groupReplyModeAllowlist": "Reply only in allowed groups",
+      "groupReplyModeDisabled": "Ignore group messages (1-1 DMs only)",
+      "allowedGroupIds": "Allowed Group Thread IDs (comma-separated)",
+      "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
+      "saveSettings": "Save Settings",
+      "status": "Gateway Status",
+      "zaloUid": "Zalo UID"
     }
   },
   "messages": {
@@ -3159,7 +3194,8 @@
       "threads": "此Threads帳戶已連接到另一個工作區。",
       "tiktok": "此TikTok帳戶已連接到另一個工作區。",
       "whatsapp": "此 WhatsApp 號碼已連接到另一個工作區。",
-      "zalo": "此Zalo OA 已連接到另一個工作區。"
+      "zalo": "此Zalo OA 已連接到另一個工作區。",
+      "zalo_personal": "This personal Zalo account is already connected to another workspace."
     },
     "missingScopes": {
       "generic": "連線已取消：部分權限未授予。請重新連線並接受所有要求的權限。",

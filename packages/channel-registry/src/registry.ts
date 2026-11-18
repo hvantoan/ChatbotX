@@ -39,6 +39,7 @@ import { integration as integrationTiktok } from "@chatbotx.io/integration-tikto
 import { integration as integrationWebchat } from "@chatbotx.io/integration-webchat"
 import { integration as integrationWhatsapp } from "@chatbotx.io/integration-whatsapp"
 import { integration as integrationZalo } from "@chatbotx.io/integration-zalo"
+import { integration as integrationZaloPersonal } from "@chatbotx.io/integration-zalo-personal"
 import {
   type AuthValue,
   type BaseConfig,
@@ -78,6 +79,7 @@ export const integrations = {
   webchat: integrationWebchat,
   whatsapp: integrationWhatsapp,
   zalo: integrationZalo,
+  zalo_personal: integrationZaloPersonal,
 } as const
 
 export type IntegrationKey = keyof typeof integrations
@@ -187,6 +189,11 @@ export const integrationService = {
         columnName = "oaId"
         break
       }
+      case "zalo_personal": {
+        modelName = "IntegrationZaloPersonal"
+        columnName = "zaloUid"
+        break
+      }
       case "instagram":
       case "instagramFacebook": {
         modelName = "IntegrationInstagram"
@@ -268,6 +275,7 @@ export const integrationService = {
       webchat: "IntegrationWebchat",
       whatsapp: "IntegrationWhatsapp",
       zalo: "IntegrationZalo",
+      zalo_personal: "IntegrationZaloPersonal",
     }
     const integrationTable = integrationTableByChannel[contactInbox.channel]
     if (!integrationTable) {

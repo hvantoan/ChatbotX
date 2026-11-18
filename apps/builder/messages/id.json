@@ -2103,7 +2103,8 @@
         "line": "LINE user ID",
         "telegram": "ID chat Telegram",
         "tiktok": "ID pengguna TikTok",
-        "zalo": "ID pengguna Zalo"
+        "zalo": "ID pengguna Zalo",
+        "zalo_personal": "Zalo user or group thread ID"
       }
     },
     "userTags": {
@@ -2863,6 +2864,40 @@
         "skip": "Tidak ditemukan",
         "error": "Gagal"
       }
+    },
+    "zalo_personal": {
+      "label": "Zalo Personal",
+      "connectTitle": "Connect Zalo Personal",
+      "connectDescription": "Connect a personal Zalo account via QR scan or stored credentials.",
+      "qrTab": "QR Code",
+      "cookieTab": "Credentials (Cookie / IMEI)",
+      "generateQr": "Generate QR Code",
+      "regenerateQr": "Regenerate QR Code",
+      "qrHint": "Open Zalo on your phone and scan this QR code to log in.",
+      "qrPending": "Waiting for scan...",
+      "qrScanned": "QR scanned! Confirm login on your phone.",
+      "qrConfirmed": "Login confirmed! Connecting account...",
+      "qrExpired": "QR code expired. Please generate a new one.",
+      "accountName": "Account Name",
+      "accountNamePlaceholder": "e.g. Sales Support Zalo",
+      "imei": "IMEI",
+      "imeiPlaceholder": "Zalo device IMEI",
+      "cookie": "Cookie (JSON)",
+      "cookiePlaceholder": "Paste Zalo cookie JSON",
+      "userAgent": "User-Agent",
+      "userAgentPlaceholder": "Browser User-Agent string",
+      "proxyUrl": "Proxy URL (optional)",
+      "proxyUrlPlaceholder": "http://user:pass@host:port",
+      "groupReplyMode": "Group Reply Filter",
+      "groupReplyModeAll": "Reply to all group messages",
+      "groupReplyModeMentions": "Reply only when mentioned",
+      "groupReplyModeAllowlist": "Reply only in allowed groups",
+      "groupReplyModeDisabled": "Ignore group messages (1-1 DMs only)",
+      "allowedGroupIds": "Allowed Group Thread IDs (comma-separated)",
+      "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
+      "saveSettings": "Save Settings",
+      "status": "Gateway Status",
+      "zaloUid": "Zalo UID"
     }
   },
   "flows": {
@@ -4273,7 +4308,8 @@
       "threads": "Akun Threads ini sudah terhubung ke ruang kerja lain.",
       "tiktok": "Akun TikTok ini sudah terhubung ke ruang kerja lain.",
       "whatsapp": "Nomor WhatsApp ini sudah terhubung ke ruang kerja lain.",
-      "zalo": "Zalo OA ini sudah terhubung ke ruang kerja lain."
+      "zalo": "Zalo OA ini sudah terhubung ke ruang kerja lain.",
+      "zalo_personal": "This personal Zalo account is already connected to another workspace."
     },
     "missingScopes": {
       "generic": "Koneksi dibatalkan: sebagian izin tidak diberikan. Silakan hubungkan lagi dan setujui semua izin yang diminta.",

@@ -32,6 +32,7 @@ import {
   integrationWebchatModel,
   integrationWhatsappModel,
   integrationZaloModel,
+  integrationZaloPersonalModel,
   tagChannelModel,
   whatsappCoexistStagingModel,
 } from "@chatbotx.io/database/schema"
@@ -770,6 +771,20 @@ class WorkspaceLifecycleService extends BaseService {
         await finish(integrations?.zalo)
         return
       }
+      case channelTypes.enum.zalo_personal: {
+        if (removeIntegrationRow && inbox.integrationZaloPersonal) {
+          await tx
+            .delete(integrationZaloPersonalModel)
+            .where(
+              eq(
+                integrationZaloPersonalModel.id,
+                inbox.integrationZaloPersonal.id,
+              ),
+            )
+        }
+        await finish(integrations?.zalo_personal)
+        return
+      }
       case channelTypes.enum.line: {
         if (removeIntegrationRow && inbox.integrationLine) {
           await tx
@@ -877,6 +892,8 @@ const inboxToAuth = (inbox: InboxWithIntegrations): unknown => {
       return inbox.integrationWhatsapp?.auth
     case channelTypes.enum.zalo:
       return inbox.integrationZalo?.auth
+    case channelTypes.enum.zalo_personal:
+      return inbox.integrationZaloPersonal?.auth
     case channelTypes.enum.line:
       return inbox.integrationLine?.auth
     case channelTypes.enum.telegram:

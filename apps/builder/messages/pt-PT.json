@@ -2103,7 +2103,8 @@
         "line": "LINE user ID",
         "telegram": "ID de chat do Telegram",
         "tiktok": "ID de utilizador do TikTok",
-        "zalo": "ID de utilizador do Zalo"
+        "zalo": "ID de utilizador do Zalo",
+        "zalo_personal": "Zalo user or group thread ID"
       }
     },
     "userTags": {
@@ -2863,6 +2864,40 @@
         "skip": "Não encontrado",
         "error": "Falhou"
       }
+    },
+    "zalo_personal": {
+      "label": "Zalo Personal",
+      "connectTitle": "Connect Zalo Personal",
+      "connectDescription": "Connect a personal Zalo account via QR scan or stored credentials.",
+      "qrTab": "QR Code",
+      "cookieTab": "Credentials (Cookie / IMEI)",
+      "generateQr": "Generate QR Code",
+      "regenerateQr": "Regenerate QR Code",
+      "qrHint": "Open Zalo on your phone and scan this QR code to log in.",
+      "qrPending": "Waiting for scan...",
+      "qrScanned": "QR scanned! Confirm login on your phone.",
+      "qrConfirmed": "Login confirmed! Connecting account...",
+      "qrExpired": "QR code expired. Please generate a new one.",
+      "accountName": "Account Name",
+      "accountNamePlaceholder": "e.g. Sales Support Zalo",
+      "imei": "IMEI",
+      "imeiPlaceholder": "Zalo device IMEI",
+      "cookie": "Cookie (JSON)",
+      "cookiePlaceholder": "Paste Zalo cookie JSON",
+      "userAgent": "User-Agent",
+      "userAgentPlaceholder": "Browser User-Agent string",
+      "proxyUrl": "Proxy URL (optional)",
+      "proxyUrlPlaceholder": "http://user:pass@host:port",
+      "groupReplyMode": "Group Reply Filter",
+      "groupReplyModeAll": "Reply to all group messages",
+      "groupReplyModeMentions": "Reply only when mentioned",
+      "groupReplyModeAllowlist": "Reply only in allowed groups",
+      "groupReplyModeDisabled": "Ignore group messages (1-1 DMs only)",
+      "allowedGroupIds": "Allowed Group Thread IDs (comma-separated)",
+      "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
+      "saveSettings": "Save Settings",
+      "status": "Gateway Status",
+      "zaloUid": "Zalo UID"
     }
   },
   "flows": {
@@ -4273,7 +4308,8 @@
       "threads": "Esta conta do Threads já está ligada a outro espaço de trabalho.",
       "tiktok": "Esta conta do TikTok já está ligada a outro espaço de trabalho.",
       "whatsapp": "Este número do WhatsApp já está ligado a outro espaço de trabalho.",
-      "zalo": "Esta OA do Zalo já está ligada a outro espaço de trabalho."
+      "zalo": "Esta OA do Zalo já está ligada a outro espaço de trabalho.",
+      "zalo_personal": "This personal Zalo account is already connected to another workspace."
     },
     "missingScopes": {
       "generic": "Ligação cancelada: algumas permissões não foram concedidas. Ligue novamente e aceite todas as permissões solicitadas.",

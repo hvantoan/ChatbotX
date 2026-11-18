@@ -4112,5 +4112,30 @@ exports[`public API spec — operation naming guard > operation list (operationI
     "operationId": "zaloChannels.updateTagSync",
     "path": "/v1/zalo-channels/{id}/tag-sync",
   },
+  {
+    "method": "POST",
+    "operationId": "zaloPersonalChannels.connect",
+    "path": "/v1/zalo-personal-channels",
+  },
+  {
+    "method": "DELETE",
+    "operationId": "zaloPersonalChannels.delete",
+    "path": "/v1/zalo-personal-channels/{id}",
+  },
+  {
+    "method": "GET",
+    "operationId": "zaloPersonalChannels.get",
+    "path": "/v1/zalo-personal-channels/{id}",
+  },
+  {
+    "method": "GET",
+    "operationId": "zaloPersonalChannels.list",
+    "path": "/v1/zalo-personal-channels",
+  },
+  {
+    "method": "PATCH",
+    "operationId": "zaloPersonalChannels.update",
+    "path": "/v1/zalo-personal-channels/{id}",
+  },
 ]
 `;

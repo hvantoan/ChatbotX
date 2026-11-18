@@ -1,6 +1,7 @@
 import {
   connectionStateService,
   customDomainService,
+  integrationZaloPersonalService,
   lineIntegrationService,
   platformCredentialService,
   tenantService,
@@ -17,6 +18,7 @@ import type {
   TiktokAuthValue,
   TiktokConfig,
 } from "@chatbotx.io/integration-tiktok"
+import type { ZaloPersonalConfig } from "@chatbotx.io/integration-zalo-personal"
 import { type ContextQueue, SdkException } from "@chatbotx.io/sdk"
 import {
   IntegrationJobAction,
@@ -274,6 +276,10 @@ export const handleWebhook = async (
   // LINE uses per-channel config: the row's channel secret signs the body.
   if (integrationType === "line") {
     return handleLineWebhook(req)
+  }
+
+  if (integrationType === "zalo_personal") {
+    return handleZaloPersonalWebhook(req)
   }
 
   // TikTok uses per-account config (not org-level settings).
@@ -554,6 +560,47 @@ const handleLineWebhook = async (req: NextRequest) => {
     return new Response(result as BodyInit)
   } catch (e: unknown) {
     return lineWebhookErrorResponse(e, channelId)
+  }
+}
+
+const handleZaloPersonalWebhook = async (req: NextRequest) => {
+  const zaloUid = req.nextUrl.searchParams.get("zaloUid")
+  if (!zaloUid) {
+    return jsonError("Missing zaloUid query param", 400)
+  }
+
+  const integration = integrations.zalo_personal
+  if (!integration?.handleRequest) {
+    return jsonError("Method is not implemented", 400)
+  }
+
+  const row = await integrationZaloPersonalService.findByZaloUid(zaloUid)
+  if (!row) {
+    return jsonError("Zalo Personal account not found", 404)
+  }
+
+  const auth = row.auth as { webhookSecret?: string }
+
+  try {
+    const config: ZaloPersonalConfig = {
+      zaloUid: row.zaloUid,
+      webhookSecret: auth.webhookSecret,
+      groupReplyConfig: row.groupReplyConfig ?? undefined,
+    }
+    const result = await integration.handleRequest({
+      config,
+      req,
+      queue: integrationQueue,
+    })
+
+    return new Response(result as BodyInit)
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e)
+    logger.error(
+      { err: e, integrationType: "zalo_personal", zaloUid },
+      "Zalo Personal handleRequest failed",
+    )
+    return jsonError(message, 400)
   }
 }
 
