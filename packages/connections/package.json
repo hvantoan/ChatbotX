@@ -52,7 +52,7 @@
     "./messenger-teardown": "./src/messenger-teardown.ts"
   },
   "scripts": {
-    "check-types": "tsc --noEmit",
+    "check-types": "NODE_OPTIONS=--max-old-space-size=6144 tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "test:db": "dotenv -e ../../.env -- vitest run --dir __tests__/integration",
     "test:watch": "vitest"

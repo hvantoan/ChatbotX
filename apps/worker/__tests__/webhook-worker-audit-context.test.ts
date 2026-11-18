@@ -55,11 +55,12 @@ vi.mock("../src/webhook/services/webhook-matcher.service", () => ({
   },
 }))
 
+// The worker import pulls the full job graph; CI shards need more than the 30s default.
 beforeAll(async () => {
   mocks.ensureBootstrapped.mockResolvedValue(undefined)
   await import("../src/webhook/worker")
   await vi.waitFor(() => expect(mocks.processJob).toBeTypeOf("function"))
-})
+}, 120_000)
 
 beforeEach(() => {
   vi.clearAllMocks()
