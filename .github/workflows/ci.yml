@@ -108,7 +108,11 @@ jobs:
       # Independent `tsc --noEmit` runs: no type-check task waits for another
       # (no `composite`/`references` in this repo — see turbo.json).
       # Each is single-threaded, so concurrency can fill all 4 vCPUs.
+      # Large suites (business, connections, channel-registry) OOM on the
+      # ~2 GB default heap when shards overlap — give tsc headroom.
       - name: Type-check
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
         run: pnpm turbo run check-types --concurrency=4 ${{ matrix.filter }} -- --incremental
 
   # One stable "Types" result for branch rules and the PR checks list.
