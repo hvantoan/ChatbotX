@@ -117,6 +117,9 @@ catalogs:
     tsx:
       specifier: ^4.23.0
       version: 4.23.0
+    undici:
+      specifier: ^8.12.2
+      version: 8.12.3
     universal-error-normalizer:
       specifier: ^1.0.0
       version: 1.0.0
@@ -1125,7 +1128,7 @@ importers:
         specifier: 'catalog:'
         version: 5.10.1
       undici:
-        specifier: ^8.12.2
+        specifier: 'catalog:'
         version: 8.12.3
       zca-js:
         specifier: ^2.3.0
@@ -2758,7 +2761,7 @@ importers:
         specifier: 'catalog:'
         version: 2.37.0
       undici:
-        specifier: ^8.12.2
+        specifier: 'catalog:'
         version: 8.12.3
       universal-error-normalizer:
         specifier: 'catalog:'

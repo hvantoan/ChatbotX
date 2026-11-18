@@ -32,22 +32,17 @@ const config: IntegrationDefinition<
   actions: {},
   connection: {
     kind: "channel",
-    strategy: "token",
+    strategy: "self_serve",
     multiAccount: false,
-    configFields: [
-      {
-        name: "zaloUid",
-        type: "string",
-        required: true,
-      },
-    ],
+    // No `fromCredentials`: a bare `zaloUid` proves no ownership — anyone
+    // could squat another person's account on the global UID constraint.
+    // Real connects go through the credential-verify or QR flows, which log
+    // the account in on the gateway before a row is written (and also carry
+    // the webhook secret this path could never provide).
+    configFields: [],
     describe: (auth) => ({
       sourceId: auth.zaloUid,
       displayName: "Zalo Personal",
-    }),
-    fromCredentials: async (input: { zaloUid: string }) => ({
-      authType: "custom",
-      zaloUid: input.zaloUid,
     }),
     verify: async ({ auth }) =>
       await probeVerify(() => gatewayClient.getAccountStatus(auth.zaloUid), {

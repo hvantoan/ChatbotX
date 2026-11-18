@@ -120,7 +120,7 @@
     "libphonenumber-js": "catalog:",
     "qrcode": "^1.5.4",
     "remeda": "catalog:",
-    "undici": "^8.12.2",
+    "undici": "catalog:",
     "universal-error-normalizer": "catalog:",
     "zod": "catalog:"
   },

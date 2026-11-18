@@ -93,6 +93,21 @@ export const integrationZaloPersonalService = {
       encryptedCredentials,
     }
 
+    // Global identity check BEFORE the transaction: `inboxService.create`
+    // admits channel quota outside `tx`, so a unique-violation rollback on
+    // the insert below would still leave that quota consumed. The common
+    // case — this Zalo account already connected (any workspace) — is
+    // rejected here without touching quota. A same-instant duplicate can
+    // still race past this read, but the remaining window is negligible.
+    if (
+      await db.query.integrationZaloPersonalModel.findFirst({
+        where: { zaloUid: input.zaloUid },
+        columns: { id: true },
+      })
+    ) {
+      throw channelDuplicatedException()
+    }
+
     const workspace = await db.query.workspaceModel.findFirst({
       where: { id: input.workspaceId },
       columns: { ownerId: true },

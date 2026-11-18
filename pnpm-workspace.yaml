@@ -52,6 +52,7 @@ catalog:
   tsdown: 0.22.3
   tsx: "^4.23.0"
   typescript: "^5"
+  undici: "^8.12.2"
   universal-error-normalizer: "^1.0.0"
   vitest: "^5.1.0"
   zod: "^4.3.6"
