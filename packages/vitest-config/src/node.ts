@@ -160,8 +160,13 @@ const config: ViteUserConfig = defineConfig({
     // default on a loaded machine (and CI runners). A timed-out test also
     // poisons the next one in its file: the abandoned call resolves late and
     // increments shared mocks. Generous timeouts only delay true hangs.
+    //
+    // `hookTimeout` sits higher than `testTimeout`: `beforeAll` bodies that
+    // `await import()` the full feature/router graph (public-spec-operations,
+    // webhook-worker, line-public-api) exceeded even 120s on contended CI
+    // shards.
     testTimeout: 30_000,
-    hookTimeout: 30_000,
+    hookTimeout: 300_000,
     coverage: {
       provider: "v8",
       reporter: ["text", "html", "lcov"],
