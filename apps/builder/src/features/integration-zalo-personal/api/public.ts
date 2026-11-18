@@ -45,7 +45,8 @@ export const zaloPersonalChannelsPublicRouter = {
       method: "GET",
       path: "/v1/zalo-personal-channels/{id}",
       summary: "Get Zalo Personal channel",
-      description: "Returns one connected personal Zalo account.",
+      description:
+        "Returns one connected personal Zalo account by id. Credentials are never returned.",
       tags: ["Channels"],
     })
     .input(zaloPersonalChannelIdRequest)
