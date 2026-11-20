@@ -18,7 +18,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/builder/docker"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     registries:
       - dockerhub
     ignore:
@@ -28,7 +28,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/worker/docker"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     registries:
       - dockerhub
     ignore:
@@ -38,7 +38,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/realtime/docker"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     registries:
       - dockerhub
     ignore:
@@ -48,7 +48,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/mcp-server/docker"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     registries:
       - dockerhub
     ignore:
@@ -58,7 +58,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/apps/javascript-executor/docker"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     registries:
       - dockerhub
     ignore:

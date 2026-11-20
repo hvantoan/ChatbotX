@@ -21,9 +21,12 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches: [main]
   workflow_call:
+  # No `push: branches: [main]`: it duplicated the PR run for every merge on a
+  # private repo's Actions minutes. The same gate now runs locally before push
+  # (lefthook `pre-push`). release.yml still calls this workflow for tags and
+  # manual dispatches, so a release can never ship without the gate.
+  workflow_dispatch:
 
 # Read-only: these jobs only check out, install, and run local scripts —
 # none of them need to write contents, packages, or PR/issue state.
@@ -31,9 +34,10 @@ permissions:
   contents: read
 
 # Inside a called workflow the `github` context is the caller's, so a
-# release.yml `workflow_dispatch` on main would otherwise share the group of
-# the push-to-main run and cancel it. `github.workflow` is the caller's name
-# there ("Build and Push Docker Images"), which keeps the two apart.
+# release.yml call would otherwise share the group of a same-ref PR run and
+# cancel it. `github.workflow` is the caller's name there ("Build and Push
+# Docker Images"), which keeps the two apart. For pull requests `github.ref`
+# is refs/pull/<n>/merge, so superseded pushes cancel and only the latest runs.
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

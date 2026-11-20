@@ -1,8 +1,11 @@
 name: Build and Push Docker Images
 
 on:
+  # Tags and manual dispatches only: a build on every push to main burned
+  # Actions minutes on a private repo and produced images nobody deployed.
+  # Build locally instead (same Dockerfiles, root context):
+  #   docker build -f apps/<app>/docker/Dockerfile -t chatbotx-<app>:local .
   push:
-    branches: [main]
     tags: ["v*"]
   workflow_dispatch:
     inputs:
@@ -28,11 +31,10 @@ jobs:
   # build never runs `check-types`, so without this gate a `v*` tag (or a
   # workflow_dispatch on any branch) could push an image that never
   # type-checked. This workflow no longer triggers on `pull_request` at all —
-  # ci.yml already runs lint/check-types/test on every PR and push-to-main,
-  # and a Docker build was the only thing this workflow added on a PR, which
-  # duplicated ci.yml's build-buildability signal for no benefit once ci.yml
-  # covers it. So this job only needs to re-run for events ci.yml does not
-  # cover: a version tag or a manual dispatch.
+  # ci.yml already runs lint/check-types/test on every PR, and the local
+  # pre-push hook covers direct pushes to main, so a Docker build on a PR was
+  # pure duplication of ci.yml's signal. This job therefore only needs to run
+  # for events ci.yml does not cover: a version tag or a manual dispatch.
   #
   # The gate is ci.yml itself, reused: two type-check shards, lint, and eight
   # test shards on their own 4-vCPU runners, with the same `--concurrency=2`
@@ -93,14 +95,12 @@ jobs:
     needs:
       - prepare-metadata
       - check
-    # `check` deliberately does not run on push-to-main (see its `if:` above —
-    # this workflow no longer triggers on `pull_request` at all; ci.yml covers
-    # PRs). A skipped `needs` job skips its dependents by default, which
-    # silently stopped every merge to main from publishing an image between
-    # 2026-08-19 and this fix. This condition lets the build proceed when
-    # `check` is skipped, while still blocking it when `check` actually fails
-    # (tags / workflow_dispatch). NOT `always()` — that would ship images
-    # whose quality gate failed.
+    # `check` runs for both remaining triggers (tag / workflow_dispatch), so
+    # this condition only guards the skipped/failed case: a skipped `needs`
+    # job skips its dependents by default, and that once silently stopped
+    # images from being published. `needs.check.result != 'failure'` still
+    # blocks a build whose quality gate failed. NOT `always()` — that would
+    # ship images whose gate failed.
     #
     # Note for any future job-level `if:` edit here: `jobs.<job_id>.if` only
     # has access to the `github`, `needs`, `vars`, and `inputs` contexts —
