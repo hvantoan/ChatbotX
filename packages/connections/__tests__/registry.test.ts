@@ -85,10 +85,19 @@ describe("CONNECTION_REGISTRY", () => {
     //     workspace, never connected through a user-supplied credential.
     //   - `whatsapp`: the provider-owned signup flow supplies auth; this
     //     generic credential route must not synthesize an alternate flow.
+    //   - `zalo_personal`: connects through QR or verified credential flows
+    //     via the gateway rather than bare `fromCredentials`.
     // A new credential-strategy provider added here without `fromCredentials`
     // silently becomes unreachable via `POST /v1/connections` — this pins
     // the exception list so that is a conscious choice, not a silent gap.
-    const knownGaps = ["api", "chatbotx", "smtp", "webchat", "whatsapp"]
+    const knownGaps = [
+      "api",
+      "chatbotx",
+      "smtp",
+      "webchat",
+      "whatsapp",
+      "zalo_personal",
+    ]
     const credentialStrategies: Record<string, true> = {
       token: true,
       api_key: true,
