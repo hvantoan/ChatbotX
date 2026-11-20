@@ -94,6 +94,20 @@ export async function updateZaloPersonalChannel(input: {
   return updated
 }
 
+export async function syncZaloPersonalChannel(input: {
+  workspaceId: string
+  id: string
+}): Promise<{ ok: boolean } | null> {
+  const row = await integrationZaloPersonalService.findById({
+    id: input.id,
+    workspaceId: input.workspaceId,
+  })
+  if (!row) {
+    return null
+  }
+  return await zaloPersonalGateway.syncAccount(row.zaloUid)
+}
+
 export async function disconnectZaloPersonalChannel(input: {
   workspaceId: string
   id: string

@@ -396,7 +396,9 @@ export const receiveMessage = async (
   // instead of per-branch checks; `canAutomate` replaces `isWorkspaceActive`
   // in every automation branch below).
   const threadControl = parsedMessage.threadControl
-  const suppressAutomation = threadControl?.delivery === "standby"
+  const suppressAutomation =
+    threadControl?.delivery === "standby" ||
+    parsedMessage.suppressAutomation === true
   const canAutomate = isWorkspaceActive && !suppressAutomation
   const appointmentCancelToken = suppressAutomation
     ? null
@@ -608,6 +610,7 @@ export const receiveMessage = async (
         contactInbox,
         conversation,
         incomingMessage,
+        createdAt: parsedMessage.occurredAt ?? undefined,
         storageUrl,
         // A Business-AI (Meta AI) reply on standby keeps the conversation
         // unread so a human agent monitors the AI (Integration Guide §5.3).
@@ -632,7 +635,7 @@ export const receiveMessage = async (
       await integrationQueue.add(job.name, job.data, job.opts)
     }
 
-    if (isNewMessage) {
+    if (isNewMessage && !suppressAutomation) {
       await awardInboundMessageLeaderboard({
         inbox,
         contactId: contactInbox.contactId,

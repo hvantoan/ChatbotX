@@ -11,6 +11,7 @@ import { workspaceTokenAuthAPIForScope } from "@/orpc"
 import {
   connectZaloPersonalWithCredentials,
   disconnectZaloPersonalChannel,
+  syncZaloPersonalChannel,
   updateZaloPersonalChannel,
 } from "../lib/manage-zalo-personal"
 import {
@@ -141,5 +142,28 @@ export const zaloPersonalChannelsPublicRouter = {
         workspaceId: context.workspace.id,
         id: input.id,
       })
+    }),
+
+  sync: workspaceTokenAuthAPI
+    .route({
+      method: "POST",
+      path: "/v1/zalo-personal-channels/{id}/sync",
+      summary: "Sync Zalo Personal conversations",
+      description:
+        "Triggers a recent conversation and message history sync for a connected personal Zalo account.",
+      tags: ["Channels"],
+    })
+    .input(zaloPersonalChannelIdRequest)
+    .output(z.object({ ok: z.boolean() }))
+    .errors(possibleErrorsOnMutatingResource)
+    .handler(async ({ context, input }) => {
+      const result = await syncZaloPersonalChannel({
+        workspaceId: context.workspace.id,
+        id: input.id,
+      })
+      if (!result) {
+        throw new ORPCError("NOT_FOUND")
+      }
+      return result
     }),
 }

@@ -320,6 +320,7 @@
     "integration-zalo-personal/delete.action:disconnectZaloPersonalAction": "covered:integration-zalo-personal",
     "integration-zalo-personal/qr.action:pollZaloPersonalQrAction": "private:QR login polling is a browser session flow, not a workspace-token operation",
     "integration-zalo-personal/qr.action:startZaloPersonalQrAction": "private:QR login polling is a browser session flow, not a workspace-token operation",
+    "integration-zalo-personal/sync.action:syncZaloPersonalAction": "covered:integration-zalo-personal",
     "integration-zalo-personal/update.action:updateZaloPersonalAction": "covered:integration-zalo-personal",
     "invitations/accept-invitation:acceptInvitationAction": "private:no public surface yet (UI-only, not yet audited)",
     "leaderboards/change-leaderboard-status.action:changeLeaderboardStatusAction": "covered:leaderboards",

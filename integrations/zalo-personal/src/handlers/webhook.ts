@@ -74,16 +74,26 @@ export const webhookHandler = async (
   }
 
   const payload = zaloPersonalWebhookPayloadSchema.parse(JSON.parse(body))
-  if (payload.isSelf) {
+  if (!payload.isHistorySync && payload.isSelf) {
     return "ok"
   }
 
-  if (!shouldProcessGroupMessage(payload, config.groupReplyConfig)) {
+  if (
+    !(
+      payload.isHistorySync ||
+      shouldProcessGroupMessage(payload, config.groupReplyConfig)
+    )
+  ) {
     return "ok"
   }
 
-  await queue?.add("incomingMessage", {
-    type: "incomingMessage",
+  const jobType =
+    payload.isHistorySync && payload.isSelf
+      ? "incomingMessageEcho"
+      : "incomingMessage"
+
+  await queue?.add(jobType, {
+    type: jobType,
     data: {
       integrationType: "zalo_personal",
       integrationIdentifier: config.zaloUid ?? payload.zaloUid,

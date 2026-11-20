@@ -53,6 +53,10 @@ export type NormalizedWebhookPayload = {
   isMentionedMe: boolean
   isSelf: boolean
   timestamp: number
+  isHistorySync?: boolean
+  threadName?: string
+  threadAvatar?: string
+  senderAvatar?: string
 }
 
 export type SendMessageInput = {
@@ -100,12 +104,21 @@ function resolveAttachmentType(
   return "file"
 }
 
-export function normalizeIncomingMessage(
+export type NormalizeMessageOptions = {
+  allowSelf?: boolean
+  isHistorySync?: boolean
+  threadName?: string
+  threadAvatar?: string
+  senderAvatar?: string
+}
+
+export function normalizeMessage(
   msg: Message,
   zaloUid: string,
   integrationId: string,
+  options?: NormalizeMessageOptions,
 ): NormalizedWebhookPayload | null {
-  if (msg.isSelf) {
+  if (msg.isSelf && !options?.allowSelf) {
     return null
   }
 
@@ -153,7 +166,19 @@ export function normalizeIncomingMessage(
     isMentionedMe,
     isSelf: msg.isSelf,
     timestamp: Number(data.ts) || Date.now(),
+    ...(options?.isHistorySync ? { isHistorySync: true } : {}),
+    ...(options?.threadName ? { threadName: options.threadName } : {}),
+    ...(options?.threadAvatar ? { threadAvatar: options.threadAvatar } : {}),
+    ...(options?.senderAvatar ? { senderAvatar: options.senderAvatar } : {}),
   }
+}
+
+export function normalizeIncomingMessage(
+  msg: Message,
+  zaloUid: string,
+  integrationId: string,
+): NormalizedWebhookPayload | null {
+  return normalizeMessage(msg, zaloUid, integrationId)
 }
 
 type ManagedSession = {
@@ -166,6 +191,8 @@ type ManagedSession = {
   reconnectAttempts: number
   lastError?: string
   stopped: boolean
+  initialSyncDone: boolean
+  syncInProgress: boolean
 }
 
 export class ZaloSessionManager {
@@ -245,6 +272,8 @@ export class ZaloSessionManager {
       state: "connecting",
       reconnectAttempts: 0,
       stopped: false,
+      initialSyncDone: false,
+      syncInProgress: false,
     }
     this.sessions.set(input.zaloUid, session)
 
@@ -317,6 +346,20 @@ export class ZaloSessionManager {
         ).catch(() => undefined)
       })
 
+      api.listener.on(
+        "old_messages",
+        (messages: Message[], threadType: ThreadType) => {
+          this.handleOldMessages(session, messages, threadType).catch(
+            (err: unknown) => {
+              logger.warn(
+                { err, zaloUid, threadType },
+                "Failed to process Zalo personal old_messages batch",
+              )
+            },
+          )
+        },
+      )
+
       api.listener.on("error", (err: unknown) => {
         logger.error({ err, zaloUid }, "Zalo listener error")
         session.lastError =
@@ -343,6 +386,16 @@ export class ZaloSessionManager {
 
       api.listener.start({ retryOnClose: false })
       logger.info({ zaloUid, integrationId }, "Started Zalo personal listener")
+
+      if (!session.initialSyncDone) {
+        session.initialSyncDone = true
+        this.syncHistory(zaloUid).catch((err: unknown) => {
+          logger.warn(
+            { err, zaloUid },
+            "Initial Zalo personal history sync failed",
+          )
+        })
+      }
     } catch (err) {
       session.state = "error"
       session.lastError =
@@ -389,6 +442,117 @@ export class ZaloSessionManager {
     if (session.lock) {
       await session.lock.release()
       session.lock = null
+    }
+  }
+
+  syncHistory(zaloUid: string): Promise<{ ok: boolean }> {
+    const session = this.sessions.get(zaloUid)
+    if (
+      !session ||
+      session.stopped ||
+      !session.api ||
+      session.state !== "connected"
+    ) {
+      return Promise.reject(new Error("Zalo personal session is not connected"))
+    }
+    if (session.syncInProgress) {
+      return Promise.resolve({ ok: true })
+    }
+    session.syncInProgress = true
+    setTimeout(() => {
+      session.syncInProgress = false
+    }, 15_000).unref?.()
+
+    session.api.listener.requestOldMessages(ThreadType.User)
+    session.api.listener.requestOldMessages(ThreadType.Group)
+    return Promise.resolve({ ok: true })
+  }
+
+  private async enrichThreadMetadata(
+    api: API,
+    messages: Message[],
+    threadType: ThreadType,
+  ): Promise<Map<string, { name?: string; avatar?: string }>> {
+    const metadata = new Map<string, { name?: string; avatar?: string }>()
+    const uniqueIds = Array.from(
+      new Set(messages.map((m) => m.threadId).filter(Boolean)),
+    )
+    const chunkSize = 20
+
+    for (let i = 0; i < uniqueIds.length; i += chunkSize) {
+      const chunk = uniqueIds.slice(i, i + chunkSize)
+      try {
+        if (threadType === ThreadType.Group) {
+          const res = await api.getGroupInfo(chunk)
+          for (const [id, info] of Object.entries(res.gridInfoMap ?? {})) {
+            metadata.set(id, { name: info.name, avatar: info.avt })
+          }
+        } else {
+          const res = await api.getUserInfo(chunk)
+          for (const [id, info] of Object.entries(res.changed_profiles ?? {})) {
+            metadata.set(id, {
+              name: info.displayName || info.zaloName,
+              avatar: info.avatar,
+            })
+          }
+        }
+      } catch (err) {
+        logger.warn(
+          { err, threadType, count: chunk.length },
+          "Failed to enrich Zalo thread metadata",
+        )
+      }
+      if (i + chunkSize < uniqueIds.length) {
+        await new Promise((resolve) => setTimeout(resolve, 150))
+      }
+    }
+
+    return metadata
+  }
+
+  private async handleOldMessages(
+    session: ManagedSession,
+    messages: Message[],
+    threadType: ThreadType,
+  ): Promise<void> {
+    try {
+      if (session.stopped || !session.api || messages.length === 0) {
+        return
+      }
+      const { zaloUid, integrationId, webhookUrl, webhookSecret } =
+        session.input
+      const secret = webhookSecret ?? this.options.defaultWebhookSecret
+      const metadata = await this.enrichThreadMetadata(
+        session.api,
+        messages,
+        threadType,
+      )
+
+      for (const msg of messages) {
+        if (session.stopped) {
+          break
+        }
+        const meta = metadata.get(msg.threadId)
+        const normalized = normalizeMessage(msg, zaloUid, integrationId, {
+          allowSelf: true,
+          isHistorySync: true,
+          threadName: meta?.name,
+          threadAvatar: meta?.avatar,
+        })
+        if (!normalized) {
+          continue
+        }
+        await this.forwardWebhook(webhookUrl, secret, normalized).catch(
+          (err: unknown) => {
+            logger.warn(
+              { err, zaloUid, messageId: normalized.messageId },
+              "Failed to forward history message",
+            )
+          },
+        )
+      }
+    } finally {
+      session.syncInProgress = false
     }
   }
 

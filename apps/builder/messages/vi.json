@@ -3097,6 +3097,8 @@
       "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
       "saveSettings": "Save Settings",
       "status": "Gateway Status",
+      "sync": "Đồng bộ hội thoại",
+      "syncSuccess": "Đã bắt đầu đồng bộ hội thoại",
       "zaloUid": "Zalo UID"
     }
   },

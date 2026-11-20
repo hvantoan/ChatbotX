@@ -4294,7 +4294,9 @@
       "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
       "saveSettings": "Save Settings",
       "status": "Gateway Status",
-      "zaloUid": "Zalo UID"
+      "zaloUid": "Zalo UID",
+      "sync": "Sync conversations",
+      "syncSuccess": "Conversation sync started"
     }
   },
   "channels": {
