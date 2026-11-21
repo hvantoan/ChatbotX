@@ -95,6 +95,12 @@ export function ZaloPersonalConnect({
           setOpen(false)
         }
       },
+      onError: () => {
+        // Action-level failures (network, gateway down, auth) leave qrStatus
+        // stuck and the interval polling forever — surface expired so the
+        // loop stops and the user can regenerate.
+        setQrStatus("expired")
+      },
     },
   )
 

@@ -66,6 +66,8 @@ const qrStatusSchema = z.object({
   error: z.string().optional(),
 })
 
+export type ZaloPersonalQrStatus = z.infer<typeof qrStatusSchema>
+
 export const zaloPersonalGateway = {
   startQr: (proxyUrl?: string) =>
     callGateway(
