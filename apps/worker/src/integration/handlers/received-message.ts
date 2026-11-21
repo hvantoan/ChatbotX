@@ -396,9 +396,14 @@ export const receiveMessage = async (
   // instead of per-branch checks; `canAutomate` replaces `isWorkspaceActive`
   // in every automation branch below).
   const threadControl = parsedMessage.threadControl
+  // Two distinct store-only signals feed `suppressAutomation`: a standby
+  // (listen-only) delivery arrives via `threadControl`, while a bulk history
+  // import carries `suppressAutomation` on the parse result itself. Keep the
+  // history flag separate: it must also skip contact-state mutations and
+  // contact-created triggers, none of which standby should lose.
+  const isHistoryIngest = parsedMessage.suppressAutomation === true
   const suppressAutomation =
-    threadControl?.delivery === "standby" ||
-    parsedMessage.suppressAutomation === true
+    threadControl?.delivery === "standby" || isHistoryIngest
   const canAutomate = isWorkspaceActive && !suppressAutomation
   const appointmentCancelToken = suppressAutomation
     ? null
@@ -480,6 +485,9 @@ export const receiveMessage = async (
       integrationRow,
       source: resolveContactSource(parsedMessage.referral, referralSource),
       existingContactMatch,
+      // History creating a contact must not fire `newContact` triggers
+      // (a welcome flow would greet an imported conversation's owner).
+      suppressContactEvents: isHistoryIngest,
     }),
     resolvePostbackButtonLabel({
       postbackAction,
@@ -525,7 +533,9 @@ export const receiveMessage = async (
       tapButtonLabel && directedIncomingMessage
         ? { ...directedIncomingMessage, text: tapButtonLabel }
         : directedIncomingMessage,
-      suppressAutomation,
+      // Standby-only marker: history imports share `suppressAutomation` but
+      // are not standby copies and must never wait for an owner promotion.
+      threadControl?.delivery === "standby",
     ),
     workspaceId: inbox.workspaceId,
     channel: inbox.channel,
@@ -543,7 +553,14 @@ export const receiveMessage = async (
   // Guarded on messageType !== 'outgoing' so bot/agent-authored text never
   // feeds the libphonenumber extractor (would otherwise false-positive on
   // long order/ticket IDs in templated outbound messages).
-  if (incomingMessage?.text && incomingMessage.messageType !== "outgoing") {
+  // History replays must not rewrite current contact state: an imported
+  // message's text is stale by definition, and extracting from it would
+  // revert an operator's correction to a stale value.
+  if (
+    incomingMessage?.text &&
+    incomingMessage.messageType !== "outgoing" &&
+    !isHistoryIngest
+  ) {
     try {
       await updateContactFromMessage({
         contactId: contactInbox.contactId,
@@ -558,7 +575,13 @@ export const receiveMessage = async (
     }
   }
 
-  if (incomingMessage && incomingMessage.messageType !== "outgoing") {
+  // History replays must not undo a deliberate block either: the block
+  // reflects the operator's latest intent, not the imported message's age.
+  if (
+    incomingMessage &&
+    incomingMessage.messageType !== "outgoing" &&
+    !isHistoryIngest
+  ) {
     try {
       await contactService.unblockIfBlocked(
         { workspaceId: inbox.workspaceId, id: contactInbox.contactId },
@@ -647,11 +670,16 @@ export const receiveMessage = async (
     // Best-effort backfill of a nameless existing contact's profile. No
     // isNewMessage/isNewContact gate; awaited before the flow-action enqueue
     // below so the first automated reply already sees `{{first_name}}`.
-    const profileRefreshSource = getProfileRefreshSource({
-      channel: inbox.channel as ChannelType,
-      incomingMessage,
-      contact,
-    })
+    // Skipped on history ingest: a per-message profile lookup during a bulk
+    // import both spams the channel API and lets stale channel data write
+    // over current contact state.
+    const profileRefreshSource = isHistoryIngest
+      ? null
+      : getProfileRefreshSource({
+          channel: inbox.channel as ChannelType,
+          incomingMessage,
+          contact,
+        })
     if (profileRefreshSource) {
       await refreshExistingContactProfile({
         source: profileRefreshSource,
@@ -1437,6 +1465,21 @@ const persistMessage = async (
     messageInput,
     attachmentInputs,
   })
+
+  // A message stored older than the conversation row would sit below the
+  // listing's lower bound (`conversation.createdAt`) and stay invisible.
+  // Persist the earliest bound so imported history remains readable. This
+  // runs on every persist (not just `isNew`) so a retry that finds the
+  // message already stored still repairs a bound lost to an earlier
+  // mid-flight failure.
+  if (message.createdAt < conversation.createdAt) {
+    await conversationService.recordEarliestMessageAt({
+      workspaceId: inbox.workspaceId,
+      conversationId: conversation.id,
+      at: message.createdAt,
+    })
+  }
+
   if (isNew) {
     await enqueuePhotoOptimizations({
       incomingMessage,
@@ -2513,6 +2556,12 @@ export const detectContactAndConversation = async (props: {
   source: ContactSource
   /** A match the caller already resolved for this identity; skips the lookup. */
   existingContactMatch?: SourceScopedIdentityMatch<ContactInboxWithContact>
+  /**
+   * Store-only ingestion (history sync): creating the contact must not emit
+   * the trigger/webhook-producing `contactCreated` event — an imported
+   * conversation is not a new live contact opting in.
+   */
+  suppressContactEvents?: boolean
 }): Promise<{
   contactInbox: ContactInboxModel
   contact: ContactModel
@@ -2556,6 +2605,7 @@ export const detectContactAndConversation = async (props: {
       source,
       conversationSourceId,
       isBsuidKeyedIncomingContact,
+      suppressContactEvents: props.suppressContactEvents === true,
     })
   } catch (error) {
     // D8: two concurrent first-messages from the same identity can both pass
@@ -2600,6 +2650,7 @@ const createNewContactAndContactInbox = async (props: {
   source: ContactSource
   conversationSourceId: string | null
   isBsuidKeyedIncomingContact: boolean
+  suppressContactEvents: boolean
 }): Promise<{
   contactInbox: ContactInboxModel
   contact: ContactModel
@@ -2613,6 +2664,7 @@ const createNewContactAndContactInbox = async (props: {
     source,
     conversationSourceId,
     isBsuidKeyedIncomingContact,
+    suppressContactEvents,
   } = props
 
   // `referral` belongs on the ContactInbox, never on the Contact row.
@@ -2859,14 +2911,20 @@ const createNewContactAndContactInbox = async (props: {
     ])
   }
 
-  await emitContactCreated(
-    newContact.workspaceId,
-    newContact.id,
-    newContact.firstName || undefined,
-    newContact.phoneNumber || undefined,
-    newContact.email || undefined,
-    contactInbox.id,
-  )
+  // `contactCreated` fans out to triggers (`newContact` flows) and channel
+  // webhooks; history imports skip it so an imported contact never starts a
+  // welcome flow. The analytics `contact:created` record below still runs —
+  // the contact really was created.
+  if (!suppressContactEvents) {
+    await emitContactCreated(
+      newContact.workspaceId,
+      newContact.id,
+      newContact.firstName || undefined,
+      newContact.phoneNumber || undefined,
+      newContact.email || undefined,
+      contactInbox.id,
+    )
+  }
 
   if (contactInbox.sourceId) {
     emit("analytics:dashboard", {

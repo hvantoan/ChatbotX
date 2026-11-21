@@ -366,6 +366,21 @@ export class ZaloSessionManager {
           err instanceof Error ? err.message : "Listener error"
       })
 
+      // `listener.start()` returns while the WebSocket is still CONNECTING;
+      // `requestOldMessages` sends on it without a readiness check, so the
+      // initial sync must wait for the socket's own `connected` event.
+      api.listener.on("connected", () => {
+        if (session.stopped || session.initialSyncDone) {
+          return
+        }
+        this.syncHistory(zaloUid).catch((err: unknown) => {
+          logger.warn(
+            { err, zaloUid },
+            "Initial Zalo personal history sync failed",
+          )
+        })
+      })
+
       api.listener.on("closed", (code: CloseReason, reason: string) => {
         logger.warn({ zaloUid, code, reason }, "Zalo listener closed")
         if (session.stopped) {
@@ -386,16 +401,6 @@ export class ZaloSessionManager {
 
       api.listener.start({ retryOnClose: false })
       logger.info({ zaloUid, integrationId }, "Started Zalo personal listener")
-
-      if (!session.initialSyncDone) {
-        session.initialSyncDone = true
-        this.syncHistory(zaloUid).catch((err: unknown) => {
-          logger.warn(
-            { err, zaloUid },
-            "Initial Zalo personal history sync failed",
-          )
-        })
-      }
     } catch (err) {
       session.state = "error"
       session.lastError =
@@ -456,6 +461,7 @@ export class ZaloSessionManager {
       return Promise.reject(new Error("Zalo personal session is not connected"))
     }
     if (session.syncInProgress) {
+      session.initialSyncDone = true
       return Promise.resolve({ ok: true })
     }
     session.syncInProgress = true
@@ -463,8 +469,18 @@ export class ZaloSessionManager {
       session.syncInProgress = false
     }, 15_000).unref?.()
 
-    session.api.listener.requestOldMessages(ThreadType.User)
-    session.api.listener.requestOldMessages(ThreadType.Group)
+    // `requestOldMessages` calls `ws.send()` directly, so it throws
+    // synchronously when the socket is not yet OPEN. The throw is converted
+    // to a rejection callers can `.catch()` instead of propagating through
+    // the surrounding connection setup.
+    try {
+      session.api.listener.requestOldMessages(ThreadType.User)
+      session.api.listener.requestOldMessages(ThreadType.Group)
+    } catch (err) {
+      session.syncInProgress = false
+      return Promise.reject(err instanceof Error ? err : new Error(String(err)))
+    }
+    session.initialSyncDone = true
     return Promise.resolve({ ok: true })
   }
 

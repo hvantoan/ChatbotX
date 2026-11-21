@@ -898,6 +898,48 @@ class ConversationService extends BaseService {
   }
 
   /**
+   * Move the conversation's earliest-message bound back to `at`, when `at` is
+   * older than the bound already stored (or none is). Backdated ingestion —
+   * channel history sync, comment replays — stores messages older than
+   * `Conversation.createdAt`, which is the default lower bound the message
+   * listing derives from; `additionalAttributes.earliestMessageAt` persists
+   * the true bound so `listForConversation`/`findForContact` include them.
+   * Monotonic-earliest: the guard in the WHERE clause only ever moves the
+   * bound backwards, so concurrent writers commute.
+   */
+  async recordEarliestMessageAt(props: {
+    workspaceId: string
+    conversationId: string
+    at: Date
+    tx?: DatabaseClient
+  }): Promise<void> {
+    const { workspaceId, conversationId, at, tx = db } = props
+    const iso = at.toISOString()
+    const updated = await tx
+      .update(conversationModel)
+      .set({
+        additionalAttributes: sql`jsonb_set(coalesce(${conversationModel.additionalAttributes}, '{}'::jsonb), '{earliestMessageAt}', to_jsonb(${iso}::text), true)`,
+      })
+      .where(
+        and(
+          eq(conversationModel.id, conversationId),
+          eq(conversationModel.workspaceId, workspaceId),
+          or(
+            isNull(
+              sql`${conversationModel.additionalAttributes} ->> 'earliestMessageAt'`,
+            ),
+            sql`(${conversationModel.additionalAttributes} ->> 'earliestMessageAt')::timestamptz > ${iso}::timestamptz`,
+          ),
+        ),
+      )
+      .returning({ id: conversationModel.id })
+
+    if (updated.length > 0) {
+      await this.invalidate({ workspaceId, ids: [conversationId] })
+    }
+  }
+
+  /**
    * One DM conversation per contact, opening the ones that don't exist yet.
    * A contact that only ever commented (or was imported) has a `ContactInbox`
    * but no DM, and a broadcast still has to deliver to it, so the audience
