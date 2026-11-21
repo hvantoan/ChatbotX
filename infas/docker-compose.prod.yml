@@ -13,15 +13,22 @@ x-service-common: &service-common
   networks:
     - chatbotx-network
 
-# Cloudflare R2 (S3-compatible object storage)
-# S3_ENDPOINT=https://<ACCOUNT_ID>.r2.cloudflarestorage.com
-# S3_REGION=auto
+# Bundled RustFS (S3-compatible object storage). Point S3_* at the
+# `filesystem` service, or at any external S3-compatible endpoint instead.
+#   S3_ENDPOINT=http://filesystem:9000
+#   S3_BUCKET=chatbotx
+#   S3_ACCESS_KEY_ID/S3_SECRET_ACCESS_KEY = RUSTFS_* values below
+x-rustfs-environment: &rustfs-environment
+  RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:?}
+  RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:?}
+  RUSTFS_API_CORS_ALLOW_ORIGIN: ${RUSTFS_API_CORS_ALLOW_ORIGIN:-*}
+
 x-storage-environment: &storage-environment
-  S3_ENDPOINT: ${S3_ENDPOINT:?S3_ENDPOINT is required}
-  S3_REGION: ${S3_REGION:-auto}
-  S3_BUCKET: ${S3_BUCKET:?S3_BUCKET is required}
-  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?S3_ACCESS_KEY_ID is required}
-  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?S3_SECRET_ACCESS_KEY is required}
+  S3_ENDPOINT: ${S3_ENDPOINT:?}
+  S3_REGION: ${S3_REGION:-us-east-1}
+  S3_BUCKET: ${S3_BUCKET:?}
+  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?}
+  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?}
 
 # Resend SMTP (used by @chatbotx.io/mail in builder and worker)
 # SMTP_SERVER=smtps://resend:<RESEND_API_KEY>@smtp.resend.com:465
@@ -64,18 +71,65 @@ services:
       timeout: 5s
       retries: 5
 
+  # Same RustFS layout as the root docker-compose.yml; only the S3 API
+  # port is exposed (the :9001 console stays internal). Objects under the
+  # `public/` key prefix are anonymous-readable for channel media/avatars.
+  filesystem:
+    <<: *network
+    image: rustfs/rustfs:latest
+    restart: always
+    command: server /data --console-address ":9001"
+    ports:
+      - "${S3_PUBLIC_PORT:-9000}:9000"
+    environment:
+      <<: *rustfs-environment
+    volumes:
+      - filesystem-data-prod:/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "sh",
+          "-c",
+          "curl -f http://127.0.0.1:9000/health && curl -f
+          http://127.0.0.1:9001/rustfs/console/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  filesystem-init:
+    <<: *network
+    image: rustfs/rc:latest
+    depends_on:
+      filesystem:
+        condition: service_healthy
+    environment:
+      <<: *rustfs-environment
+    entrypoint: >
+      /bin/sh -c "rc alias set local http://filesystem:9000
+      $${RUSTFS_ACCESS_KEY} $${RUSTFS_SECRET_KEY}; rc mb local/chatbotx
+      --ignore-existing; touch /tmp/empty && rc cp /tmp/empty
+      local/chatbotx/public/; rc anonymous set public local/chatbotx/public;"
+
   # ─────────────────────────────────────────────
   # Applications (Prod - hardened)
   # ─────────────────────────────────────────────
   builder:
     <<: *service-common
-    image: ${CHATBOTX_BUILDER_IMAGE:-ghcr.io/${GHCR_NAMESPACE:-hvantoan}/chatbotx-builder:${CHATBOTX_IMAGE_TAG:-latest}}
+    image: ${CHATBOTX_BUILDER_IMAGE:-chatbotx-builder:latest}
+    build:
+      context: ..
+      dockerfile: apps/builder/docker/Dockerfile
     ports:
       - "${BUILDER_PORT:-3000}:3000"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      filesystem:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
@@ -96,7 +150,10 @@ services:
 
   worker:
     <<: *service-common
-    image: ${CHATBOTX_WORKER_IMAGE:-ghcr.io/${GHCR_NAMESPACE:-hvantoan}/chatbotx-worker:${CHATBOTX_IMAGE_TAG:-latest}}
+    image: ${CHATBOTX_WORKER_IMAGE:-chatbotx-worker:latest}
+    build:
+      context: ..
+      dockerfile: apps/worker/docker/Dockerfile
     networks:
       - chatbotx-network
       - javascript-executor-network
@@ -104,6 +161,8 @@ services:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      filesystem:
         condition: service_healthy
       javascript-executor:
         condition: service_healthy
@@ -121,10 +180,13 @@ services:
   javascript-executor:
     platform: linux/amd64
     restart: always
-    image: ${CHATBOTX_JS_EXECUTOR_IMAGE:-ghcr.io/${GHCR_NAMESPACE:-hvantoan}/chatbotx-javascript-executor:${CHATBOTX_IMAGE_TAG:-latest}}
+    image: ${CHATBOTX_JS_EXECUTOR_IMAGE:-chatbotx-javascript-executor:latest}
+    build:
+      context: ..
+      dockerfile: apps/javascript-executor/docker/Dockerfile
     environment:
       NODE_ENV: production
-      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:?JAVASCRIPT_EXECUTOR_TOKEN is required}
+      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:?}
       MAX_CONCURRENCY: ${MAX_CONCURRENCY:-2}
     networks:
       - javascript-executor-network
@@ -149,7 +211,10 @@ services:
 
   realtime:
     <<: *service-common
-    image: ${CHATBOTX_REALTIME_IMAGE:-ghcr.io/${GHCR_NAMESPACE:-hvantoan}/chatbotx-realtime:${CHATBOTX_IMAGE_TAG:-latest}}
+    image: ${CHATBOTX_REALTIME_IMAGE:-chatbotx-realtime:latest}
+    build:
+      context: ..
+      dockerfile: apps/realtime/docker/Dockerfile
     ports:
       - "${REALTIME_PORT:-1999}:1999"
     depends_on:
@@ -163,7 +228,11 @@ services:
 
   zalo-personal-gateway:
     <<: *service-common
-    image: ${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-ghcr.io/${GHCR_NAMESPACE:-hvantoan}/chatbotx-zalo-personal-gateway:${CHATBOTX_IMAGE_TAG:-latest}}
+    image: "${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-\
+      chatbotx-zalo-personal-gateway:latest}"
+    build:
+      context: ..
+      dockerfile: apps/zalo-personal-gateway/docker/Dockerfile
     depends_on:
       redis:
         condition: service_healthy
@@ -172,8 +241,8 @@ services:
       - PORT=3220
       - HOST=0.0.0.0
       - REDIS_URL=redis://redis:6379
-      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:?ZALO_PERSONAL_GATEWAY_TOKEN is required}
-      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:?ZALO_PERSONAL_WEBHOOK_SECRET is required}
+      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:?}
+      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:?}
       - ZALO_PERSONAL_PROXY_URL=${ZALO_PERSONAL_PROXY_URL:-}
       - ZALO_PERSONAL_MAX_ACCOUNTS=${ZALO_PERSONAL_MAX_ACCOUNTS:-5}
     cap_drop:
@@ -203,4 +272,5 @@ networks:
 
 volumes:
   db-data-prod:
+  filesystem-data-prod:
   cache-data-prod:
