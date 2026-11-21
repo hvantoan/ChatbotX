@@ -73,6 +73,11 @@ export type ReceivedMessageResult = {
    * resolves it against the workspace catalog.
    */
   commerce?: IncomingCommerceEvent | null
+  /**
+   * When true, the worker stores the contact, conversation, and message
+   * (e.g. history sync) but skips all automation (flows, triggers, AI agents).
+   */
+  suppressAutomation?: boolean
 }
 
 /**

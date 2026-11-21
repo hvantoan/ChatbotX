@@ -78,4 +78,11 @@ export const gatewayClient = {
       { method: "POST", body: { zaloUid } },
       z.object({ ok: z.boolean() }),
     ),
+
+  syncAccount: (zaloUid: string) =>
+    gatewayFetch(
+      `/accounts/${encodeURIComponent(zaloUid)}/sync`,
+      { method: "POST" },
+      z.object({ ok: z.boolean() }),
+    ),
 }

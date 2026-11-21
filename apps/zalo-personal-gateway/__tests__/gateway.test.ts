@@ -5,6 +5,7 @@ import { createGatewayServer } from "../src/server"
 import {
   calculateBackoffMs,
   normalizeIncomingMessage,
+  normalizeMessage,
   signWebhookPayload,
 } from "../src/session-manager"
 
@@ -196,6 +197,7 @@ describe("createGatewayServer", () => {
           state: "connected",
         }),
         stopAccount: vi.fn().mockResolvedValue(undefined),
+        syncHistory: vi.fn().mockResolvedValue({ ok: true }),
         verifyCredentials: vi.fn().mockResolvedValue({
           zaloUid: "uid-1",
           displayName: "Zalo User",
@@ -252,5 +254,61 @@ describe("createGatewayServer", () => {
     })
     expect(sendRes.status).toBe(200)
     expect(await sendRes.json()).toEqual({ messageIds: ["m-10"] })
+
+    const syncRes = await fetch(`${baseUrl}/accounts/uid-1/sync`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    expect(syncRes.status).toBe(200)
+    expect(await syncRes.json()).toEqual({ ok: true })
+  })
+})
+
+describe("normalizeMessage (history sync)", () => {
+  test("preserves self messages and metadata when allowSelf and isHistorySync are set", () => {
+    const result = normalizeMessage(
+      {
+        type: ThreadType.User,
+        threadId: "user-42",
+        isSelf: true,
+        data: {
+          msgId: "m-hist-1",
+          cliMsgId: "c-hist-1",
+          uidFrom: "own-uid",
+          dName: "Me",
+          ts: "1700000000000",
+          content: "Previous reply",
+          msgType: "webchat",
+        },
+      } as never,
+      "own-uid",
+      "int-1",
+      {
+        allowSelf: true,
+        isHistorySync: true,
+        threadName: "Alice",
+        threadAvatar: "https://example.com/avatar.jpg",
+      },
+    )
+
+    expect(result).toEqual({
+      zaloUid: "own-uid",
+      integrationId: "int-1",
+      threadId: "user-42",
+      threadType: "user",
+      senderId: "own-uid",
+      senderName: "Me",
+      messageId: "m-hist-1",
+      text: "Previous reply",
+      attachments: [],
+      isMentionedMe: false,
+      isSelf: true,
+      timestamp: 1_700_000_000_000,
+      isHistorySync: true,
+      threadName: "Alice",
+      threadAvatar: "https://example.com/avatar.jpg",
+    })
   })
 })

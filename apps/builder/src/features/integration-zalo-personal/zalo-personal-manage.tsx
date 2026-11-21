@@ -16,6 +16,7 @@ import { AddChannelButton } from "@/features/inboxes/components/add-channel-butt
 import { ZaloPersonalConnect } from "./components/zalo-personal-connect"
 import { ZaloPersonalDisconnect } from "./components/zalo-personal-disconnect"
 import { ZaloPersonalSettingsDialog } from "./components/zalo-personal-settings-dialog"
+import { ZaloPersonalSyncButton } from "./components/zalo-personal-sync-button"
 import type { listIntegrationZaloPersonals } from "./queries"
 
 type ZaloPersonalManageProps = {
@@ -67,7 +68,8 @@ export function ZaloPersonalManage({
                 <TableCell>{account.name}</TableCell>
                 <TableCell>{account.zaloUid}</TableCell>
                 <TableCell>{account.groupReplyConfig?.mode ?? "all"}</TableCell>
-                <TableCell className="flex w-40 justify-end gap-2">
+                <TableCell className="flex w-48 justify-end gap-2">
+                  <ZaloPersonalSyncButton integrationId={account.id} />
                   <ZaloPersonalSettingsDialog
                     initialGroupReplyConfig={account.groupReplyConfig}
                     initialName={account.name}

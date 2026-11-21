@@ -54,7 +54,9 @@ export const receiveMessage = ({
 
   const incomingMessage: IncomingMessage = {
     sourceId: payload.messageId,
-    messageType: messageTypes.enum.incoming,
+    messageType: payload.isSelf
+      ? messageTypes.enum.outgoing
+      : messageTypes.enum.incoming,
     text:
       payload.threadType === "group" && payload.text
         ? `[${payload.senderName}] ${payload.text}`
@@ -63,12 +65,15 @@ export const receiveMessage = ({
     attachments,
   }
 
+  const avatar = payload.threadAvatar ?? payload.senderAvatar
   const contact: IncomingContact = {
     sourceId: toContactSourceId(payload.threadType, payload.threadId),
     firstName:
-      payload.threadType === "group"
+      payload.threadName ||
+      (payload.threadType === "group"
         ? `Group ${payload.threadId}`
-        : payload.senderName,
+        : payload.senderName),
+    ...(avatar ? { avatar } : {}),
   }
 
   return Promise.resolve({
@@ -77,5 +82,9 @@ export const receiveMessage = ({
     postbackAction: null,
     quickReplyAction: null,
     ref: null,
+    ...(payload.timestamp > 0
+      ? { occurredAt: new Date(payload.timestamp) }
+      : {}),
+    ...(payload.isHistorySync ? { suppressAutomation: true } : {}),
   })
 }

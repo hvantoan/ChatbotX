@@ -49,6 +49,10 @@ export const zaloPersonalWebhookPayloadSchema = z.object({
   isMentionedMe: z.boolean(),
   isSelf: z.boolean(),
   timestamp: z.number(),
+  isHistorySync: z.boolean().optional(),
+  threadName: z.string().optional(),
+  threadAvatar: z.string().optional(),
+  senderAvatar: z.string().optional(),
 })
 export type ZaloPersonalWebhookPayload = z.infer<
   typeof zaloPersonalWebhookPayloadSchema

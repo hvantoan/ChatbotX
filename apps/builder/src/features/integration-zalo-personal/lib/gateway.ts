@@ -130,4 +130,11 @@ export const zaloPersonalGateway = {
       { method: "POST", body: { zaloUid } },
       z.object({ ok: z.boolean() }),
     ),
+
+  syncAccount: (zaloUid: string) =>
+    callGateway(
+      `/accounts/${encodeURIComponent(zaloUid)}/sync`,
+      { method: "POST" },
+      z.object({ ok: z.boolean() }),
+    ),
 }

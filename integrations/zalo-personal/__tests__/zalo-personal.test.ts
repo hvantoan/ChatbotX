@@ -203,3 +203,73 @@ describe("outgoing-message", () => {
     })
   })
 })
+
+describe("history sync", () => {
+  test("webhookHandler queues incomingMessageEcho for self history sync and bypasses group reply filter", async () => {
+    const secret = "test-webhook-secret-123456"
+    const historyPayload: ZaloPersonalWebhookPayload = {
+      ...basePayload,
+      threadType: "group",
+      threadId: "grp-99",
+      isSelf: true,
+      isHistorySync: true,
+      threadName: "VIP Group",
+    }
+    const body = JSON.stringify(historyPayload)
+    const sig = createHmac("sha256", secret).update(body).digest("hex")
+    const addMock = vi.fn().mockResolvedValue(undefined)
+
+    const req = new Request("https://example.com/webhook", {
+      method: "POST",
+      headers: { "X-Zalo-Personal-Signature": sig },
+      body,
+    })
+
+    const result = await webhookHandler({
+      req,
+      config: {
+        zaloUid: "99999",
+        webhookSecret: secret,
+        groupReplyConfig: { mode: "disabled" },
+      },
+      queue: { add: addMock } as never,
+    })
+
+    expect(result).toBe("ok")
+    expect(addMock).toHaveBeenCalledWith("incomingMessageEcho", {
+      type: "incomingMessageEcho",
+      data: {
+        integrationType: "zalo_personal",
+        integrationIdentifier: "99999",
+        payload: historyPayload,
+      },
+    })
+  })
+
+  test("receiveMessage maps history sync metadata, outgoing direction, occurredAt, and suppressAutomation", async () => {
+    const res = await receiveMessage({
+      ctx: { auth: { authType: "custom", zaloUid: "99999" } } as never,
+      data: {
+        integrationType: "zalo_personal",
+        integrationIdentifier: "99999",
+        payload: {
+          ...basePayload,
+          isSelf: true,
+          isHistorySync: true,
+          threadName: "Alice Nguyen",
+          threadAvatar: "https://example.com/alice.jpg",
+          timestamp: 1_700_000_000_000,
+        },
+      },
+    })
+
+    expect(res.message?.messageType).toBe("outgoing")
+    expect(res.contact).toEqual({
+      sourceId: "thread-1",
+      firstName: "Alice Nguyen",
+      avatar: "https://example.com/alice.jpg",
+    })
+    expect(res.occurredAt).toEqual(new Date(1_700_000_000_000))
+    expect(res.suppressAutomation).toBe(true)
+  })
+})

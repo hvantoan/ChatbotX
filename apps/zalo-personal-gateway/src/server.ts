@@ -6,6 +6,7 @@ import type { QrSessionManager } from "./qr-manager"
 import type { ZaloSessionManager } from "./session-manager"
 
 const ACCOUNT_STATUS_PATH_RE = /^\/accounts\/([^/]+)\/status$/
+const ACCOUNT_SYNC_PATH_RE = /^\/accounts\/([^/]+)\/sync$/
 
 const startQrSchema = z.object({
   proxyUrl: z.string().url().optional(),
@@ -113,6 +114,7 @@ export type GatewayServerDeps = {
     | "getStatus"
     | "startAccount"
     | "stopAccount"
+    | "syncHistory"
     | "verifyCredentials"
     | "sendMessage"
   >
@@ -198,6 +200,14 @@ export function createGatewayServer(deps: GatewayServerDeps): http.Server {
       if (req.method === "GET" && statusMatch) {
         const zaloUid = decodeURIComponent(statusMatch[1])
         sendJson(res, 200, deps.sessionManager.getStatus(zaloUid))
+        return
+      }
+
+      const syncMatch = ACCOUNT_SYNC_PATH_RE.exec(pathname)
+      if (req.method === "POST" && syncMatch) {
+        const zaloUid = decodeURIComponent(syncMatch[1])
+        const result = await deps.sessionManager.syncHistory(zaloUid)
+        sendJson(res, 200, result)
         return
       }
 
