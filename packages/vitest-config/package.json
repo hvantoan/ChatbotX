@@ -25,6 +25,7 @@
     "jsdom": "^25.0.1",
     "msw": "catalog:",
     "vite-tsconfig-paths": "^5.1.4",
+    "vite": "^7.3.7",
     "vitest": "catalog:"
   },
   "devDependencies": {
