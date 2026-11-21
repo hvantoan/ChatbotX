@@ -33,7 +33,7 @@ pre-push:
       run: >-
         pnpm lint &&
         pnpm turbo run check-types --filter="...[origin/main]" --concurrency=2 &&
-        pnpm turbo run build --filter="...[origin/main]" --concurrency=2
+        pnpm turbo run test --filter="...[origin/main]" --concurrency=2
 
 commit-msg:
   jobs:

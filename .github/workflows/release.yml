@@ -27,6 +27,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # `next build` runs with `typescript.ignoreBuildErrors: true` and the Docker
+  # build never runs `check-types`, so without this gate a `v*` tag (or a
+  # workflow_dispatch on any branch) could push an image that never
+  # type-checked. This workflow no longer triggers on `pull_request` at all —
+  # ci.yml already runs lint/check-types/test on every PR, and the local
+  # pre-push hook covers direct pushes to main, so a Docker build on a PR was
+  # pure duplication of ci.yml's signal. This job therefore only needs to run
+  # for events ci.yml does not cover: a version tag or a manual dispatch.
+  #
+  # The gate is ci.yml itself, reused: two type-check shards, lint, and eight
+  # test shards on their own 4-vCPU runners, with the same `--concurrency=2`
+  # and `--shard=N/8` passthrough args — so turbo's cache keys match the run
+  # that already validated this commit on main and most tasks replay from
+  # cache. Until 2026-10-29 this job ran `pnpm turbo run check-types test` on
+  # ONE runner: 66 packages' tsc and 4-worker vitest suites at turbo's default
+  # concurrency of 10 on 4 vCPUs, a load profile no PR ever exercised. CPU-
+  # bound suites ran 5-8x slower than on ci.yml and only timing-sensitive
+  # tests failed (v1.17.0: a 30ms presence coalesce window, then a 30s test
+  # timeout in packages/utils image encoding). Do not reintroduce a bespoke
+  # single-runner gate here.
+  check:
+    name: Quality gate
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
   prepare-metadata:
     runs-on: ubuntu-latest
     # Only checks out and computes tag/label strings via docker/metadata-
@@ -67,6 +94,14 @@ jobs:
     runs-on: ${{ matrix.runner }}
     needs:
       - prepare-metadata
+      - check
+    # `check` runs for both remaining triggers (tag / workflow_dispatch), so
+    # this condition only guards the skipped/failed case: a skipped `needs`
+    # job skips its dependents by default, and that once silently stopped
+    # images from being published. `needs.check.result != 'failure'` still
+    # blocks a build whose quality gate failed. NOT `always()` — that would
+    # ship images whose gate failed.
+    #
     # Note for any future job-level `if:` edit here: `jobs.<job_id>.if` only
     # has access to the `github`, `needs`, `vars`, and `inputs` contexts —
     # `matrix` isn't expanded yet at that point, so a job-level
@@ -78,6 +113,7 @@ jobs:
     if: >-
       !cancelled()
       && needs.prepare-metadata.result == 'success'
+      && needs.check.result != 'failure'
     strategy:
       fail-fast: false
       matrix:
