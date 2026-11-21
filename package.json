@@ -4,6 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:up": "scripts/dev-up.sh",
+    "dev:down": "scripts/dev-up.sh --stop",
     "fix": "ultracite fix --unsafe",
     "check-types": "turbo run check-types --concurrency=2",
     "check-types:cold": "turbo run check-types --concurrency=1",
