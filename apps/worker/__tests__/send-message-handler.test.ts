@@ -2022,7 +2022,11 @@ describe("chat send-message handlers", () => {
   })
 
   describe("send error is recorded only once it is final", () => {
-    const failing = (willRetryOnThrow: boolean, sendFrom?: "inbox") => {
+    const failing = (
+      willRetryOnThrow: boolean,
+      sendFrom?: "inbox",
+      deferOnError?: (error: unknown) => Promise<void>,
+    ) => {
       mockRunChannelHandler.mockRejectedValueOnce(
         new ChannelError("rate limited", ChannelErrorCategory.RATE_LIMITED, {
           code: "rate_limited",
@@ -2048,6 +2052,7 @@ describe("chat send-message handlers", () => {
         },
         0,
         willRetryOnThrow,
+        deferOnError,
       )
     }
 
@@ -2090,6 +2095,58 @@ describe("chat send-message handlers", () => {
         "ws-1",
         new Date("2026-07-09T08:37:21.108Z"),
       )
+    })
+
+    test("a hook that parks the job leaves no failure behind", async () => {
+      const { DelayedError } = await import("bullmq")
+      const parked = new DelayedError()
+      mockRunChannelHandler.mockRejectedValueOnce(new Error("not connected"))
+      const deferOnError = vi.fn().mockRejectedValueOnce(parked)
+
+      await expect(
+        sendMessageToChannel(
+          {
+            conversation: conversation as never,
+            contactInbox: {
+              ...contactInbox,
+              channel: "zalo_personal",
+            } as never,
+            message: {
+              id: "msg-1",
+              workspaceId: "ws-1",
+              conversationId: "conv-1",
+              contactInboxId: "ci-1",
+              contentType: "text",
+              messageType: "outgoing",
+              senderType: "user",
+              text: "hello",
+              clientId: "client-1",
+              createdAt: new Date("2026-07-09T08:37:21.108Z"),
+            } as never,
+            sendFrom: "inbox",
+          },
+          0,
+          false,
+          deferOnError,
+        ),
+      ).rejects.toBe(parked)
+
+      expect(deferOnError).toHaveBeenCalledTimes(1)
+      expect(mockEmit).not.toHaveBeenCalled()
+      expect(mockUpdateSendError).not.toHaveBeenCalled()
+      expect(mockRecordSendFailure).not.toHaveBeenCalled()
+    })
+
+    test("records the failure normally when the hook does not park the job", async () => {
+      const deferOnError = vi.fn().mockResolvedValue(undefined)
+
+      await expect(
+        failing(false, "inbox", deferOnError),
+      ).rejects.toBeInstanceOf(ChannelError)
+
+      expect(deferOnError).toHaveBeenCalledTimes(1)
+      expect(mockEmit).toHaveBeenCalledWith("message:failed", expect.anything())
+      expect(mockUpdateSendError).toHaveBeenCalled()
     })
   })
 })

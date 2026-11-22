@@ -217,6 +217,9 @@ type ManagedSession = {
   stopped: boolean
   initialSyncDone: boolean
   syncInProgress: boolean
+  // The login currently running for this session, so a second `/accounts/start`
+  // joins it instead of stopping the session mid-connect.
+  connectPromise: Promise<void> | null
 }
 
 export class ZaloSessionManager {
@@ -277,10 +280,20 @@ export class ZaloSessionManager {
     state: AccountConnectionState
   }> {
     const existing = this.sessions.get(input.zaloUid)
-    if (existing && !existing.stopped && existing.state === "connected") {
-      // Update webhook config if changed
-      existing.input = input
-      return { zaloUid: input.zaloUid, state: existing.state }
+    if (existing && !existing.stopped) {
+      if (existing.state === "connected") {
+        // Update webhook config if changed
+        existing.input = input
+        return { zaloUid: input.zaloUid, state: existing.state }
+      }
+      if (existing.connectPromise) {
+        // The restore cron and a user reconnect can overlap. Stopping the
+        // session mid-login and starting a second one kicks the first login
+        // out of Zalo (and can leave neither connected), so join the login
+        // already running instead.
+        await existing.connectPromise.catch(() => undefined)
+        return { zaloUid: input.zaloUid, state: existing.state }
+      }
     }
 
     if (!existing && this.sessions.size >= this.options.maxAccounts) {
@@ -304,11 +317,29 @@ export class ZaloSessionManager {
       stopped: false,
       initialSyncDone: false,
       syncInProgress: false,
+      connectPromise: null,
     }
     this.sessions.set(input.zaloUid, session)
 
-    await this.connectSession(session)
+    await this.runConnect(session)
     return { zaloUid: input.zaloUid, state: session.state }
+  }
+
+  /**
+   * Runs one login and exposes it on the session. `startAccount` sets the
+   * session in the map before this call, so a concurrent start always sees
+   * either a `connectPromise` to join or a completed session.
+   */
+  private async runConnect(session: ManagedSession): Promise<void> {
+    const promise = this.connectSession(session)
+    session.connectPromise = promise
+    try {
+      await promise
+    } finally {
+      if (session.connectPromise === promise) {
+        session.connectPromise = null
+      }
+    }
   }
 
   private async connectSession(session: ManagedSession): Promise<void> {
@@ -460,7 +491,7 @@ export class ZaloSessionManager {
       }
       await this.cleanupLockOnly(session)
       try {
-        await this.connectSession(session)
+        await this.runConnect(session)
       } catch {
         this.scheduleReconnect(session)
       }

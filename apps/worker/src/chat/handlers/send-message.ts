@@ -230,6 +230,11 @@ export async function sendMessageToChannel(
   // re-emits. Defaults to terminal, so an unaware caller records the failure
   // rather than losing it.
   willRetryOnThrow = false,
+  // Channel-specific hook run before any failure is recorded, so an attempt
+  // the channel certainly rejected (Zalo Personal's 409) can be parked with
+  // `DelayedError` and leave no `message:failed`, sendError or retry behind.
+  // Returns when the send should fail normally.
+  deferOnError?: (error: unknown) => Promise<void>,
 ): Promise<OutgoingSendResult> {
   const {
     conversation,
@@ -542,6 +547,9 @@ export async function sendMessageToChannel(
 
     return result
   } catch (error) {
+    if (deferOnError) {
+      await deferOnError(error)
+    }
     // A reconciled failure is a permanent, known outcome: it is still
     // recorded below, but never rethrown into a retry.
     const isReconciledSendError = await reconcileChannelSendError({

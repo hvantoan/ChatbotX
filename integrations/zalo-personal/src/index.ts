@@ -1,3 +1,4 @@
+export * from "./exception"
 export { integration } from "./integration"
 export {
   buildZaloPersonalWebhookUrl,
