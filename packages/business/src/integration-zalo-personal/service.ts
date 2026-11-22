@@ -7,6 +7,7 @@ import {
 import { type EncryptedData, encryptUtils } from "@chatbotx.io/encryption"
 import { createId } from "@chatbotx.io/utils"
 import { z } from "zod"
+import { bulkImportChannelContacts } from "../contact/bulk-import-channel-contacts"
 import { channelDuplicatedException } from "../errors"
 import { inboxService } from "../inbox"
 
@@ -18,6 +19,17 @@ export const zaloPersonalRawCredentialsSchema = z.object({
 export type ZaloPersonalRawCredentials = z.infer<
   typeof zaloPersonalRawCredentialsSchema
 >
+
+export type ZaloPersonalFriend = {
+  userId: string
+  displayName: string
+  avatar?: string
+  phoneNumber?: string
+}
+
+// Friends per bulk-import call: bounds each insert transaction for accounts
+// with thousands of friends.
+const FRIEND_IMPORT_BATCH_SIZE = 500
 
 export type SanitizedZaloPersonalIntegration = {
   id: string
@@ -51,6 +63,19 @@ export const integrationZaloPersonalService = {
   findByZaloUid: async (zaloUid: string) =>
     db.query.integrationZaloPersonalModel.findFirst({
       where: { zaloUid },
+    }),
+
+  /**
+   * Every connected account, for the worker that restores gateway sessions
+   * lost when the gateway process restarts. Ids only — credentials are
+   * decrypted one account at a time via `getDecryptedCredentials`.
+   */
+  listForSessionRestore: async (): Promise<
+    Array<{ id: string; workspaceId: string; zaloUid: string }>
+  > =>
+    db.query.integrationZaloPersonalModel.findMany({
+      columns: { id: true, workspaceId: true, zaloUid: true },
+      orderBy: { createdAt: "asc" },
     }),
 
   findById: async (input: { id: string; workspaceId: string }) => {
@@ -160,6 +185,7 @@ export const integrationZaloPersonalService = {
   }): Promise<{
     zaloUid: string
     proxyUrl: string | null
+    webhookSecret: string | null
     credentials: ZaloPersonalRawCredentials
   } | null> => {
     const row = await db.query.integrationZaloPersonalModel.findFirst({
@@ -168,7 +194,10 @@ export const integrationZaloPersonalService = {
     if (!row) {
       return null
     }
-    const auth = row.auth as { encryptedCredentials?: EncryptedData }
+    const auth = row.auth as {
+      encryptedCredentials?: EncryptedData
+      webhookSecret?: string
+    }
     if (!auth.encryptedCredentials) {
       return null
     }
@@ -180,8 +209,56 @@ export const integrationZaloPersonalService = {
     return {
       zaloUid: row.zaloUid,
       proxyUrl: row.proxyUrl,
+      webhookSecret: auth.webhookSecret ?? null,
       credentials,
     }
+  },
+
+  /**
+   * Adds every friend of the account as a contact on its inbox, including
+   * friends the account never chatted with. Idempotent: friends that are
+   * already contacts are left as they are. The sourceId is the friend's
+   * Zalo user id — the same one an incoming 1-1 message resolves to — so a
+   * later message lands on the imported contact.
+   */
+  importFriends: async (input: {
+    id: string
+    workspaceId: string
+    friends: ZaloPersonalFriend[]
+  }): Promise<{ total: number; imported: number } | null> => {
+    const row = await db.query.integrationZaloPersonalModel.findFirst({
+      where: { id: input.id, workspaceId: input.workspaceId },
+      columns: { inboxId: true },
+    })
+    if (!row) {
+      return null
+    }
+    const inbox = await db.query.inboxModel.findFirst({
+      where: { id: row.inboxId, workspaceId: input.workspaceId },
+    })
+    if (!inbox) {
+      return null
+    }
+
+    let imported = 0
+    for (let i = 0; i < input.friends.length; i += FRIEND_IMPORT_BATCH_SIZE) {
+      const batch = input.friends.slice(i, i + FRIEND_IMPORT_BATCH_SIZE)
+      const result = await bulkImportChannelContacts({
+        inbox,
+        workspaceId: input.workspaceId,
+        contacts: batch.map((friend) => ({
+          sourceId: friend.userId,
+          firstName: friend.displayName,
+          ...(friend.avatar ? { avatar: friend.avatar } : {}),
+          ...(friend.phoneNumber ? { phoneNumber: friend.phoneNumber } : {}),
+        })),
+      })
+      imported += result.importedContacts
+      if (result.failureReason) {
+        break
+      }
+    }
+    return { total: input.friends.length, imported }
   },
 
   updateSettings: async (input: {

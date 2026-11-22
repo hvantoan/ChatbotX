@@ -13,14 +13,33 @@ x-service-common: &service-common
   networks:
     - chatbotx-network
 
+# Bundled RustFS (S3-compatible object storage). Point S3_* at the
+# `filesystem` service, or at any external S3-compatible endpoint instead.
+#   S3_ENDPOINT=http://filesystem:9000
+#   S3_BUCKET=chatbotx
+#   S3_ACCESS_KEY_ID/S3_SECRET_ACCESS_KEY = RUSTFS_* values below
 x-rustfs-environment: &rustfs-environment
-  RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:?RUSTFS_ACCESS_KEY is required}
-  RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:?RUSTFS_SECRET_KEY is required}
+  RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:?}
+  RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:?}
   RUSTFS_API_CORS_ALLOW_ORIGIN: ${RUSTFS_API_CORS_ALLOW_ORIGIN:-*}
+
+x-storage-environment: &storage-environment
+  S3_ENDPOINT: ${S3_ENDPOINT:?}
+  S3_REGION: ${S3_REGION:-us-east-1}
+  S3_BUCKET: ${S3_BUCKET:?}
+  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?}
+  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?}
+
+# Resend SMTP (used by @chatbotx.io/mail in builder and worker)
+# SMTP_SERVER=smtps://resend:<RESEND_API_KEY>@smtp.resend.com:465
+# SMTP_FROM=ChatbotX <no-reply@your-verified-domain.com>
+x-mail-environment: &mail-environment
+  SMTP_SERVER: ${SMTP_SERVER:?SMTP_SERVER is required}
+  SMTP_FROM: ${SMTP_FROM:?SMTP_FROM is required}
 
 services:
   # ─────────────────────────────────────────────
-  # Infrastructure (Prod - internal only, no exposed DB/cache ports)
+  # Infrastructure (Prod - internal only; R2 is external)
   # ─────────────────────────────────────────────
   postgres:
     <<: *network
@@ -52,6 +71,9 @@ services:
       timeout: 5s
       retries: 5
 
+  # Same RustFS layout as the root docker-compose.yml; only the S3 API
+  # port is exposed (the :9001 console stays internal). Objects under the
+  # `public/` key prefix are anonymous-readable for channel media/avatars.
   filesystem:
     <<: *network
     image: rustfs/rustfs:latest
@@ -69,7 +91,8 @@ services:
           "CMD",
           "sh",
           "-c",
-          "curl -f http://127.0.0.1:9000/health && curl -f http://127.0.0.1:9001/rustfs/console/health",
+          "curl -f http://127.0.0.1:9000/health && curl -f
+          http://127.0.0.1:9001/rustfs/console/health",
         ]
       interval: 30s
       timeout: 10s
@@ -114,10 +137,12 @@ services:
       timeout: 10s
       retries: 3
     environment:
-      - NODE_ENV=production
-      - RUN_DB_MIGRATE=${RUN_DB_MIGRATE:-false}
-      - RUN_DB_SEED=false
-      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+      <<: [*storage-environment, *mail-environment]
+      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      RUN_DB_MIGRATE: ${RUN_DB_MIGRATE:-false}
+      RUN_DB_SEED: "false"
+      ZALO_PERSONAL_GATEWAY_URL: http://zalo-personal-gateway:3220
     deploy:
       resources:
         limits:
@@ -142,9 +167,11 @@ services:
       javascript-executor:
         condition: service_healthy
     environment:
-      - NODE_ENV=production
-      - JAVASCRIPT_EXECUTOR_URL=http://javascript-executor:3210
-      - ZALO_PERSONAL_GATEWAY_URL=http://zalo-personal-gateway:3220
+      <<: [*storage-environment, *mail-environment]
+      NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      JAVASCRIPT_EXECUTOR_URL: http://javascript-executor:3210
+      ZALO_PERSONAL_GATEWAY_URL: http://zalo-personal-gateway:3220
     deploy:
       resources:
         limits:
@@ -159,7 +186,7 @@ services:
       dockerfile: apps/javascript-executor/docker/Dockerfile
     environment:
       NODE_ENV: production
-      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:?JAVASCRIPT_EXECUTOR_TOKEN is required}
+      JAVASCRIPT_EXECUTOR_TOKEN: ${JAVASCRIPT_EXECUTOR_TOKEN:?}
       MAX_CONCURRENCY: ${MAX_CONCURRENCY:-2}
     networks:
       - javascript-executor-network
@@ -201,7 +228,8 @@ services:
 
   zalo-personal-gateway:
     <<: *service-common
-    image: ${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-chatbotx-zalo-personal-gateway:latest}
+    image: "${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-\
+      chatbotx-zalo-personal-gateway:latest}"
     build:
       context: ..
       dockerfile: apps/zalo-personal-gateway/docker/Dockerfile
@@ -213,8 +241,8 @@ services:
       - PORT=3220
       - HOST=0.0.0.0
       - REDIS_URL=redis://redis:6379
-      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:?ZALO_PERSONAL_GATEWAY_TOKEN is required}
-      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:?ZALO_PERSONAL_WEBHOOK_SECRET is required}
+      - ZALO_PERSONAL_GATEWAY_TOKEN=${ZALO_PERSONAL_GATEWAY_TOKEN:?}
+      - ZALO_PERSONAL_WEBHOOK_SECRET=${ZALO_PERSONAL_WEBHOOK_SECRET:?}
       - ZALO_PERSONAL_PROXY_URL=${ZALO_PERSONAL_PROXY_URL:-}
       - ZALO_PERSONAL_MAX_ACCOUNTS=${ZALO_PERSONAL_MAX_ACCOUNTS:-5}
     cap_drop:

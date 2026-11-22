@@ -3,10 +3,14 @@ import { timingSafeStringEqual } from "@chatbotx.io/utils/crypto"
 import { z } from "zod"
 import { logger } from "./logger"
 import type { QrSessionManager } from "./qr-manager"
-import type { ZaloSessionManager } from "./session-manager"
+import {
+  SessionNotConnectedError,
+  type ZaloSessionManager,
+} from "./session-manager"
 
 const ACCOUNT_STATUS_PATH_RE = /^\/accounts\/([^/]+)\/status$/
 const ACCOUNT_SYNC_PATH_RE = /^\/accounts\/([^/]+)\/sync$/
+const ACCOUNT_FRIENDS_PATH_RE = /^\/accounts\/([^/]+)\/friends$/
 
 const startQrSchema = z.object({
   proxyUrl: z.string().url().optional(),
@@ -115,6 +119,7 @@ export type GatewayServerDeps = {
     | "startAccount"
     | "stopAccount"
     | "syncHistory"
+    | "listFriends"
     | "verifyCredentials"
     | "sendMessage"
   >
@@ -211,6 +216,14 @@ export function createGatewayServer(deps: GatewayServerDeps): http.Server {
         return
       }
 
+      const friendsMatch = ACCOUNT_FRIENDS_PATH_RE.exec(pathname)
+      if (req.method === "GET" && friendsMatch) {
+        const zaloUid = decodeURIComponent(friendsMatch[1])
+        const friends = await deps.sessionManager.listFriends(zaloUid)
+        sendJson(res, 200, { friends })
+        return
+      }
+
       if (req.method === "POST" && pathname === "/messages/send") {
         const body = sendMessageSchema.parse(await readJsonBody(req))
         const result = await deps.sessionManager.sendMessage(body)
@@ -224,6 +237,13 @@ export function createGatewayServer(deps: GatewayServerDeps): http.Server {
         sendJson(res, 400, {
           error: "Validation error",
           details: err.issues,
+        })
+        return
+      }
+      if (err instanceof SessionNotConnectedError) {
+        sendJson(res, 409, {
+          error: err.message,
+          code: "session_not_connected",
         })
         return
       }

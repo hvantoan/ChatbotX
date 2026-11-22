@@ -263,10 +263,11 @@ describe("flow editor emoji variation selector", () => {
       throw new Error("emoji suggestion items is not a function")
     }
 
-    const heart = await items({ editor: current, query: "red_heart" })
+    const signal = new AbortController().signal
+    const heart = await items({ editor: current, query: "red_heart", signal })
     expect(heart.map((item) => item.name)).toEqual(["heart"])
 
-    const prefix = await items({ editor: current, query: "heart" })
+    const prefix = await items({ editor: current, query: "heart", signal })
     expect(prefix).toHaveLength(5)
     expect(
       prefix.every(

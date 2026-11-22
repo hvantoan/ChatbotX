@@ -56,6 +56,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
     maintainLeaderboardRankings: "maintainLeaderboardRankings",
     scanCoexistRuns: "scanCoexistRuns",
     reconcileMetaCatalogSyncs: "reconcileMetaCatalogSyncs",
+    restoreZaloPersonalSessions: "restoreZaloPersonalSessions",
     purgeCoexistStaging: "purgeCoexistStaging",
     purgeWhatsappSignupSessions: "purgeWhatsappSignupSessions",
     purgeExpiredConnectSessions: "purgeExpiredConnectSessions",
@@ -226,6 +227,7 @@ describe("registerSchedules — every-minute cadence", () => {
     "finalizeBroadcasts",
     "finalizeMarketingMessages",
     "reconcileMetaCatalogSyncs",
+    "restoreZaloPersonalSessions",
   ]
 
   const everyMinuteJobNames = () =>

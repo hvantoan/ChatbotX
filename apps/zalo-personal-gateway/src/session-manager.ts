@@ -59,6 +59,13 @@ export type NormalizedWebhookPayload = {
   senderAvatar?: string
 }
 
+export type ZaloFriend = {
+  userId: string
+  displayName: string
+  avatar?: string
+  phoneNumber?: string
+}
+
 export type SendMessageInput = {
   zaloUid: string
   threadId: string
@@ -74,6 +81,23 @@ export type SendMessageInput = {
 const BASE_BACKOFF_MS = 1000
 const MAX_BACKOFF_MS = 60_000
 const LOCK_RENEW_INTERVAL_MS = 10_000
+// Manual Sync backfills at most this many messages per group. Zalo returns
+// up to 50 per page and has no personal (1-1) history API, so this bounds
+// both the imported history and the request burst.
+const GROUP_HISTORY_MAX_MESSAGES = 200
+const GROUP_HISTORY_PAGE_DELAY_MS = 400
+
+/**
+ * The gateway holds no session for this account (never started, stopped, or
+ * lost when the gateway process restarted). The server maps it to 409 so
+ * callers can tell "not connected yet" from a real failure.
+ */
+export class SessionNotConnectedError extends Error {
+  constructor(zaloUid: string) {
+    super(`Zalo personal session for ${zaloUid} is not connected`)
+    this.name = "SessionNotConnectedError"
+  }
+}
 
 export function calculateBackoffMs(
   attempt: number,
@@ -193,6 +217,9 @@ type ManagedSession = {
   stopped: boolean
   initialSyncDone: boolean
   syncInProgress: boolean
+  // The login currently running for this session, so a second `/accounts/start`
+  // joins it instead of stopping the session mid-connect.
+  connectPromise: Promise<void> | null
 }
 
 export class ZaloSessionManager {
@@ -218,6 +245,10 @@ export class ZaloSessionManager {
 
   getStatus(zaloUid: string): {
     zaloUid: string
+    // False when this gateway process holds no session for the account at
+    // all, which is what a session-restore caller acts on. A tracked session
+    // in "disconnected"/"error" is already reconnecting or needs a human.
+    tracked: boolean
     state: AccountConnectionState
     reconnectAttempts: number
     lastError?: string
@@ -226,12 +257,14 @@ export class ZaloSessionManager {
     if (!session) {
       return {
         zaloUid,
+        tracked: false,
         state: "disconnected",
         reconnectAttempts: 0,
       }
     }
     return {
       zaloUid,
+      tracked: true,
       state: session.state,
       reconnectAttempts: session.reconnectAttempts,
       ...(session.lastError ? { lastError: session.lastError } : {}),
@@ -247,10 +280,20 @@ export class ZaloSessionManager {
     state: AccountConnectionState
   }> {
     const existing = this.sessions.get(input.zaloUid)
-    if (existing && !existing.stopped && existing.state === "connected") {
-      // Update webhook config if changed
-      existing.input = input
-      return { zaloUid: input.zaloUid, state: existing.state }
+    if (existing && !existing.stopped) {
+      if (existing.state === "connected") {
+        // Update webhook config if changed
+        existing.input = input
+        return { zaloUid: input.zaloUid, state: existing.state }
+      }
+      if (existing.connectPromise) {
+        // The restore cron and a user reconnect can overlap. Stopping the
+        // session mid-login and starting a second one kicks the first login
+        // out of Zalo (and can leave neither connected), so join the login
+        // already running instead.
+        await existing.connectPromise.catch(() => undefined)
+        return { zaloUid: input.zaloUid, state: existing.state }
+      }
     }
 
     if (!existing && this.sessions.size >= this.options.maxAccounts) {
@@ -274,11 +317,29 @@ export class ZaloSessionManager {
       stopped: false,
       initialSyncDone: false,
       syncInProgress: false,
+      connectPromise: null,
     }
     this.sessions.set(input.zaloUid, session)
 
-    await this.connectSession(session)
+    await this.runConnect(session)
     return { zaloUid: input.zaloUid, state: session.state }
+  }
+
+  /**
+   * Runs one login and exposes it on the session. `startAccount` sets the
+   * session in the map before this call, so a concurrent start always sees
+   * either a `connectPromise` to join or a completed session.
+   */
+  private async runConnect(session: ManagedSession): Promise<void> {
+    const promise = this.connectSession(session)
+    session.connectPromise = promise
+    try {
+      await promise
+    } finally {
+      if (session.connectPromise === promise) {
+        session.connectPromise = null
+      }
+    }
   }
 
   private async connectSession(session: ManagedSession): Promise<void> {
@@ -366,6 +427,19 @@ export class ZaloSessionManager {
           err instanceof Error ? err.message : "Listener error"
       })
 
+      // `listener.start()` returns while the WebSocket is still CONNECTING;
+      // `requestOldMessages` sends on it without a readiness check, so the
+      // initial sync must wait for the socket's own `connected` event.
+      api.listener.on("connected", () => {
+        if (session.stopped || session.initialSyncDone) {
+          return
+        }
+        // Only the server-pushed `old_messages` batch runs on connect. Group
+        // history backfill is manual (POST /accounts/:uid/sync) so a
+        // reconnect never re-scans every group.
+        this.requestOldMessages(zaloUid)
+      })
+
       api.listener.on("closed", (code: CloseReason, reason: string) => {
         logger.warn({ zaloUid, code, reason }, "Zalo listener closed")
         if (session.stopped) {
@@ -386,16 +460,6 @@ export class ZaloSessionManager {
 
       api.listener.start({ retryOnClose: false })
       logger.info({ zaloUid, integrationId }, "Started Zalo personal listener")
-
-      if (!session.initialSyncDone) {
-        session.initialSyncDone = true
-        this.syncHistory(zaloUid).catch((err: unknown) => {
-          logger.warn(
-            { err, zaloUid },
-            "Initial Zalo personal history sync failed",
-          )
-        })
-      }
     } catch (err) {
       session.state = "error"
       session.lastError =
@@ -427,7 +491,7 @@ export class ZaloSessionManager {
       }
       await this.cleanupLockOnly(session)
       try {
-        await this.connectSession(session)
+        await this.runConnect(session)
       } catch {
         this.scheduleReconnect(session)
       }
@@ -453,19 +517,213 @@ export class ZaloSessionManager {
       !session.api ||
       session.state !== "connected"
     ) {
-      return Promise.reject(new Error("Zalo personal session is not connected"))
+      return Promise.reject(new SessionNotConnectedError(zaloUid))
     }
     if (session.syncInProgress) {
       return Promise.resolve({ ok: true })
     }
     session.syncInProgress = true
-    setTimeout(() => {
-      session.syncInProgress = false
-    }, 15_000).unref?.()
-
-    session.api.listener.requestOldMessages(ThreadType.User)
-    session.api.listener.requestOldMessages(ThreadType.Group)
+    // Backfill runs in the background: the HTTP caller must not wait for
+    // dozens of paginated Zalo requests. Dedupe by `sourceId` keeps it
+    // idempotent, so re-running Sync is safe.
+    this.backfillGroupHistory(session)
+      .catch((err: unknown) => {
+        logger.warn({ err, zaloUid }, "Group history backfill failed")
+      })
+      .finally(() => {
+        session.syncInProgress = false
+      })
     return Promise.resolve({ ok: true })
+  }
+
+  /**
+   * The account's whole friend list, so the builder can add every friend as a
+   * contact even when the two never chatted (1-1 history has no API).
+   */
+  async listFriends(zaloUid: string): Promise<ZaloFriend[]> {
+    const session = this.sessions.get(zaloUid)
+    if (!session?.api || session.stopped || session.state !== "connected") {
+      throw new SessionNotConnectedError(zaloUid)
+    }
+    const friends = await session.api.getAllFriends()
+    return friends
+      .filter((f) => Boolean(f.userId))
+      .map((f) => ({
+        userId: f.userId,
+        displayName: f.displayName || f.zaloName || f.userId,
+        ...(f.avatar ? { avatar: f.avatar } : {}),
+        ...(f.phoneNumber ? { phoneNumber: f.phoneNumber } : {}),
+      }))
+  }
+
+  private requestOldMessages(zaloUid: string): void {
+    const session = this.sessions.get(zaloUid)
+    if (
+      !session ||
+      session.stopped ||
+      !session.api ||
+      session.state !== "connected"
+    ) {
+      return
+    }
+    // `requestOldMessages` calls `ws.send()` directly, so it throws
+    // synchronously when the socket is not yet OPEN.
+    try {
+      session.api.listener.requestOldMessages(ThreadType.User)
+      session.api.listener.requestOldMessages(ThreadType.Group)
+    } catch (err) {
+      logger.warn({ err, zaloUid }, "Initial Zalo personal history sync failed")
+    }
+    session.initialSyncDone = true
+  }
+
+  private async backfillGroupHistory(session: ManagedSession): Promise<void> {
+    const api = session.api
+    if (!api) {
+      return
+    }
+    const { zaloUid, integrationId, webhookUrl, webhookSecret } = session.input
+    const secret = webhookSecret ?? this.options.defaultWebhookSecret
+
+    let groupIds: string[] = []
+    try {
+      const groups = await api.getAllGroups()
+      groupIds = Object.keys(groups.gridVerMap ?? {})
+    } catch (err) {
+      logger.warn({ err, zaloUid }, "Failed to list Zalo groups for backfill")
+      return
+    }
+
+    let total = 0
+    for (const groupId of groupIds) {
+      if (session.stopped) {
+        break
+      }
+      try {
+        total += await this.backfillOneGroup({
+          api,
+          session,
+          groupId,
+          zaloUid,
+          integrationId,
+          webhookUrl,
+          secret,
+        })
+      } catch (err) {
+        logger.warn(
+          { err, zaloUid, groupId },
+          "Zalo group history backfill failed for group",
+        )
+      }
+    }
+
+    logger.info(
+      { zaloUid, groups: groupIds.length, messages: total },
+      "Zalo group history backfill finished",
+    )
+  }
+
+  private async backfillOneGroup(input: {
+    api: API
+    session: ManagedSession
+    groupId: string
+    zaloUid: string
+    integrationId: string
+    webhookUrl: string
+    secret?: string
+  }): Promise<number> {
+    const {
+      api,
+      session,
+      groupId,
+      zaloUid,
+      integrationId,
+      webhookUrl,
+      secret,
+    } = input
+
+    let threadName: string | undefined
+    let threadAvatar: string | undefined
+    try {
+      const info = await api.getGroupInfo([groupId])
+      const meta = info.gridInfoMap?.[groupId]
+      threadName = meta?.name
+      threadAvatar = meta?.avt
+    } catch (err) {
+      logger.warn(
+        { err, zaloUid, groupId },
+        "Failed to load Zalo group metadata",
+      )
+    }
+
+    let fetched = 0
+    let lastMsgId: string | undefined
+    let isOld: number | undefined
+    let pages = 0
+    let stopReason = "cap"
+
+    while (fetched < GROUP_HISTORY_MAX_MESSAGES) {
+      if (session.stopped) {
+        stopReason = "stopped"
+        break
+      }
+      const page = await api.getCloudMessage(
+        groupId,
+        lastMsgId,
+        lastMsgId === undefined ? undefined : { isOld },
+      )
+      pages += 1
+
+      if (page.error && page.error !== 0) {
+        stopReason = `error:${page.error}`
+        break
+      }
+      const messages = page.groupMsgs ?? []
+      if (messages.length === 0) {
+        stopReason = page.isFiltered === 1 ? "filtered" : "empty"
+        break
+      }
+
+      for (const msg of messages) {
+        if (fetched >= GROUP_HISTORY_MAX_MESSAGES) {
+          break
+        }
+        const normalized = normalizeMessage(msg, zaloUid, integrationId, {
+          allowSelf: true,
+          isHistorySync: true,
+          ...(threadName ? { threadName } : {}),
+          ...(threadAvatar ? { threadAvatar } : {}),
+        })
+        if (normalized) {
+          await this.forwardWebhook(webhookUrl, secret, normalized)
+        }
+        fetched += 1
+      }
+
+      if (fetched >= GROUP_HISTORY_MAX_MESSAGES) {
+        stopReason = "cap"
+        break
+      }
+      if (page.hasMore !== 1) {
+        stopReason = "no-more"
+        break
+      }
+      if (!page.lastMsgId || page.lastMsgId === lastMsgId) {
+        stopReason = "cursor-stuck"
+        break
+      }
+      lastMsgId = page.lastMsgId
+      isOld = page.isOld
+      const { promise: delay, resolve: resume } = Promise.withResolvers<void>()
+      setTimeout(resume, GROUP_HISTORY_PAGE_DELAY_MS)
+      await delay
+    }
+
+    logger.info(
+      { zaloUid, groupId, messages: fetched, pages, stopReason },
+      "Zalo group history backfilled",
+    )
+    return fetched
   }
 
   private async enrichThreadMetadata(
@@ -515,44 +773,39 @@ export class ZaloSessionManager {
     messages: Message[],
     threadType: ThreadType,
   ): Promise<void> {
-    try {
-      if (session.stopped || !session.api || messages.length === 0) {
-        return
-      }
-      const { zaloUid, integrationId, webhookUrl, webhookSecret } =
-        session.input
-      const secret = webhookSecret ?? this.options.defaultWebhookSecret
-      const metadata = await this.enrichThreadMetadata(
-        session.api,
-        messages,
-        threadType,
-      )
+    if (session.stopped || !session.api || messages.length === 0) {
+      return
+    }
+    const { zaloUid, integrationId, webhookUrl, webhookSecret } = session.input
+    const secret = webhookSecret ?? this.options.defaultWebhookSecret
+    const metadata = await this.enrichThreadMetadata(
+      session.api,
+      messages,
+      threadType,
+    )
 
-      for (const msg of messages) {
-        if (session.stopped) {
-          break
-        }
-        const meta = metadata.get(msg.threadId)
-        const normalized = normalizeMessage(msg, zaloUid, integrationId, {
-          allowSelf: true,
-          isHistorySync: true,
-          threadName: meta?.name,
-          threadAvatar: meta?.avatar,
-        })
-        if (!normalized) {
-          continue
-        }
-        await this.forwardWebhook(webhookUrl, secret, normalized).catch(
-          (err: unknown) => {
-            logger.warn(
-              { err, zaloUid, messageId: normalized.messageId },
-              "Failed to forward history message",
-            )
-          },
-        )
+    for (const msg of messages) {
+      if (session.stopped) {
+        break
       }
-    } finally {
-      session.syncInProgress = false
+      const meta = metadata.get(msg.threadId)
+      const normalized = normalizeMessage(msg, zaloUid, integrationId, {
+        allowSelf: true,
+        isHistorySync: true,
+        threadName: meta?.name,
+        threadAvatar: meta?.avatar,
+      })
+      if (!normalized) {
+        continue
+      }
+      await this.forwardWebhook(webhookUrl, secret, normalized).catch(
+        (err: unknown) => {
+          logger.warn(
+            { err, zaloUid, messageId: normalized.messageId },
+            "Failed to forward history message",
+          )
+        },
+      )
     }
   }
 
@@ -625,9 +878,7 @@ export class ZaloSessionManager {
   ): Promise<{ messageIds: string[] }> {
     const session = this.sessions.get(input.zaloUid)
     if (!session?.api || session.state !== "connected") {
-      throw new Error(
-        `Zalo personal session for ${input.zaloUid} is not connected`,
-      )
+      throw new SessionNotConnectedError(input.zaloUid)
     }
 
     const threadType =

@@ -269,6 +269,8 @@ describe("chat worker bot message quota gate", () => {
       { message: { senderType: "user" } },
       0,
       true,
+      // Zalo Personal reconnect deferral hook, always passed by the worker.
+      expect.any(Function),
     )
   })
 

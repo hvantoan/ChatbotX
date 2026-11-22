@@ -50,6 +50,7 @@ const EVERY_MINUTE_SECOND_OFFSETS = {
   finalizeBroadcasts: 40,
   finalizeMarketingMessages: 44,
   reconcileMetaCatalogSyncs: 48,
+  restoreZaloPersonalSessions: 52,
 } as const satisfies Partial<Record<keyof typeof ScheduleJobData, number>>
 
 // Job names (the values call sites pass) that have an offset. Intersecting with
@@ -432,6 +433,20 @@ export const registerSchedules = async () => {
       name: ScheduleJobData.reconcileMetaCatalogSyncs,
       data: {
         type: ScheduleJobData.reconcileMetaCatalogSyncs,
+        data: {},
+      },
+    },
+  )
+
+  await scheduleQueue.upsertJobScheduler(
+    ScheduleJobData.restoreZaloPersonalSessions,
+    {
+      pattern: everyMinuteAtOffset(ScheduleJobData.restoreZaloPersonalSessions),
+    },
+    {
+      name: ScheduleJobData.restoreZaloPersonalSessions,
+      data: {
+        type: ScheduleJobData.restoreZaloPersonalSessions,
         data: {},
       },
     },

@@ -30,6 +30,7 @@ import {
   sendWhatsappTemplateToConversation,
 } from "./handlers/send-whatsapp-template"
 import { deferSendWhileAccountReconnecting } from "./utils/connection-send-gate"
+import { deferSendWhileZaloPersonalReconnects } from "./utils/zalo-personal-send-gate"
 
 const botSendActions = new Set<ChatJobData["type"]>([
   ChatJobAction.sendFlowMessage,
@@ -93,6 +94,8 @@ function startChatWorker() {
                 job.data.data,
                 job.attemptsMade,
                 !isFinalAttempt(job),
+                (error) =>
+                  deferSendWhileZaloPersonalReconnects(job, token, error),
               )
               return
             case ChatJobAction.sendFlowMessage:

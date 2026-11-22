@@ -5,7 +5,7 @@ import {
   workspaceIdrequestParams,
 } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
-import { zaloPersonalGateway } from "../lib/gateway"
+import { type ZaloPersonalQrStatus, zaloPersonalGateway } from "../lib/gateway"
 import { connectZaloPersonalWithCredentials } from "../lib/manage-zalo-personal"
 import {
   pollZaloPersonalQrSchema,
@@ -46,9 +46,24 @@ export const pollZaloPersonalQrAction = workspaceActionClient
         }
       }
     }) => {
-      const status = await zaloPersonalGateway.getQrStatus(
-        parsedInput.sessionId,
-      )
+      let status: ZaloPersonalQrStatus
+      try {
+        status = await zaloPersonalGateway.getQrStatus(parsedInput.sessionId)
+      } catch (err) {
+        // Only the "QR session not found" 404 maps to expired: the session's
+        // 3-min TTL ran out or a gateway restart wiped the in-memory session
+        // map. Anything else (5xx, ECONNREFUSED, bad token) is a real outage
+        // and must stay an error.
+        if (!(err instanceof Error && err.message.includes("(404)"))) {
+          throw err
+        }
+        return {
+          status: "expired" as const,
+          scannedUser: null,
+          error: null,
+          integration: null,
+        }
+      }
       if (status.status !== "confirmed" || !status.credentials) {
         return {
           status: status.status,

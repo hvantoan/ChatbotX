@@ -7,6 +7,7 @@ import {
   normalizeIncomingMessage,
   normalizeMessage,
   signWebhookPayload,
+  ZaloSessionManager,
 } from "../src/session-manager"
 
 describe("calculateBackoffMs", () => {
@@ -198,6 +199,9 @@ describe("createGatewayServer", () => {
         }),
         stopAccount: vi.fn().mockResolvedValue(undefined),
         syncHistory: vi.fn().mockResolvedValue({ ok: true }),
+        listFriends: vi
+          .fn()
+          .mockResolvedValue([{ userId: "f-1", displayName: "Alice" }]),
         verifyCredentials: vi.fn().mockResolvedValue({
           zaloUid: "uid-1",
           displayName: "Zalo User",
@@ -263,6 +267,74 @@ describe("createGatewayServer", () => {
     })
     expect(syncRes.status).toBe(200)
     expect(await syncRes.json()).toEqual({ ok: true })
+
+    const friendsRes = await fetch(`${baseUrl}/accounts/uid-1/friends`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    expect(friendsRes.status).toBe(200)
+    expect(await friendsRes.json()).toEqual({
+      friends: [{ userId: "f-1", displayName: "Alice" }],
+    })
+  })
+
+  test("answers 409 session_not_connected when the gateway holds no session", async () => {
+    const token = "b".repeat(32)
+    const manager = new ZaloSessionManager(
+      { acquire: vi.fn() } as unknown as RedisListenerLock,
+      { maxAccounts: 1 },
+    )
+    server = createGatewayServer({
+      token,
+      qrManager: { startSession: vi.fn(), getStatus: vi.fn() },
+      sessionManager: manager,
+    })
+    await new Promise<void>((resolve) =>
+      server?.listen(0, "127.0.0.1", resolve),
+    )
+    const addr = server.address()
+    if (!addr || typeof addr === "string") {
+      throw new Error("Expected TCP address")
+    }
+    const baseUrl = `http://127.0.0.1:${addr.port}`
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    }
+
+    const statusRes = await fetch(`${baseUrl}/accounts/uid-9/status`, {
+      headers,
+    })
+    expect(await statusRes.json()).toMatchObject({
+      zaloUid: "uid-9",
+      tracked: false,
+      state: "disconnected",
+    })
+
+    const sendRes = await fetch(`${baseUrl}/messages/send`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        zaloUid: "uid-9",
+        threadId: "t-1",
+        threadType: "user",
+        text: "hi",
+      }),
+    })
+    expect(sendRes.status).toBe(409)
+    expect(await sendRes.json()).toMatchObject({
+      code: "session_not_connected",
+    })
+
+    const syncRes = await fetch(`${baseUrl}/accounts/uid-9/sync`, {
+      method: "POST",
+      headers,
+    })
+    expect(syncRes.status).toBe(409)
+
+    const friendsRes = await fetch(`${baseUrl}/accounts/uid-9/friends`, {
+      headers,
+    })
+    expect(friendsRes.status).toBe(409)
   })
 })
 

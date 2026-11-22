@@ -94,10 +94,17 @@ export async function updateZaloPersonalChannel(input: {
   return updated
 }
 
+/**
+ * Adds every Zalo friend as a contact (even friends with no messages yet),
+ * then starts the background group history backfill on the gateway.
+ */
 export async function syncZaloPersonalChannel(input: {
   workspaceId: string
   id: string
-}): Promise<{ ok: boolean } | null> {
+}): Promise<{
+  ok: boolean
+  friends: { total: number; imported: number }
+} | null> {
   const row = await integrationZaloPersonalService.findById({
     id: input.id,
     workspaceId: input.workspaceId,
@@ -105,7 +112,17 @@ export async function syncZaloPersonalChannel(input: {
   if (!row) {
     return null
   }
-  return await zaloPersonalGateway.syncAccount(row.zaloUid)
+  const { friends } = await zaloPersonalGateway.listFriends(row.zaloUid)
+  const imported = await integrationZaloPersonalService.importFriends({
+    id: row.id,
+    workspaceId: input.workspaceId,
+    friends,
+  })
+  if (!imported) {
+    return null
+  }
+  const { ok } = await zaloPersonalGateway.syncAccount(row.zaloUid)
+  return { ok, friends: imported }
 }
 
 export async function disconnectZaloPersonalChannel(input: {

@@ -1442,8 +1442,8 @@
       "allowedGroupIdsPlaceholder": "e.g. 123456789, 987654321",
       "saveSettings": "Save Settings",
       "status": "Gateway Status",
-      "sync": "Sync conversations",
-      "syncSuccess": "Conversation sync started",
+      "sync": "Sync contacts and conversations",
+      "syncSuccess": "Added {imported} new contacts from {total} Zalo friends. Conversation sync started",
       "zaloUid": "Zalo UID"
     },
     "telegram": {

@@ -81,4 +81,11 @@ export type ConversationQuickReplyChallenge = {
 export type ConversationAttributes = {
   phoneNumber?: string
   challenge?: ConversationStepChallenge | ConversationQuickReplyChallenge
+  /**
+   * Oldest message this conversation holds (ISO string). Backdated imports
+   * (channel history sync, comment replays) can store messages older than
+   * `Conversation.createdAt`, which is the default lower bound for message
+   * listing; this persisted bound lets the readers include them.
+   */
+  earliestMessageAt?: string
 }

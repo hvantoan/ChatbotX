@@ -12,6 +12,11 @@ export const MAX_SCHEDULER_TICK_INTERVAL_MS = 10_000
 export const env = createEnv({
   server: {
     NEXT_PUBLIC_EDITION: editionRule,
+    // Public origin the Zalo Personal gateway posts webhooks to when the
+    // worker restores a session — must match what the builder registers on
+    // connect (broker origin, falling back to the builder URL).
+    NEXT_PUBLIC_BROKER_URL: z.url().optional(),
+    NEXT_PUBLIC_BUILDER_URL: z.url().default("http://localhost:3123"),
     QUOTA_SYNC_INTERVAL_SECONDS: z.coerce.number().int().min(10).default(60),
     // How often the sequence producer polls each of its buckets. Idle Redis
     // cost is `buckets x 2 x 1000 / interval` ZRANGEBYSCORE per second (256

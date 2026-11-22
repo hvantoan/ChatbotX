@@ -4,6 +4,7 @@ import {
   type MessageWithAttachments,
   type PaginationCursor,
 } from "@chatbotx.io/database/repositories"
+import type { ConversationModel } from "@chatbotx.io/database/types"
 import { uploader } from "@chatbotx.io/filesystem"
 import { endOfHour } from "date-fns"
 import { contactInboxService } from "../contact-inbox/service"
@@ -133,6 +134,24 @@ export type ListForConversationResult = {
   nextCursor: PaginationCursor | null
 }
 
+/**
+ * The oldest instant a conversation's messages can reach. Normally
+ * `createdAt`, but backdated imports (history sync, comment replays) store
+ * messages older than the conversation row; those record
+ * `additionalAttributes.earliestMessageAt` (see
+ * `conversationService.recordEarliestMessageAt`) so the listing bound
+ * extends to cover them.
+ */
+const conversationMessageBound = (conversation: ConversationModel): Date => {
+  const raw = conversation.additionalAttributes?.earliestMessageAt
+  const earliest = typeof raw === "string" ? new Date(raw) : null
+  return earliest &&
+    Number.isFinite(earliest.getTime()) &&
+    earliest < conversation.createdAt
+    ? earliest
+    : conversation.createdAt
+}
+
 export async function listForConversation(
   input: ListForConversationInput,
 ): Promise<ListForConversationResult> {
@@ -166,7 +185,9 @@ export async function listForConversation(
     workspaceId: input.workspaceId,
     contactInboxId: input.contactInboxId,
     conversationId: input.conversationId,
-    sinceTime: getSafeSinceTime(conversation?.createdAt),
+    sinceTime: getSafeSinceTime(
+      conversation ? conversationMessageBound(conversation) : null,
+    ),
     pagination: {
       limit: input.limit,
       cursor: input.cursor ?? {
@@ -214,7 +235,8 @@ export async function findForContact(input: {
     conversationId,
     workspaceId,
     sinceTime:
-      getSafeSinceTime(conversation.createdAt) ?? conversation.createdAt,
+      getSafeSinceTime(conversationMessageBound(conversation)) ??
+      conversationMessageBound(conversation),
     requireCompleteResults: true,
   })
 

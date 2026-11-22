@@ -60,6 +60,7 @@ import { redispatchTemplateJobs } from "./handlers/redispatch-template-jobs"
 import { refreshChannelTokens } from "./handlers/refresh-channel-tokens"
 import { refreshLicense } from "./handlers/refresh-license"
 import { registerSchedules } from "./handlers/register-schedules"
+import { restoreZaloPersonalSessions } from "./handlers/restore-zalo-personal-sessions"
 import { scanAbandonedCarts } from "./handlers/scan-abandoned-carts"
 import { scanAiHandoverBulkRuns } from "./handlers/scan-ai-handover-bulk-runs"
 import { scanAppointmentReminders } from "./handlers/scan-appointment-reminders"
@@ -209,6 +210,10 @@ async function startScheduleWorker() {
 
             case ScheduleJobData.reconcileMetaCatalogSyncs:
               await reconcileMetaCatalogSyncs()
+              return
+
+            case ScheduleJobData.restoreZaloPersonalSessions:
+              await restoreZaloPersonalSessions()
               return
 
             case ScheduleJobData.purgeCoexistStaging:
