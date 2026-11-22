@@ -19,8 +19,13 @@ export function ZaloPersonalSyncButton({
   const { execute, isPending } = useAction(
     syncZaloPersonalAction.bind(null, workspaceId, integrationId),
     {
-      onSuccess: () => {
-        toast.success(t("fields.zalo_personal.syncSuccess"))
+      onSuccess: ({ data }) => {
+        toast.success(
+          t("fields.zalo_personal.syncSuccess", {
+            imported: data?.friends.imported ?? 0,
+            total: data?.friends.total ?? 0,
+          }),
+        )
       },
       onError: ({ error }) => {
         if (error.serverError) {

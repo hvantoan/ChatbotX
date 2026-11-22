@@ -1,3 +1,4 @@
+import { buildZaloPersonalWebhookUrl as buildWebhookUrl } from "@chatbotx.io/integration-zalo-personal"
 import { z } from "zod"
 import { getBrokerOrigin } from "@/lib/oauth-broker"
 
@@ -8,9 +9,7 @@ const getGatewayToken = (): string =>
   process.env.ZALO_PERSONAL_GATEWAY_TOKEN ?? ""
 
 export function buildZaloPersonalWebhookUrl(zaloUid: string): string {
-  const url = new URL("/integrations/zalo_personal/webhook", getBrokerOrigin())
-  url.searchParams.set("zaloUid", zaloUid)
-  return url.toString()
+  return buildWebhookUrl(getBrokerOrigin(), zaloUid)
 }
 
 const TRAILING_SLASHES = /\/+$/
@@ -131,6 +130,22 @@ export const zaloPersonalGateway = {
       "/accounts/stop",
       { method: "POST", body: { zaloUid } },
       z.object({ ok: z.boolean() }),
+    ),
+
+  listFriends: (zaloUid: string) =>
+    callGateway(
+      `/accounts/${encodeURIComponent(zaloUid)}/friends`,
+      { method: "GET" },
+      z.object({
+        friends: z.array(
+          z.object({
+            userId: z.string(),
+            displayName: z.string(),
+            avatar: z.string().optional(),
+            phoneNumber: z.string().optional(),
+          }),
+        ),
+      }),
     ),
 
   syncAccount: (zaloUid: string) =>

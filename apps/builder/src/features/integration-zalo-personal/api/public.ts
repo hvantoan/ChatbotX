@@ -148,13 +148,21 @@ export const zaloPersonalChannelsPublicRouter = {
     .route({
       method: "POST",
       path: "/v1/zalo-personal-channels/{id}/sync",
-      summary: "Sync Zalo Personal conversations",
+      summary: "Sync Zalo Personal contacts and conversations",
       description:
-        "Triggers a recent conversation and message history sync for a connected personal Zalo account.",
+        "Adds every friend of a connected personal Zalo account as a contact (including friends with no messages; existing contacts are kept), then starts a background group message history sync. Returns how many friends were found and how many new contacts were created.",
       tags: ["Channels"],
     })
     .input(zaloPersonalChannelIdRequest)
-    .output(z.object({ ok: z.boolean() }))
+    .output(
+      z.object({
+        ok: z.boolean(),
+        friends: z.object({
+          total: z.number().int().nonnegative(),
+          imported: z.number().int().nonnegative(),
+        }),
+      }),
+    )
     .errors(possibleErrorsOnMutatingResource)
     .handler(async ({ context, input }) => {
       const result = await syncZaloPersonalChannel({

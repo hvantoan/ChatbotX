@@ -2,24 +2,29 @@
 
 Docker Compose configurations for **ChatbotX** split cleanly between development and production.
 
-## Files
-
-- [`docker-compose.dev.yml`](./docker-compose.dev.yml): Local development stack (`chatbotx-dev`) with exposed DB/Redis/UI ports (`postgres`, `redis`, `filesystem`, `adminer`, `mailhog`, `redis-ui`), `builder`, `worker`, `javascript-executor`, `realtime`, and `zalo-personal-gateway`.
-- [`docker-compose.prod.yml`](./docker-compose.prod.yml): Production stack (`chatbotx-prod`) without dev tools (`adminer`, `mailhog`, `redis-ui`), with internal-only DB/Redis/gateway ports, strict required env vars, `cap_drop: [ALL]`, `no-new-privileges:true`, `read_only: true` on isolated services, and memory/CPU resource limits.
+- [`../docker-compose.dev.yml`](../docker-compose.dev.yml): local dev stack (`chatbotx`) — full app containers (`builder`, `worker`, `javascript-executor`, `realtime`) on top of the root infra compose (`postgres`, `redis`, `filesystem`, `adminer`, `mailhog`, `redis-ui`, profile `zalo-personal`). One-click entrypoint: [`../scripts/stack-up.sh`](../scripts/stack-up.sh).
+- [`docker-compose.prod.yml`](./docker-compose.prod.yml): production stack (`chatbotx-prod`) without dev tools (`adminer`, `mailhog`, `redis-ui`), with internal-only DB/Redis/gateway ports, strict required env vars, `cap_drop: [ALL]`, `no-new-privileges:true`, `read_only: true` on isolated services, and memory/CPU resource limits.
 
 ## Usage
 
-### Development
+### Development — one click
 
 ```bash
-cp .env.example .env
-docker compose -f infas/docker-compose.dev.yml up -d
+./scripts/stack-up.sh            # env → build → up → migrate+seed → health check
+./scripts/stack-up.sh --down     # stop everything
+./scripts/stack-up.sh --reset    # wipe volumes + generated env, start fresh
 ```
 
-To run only infrastructure (Postgres, Redis, RustFS, MailHog, Adminer, RedisInsight) while running Node apps locally via `pnpm dev`:
+The script generates `.env` (from `.env.example` with fresh secrets) and
+`.env.docker` (container-side overrides: `postgres`/`redis`/`filesystem`/
+`mailhog` hostnames) — no manual env editing needed. Migrations and the demo
+seed run inside the builder container (`RUN_DB_MIGRATE`/`RUN_DB_SEED`).
+
+To run only infrastructure while developing Node apps on the host via `pnpm dev`,
+use the root compose (see `scripts/dev-up.sh`):
 
 ```bash
-docker compose -f infas/docker-compose.dev.yml up -d postgres redis filesystem filesystem-init adminer mailhog redis-ui
+docker compose up -d postgres redis filesystem filesystem-init adminer mailhog redis-ui
 ```
 
 ### Production
@@ -39,6 +44,8 @@ The stack bundles `filesystem` (RustFS) for object storage, mirroring the root `
 > ```
 
 > **Note:** In production, `zalo-personal-gateway` and `javascript-executor` are not published to host ports; `builder` and `worker` reach them over the internal Docker bridge network (`http://zalo-personal-gateway:3220`, `http://javascript-executor:3210`).
+
+> **Zalo Personal sessions:** the gateway keeps logged-in sessions in memory only, so restarting it drops every account. The worker's `restoreZaloPersonalSessions` schedule (every minute) starts a session for each connected account the gateway no longer tracks, so the worker needs the same `ZALO_PERSONAL_GATEWAY_URL`/`ZALO_PERSONAL_GATEWAY_TOKEN` as the builder, plus `NEXT_PUBLIC_BROKER_URL` (or `NEXT_PUBLIC_BUILDER_URL`) reachable from the gateway, because that origin becomes the webhook URL. Until the restore runs (up to about a minute), sends fail with `409 session_not_connected` and can be resent. In the dev stack the gateway container runs the host's `apps/zalo-personal-gateway/dist` from a bind mount, so run `pnpm --filter zalo-personal-gateway build` and restart the container after changing gateway code.
 
 #### Migrating existing attachments from RustFS to an external bucket
 

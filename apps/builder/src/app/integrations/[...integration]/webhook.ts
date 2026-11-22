@@ -278,7 +278,11 @@ export const handleWebhook = async (
     return handleLineWebhook(req)
   }
 
-  if (integrationType === "zalo_personal") {
+  // NOTE: `integrationType` is the URL segment after toCamelCase — the
+  // literal segment "zalo_personal" arrives here as "zaloPersonal" while
+  // the registry key stays "zalo_personal" (handleZaloPersonalWebhook
+  // reads it directly from the map).
+  if (integrationType === "zaloPersonal") {
     return handleZaloPersonalWebhook(req)
   }
 

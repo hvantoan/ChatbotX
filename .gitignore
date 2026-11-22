@@ -17,6 +17,7 @@ node_modules
 .env.production.local
 .env.prod
 .env.dev
+.env.docker
 
 # Testing
 coverage
@@ -54,6 +55,10 @@ test-webchat
 # Cursor
 .cursor/skills/
 CLAUDE.md
+
+# Pi
+.pi/
+.codegraph
 
 # Per-developer Claude Code overrides (hooks, personal permissions)
 .claude/settings.local.json
