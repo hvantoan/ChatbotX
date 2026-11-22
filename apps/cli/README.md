@@ -496,7 +496,8 @@ chatbotx ai-agents create --name <name> --prompt <prompt> --temperature <tempera
                                                      #   --maxOutputTokens <maxOutputTokens> --isDefault <isDefault>
                                                      #   --messages <messages> --models <models> --tools <tools>
                                                      # messages: JSON array of {role,content}; models: JSON array of
-                                                     # {provider,model} (or {kind:"openaiCompatible",integrationId,model})
+                                                     # {provider,model} (or {kind:"openaiCompatible",integrationId,model},
+                                                     # where integrationId is `data[].id` from `integrations find-by-ai --provider openaiCompatible`)
                                                      # fallback list, first entry preferred; tools: JSON array of tool names
                                                      # [--webSearchAuthorizedDomains --isRichResponse]
 chatbotx ai-agents update <id>                       # Same fields as create, all optional (partial update)
@@ -511,10 +512,13 @@ chatbotx ai-agents delete <id>
 chatbotx integrations list                           # List integrations
 chatbotx integrations get <id>
 chatbotx integrations status-token-errors            # Channel integrations with failed token refresh
-chatbotx integrations find-by-ai --provider <provider>  # Get AI provider integration (GET only — connect/disconnect
+chatbotx integrations find-by-ai --provider <provider>  # Get AI provider integration [--integrationId <id>]
+                                                     # (claude, deepseek, gemini, muse, openai, openaiCompatible; GET only —
                                                      # PUT/DELETE on the same path collide, see Known command-name collisions)
-chatbotx integrations update-ai --provider <provider> --autoReply <true|false>  # Turn the AI Reply switch on/off
-                                                     # (claude, deepseek, gemini, muse, openai; connect the provider first)
+chatbotx integrations update-ai --provider <provider>  # Update AI provider settings (connect the provider first):
+                                                     # - claude/deepseek/gemini/muse/openai: --autoReply <true|false>
+                                                     # - openaiCompatible: --integrationId <id> [--autoReply --enabled
+                                                     #   --name --preset --defaultModel --baseURL --apiKey]
 ```
 
 ---

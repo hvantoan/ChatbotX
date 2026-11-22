@@ -126,7 +126,7 @@ export const createAIAgentRequest = z.object({
             .trim()
             .min(1)
             .describe(
-              "Id of the connected OpenAI-compatible integration. Get it from `integrations.list`.",
+              'Satellite `id` of the connected OpenAI-compatible integration (NOT the parent `connection.integrationId`). Get it from `integrations.getAiProvider` with `provider: "openaiCompatible"` (`data[].id`).',
             ),
           model: z
             .string()

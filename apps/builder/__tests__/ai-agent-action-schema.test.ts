@@ -106,4 +106,14 @@ describe("AI agent action schemas", () => {
       expect(result.success).toBe(false)
     }
   })
+
+  test("points openaiCompatible integrationId description to integrations.getAiProvider satellite id", () => {
+    const modelsShape = createAIAgentRequest.shape.models.unwrap()
+    const unionOptions = modelsShape.options
+    const openaiCompatibleSchema = unionOptions[1]
+    const description = openaiCompatibleSchema.shape.integrationId.description
+
+    expect(description).toContain("integrations.getAiProvider")
+    expect(description).not.toContain("integrations.list")
+  })
 })

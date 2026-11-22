@@ -1,5 +1,5 @@
 import { ChatbotXException } from "../errors"
-import { isCloud } from "../keys"
+import { allowPrivateOpenaiCompatibleUrls, isCloud } from "../keys"
 import { assertPublicUrl } from "../net"
 
 const MAX_BASE_URL_LENGTH = 2048
@@ -23,6 +23,10 @@ export const normalizeOpenaiCompatibleBaseUrl = (baseURL: string): string => {
     throw new ChatbotXException(INVALID_BASE_URL_ERROR, "invalidBaseUrl", 400)
   }
 
+  if (parsed.username || parsed.password) {
+    throw new ChatbotXException(INVALID_BASE_URL_ERROR, "invalidBaseUrl", 400)
+  }
+
   return parsed.toString()
 }
 
@@ -31,7 +35,7 @@ export const validateOpenaiCompatibleBaseUrlForEnvironment = async (
 ): Promise<string> => {
   const normalizedBaseUrl = normalizeOpenaiCompatibleBaseUrl(baseURL)
 
-  if (!isCloud()) {
+  if (!isCloud() && allowPrivateOpenaiCompatibleUrls()) {
     return normalizedBaseUrl
   }
 

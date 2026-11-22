@@ -1506,3 +1506,25 @@ export const possibleErrorsOnWooCommerce = {
     status: 409,
   },
 } satisfies ErrorMap
+
+/** Updating an AI provider (`PATCH /v1/integrations/ai/{provider}`), including OpenAI-compatible verification/SSRF/preset checks. */
+export const possibleErrorsOnUpdatingAiProvider = {
+  ...possibleErrorsOnMutatingResource,
+  invalidBaseUrl: {
+    message: "OpenAI-compatible base URL is invalid.",
+    status: 400,
+  },
+  ssrfBlocked: {
+    message: "OpenAI-compatible base URL is not allowed.",
+    status: 400,
+  },
+  connectionCredentialsRejected,
+  connectionAlreadyConnected: {
+    message: "This provider is already connected in this workspace",
+    status: 409,
+  },
+  presetAlreadyConnected: {
+    message: "OpenAI-compatible preset is already connected",
+    status: 409,
+  },
+} satisfies ErrorMap
