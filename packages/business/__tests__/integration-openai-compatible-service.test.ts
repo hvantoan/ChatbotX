@@ -55,6 +55,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
   integrationModel: { id: "id" },
   integrationOpenaiCompatibleModel: {
+    baseURL: "baseURL",
     id: "id",
     integrationId: "integrationId",
     workspaceId: "workspaceId",
@@ -363,6 +364,74 @@ describe("IntegrationOpenaiCompatibleService", () => {
       code: "connectionCredentialsRejected",
       httpStatusCode: 400,
     })
+
+    mocks.verifyProvider.mockResolvedValueOnce({
+      ok: false,
+      reason: "unreachable",
+      status: 404,
+    })
+    await expect(
+      integrationOpenaiCompatibleService.updateWithVerification(
+        "workspace-1",
+        "openai-compatible-1",
+        { baseURL: "https://example.com/v11" },
+      ),
+    ).rejects.toMatchObject({
+      code: "invalidBaseUrl",
+      httpStatusCode: 400,
+    })
+    expect(mocks.transaction).not.toHaveBeenCalled()
+  })
+
+  test("update does not overwrite connection displayName or sourceId when provider name and baseURL are unchanged", async () => {
+    mocks.findFirst.mockResolvedValue({
+      id: "openai-compatible-1",
+      integrationId: "integration-1",
+      baseURL: "https://example.com/v1",
+      name: "Custom Provider",
+      defaultModel: "gpt-4o-mini",
+      preset: "custom",
+    })
+
+    await integrationOpenaiCompatibleService.update(
+      "workspace-1",
+      "openai-compatible-1",
+      {
+        baseURL: "https://example.com/v1",
+        name: "Custom Provider",
+        defaultModel: "gpt-4o",
+      },
+    )
+
+    expect(mocks.txUpdateSet).toHaveBeenCalledTimes(1)
+    expect(mocks.txUpdateSet).toHaveBeenCalledWith(
+      expect.objectContaining({
+        defaultModel: "gpt-4o",
+      }),
+    )
+  })
+
+  test("updateWithVerification fails with 409 conflict if baseURL changed concurrently before write", async () => {
+    mocks.findFirst.mockResolvedValue({
+      id: "openai-compatible-1",
+      integrationId: "integration-1",
+      baseURL: "https://old.example.com/v1",
+      preset: "custom",
+      auth: { authType: "secretText", secretText: "sk-existing" },
+    })
+    mocks.updateReturning.mockResolvedValueOnce([])
+
+    await expect(
+      integrationOpenaiCompatibleService.updateWithVerification(
+        "workspace-1",
+        "openai-compatible-1",
+        { apiKey: "sk-new" },
+      ),
+    ).rejects.toMatchObject({
+      code: "conflict",
+      httpStatusCode: 409,
+    })
+    expect(mocks.txUpdateSet).toHaveBeenCalledTimes(1)
   })
 
   test("findByWorkspaceIdAndAnyId falls back from satellite id to parent integrationId", async () => {

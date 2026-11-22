@@ -132,6 +132,33 @@ describe("OpenAI-compatible actions", () => {
     expect(mocks.connect).not.toHaveBeenCalled()
   })
 
+  test("connect maps unreachable /models response to baseURL validation error", async () => {
+    mocks.verifyProvider.mockResolvedValueOnce({
+      ok: false,
+      reason: "unreachable",
+      status: 404,
+    })
+
+    const result = await (
+      connectOpenaiCompatibleAction as unknown as ActionHandler<
+        typeof baseInput,
+        [string]
+      >
+    )({
+      parsedInput: baseInput,
+      bindArgsParsedInputs: ["workspace-1"],
+    })
+
+    expect(result).toEqual({
+      validationErrors: {
+        baseURL: {
+          _errors: ["openaiCompatible.validation.invalidBaseURL"],
+        },
+      },
+    })
+    expect(mocks.connectFromCredentials).not.toHaveBeenCalled()
+  })
+
   test("connect calls connectFromCredentials with the validated baseURL and no allowUpdate (always a fresh connect)", async () => {
     const result = await (
       connectOpenaiCompatibleAction as unknown as ActionHandler<

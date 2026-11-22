@@ -13,6 +13,7 @@ import { createId } from "@chatbotx.io/utils"
 import { BaseService } from "../base.service"
 import {
   ChatbotXException,
+  conflictException,
   connectionAlreadyConnectedException,
   connectionCredentialsRejectedException,
   notFoundException,
@@ -196,6 +197,9 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     workspaceId: string,
     id: string,
     data: UpdateOpenaiCompatibleInput,
+    options?: {
+      expectedBaseURL?: string
+    },
   ) {
     const existing = await this.findByWorkspaceIdAndId({ workspaceId, id })
     if (!existing) {
@@ -226,6 +230,15 @@ class IntegrationOpenaiCompatibleService extends BaseService {
       return existing
     }
 
+    const syncBaseUrl =
+      baseURL !== undefined && baseURL !== existing.baseURL
+        ? baseURL
+        : undefined
+    const syncDisplayName =
+      rest.name !== undefined && rest.name !== existing.name
+        ? rest.name
+        : undefined
+
     let updatedRow: typeof existing | undefined
     try {
       updatedRow = await db.transaction(async (tx) => {
@@ -236,16 +249,33 @@ class IntegrationOpenaiCompatibleService extends BaseService {
             and(
               eq(integrationOpenaiCompatibleModel.id, id),
               eq(integrationOpenaiCompatibleModel.workspaceId, workspaceId),
+              ...(options?.expectedBaseURL === undefined
+                ? []
+                : [
+                    eq(
+                      integrationOpenaiCompatibleModel.baseURL,
+                      options.expectedBaseURL,
+                    ),
+                  ]),
             ),
           )
           .returning()
 
-        if (baseURL !== undefined || rest.name !== undefined) {
+        if (!row) {
+          throw conflictException(
+            "OpenAI-compatible integration was updated concurrently; retry the request.",
+            "conflict",
+          )
+        }
+
+        if (syncBaseUrl !== undefined || syncDisplayName !== undefined) {
           await tx
             .update(connectionModel)
             .set({
-              ...(baseURL === undefined ? {} : { sourceId: baseURL }),
-              ...(rest.name === undefined ? {} : { displayName: rest.name }),
+              ...(syncBaseUrl === undefined ? {} : { sourceId: syncBaseUrl }),
+              ...(syncDisplayName === undefined
+                ? {}
+                : { displayName: syncDisplayName }),
             })
             .where(
               and(
@@ -312,7 +342,10 @@ class IntegrationOpenaiCompatibleService extends BaseService {
         await validateOpenaiCompatibleBaseUrlForEnvironment(normalizedCandidate)
     }
 
-    if (trimmedApiKey || validatedBaseUrl !== undefined) {
+    const verifiedCredentialsOrEndpoint = Boolean(
+      trimmedApiKey || validatedBaseUrl !== undefined,
+    )
+    if (verifiedCredentialsOrEndpoint) {
       const effectiveBaseUrl =
         validatedBaseUrl ??
         (await validateOpenaiCompatibleBaseUrlForEnvironment(existing.baseURL))
@@ -332,6 +365,13 @@ class IntegrationOpenaiCompatibleService extends BaseService {
             400,
           )
         }
+        if (verifyResult.reason === "unreachable") {
+          throw new ChatbotXException(
+            "OpenAI-compatible base URL could not be verified.",
+            "invalidBaseUrl",
+            400,
+          )
+        }
         throw connectionCredentialsRejectedException(
           "OpenAI-compatible API key was rejected.",
         )
@@ -344,14 +384,23 @@ class IntegrationOpenaiCompatibleService extends BaseService {
       rest.preset !== existing.preset &&
       resolveDefaultModel !== undefined
 
-    return await this.update(workspaceId, id, {
-      ...rest,
-      ...(validatedBaseUrl === undefined ? {} : { baseURL: validatedBaseUrl }),
-      ...(trimmedApiKey ? { apiKey: trimmedApiKey } : {}),
-      ...(shouldResolveDefaultModel
-        ? { defaultModel: resolveDefaultModel(rest.preset as string) }
-        : {}),
-    })
+    return await this.update(
+      workspaceId,
+      id,
+      {
+        ...rest,
+        ...(validatedBaseUrl === undefined
+          ? {}
+          : { baseURL: validatedBaseUrl }),
+        ...(trimmedApiKey ? { apiKey: trimmedApiKey } : {}),
+        ...(shouldResolveDefaultModel
+          ? { defaultModel: resolveDefaultModel(rest.preset as string) }
+          : {}),
+      },
+      verifiedCredentialsOrEndpoint
+        ? { expectedBaseURL: existing.baseURL }
+        : undefined,
+    )
   }
 
   async disconnect(workspaceId: string, id: string) {

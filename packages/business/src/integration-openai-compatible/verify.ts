@@ -18,9 +18,9 @@ export type VerifyOpenaiCompatibleProviderResult =
       reason: "unsafe_base_url"
     }
   | {
-      ok: true
-      warning: "could_not_verify"
-      message: string
+      ok: false
+      reason: "unreachable"
+      status?: number
     }
 
 export async function verifyOpenaiCompatibleProvider(props: {
@@ -57,6 +57,20 @@ export async function verifyOpenaiCompatibleProvider(props: {
     if (response.status >= 300 && response.status < 400) {
       return { ok: false, reason: "unsafe_base_url" }
     }
+    if (UNAUTHORIZED_STATUSES.has(response.status)) {
+      return {
+        ok: false,
+        reason: "unauthorized",
+        status: response.status,
+      }
+    }
+    if (!response.ok) {
+      return {
+        ok: false,
+        reason: "unreachable",
+        status: response.status,
+      }
+    }
     return { ok: true }
   } catch (error) {
     if (isHTTPError(error)) {
@@ -72,15 +86,14 @@ export async function verifyOpenaiCompatibleProvider(props: {
         }
       }
       return {
-        ok: true,
-        warning: "could_not_verify",
-        message: "Could not verify provider",
+        ok: false,
+        reason: "unreachable",
+        status,
       }
     }
     return {
-      ok: true,
-      warning: "could_not_verify",
-      message: "Could not verify provider",
+      ok: false,
+      reason: "unreachable",
     }
   }
 }

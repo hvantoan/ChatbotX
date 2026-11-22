@@ -1519,6 +1519,11 @@ export const possibleErrorsOnUpdatingAiProvider = {
     status: 400,
   },
   connectionCredentialsRejected,
+  conflict: {
+    message:
+      "OpenAI-compatible integration was updated concurrently; retry the request.",
+    status: 409,
+  },
   connectionAlreadyConnected: {
     message: "This provider is already connected in this workspace",
     status: 409,

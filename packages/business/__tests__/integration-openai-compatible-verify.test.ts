@@ -115,4 +115,36 @@ describe("verifyOpenaiCompatibleProvider", () => {
       }),
     ).resolves.toEqual({ ok: false, reason: "unauthorized", status: 401 })
   })
+
+  test("fails closed with unreachable on HTTP 404, 5xx, or network failure", async () => {
+    mocks.get.mockRejectedValueOnce(
+      new HTTPError(
+        new Response(null, { status: 404 }),
+        fakeRequest,
+        fakeOptions,
+      ),
+    )
+    await expect(
+      verifyOpenaiCompatibleProvider({
+        baseURL: "https://example.com/v11",
+        apiKey: "secret",
+      }),
+    ).resolves.toEqual({ ok: false, reason: "unreachable", status: 404 })
+
+    mocks.get.mockResolvedValueOnce(new Response(null, { status: 502 }))
+    await expect(
+      verifyOpenaiCompatibleProvider({
+        baseURL: "https://example.com/v1",
+        apiKey: "secret",
+      }),
+    ).resolves.toEqual({ ok: false, reason: "unreachable", status: 502 })
+
+    mocks.get.mockRejectedValueOnce(new TypeError("fetch failed"))
+    await expect(
+      verifyOpenaiCompatibleProvider({
+        baseURL: "https://example.com/v1",
+        apiKey: "secret",
+      }),
+    ).resolves.toEqual({ ok: false, reason: "unreachable" })
+  })
 })

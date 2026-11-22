@@ -51,7 +51,10 @@ export const connectOpenaiCompatibleAction = workspaceActionClient
       })
 
       if (!verifyResult.ok) {
-        if (verifyResult.reason === "unsafe_base_url") {
+        if (
+          verifyResult.reason === "unsafe_base_url" ||
+          verifyResult.reason === "unreachable"
+        ) {
           return returnValidationErrors(connectOpenaiCompatibleSchema, {
             baseURL: {
               _errors: [t("openaiCompatible.validation.invalidBaseURL")],
