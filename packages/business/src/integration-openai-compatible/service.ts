@@ -12,6 +12,10 @@ import {
 import { createId } from "@chatbotx.io/utils"
 import { BaseService } from "../base.service"
 import {
+  encryptAiProviderAuth,
+  resolveAiProviderAuth,
+} from "../connection/store-bindings"
+import {
   ChatbotXException,
   conflictException,
   connectionAlreadyConnectedException,
@@ -115,22 +119,45 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     })
   }
 
-  findByWorkspaceIdAndId(props: { workspaceId: string; id: string }) {
-    return db.query.integrationOpenaiCompatibleModel.findFirst({
+  async findByWorkspaceIdAndId(props: { workspaceId: string; id: string }) {
+    const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
       where: { workspaceId: props.workspaceId, id: props.id },
     })
+    return row ? await this.withDecryptedAuth(row) : row
   }
 
-  findByWorkspaceIdAndIntegrationId(props: {
+  async findByWorkspaceIdAndIntegrationId(props: {
     workspaceId: string
     integrationId: string
   }) {
-    return db.query.integrationOpenaiCompatibleModel.findFirst({
+    const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
       where: {
         workspaceId: props.workspaceId,
         integrationId: props.integrationId,
       },
     })
+    return row ? await this.withDecryptedAuth(row) : row
+  }
+
+  private async withDecryptedAuth<
+    TRow extends {
+      workspaceId: string
+      auth: unknown
+      encryptedAuth?: unknown
+    },
+  >(row: TRow) {
+    if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
+      return row
+    }
+    return {
+      ...row,
+      auth: await resolveAiProviderAuth({
+        provider: "openaiCompatible",
+        workspaceId: row.workspaceId,
+        auth: row.auth,
+        encryptedAuth: row.encryptedAuth,
+      }),
+    }
   }
 
   async findByWorkspaceIdAndAnyId(props: { workspaceId: string; id: string }) {
@@ -168,6 +195,12 @@ class IntegrationOpenaiCompatibleService extends BaseService {
 
   async connect(props: ConnectOpenaiCompatibleInput) {
     const auth = this.createAuth(props.apiKey)
+    const encryptedAuth = auth
+      ? await encryptAiProviderAuth(
+          { provider: "openaiCompatible", workspaceId: props.workspaceId },
+          auth,
+        )
+      : null
     const baseURL = await validateOpenaiCompatibleBaseUrlForEnvironment(
       props.baseURL,
     )
@@ -194,7 +227,8 @@ class IntegrationOpenaiCompatibleService extends BaseService {
 
         await tx.insert(integrationOpenaiCompatibleModel).values({
           id: createId(),
-          auth,
+          auth: auth ? {} : null,
+          encryptedAuth,
           autoReply: props.autoReply ?? false,
           baseURL,
           defaultModel: props.defaultModel,
@@ -246,10 +280,19 @@ class IntegrationOpenaiCompatibleService extends BaseService {
             normalizeOpenaiCompatibleBaseUrl(rawBaseURL),
           )
 
+    const nextAuth = trimmedApiKey ? this.createAuth(trimmedApiKey) : null
     const updateValues = {
       ...rest,
       ...(baseURL === undefined ? {} : { baseURL }),
-      ...(trimmedApiKey ? { auth: this.createAuth(trimmedApiKey) } : {}),
+      ...(nextAuth
+        ? {
+            auth: {},
+            encryptedAuth: await encryptAiProviderAuth(
+              { provider: "openaiCompatible", workspaceId },
+              nextAuth,
+            ),
+          }
+        : {}),
     }
     if (Object.values(updateValues).every((value) => value === undefined)) {
       return existing
@@ -370,10 +413,6 @@ class IntegrationOpenaiCompatibleService extends BaseService {
         await validateOpenaiCompatibleBaseUrlForEnvironment(normalizedCandidate)
     }
 
-    // Only probe the endpoint when a new API key or a changed baseURL is
-    // supplied; editing display fields (e.g. name or defaultModel) while the
-    // form resends the unchanged baseURL still runs the SSRF check above
-    // without blocking saves if the server is offline or has no /models route.
     const verifiedCredentialsOrEndpoint = Boolean(
       trimmedApiKey || baseUrlChanged,
     )

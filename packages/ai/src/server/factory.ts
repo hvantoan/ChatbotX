@@ -1,3 +1,4 @@
+import { resolveAiProviderAuth } from "@chatbotx.io/business/connection/ai-provider-auth"
 import { db } from "@chatbotx.io/database/client"
 import type {
   IntegrationClaudeModel,
@@ -44,40 +45,69 @@ export async function getAIIntegrationInDB(props: {
     ...(autoReply === undefined ? {} : { autoReply }),
   }
 
+  let row: AIIntegrationModel | undefined
   switch (provider) {
     case aiProviders.enum.openai:
-      return await db.query.integrationOpenaiModel.findFirst({
+      row = await db.query.integrationOpenaiModel.findFirst({
         where,
       })
+      break
     case aiProviders.enum.gemini:
-      return await db.query.integrationGeminiModel.findFirst({
+      row = await db.query.integrationGeminiModel.findFirst({
         where,
       })
+      break
     case aiProviders.enum.claude:
-      return await db.query.integrationClaudeModel.findFirst({
+      row = await db.query.integrationClaudeModel.findFirst({
         where,
       })
+      break
     case aiProviders.enum.deepseek:
-      return await db.query.integrationDeepseekModel.findFirst({
+      row = await db.query.integrationDeepseekModel.findFirst({
         where,
       })
+      break
     case aiProviders.enum.openrouter:
-      return await db.query.integrationOpenrouterModel.findFirst({
+      row = await db.query.integrationOpenrouterModel.findFirst({
         where,
       })
+      break
     case aiProviders.enum.muse:
-      return await db.query.integrationMuseModel.findFirst({
+      row = await db.query.integrationMuseModel.findFirst({
         where,
       })
+      break
     default:
       return null
   }
+
+  return row ? await withDecryptedAuth(row, provider) : undefined
+}
+
+const withDecryptedAuth = async <
+  TRow extends { workspaceId: string; auth: unknown; encryptedAuth?: unknown },
+>(
+  row: TRow,
+  provider: string,
+): Promise<TRow> => {
+  if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
+    return row
+  }
+  return {
+    ...row,
+    auth: await resolveAiProviderAuth({
+      provider,
+      workspaceId: row.workspaceId,
+      auth: row.auth,
+      encryptedAuth: row.encryptedAuth,
+    }),
+  } as TRow
 }
 
 export async function getOpenaiCompatibleAutoReplyIntegrationInDB(props: {
   workspaceId: string
 }) {
-  return await db.query.integrationOpenaiCompatibleModel.findFirst({
+  const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
     where: {
       autoReply: true,
       enabled: true,
@@ -85,6 +115,7 @@ export async function getOpenaiCompatibleAutoReplyIntegrationInDB(props: {
     },
     orderBy: (table, { asc }) => [asc(table.createdAt)],
   })
+  return row ? await withDecryptedAuth(row, "openaiCompatible") : row
 }
 
 export async function getOpenaiCompatibleIntegrationInDB(props: {
@@ -92,13 +123,14 @@ export async function getOpenaiCompatibleIntegrationInDB(props: {
   id: string
   autoReply?: boolean
 }) {
-  return await db.query.integrationOpenaiCompatibleModel.findFirst({
+  const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
     where: {
       id: props.id,
       workspaceId: props.workspaceId,
       ...(props.autoReply === undefined ? {} : { autoReply: props.autoReply }),
     },
   })
+  return row ? await withDecryptedAuth(row, "openaiCompatible") : row
 }
 
 function resolveProviderFactory(provider: string) {

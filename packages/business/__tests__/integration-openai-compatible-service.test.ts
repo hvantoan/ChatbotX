@@ -46,7 +46,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
   connectionModel: {
     id: "conn.id",
     integrationId: "conn.integrationId",
@@ -66,7 +67,8 @@ vi.mock("@chatbotx.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
   createId: vi.fn(() => "generated-id"),
 }))
 
