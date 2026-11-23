@@ -72,6 +72,13 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           },
         )
       } catch (error) {
+        if (isProviderUnreachableError(error)) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            baseURL: {
+              _errors: [t("openaiCompatible.validation.providerUnreachable")],
+            },
+          })
+        }
         if (isBaseUrlValidationError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             baseURL: {
@@ -136,6 +143,14 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
 const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
   error instanceof ChatbotXException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
+
+/** `updateWithVerification` reports an unreachable endpoint with the public `invalidBaseUrl` code plus `data.reason`. */
+const isProviderUnreachableError = (
+  error: unknown,
+): error is ChatbotXException =>
+  error instanceof ChatbotXException &&
+  error.code === "invalidBaseUrl" &&
+  error.data?.reason === "unreachable"
 
 const rethrowTranslatedConflictError = async (error: unknown) => {
   if (error instanceof ChatbotXException && error.code === "conflict") {

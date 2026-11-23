@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Er is al een andere provider verbonden met deze basis-URL.",
       "invalidBaseURL": "De basis-URL is ongeldig of niet toegestaan.",
+      "providerUnreachable": "Het eindpunt van de provider is niet bereikbaar. Controleer de basis-URL en probeer het opnieuw.",
       "presetAlreadyConnected": "Deze voorinstelling is al gekoppeld voor deze workspace."
     }
   },

@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Ein anderer Anbieter ist bereits mit dieser Basis-URL verbunden.",
       "invalidBaseURL": "Die Basis-URL ist ungültig oder nicht zulässig.",
+      "providerUnreachable": "Der Endpunkt des Anbieters ist nicht erreichbar. Prüfen Sie die Basis-URL und versuchen Sie es erneut.",
       "presetAlreadyConnected": "Diese Voreinstellung ist für diesen Arbeitsbereich bereits verbunden."
     }
   },

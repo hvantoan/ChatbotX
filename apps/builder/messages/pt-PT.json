@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Outro fornecedor já está ligado com este URL base.",
       "invalidBaseURL": "A URL base é inválida ou não é permitida.",
+      "providerUnreachable": "Não foi possível contactar o endpoint do fornecedor. Verifique o URL base e tente novamente.",
       "presetAlreadyConnected": "Esta predefinição já está ligada a este espaço de trabalho."
     }
   },

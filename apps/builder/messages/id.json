@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Penyedia lain sudah terhubung dengan URL dasar ini.",
       "invalidBaseURL": "URL Dasar tidak valid atau tidak diizinkan.",
+      "providerUnreachable": "Endpoint penyedia tidak dapat dijangkau. Periksa URL Dasar dan coba lagi.",
       "presetAlreadyConnected": "Preset ini sudah terhubung untuk ruang kerja ini."
     }
   },

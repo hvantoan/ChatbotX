@@ -4,6 +4,7 @@ import {
   resolveOwnerId,
 } from "@chatbotx.io/business/connection"
 import {
+  ChatbotXException,
   connectionAlreadyConnectedException,
   connectionCredentialsRejectedException,
   connectionNotConfiguredException,
@@ -33,6 +34,30 @@ import {
   toConnectionProviderError,
 } from "./internal"
 import { logger } from "./logger"
+
+const INTERNAL_ERROR_CODE_SUFFIX = /\s*\(code [^)]*\)\s*$/i
+
+/**
+ * Public API messages must not echo internal error codes. Provider-error
+ * helpers append `(code …)` for diagnostics; strip it before the message can
+ * reach a response body.
+ */
+const stripInternalErrorCode = (
+  error: ChatbotXException,
+): ChatbotXException => {
+  const message = error.message.replace(INTERNAL_ERROR_CODE_SUFFIX, "")
+  if (message === error.message) {
+    return error
+  }
+  const sanitized = new ChatbotXException(
+    message,
+    error.code,
+    error.httpStatusCode,
+  )
+  sanitized.field = error.field
+  sanitized.data = error.data
+  return sanitized
+}
 
 /**
  * `token`/`api_key`/`self_serve` connect: validates `config` against the
@@ -110,6 +135,20 @@ export const connectFromCredentials = async (input: {
 
   const [auth, ownerId] = await Promise.all([
     provider.fromCredentials(parsedConfig).catch((err) => {
+      // An SSRF-blocked endpoint is a request-shape rejection, not a
+      // credential failure: rethrow it as-is so `POST /v1/connections`
+      // answers `400 ssrfBlocked` instead of `connectionCredentialsRejected`
+      // (and without the internal `(code …)` suffix the wrapper appends).
+      // Scoped to `openaiCompatible` — it is the only provider whose
+      // `fromCredentials` runs the SSRF guard; legacy providers keep their
+      // existing rejection mapping.
+      if (
+        input.provider === "openaiCompatible" &&
+        err instanceof ChatbotXException &&
+        err.code === "ssrfBlocked"
+      ) {
+        throw stripInternalErrorCode(err)
+      }
       const providerError = toConnectionProviderError(err)
       const retryStatus = providerFailureStatus(providerError)
       logger.warn(

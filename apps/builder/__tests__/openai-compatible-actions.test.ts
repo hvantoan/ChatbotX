@@ -47,6 +47,7 @@ vi.mock("@chatbotx.io/business/errors", () => ({
     code = "systemError"
     httpStatusCode = 400
     field?: string
+    data?: Record<string, string | number>
 
     constructor(message: string, code?: string, httpStatusCode?: number) {
       super(message)
@@ -132,11 +133,37 @@ describe("OpenAI-compatible actions", () => {
     expect(mocks.connect).not.toHaveBeenCalled()
   })
 
-  test("connect maps unreachable /models response to baseURL validation error", async () => {
+  test("connect maps unreachable /models response to a distinct providerUnreachable error", async () => {
     mocks.verifyProvider.mockResolvedValueOnce({
       ok: false,
       reason: "unreachable",
       status: 404,
+    })
+
+    const result = await (
+      connectOpenaiCompatibleAction as unknown as ActionHandler<
+        typeof baseInput,
+        [string]
+      >
+    )({
+      parsedInput: baseInput,
+      bindArgsParsedInputs: ["workspace-1"],
+    })
+
+    expect(result).toEqual({
+      validationErrors: {
+        baseURL: {
+          _errors: ["openaiCompatible.validation.providerUnreachable"],
+        },
+      },
+    })
+    expect(mocks.connectFromCredentials).not.toHaveBeenCalled()
+  })
+
+  test("connect keeps invalidBaseURL for an unsafe (SSRF-blocked) base URL", async () => {
+    mocks.verifyProvider.mockResolvedValueOnce({
+      ok: false,
+      reason: "unsafe_base_url",
     })
 
     const result = await (
@@ -241,6 +268,34 @@ describe("OpenAI-compatible actions", () => {
       validationErrors: {
         baseURL: {
           _errors: ["openaiCompatible.validation.invalidBaseURL"],
+        },
+      },
+    })
+  })
+
+  test("update maps an unreachable endpoint (invalidBaseUrl + data.reason) to providerUnreachable", async () => {
+    const unreachable = new ChatbotXException(
+      "OpenAI-compatible base URL could not be verified.",
+      "invalidBaseUrl",
+      400,
+    )
+    unreachable.data = { reason: "unreachable" }
+    mocks.updateWithVerification.mockRejectedValueOnce(unreachable)
+
+    const result = await (
+      updateOpenaiCompatibleAction as unknown as ActionHandler<
+        { apiKey: string },
+        [string, string]
+      >
+    )({
+      parsedInput: { apiKey: "new-key" },
+      bindArgsParsedInputs: ["workspace-1", "integration-1"],
+    })
+
+    expect(result).toEqual({
+      validationErrors: {
+        baseURL: {
+          _errors: ["openaiCompatible.validation.providerUnreachable"],
         },
       },
     })

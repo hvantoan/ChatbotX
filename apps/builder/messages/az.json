@@ -5662,6 +5662,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Başqa bir provayder artıq bu əsas URL ilə qoşulub.",
       "invalidBaseURL": "Əsas URL etibarsızdır və ya ona icazə verilmir.",
+      "providerUnreachable": "Provayderin endpointinə çatmaq mümkün olmadı. Baza URL-i yoxlayıb yenidən cəhd edin.",
       "presetAlreadyConnected": "Bu hazır konfiqurasiya artıq bu iş sahəsinə qoşulub."
     }
   },

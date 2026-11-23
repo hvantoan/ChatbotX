@@ -5026,6 +5026,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "已有其他提供者使用此基礎 URL 連線。",
       "invalidBaseURL": "基礎URL 無效或不允許。",
+      "providerUnreachable": "無法連線至提供者端點。請檢查基礎URL後重試。",
       "presetAlreadyConnected": "此預設已為此工作區連線。"
     }
   },

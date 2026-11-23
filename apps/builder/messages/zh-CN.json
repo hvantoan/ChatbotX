@@ -6116,6 +6116,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "已有其他提供商使用此基础 URL 连接。",
       "invalidBaseURL": "基础URL 无效或不允许。",
+      "providerUnreachable": "无法访问提供商端点。请检查基础URL后重试。",
       "presetAlreadyConnected": "此缺省已为此工作区连接。"
     }
   },

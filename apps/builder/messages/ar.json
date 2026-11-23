@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "عنوان URL الأساسي هذا مرتبط بالفعل بمزود آخر.",
       "invalidBaseURL": "عنوان URL الأساسي غير صالح أو غير مسموح به.",
+      "providerUnreachable": "تعذّر الوصول إلى نقطة نهاية المزوّد. تحقّق من عنوان URL الأساسي وحاول مرة أخرى.",
       "presetAlreadyConnected": "هذا الإعداد المسبق مرتبط بالفعل بمساحة العمل هذه."
     }
   },

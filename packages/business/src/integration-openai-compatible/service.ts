@@ -373,11 +373,17 @@ class IntegrationOpenaiCompatibleService extends BaseService {
           )
         }
         if (verifyResult.reason === "unreachable") {
-          throw new ChatbotXException(
+          const exception = new ChatbotXException(
             "OpenAI-compatible base URL could not be verified.",
             "invalidBaseUrl",
             400,
           )
+          // Same public code as an invalid URL (the public API contract
+          // keeps `invalidBaseUrl`), but the UI needs to tell an
+          // unreachable endpoint from a malformed one to show its own
+          // message.
+          exception.data = { reason: "unreachable" }
+          throw exception
         }
         throw connectionCredentialsRejectedException(
           "OpenAI-compatible API key was rejected.",

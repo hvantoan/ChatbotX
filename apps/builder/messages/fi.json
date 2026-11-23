@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Toinen palveluntarjoaja on jo yhdistetty tällä perus-URL-osoitteella.",
       "invalidBaseURL": "Perus-URL on virheellinen tai sitä ei sallita.",
+      "providerUnreachable": "Palveluntarjoajan päätepisteeseen ei saatu yhteyttä. Tarkista perus-URL ja yritä uudelleen.",
       "presetAlreadyConnected": "Tämä esiasetus on jo yhdistetty tähän työtilaan."
     }
   },
