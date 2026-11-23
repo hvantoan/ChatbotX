@@ -17,7 +17,7 @@ Workspace integrations with OpenAI-compatible endpoints (LM Studio, Ollama, NVID
 
 ## SSRF Guard & Self-Hosted Opt-Out
 
-- SSRF validation (`validateOpenaiCompatibleBaseUrlForEnvironment`) is **enabled by default on every edition** (cloud, enterprise, and community). Private, loopback (`127.0.0.1`, `::1`), and link-local (`169.254.169.254`) endpoints return HTTP `400` (`ssrfBlocked`).
+- SSRF validation (`validateOpenaiCompatibleBaseUrlForEnvironment`) is **enabled by default on every edition** (cloud, enterprise, and community). Private, loopback (`127.0.0.1`, `::1`), and link-local (`169.254.169.254`) endpoints are rejected with HTTP `400` — as `ssrfBlocked` on `PATCH` update, and as `connectionCredentialsRejected` on connect (the credentials path wraps provider validation failures).
 - Self-hosted deployments that intentionally connect to local or LAN inference servers (e.g. LM Studio or Ollama on `127.0.0.1` or private IPs) can opt out by setting:
 
   ```env
