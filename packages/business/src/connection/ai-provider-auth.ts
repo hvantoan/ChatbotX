@@ -32,6 +32,17 @@ export type AiProviderAuthRow = {
 export const resolveAiProviderAuth = async (
   row: AiProviderAuthRow,
 ): Promise<AuthValue> => {
+  // A parseable plaintext `auth` is always the NEWER write: every writer
+  // that stores ciphertext blanks `auth` in the same statement, so a valid
+  // plaintext value next to ciphertext can only come from a pre-upgrade
+  // writer updating the row during a rolling deploy. Honour it — a key
+  // replacement that reported success must not be silently shadowed by stale
+  // ciphertext — and the row stays readable even if that ciphertext's key is
+  // rotated away before the next write re-encrypts it.
+  const plaintext = authValueSchema.safeParse(row.auth)
+  if (plaintext.success) {
+    return plaintext.data
+  }
   if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
     return asAuthValue(row.auth)
   }

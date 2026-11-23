@@ -8,8 +8,10 @@ import {
 } from "../scripts/backfill-ai-provider-auth/auth-codec"
 import {
   AI_PROVIDER_TABLES,
+  backfillAiProviderAuth,
   planAiAuthEncryption,
 } from "../scripts/backfill-ai-provider-auth/index"
+import type { DatabaseClient } from "../src/client"
 
 const plaintextAuth = {
   authType: AuthType.secretText,
@@ -90,5 +92,44 @@ describe("backfill AI provider auth", () => {
       "ws-7",
     )
     expect(nonSecret).toEqual({ action: "skip", reason: "skip" })
+  })
+
+  test("counts a row as encrypted only when the guarded UPDATE lands", async () => {
+    const plaintextRow = (id: string) => ({
+      id,
+      workspaceId: "ws-1",
+      auth: plaintextAuth,
+      encryptedAuth: null,
+    })
+    // Canned execute() results in call order: per table one SELECT batch
+    // (size < BATCH_SIZE ends its scan), and one UPDATE per planned row.
+    const results: { rows: unknown[] }[] = [
+      { rows: [plaintextRow("1")] }, // openai SELECT
+      { rows: [{ id: "1" }] }, // openai UPDATE landed
+      { rows: [plaintextRow("2")] }, // claude SELECT
+      { rows: [] }, // claude UPDATE lost the race → conflicted
+      { rows: [] }, // gemini SELECT
+      { rows: [] }, // deepseek SELECT
+      { rows: [] }, // muse SELECT
+      { rows: [] }, // openrouter SELECT
+      { rows: [] }, // openaiCompatible SELECT
+    ]
+    const client = {
+      execute: async () => results.shift() ?? { rows: [] },
+    } as unknown as DatabaseClient
+
+    const result = await backfillAiProviderAuth(client, { dryRun: false })
+
+    expect(result.stats[0]).toMatchObject({
+      provider: "openai",
+      encrypted: 1,
+      conflicted: 0,
+    })
+    expect(result.stats[1]).toMatchObject({
+      provider: "claude",
+      encrypted: 0,
+      conflicted: 1,
+    })
+    expect(result.totalEncrypted).toBe(1)
   })
 })

@@ -156,6 +156,28 @@ describe("AI provider connection bindings — encryptedAuth", () => {
     expect(auth).toEqual(plaintextAuth)
   })
 
+  test("loadAuthByForeignKey honours a plaintext write that raced ciphertext (rolling deploy)", async () => {
+    const binding = CONNECTION_STORE_BINDINGS.openai
+    if (!binding) {
+      throw new Error("No store binding registered for openai")
+    }
+    // A pre-upgrade writer replaced the key but could not touch
+    // `encryptedAuth` — the ciphertext now holds the OLD key while the
+    // plaintext holds the one the user actually saved.
+    const staleCiphertext = await encryptUtils.encryptObject(
+      { authType: AuthType.secretText, secretText: "sk-OLD-replaced" },
+      aad("openai", "ws-1"),
+    )
+
+    const auth = await binding.loadAuthByForeignKey(
+      "integration-1",
+      "ws-1",
+      selectRow({ auth: plaintextAuth, encryptedAuth: staleCiphertext }),
+    )
+
+    expect(auth).toEqual(plaintextAuth)
+  })
+
   test("openaiCompatible still hydrates baseURL alongside the decrypted auth", async () => {
     const binding = CONNECTION_STORE_BINDINGS.openaiCompatible
     if (!binding) {

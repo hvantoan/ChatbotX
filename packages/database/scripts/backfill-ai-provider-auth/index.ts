@@ -37,6 +37,13 @@ export type AiProviderBackfillStat = {
   encrypted: number
   alreadyEncrypted: number
   skipped: number
+  /**
+   * Rows whose selected plaintext was replaced (or already encrypted) by a
+   * concurrent write before the UPDATE committed. They still hold plaintext
+   * (or fresh ciphertext) and are picked up again on the next run — a
+   * non-zero count means "re-run the backfill", not data loss.
+   */
+  conflicted: number
 }
 
 export type BackfillAiProviderAuthOptions = {
@@ -111,6 +118,7 @@ export const backfillAiProviderAuth = async (
       encrypted: 0,
       alreadyEncrypted: 0,
       skipped: 0,
+      conflicted: 0,
     }
     let cursor: string | null = null
 
@@ -137,12 +145,24 @@ export const backfillAiProviderAuth = async (
         }
 
         if (!dryRun) {
-          await client.execute(sql`
+          // Write only if the row still matches what the SELECT read: no
+          // ciphertext yet and the exact same plaintext. A credential replaced
+          // through the public API mid-batch (or already encrypted by a
+          // new-code writer) must not be overwritten with the stale copy — it
+          // is counted as `conflicted` and re-encrypted on the next run.
+          const updated = await client.execute<{ id: string }>(sql`
             UPDATE ${sql.identifier(table)}
             SET auth = '{}'::jsonb,
                 "encryptedAuth" = ${JSON.stringify(plan.encryptedAuth)}::jsonb
             WHERE id = ${row.id}
+              AND "encryptedAuth" IS NULL
+              AND auth = ${JSON.stringify(row.auth)}::jsonb
+            RETURNING id
           `)
+          if (updated.rows.length === 0) {
+            stat.conflicted += 1
+            continue
+          }
         }
         stat.encrypted += 1
       }
@@ -172,7 +192,16 @@ export const printBackfillResult = (
   )
   for (const stat of result.stats) {
     console.log(
-      `  ${stat.provider}: scanned=${stat.scanned} ${result.dryRun ? "would-encrypt" : "encrypted"}=${stat.encrypted} already-encrypted=${stat.alreadyEncrypted} skipped=${stat.skipped}`,
+      `  ${stat.provider}: scanned=${stat.scanned} ${result.dryRun ? "would-encrypt" : "encrypted"}=${stat.encrypted} already-encrypted=${stat.alreadyEncrypted} skipped=${stat.skipped} conflicted=${stat.conflicted}`,
+    )
+  }
+  const conflicted = result.stats.reduce(
+    (sum, stat) => sum + stat.conflicted,
+    0,
+  )
+  if (conflicted > 0) {
+    console.log(
+      `${conflicted} rows changed mid-run and were left untouched — re-run the backfill to encrypt them.`,
     )
   }
   console.log(
