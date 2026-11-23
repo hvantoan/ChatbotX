@@ -7,6 +7,7 @@ import {
   text,
   uniqueIndex,
 } from "drizzle-orm/pg-core"
+import type { CredentialEncrypted } from "../partials/credential"
 import { bigintAsString, sharedColumns } from "../partials/shared"
 import { aiAgentModel } from "./ai-agent"
 import { integrationModel } from "./integration-base"
@@ -17,6 +18,7 @@ export const integrationOpenaiModel = pgTable(
   {
     ...sharedColumns,
     auth: jsonb().notNull(),
+    encryptedAuth: jsonb().$type<CredentialEncrypted>(),
     autoReply: boolean().default(true).notNull(),
     autoReplyVoice: boolean().default(false).notNull(),
     voice: text(),

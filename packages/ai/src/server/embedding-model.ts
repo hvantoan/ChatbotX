@@ -1,9 +1,9 @@
 import { createGoogle } from "@ai-sdk/google"
 import { createOpenAI } from "@ai-sdk/openai"
-import { db } from "@chatbotx.io/database/client"
 import { secretTextAuthSchema } from "@chatbotx.io/sdk"
 import type { EmbeddingModel } from "ai"
 import { geminiEmbeddingModels, openaiEmbeddingModels } from "../models"
+import { getAIIntegrationInDB } from "./factory"
 
 export type EmbeddingProvider = "openai" | "gemini"
 
@@ -28,8 +28,9 @@ export type ResolvedEmbeddingModel = {
 export async function resolveEmbeddingModel(
   workspaceId: string,
 ): Promise<ResolvedEmbeddingModel> {
-  const integrationOpenai = await db.query.integrationOpenaiModel.findFirst({
-    where: { workspaceId },
+  const integrationOpenai = await getAIIntegrationInDB({
+    workspaceId,
+    provider: "openai",
   })
 
   if (integrationOpenai) {
@@ -49,8 +50,9 @@ export async function resolveEmbeddingModel(
     }
   }
 
-  const integrationGemini = await db.query.integrationGeminiModel.findFirst({
-    where: { workspaceId },
+  const integrationGemini = await getAIIntegrationInDB({
+    workspaceId,
+    provider: "gemini",
   })
 
   if (integrationGemini) {

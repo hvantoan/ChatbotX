@@ -7,6 +7,7 @@ import {
   text,
   uniqueIndex,
 } from "drizzle-orm/pg-core"
+import type { CredentialEncrypted } from "../partials/credential"
 import { bigintAsString, sharedColumns } from "../partials/shared"
 import { integrationModel } from "./integration-base"
 import { workspaceModel } from "./workspace"
@@ -16,6 +17,7 @@ export const integrationMuseModel = pgTable(
   {
     ...sharedColumns,
     auth: jsonb().notNull(),
+    encryptedAuth: jsonb().$type<CredentialEncrypted>(),
     autoReply: boolean().default(false).notNull(),
     workspaceId: bigintAsString()
       .notNull()

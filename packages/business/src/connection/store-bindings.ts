@@ -2,6 +2,7 @@ import type { DatabaseClient } from "@chatbotx.io/database/client"
 import { and, db, eq } from "@chatbotx.io/database/client"
 import type { IntegrationType } from "@chatbotx.io/database/partials"
 import { integrationModel } from "@chatbotx.io/database/schema"
+import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
 import { type AuthValue, authValueSchema, SdkException } from "@chatbotx.io/sdk"
 import type { InferInsertModel, SQL } from "drizzle-orm"
 import type { AnyPgColumn, PgTable } from "drizzle-orm/pg-core"
@@ -132,6 +133,35 @@ const asAuthValue = (value: unknown): AuthValue => {
     throw new SdkException("Stored connection auth is invalid")
   }
   return parsedAuth.data
+}
+
+export const encryptAiProviderAuth = (
+  props: { provider: string; workspaceId: string },
+  auth: AuthValue,
+) =>
+  encryptUtils.encryptObject(
+    auth,
+    `ai-provider:${props.provider}:${props.workspaceId}`,
+  )
+
+type AiProviderAuthRow = {
+  provider: string
+  workspaceId: string
+  auth: unknown
+  encryptedAuth?: unknown
+}
+
+export const resolveAiProviderAuth = async (
+  row: AiProviderAuthRow,
+): Promise<AuthValue> => {
+  if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
+    return asAuthValue(row.auth)
+  }
+  return await encryptUtils.decryptObject(
+    encryptedDataSchema.parse(row.encryptedAuth),
+    authValueSchema,
+    `ai-provider:${row.provider}:${row.workspaceId}`,
+  )
 }
 
 const pickAllowed = <TColumn extends string>(
@@ -306,6 +336,7 @@ export const makeWorkspaceIntegrationBinding = <
   tableName: string
   integrationType: IntegrationType
   authColumn?: "auth" | "encryptedAuth"
+  encryptAuth?: boolean
   duplicateConstraint?: string
   /** Hydrates an auth value with the stored base URL for endpoint verification. */
   baseUrlColumn?: AnyPgColumn
@@ -335,15 +366,33 @@ export const makeWorkspaceIntegrationBinding = <
   const authColumn = table[
     authColumnName as keyof TTable
   ] as unknown as AnyPgColumn
+  const encryptAuth = opts.encryptAuth === true
+  const legacyAuthColumn = (table as unknown as Record<string, AnyPgColumn>)
+    .auth
+  const encryptedAuthColumn = (table as unknown as Record<string, AnyPgColumn>)
+    .encryptedAuth
+
+  const authWriteValues = async (workspaceId: string, auth: AuthValue) =>
+    encryptAuth
+      ? {
+          auth: {},
+          encryptedAuth: await encryptAiProviderAuth(
+            { provider: opts.integrationType, workspaceId },
+            auth,
+          ),
+        }
+      : { [authColumnName]: auth }
 
   return {
     loadAuthByForeignKey: async (integrationId, workspaceId, tx = db) => {
+      const authSelection: Record<string, AnyPgColumn> = encryptAuth
+        ? { auth: legacyAuthColumn, encryptedAuth: encryptedAuthColumn }
+        : { auth: authColumn }
+      if (opts.baseUrlColumn) {
+        authSelection.baseURL = opts.baseUrlColumn
+      }
       const [row] = await tx
-        .select(
-          opts.baseUrlColumn
-            ? { auth: authColumn, baseURL: opts.baseUrlColumn }
-            : { auth: authColumn },
-        )
+        .select(authSelection)
         .from(rawTable)
         .where(
           and(
@@ -357,7 +406,15 @@ export const makeWorkspaceIntegrationBinding = <
           `Unable to load auth for ${opts.tableName} integration ${integrationId}`,
         )
       }
-      const auth = asAuthValue(row.auth)
+      const auth = encryptAuth
+        ? await resolveAiProviderAuth({
+            provider: opts.integrationType,
+            workspaceId,
+            auth: row.auth,
+            encryptedAuth:
+              "encryptedAuth" in row ? row.encryptedAuth : undefined,
+          })
+        : asAuthValue(row.auth)
       if (!("baseURL" in row) || typeof row.baseURL !== "string") {
         return auth
       }
@@ -378,7 +435,7 @@ export const makeWorkspaceIntegrationBinding = <
         .update(table)
         .set({
           ...safeConfig,
-          [authColumnName]: auth,
+          ...(await authWriteValues(workspaceId, auth)),
         } as InferInsertModel<TTable>)
         .where(
           and(
@@ -412,7 +469,7 @@ export const makeWorkspaceIntegrationBinding = <
           ...safeConfig,
           workspaceId: input.workspaceId,
           integrationId: parent.id,
-          [authColumnName]: input.auth,
+          ...(await authWriteValues(input.workspaceId, input.auth)),
         }
         // Same per-table shape gap as `makeChannelBinding.insertRow` above.
         const [row] = await client
