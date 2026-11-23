@@ -4978,6 +4978,7 @@
     "provider": "Provider IA",
     "title": "Compatibile con OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "Un altro provider è già collegato con questo URL di base.",
       "invalidBaseURL": "L'URL di base non è valido o non è consentito.",
       "presetAlreadyConnected": "Questa configurazione predefinita è già collegata a questa area di lavoro."
     }

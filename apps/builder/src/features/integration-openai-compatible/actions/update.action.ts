@@ -106,7 +106,9 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
         ) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             baseURL: {
-              _errors: [t("openaiCompatible.validation.invalidBaseURL")],
+              _errors: [
+                t("openaiCompatible.validation.baseUrlAlreadyConnected"),
+              ],
             },
           })
         }

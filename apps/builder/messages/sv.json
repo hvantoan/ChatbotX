@@ -6114,6 +6114,7 @@
     "provider": "AI-leverantör",
     "title": "OpenAI-kompatibel",
     "validation": {
+      "baseUrlAlreadyConnected": "En annan leverantör är redan ansluten med denna bas-URL.",
       "invalidBaseURL": "Bas-URL:en är ogiltig eller inte tillåten.",
       "presetAlreadyConnected": "Den här förinställningen är redan ansluten för den här arbetsytan."
     }

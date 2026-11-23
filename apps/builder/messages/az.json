@@ -5660,6 +5660,7 @@
     "provider": "AI provayderi",
     "title": "OpenAI-yə uyğun",
     "validation": {
+      "baseUrlAlreadyConnected": "Başqa bir provayder artıq bu əsas URL ilə qoşulub.",
       "invalidBaseURL": "Əsas URL etibarsızdır və ya ona icazə verilmir.",
       "presetAlreadyConnected": "Bu hazır konfiqurasiya artıq bu iş sahəsinə qoşulub."
     }

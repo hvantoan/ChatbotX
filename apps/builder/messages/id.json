@@ -4978,6 +4978,7 @@
     "provider": "Penyedia AI",
     "title": "Kompatibel dengan OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "Penyedia lain sudah terhubung dengan URL dasar ini.",
       "invalidBaseURL": "URL Dasar tidak valid atau tidak diizinkan.",
       "presetAlreadyConnected": "Preset ini sudah terhubung untuk ruang kerja ini."
     }

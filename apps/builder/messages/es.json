@@ -4978,6 +4978,7 @@
     "provider": "Proveedor de IA",
     "title": "AbrirAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Ya hay otro proveedor conectado con esta URL base.",
       "invalidBaseURL": "Base URL es no válido o not todosowed.",
       "presetAlreadyConnected": "This preEstablecer es already connected para este espacio de trabajo."
     }

@@ -1,6 +1,6 @@
 ---
 title: "Phase 2: Public API & Agent Description"
-status: todo
+status: completed
 ---
 
 # Phase 2: Public API & Agent Description

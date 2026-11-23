@@ -326,11 +326,13 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     const trimmedApiKey = apiKey?.trim()
 
     let validatedBaseUrl: string | undefined
+    let baseUrlChanged = false
     if (rawBaseURL !== undefined) {
+      const normalizedExistingBaseUrl = normalizeOpenaiCompatibleBaseUrl(
+        existing.baseURL,
+      )
       const normalizedCandidate = normalizeOpenaiCompatibleBaseUrl(rawBaseURL)
-      const existingOrigin = new URL(
-        normalizeOpenaiCompatibleBaseUrl(existing.baseURL),
-      ).origin
+      const existingOrigin = new URL(normalizedExistingBaseUrl).origin
       const candidateOrigin = new URL(normalizedCandidate).origin
       if (candidateOrigin !== existingOrigin && !trimmedApiKey) {
         throw validationException(
@@ -338,12 +340,17 @@ class IntegrationOpenaiCompatibleService extends BaseService {
           "Provide an API key when changing baseURL to a different origin.",
         )
       }
+      baseUrlChanged = normalizedCandidate !== normalizedExistingBaseUrl
       validatedBaseUrl =
         await validateOpenaiCompatibleBaseUrlForEnvironment(normalizedCandidate)
     }
 
+    // Only probe the endpoint when a new API key or a changed baseURL is
+    // supplied; editing display fields (e.g. name or defaultModel) while the
+    // form resends the unchanged baseURL still runs the SSRF check above
+    // without blocking saves if the server is offline or has no /models route.
     const verifiedCredentialsOrEndpoint = Boolean(
-      trimmedApiKey || validatedBaseUrl !== undefined,
+      trimmedApiKey || baseUrlChanged,
     )
     if (verifiedCredentialsOrEndpoint) {
       const effectiveBaseUrl =
@@ -397,7 +404,7 @@ class IntegrationOpenaiCompatibleService extends BaseService {
           ? { defaultModel: resolveDefaultModel(rest.preset as string) }
           : {}),
       },
-      verifiedCredentialsOrEndpoint
+      verifiedCredentialsOrEndpoint || validatedBaseUrl !== undefined
         ? { expectedBaseURL: existing.baseURL }
         : undefined,
     )

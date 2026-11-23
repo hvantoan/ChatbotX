@@ -2547,6 +2547,7 @@
     "provider": "ספק AI",
     "title": "תואם OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "ספק אחר כבר מחובר עם כתובת ה-URL הבסיסית הזו.",
       "invalidBaseURL": "כתובת ה-URL הבסיסית אינה תקינה או אינה מורשית.",
       "presetAlreadyConnected": "הגדרה מוכנה זו כבר מחוברת לסביבת עבודה זו."
     }

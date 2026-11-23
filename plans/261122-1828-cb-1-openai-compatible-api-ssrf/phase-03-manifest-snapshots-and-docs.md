@@ -1,6 +1,6 @@
 ---
 title: "Phase 3: Manifest, Snapshots & Docs"
-status: todo
+status: completed
 ---
 
 # Phase 3: Manifest, Snapshots & Docs

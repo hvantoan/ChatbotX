@@ -4955,6 +4955,7 @@
     "provider": "AIプロバイダー",
     "title": "OpenAI互換",
     "validation": {
+      "baseUrlAlreadyConnected": "このベースURLでは別のプロバイダーがすでに接続されています。",
       "invalidBaseURL": "ベースURLが無効か、許可されていません。",
       "presetAlreadyConnected": "このプリセットはすでにこのワークスペースに接続されています。"
     }

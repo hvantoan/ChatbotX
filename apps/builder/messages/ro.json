@@ -4978,6 +4978,7 @@
     "provider": "Furnizor IA",
     "title": "Compatibil cu OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "Un alt furnizor este deja conectat cu acest URL de bază.",
       "invalidBaseURL": "URL-ul de bază este invalid sau nu este permis.",
       "presetAlreadyConnected": "Acest preset este deja conectat pentru acest spațiu de lucru."
     }

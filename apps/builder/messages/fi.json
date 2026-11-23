@@ -4978,6 +4978,7 @@
     "provider": "AI-palveluntarjoaja",
     "title": "OpenAI-yhteensopiva",
     "validation": {
+      "baseUrlAlreadyConnected": "Toinen palveluntarjoaja on jo yhdistetty tällä perus-URL-osoitteella.",
       "invalidBaseURL": "Perus-URL on virheellinen tai sitä ei sallita.",
       "presetAlreadyConnected": "Tämä esiasetus on jo yhdistetty tähän työtilaan."
     }

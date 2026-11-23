@@ -309,7 +309,7 @@ describe("OpenAI-compatible actions", () => {
     expect(duplicateUrl).toEqual({
       validationErrors: {
         baseURL: {
-          _errors: ["openaiCompatible.validation.invalidBaseURL"],
+          _errors: ["openaiCompatible.validation.baseUrlAlreadyConnected"],
         },
       },
     })

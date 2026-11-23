@@ -4978,6 +4978,7 @@
     "provider": "مزوّد الذكاء الاصطناعي",
     "title": "متوافق مع OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "عنوان URL الأساسي هذا مرتبط بالفعل بمزود آخر.",
       "invalidBaseURL": "عنوان URL الأساسي غير صالح أو غير مسموح به.",
       "presetAlreadyConnected": "هذا الإعداد المسبق مرتبط بالفعل بمساحة العمل هذه."
     }

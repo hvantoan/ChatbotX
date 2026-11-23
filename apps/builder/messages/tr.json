@@ -4978,6 +4978,7 @@
     "provider": "AI Sağlayıcısı",
     "title": "OpenAI Uyumlu",
     "validation": {
+      "baseUrlAlreadyConnected": "Bu temel URL ile başka bir sağlayıcı zaten bağlı.",
       "invalidBaseURL": "Temel URL geçersiz veya izin verilmiyor.",
       "presetAlreadyConnected": "Bu ön ayar bu çalışma alanı için zaten bağlı."
     }

@@ -4978,6 +4978,7 @@
     "provider": "AI-udbyder",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "En anden udbyder er allerede forbundet med denne base-URL.",
       "invalidBaseURL": "Base URL er ugyldig eller ikke allowed.",
       "presetAlreadyConnected": "Denne preset er allerede forbundet for denne arbejdsområde."
     }

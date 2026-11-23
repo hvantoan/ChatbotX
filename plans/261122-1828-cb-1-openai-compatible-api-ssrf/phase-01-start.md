@@ -1,6 +1,6 @@
 ---
 title: "Phase 1: SSRF Default-On & Shared Service"
-status: todo
+status: completed
 ---
 
 # Phase 1: SSRF Default-On & Shared Service

@@ -5660,6 +5660,7 @@
     "provider": "AI Provider",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Another provider is already connected with this base URL.",
       "invalidBaseURL": "Base URL is invalid or not allowed.",
       "presetAlreadyConnected": "This preset is already connected for this workspace."
     }

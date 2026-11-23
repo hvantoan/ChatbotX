@@ -29,18 +29,18 @@ PR 2 (encryption at rest across all 7 AI provider tables + extra readers/writers
 
 | # | Phase | Status |
 |---|-------|--------|
-| 1 | [Phase 1: SSRF Default-On & Shared Service](./phase-01-start.md) | Pending |
-| 2 | [Phase 2: Public API & Agent Description](./phase-02-public-api-and-agent-description.md) | Pending |
-| 3 | [Phase 3: Manifest, Snapshots & Docs](./phase-03-manifest-snapshots-and-docs.md) | Pending |
+| 1 | [Phase 1: SSRF Default-On & Shared Service](./phase-01-start.md) | Completed |
+| 2 | [Phase 2: Public API & Agent Description](./phase-02-public-api-and-agent-description.md) | Completed |
+| 3 | [Phase 3: Manifest, Snapshots & Docs](./phase-03-manifest-snapshots-and-docs.md) | Completed |
 
 ## Success Criteria
 
-- [ ] `aiProviderPathParam` includes `openaiCompatible`; `GET /v1/integrations/ai/openaiCompatible` returns `{ data: [...] }` with satellite `id`, `integrationId`, `name`, `preset`, `baseURL`, `defaultModel`, `enabled`, `autoReply`, `hasApiKey` (never `auth`/`apiKey`/`workspaceId`), filtered when `integrationId` query param is given
-- [ ] `PATCH /v1/integrations/ai/openaiCompatible` requires `integrationId`, updates `autoReply`, `enabled`, `name`, `preset`, `defaultModel`, `baseURL` (re-running SSRF), `apiKey`, and calls the same service method as UI `updateOpenaiCompatibleAction`
-- [ ] `aiAgents.create` `models[].integrationId` description points to `integrations.getAiProvider` (`provider: "openaiCompatible"`) satellite `id`
-- [ ] `127.0.0.1` baseURL returns 400 `ssrfBlocked` by default on both cloud and self-hosted; `OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS=true` allows it only when `!isCloud()`; `.env.example` documents the env var
-- [ ] `api-parity-manifest.json` has zero `private:` entries for `integration-openai-compatible/*`
-- [ ] `pnpm lint`, `pnpm check-types`, and targeted builder/business/cli tests pass
+- [x] `aiProviderPathParam` includes `openaiCompatible`; `GET /v1/integrations/ai/openaiCompatible` returns `{ data: [...] }` with satellite `id`, `integrationId`, `name`, `preset`, `baseURL`, `defaultModel`, `enabled`, `autoReply`, `hasApiKey` (never `auth`/`apiKey`/`workspaceId`), filtered when `integrationId` query param is given
+- [x] `PATCH /v1/integrations/ai/openaiCompatible` requires `integrationId`, updates `autoReply`, `enabled`, `name`, `preset`, `defaultModel`, `baseURL` (re-running SSRF), `apiKey`, and calls the same service method as UI `updateOpenaiCompatibleAction`
+- [x] `aiAgents.create` `models[].integrationId` description points to `integrations.getAiProvider` (`provider: "openaiCompatible"`) satellite `id`
+- [x] `127.0.0.1` baseURL returns 400 `ssrfBlocked` by default on both cloud and self-hosted; `OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS=true` allows it only when `!isCloud()`; `.env.example` documents the env var
+- [x] `api-parity-manifest.json` has zero `private:` entries for `integration-openai-compatible/*`
+- [x] `pnpm lint`, `pnpm check-types`, and targeted builder/business/cli tests pass
 
 ## Red Team Review
 

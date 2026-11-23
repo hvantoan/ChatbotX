@@ -22,7 +22,8 @@ function rejectEndpoint(): never {
  *
  * Self-hosted editions only require an http(s) URL: the deployment owner is
  * the trust boundary, so internal/Docker MCP servers over plain HTTP stay
- * usable (mirrors `validateOpenaiCompatibleBaseUrlForEnvironment`). Cloud
+ * usable (unlike OpenAI-compatible base URLs, which enforce the SSRF guard by
+ * default unless `OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS=true`). Cloud
  * additionally requires https and delegates address classification to the
  * shared SSRF guard, so MCP follows the same rules as webhooks and external
  * requests.

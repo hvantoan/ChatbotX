@@ -454,4 +454,40 @@ describe("IntegrationOpenaiCompatibleService", () => {
 
     expect(result).toEqual({ id: "sat-1", integrationId: "int-1" })
   })
+
+  test("updateWithVerification skips endpoint probe when baseURL is unchanged and no new apiKey is sent, while still running SSRF validation", async () => {
+    mocks.findFirst.mockResolvedValue({
+      id: "openai-compatible-1",
+      integrationId: "integration-1",
+      baseURL: "https://example.com/v1",
+      name: "Old Name",
+      defaultModel: "model-a",
+      preset: "custom",
+      auth: { authType: "secretText", secretText: "sk-existing" },
+    })
+    mocks.verifyProvider.mockResolvedValue({
+      ok: false,
+      reason: "unreachable",
+      status: 404,
+    })
+
+    await integrationOpenaiCompatibleService.updateWithVerification(
+      "workspace-1",
+      "openai-compatible-1",
+      {
+        baseURL: " https://example.com/v1 ",
+        name: "Renamed Provider",
+        defaultModel: "model-b",
+      },
+    )
+
+    expect(mocks.validateBaseUrl).toHaveBeenCalledWith("https://example.com/v1")
+    expect(mocks.verifyProvider).not.toHaveBeenCalled()
+    expect(mocks.txUpdateSet).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Renamed Provider",
+        defaultModel: "model-b",
+      }),
+    )
+  })
 })

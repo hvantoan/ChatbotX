@@ -26,6 +26,16 @@ Workspace integrations with OpenAI-compatible endpoints (LM Studio, Ollama, NVID
 
 - When `NEXT_PUBLIC_EDITION=cloud`, `OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS` is **always ignored**.
 
+### Upgrade Note (Self-Hosted)
+
+If you are upgrading an existing self-hosted deployment that already connects to local or LAN endpoints — including the default `lmstudio` preset (`http://127.0.0.1:1234/v1`), Ollama, or any private IP — set `OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS=true` before or immediately after upgrading.
+
+Without this opt-out after upgrading:
+
+- Connection health checks (`verify`) will report existing local/LAN endpoints as blocked by the SSRF guard.
+- Any UI edit or `PATCH` with `baseURL` on those providers will fail with `ssrfBlocked`.
+- Runtime chat/AI execution (`packages/ai`) is not gated by this check and will continue working, but connection management and health status will report failures until the opt-out is enabled.
+
 ## Disconnect Reference Risk
 
 Disconnecting an `openaiCompatible` connection (`connections.disconnect` or UI disconnect) does **not** run a reference-guard check against existing AI agents or flow steps. If an AI agent or flow step still references a disconnected satellite `id`, it will fail at runtime until updated to another active model/integration.

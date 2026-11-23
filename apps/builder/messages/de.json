@@ -4978,6 +4978,7 @@
     "provider": "KI-Anbieter",
     "title": "OpenAI-kompatibel",
     "validation": {
+      "baseUrlAlreadyConnected": "Ein anderer Anbieter ist bereits mit dieser Basis-URL verbunden.",
       "invalidBaseURL": "Die Basis-URL ist ungültig oder nicht zulässig.",
       "presetAlreadyConnected": "Diese Voreinstellung ist für diesen Arbeitsbereich bereits verbunden."
     }

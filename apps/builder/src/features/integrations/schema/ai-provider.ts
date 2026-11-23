@@ -27,14 +27,28 @@ export const legacyAiProviderRequest = z.object({
   provider: legacyAiProviderPathParam.describe("AI provider identifier."),
 })
 
-export const getAiProviderRequest = z.object({
-  provider: aiProviderPathParam.describe("AI provider identifier."),
-  integrationId: zodBigintIdAsString()
-    .optional()
-    .describe(
-      "OpenAI-compatible only: optional satellite `id` (or parent `connection.integrationId`) to filter to a single OpenAI-compatible integration.",
-    ),
-})
+export const getAiProviderRequest = z
+  .object({
+    provider: aiProviderPathParam.describe("AI provider identifier."),
+    integrationId: zodBigintIdAsString()
+      .optional()
+      .describe(
+        "OpenAI-compatible only: optional satellite `id` (or parent `connection.integrationId`) to filter to a single OpenAI-compatible integration.",
+      ),
+  })
+  .superRefine((value, ctx) => {
+    if (
+      value.provider !== "openaiCompatible" &&
+      value.integrationId !== undefined
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["integrationId"],
+        message:
+          "integrationId is only supported when provider is openaiCompatible",
+      })
+    }
+  })
 
 const openaiCompatibleBaseUrlSchema = z
   .string()

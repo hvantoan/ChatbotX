@@ -5020,6 +5020,7 @@
     "provider": "AI Provider",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Đã có provider khác được kết nối với base URL này.",
       "invalidBaseURL": "Base URL không hợp lệ hoặc không được phép.",
       "presetAlreadyConnected": "Preset này đã được kết nối trong workspace."
     }

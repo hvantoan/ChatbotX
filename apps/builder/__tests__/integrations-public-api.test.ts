@@ -151,7 +151,7 @@ const connectionService = {
 }
 vi.mock("@chatbotx.io/connections", () => ({ connectionService }))
 
-const { updateAiProviderRequest } = await import(
+const { getAiProviderRequest, updateAiProviderRequest } = await import(
   "@/features/integrations/schema/ai-provider"
 )
 
@@ -719,6 +719,28 @@ describe("GET /v1/integrations/ai/openaiCompatible", () => {
         input: { provider: "openaiCompatible", integrationId: "missing" },
       }),
     ).rejects.toThrow("openaiCompatible integration not found")
+  })
+
+  test("getAiProviderRequest rejects integrationId for legacy providers and accepts it for openaiCompatible", () => {
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "claude",
+        integrationId: "123456789012345678",
+      }).success,
+    ).toBe(false)
+
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "claude",
+      }).success,
+    ).toBe(true)
+
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        integrationId: "123456789012345678",
+      }).success,
+    ).toBe(true)
   })
 })
 
