@@ -4967,6 +4967,9 @@
       "label": "Provider compatibili con OpenAI"
     },
     "empty": "Nessun provider compatibile con OpenAI configurato.",
+    "errors": {
+      "updateConflict": "Questo provider è stato aggiornato contemporaneamente altrove. Riprova."
+    },
     "fields": {
       "baseURL": "URL di base",
       "defaultModel": "Modello predefinito",
@@ -4975,7 +4978,9 @@
     "provider": "Provider IA",
     "title": "Compatibile con OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "Un altro provider è già collegato con questo URL di base.",
       "invalidBaseURL": "L'URL di base non è valido o non è consentito.",
+      "providerUnreachable": "Impossibile raggiungere l'endpoint del provider. Controlla l'URL di base e riprova.",
       "presetAlreadyConnected": "Questa configurazione predefinita è già collegata a questa area di lavoro."
     }
   },

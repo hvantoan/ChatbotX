@@ -4967,6 +4967,9 @@
       "label": "OpenAI-yhteensopivat palveluntarjoajat"
     },
     "empty": "OpenAI-yhteensopivia palveluntarjoajia ei ole määritetty.",
+    "errors": {
+      "updateConflict": "Tätä palveluntarjoajaa päivitettiin samanaikaisesti muualla. Yritä uudelleen."
+    },
     "fields": {
       "baseURL": "Perus-URL",
       "defaultModel": "Oletusmalli",
@@ -4975,7 +4978,9 @@
     "provider": "AI-palveluntarjoaja",
     "title": "OpenAI-yhteensopiva",
     "validation": {
+      "baseUrlAlreadyConnected": "Toinen palveluntarjoaja on jo yhdistetty tällä perus-URL-osoitteella.",
       "invalidBaseURL": "Perus-URL on virheellinen tai sitä ei sallita.",
+      "providerUnreachable": "Palveluntarjoajan päätepisteeseen ei saatu yhteyttä. Tarkista perus-URL ja yritä uudelleen.",
       "presetAlreadyConnected": "Tämä esiasetus on jo yhdistetty tähän työtilaan."
     }
   },

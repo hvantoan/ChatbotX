@@ -4967,6 +4967,9 @@
       "label": "OpenAI-compatible providers"
     },
     "empty": "Ingen OpenAI-compatible providers configured.",
+    "errors": {
+      "updateConflict": "Denne udbyder blev opdateret samtidig et andet sted. Prøv igen."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Standard model",
@@ -4975,7 +4978,9 @@
     "provider": "AI-udbyder",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "En anden udbyder er allerede forbundet med denne base-URL.",
       "invalidBaseURL": "Base URL er ugyldig eller ikke allowed.",
+      "providerUnreachable": "Udbyderens endpoint kunne ikke nås. Kontroller basis-URL'en, og prøv igen.",
       "presetAlreadyConnected": "Denne preset er allerede forbundet for denne arbejdsområde."
     }
   },

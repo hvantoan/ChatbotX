@@ -1,12 +1,12 @@
 "use server"
 
+import type { OpenaiCompatibleProviderPreset } from "@chatbotx.io/ai"
 import {
   integrationOpenaiCompatibleService,
   isOpenaiCompatiblePresetAlreadyConnectedError,
-  validateOpenaiCompatibleBaseUrlForEnvironment,
+  isOpenaiCompatibleProviderUnreachableError,
 } from "@chatbotx.io/business"
 import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import {
@@ -14,7 +14,6 @@ import {
   workspaceIdAndIdRequestParams,
 } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
-import { verifyOpenaiCompatibleProvider } from "../lib"
 import {
   resolveOpenaiCompatibleDefaultModel,
   type UpdateOpenaiCompatibleEnabledSchema,
@@ -34,11 +33,15 @@ export const updateOpenaiCompatibleEnabledAction = workspaceActionClient
       parsedInput: UpdateOpenaiCompatibleEnabledSchema
       bindArgsParsedInputs: WorkspaceIdAndIdRequestParams
     }) => {
-      await integrationOpenaiCompatibleService.update(
-        workspaceId,
-        integrationId,
-        parsedInput,
-      )
+      try {
+        await integrationOpenaiCompatibleService.updateWithVerification(
+          workspaceId,
+          integrationId,
+          parsedInput,
+        )
+      } catch (error) {
+        await rethrowTranslatedConflictError(error)
+      }
     },
   )
 
@@ -55,76 +58,74 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
     }) => {
       const t = await getTranslations()
       const apiKey = parsedInput.apiKey?.trim()
-      let baseURL = parsedInput.baseURL
-
-      if (apiKey || parsedInput.baseURL) {
-        const existing =
-          await integrationOpenaiCompatibleService.findByWorkspaceIdAndId({
-            workspaceId,
-            id: integrationId,
-          })
-        try {
-          baseURL = await validateOpenaiCompatibleBaseUrlForEnvironment(
-            baseURL ?? existing?.baseURL ?? "",
-          )
-        } catch (error) {
-          if (isBaseUrlValidationError(error)) {
-            return returnValidationErrors(updateOpenaiCompatibleSchema, {
-              baseURL: {
-                _errors: [t("openaiCompatible.validation.invalidBaseURL")],
-              },
-            })
-          }
-          throw error
-        }
-        const existingAuth = secretTextAuthSchema.safeParse(existing?.auth)
-        const verifyResult = await verifyOpenaiCompatibleProvider({
-          apiKey:
-            apiKey ||
-            (existingAuth.success ? existingAuth.data.secretText : undefined),
-          baseURL,
-        })
-
-        if (!verifyResult.ok) {
-          if (verifyResult.reason === "unsafe_base_url") {
-            return returnValidationErrors(updateOpenaiCompatibleSchema, {
-              baseURL: {
-                _errors: [t("openaiCompatible.validation.invalidBaseURL")],
-              },
-            })
-          }
-          return returnValidationErrors(updateOpenaiCompatibleSchema, {
-            apiKey: {
-              _errors: [t("validation.invalidApiKey")],
-            },
-          })
-        }
-      }
 
       try {
-        await integrationOpenaiCompatibleService.update(
+        await integrationOpenaiCompatibleService.updateWithVerification(
           workspaceId,
           integrationId,
           {
             ...parsedInput,
-            ...(baseURL === undefined ? {} : { baseURL }),
-            ...(apiKey ? { apiKey } : { apiKey: undefined }),
-            ...(parsedInput.defaultModel || !parsedInput.preset
-              ? {}
-              : {
-                  defaultModel: resolveOpenaiCompatibleDefaultModel({
-                    preset: parsedInput.preset,
-                  }),
-                }),
+            apiKey: apiKey || undefined,
+            resolveDefaultModel: (preset) =>
+              resolveOpenaiCompatibleDefaultModel({
+                preset: preset as OpenaiCompatibleProviderPreset,
+              }),
           },
         )
       } catch (error) {
+        if (isOpenaiCompatibleProviderUnreachableError(error)) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            baseURL: {
+              _errors: [t("openaiCompatible.validation.providerUnreachable")],
+            },
+          })
+        }
         if (isBaseUrlValidationError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             baseURL: {
               _errors: [t("openaiCompatible.validation.invalidBaseURL")],
             },
           })
+        }
+        if (
+          error instanceof ChatbotXException &&
+          error.code === "connectionCredentialsRejected"
+        ) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            apiKey: {
+              _errors: [t("validation.invalidApiKey")],
+            },
+          })
+        }
+        if (
+          error instanceof ChatbotXException &&
+          error.code === "validation" &&
+          error.field === "apiKey"
+        ) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            apiKey: {
+              _errors: [t("validation.invalidApiKey")],
+            },
+          })
+        }
+        if (
+          error instanceof ChatbotXException &&
+          error.code === "connectionAlreadyConnected"
+        ) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            baseURL: {
+              _errors: [
+                t("openaiCompatible.validation.baseUrlAlreadyConnected"),
+              ],
+            },
+          })
+        }
+        if (error instanceof ChatbotXException && error.code === "conflict") {
+          throw new ChatbotXException(
+            t("openaiCompatible.errors.updateConflict"),
+            "conflict",
+            409,
+          )
         }
         if (isOpenaiCompatiblePresetAlreadyConnectedError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
@@ -143,3 +144,15 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
 const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
   error instanceof ChatbotXException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
+
+const rethrowTranslatedConflictError = async (error: unknown) => {
+  if (error instanceof ChatbotXException && error.code === "conflict") {
+    const t = await getTranslations()
+    throw new ChatbotXException(
+      t("openaiCompatible.errors.updateConflict"),
+      "conflict",
+      409,
+    )
+  }
+  throw error
+}

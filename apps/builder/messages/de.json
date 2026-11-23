@@ -4967,6 +4967,9 @@
       "label": "OpenAI-kompatible Anbieter"
     },
     "empty": "Keine OpenAI-kompatiblen Anbieter konfiguriert.",
+    "errors": {
+      "updateConflict": "Dieser Anbieter wurde gleichzeitig an anderer Stelle aktualisiert. Bitte versuchen Sie es erneut."
+    },
     "fields": {
       "baseURL": "Basis-URL",
       "defaultModel": "Standardmodell",
@@ -4975,7 +4978,9 @@
     "provider": "KI-Anbieter",
     "title": "OpenAI-kompatibel",
     "validation": {
+      "baseUrlAlreadyConnected": "Ein anderer Anbieter ist bereits mit dieser Basis-URL verbunden.",
       "invalidBaseURL": "Die Basis-URL ist ungültig oder nicht zulässig.",
+      "providerUnreachable": "Der Endpunkt des Anbieters ist nicht erreichbar. Prüfen Sie die Basis-URL und versuchen Sie es erneut.",
       "presetAlreadyConnected": "Diese Voreinstellung ist für diesen Arbeitsbereich bereits verbunden."
     }
   },

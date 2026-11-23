@@ -1,4 +1,7 @@
-import { aiProviders } from "@chatbotx.io/ai"
+import {
+  aiProviders,
+  type OpenaiCompatibleProviderPreset,
+} from "@chatbotx.io/ai"
 import { aiIntegrationService } from "@chatbotx.io/ai/server"
 import {
   connectionStateService,
@@ -7,20 +10,29 @@ import {
   integrationGeminiService,
   integrationMuseService,
   integrationOpenAIService,
+  integrationOpenaiCompatibleService,
 } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import {
+  notFoundException,
+  validationException,
+} from "@chatbotx.io/business/errors"
 import { connectionService } from "@chatbotx.io/connections"
+import { resolveOpenaiCompatibleDefaultModel } from "@/features/integration-openai-compatible/schema/request"
 import {
   possibleErrorsOnFindingResource,
   possibleErrorsOnMutatingResource,
+  possibleErrorsOnUpdatingAiProvider,
 } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"
 import {
-  type AiProviderPathParam,
   connectAiProviderRequest,
   getAiProviderRequest,
+  getAiProviderResponse,
+  type LegacyAiProviderPathParam,
+  legacyAiProviderRequest,
   publicAiProviderResource,
   updateAiProviderRequest,
+  updateAiProviderResponse,
 } from "../../schema/ai-provider"
 
 const workspaceTokenAuthAPI = workspaceTokenAuthAPIForScope("integrations")
@@ -34,11 +46,35 @@ type AiProviderRow = {
   auth: unknown
 }
 
+type OpenaiCompatibleRow = {
+  id: string
+  integrationId: string
+  name: string
+  preset: string
+  baseURL: string
+  defaultModel: string
+  enabled: boolean
+  autoReply: boolean
+  auth: unknown
+}
+
 const toResource = (row: AiProviderRow) => ({
   id: row.id,
   model: row.model,
   temperature: row.temperature,
   maxOutputTokens: row.maxOutputTokens,
+  autoReply: row.autoReply,
+  hasApiKey: Boolean(row.auth),
+})
+
+const toOpenaiCompatibleResource = (row: OpenaiCompatibleRow) => ({
+  id: row.id,
+  integrationId: row.integrationId,
+  name: row.name,
+  preset: row.preset,
+  baseURL: row.baseURL,
+  defaultModel: row.defaultModel,
+  enabled: row.enabled,
   autoReply: row.autoReply,
   hasApiKey: Boolean(row.auth),
 })
@@ -50,7 +86,7 @@ const aiProviderServices = {
   muse: integrationMuseService,
   openai: integrationOpenAIService,
 } satisfies Record<
-  AiProviderPathParam,
+  LegacyAiProviderPathParam,
   {
     findByWorkspaceId: (
       workspaceId: string,
@@ -60,8 +96,8 @@ const aiProviderServices = {
 >
 
 // The services' `update` signatures differ (OpenAI also needs the row `id`),
-// so each provider gets a tiny adapter. `satisfies Record<AiProviderPathParam>`
-// makes adding a provider to the path enum without an updater a compile error.
+// so each provider gets a tiny adapter. `satisfies Record<LegacyAiProviderPathParam>`
+// makes adding a legacy provider without an updater a compile error.
 const aiProviderAutoReplyUpdaters = {
   claude: ({ workspaceId, autoReply }) =>
     integrationClaudeService.update({ workspaceId }, { autoReply }),
@@ -74,7 +110,7 @@ const aiProviderAutoReplyUpdaters = {
   openai: ({ workspaceId, id, autoReply }) =>
     integrationOpenAIService.update({ workspaceId, id }, { autoReply }),
 } satisfies Record<
-  AiProviderPathParam,
+  LegacyAiProviderPathParam,
   (props: {
     workspaceId: string
     id: string
@@ -89,13 +125,31 @@ export const integrationsAiPublicRouter = {
       path: "/v1/integrations/ai/{provider}",
       summary: "Get AI provider integration",
       description:
-        "Returns one AI provider's connected model and settings, without exposing the stored API key. Use `integrations.connectAiProvider` to configure it.",
+        "Returns one AI provider's connected model and settings, without exposing the stored API key. For `openaiCompatible`, returns `{ data: [...] }` (optionally filtered by `integrationId`) where each entry's `id` is the satellite id required by `aiAgents.create` and `integrations.updateAiProvider`. Connect providers with `connections.create`.",
       tags: ["Integrations"],
     })
     .input(getAiProviderRequest)
-    .output(publicAiProviderResource)
+    .output(getAiProviderResponse)
     .errors(possibleErrorsOnFindingResource)
     .handler(async ({ context, input }) => {
+      if (input.provider === "openaiCompatible") {
+        if (input.integrationId) {
+          const row =
+            await integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId({
+              workspaceId: context.workspace.id,
+              id: input.integrationId,
+            })
+          if (!row) {
+            throw notFoundException("openaiCompatible integration not found")
+          }
+          return { data: [toOpenaiCompatibleResource(row)] }
+        }
+        const rows = await integrationOpenaiCompatibleService.listByWorkspaceId(
+          context.workspace.id,
+        )
+        return { data: rows.map(toOpenaiCompatibleResource) }
+      }
+
       const service = aiProviderServices[input.provider]
       const row = await service.findByWorkspaceId(context.workspace.id)
       if (!row) {
@@ -114,7 +168,7 @@ export const integrationsAiPublicRouter = {
       deprecated: true,
       tags: ["Integrations"],
     })
-    .input(getAiProviderRequest.extend(connectAiProviderRequest.shape))
+    .input(legacyAiProviderRequest.extend(connectAiProviderRequest.shape))
     .output(publicAiProviderResource)
     .errors(possibleErrorsOnMutatingResource)
     .handler(async ({ context, input }) => {
@@ -154,14 +208,71 @@ export const integrationsAiPublicRouter = {
       path: "/v1/integrations/ai/{provider}",
       summary: "Update AI provider settings",
       description:
-        "Turns the AI Reply switch (`autoReply`) on or off for one connected AI provider. Turning it on makes the provider start answering real inbound messages. Only this switch changes — model and API key are untouched. Connect the provider first with `connections.create` (or `integrations.connectAiProvider`); read the current value with `integrations.getAiProvider`. Supports claude, deepseek, gemini, muse and openai; OpenRouter and OpenAI-compatible integrations are not supported by this operation yet.",
+        "Updates a connected AI provider. For `claude`, `deepseek`, `gemini`, `muse`, and `openai`, turns `autoReply` on or off while leaving model and API key untouched. For `openaiCompatible`, `integrationId` (satellite `id` from `integrations.getAiProvider`) is required and updates `autoReply`, `enabled`, `name`, `preset`, `defaultModel`, `baseURL` (with SSRF check), and `apiKey`. Connect the provider first with `connections.create`.",
       tags: ["Integrations"],
     })
     .input(updateAiProviderRequest)
-    .output(publicAiProviderResource)
-    .errors(possibleErrorsOnMutatingResource)
+    .output(updateAiProviderResponse)
+    .errors(possibleErrorsOnUpdatingAiProvider)
     .handler(async ({ context, input }) => {
       const workspaceId = context.workspace.id
+      if (input.provider === "openaiCompatible") {
+        if (!input.integrationId) {
+          throw validationException(
+            "integrationId",
+            "integrationId is required when provider is openaiCompatible",
+          )
+        }
+        const existing =
+          await integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId({
+            workspaceId,
+            id: input.integrationId,
+          })
+        if (!existing) {
+          throw notFoundException("openaiCompatible integration not found")
+        }
+
+        const hasOpenaiCompatibleUpdates =
+          input.autoReply !== undefined ||
+          input.enabled !== undefined ||
+          input.name !== undefined ||
+          input.preset !== undefined ||
+          input.defaultModel !== undefined ||
+          input.baseURL !== undefined ||
+          input.apiKey !== undefined
+        if (!hasOpenaiCompatibleUpdates) {
+          return toOpenaiCompatibleResource(existing)
+        }
+
+        const updated =
+          await integrationOpenaiCompatibleService.updateWithVerification(
+            workspaceId,
+            existing.id,
+            {
+              ...(input.autoReply === undefined
+                ? {}
+                : { autoReply: input.autoReply }),
+              ...(input.enabled === undefined
+                ? {}
+                : { enabled: input.enabled }),
+              ...(input.name === undefined ? {} : { name: input.name }),
+              ...(input.preset === undefined ? {} : { preset: input.preset }),
+              ...(input.defaultModel === undefined
+                ? {}
+                : { defaultModel: input.defaultModel }),
+              ...(input.baseURL === undefined
+                ? {}
+                : { baseURL: input.baseURL }),
+              ...(input.apiKey === undefined ? {} : { apiKey: input.apiKey }),
+              resolveDefaultModel: (preset) =>
+                resolveOpenaiCompatibleDefaultModel({
+                  preset: preset as OpenaiCompatibleProviderPreset,
+                }),
+            },
+          )
+        return toOpenaiCompatibleResource(updated)
+      }
+
       const service = aiProviderServices[input.provider]
       const existing = await service.findByWorkspaceId(workspaceId)
       if (!existing) {
@@ -202,7 +313,7 @@ export const integrationsAiPublicRouter = {
       tags: ["Integrations"],
       successStatus: 204,
     })
-    .input(getAiProviderRequest)
+    .input(legacyAiProviderRequest)
     .errors(possibleErrorsOnMutatingResource)
     .handler(async ({ context, input }) => {
       const service = aiProviderServices[input.provider]

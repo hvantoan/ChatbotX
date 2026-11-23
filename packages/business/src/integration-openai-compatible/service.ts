@@ -1,21 +1,45 @@
 import { and, db, eq, isDatabaseError } from "@chatbotx.io/database/client"
 import {
+  connectionModel,
   integrationModel,
   integrationOpenaiCompatibleModel,
 } from "@chatbotx.io/database/schema"
-import { AuthType, type SecretTextAuthValue } from "@chatbotx.io/sdk"
+import {
+  AuthType,
+  type SecretTextAuthValue,
+  secretTextAuthSchema,
+} from "@chatbotx.io/sdk"
 import { createId } from "@chatbotx.io/utils"
 import { BaseService } from "../base.service"
+import {
+  encryptAiProviderAuth,
+  resolveAiProviderAuth,
+} from "../connection/store-bindings"
+import {
+  ChatbotXException,
+  conflictException,
+  connectionAlreadyConnectedException,
+  connectionCredentialsRejectedException,
+  notFoundException,
+  validationException,
+} from "../errors"
 import {
   normalizeOpenaiCompatibleBaseUrl,
   validateOpenaiCompatibleBaseUrlForEnvironment,
 } from "./validate-base-url"
+import { verifyOpenaiCompatibleProvider } from "./verify"
 
 const PRESET_UNIQUE_INDEX = "IntegrationOpenaiCompatible_workspaceId_preset_key"
+const CONNECTION_SOURCE_UNIQUE_INDEX =
+  "Connection_workspaceId_provider_sourceId_key"
 
-export class OpenaiCompatiblePresetAlreadyConnectedError extends Error {
+export class OpenaiCompatiblePresetAlreadyConnectedError extends ChatbotXException {
   constructor() {
-    super("OpenAI-compatible preset is already connected")
+    super(
+      "OpenAI-compatible preset is already connected",
+      "presetAlreadyConnected",
+      409,
+    )
     this.name = "OpenaiCompatiblePresetAlreadyConnectedError"
   }
 }
@@ -23,13 +47,49 @@ export class OpenaiCompatiblePresetAlreadyConnectedError extends Error {
 export const isOpenaiCompatiblePresetAlreadyConnectedError = (
   error: unknown,
 ): error is OpenaiCompatiblePresetAlreadyConnectedError =>
-  error instanceof OpenaiCompatiblePresetAlreadyConnectedError
+  error instanceof OpenaiCompatiblePresetAlreadyConnectedError ||
+  (error instanceof ChatbotXException &&
+    error.code === "presetAlreadyConnected")
 
-const isPresetUniqueViolation = (error: unknown): boolean =>
+/**
+ * An endpoint the connect/update probe could not reach. Keeps the public
+ * `invalidBaseUrl` code (the API contract does not distinguish it from a
+ * malformed URL), while the builder forms detect the class to show their own
+ * `providerUnreachable` message. Carries no `data` so the public error message
+ * stays byte-identical to a plain `invalidBaseUrl` rejection.
+ */
+export class OpenaiCompatibleProviderUnreachableError extends ChatbotXException {
+  constructor() {
+    super(
+      "OpenAI-compatible base URL could not be verified.",
+      "invalidBaseUrl",
+      400,
+    )
+    this.name = "OpenaiCompatibleProviderUnreachableError"
+  }
+}
+
+export const isOpenaiCompatibleProviderUnreachableError = (
+  error: unknown,
+): error is OpenaiCompatibleProviderUnreachableError =>
+  error instanceof OpenaiCompatibleProviderUnreachableError ||
+  (error instanceof ChatbotXException &&
+    error.name === "OpenaiCompatibleProviderUnreachableError")
+
+const isUniqueConstraintViolation = (
+  error: unknown,
+  constraint: string,
+): boolean =>
   isDatabaseError(error) &&
   error.cause.code === "23505" &&
   "constraint" in error.cause &&
-  error.cause.constraint === PRESET_UNIQUE_INDEX
+  error.cause.constraint === constraint
+
+const isPresetUniqueViolation = (error: unknown): boolean =>
+  isUniqueConstraintViolation(error, PRESET_UNIQUE_INDEX)
+
+const isConnectionSourceUniqueViolation = (error: unknown): boolean =>
+  isUniqueConstraintViolation(error, CONNECTION_SOURCE_UNIQUE_INDEX)
 
 export type ConnectOpenaiCompatibleInput = {
   workspaceId: string
@@ -46,6 +106,11 @@ export type UpdateOpenaiCompatibleInput = Partial<
   Omit<ConnectOpenaiCompatibleInput, "workspaceId">
 >
 
+export type UpdateOpenaiCompatibleWithVerificationInput =
+  UpdateOpenaiCompatibleInput & {
+    resolveDefaultModel?: (preset: string) => string
+  }
+
 class IntegrationOpenaiCompatibleService extends BaseService {
   listByWorkspaceId(workspaceId: string) {
     return db.query.integrationOpenaiCompatibleModel.findMany({
@@ -54,9 +119,55 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     })
   }
 
-  findByWorkspaceIdAndId(props: { workspaceId: string; id: string }) {
-    return db.query.integrationOpenaiCompatibleModel.findFirst({
+  async findByWorkspaceIdAndId(props: { workspaceId: string; id: string }) {
+    const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
       where: { workspaceId: props.workspaceId, id: props.id },
+    })
+    return row ? await this.withDecryptedAuth(row) : row
+  }
+
+  async findByWorkspaceIdAndIntegrationId(props: {
+    workspaceId: string
+    integrationId: string
+  }) {
+    const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
+      where: {
+        workspaceId: props.workspaceId,
+        integrationId: props.integrationId,
+      },
+    })
+    return row ? await this.withDecryptedAuth(row) : row
+  }
+
+  private async withDecryptedAuth<
+    TRow extends {
+      workspaceId: string
+      auth: unknown
+      encryptedAuth?: unknown
+    },
+  >(row: TRow) {
+    if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
+      return row
+    }
+    return {
+      ...row,
+      auth: await resolveAiProviderAuth({
+        provider: "openaiCompatible",
+        workspaceId: row.workspaceId,
+        auth: row.auth,
+        encryptedAuth: row.encryptedAuth,
+      }),
+    }
+  }
+
+  async findByWorkspaceIdAndAnyId(props: { workspaceId: string; id: string }) {
+    const bySatelliteId = await this.findByWorkspaceIdAndId(props)
+    if (bySatelliteId) {
+      return bySatelliteId
+    }
+    return await this.findByWorkspaceIdAndIntegrationId({
+      workspaceId: props.workspaceId,
+      integrationId: props.id,
     })
   }
 
@@ -84,6 +195,12 @@ class IntegrationOpenaiCompatibleService extends BaseService {
 
   async connect(props: ConnectOpenaiCompatibleInput) {
     const auth = this.createAuth(props.apiKey)
+    const encryptedAuth = auth
+      ? await encryptAiProviderAuth(
+          { provider: "openaiCompatible", workspaceId: props.workspaceId },
+          auth,
+        )
+      : null
     const baseURL = await validateOpenaiCompatibleBaseUrlForEnvironment(
       props.baseURL,
     )
@@ -110,7 +227,8 @@ class IntegrationOpenaiCompatibleService extends BaseService {
 
         await tx.insert(integrationOpenaiCompatibleModel).values({
           id: createId(),
-          auth,
+          auth: auth ? {} : null,
+          encryptedAuth,
           autoReply: props.autoReply ?? false,
           baseURL,
           defaultModel: props.defaultModel,
@@ -125,6 +243,9 @@ class IntegrationOpenaiCompatibleService extends BaseService {
       if (isPresetUniqueViolation(error)) {
         throw new OpenaiCompatiblePresetAlreadyConnectedError()
       }
+      if (isConnectionSourceUniqueViolation(error)) {
+        throw connectionAlreadyConnectedException()
+      }
       throw error
     }
 
@@ -135,10 +256,13 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     workspaceId: string,
     id: string,
     data: UpdateOpenaiCompatibleInput,
+    options?: {
+      expectedBaseURL?: string
+    },
   ) {
     const existing = await this.findByWorkspaceIdAndId({ workspaceId, id })
     if (!existing) {
-      throw new Error("OpenAI-compatible integration not found")
+      throw notFoundException("OpenAI-compatible integration not found")
     }
 
     await this.ensurePresetAvailable({
@@ -148,34 +272,96 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     })
 
     const { apiKey, baseURL: rawBaseURL, ...rest } = data
-    let baseURL: string | undefined
-    if (rawBaseURL !== undefined) {
-      const normalizedBaseUrl = normalizeOpenaiCompatibleBaseUrl(rawBaseURL)
-      baseURL =
-        normalizedBaseUrl === existing.baseURL
-          ? normalizedBaseUrl
-          : await validateOpenaiCompatibleBaseUrlForEnvironment(
-              normalizedBaseUrl,
-            )
+    const trimmedApiKey = apiKey?.trim()
+    const baseURL =
+      rawBaseURL === undefined
+        ? undefined
+        : await validateOpenaiCompatibleBaseUrlForEnvironment(
+            normalizeOpenaiCompatibleBaseUrl(rawBaseURL),
+          )
+
+    const nextAuth = trimmedApiKey ? this.createAuth(trimmedApiKey) : null
+    const updateValues = {
+      ...rest,
+      ...(baseURL === undefined ? {} : { baseURL }),
+      ...(nextAuth
+        ? {
+            auth: {},
+            encryptedAuth: await encryptAiProviderAuth(
+              { provider: "openaiCompatible", workspaceId },
+              nextAuth,
+            ),
+          }
+        : {}),
+    }
+    if (Object.values(updateValues).every((value) => value === undefined)) {
+      return existing
     }
 
+    const syncBaseUrl =
+      baseURL !== undefined && baseURL !== existing.baseURL
+        ? baseURL
+        : undefined
+    const syncDisplayName =
+      rest.name !== undefined && rest.name !== existing.name
+        ? rest.name
+        : undefined
+
+    let updatedRow: typeof existing | undefined
     try {
-      await db
-        .update(integrationOpenaiCompatibleModel)
-        .set({
-          ...rest,
-          ...(baseURL === undefined ? {} : { baseURL }),
-          ...(apiKey === undefined ? {} : { auth: this.createAuth(apiKey) }),
-        })
-        .where(
-          and(
-            eq(integrationOpenaiCompatibleModel.id, id),
-            eq(integrationOpenaiCompatibleModel.workspaceId, workspaceId),
-          ),
-        )
+      updatedRow = await db.transaction(async (tx) => {
+        const [row] = await tx
+          .update(integrationOpenaiCompatibleModel)
+          .set(updateValues)
+          .where(
+            and(
+              eq(integrationOpenaiCompatibleModel.id, id),
+              eq(integrationOpenaiCompatibleModel.workspaceId, workspaceId),
+              ...(options?.expectedBaseURL === undefined
+                ? []
+                : [
+                    eq(
+                      integrationOpenaiCompatibleModel.baseURL,
+                      options.expectedBaseURL,
+                    ),
+                  ]),
+            ),
+          )
+          .returning()
+
+        if (!row) {
+          throw conflictException(
+            "OpenAI-compatible integration was updated concurrently; retry the request.",
+            "conflict",
+          )
+        }
+
+        if (syncBaseUrl !== undefined || syncDisplayName !== undefined) {
+          await tx
+            .update(connectionModel)
+            .set({
+              ...(syncBaseUrl === undefined ? {} : { sourceId: syncBaseUrl }),
+              ...(syncDisplayName === undefined
+                ? {}
+                : { displayName: syncDisplayName }),
+            })
+            .where(
+              and(
+                eq(connectionModel.workspaceId, workspaceId),
+                eq(connectionModel.provider, "openaiCompatible"),
+                eq(connectionModel.integrationId, existing.integrationId),
+              ),
+            )
+        }
+
+        return row
+      })
     } catch (error) {
       if (isPresetUniqueViolation(error)) {
         throw new OpenaiCompatiblePresetAlreadyConnectedError()
+      }
+      if (isConnectionSourceUniqueViolation(error)) {
+        throw connectionAlreadyConnectedException()
       }
       throw error
     }
@@ -183,6 +369,104 @@ class IntegrationOpenaiCompatibleService extends BaseService {
     await this.audit(
       "update",
       "updated the OpenAI-compatible integration configuration",
+    )
+
+    return updatedRow ?? existing
+  }
+
+  async updateWithVerification(
+    workspaceId: string,
+    id: string,
+    data: UpdateOpenaiCompatibleWithVerificationInput,
+  ) {
+    const existing = await this.findByWorkspaceIdAndId({ workspaceId, id })
+    if (!existing) {
+      throw notFoundException("OpenAI-compatible integration not found")
+    }
+
+    await this.ensurePresetAvailable({
+      workspaceId,
+      preset: data.preset,
+      excludeId: id,
+    })
+
+    const { resolveDefaultModel, apiKey, baseURL: rawBaseURL, ...rest } = data
+    const trimmedApiKey = apiKey?.trim()
+
+    let validatedBaseUrl: string | undefined
+    let baseUrlChanged = false
+    if (rawBaseURL !== undefined) {
+      const normalizedExistingBaseUrl = normalizeOpenaiCompatibleBaseUrl(
+        existing.baseURL,
+      )
+      const normalizedCandidate = normalizeOpenaiCompatibleBaseUrl(rawBaseURL)
+      const existingOrigin = new URL(normalizedExistingBaseUrl).origin
+      const candidateOrigin = new URL(normalizedCandidate).origin
+      if (candidateOrigin !== existingOrigin && !trimmedApiKey) {
+        throw validationException(
+          "apiKey",
+          "Provide an API key when changing baseURL to a different origin.",
+        )
+      }
+      baseUrlChanged = normalizedCandidate !== normalizedExistingBaseUrl
+      validatedBaseUrl =
+        await validateOpenaiCompatibleBaseUrlForEnvironment(normalizedCandidate)
+    }
+
+    const verifiedCredentialsOrEndpoint = Boolean(
+      trimmedApiKey || baseUrlChanged,
+    )
+    if (verifiedCredentialsOrEndpoint) {
+      const effectiveBaseUrl =
+        validatedBaseUrl ??
+        (await validateOpenaiCompatibleBaseUrlForEnvironment(existing.baseURL))
+      const existingAuth = secretTextAuthSchema.safeParse(existing.auth)
+      const verifyResult = await verifyOpenaiCompatibleProvider({
+        apiKey:
+          trimmedApiKey ||
+          (existingAuth.success ? existingAuth.data.secretText : undefined),
+        baseURL: effectiveBaseUrl,
+      })
+
+      if (!verifyResult.ok) {
+        if (verifyResult.reason === "unsafe_base_url") {
+          throw new ChatbotXException(
+            "OpenAI-compatible base URL is not allowed.",
+            "ssrfBlocked",
+            400,
+          )
+        }
+        if (verifyResult.reason === "unreachable") {
+          throw new OpenaiCompatibleProviderUnreachableError()
+        }
+        throw connectionCredentialsRejectedException(
+          "OpenAI-compatible API key was rejected.",
+        )
+      }
+    }
+
+    const shouldResolveDefaultModel =
+      rest.defaultModel === undefined &&
+      rest.preset !== undefined &&
+      rest.preset !== existing.preset &&
+      resolveDefaultModel !== undefined
+
+    return await this.update(
+      workspaceId,
+      id,
+      {
+        ...rest,
+        ...(validatedBaseUrl === undefined
+          ? {}
+          : { baseURL: validatedBaseUrl }),
+        ...(trimmedApiKey ? { apiKey: trimmedApiKey } : {}),
+        ...(shouldResolveDefaultModel
+          ? { defaultModel: resolveDefaultModel(rest.preset as string) }
+          : {}),
+      },
+      verifiedCredentialsOrEndpoint || validatedBaseUrl !== undefined
+        ? { expectedBaseURL: existing.baseURL }
+        : undefined,
     )
   }
 

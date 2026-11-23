@@ -4967,6 +4967,9 @@
       "label": "AbrirAI-compatible proveedors"
     },
     "empty": "No AbrirAI-compatible proveedors configured.",
+    "errors": {
+      "updateConflict": "Este proveedor se actualizó simultáneamente en otro lugar. Inténtalo de nuevo."
+    },
     "fields": {
       "baseURL": "URL base",
       "defaultModel": "Predeterminado modelo",
@@ -4975,7 +4978,9 @@
     "provider": "Proveedor de IA",
     "title": "AbrirAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Ya hay otro proveedor conectado con esta URL base.",
       "invalidBaseURL": "Base URL es no válido o not todosowed.",
+      "providerUnreachable": "No se pudo contactar con el endpoint del proveedor. Comprueba la URL base e inténtalo de nuevo.",
       "presetAlreadyConnected": "This preEstablecer es already connected para este espacio de trabajo."
     }
   },

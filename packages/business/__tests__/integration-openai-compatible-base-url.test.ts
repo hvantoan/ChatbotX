@@ -1,11 +1,13 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
+  allowPrivateOpenaiCompatibleUrls: vi.fn(() => false),
   assertPublicUrl: vi.fn(async () => undefined),
   isCloud: vi.fn(() => true),
 }))
 
 vi.mock("../src/keys", () => ({
+  allowPrivateOpenaiCompatibleUrls: mocks.allowPrivateOpenaiCompatibleUrls,
   isCloud: mocks.isCloud,
 }))
 
@@ -22,6 +24,7 @@ describe("OpenAI-compatible base URL validation", () => {
   beforeEach(() => {
     vi.clearAllMocks()
     mocks.isCloud.mockReturnValue(true)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(false)
     mocks.assertPublicUrl.mockResolvedValue(undefined)
   })
 
@@ -34,7 +37,7 @@ describe("OpenAI-compatible base URL validation", () => {
     )
   })
 
-  test("rejects invalid, non-http, and oversized URLs", () => {
+  test("rejects invalid, non-http, credential-bearing, and oversized URLs", () => {
     expect(() => normalizeOpenaiCompatibleBaseUrl("")).toThrow(
       "OpenAI-compatible base URL is invalid.",
     )
@@ -42,13 +45,18 @@ describe("OpenAI-compatible base URL validation", () => {
       "OpenAI-compatible base URL is invalid.",
     )
     expect(() =>
+      normalizeOpenaiCompatibleBaseUrl("https://user:pass@example.com/v1"),
+    ).toThrow("OpenAI-compatible base URL is invalid.")
+    expect(() =>
       normalizeOpenaiCompatibleBaseUrl(
         `https://example.com/${"a".repeat(2049)}`,
       ),
     ).toThrow("OpenAI-compatible base URL is invalid.")
   })
 
-  test("blocks unsafe URLs in cloud mode", async () => {
+  test("blocks unsafe URLs in cloud mode even when opt-out env is enabled", async () => {
+    mocks.isCloud.mockReturnValue(true)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)
     mocks.assertPublicUrl.mockRejectedValue(new Error("private"))
 
     await expect(
@@ -63,8 +71,26 @@ describe("OpenAI-compatible base URL validation", () => {
     )
   })
 
-  test("allows private URLs in self-host mode without SSRF lookup", async () => {
+  test("blocks private URLs in self-host mode by default", async () => {
     mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(false)
+    mocks.assertPublicUrl.mockRejectedValue(new Error("private"))
+
+    await expect(
+      validateOpenaiCompatibleBaseUrlForEnvironment("http://127.0.0.1:1234/v1"),
+    ).rejects.toMatchObject({
+      code: "ssrfBlocked",
+      httpStatusCode: 400,
+    })
+    expect(mocks.assertPublicUrl).toHaveBeenCalledWith(
+      "http://127.0.0.1:1234/v1",
+      "OpenAI-compatible base URL",
+    )
+  })
+
+  test("allows private URLs in self-host mode when opt-out env is enabled", async () => {
+    mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)
 
     await expect(
       validateOpenaiCompatibleBaseUrlForEnvironment("http://127.0.0.1:1234/v1"),

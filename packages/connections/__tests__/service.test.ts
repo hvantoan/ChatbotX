@@ -1,4 +1,7 @@
-import { channelLimitReachedException } from "@chatbotx.io/business/errors"
+import {
+  ChatbotXException,
+  channelLimitReachedException,
+} from "@chatbotx.io/business/errors"
 import { ConnectionProviderRejectedError, SdkException } from "@chatbotx.io/sdk"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
@@ -1127,6 +1130,71 @@ describe("ConnectionService.connectFromCredentials", () => {
         workspaceId: "ws-1",
         provider: "claude",
         config: { apiKey: "sk-bad" },
+      }),
+    ).rejects.toMatchObject({ code: "connectionCredentialsRejected" })
+  })
+
+  it("rethrows an openaiCompatible ssrfBlocked rejection in place instead of wrapping it as a credential failure", async () => {
+    mockAdapter.store.configColumns = ["baseURL"]
+    mocks.fromCredentials.mockRejectedValue(
+      new ChatbotXException(
+        "OpenAI-compatible base URL is not allowed.",
+        "ssrfBlocked",
+        400,
+      ),
+    )
+
+    await expect(
+      connectionService.connectFromCredentials({
+        workspaceId: "ws-1",
+        provider: "openaiCompatible",
+        config: { apiKey: "sk-live", baseURL: "http://127.0.0.1:11434/v1" },
+      }),
+    ).rejects.toMatchObject({
+      code: "ssrfBlocked",
+      httpStatusCode: 400,
+      message: "OpenAI-compatible base URL is not allowed.",
+    })
+    expect(mocks.insertRow).not.toHaveBeenCalled()
+
+    mockAdapter.store.configColumns = undefined
+  })
+
+  it("strips an internal (code …) suffix from the openaiCompatible ssrfBlocked message", async () => {
+    mocks.fromCredentials.mockRejectedValue(
+      new ChatbotXException(
+        "OpenAI-compatible base URL is not allowed. (code connectionProviderRejected)",
+        "ssrfBlocked",
+        400,
+      ),
+    )
+
+    await expect(
+      connectionService.connectFromCredentials({
+        workspaceId: "ws-1",
+        provider: "openaiCompatible",
+        config: { apiKey: "sk-live" },
+      }),
+    ).rejects.toMatchObject({
+      code: "ssrfBlocked",
+      message: "OpenAI-compatible base URL is not allowed.",
+    })
+  })
+
+  it("keeps wrapping ssrfBlocked as connectionCredentialsRejected for legacy providers", async () => {
+    mocks.fromCredentials.mockRejectedValue(
+      new ChatbotXException(
+        "OpenAI-compatible base URL is not allowed.",
+        "ssrfBlocked",
+        400,
+      ),
+    )
+
+    await expect(
+      connectionService.connectFromCredentials({
+        workspaceId: "ws-1",
+        provider: "claude",
+        config: { apiKey: "sk-live" },
       }),
     ).rejects.toMatchObject({ code: "connectionCredentialsRejected" })
   })

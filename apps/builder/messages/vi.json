@@ -5009,6 +5009,9 @@
       "label": "Provider tương thích OpenAI"
     },
     "empty": "Chưa cấu hình provider tương thích OpenAI.",
+    "errors": {
+      "updateConflict": "Provider này vừa được cập nhật ở nơi khác. Vui lòng thử lại."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Model mặc định",
@@ -5017,7 +5020,9 @@
     "provider": "AI Provider",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Đã có provider khác được kết nối với base URL này.",
       "invalidBaseURL": "Base URL không hợp lệ hoặc không được phép.",
+      "providerUnreachable": "Không thể kết nối tới endpoint của provider. Kiểm tra lại Base URL và thử lại.",
       "presetAlreadyConnected": "Preset này đã được kết nối trong workspace."
     }
   },

@@ -6103,6 +6103,9 @@
       "label": "OpenAI-kompatibla leverantörer"
     },
     "empty": "Inga OpenAI-kompatibla leverantörer har konfigurerats.",
+    "errors": {
+      "updateConflict": "Den här leverantören uppdaterades samtidigt någon annanstans. Försök igen."
+    },
     "fields": {
       "baseURL": "Bas-URL",
       "defaultModel": "Standardmodell",
@@ -6111,7 +6114,9 @@
     "provider": "AI-leverantör",
     "title": "OpenAI-kompatibel",
     "validation": {
+      "baseUrlAlreadyConnected": "En annan leverantör är redan ansluten med denna bas-URL.",
       "invalidBaseURL": "Bas-URL:en är ogiltig eller inte tillåten.",
+      "providerUnreachable": "Leverantörens slutpunkt kunde inte nås. Kontrollera bas-URL:en och försök igen.",
       "presetAlreadyConnected": "Den här förinställningen är redan ansluten för den här arbetsytan."
     }
   },

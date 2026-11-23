@@ -6103,6 +6103,9 @@
       "label": "OpenAI兼容供应商"
     },
     "empty": "尚未设置 OpenAI 兼容提供者。",
+    "errors": {
+      "updateConflict": "此提供商已在其他地方被同时更新。请重试。"
+    },
     "fields": {
       "baseURL": "基础URL",
       "defaultModel": "缺省模型",
@@ -6111,7 +6114,9 @@
     "provider": "人工智能供应商",
     "title": "OpenAI兼容",
     "validation": {
+      "baseUrlAlreadyConnected": "已有其他提供商使用此基础 URL 连接。",
       "invalidBaseURL": "基础URL 无效或不允许。",
+      "providerUnreachable": "无法访问提供商端点。请检查基础URL后重试。",
       "presetAlreadyConnected": "此缺省已为此工作区连接。"
     }
   },

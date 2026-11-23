@@ -5649,6 +5649,9 @@
       "label": "OpenAI-compatible providers"
     },
     "empty": "No OpenAI-compatible providers configured.",
+    "errors": {
+      "updateConflict": "This provider was updated concurrently elsewhere. Please try again."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Default model",
@@ -5657,7 +5660,9 @@
     "provider": "AI Provider",
     "title": "OpenAI Compatible",
     "validation": {
+      "baseUrlAlreadyConnected": "Another provider is already connected with this base URL.",
       "invalidBaseURL": "Base URL is invalid or not allowed.",
+      "providerUnreachable": "The provider endpoint could not be reached. Check the base URL and try again.",
       "presetAlreadyConnected": "This preset is already connected for this workspace."
     }
   },

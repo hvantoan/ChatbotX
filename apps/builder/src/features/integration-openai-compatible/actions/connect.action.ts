@@ -58,6 +58,13 @@ export const connectOpenaiCompatibleAction = workspaceActionClient
             },
           })
         }
+        if (verifyResult.reason === "unreachable") {
+          return returnValidationErrors(connectOpenaiCompatibleSchema, {
+            baseURL: {
+              _errors: [t("openaiCompatible.validation.providerUnreachable")],
+            },
+          })
+        }
         return returnValidationErrors(connectOpenaiCompatibleSchema, {
           apiKey: {
             _errors: [t("validation.invalidApiKey")],

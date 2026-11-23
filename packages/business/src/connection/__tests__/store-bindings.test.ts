@@ -210,7 +210,8 @@ describe("CONNECTION_STORE_BINDINGS", () => {
     })
     expect(fixture.insertValues).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        auth,
+        auth: {},
+        encryptedAuth: expect.objectContaining({ text: expect.any(String) }),
         integrationId: "integration-1",
         model: "claude-test",
         workspaceId: "workspace-1",

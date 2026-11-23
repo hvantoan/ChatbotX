@@ -4967,6 +4967,9 @@
       "label": "Penyedia yang kompatibel dengan OpenAI"
     },
     "empty": "Tidak ada penyedia kompatibel OpenAI yang dikonfigurasi.",
+    "errors": {
+      "updateConflict": "Penyedia ini baru saja diperbarui di tempat lain secara bersamaan. Silakan coba lagi."
+    },
     "fields": {
       "baseURL": "URL Dasar",
       "defaultModel": "Model default",
@@ -4975,7 +4978,9 @@
     "provider": "Penyedia AI",
     "title": "Kompatibel dengan OpenAI",
     "validation": {
+      "baseUrlAlreadyConnected": "Penyedia lain sudah terhubung dengan URL dasar ini.",
       "invalidBaseURL": "URL Dasar tidak valid atau tidak diizinkan.",
+      "providerUnreachable": "Endpoint penyedia tidak dapat dijangkau. Periksa URL Dasar dan coba lagi.",
       "presetAlreadyConnected": "Preset ini sudah terhubung untuk ruang kerja ini."
     }
   },

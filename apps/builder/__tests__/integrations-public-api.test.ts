@@ -57,6 +57,8 @@ class MockChatbotXException extends Error {
 
 vi.mock("@chatbotx.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
+  IMAGES_NOT_SUPPORTED_ON_CHANNEL_CODE: "imagesNotSupportedOnChannel",
+  PRODUCT_MESSAGE_UNRESOLVABLE_CODE: "productMessageUnresolvable",
   notFoundException: vi.fn(
     (message: string) => new MockChatbotXException(message, "notFound"),
   ),
@@ -71,17 +73,21 @@ const aiIntegrationService = {
 }
 
 vi.mock("@chatbotx.io/ai/server", () => ({ aiIntegrationService }))
-vi.mock("@chatbotx.io/ai", () => ({
-  aiProviders: {
-    enum: {
-      claude: "claude",
-      deepseek: "deepseek",
-      gemini: "gemini",
-      muse: "muse",
-      openai: "openai",
+vi.mock("@chatbotx.io/ai", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@chatbotx.io/ai")>()
+  return {
+    ...actual,
+    aiProviders: {
+      enum: {
+        claude: "claude",
+        deepseek: "deepseek",
+        gemini: "gemini",
+        muse: "muse",
+        openai: "openai",
+      },
     },
-  },
-}))
+  }
+})
 
 const integrationService = {
   listByWorkspaceId: vi.fn(),
@@ -120,6 +126,12 @@ const integrationOpenAIService = {
   disconnect: vi.fn(),
 }
 
+const integrationOpenaiCompatibleService = {
+  listByWorkspaceId: vi.fn(),
+  findByWorkspaceIdAndAnyId: vi.fn(),
+  updateWithVerification: vi.fn(),
+}
+
 const connectionStateService = { findByProviderSourceId: vi.fn() }
 
 vi.mock("@chatbotx.io/business", () => ({
@@ -129,6 +141,7 @@ vi.mock("@chatbotx.io/business", () => ({
   integrationGeminiService,
   integrationMuseService,
   integrationOpenAIService,
+  integrationOpenaiCompatibleService,
   connectionStateService,
 }))
 
@@ -137,6 +150,10 @@ const connectionService = {
   connectFromCredentials: vi.fn(),
 }
 vi.mock("@chatbotx.io/connections", () => ({ connectionService }))
+
+const { getAiProviderRequest, updateAiProviderRequest } = await import(
+  "@/features/integrations/schema/ai-provider"
+)
 
 await import("@/features/integrations/api/public/crud")
 await import("@/features/integrations/api/public/ai")
@@ -620,5 +637,275 @@ describe("PATCH /v1/integrations/ai/{provider}", () => {
       { workspaceId: "workspace-9" },
       { autoReply: false },
     )
+  })
+})
+
+describe("GET /v1/integrations/ai/openaiCompatible", () => {
+  const procedure = findProcedure("GET", "/v1/integrations/ai/{provider}")
+
+  const compatibleRow = {
+    id: "sat-1",
+    integrationId: "int-1",
+    workspaceId: "workspace-1",
+    name: "Local LM Studio",
+    preset: "lmstudio",
+    baseURL: "http://127.0.0.1:1234/v1",
+    defaultModel: "local-model",
+    enabled: true,
+    autoReply: false,
+    auth: { authType: "secretText", secretText: "sk-local-secret" },
+  }
+
+  test("lists connected openaiCompatible integrations with satellite id and no secrets or workspaceId", async () => {
+    integrationOpenaiCompatibleService.listByWorkspaceId.mockResolvedValueOnce([
+      compatibleRow,
+    ])
+
+    const result = await procedure.handler?.({
+      context: { workspace: { id: "workspace-1" } },
+      input: { provider: "openaiCompatible" },
+    })
+
+    expect(
+      integrationOpenaiCompatibleService.listByWorkspaceId,
+    ).toHaveBeenCalledWith("workspace-1")
+    expect(result).toEqual({
+      data: [
+        {
+          id: "sat-1",
+          integrationId: "int-1",
+          name: "Local LM Studio",
+          preset: "lmstudio",
+          baseURL: "http://127.0.0.1:1234/v1",
+          defaultModel: "local-model",
+          enabled: true,
+          autoReply: false,
+          hasApiKey: true,
+        },
+      ],
+    })
+    expect(JSON.stringify(result)).not.toContain("sk-local-secret")
+    expect(JSON.stringify(result)).not.toContain("workspace-1")
+  })
+
+  test("filters by integrationId and throws 404 when not found", async () => {
+    integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId
+      .mockResolvedValueOnce(compatibleRow)
+      .mockResolvedValueOnce(undefined)
+
+    const found = await procedure.handler?.({
+      context: { workspace: { id: "workspace-1" } },
+      input: { provider: "openaiCompatible", integrationId: "sat-1" },
+    })
+    expect(found).toEqual({
+      data: [
+        {
+          id: "sat-1",
+          integrationId: "int-1",
+          name: "Local LM Studio",
+          preset: "lmstudio",
+          baseURL: "http://127.0.0.1:1234/v1",
+          defaultModel: "local-model",
+          enabled: true,
+          autoReply: false,
+          hasApiKey: true,
+        },
+      ],
+    })
+
+    await expect(
+      procedure.handler?.({
+        context: { workspace: { id: "workspace-1" } },
+        input: { provider: "openaiCompatible", integrationId: "missing" },
+      }),
+    ).rejects.toThrow("openaiCompatible integration not found")
+  })
+
+  test("getAiProviderRequest rejects integrationId for legacy providers and accepts it for openaiCompatible", () => {
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "claude",
+        integrationId: "123456789012345678",
+      }).success,
+    ).toBe(false)
+
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "claude",
+      }).success,
+    ).toBe(true)
+
+    expect(
+      getAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        integrationId: "123456789012345678",
+      }).success,
+    ).toBe(true)
+  })
+})
+
+describe("PATCH /v1/integrations/ai/openaiCompatible", () => {
+  const procedure = findProcedure("PATCH", "/v1/integrations/ai/{provider}")
+
+  const updatedRow = {
+    id: "sat-1",
+    integrationId: "int-1",
+    workspaceId: "workspace-1",
+    name: "Updated NIM",
+    preset: "nim",
+    baseURL: "https://integrate.api.nvidia.com/v1",
+    defaultModel: "meta/llama-3.1-8b-instruct",
+    enabled: true,
+    autoReply: true,
+    auth: { authType: "secretText", secretText: "sk-updated" },
+  }
+
+  test("requires integrationId when provider is openaiCompatible", async () => {
+    await expect(
+      procedure.handler?.({
+        context: { workspace: { id: "workspace-1" } },
+        input: { provider: "openaiCompatible", autoReply: true },
+      }),
+    ).rejects.toThrow("integrationId is required")
+
+    expect(
+      integrationOpenaiCompatibleService.updateWithVerification,
+    ).not.toHaveBeenCalled()
+  })
+
+  test("delegates to updateWithVerification and returns updated satellite resource without secrets", async () => {
+    integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId.mockResolvedValueOnce(
+      { id: "sat-1", integrationId: "int-1" },
+    )
+    integrationOpenaiCompatibleService.updateWithVerification.mockResolvedValueOnce(
+      updatedRow,
+    )
+
+    const result = await procedure.handler?.({
+      context: { workspace: { id: "workspace-1" } },
+      input: {
+        provider: "openaiCompatible",
+        integrationId: "sat-1",
+        autoReply: true,
+        enabled: true,
+        name: "Updated NIM",
+        preset: "nim",
+        baseURL: "https://integrate.api.nvidia.com/v1",
+        apiKey: "sk-updated",
+      },
+    })
+
+    expect(
+      integrationOpenaiCompatibleService.updateWithVerification,
+    ).toHaveBeenCalledWith(
+      "workspace-1",
+      "sat-1",
+      expect.objectContaining({
+        autoReply: true,
+        enabled: true,
+        name: "Updated NIM",
+        preset: "nim",
+        baseURL: "https://integrate.api.nvidia.com/v1",
+        apiKey: "sk-updated",
+        resolveDefaultModel: expect.any(Function),
+      }),
+    )
+    expect(result).toEqual({
+      id: "sat-1",
+      integrationId: "int-1",
+      name: "Updated NIM",
+      preset: "nim",
+      baseURL: "https://integrate.api.nvidia.com/v1",
+      defaultModel: "meta/llama-3.1-8b-instruct",
+      enabled: true,
+      autoReply: true,
+      hasApiKey: true,
+    })
+    expect(JSON.stringify(result)).not.toContain("sk-updated")
+    expect(JSON.stringify(result)).not.toContain("workspace-1")
+  })
+
+  test("resolves parent integrationId to satellite id and skips write on empty PATCH", async () => {
+    integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId.mockResolvedValueOnce(
+      updatedRow,
+    )
+
+    const noopResult = await procedure.handler?.({
+      context: { workspace: { id: "workspace-1" } },
+      input: {
+        provider: "openaiCompatible",
+        integrationId: "int-1",
+      },
+    })
+
+    expect(
+      integrationOpenaiCompatibleService.updateWithVerification,
+    ).not.toHaveBeenCalled()
+    expect(noopResult).toMatchObject({ id: "sat-1", integrationId: "int-1" })
+
+    integrationOpenaiCompatibleService.findByWorkspaceIdAndAnyId.mockResolvedValueOnce(
+      updatedRow,
+    )
+    integrationOpenaiCompatibleService.updateWithVerification.mockResolvedValueOnce(
+      updatedRow,
+    )
+
+    await procedure.handler?.({
+      context: { workspace: { id: "workspace-1" } },
+      input: {
+        provider: "openaiCompatible",
+        integrationId: "int-1",
+        autoReply: true,
+      },
+    })
+
+    expect(
+      integrationOpenaiCompatibleService.updateWithVerification,
+    ).toHaveBeenCalledWith(
+      "workspace-1",
+      "sat-1",
+      expect.objectContaining({ autoReply: true }),
+    )
+  })
+
+  test("updateAiProviderRequest enforces openaiCompatible vs legacy provider rules and bigint integrationId", () => {
+    expect(
+      updateAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        autoReply: true,
+      }).success,
+    ).toBe(false)
+
+    expect(
+      updateAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        integrationId: "not-a-bigint",
+        autoReply: true,
+      }).success,
+    ).toBe(false)
+
+    expect(
+      updateAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        integrationId: "123456789012345678",
+        apiKey: "   ",
+      }).success,
+    ).toBe(false)
+
+    expect(
+      updateAiProviderRequest.safeParse({
+        provider: "claude",
+        integrationId: "123456789012345678",
+        autoReply: true,
+      }).success,
+    ).toBe(false)
+
+    expect(
+      updateAiProviderRequest.safeParse({
+        provider: "openaiCompatible",
+        integrationId: "123456789012345678",
+        autoReply: true,
+      }).success,
+    ).toBe(true)
   })
 })

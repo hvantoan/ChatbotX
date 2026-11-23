@@ -14,6 +14,7 @@ export const keys = () =>
         .url()
         .default("https://chatbotx.io/api/licenses/refresh"),
       LICENSE_REFRESH_ENABLED: z.stringbool().default(true),
+      OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS: z.stringbool().default(false),
       SUPPORT_ACCESS_REQUIRE_CONSENT: z.stringbool().default(true),
     },
     runtimeEnv: process.env,
@@ -24,3 +25,5 @@ export const env = keys()
 export const isCommunity = () => keys().NEXT_PUBLIC_EDITION === "community"
 export const isEnterprise = () => keys().NEXT_PUBLIC_EDITION === "enterprise"
 export const isCloud = () => keys().NEXT_PUBLIC_EDITION === "cloud"
+export const allowPrivateOpenaiCompatibleUrls = () =>
+  keys().OPENAI_COMPATIBLE_ALLOW_PRIVATE_URLS

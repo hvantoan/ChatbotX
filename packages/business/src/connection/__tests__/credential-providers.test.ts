@@ -13,6 +13,7 @@ import {
 } from "../credential-providers"
 
 const mocks = vi.hoisted(() => ({
+  allowPrivateOpenaiCompatibleUrls: vi.fn(() => true),
   get: vi.fn(),
   isCloud: vi.fn(() => false),
   verifyAiProviderApiKey: vi.fn(async () => "valid"),
@@ -30,12 +31,14 @@ vi.mock("../../integration-ai-provider/verify", () => ({
   verifyAiProviderApiKey: mocks.verifyAiProviderApiKey,
 }))
 
-// Defaults to OSS (`isCloud() === false`), matching every pre-existing test
-// below — only the C2 SSRF-guard suite opts into the cloud-only check via
-// `mockReturnValueOnce`. Mocking this file-wide as always-cloud would send
-// the other tests' fake hostnames (`provider.example.com`, `*.invalid`,
-// …) through a real DNS-over-HTTPS lookup in `assertPublicUrl`.
-vi.mock("../../keys", () => ({ isCloud: mocks.isCloud }))
+// Defaults to OSS with private URLs allowed for the HTTP-probe unit tests
+// below (whose fake hostnames like `provider.example.com` would otherwise
+// hit real DNS-over-HTTPS in `assertPublicUrl`); the C2 SSRF-guard suite
+// explicitly overrides `isCloud` and `allowPrivateOpenaiCompatibleUrls`.
+vi.mock("../../keys", () => ({
+  allowPrivateOpenaiCompatibleUrls: mocks.allowPrivateOpenaiCompatibleUrls,
+  isCloud: mocks.isCloud,
+}))
 
 // Narrowed once: `ConnectionProvider.fromCredentials` is optional in the
 // general type, but `openaiCompatibleConnectionProvider` always defines it.
@@ -54,6 +57,8 @@ const fakeOptions = {} as unknown as NormalizedOptions
 
 beforeEach(() => {
   vi.clearAllMocks()
+  mocks.isCloud.mockReturnValue(false)
+  mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)
 })
 
 describe("openaiCompatibleConnectionProvider.fromCredentials", () => {
@@ -273,8 +278,9 @@ describe("openaiCompatibleConnectionProvider.describe", () => {
 })
 
 describe("openaiCompatibleConnectionProvider.fromCredentials — SSRF guard (C2)", () => {
-  it("rejects a link-local baseURL (e.g. the cloud metadata address) without ever probing it", async () => {
-    mocks.isCloud.mockReturnValueOnce(true)
+  it("rejects a link-local baseURL on cloud even when the opt-out env is set", async () => {
+    mocks.isCloud.mockReturnValue(true)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)
 
     await expect(
       fromCredentials({
@@ -284,5 +290,50 @@ describe("openaiCompatibleConnectionProvider.fromCredentials — SSRF guard (C2)
     ).rejects.toMatchObject({ code: "ssrfBlocked" })
 
     expect(mocks.get).not.toHaveBeenCalled()
+  })
+
+  it("rejects 127.0.0.1 on self-hosted by default without probing it", async () => {
+    mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(false)
+
+    await expect(
+      fromCredentials({
+        apiKey: "sk-live",
+        baseURL: "http://127.0.0.1:1234/v1",
+      }),
+    ).rejects.toMatchObject({ code: "ssrfBlocked" })
+
+    expect(mocks.get).not.toHaveBeenCalled()
+  })
+
+  it("rejects 127.0.0.1:11434 (Ollama) on self-hosted by default without probing it", async () => {
+    mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(false)
+
+    await expect(
+      fromCredentials({
+        apiKey: "sk-live",
+        baseURL: "http://127.0.0.1:11434/v1",
+      }),
+    ).rejects.toMatchObject({ code: "ssrfBlocked", httpStatusCode: 400 })
+
+    expect(mocks.get).not.toHaveBeenCalled()
+  })
+
+  it("allows 127.0.0.1 on self-hosted when the opt-out env is enabled", async () => {
+    mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)
+    mocks.get.mockResolvedValue(new Response(null, { status: 200 }))
+
+    await expect(
+      fromCredentials({
+        apiKey: "sk-live",
+        baseURL: "http://127.0.0.1:1234/v1",
+      }),
+    ).resolves.toMatchObject({
+      authType: "secretText",
+      baseURL: "http://127.0.0.1:1234/v1",
+      secretText: "sk-live",
+    })
   })
 })

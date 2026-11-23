@@ -5649,6 +5649,9 @@
       "label": "OpenAI-yə uyğun provayderlər"
     },
     "empty": "OpenAI-yə uyğun provayder konfiqurasiya edilməyib.",
+    "errors": {
+      "updateConflict": "Bu provayder eyni vaxtda başqa yerdə yeniləndi. Zəhmət olmasa yenidən cəhd edin."
+    },
     "fields": {
       "baseURL": "Əsas URL",
       "defaultModel": "Standart model",
@@ -5657,7 +5660,9 @@
     "provider": "AI provayderi",
     "title": "OpenAI-yə uyğun",
     "validation": {
+      "baseUrlAlreadyConnected": "Başqa bir provayder artıq bu əsas URL ilə qoşulub.",
       "invalidBaseURL": "Əsas URL etibarsızdır və ya ona icazə verilmir.",
+      "providerUnreachable": "Provayderin endpointinə çatmaq mümkün olmadı. Baza URL-i yoxlayıb yenidən cəhd edin.",
       "presetAlreadyConnected": "Bu hazır konfiqurasiya artıq bu iş sahəsinə qoşulub."
     }
   },
