@@ -4,6 +4,7 @@ import type { OpenaiCompatibleProviderPreset } from "@chatbotx.io/ai"
 import {
   integrationOpenaiCompatibleService,
   isOpenaiCompatiblePresetAlreadyConnectedError,
+  isOpenaiCompatibleProviderUnreachableError,
 } from "@chatbotx.io/business"
 import { ChatbotXException } from "@chatbotx.io/business/errors"
 import { getTranslations } from "next-intl/server"
@@ -72,7 +73,7 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           },
         )
       } catch (error) {
-        if (isProviderUnreachableError(error)) {
+        if (isOpenaiCompatibleProviderUnreachableError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             baseURL: {
               _errors: [t("openaiCompatible.validation.providerUnreachable")],
@@ -143,14 +144,6 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
 const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
   error instanceof ChatbotXException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
-
-/** `updateWithVerification` reports an unreachable endpoint with the public `invalidBaseUrl` code plus `data.reason`. */
-const isProviderUnreachableError = (
-  error: unknown,
-): error is ChatbotXException =>
-  error instanceof ChatbotXException &&
-  error.code === "invalidBaseUrl" &&
-  error.data?.reason === "unreachable"
 
 const rethrowTranslatedConflictError = async (error: unknown) => {
   if (error instanceof ChatbotXException && error.code === "conflict") {

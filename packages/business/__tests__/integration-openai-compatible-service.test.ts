@@ -379,7 +379,7 @@ describe("IntegrationOpenaiCompatibleService", () => {
     ).rejects.toMatchObject({
       code: "invalidBaseUrl",
       httpStatusCode: 400,
-      data: { reason: "unreachable" },
+      name: "OpenaiCompatibleProviderUnreachableError",
     })
     expect(mocks.transaction).not.toHaveBeenCalled()
   })

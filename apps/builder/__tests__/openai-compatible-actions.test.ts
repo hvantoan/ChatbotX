@@ -33,6 +33,9 @@ vi.mock("@chatbotx.io/business", () => ({
     updateWithVerification: mocks.updateWithVerification,
   },
   isOpenaiCompatiblePresetAlreadyConnectedError: mocks.isDuplicatePreset,
+  isOpenaiCompatibleProviderUnreachableError: (error: unknown) =>
+    error instanceof Error &&
+    error.name === "OpenaiCompatibleProviderUnreachableError",
   validateOpenaiCompatibleBaseUrlForEnvironment: mocks.validateBaseUrl,
 }))
 
@@ -47,7 +50,6 @@ vi.mock("@chatbotx.io/business/errors", () => ({
     code = "systemError"
     httpStatusCode = 400
     field?: string
-    data?: Record<string, string | number>
 
     constructor(message: string, code?: string, httpStatusCode?: number) {
       super(message)
@@ -273,13 +275,13 @@ describe("OpenAI-compatible actions", () => {
     })
   })
 
-  test("update maps an unreachable endpoint (invalidBaseUrl + data.reason) to providerUnreachable", async () => {
+  test("update maps an unreachable endpoint to providerUnreachable while keeping the public invalidBaseUrl code", async () => {
     const unreachable = new ChatbotXException(
       "OpenAI-compatible base URL could not be verified.",
       "invalidBaseUrl",
       400,
     )
-    unreachable.data = { reason: "unreachable" }
+    unreachable.name = "OpenaiCompatibleProviderUnreachableError"
     mocks.updateWithVerification.mockRejectedValueOnce(unreachable)
 
     const result = await (

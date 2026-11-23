@@ -47,6 +47,31 @@ export const isOpenaiCompatiblePresetAlreadyConnectedError = (
   (error instanceof ChatbotXException &&
     error.code === "presetAlreadyConnected")
 
+/**
+ * An endpoint the connect/update probe could not reach. Keeps the public
+ * `invalidBaseUrl` code (the API contract does not distinguish it from a
+ * malformed URL), while the builder forms detect the class to show their own
+ * `providerUnreachable` message. Carries no `data` so the public error message
+ * stays byte-identical to a plain `invalidBaseUrl` rejection.
+ */
+export class OpenaiCompatibleProviderUnreachableError extends ChatbotXException {
+  constructor() {
+    super(
+      "OpenAI-compatible base URL could not be verified.",
+      "invalidBaseUrl",
+      400,
+    )
+    this.name = "OpenaiCompatibleProviderUnreachableError"
+  }
+}
+
+export const isOpenaiCompatibleProviderUnreachableError = (
+  error: unknown,
+): error is OpenaiCompatibleProviderUnreachableError =>
+  error instanceof OpenaiCompatibleProviderUnreachableError ||
+  (error instanceof ChatbotXException &&
+    error.name === "OpenaiCompatibleProviderUnreachableError")
+
 const isUniqueConstraintViolation = (
   error: unknown,
   constraint: string,
@@ -373,17 +398,7 @@ class IntegrationOpenaiCompatibleService extends BaseService {
           )
         }
         if (verifyResult.reason === "unreachable") {
-          const exception = new ChatbotXException(
-            "OpenAI-compatible base URL could not be verified.",
-            "invalidBaseUrl",
-            400,
-          )
-          // Same public code as an invalid URL (the public API contract
-          // keeps `invalidBaseUrl`), but the UI needs to tell an
-          // unreachable endpoint from a malformed one to show its own
-          // message.
-          exception.data = { reason: "unreachable" }
-          throw exception
+          throw new OpenaiCompatibleProviderUnreachableError()
         }
         throw connectionCredentialsRejectedException(
           "OpenAI-compatible API key was rejected.",
