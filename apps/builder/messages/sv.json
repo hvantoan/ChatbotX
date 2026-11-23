@@ -6103,6 +6103,9 @@
       "label": "OpenAI-kompatibla leverantörer"
     },
     "empty": "Inga OpenAI-kompatibla leverantörer har konfigurerats.",
+    "errors": {
+      "updateConflict": "Den här leverantören uppdaterades samtidigt någon annanstans. Försök igen."
+    },
     "fields": {
       "baseURL": "Bas-URL",
       "defaultModel": "Standardmodell",

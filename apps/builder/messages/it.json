@@ -4967,6 +4967,9 @@
       "label": "Provider compatibili con OpenAI"
     },
     "empty": "Nessun provider compatibile con OpenAI configurato.",
+    "errors": {
+      "updateConflict": "Questo provider è stato aggiornato contemporaneamente altrove. Riprova."
+    },
     "fields": {
       "baseURL": "URL di base",
       "defaultModel": "Modello predefinito",

@@ -4967,6 +4967,9 @@
       "label": "Furnizori compatibili cu OpenAI"
     },
     "empty": "Niciun furnizor compatibil cu OpenAI configurat.",
+    "errors": {
+      "updateConflict": "Acest furnizor a fost actualizat simultan în altă parte. Încearcă din nou."
+    },
     "fields": {
       "baseURL": "URL de bază",
       "defaultModel": "Model implicit",

@@ -5009,6 +5009,9 @@
       "label": "Provider tương thích OpenAI"
     },
     "empty": "Chưa cấu hình provider tương thích OpenAI.",
+    "errors": {
+      "updateConflict": "Provider này vừa được cập nhật ở nơi khác. Vui lòng thử lại."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Model mặc định",

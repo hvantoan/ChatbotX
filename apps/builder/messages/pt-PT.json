@@ -4967,6 +4967,9 @@
       "label": "Fornecedores compatíveis com a OpenAI"
     },
     "empty": "Não existem fornecedores compatíveis com a OpenAI configurados.",
+    "errors": {
+      "updateConflict": "Este fornecedor foi atualizado em simultâneo noutro local. Tente novamente."
+    },
     "fields": {
       "baseURL": "URL base",
       "defaultModel": "Modelo predefinido",

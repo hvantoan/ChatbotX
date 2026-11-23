@@ -5649,6 +5649,9 @@
       "label": "OpenAI-compatible providers"
     },
     "empty": "No OpenAI-compatible providers configured.",
+    "errors": {
+      "updateConflict": "This provider was updated concurrently elsewhere. Please try again."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Default model",

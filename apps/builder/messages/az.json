@@ -5649,6 +5649,9 @@
       "label": "OpenAI-yə uyğun provayderlər"
     },
     "empty": "OpenAI-yə uyğun provayder konfiqurasiya edilməyib.",
+    "errors": {
+      "updateConflict": "Bu provayder eyni vaxtda başqa yerdə yeniləndi. Zəhmət olmasa yenidən cəhd edin."
+    },
     "fields": {
       "baseURL": "Əsas URL",
       "defaultModel": "Standart model",

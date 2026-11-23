@@ -4944,6 +4944,9 @@
       "label": "OpenAI互換プロバイダー"
     },
     "empty": "OpenAI互換プロバイダーが設定されていません。",
+    "errors": {
+      "updateConflict": "このプロバイダーは別の場所で同時に更新されました。もう一度お試しください。"
+    },
     "fields": {
       "baseURL": "ベースURL",
       "defaultModel": "デフォルトモデル",

@@ -5013,6 +5013,9 @@
       "label": "OpenAI相容供應商"
     },
     "empty": "尚未設定 OpenAI 相容提供者。",
+    "errors": {
+      "updateConflict": "此供應商已在其他地方同時更新。請重試。"
+    },
     "fields": {
       "baseURL": "基礎URL",
       "defaultModel": "預設模型",

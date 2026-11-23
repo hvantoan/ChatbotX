@@ -432,6 +432,13 @@ describe("IntegrationOpenaiCompatibleService", () => {
       httpStatusCode: 409,
     })
     expect(mocks.txUpdateSet).toHaveBeenCalledTimes(1)
+    expect(mocks.txUpdateWhere).toHaveBeenCalledWith(
+      expect.objectContaining({
+        and: expect.arrayContaining([
+          { eq: ["baseURL", "https://old.example.com/v1"] },
+        ]),
+      }),
+    )
   })
 
   test("findByWorkspaceIdAndAnyId falls back from satellite id to parent integrationId", async () => {

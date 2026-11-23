@@ -2536,6 +2536,9 @@
       "label": "ספקים תואמי OpenAI"
     },
     "empty": "לא הוגדרו ספקים תואמי OpenAI.",
+    "errors": {
+      "updateConflict": "הספק הזה עודכן במקביל במקום אחר. נסה שוב."
+    },
     "fields": {
       "baseURL": "כתובת URL בסיסית",
       "defaultModel": "מודל ברירת מחדל",

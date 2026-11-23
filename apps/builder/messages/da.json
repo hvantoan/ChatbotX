@@ -4967,6 +4967,9 @@
       "label": "OpenAI-compatible providers"
     },
     "empty": "Ingen OpenAI-compatible providers configured.",
+    "errors": {
+      "updateConflict": "Denne udbyder blev opdateret samtidig et andet sted. Prøv igen."
+    },
     "fields": {
       "baseURL": "Base URL",
       "defaultModel": "Standard model",

@@ -4967,6 +4967,9 @@
       "label": "AbrirAI-compatible proveedors"
     },
     "empty": "No AbrirAI-compatible proveedors configured.",
+    "errors": {
+      "updateConflict": "Este proveedor se actualizó simultáneamente en otro lugar. Inténtalo de nuevo."
+    },
     "fields": {
       "baseURL": "URL base",
       "defaultModel": "Predeterminado modelo",

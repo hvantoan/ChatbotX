@@ -4967,6 +4967,9 @@
       "label": "OpenAI-yhteensopivat palveluntarjoajat"
     },
     "empty": "OpenAI-yhteensopivia palveluntarjoajia ei ole määritetty.",
+    "errors": {
+      "updateConflict": "Tätä palveluntarjoajaa päivitettiin samanaikaisesti muualla. Yritä uudelleen."
+    },
     "fields": {
       "baseURL": "Perus-URL",
       "defaultModel": "Oletusmalli",

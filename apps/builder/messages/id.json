@@ -4967,6 +4967,9 @@
       "label": "Penyedia yang kompatibel dengan OpenAI"
     },
     "empty": "Tidak ada penyedia kompatibel OpenAI yang dikonfigurasi.",
+    "errors": {
+      "updateConflict": "Penyedia ini baru saja diperbarui di tempat lain secara bersamaan. Silakan coba lagi."
+    },
     "fields": {
       "baseURL": "URL Dasar",
       "defaultModel": "Model default",

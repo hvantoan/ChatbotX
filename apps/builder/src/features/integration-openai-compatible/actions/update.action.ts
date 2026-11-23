@@ -32,11 +32,15 @@ export const updateOpenaiCompatibleEnabledAction = workspaceActionClient
       parsedInput: UpdateOpenaiCompatibleEnabledSchema
       bindArgsParsedInputs: WorkspaceIdAndIdRequestParams
     }) => {
-      await integrationOpenaiCompatibleService.updateWithVerification(
-        workspaceId,
-        integrationId,
-        parsedInput,
-      )
+      try {
+        await integrationOpenaiCompatibleService.updateWithVerification(
+          workspaceId,
+          integrationId,
+          parsedInput,
+        )
+      } catch (error) {
+        await rethrowTranslatedConflictError(error)
+      }
     },
   )
 
@@ -106,6 +110,13 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
             },
           })
         }
+        if (error instanceof ChatbotXException && error.code === "conflict") {
+          throw new ChatbotXException(
+            t("openaiCompatible.errors.updateConflict"),
+            "conflict",
+            409,
+          )
+        }
         if (isOpenaiCompatiblePresetAlreadyConnectedError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             preset: {
@@ -123,3 +134,15 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
 const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
   error instanceof ChatbotXException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
+
+const rethrowTranslatedConflictError = async (error: unknown) => {
+  if (error instanceof ChatbotXException && error.code === "conflict") {
+    const t = await getTranslations()
+    throw new ChatbotXException(
+      t("openaiCompatible.errors.updateConflict"),
+      "conflict",
+      409,
+    )
+  }
+  throw error
+}

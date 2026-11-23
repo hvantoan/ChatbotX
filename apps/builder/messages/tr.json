@@ -4967,6 +4967,9 @@
       "label": "OpenAI uyumlu sağlayıcılar"
     },
     "empty": "Yapılandırılmış OpenAI uyumlu sağlayıcı yok.",
+    "errors": {
+      "updateConflict": "Bu sağlayıcı başka bir yerde eşzamanlı olarak güncellendi. Lütfen tekrar deneyin."
+    },
     "fields": {
       "baseURL": "Temel URL",
       "defaultModel": "Varsayılan model",
