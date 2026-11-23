@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Bu temel URL ile başka bir sağlayıcı zaten bağlı.",
       "invalidBaseURL": "Temel URL geçersiz veya izin verilmiyor.",
+      "providerUnreachable": "Sağlayıcı uç noktasına ulaşılamadı. Temel URL'yi kontrol edip tekrar deneyin.",
       "presetAlreadyConnected": "Bu ön ayar bu çalışma alanı için zaten bağlı."
     }
   },

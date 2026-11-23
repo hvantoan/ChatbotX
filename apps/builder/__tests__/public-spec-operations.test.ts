@@ -1002,6 +1002,15 @@ describe("public API spec — declared codes match what the mapper throws", () =
     expect(missing).toEqual([])
   })
 
+  test("connections.create declares the ssrfBlocked rejection thrown for a private openaiCompatible endpoint", () => {
+    const create = procedures.find(
+      (proc) => proc.routePath === "/v1/connections" && proc.method === "POST",
+    )
+
+    expect(create?.codes).toContain("ssrfBlocked")
+    expect(create?.statuses.ssrfBlocked).toBe(400)
+  })
+
   test("only write procedures declare idempotency error codes", () => {
     const idempotencyCodes = [
       "idempotencyKeyInvalid",

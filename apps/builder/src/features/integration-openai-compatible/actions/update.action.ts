@@ -4,6 +4,7 @@ import type { OpenaiCompatibleProviderPreset } from "@chatbotx.io/ai"
 import {
   integrationOpenaiCompatibleService,
   isOpenaiCompatiblePresetAlreadyConnectedError,
+  isOpenaiCompatibleProviderUnreachableError,
 } from "@chatbotx.io/business"
 import { ChatbotXException } from "@chatbotx.io/business/errors"
 import { getTranslations } from "next-intl/server"
@@ -72,6 +73,13 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           },
         )
       } catch (error) {
+        if (isOpenaiCompatibleProviderUnreachableError(error)) {
+          return returnValidationErrors(updateOpenaiCompatibleSchema, {
+            baseURL: {
+              _errors: [t("openaiCompatible.validation.providerUnreachable")],
+            },
+          })
+        }
         if (isBaseUrlValidationError(error)) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
             baseURL: {

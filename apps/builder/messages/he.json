@@ -2549,6 +2549,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "ספק אחר כבר מחובר עם כתובת ה-URL הבסיסית הזו.",
       "invalidBaseURL": "כתובת ה-URL הבסיסית אינה תקינה או אינה מורשית.",
+      "providerUnreachable": "לא ניתן היה להגיע לנקודת הקצה של הספק. בדוק את כתובת ה-URL הבסיסית ונסה שוב.",
       "presetAlreadyConnected": "הגדרה מוכנה זו כבר מחוברת לסביבת עבודה זו."
     }
   },

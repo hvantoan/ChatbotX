@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "Un alt furnizor este deja conectat cu acest URL de bază.",
       "invalidBaseURL": "URL-ul de bază este invalid sau nu este permis.",
+      "providerUnreachable": "Endpointul furnizorului nu a putut fi contactat. Verifică URL-ul de bază și încearcă din nou.",
       "presetAlreadyConnected": "Acest preset este deja conectat pentru acest spațiu de lucru."
     }
   },

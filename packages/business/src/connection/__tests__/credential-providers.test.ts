@@ -306,6 +306,20 @@ describe("openaiCompatibleConnectionProvider.fromCredentials — SSRF guard (C2)
     expect(mocks.get).not.toHaveBeenCalled()
   })
 
+  it("rejects 127.0.0.1:11434 (Ollama) on self-hosted by default without probing it", async () => {
+    mocks.isCloud.mockReturnValue(false)
+    mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(false)
+
+    await expect(
+      fromCredentials({
+        apiKey: "sk-live",
+        baseURL: "http://127.0.0.1:11434/v1",
+      }),
+    ).rejects.toMatchObject({ code: "ssrfBlocked", httpStatusCode: 400 })
+
+    expect(mocks.get).not.toHaveBeenCalled()
+  })
+
   it("allows 127.0.0.1 on self-hosted when the opt-out env is enabled", async () => {
     mocks.isCloud.mockReturnValue(false)
     mocks.allowPrivateOpenaiCompatibleUrls.mockReturnValue(true)

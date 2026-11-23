@@ -33,6 +33,9 @@ vi.mock("@chatbotx.io/business", () => ({
     updateWithVerification: mocks.updateWithVerification,
   },
   isOpenaiCompatiblePresetAlreadyConnectedError: mocks.isDuplicatePreset,
+  isOpenaiCompatibleProviderUnreachableError: (error: unknown) =>
+    error instanceof Error &&
+    error.name === "OpenaiCompatibleProviderUnreachableError",
   validateOpenaiCompatibleBaseUrlForEnvironment: mocks.validateBaseUrl,
 }))
 
@@ -132,11 +135,37 @@ describe("OpenAI-compatible actions", () => {
     expect(mocks.connect).not.toHaveBeenCalled()
   })
 
-  test("connect maps unreachable /models response to baseURL validation error", async () => {
+  test("connect maps unreachable /models response to a distinct providerUnreachable error", async () => {
     mocks.verifyProvider.mockResolvedValueOnce({
       ok: false,
       reason: "unreachable",
       status: 404,
+    })
+
+    const result = await (
+      connectOpenaiCompatibleAction as unknown as ActionHandler<
+        typeof baseInput,
+        [string]
+      >
+    )({
+      parsedInput: baseInput,
+      bindArgsParsedInputs: ["workspace-1"],
+    })
+
+    expect(result).toEqual({
+      validationErrors: {
+        baseURL: {
+          _errors: ["openaiCompatible.validation.providerUnreachable"],
+        },
+      },
+    })
+    expect(mocks.connectFromCredentials).not.toHaveBeenCalled()
+  })
+
+  test("connect keeps invalidBaseURL for an unsafe (SSRF-blocked) base URL", async () => {
+    mocks.verifyProvider.mockResolvedValueOnce({
+      ok: false,
+      reason: "unsafe_base_url",
     })
 
     const result = await (
@@ -241,6 +270,34 @@ describe("OpenAI-compatible actions", () => {
       validationErrors: {
         baseURL: {
           _errors: ["openaiCompatible.validation.invalidBaseURL"],
+        },
+      },
+    })
+  })
+
+  test("update maps an unreachable endpoint to providerUnreachable while keeping the public invalidBaseUrl code", async () => {
+    const unreachable = new ChatbotXException(
+      "OpenAI-compatible base URL could not be verified.",
+      "invalidBaseUrl",
+      400,
+    )
+    unreachable.name = "OpenaiCompatibleProviderUnreachableError"
+    mocks.updateWithVerification.mockRejectedValueOnce(unreachable)
+
+    const result = await (
+      updateOpenaiCompatibleAction as unknown as ActionHandler<
+        { apiKey: string },
+        [string, string]
+      >
+    )({
+      parsedInput: { apiKey: "new-key" },
+      bindArgsParsedInputs: ["workspace-1", "integration-1"],
+    })
+
+    expect(result).toEqual({
+      validationErrors: {
+        baseURL: {
+          _errors: ["openaiCompatible.validation.providerUnreachable"],
         },
       },
     })

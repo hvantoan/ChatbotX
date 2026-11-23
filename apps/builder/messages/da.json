@@ -4980,6 +4980,7 @@
     "validation": {
       "baseUrlAlreadyConnected": "En anden udbyder er allerede forbundet med denne base-URL.",
       "invalidBaseURL": "Base URL er ugyldig eller ikke allowed.",
+      "providerUnreachable": "Udbyderens endpoint kunne ikke nås. Kontroller basis-URL'en, og prøv igen.",
       "presetAlreadyConnected": "Denne preset er allerede forbundet for denne arbejdsområde."
     }
   },

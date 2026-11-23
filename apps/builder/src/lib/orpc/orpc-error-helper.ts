@@ -962,6 +962,10 @@ export const possibleErrorsOnCreatingConnection = {
   },
   connectionWrongStrategy,
   connectionCredentialsRejected,
+  ssrfBlocked: {
+    message: "OpenAI-compatible base URL is not allowed.",
+    status: 400,
+  },
   connectionNotOAuth,
   connectionNotConfigured,
   connectionProviderUnavailable,
