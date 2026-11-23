@@ -1,4 +1,4 @@
-import { resolveAiProviderAuth } from "@chatbotx.io/business/connection"
+import { resolveAiProviderAuth } from "@chatbotx.io/business/connection/ai-provider-auth"
 import { db } from "@chatbotx.io/database/client"
 import type {
   IntegrationClaudeModel,

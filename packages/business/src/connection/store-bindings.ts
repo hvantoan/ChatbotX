@@ -2,10 +2,13 @@ import type { DatabaseClient } from "@chatbotx.io/database/client"
 import { and, db, eq } from "@chatbotx.io/database/client"
 import type { IntegrationType } from "@chatbotx.io/database/partials"
 import { integrationModel } from "@chatbotx.io/database/schema"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
 import { type AuthValue, authValueSchema, SdkException } from "@chatbotx.io/sdk"
 import type { InferInsertModel, SQL } from "drizzle-orm"
 import type { AnyPgColumn, PgTable } from "drizzle-orm/pg-core"
+import {
+  encryptAiProviderAuth,
+  resolveAiProviderAuth,
+} from "./ai-provider-auth"
 import { buildConnectionStoreBindings } from "./store-bindings-channels"
 
 type ConnectionStoreInsertInput =
@@ -135,34 +138,11 @@ const asAuthValue = (value: unknown): AuthValue => {
   return parsedAuth.data
 }
 
-export const encryptAiProviderAuth = (
-  props: { provider: string; workspaceId: string },
-  auth: AuthValue,
-) =>
-  encryptUtils.encryptObject(
-    auth,
-    `ai-provider:${props.provider}:${props.workspaceId}`,
-  )
-
-type AiProviderAuthRow = {
-  provider: string
-  workspaceId: string
-  auth: unknown
-  encryptedAuth?: unknown
-}
-
-export const resolveAiProviderAuth = async (
-  row: AiProviderAuthRow,
-): Promise<AuthValue> => {
-  if (row.encryptedAuth === null || row.encryptedAuth === undefined) {
-    return asAuthValue(row.auth)
-  }
-  return await encryptUtils.decryptObject(
-    encryptedDataSchema.parse(row.encryptedAuth),
-    authValueSchema,
-    `ai-provider:${row.provider}:${row.workspaceId}`,
-  )
-}
+export {
+  aiProviderAuthAad,
+  encryptAiProviderAuth,
+  resolveAiProviderAuth,
+} from "./ai-provider-auth"
 
 const pickAllowed = <TColumn extends string>(
   config: Record<string, unknown> | undefined,
