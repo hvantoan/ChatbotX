@@ -58,8 +58,8 @@ Targeted examples:
 pnpm --filter builder dev
 pnpm --filter worker dev
 pnpm --filter realtime dev
-pnpm --filter chatbotx dev:cli
-pnpm --filter chatbotx-mcp dev:mcp
+pnpm --filter inboxos dev:cli
+pnpm --filter inboxos-mcp dev:mcp
 pnpm --filter @chatbotx.io/database db:studio
 ```
 
@@ -222,6 +222,7 @@ See **`.agents/rules/git.md`** for the full canonical rules (commit format, bran
 - Templates (creating, sharing, what an install copies, folders and list order, warning audiences, View Analytics, updates, uninstall, public API, deploy notes): `docs/templates.md`
 - Templates regression testing (rule → test map, public-API end-to-end script `scripts/templates-e2e.mjs`, manual UI checklist): `docs/templates-testing.md`
 - Pipelines (CRM kanban boards: data model, access scope/ACL, mutation engine and post-commit effects, locking order, queued stage deletion, keyset cursors, caching policy, pipelineItem* events/webhooks/realtime, Pipelines flow step, `pipelineItem` contact filter, `{{pipelines.*}}` variables, templates, public API/CLI/MCP, analytics, limits): `docs/pipelines.md`
+- AI Agent sales persona and goal (chat-taught sales profile, immutable version history, persisted training chat, 4-section runtime prompt compiler, per-conversation `salesState`, buffered 2-tier reply guard with deterministic price verification and structured judge, single rewrite/fallback/handoff, template remapping, public API/CLI/MCP): `docs/ai-agent-sales-profile.md`
 
 When unsure, search the codebase for an existing feature that resembles the request and mirror its structure, imports, and error-handling style.
 

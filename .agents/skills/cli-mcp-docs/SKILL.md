@@ -52,10 +52,10 @@ same name; `toolsToCommands` keeps the first registered and **silently drops
 the second** (stderr warning, exit code 0 — easy to miss in CI).
 
 ```bash
-pnpm --filter chatbotx test                              # pins known collisions,
+pnpm --filter inboxos test                              # pins known collisions,
                                                           # apps/cli/__tests__/openapi-loader-command-names.test.ts
 CHATBOTX_API_URL=<local-builder-url>/api \
-  pnpm --filter chatbotx dev:cli -- --refresh-spec <group> --help
+  pnpm --filter inboxos dev:cli -- --refresh-spec <group> --help
 ```
 
 Watch stderr for `Warning: duplicate command name "..." — skipping`. If your
@@ -98,8 +98,8 @@ pins this README against the live default tool set and fails CI on drift.
 ## 4. Verify against a live instance, not just the docs
 
 ```bash
-pnpm --filter chatbotx dev:cli -- --refresh-spec <new-group> --help
-pnpm --filter chatbotx-mcp dev:mcp   # then call tools/list against it
+pnpm --filter inboxos dev:cli -- --refresh-spec <new-group> --help
+pnpm --filter inboxos-mcp dev:mcp   # then call tools/list against it
 ```
 
 Confirm the command/tool you documented actually appears with the flags you
