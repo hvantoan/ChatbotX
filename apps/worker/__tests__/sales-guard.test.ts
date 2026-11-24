@@ -828,6 +828,11 @@ describe("extractRichResponseTexts", () => {
                     subtitle: "off selected items",
                     buttons: [],
                   },
+                  {
+                    title: "Up to 100%",
+                    subtitle: "off-grid operation",
+                    buttons: [],
+                  },
                 ],
               },
             },
