@@ -224,6 +224,11 @@ describe("Tier 1 price and percent extraction & verification", () => {
         handoffMessage: "This is AI:101 support. Please wait.",
       }),
     ).toBe("This is AI:101 support. Please wait.")
+    expect(
+      resolveSalesHandoffMessage({
+        handoffMessage: "This is AI,please wait.",
+      }),
+    ).toBe("This is tư vấn viên,please wait.")
   })
 
   test("blocks an invented price or percentage with reason invented_price", () => {
