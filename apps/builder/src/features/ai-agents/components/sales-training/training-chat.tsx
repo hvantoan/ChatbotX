@@ -140,6 +140,9 @@ export function TrainingChat({ workspaceId, aiAgentId }: TrainingChatProps) {
         instruction: params.instructionText,
       }),
     onSuccess: async (res) => {
+      // The applied profile is now the server state; a leftover edit draft
+      // would keep rendering an older proposal and could overwrite this one.
+      setDraftOverride(null)
       await queryClient.invalidateQueries({
         queryKey: orpc.aiAgentsAPI.key(),
       })

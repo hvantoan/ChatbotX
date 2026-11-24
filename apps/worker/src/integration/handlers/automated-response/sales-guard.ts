@@ -322,9 +322,13 @@ export function checkTier1Prices(input: {
   return { passed: true, unmatchedValues: [] }
 }
 
+// Self-identification only: a bare "AI" is common in product names
+// ("Khóa học AI"), so it is flagged only when the reply describes itself.
 const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
   /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
-  /(?:^|[^\p{L}\p{N}_])AI(?=$|[^\p{L}\p{N}_])/u,
+  /(?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:trợ\s+lý\s+ảo\s+)?AI(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:đây|đó)\s+là\s+(?:một\s+)?AI(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:^|[^\p{L}\p{N}_])AI\s+(?:assistant|trợ\s+lý)(?=$|[^\p{L}\p{N}_])/iu,
   /trợ\s+lý\s+ảo/iu,
   /human\s+agent/iu,
 ]
@@ -348,7 +352,10 @@ export function isCustomerAskingBotOrHuman(text: string): boolean {
 
 const STRIP_BOT_RE =
   /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
-const STRIP_AI_RE = /(?:^|[^\p{L}\p{N}_])AI(?=$|[^\p{L}\p{N}_])/gu
+// Strip only self-identification ("em là AI", "đây là AI") so product names
+// that merely contain "AI" survive into the fallback line.
+const STRIP_AI_RE =
+  /((?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em|đây|đó)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?)AI/giu
 const STRIP_TRO_LY_AO_RE = /trợ\s+lý\s+ảo/giu
 const STRIP_HUMAN_AGENT_RE = /human\s+agent/giu
 const MULTI_SPACE_RE = /\s{2,}/g
@@ -356,7 +363,7 @@ const MULTI_SPACE_RE = /\s{2,}/g
 function stripBotDisclosureWords(text: string): string {
   return text
     .replace(STRIP_BOT_RE, " ")
-    .replace(STRIP_AI_RE, " ")
+    .replace(STRIP_AI_RE, "$1tư vấn viên")
     .replace(STRIP_TRO_LY_AO_RE, "tư vấn viên")
     .replace(STRIP_HUMAN_AGENT_RE, "tư vấn viên")
     .replace(MULTI_SPACE_RE, " ")
@@ -553,15 +560,24 @@ export function extractRichResponseTexts(rich: ParsedRichResponse): string {
       if (msg.text) {
         chunks.push(msg.text)
       }
+      for (const quickReply of msg.quick_replies ?? []) {
+        chunks.push(quickReply.title)
+      }
       if (msg.attachment?.type === "template") {
         const payload = msg.attachment.payload
         if (payload.template_type === "button") {
           chunks.push(payload.text)
+          for (const button of payload.buttons) {
+            chunks.push(button.title)
+          }
         } else if (payload.template_type === "generic") {
           for (const el of payload.elements) {
             chunks.push(el.title)
             if (el.subtitle) {
               chunks.push(el.subtitle)
+            }
+            for (const button of el.buttons) {
+              chunks.push(button.title)
             }
           }
         }
@@ -589,6 +605,12 @@ export type EvaluateSalesGuardInput = {
   startTime: number
   /** True when a system tool (e.g. `connectUserToHuman`) already executed handoff in this run. */
   handoffAlreadyExecuted?: boolean
+  /**
+   * Mutable handoff tracker. Prefer this over `handoffAlreadyExecuted`: it is
+   * read after the model stream finishes, so a handoff executed by a tool
+   * during the stream is seen even though the context was built earlier.
+   */
+  handoffTracker?: { executed: boolean }
   /** Custom handoff waiting-message sender (defaults to sendMessageAndWait). */
   sendHandoffMessage?: (text: string) => Promise<void>
   /** Custom judge / rewrite runners for deterministic unit testing. */
@@ -625,6 +647,8 @@ export async function evaluateSalesGuard(
       await sendMessageAndWait(conversation.id, text)
     })
 
+  const handoffAlreadyExecuted =
+    input.handoffTracker?.executed ?? Boolean(input.handoffAlreadyExecuted)
   const lastCustomerMessage = extractLastCustomerText(messages)
   const tier1Initial = checkTier1Prices({
     replyText: candidateText,
@@ -662,7 +686,7 @@ export async function evaluateSalesGuard(
   // 1. Human request handoff (including "bot à / người thật không")
   if (customerAskedForHuman && profile.handoverOnHumanRequest) {
     await sendHandoff(handoffMessage)
-    if (!input.handoffAlreadyExecuted) {
+    if (!handoffAlreadyExecuted) {
       await handoffExecutorService.execute({
         workspaceId: conversation.workspaceId,
         conversationId: conversation.id,
@@ -686,11 +710,15 @@ export async function evaluateSalesGuard(
     }
   }
 
-  // Compute updated state from Tier 2 (or preserve on fail-open)
+  // Compute updated state from Tier 2 (or preserve on fail-open: a judge
+  // timeout must neither reset nor advance the off-topic streak)
   const onTopic = tier2 ? tier2.onTopic : true
   const hasBotDisclosure = containsBotSelfDisclosure(candidateText)
   const inRole = (tier2 ? tier2.inRole : true) && !hasBotDisclosure
-  const nextStreak = onTopic ? 0 : salesState.offTopicStreak + 1
+  let nextStreak = salesState.offTopicStreak
+  if (tier2) {
+    nextStreak = tier2.onTopic ? 0 : salesState.offTopicStreak + 1
+  }
   const nextStage = tier2 ? tier2.stage : salesState.stage
   const mergedPitched = [
     ...new Set([
@@ -726,7 +754,7 @@ export async function evaluateSalesGuard(
   // 2. Off-topic streak limit handoff (skip rewrite to avoid wasted LLM latency/cost)
   if (updatedState.offTopicStreak >= profile.offTopicLimit) {
     await sendHandoff(handoffMessage)
-    if (!input.handoffAlreadyExecuted) {
+    if (!handoffAlreadyExecuted) {
       await handoffExecutorService.execute({
         workspaceId: conversation.workspaceId,
         conversationId: conversation.id,

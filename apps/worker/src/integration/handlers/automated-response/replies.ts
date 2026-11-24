@@ -1016,8 +1016,11 @@ async function runAIReply(
                 products: salesProducts,
                 salesState,
                 model: modelConfig.model,
-                systemPrompt,
-                handoffAlreadyExecuted: handoffToolTracker.executed,
+                // Plain-text prompt: the guard's rewrite must not be asked for
+                // rich JSON, which would otherwise be sent verbatim to the
+                // customer.
+                systemPrompt: guardedPrompt,
+                handoffTracker: handoffToolTracker,
               }
             : undefined,
       })
@@ -1126,7 +1129,10 @@ async function runAIReply(
         responded: true,
         provider,
         modelId: selectedModelId,
-        usedFallbackText: guardResult.outcome === "fallback",
+        // The guard already emitted `message:bot_received` and sent its own
+        // fallback text; reporting `usedFallbackText` here would make the
+        // caller emit a second event for the same customer message.
+        usedFallbackText: false,
         toolStats: logActionToolSelection(),
       }
     }

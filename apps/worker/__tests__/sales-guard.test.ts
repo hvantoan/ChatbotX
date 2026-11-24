@@ -56,6 +56,7 @@ const {
   containsBotSelfDisclosure,
   evaluateSalesGuard,
   extractMoneyAndPercentTokens,
+  extractRichResponseTexts,
   isCustomerAskingBotOrHuman,
 } = await import("../src/integration/handlers/automated-response/sales-guard")
 
@@ -429,6 +430,40 @@ describe("evaluateSalesGuard decision pipeline", () => {
     expect(mockHandoffExecute).not.toHaveBeenCalled()
   })
 
+  test("reads the mutable handoff tracker so a tool handoff during the stream is not repeated", async () => {
+    const judgeRunner = vi.fn().mockResolvedValue({
+      onTopic: true,
+      inRole: true,
+      customerAskedForHuman: true,
+      stage: "discover",
+      mentionedProductIds: [],
+    })
+    // The context object is created before the stream runs; the tool flips it.
+    const handoffTracker = { executed: true }
+
+    const result = await evaluateSalesGuard({
+      conversation: fakeConversation,
+      contactInbox: fakeContactInbox,
+      aiAgent: fakeAgent,
+      profile,
+      products,
+      salesState: initialState,
+      model: fakeModel,
+      modelId: "gpt-5.4-mini",
+      provider: "openai",
+      systemPrompt: "System",
+      messages: [{ role: "user", content: "Cho anh gặp tư vấn viên" }],
+      candidateText: "Dạ để em chuyển tư vấn viên ạ.",
+      triggerMessageId: "msg-tracker-handoff",
+      startTime: Date.now(),
+      handoffTracker,
+      judgeRunner,
+    })
+
+    expect(result.outcome).toBe("handoff")
+    expect(mockHandoffExecute).not.toHaveBeenCalled()
+  })
+
   test("treats 'bot à / người thật không' questions as customerAskedForHuman and hands off with handoffMessage", async () => {
     expect(isCustomerAskingBotOrHuman("Em là bot à?")).toBe(true)
     expect(isCustomerAskingBotOrHuman("Có phải người thật không vậy?")).toBe(
@@ -488,6 +523,11 @@ describe("evaluateSalesGuard decision pipeline", () => {
         "Dạ Khóa IELTS Foundation phù hợp cho bất kỳ ai muốn học từ đầu ạ.",
       ),
     ).toBe(false)
+    // A bare "AI" inside a product name is not self-disclosure.
+    expect(containsBotSelfDisclosure("Dạ Khóa học AI của bên em ạ.")).toBe(
+      false,
+    )
+    expect(containsBotSelfDisclosure("Dạ em là AI tư vấn ạ.")).toBe(true)
 
     const judgeRunner = vi.fn().mockResolvedValue({
       onTopic: true,
@@ -542,7 +582,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       aiAgent: fakeAgent,
       profile,
       products,
-      salesState: initialState,
+      salesState: { ...initialState, offTopicStreak: 2 },
       model: fakeModel,
       modelId: "gpt-5.4-mini",
       provider: "openai",
@@ -559,5 +599,48 @@ describe("evaluateSalesGuard decision pipeline", () => {
     expect(result.finalText).toBe(
       "Dạ Khóa IELTS Foundation bên em giá sau giảm là 2.000.000đ ạ!",
     )
+    // A judge timeout must neither reset nor advance the off-topic streak.
+    expect(result.updatedState.offTopicStreak).toBe(2)
+    expect(result.updatedState.stage).toBe("discover")
+  })
+})
+
+describe("extractRichResponseTexts", () => {
+  test("includes quick-reply and template button titles so their prices are verified", () => {
+    const text = extractRichResponseTexts({
+      actions: [],
+      messages: [
+        {
+          message: {
+            text: "Mua 199k nhé",
+            quick_replies: [{ content_type: "text", title: "Mua ngay 99k" }],
+          },
+        },
+        {
+          message: {
+            attachment: {
+              type: "template",
+              payload: {
+                template_type: "generic",
+                elements: [
+                  {
+                    title: "Khóa học",
+                    buttons: [
+                      {
+                        title: "Đăng ký 149k",
+                        type: "postback",
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    expect(text).toContain("Mua ngay 99k")
+    expect(text).toContain("Đăng ký 149k")
   })
 })

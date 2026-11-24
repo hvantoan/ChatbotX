@@ -57,6 +57,7 @@ export type SalesHandoffPolicyOptions = {
 
 export function buildSalesHandoffPolicy(
   options: SalesHandoffPolicyOptions,
+  hasHandoffTool = true,
 ): string {
   const message =
     options.handoffMessage.trim() ||
@@ -68,8 +69,14 @@ export function buildSalesHandoffPolicy(
 
   return [
     "SALES HANDOFF POLICY (REQUIRED):",
-    triggerLine,
-    `- Khi chuyển giao, chỉ gửi cho khách đúng câu chờ: ${JSON.stringify(message)}.`,
+    // Without the tool the agent cannot hand off; telling it to would only
+    // produce a waiting message with no advisor assignment.
+    ...(hasHandoffTool
+      ? [
+          triggerLine,
+          `- Khi chuyển giao, chỉ gửi cho khách đúng câu chờ: ${JSON.stringify(message)}.`,
+        ]
+      : []),
     '- Tuyệt đối KHÔNG dùng các từ ngữ làm lộ bot như "human agent", "bot", "AI", "trợ lý ảo", "hệ thống tự động", và KHÔNG tự khẳng định mình là người thật.',
   ].join("\n")
 }
@@ -79,10 +86,11 @@ export function appendHandoffPolicy(
   tools: ToolSet,
   salesHandoff?: SalesHandoffPolicyOptions | null,
 ): string {
+  const hasHandoffTool = Boolean(tools[systemFunctionNames.connectUserToHuman])
   if (salesHandoff) {
-    return `${systemPrompt}\n\n${buildSalesHandoffPolicy(salesHandoff)}`.trim()
+    return `${systemPrompt}\n\n${buildSalesHandoffPolicy(salesHandoff, hasHandoffTool)}`.trim()
   }
-  if (!tools[systemFunctionNames.connectUserToHuman]) {
+  if (!hasHandoffTool) {
     return systemPrompt
   }
   return `${systemPrompt}\n\n${aiPolicies.handoff}`.trim()

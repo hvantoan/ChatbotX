@@ -33,7 +33,7 @@ export type RichReplySalesGuardContext = {
   salesState: ConversationSalesState
   model: LanguageModel
   systemPrompt: string
-  handoffAlreadyExecuted?: boolean
+  handoffTracker?: { executed: boolean }
 }
 
 type HandleRichAIReplyOptions = {
@@ -141,7 +141,7 @@ export async function handleRichAIReply({
           triggerMessageId: props.triggerMessageId,
           channel: props.channel,
           startTime,
-          handoffAlreadyExecuted: salesGuardContext.handoffAlreadyExecuted,
+          handoffTracker: salesGuardContext.handoffTracker,
           sendHandoffMessage: sendRichGuardReply,
         })
         if (guardResult.outcome !== "handoff" && guardResult.finalText) {
@@ -158,6 +158,7 @@ export async function handleRichAIReply({
   }
 
   const richResponse = parseResult.data
+  let salesGuardEmittedAnalytics = false
   if (salesGuardContext) {
     const extractedText = extractRichResponseTexts(richResponse).trim()
     if (extractedText) {
@@ -182,9 +183,10 @@ export async function handleRichAIReply({
         triggerMessageId: props.triggerMessageId,
         channel: props.channel,
         startTime,
-        handoffAlreadyExecuted: salesGuardContext.handoffAlreadyExecuted,
+        handoffTracker: salesGuardContext.handoffTracker,
         sendHandoffMessage: sendRichGuardReply,
       })
+      salesGuardEmittedAnalytics = true
       if (guardResult.outcome === "handoff") {
         return buildSuccessResult({ buildToolStats, modelId, provider })
       }
@@ -212,7 +214,13 @@ export async function handleRichAIReply({
 
   const messageResult =
     richResponse.messages.length > 0
-      ? await sendRichMessages(richResponse.messages, context, trackingContext)
+      ? await sendRichMessages(
+          richResponse.messages,
+          context,
+          // The guard already emitted the single bot_received event for this
+          // trigger message; sending with tracking would emit a second one.
+          salesGuardEmittedAnalytics ? undefined : trackingContext,
+        )
       : { enqueued: 0, skipped: 0 }
   const actionResult = await executeRichActions(richResponse.actions, context)
   const hasSentMessages = messageResult.enqueued > 0

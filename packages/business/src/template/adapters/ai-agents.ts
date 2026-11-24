@@ -91,6 +91,61 @@ const readContent = async (
     : null
 }
 
+/**
+ * Writes agent content, mirroring `aiAgentSalesProfileService.update`: when a
+ * template ships a different sales profile, append an immutable version row
+ * and bump `salesProfileVersion` so version history and per-conversation
+ * `salesState` stay aligned with the active profile.
+ */
+const writeAgentContent = async (
+  tx: DatabaseClient,
+  resourceId: string,
+  content: AIAgentContent,
+): Promise<void> => {
+  const [current] = await tx
+    .select({
+      workspaceId: aiAgentModel.workspaceId,
+      salesProfile: aiAgentModel.salesProfile,
+      salesProfileVersion: aiAgentModel.salesProfileVersion,
+    })
+    .from(aiAgentModel)
+    .where(eq(aiAgentModel.id, resourceId))
+    .for("update")
+    .limit(1)
+
+  const nextProfile = content.salesProfile
+  const profileChanged =
+    nextProfile != null &&
+    JSON.stringify(current?.salesProfile ?? null) !==
+      JSON.stringify(nextProfile)
+  const nextVersion = profileChanged
+    ? (current?.salesProfileVersion ?? 0) + 1
+    : undefined
+
+  await tx
+    .update(aiAgentModel)
+    .set({
+      ...toColumns(content),
+      ...(nextVersion === undefined
+        ? {}
+        : { salesProfileVersion: nextVersion }),
+    })
+    .where(eq(aiAgentModel.id, resourceId))
+
+  if (current && profileChanged && nextVersion !== undefined) {
+    await tx.insert(aiAgentSalesProfileVersionModel).values({
+      id: createId(),
+      workspaceId: current.workspaceId,
+      aiAgentId: resourceId,
+      version: nextVersion,
+      profile: nextProfile as AIAgentSalesProfile,
+      source: "manual",
+      instruction: null,
+      createdById: null,
+    })
+  }
+}
+
 type AIAgentModelConfig =
   | { provider: string; model: string }
   | { kind: "openaiCompatible"; integrationId: string; model: string }
@@ -236,10 +291,7 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
       if (!parsed.success) {
         throw templateBackupNotRestorableException()
       }
-      await tx
-        .update(aiAgentModel)
-        .set(toColumns(parsed.data))
-        .where(eq(aiAgentModel.id, resourceId))
+      await writeAgentContent(tx, resourceId, parsed.data)
     },
 
     // `isDefault` is the installer's; `actionPrompt`/`actionRules` are not
@@ -251,24 +303,18 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
           ctx,
           entry,
         )
-        await ctx.tx
-          .update(aiAgentModel)
-          .set(
-            toColumns({
-              name: entry.name,
-              prompt: entry.prompt,
-              messages: entry.messages,
-              models,
-              temperature: entry.temperature,
-              maxOutputTokens: entry.maxOutputTokens,
-              tools,
-              isRichResponse: entry.isRichResponse,
-              webSearchAuthorizedDomains:
-                entry.webSearchAuthorizedDomains ?? [],
-              salesProfile,
-            }),
-          )
-          .where(eq(aiAgentModel.id, resourceId))
+        await writeAgentContent(ctx.tx, resourceId, {
+          name: entry.name,
+          prompt: entry.prompt,
+          messages: entry.messages,
+          models,
+          temperature: entry.temperature,
+          maxOutputTokens: entry.maxOutputTokens,
+          tools,
+          isRichResponse: entry.isRichResponse,
+          webSearchAuthorizedDomains: entry.webSearchAuthorizedDomains ?? [],
+          salesProfile,
+        })
       }
     },
   } satisfies ResourceSyncHandler<TemplateAIAgentEntry>,
