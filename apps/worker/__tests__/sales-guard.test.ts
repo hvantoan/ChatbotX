@@ -836,7 +836,9 @@ describe("extractRichResponseTexts", () => {
       ],
     })
 
-    expect(text).toBe("20% Off for new customers\nUp to 20% off selected items")
+    expect(text).toBe(
+      "20% Off for new customers\nUp to 20% off selected items\nUp to 100%\noff-grid operation",
+    )
     expect(extractMoneyAndPercentTokens(text).percents).toEqual([20, 20])
   })
 
