@@ -244,7 +244,7 @@ The load balancer must forward `/mcp/*` to the MCP server **without stripping th
 
 Claude spawns the server process on demand. No server needs to be running. The workspace token is supplied via `CHATBOTX_API_KEY`.
 
-The package is published to npm as [`inboxos-mcp`](https://www.npmjs.com/package/inboxos-mcp) — `npx -y inboxos-mcp` fetches and runs it with no local checkout or build required. Use a local `node /path/to/dist/index.mjs` instead when developing against this repo.
+The package is published to npm as [`@hvantoan/inboxos-mcp`](https://www.npmjs.com/package/@hvantoan/inboxos-mcp) — `npx -y @hvantoan/inboxos-mcp` fetches and runs it with no local checkout or build required. Use a local `node /path/to/dist/index.mjs` instead when developing against this repo.
 
 **Claude Code CLI:**
 ```bash
@@ -253,7 +253,7 @@ claude mcp add chatbotx \
   -e CHATBOTX_API_URL=https://your-instance.com/api \
   -e CHATBOTX_MCP_TRANSPORT=stdio \
   -s user \
-  -- npx -y inboxos-mcp
+  -- npx -y @hvantoan/inboxos-mcp
 ```
 
 **Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
@@ -262,7 +262,7 @@ claude mcp add chatbotx \
   "mcpServers": {
     "chatbotx": {
       "command": "npx",
-      "args": ["-y", "inboxos-mcp"],
+      "args": ["-y", "@hvantoan/inboxos-mcp"],
       "env": {
         "CHATBOTX_API_KEY": "<your-token>",
         "CHATBOTX_API_URL": "https://your-instance.com/api",
@@ -389,7 +389,7 @@ Scores every prompt in the eval corpus (`evals/cases.ts`) through the real `sear
    ```
 2. Run the gate against it:
    ```bash
-   pnpm --filter inboxos-mcp eval:search --spec /absolute/path/public-spec.json [--min-top1 0.65] [--min-top3 0.85] [--verbose]
+   pnpm --filter @hvantoan/inboxos-mcp eval:search --spec /absolute/path/public-spec.json [--min-top1 0.65] [--min-top3 0.85] [--verbose]
    ```
    Prints per-locale top-1/top-3/empty-result rates, but enforces the configured thresholds only for English. `--verbose` also lists every prompt that missed the top 3, with the ranker's actual top matches, for targeted ranking or description fixes.
 
@@ -398,7 +398,7 @@ Scores every prompt in the eval corpus (`evals/cases.ts`) through the real `sear
 Spins up a synthetic HTTP sandbox implementing the generated spec's operations, connects a real MCP client, and drives `gpt-4o-mini`/`gpt-4.1-mini` (or any `@ai-sdk/openai`-supported model) through the selected corpus. `business` contains 240 prompts (48 families × 5 locales: `vi`, `vi-unaccented`, colloquial, `en`, mixed); `multilingual` is the 80-case smoke matrix (16 families × `en`, `vi-natural`, `es`, `fr`, `zh`). Requires `OPENAI_API_KEY`.
 
 ```bash
-pnpm --filter inboxos-mcp eval:business \
+pnpm --filter @hvantoan/inboxos-mcp eval:business \
   --spec /absolute/path/public-spec.json \
   --out /absolute/path/out/baseline \
   --phase smoke \
@@ -417,7 +417,7 @@ pnpm --filter inboxos-mcp eval:business \
 - The smoke sandbox includes contact, conversation reply, flow, broadcast, appointment, and analytics fixtures. No public appointment-availability operation exists, so unavailable-slot coverage exercises `appointments_book` returning 422.
 - Compare two runs (regressions fail the command):
   ```bash
-  pnpm --filter inboxos-mcp eval:business --compare /absolute/path/out/baseline /absolute/path/out/candidate
+  pnpm --filter @hvantoan/inboxos-mcp eval:business --compare /absolute/path/out/baseline /absolute/path/out/candidate
   ```
   Reports any case that regressed from pass to non-pass, plus the average `searchRank` and total `callToolErrorCount` delta between the two runs.
 

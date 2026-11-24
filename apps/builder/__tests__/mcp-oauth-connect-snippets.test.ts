@@ -31,7 +31,7 @@ describe("buildMcpConnectSnippets", () => {
     })
     expect(snippets.chatgpt).toBe(snippets.sseUrl)
     expect(snippets.stdio).toBe(
-      "CHATBOTX_API_URL=https://app.chatbotx.io/api CHATBOTX_API_KEY=<workspace-token> npx -y inboxos-mcp",
+      "CHATBOTX_API_URL=https://app.chatbotx.io/api CHATBOTX_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp",
     )
   })
 })

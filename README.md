@@ -210,8 +210,8 @@ Useful package-level commands:
 pnpm --filter builder dev
 pnpm --filter worker dev
 pnpm --filter realtime dev
-pnpm --filter inboxos dev:cli
-pnpm --filter inboxos-mcp dev:mcp
+pnpm --filter @hvantoan/inboxos dev:cli
+pnpm --filter @hvantoan/inboxos-mcp dev:mcp
 pnpm --filter @chatbotx.io/database db:studio
 ```
 

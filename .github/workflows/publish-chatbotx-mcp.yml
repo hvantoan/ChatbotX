@@ -1,12 +1,12 @@
-name: Publish inboxos-mcp to npm
+name: Publish @hvantoan/inboxos-mcp to npm
 
-# Publishes apps/mcp-server to npmjs.com as `inboxos-mcp`.
+# Publishes apps/mcp-server to npmjs.com as `@hvantoan/inboxos-mcp`.
 # The agent-distribution repo references this package from Cursor/Grok/Gemini
-# MCP manifests via `npx -y inboxos-mcp`, so this package must exist
+# MCP manifests via `npx -y @hvantoan/inboxos-mcp`, so this package must exist
 # before submitting those marketplaces.
 #
 # Published in lockstep with the product release tag, exactly like
-# publish-cli.yml: tag `v1.9.0` publishes `inboxos-mcp@1.9.0`. A version
+# publish-cli.yml: tag `v1.9.0` publishes `@hvantoan/inboxos-mcp@1.9.0`. A version
 # already on npm is skipped, so only a genuinely new release version is
 # ever uploaded.
 #
@@ -87,7 +87,7 @@ jobs:
           fi
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "dist_tag=${DIST_TAG}" >> "$GITHUB_OUTPUT"
-          echo "Publishing inboxos-mcp@${VERSION} under dist-tag ${DIST_TAG}"
+          echo "Publishing @hvantoan/inboxos-mcp@${VERSION} under dist-tag ${DIST_TAG}"
 
       # Re-running a tag's workflow must not fail on E403 "cannot publish over
       # an existing version". Only guarded for tag pushes: a manual dispatch is
@@ -98,8 +98,8 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          if npm view "inboxos-mcp@${VERSION}" version >/dev/null 2>&1; then
-            echo "inboxos-mcp@${VERSION} is already on npm — skipping publish."
+          if npm view "@hvantoan/inboxos-mcp@${VERSION}" version >/dev/null 2>&1; then
+            echo "@hvantoan/inboxos-mcp@${VERSION} is already on npm — skipping publish."
             echo "should_publish=false" >> "$GITHUB_OUTPUT"
           else
             echo "should_publish=true" >> "$GITHUB_OUTPUT"
@@ -211,7 +211,7 @@ jobs:
           fi
           gh api repos/ChatbotXIO/chatbotx-agent/dispatches \
             -f event_type=upstream-published \
-            -f "client_payload[package]=inboxos-mcp" \
+            -f "client_payload[package]=@hvantoan/inboxos-mcp" \
             -f "client_payload[version]=${VERSION}"
 
       - name: Summarize
@@ -224,17 +224,17 @@ jobs:
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
         run: |
           if [[ "${SHOULD_PUBLISH}" == "false" ]]; then
-            echo "inboxos-mcp@${VERSION} already published — skipped." \
+            echo "@hvantoan/inboxos-mcp@${VERSION} already published — skipped." \
               >> "$GITHUB_STEP_SUMMARY"
           elif [[ "${PUBLISH_OUTCOME}" == "failure" ]]; then
-            echo "Publish failed for inboxos-mcp@${VERSION} —" \
+            echo "Publish failed for @hvantoan/inboxos-mcp@${VERSION} —" \
               "nothing was confirmed uploaded; check the" \
               "\"Publish to npm\" step log." >> "$GITHUB_STEP_SUMMARY"
           elif [[ "${DRY_RUN}" == "true" ]]; then
-            echo "Dry run for inboxos-mcp@${VERSION} (${DIST_TAG})" \
+            echo "Dry run for @hvantoan/inboxos-mcp@${VERSION} (${DIST_TAG})" \
               "— nothing uploaded." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "Published" \
-              "https://www.npmjs.com/package/inboxos-mcp/v/${VERSION}" \
+              "https://www.npmjs.com/package/@hvantoan/inboxos-mcp/v/${VERSION}" \
               "(dist-tag \`${DIST_TAG}\`)" >> "$GITHUB_STEP_SUMMARY"
           fi

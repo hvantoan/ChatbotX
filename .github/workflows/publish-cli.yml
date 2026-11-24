@@ -1,7 +1,7 @@
 name: Publish CLI to npm
 
-# Publishes apps/cli to npmjs.com as `inboxos`, in lockstep with the product
-# release tag: tag `v1.9.0` publishes `inboxos@1.9.0`.
+# Publishes apps/cli to npmjs.com as `@hvantoan/inboxos`, in lockstep with the product
+# release tag: tag `v1.9.0` publishes `@hvantoan/inboxos@1.9.0`.
 #
 # The version is NOT stored in the repo. `apps/cli/package.json` holds the
 # placeholder `0.0.0-dev` and this workflow stamps the tag's version into it
@@ -20,7 +20,7 @@ name: Publish CLI to npm
 # writes an .npmrc that reads NODE_AUTH_TOKEN; the publish step exports it.
 #
 # One-time setup:
-#   1. Create an npm token that can publish `inboxos` (Settings → Access
+#   1. Create an npm token that can publish `@hvantoan/inboxos` (Settings → Access
 #      Tokens on npmjs.com). If the npm account enforces 2FA on writes, the
 #      token must be permitted to bypass it or every publish fails EOTP.
 #   2. Add it as a repository secret named NPM_TOKEN
@@ -100,7 +100,7 @@ jobs:
           fi
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "dist_tag=${DIST_TAG}" >> "$GITHUB_OUTPUT"
-          echo "Publishing inboxos@${VERSION} under dist-tag ${DIST_TAG}"
+          echo "Publishing @hvantoan/inboxos@${VERSION} under dist-tag ${DIST_TAG}"
 
       # Re-running a tag's workflow must not fail on E403 "cannot publish over
       # an existing version". Only guarded for tag pushes: a manual dispatch is
@@ -111,8 +111,8 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          if npm view "inboxos@${VERSION}" version >/dev/null 2>&1; then
-            echo "inboxos@${VERSION} is already on npm — skipping publish."
+          if npm view "@hvantoan/inboxos@${VERSION}" version >/dev/null 2>&1; then
+            echo "@hvantoan/inboxos@${VERSION} is already on npm — skipping publish."
             echo "should_publish=false" >> "$GITHUB_OUTPUT"
           else
             echo "should_publish=true" >> "$GITHUB_OUTPUT"
@@ -237,7 +237,7 @@ jobs:
           fi
           gh api repos/ChatbotXIO/chatbotx-agent/dispatches \
             -f event_type=upstream-published \
-            -f "client_payload[package]=inboxos" \
+            -f "client_payload[package]=@hvantoan/inboxos" \
             -f "client_payload[version]=${VERSION}"
 
       - name: Summarize
@@ -250,17 +250,17 @@ jobs:
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
         run: |
           if [[ "${SHOULD_PUBLISH}" == "false" ]]; then
-            echo "inboxos@${VERSION} already published — skipped." \
+            echo "@hvantoan/inboxos@${VERSION} already published — skipped." \
               >> "$GITHUB_STEP_SUMMARY"
           elif [[ "${PUBLISH_OUTCOME}" == "failure" ]]; then
-            echo "Publish failed for inboxos@${VERSION} —" \
+            echo "Publish failed for @hvantoan/inboxos@${VERSION} —" \
               "nothing was confirmed uploaded; check the" \
               "\"Publish to npm\" step log." >> "$GITHUB_STEP_SUMMARY"
           elif [[ "${DRY_RUN}" == "true" ]]; then
-            echo "Dry run for inboxos@${VERSION} (${DIST_TAG})" \
+            echo "Dry run for @hvantoan/inboxos@${VERSION} (${DIST_TAG})" \
               "— nothing uploaded." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "Published" \
-              "https://www.npmjs.com/package/inboxos/v/${VERSION}" \
+              "https://www.npmjs.com/package/@hvantoan/inboxos/v/${VERSION}" \
               "(dist-tag \`${DIST_TAG}\`)" >> "$GITHUB_STEP_SUMMARY"
           fi

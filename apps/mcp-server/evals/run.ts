@@ -107,7 +107,7 @@ type Episode = {
 type Manifest = EvalManifest
 
 const usage =
-  "Usage:\n  pnpm --filter inboxos-mcp eval:business --spec <absolute-json-path> --out <absolute-directory> --phase baseline|candidate|smoke --seed 20260923 --models gpt-4o-mini,gpt-4.1-mini [--repeat N] [--cases family-a,family-b] [--server-source <absolute-directory>] [--exposure default|meta-only|both] [--corpus business|multilingual]\n  pnpm --filter inboxos-mcp eval:business --compare <baseline-directory> <candidate-directory>"
+  "Usage:\n  pnpm --filter @hvantoan/inboxos-mcp eval:business --spec <absolute-json-path> --out <absolute-directory> --phase baseline|candidate|smoke --seed 20260923 --models gpt-4o-mini,gpt-4.1-mini [--repeat N] [--cases family-a,family-b] [--server-source <absolute-directory>] [--exposure default|meta-only|both] [--corpus business|multilingual]\n  pnpm --filter @hvantoan/inboxos-mcp eval:business --compare <baseline-directory> <candidate-directory>"
 
 const parseArgs = (args: string[]): CliOptions => {
   let compare: CompareOptions | undefined

@@ -1,5 +1,5 @@
 {
-  "name": "inboxos-mcp",
+  "name": "@hvantoan/inboxos-mcp",
   "version": "0.0.0-dev",
   "description": "MCP Server for ChatbotX — gives AI agents access to your ChatbotX workspace via the Model Context Protocol",
   "repository": {
@@ -40,7 +40,7 @@
     "build": "tsdown && node scripts/verify-packaged-guides.mjs",
     "check-types": "tsc --noEmit",
     "dev:mcp": "dotenv -e ../../.env -e .env -- tsx --watch src/index.ts",
-    "prepublishOnly": "node --input-type=commonjs -e \"const v=require('./package.json').version; if (v === '0.0.0-dev') { console.error('inboxos-mcp: version is the 0.0.0-dev placeholder — publish via .github/workflows/publish-chatbotx-mcp.yml'); process.exit(1) }\"",
+    "prepublishOnly": "node --input-type=commonjs -e \"const v=require('./package.json').version; if (v === '0.0.0-dev') { console.error('@hvantoan/inboxos-mcp: version is the 0.0.0-dev placeholder — publish via .github/workflows/publish-chatbotx-mcp.yml'); process.exit(1) }\"",
     "start": "node dist/index.mjs",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",

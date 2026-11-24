@@ -41,6 +41,6 @@ export const buildMcpConnectSnippets = ({
     claudeDesktop: httpConfig,
     cursor: httpConfig,
     chatgpt: sseUrl,
-    stdio: `CHATBOTX_API_URL=${builderUrl}/api CHATBOTX_API_KEY=<workspace-token> npx -y inboxos-mcp`,
+    stdio: `CHATBOTX_API_URL=${builderUrl}/api CHATBOTX_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp`,
   }
 }
