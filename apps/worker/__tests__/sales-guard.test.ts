@@ -177,6 +177,12 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(extractMoneyAndPercentTokens("20%\u00A0off today").percents).toEqual(
       [20],
     )
+    expect(
+      extractMoneyAndPercentTokens("20% off-peak discount").percents,
+    ).toEqual([20])
+    expect(
+      extractMoneyAndPercentTokens("20% off-grid operation").percents,
+    ).toEqual([])
   })
 
   test("keeps business names like 'đây là Botanic Spa' in handoff messages", () => {
@@ -833,6 +839,11 @@ describe("extractRichResponseTexts", () => {
                     subtitle: "off-grid operation",
                     buttons: [],
                   },
+                  {
+                    title: "20%",
+                    subtitle: "off-peak discount",
+                    buttons: [],
+                  },
                 ],
               },
             },
@@ -842,9 +853,9 @@ describe("extractRichResponseTexts", () => {
     })
 
     expect(text).toBe(
-      "20% Off for new customers\nUp to 20% off selected items\nUp to 100%\noff-grid operation",
+      "20% Off for new customers\nUp to 20% off selected items\nUp to 100%\noff-grid operation\n20% off-peak discount",
     )
-    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20, 20])
+    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20, 20, 20])
   })
 
   test("keeps title/subtitle boundaries so warranty months stay out of prices", () => {
