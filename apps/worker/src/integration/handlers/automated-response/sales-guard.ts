@@ -145,7 +145,7 @@ export type ExtractedMoneyTokens = {
 const PERCENT_RE = /(?:^|[^\w/])(\d+(?:[.,]\d+)?)\s*%/gi
 
 const DISCOUNT_KEYWORD_BEFORE_PERCENT_RE =
-  /(?:giảm|giam|off|sale|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|ưu\s*đãi|uu\s*dai|voucher|coupon|tiết\s*kiệm|tiet\s*kiem|hoàn\s*tiền|hoan\s*tien|trợ\s*giá|tro\s*gia)\s*(?:giá|gia)?\s*(?:lên\s*tới|len\s*toi|đến|den|tới|toi|thêm|them|sâu|sau|mạnh|manh|ngay|nhanh)?\s*[-~:]?\s*$/iu
+  /(?:giảm|giam|off|sale|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|ưu\s*đãi|uu\s*dai|voucher|coupon|tiết\s*kiệm|tiet\s*kiem|hoàn\s*tiền|hoan\s*tien|trợ\s*giá|tro\s*gia)\s*(?:giá|gia)?\s*(?:lên\s*tới|len\s*toi|lên\s*đến|len\s*den|đến|den|tới|toi|thêm|them|sâu|sau|mạnh|manh|ngay|nhanh)?\s*[-~:]?\s*$/iu
 const PRICE_BEFORE_PERCENT_RE =
   /(?:\d[\d.,]*\s*(?:k|tr|triệu|trieu|ngàn|ngan|nghìn|nghin|đ|₫|vnd|vnđ|đồng|dong|\$|usd)?)\s*[(\-[~]\s*$/iu
 const DISCOUNT_KEYWORD_AFTER_PERCENT_RE = /^\s*(?:off|discount)\b/iu
@@ -205,7 +205,9 @@ export function extractMoneyAndPercentTokens(
   text = text.replace(
     PERCENT_RE,
     (full, numStr: string, offset: number, source: string) => {
-      const before = source.slice(Math.max(0, offset - 60), offset)
+      // offset sits on the separator PERCENT_RE consumed before the digits,
+      // so include it: `2.500.000đ (50%)` keeps its `(` in `before`.
+      const before = source.slice(Math.max(0, offset - 60), offset + 1)
       const after = source.slice(
         offset + full.length,
         offset + full.length + 12,

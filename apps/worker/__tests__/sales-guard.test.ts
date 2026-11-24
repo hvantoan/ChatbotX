@@ -157,6 +157,15 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(res.unmatchedValues).toEqual([])
   })
 
+  test("extracts discounts quoted as price(percent) or 'lên đến N%'", () => {
+    expect(
+      extractMoneyAndPercentTokens("Giá 2.500.000đ (50%)").percents,
+    ).toEqual([50])
+    expect(
+      extractMoneyAndPercentTokens("giảm giá lên đến 50%").percents,
+    ).toEqual([50])
+  })
+
   test("blocks an invented price or percentage with reason invented_price", () => {
     const resPrice = checkTier1Prices({
       replyText: "Dạ khóa học bên em chỉ có 990.000đ thôi ạ!",
