@@ -74,7 +74,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # Tạo trước khi `up` — xem README §2 (dozzle generate ... > dozzle/users.yml)
-      - ./dozzle/users.yml:/data/users.yml:ro
+      - type: bind
+        source: ./dozzle/users.yml
+        target: /data/users.yml
+        read_only: true
+        bind:
+          create_host_path: false
     networks: [obs]
     deploy:
       resources:
