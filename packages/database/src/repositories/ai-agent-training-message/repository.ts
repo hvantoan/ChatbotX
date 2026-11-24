@@ -33,21 +33,25 @@ export const aiAgentTrainingMessageRepository = {
     if (input.messages.length === 0) {
       return []
     }
-    return await tx
+    const rows = input.messages.map((message) => ({
+      id: createId(),
+      workspaceId: input.workspaceId,
+      aiAgentId: input.aiAgentId,
+      role: message.role,
+      content: message.content,
+      proposal: message.proposal ?? null,
+      appliedVersion: message.appliedVersion ?? null,
+      createdById: message.createdById ?? null,
+    }))
+    const inserted = await tx
       .insert(aiAgentTrainingMessageModel)
-      .values(
-        input.messages.map((message) => ({
-          id: createId(),
-          workspaceId: input.workspaceId,
-          aiAgentId: input.aiAgentId,
-          role: message.role,
-          content: message.content,
-          proposal: message.proposal ?? null,
-          appliedVersion: message.appliedVersion ?? null,
-          createdById: message.createdById ?? null,
-        })),
-      )
+      .values(rows)
       .returning()
+    const byId = new Map(inserted.map((row) => [row.id, row]))
+    return rows.flatMap((row) => {
+      const created = byId.get(row.id)
+      return created ? [created] : []
+    })
   },
 
   async list(
