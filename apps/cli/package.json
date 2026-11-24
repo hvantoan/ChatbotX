@@ -17,6 +17,9 @@
   "bin": {
     "chatbotx": "./dist/index.cjs"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsdown",
     "check-types": "tsc --noEmit",
