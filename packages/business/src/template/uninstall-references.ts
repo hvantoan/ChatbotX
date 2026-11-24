@@ -315,6 +315,8 @@ export const OWN_CHILD_TABLES: readonly { table: string; column: string }[] = [
   { table: "FlowRun", column: "flowId" },
   { table: "FlowVersion", column: "flowId" },
   { table: "AIEmbedding", column: "aiFileId" },
+  { table: "AIAgentSalesProfileVersion", column: "aiAgentId" },
+  { table: "AIAgentTrainingMessage", column: "aiAgentId" },
   // Calendars and questionnaires are soft-deleted, so these rows survive.
   { table: "Appointment", column: "calendarId" },
   { table: "AppointmentCalendarAvailability", column: "calendarId" },
