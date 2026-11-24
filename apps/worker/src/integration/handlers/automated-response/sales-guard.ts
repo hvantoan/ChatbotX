@@ -151,12 +151,12 @@ const PRICE_BEFORE_PERCENT_RE =
 // Same-line horizontal whitespace only (incl. NBSP) so a discount label on
 // the next line does not turn a product percentage like `Cotton 100%` into
 // a discount claim, while `20% off` with U+00A0 still parses.
-// `off` must not be hyphen-joined to another word unless a real discount
-// label follows: `off-grid sale` stays a product attribute while
-// `off-peak discount` and `off-hours discount` are discount claims
-// (`sale` alone is too weak — it is often a noun for the product).
+// `off` must not be hyphen-joined to another word except recognized
+// promotion modifiers: `off-grid` is part of a product name even when
+// `discount` or `sale` follows, while `off-peak`/`off-season`/`off-hours`
+// before a discount label is a discount claim.
 const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
-  /^[^\S\n]*(?:off(?!-\w)\b|off-\w+[^\S\n]+(?:discount|giảm|giam)\b|off-(?:peak|season|hours)[^\S\n]+sale\b|discount|giảm|giam)\b/iu
+  /^[^\S\n]*(?:off(?!-\w)\b|off-(?:peak|season|hours|days|weekends?|weekdays?)[^\S\n]+(?:discount|giảm|giam|sale)\b|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
 const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
 // Titles that are just an offer qualifier plus a percentage: `20%`,
