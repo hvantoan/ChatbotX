@@ -457,7 +457,7 @@ export const JSON_CONTAINERS: readonly JsonContainer[] = [
     inboundKind: "aiAgent",
     table: "AIAgent",
     inboundIdColumn: "id",
-    jsonColumns: ["tools", "actionRules", "messages"],
+    jsonColumns: ["tools", "actionRules", "messages", "salesProfile"],
     workspaceColumn: WS,
   },
   {
