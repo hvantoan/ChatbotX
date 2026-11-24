@@ -1,0 +1,75 @@
+# Trần tài nguyên cho stack ChatbotX trên host 4 vCPU / 4 GB.
+# Đây là CAP, không phải reservation: container chỉ dùng tới mức này khi cần,
+# nhưng một container lỗi không thể ăn hết máy.
+#
+# Dùng kèm compose prod:
+#   docker compose -f infas/docker-compose.prod.yml \
+#                  -f infas/docker-compose.limits.yml up -d
+#
+# Tổng cap: 1G + 1G + 256M + 384M + 192M + 768M + 192M + 128M = 3.95 GB
+# (chưa tính observability ~320M cap, thực tế ~35M).
+
+services:
+  builder:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.5"
+          pids: 512
+
+  worker:
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.5"
+          pids: 512
+
+  realtime:
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+          pids: 128
+
+  javascript-executor:
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+          cpus: "1.0"
+          pids: 128
+
+  zalo-personal-gateway:
+    deploy:
+      resources:
+        limits:
+          memory: 192M
+          cpus: "0.5"
+          pids: 128
+
+  postgres:
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: "1.0"
+          pids: 256
+
+  redis:
+    deploy:
+      resources:
+        limits:
+          memory: 192M
+          cpus: "0.5"
+          pids: 128
+
+  filesystem:
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.5"
+          pids: 128
