@@ -25,9 +25,9 @@ cp .env.example .env       # điền TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 # nếu stack ChatbotX không tên "chatbotx-prod" thì sửa CHATBOTX_NETWORK
 
 # Dozzle chạy auth `simple` và bắt buộc file users.yml — tạo trước khi up.
-# Nhập mật khẩu qua `read -s` để không lưu vào shell history:
+# Nhập mật khẩu qua `read` (không lưu shell history; IFS=/-r giữ nguyên khoảng trắng, backslash):
 mkdir -p dozzle
-read -s -p 'Dozzle admin password: ' DOZZLE_ADMIN_PW
+IFS= read -rs -p 'Dozzle admin password: ' DOZZLE_ADMIN_PW
 docker run --rm -e DOZZLE_ADMIN_PW amir20/dozzle:v11.5.0 generate admin --password "$DOZZLE_ADMIN_PW" > dozzle/users.yml
 unset DOZZLE_ADMIN_PW
 
