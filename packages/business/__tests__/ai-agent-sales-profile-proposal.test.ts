@@ -156,7 +156,7 @@ beforeEach(() => {
         id: "3002",
         name: "Khoá 2 - Nâng cao",
         price: 2_990_000,
-        discount: 200_000,
+        discount: 10,
         currency: "VND",
         status: "active",
       },

@@ -12,6 +12,7 @@ import type {
   ConversationModel,
 } from "@chatbotx.io/database/types"
 import { emit } from "@chatbotx.io/event-bus"
+import { percentOf } from "@chatbotx.io/utils/money"
 import { generateText, type LanguageModel, type ModelMessage, Output } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
@@ -77,18 +78,19 @@ export function buildAllowedPriceAndPercentSets(
   for (const product of products) {
     const currency = product.currency || "VND"
     const price = Number(product.price)
-    const discount = Number(product.discount ?? 0)
+    const discountPercent = Number(product.discount ?? 0)
     addValueAndUnitVariants(priceSet, price, currency)
 
-    if (discount > 0) {
-      addValueAndUnitVariants(priceSet, discount, currency)
-      addValueAndUnitVariants(priceSet, Math.max(0, price - discount), currency)
-      if (price > 0) {
-        const pct = (discount / price) * 100
-        percentSet.add(pct)
-        percentSet.add(Math.round(pct))
-        percentSet.add(Math.round(pct * 100) / 100)
-      }
+    if (discountPercent > 0) {
+      const discountAmount = percentOf(price, discountPercent, currency)
+      addValueAndUnitVariants(priceSet, discountAmount, currency)
+      addValueAndUnitVariants(
+        priceSet,
+        Math.max(0, price - discountAmount),
+        currency,
+      )
+      percentSet.add(discountPercent)
+      percentSet.add(Math.round(discountPercent))
     }
 
     for (const variant of product.variants ?? []) {
@@ -97,18 +99,13 @@ export function buildAllowedPriceAndPercentSets(
       }
       const vPrice = Number(variant.price)
       addValueAndUnitVariants(priceSet, vPrice, currency)
-      if (discount > 0) {
+      if (discountPercent > 0) {
+        const vDiscountAmount = percentOf(vPrice, discountPercent, currency)
         addValueAndUnitVariants(
           priceSet,
-          Math.max(0, vPrice - discount),
+          Math.max(0, vPrice - vDiscountAmount),
           currency,
         )
-        if (vPrice > 0) {
-          const vPct = (discount / vPrice) * 100
-          percentSet.add(vPct)
-          percentSet.add(Math.round(vPct))
-          percentSet.add(Math.round(vPct * 100) / 100)
-        }
       }
     }
   }
@@ -147,13 +144,16 @@ const PERCENT_RE = /(?:^|[^\w/])(\d+(?:[.,]\d+)?)\s*%/gi
 const PERCENT_PRICING_CONTEXT_RE =
   /(?:giảm|giam|ưu\s*đãi|uu\s*dai|sale|off|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|km|voucher|coupon|mã|giá|gia|học\s*phí|hoc\s*phi|hoàn|trả\s*góp|trả\s*trước|cọc|tiết\s*kiệm|tức|tương\s*đương|đồng|vnd|vnđ|\$|usd|\d+[.,]\d{3}|\d+k\b|\d+tr\b)/iu
 
-// E.g. "1tr99", "1tr5", "2 triệu 5"
+// E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
+// end of one message chunk cannot merge with a label on the next chunk
+// (e.g. "Giá 2 triệu" + "24 tháng" must not parse as 2_240_000).
 const VND_TRIEU_COMPOUND_RE =
-  /(?:^|[^\w/])(\d+)\s*(?:tr|triệu|trieu)\s*(\d{1,3})\b/gi
+  /(?:^|[^\w/])(\d+)[ \t]*(?:tr|triệu|trieu)[ \t]*(\d{1,3})\b/gi
 
-// E.g. "1.99tr", "1,5 triệu", "2tr"
+// E.g. "1.99tr", "1,5 triệu", "2tr". The lookahead also stays same-line so a
+// digit on the next chunk does not suppress the simple match either.
 const VND_TRIEU_SIMPLE_RE =
-  /(?:^|[^\w/])(\d+(?:[.,]\d+)?)\s*(?:tr|triệu|trieu)\b(?!\s*\d)/gi
+  /(?:^|[^\w/])(\d+(?:[.,]\d+)?)[ \t]*(?:tr|triệu|trieu)\b(?![ \t]*\d)/gi
 
 // E.g. "500k", "1990k", "250 ngàn", "250 nghìn", "250k đ"
 const VND_THOUSAND_RE =
@@ -402,10 +402,13 @@ export function buildSalesFallbackReply(input: {
     stripBotDisclosureWords(rawObjective) || "sản phẩm phù hợp"
 
   if (topProduct) {
-    const finalPrice = Math.max(
-      0,
-      topProduct.price - (topProduct.discount ?? 0),
+    const currency = topProduct.currency || "VND"
+    const discountAmount = percentOf(
+      topProduct.price,
+      topProduct.discount ?? 0,
+      currency,
     )
+    const finalPrice = Math.max(0, topProduct.price - discountAmount)
     const productName =
       stripBotDisclosureWords(topProduct.name) || topProduct.name
     return `Dạ em xin phép quay lại nội dung tư vấn ${objectiveText} ạ. Hiện bên em đang có ${productName} với mức giá ${finalPrice} ${topProduct.currency}, em hỗ trợ thông tin chi tiết cho mình nhé ạ!`

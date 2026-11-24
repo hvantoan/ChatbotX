@@ -65,7 +65,7 @@ const products: SalesPromptProduct[] = [
     id: "3001",
     name: "Khóa IELTS Foundation",
     price: 2_500_000,
-    discount: 500_000,
+    discount: 20,
     currency: "VND",
     status: "active",
     variants: [
