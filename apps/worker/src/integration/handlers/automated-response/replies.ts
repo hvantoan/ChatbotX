@@ -21,13 +21,25 @@ import {
   normalizeAuthorizedWebSearchDomains,
   normalizeMcpContent,
 } from "@chatbotx.io/ai/server"
+import {
+  compileSalesPrompt,
+  productService,
+  resolveConversationSalesState,
+  type SalesPromptProduct,
+} from "@chatbotx.io/business"
 import type {
   AIAgentActionRule,
   AIAgentModelConfig,
   AIAgentProviderModels,
+  AIAgentSalesProfile,
+  ConversationAttributes,
   DefaultReplyFrequency,
 } from "@chatbotx.io/database/partials"
-import { aiAgentActionRulesSchema } from "@chatbotx.io/database/partials"
+import {
+  aiAgentActionRulesSchema,
+  aiAgentSalesProfileSchema,
+  DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
+} from "@chatbotx.io/database/partials"
 import type {
   AIAgentModel,
   ContactInboxModel,
@@ -69,6 +81,7 @@ import { logProviderAttempt } from "../shared/provider-attempt-logger"
 import { createMcpTokenResolver } from "../shared/resolve-mcp-token"
 import { triggerDefaultReplyFlow } from "./default-reply"
 import { handleRichAIReply } from "./rich-reply"
+import { evaluateSalesGuard } from "./sales-guard"
 import { createDocumentReaderExecutor } from "./system-tools/document-reader"
 import { createImageReaderExecutor } from "./system-tools/image-reader"
 import { createUrlReaderExecutor } from "./system-tools/url-reader"
@@ -332,6 +345,8 @@ export async function generateAIReplyText(
 function createReplyToolset(options: {
   abortSignal: AbortSignal
   directSendTracker: { sent: boolean; sentText: string }
+  handoffToolTracker?: { executed: boolean }
+  isSalesProfileActive?: boolean
   model: LanguageModel
   modelId: string
   props: ReplyByAIProps
@@ -383,17 +398,23 @@ function createReplyToolset(options: {
       workspaceId: conversation.workspaceId,
       conversationId: conversation.id,
       contactId: conversation.contactId,
-      sendMessage: async (text: string) => {
-        options.directSendTracker.sent = true
-        options.directSendTracker.sentText = text
-        if (text) {
-          await sendMessageAndWait(
-            conversation.id,
-            text,
-            consumeTrackingContext(options.trackingContextRef),
-          )
-        }
-      },
+      // When a sales profile is active, omit direct `sendMessage` so tool outputs
+      // return to the model and pass through `evaluateSalesGuard` before sending.
+      ...(options.isSalesProfileActive
+        ? {}
+        : {
+            sendMessage: async (text: string) => {
+              options.directSendTracker.sent = true
+              options.directSendTracker.sentText = text
+              if (text) {
+                await sendMessageAndWait(
+                  conversation.id,
+                  text,
+                  consumeTrackingContext(options.trackingContextRef),
+                )
+              }
+            },
+          }),
       triggerFlow: async (flowId: string) => {
         await integrationQueue.add(IntegrationJobAction.sendFlow, {
           type: IntegrationJobAction.sendFlow,
@@ -429,6 +450,19 @@ function createReplyToolset(options: {
             requestedBy: args.requestedBy,
           },
         })
+        if (options.handoffToolTracker) {
+          options.handoffToolTracker.executed = true
+        }
+
+        const parsedProfile = aiAgent.salesProfile
+          ? aiAgentSalesProfileSchema.safeParse(aiAgent.salesProfile)
+          : null
+        if (parsedProfile?.success && parsedProfile.data.enabled) {
+          const waitingMessage =
+            parsedProfile.data.handoffMessage.trim() ||
+            DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE
+          return `Handoff executed. Reply to the customer with the exact waiting message: ${JSON.stringify(waitingMessage)}. Do not mention human agent, bot, or AI.`
+        }
 
         return "I'm connecting you to a human agent who can better assist you. Please stay on the line."
       },
@@ -744,6 +778,14 @@ async function runAIReply(
       current: successTrackingContext,
     }
     const directSendTracker = { sent: false, sentText: "" }
+    const handoffToolTracker = { executed: false }
+    const parsedSalesProfile = aiAgent.salesProfile
+      ? aiAgentSalesProfileSchema.safeParse(aiAgent.salesProfile)
+      : null
+    const activeSalesProfile: AIAgentSalesProfile | null =
+      parsedSalesProfile?.success && parsedSalesProfile.data.enabled
+        ? parsedSalesProfile.data
+        : null
     const parsedActionRules = aiAgentActionRulesSchema.safeParse(
       aiAgent.actionRules ?? [],
     )
@@ -790,6 +832,8 @@ async function runAIReply(
     const toolset = await createReplyToolset({
       abortSignal,
       directSendTracker,
+      handoffToolTracker,
+      isSalesProfileActive: Boolean(activeSalesProfile),
       model: modelConfig.model,
       modelId: selectedModelId,
       props,
@@ -815,9 +859,42 @@ async function runAIReply(
           variables,
         })
       : ""
+
+    let salesProducts: SalesPromptProduct[] = []
+    const salesState = activeSalesProfile
+      ? resolveConversationSalesState({
+          existing: (
+            conversation.additionalAttributes as
+              | ConversationAttributes
+              | null
+              | undefined
+          )?.salesState,
+          profileVersion: aiAgent.salesProfileVersion ?? 0,
+        })
+      : null
+
+    let promptWithSales = promptBase
+    if (activeSalesProfile && salesState) {
+      const targetIds = activeSalesProfile.targetProducts.map(
+        (t) => t.productId,
+      )
+      salesProducts = await productService.findForSalesProfile({
+        workspaceId: conversation.workspaceId,
+        productIds: targetIds,
+      })
+      const compiledSalesPrompt = compileSalesPrompt({
+        profile: activeSalesProfile,
+        products: salesProducts,
+        salesState,
+      })
+      promptWithSales = promptBase
+        ? `${compiledSalesPrompt}\n\n${promptBase}`
+        : compiledSalesPrompt
+    }
+
     const completePrompt = props.summary
-      ? `Conversation Context: ${props.summary}\n\n${promptBase}`
-      : promptBase
+      ? `Conversation Context: ${props.summary}\n\n${promptWithSales}`
+      : promptWithSales
 
     const richModeEnabled =
       aiAgent.isRichResponse && Boolean(props.triggerMessageId)
@@ -851,6 +928,12 @@ async function runAIReply(
           tools,
         ),
         tools,
+        activeSalesProfile
+          ? {
+              handoffMessage: activeSalesProfile.handoffMessage,
+              handoffTriggers: activeSalesProfile.handoffTriggers,
+            }
+          : null,
       ),
       toolset.webSearchOmitReason,
     )
@@ -926,15 +1009,28 @@ async function runAIReply(
         modelId: selectedModelId,
         startTime,
         buildToolStats,
+        salesGuardContext:
+          activeSalesProfile && salesState
+            ? {
+                profile: activeSalesProfile,
+                products: salesProducts,
+                salesState,
+                model: modelConfig.model,
+                systemPrompt,
+                handoffAlreadyExecuted: handoffToolTracker.executed,
+              }
+            : undefined,
       })
       logActionToolSelection()
       return richResult
     }
 
+    const isSalesProfileActive = Boolean(activeSalesProfile && salesState)
+
     const { messageCount, fullText } = await processStreamingText(
       toStepSeparatedTextStream(result.stream),
       async (_segment, parts) => {
-        if (directSendTracker.sent) {
+        if (directSendTracker.sent || isSalesProfileActive) {
           return
         }
         for (const part of parts) {
@@ -945,7 +1041,7 @@ async function runAIReply(
           )
         }
       },
-      { sendParts: true },
+      { sendParts: !isSalesProfileActive },
     ).catch((streamError) => {
       const normalizedError = normalizeError(streamError)
       logger.error(
@@ -980,6 +1076,57 @@ async function runAIReply(
         provider,
         modelId: selectedModelId,
         usedFallbackText: false,
+        toolStats: logActionToolSelection(),
+      }
+    }
+
+    if (activeSalesProfile && salesState && fullText.trim()) {
+      const sendSalesGuardReply = async (text: string) => {
+        // evaluateSalesGuard emits the single `message:bot_received` analytics event.
+        await sendMessageAndWait(conversation.id, text)
+        await aiContextService.appendHistory({
+          conversationId: conversation.id,
+          newMessages: [
+            {
+              message: {
+                role: "assistant",
+                content: text,
+              },
+              createdAt: Date.now(),
+            },
+          ],
+        })
+      }
+
+      const guardResult = await evaluateSalesGuard({
+        conversation,
+        contactInbox: props.contactInbox,
+        aiAgent,
+        profile: activeSalesProfile,
+        products: salesProducts,
+        salesState,
+        model: modelConfig.model,
+        modelId: selectedModelId,
+        provider,
+        systemPrompt,
+        messages,
+        candidateText: fullText.trim(),
+        triggerMessageId: props.triggerMessageId,
+        channel: props.channel,
+        startTime,
+        handoffAlreadyExecuted: handoffToolTracker.executed,
+        sendHandoffMessage: sendSalesGuardReply,
+      })
+
+      if (guardResult.outcome !== "handoff" && guardResult.finalText) {
+        await sendSalesGuardReply(guardResult.finalText)
+      }
+
+      return {
+        responded: true,
+        provider,
+        modelId: selectedModelId,
+        usedFallbackText: guardResult.outcome === "fallback",
         toolStats: logActionToolSelection(),
       }
     }

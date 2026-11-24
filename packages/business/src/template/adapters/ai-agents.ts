@@ -1,6 +1,13 @@
 import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
-import type { TemplateResourceCategory } from "@chatbotx.io/database/partials"
-import { aiAgentModel } from "@chatbotx.io/database/schema"
+import {
+  type AIAgentSalesProfile,
+  aiAgentSalesProfileSchema,
+  type TemplateResourceCategory,
+} from "@chatbotx.io/database/partials"
+import {
+  aiAgentModel,
+  aiAgentSalesProfileVersionModel,
+} from "@chatbotx.io/database/schema"
 import { remapReferences } from "@chatbotx.io/flow-config"
 import { createId } from "@chatbotx.io/utils"
 import { z } from "zod"
@@ -37,6 +44,7 @@ const aiAgentContentSchema = z.object({
   tools: z.array(z.string()),
   isRichResponse: z.boolean(),
   webSearchAuthorizedDomains: z.array(z.string()),
+  salesProfile: aiAgentSalesProfileSchema.nullable().optional(),
 })
 type AIAgentContent = z.infer<typeof aiAgentContentSchema>
 type AIAgentInsert = typeof aiAgentModel.$inferInsert
@@ -51,6 +59,9 @@ const toColumns = (content: AIAgentContent) => ({
   tools: content.tools,
   isRichResponse: content.isRichResponse,
   webSearchAuthorizedDomains: content.webSearchAuthorizedDomains,
+  ...(content.salesProfile === undefined
+    ? {}
+    : { salesProfile: content.salesProfile }),
 })
 
 const readContent = async (
@@ -75,6 +86,7 @@ const readContent = async (
         tools: row.tools,
         isRichResponse: row.isRichResponse,
         webSearchAuthorizedDomains: row.webSearchAuthorizedDomains,
+        salesProfile: row.salesProfile ?? null,
       }
     : null
 }
@@ -117,6 +129,7 @@ type TemplateAIAgentEntry = {
   isDefault: boolean
   isRichResponse: boolean
   webSearchAuthorizedDomains?: string[] | null
+  salesProfile?: AIAgentSalesProfile | null
 }
 
 /**
@@ -140,7 +153,7 @@ type TemplateAIAgentEntry = {
 export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
   category: "aiAgents",
   providesKinds: ["aiAgent"],
-  consumesKinds: ["aiFunction", "aiFile", "aiMcpServer"],
+  consumesKinds: ["aiFunction", "aiFile", "aiMcpServer", "product"],
   deferredKinds: [],
   trackedKind: "aiAgent",
   folderTypes: [],
@@ -155,7 +168,8 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
     entries: readonly TemplateAIAgentEntry[],
   ): Promise<PatchTask[]> {
     for (const entry of entries) {
-      const { tools, models } = resolveAgentReferences(ctx, entry)
+      const { tools, models, salesProfile } = resolveAgentReferences(ctx, entry)
+      const initialSalesProfileVersion = salesProfile ? 1 : 0
 
       const id = createId()
       await ctx.tx.insert(aiAgentModel).values({
@@ -177,7 +191,22 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
         isRichResponse: entry.isRichResponse,
         webSearchAuthorizedDomains: entry.webSearchAuthorizedDomains ?? [],
         actionRules: [],
+        salesProfile,
+        salesProfileVersion: initialSalesProfileVersion,
       })
+
+      if (salesProfile) {
+        await ctx.tx.insert(aiAgentSalesProfileVersionModel).values({
+          id: createId(),
+          workspaceId: ctx.workspaceId,
+          aiAgentId: id,
+          version: 1,
+          profile: salesProfile,
+          source: "manual",
+          instruction: null,
+          createdById: null,
+        })
+      }
 
       recordCopy(ctx, {
         category: "aiAgents",
@@ -218,7 +247,10 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
     // install (an unresolvable tool is dropped and warned about).
     async update(ctx, pairs) {
       for (const { entry, resourceId } of pairs) {
-        const { tools, models } = resolveAgentReferences(ctx, entry)
+        const { tools, models, salesProfile } = resolveAgentReferences(
+          ctx,
+          entry,
+        )
         await ctx.tx
           .update(aiAgentModel)
           .set(
@@ -233,6 +265,7 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
               isRichResponse: entry.isRichResponse,
               webSearchAuthorizedDomains:
                 entry.webSearchAuthorizedDomains ?? [],
+              salesProfile,
             }),
           )
           .where(eq(aiAgentModel.id, resourceId))
@@ -269,6 +302,7 @@ export const aiAgentsAdapter: ResourceAdapter<TemplateAIAgentEntry> = {
         isDefault: row.isDefault,
         isRichResponse: row.isRichResponse,
         webSearchAuthorizedDomains: row.webSearchAuthorizedDomains,
+        salesProfile: row.salesProfile ?? null,
       }))
 
       // The MCP servers, knowledge files and functions an agent's tools name
@@ -306,11 +340,15 @@ const keepInstallableModel = (
   return []
 }
 
-/** The entry's tools and models as they install: references remapped, unusable models dropped. */
-const resolveAgentReferences = (
+/** The entry's tools, models and salesProfile as they install: references remapped, unusable entries dropped. */
+export const resolveAgentReferences = (
   ctx: TemplateInstallContext,
   entry: TemplateAIAgentEntry,
-): { tools: string[]; models: AIAgentModelConfig[] } => {
+): {
+  tools: string[]
+  models: AIAgentModelConfig[]
+  salesProfile: AIAgentSalesProfile | null
+} => {
   const remapped = remapReferences({ tools: entry.tools }, ctx.idMaps, {
     kinds: ["aiFunction", "aiFile", "aiMcpServer"],
     onUnresolved: (ref) =>
@@ -326,5 +364,62 @@ const resolveAgentReferences = (
     models: entry.models.flatMap((model) =>
       keepInstallableModel(ctx, entry.sourceId, model),
     ),
+    salesProfile: resolveSalesProfileReferences(
+      ctx,
+      entry.sourceId,
+      entry.salesProfile,
+    ),
+  }
+}
+
+export const resolveSalesProfileReferences = (
+  ctx: TemplateInstallContext,
+  sourceId: string,
+  rawProfile: AIAgentSalesProfile | null | undefined,
+): AIAgentSalesProfile | null => {
+  if (!rawProfile) {
+    return null
+  }
+  const parsed = aiAgentSalesProfileSchema.safeParse(rawProfile)
+  if (!parsed.success) {
+    return null
+  }
+  const profile = parsed.data
+  const productMap = ctx.idMaps.product
+  const hadTargets = profile.targetProducts.length > 0
+
+  const remappedTargets = profile.targetProducts.flatMap((target, index) => {
+    const mappedProductId = productMap?.get(target.productId)
+    if (mappedProductId) {
+      return [
+        {
+          ...target,
+          productId: mappedProductId,
+        },
+      ]
+    }
+    ctx.warn({
+      category: "aiAgents",
+      entityKind: "product",
+      path: `aiAgents.${sourceId}.salesProfile.targetProducts[${index}].productId`,
+      value: target.productId,
+    })
+    return []
+  })
+
+  const allTargetsDropped = hadTargets && remappedTargets.length === 0
+  if (allTargetsDropped && profile.enabled) {
+    ctx.warn({
+      category: "aiAgents",
+      entityKind: "product",
+      path: `aiAgents.${sourceId}.salesProfile.enabled`,
+      value: "disabled_no_target_products",
+    })
+  }
+
+  return {
+    ...profile,
+    enabled: allTargetsDropped ? false : profile.enabled,
+    targetProducts: remappedTargets,
   }
 }

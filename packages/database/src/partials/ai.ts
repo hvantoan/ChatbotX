@@ -1,3 +1,4 @@
+import { zodBigintAsString } from "@chatbotx.io/utils"
 import { z } from "zod"
 
 export const aiFileChunkStrategies = z.enum(["prose", "tabular", "markdown"])
@@ -420,3 +421,65 @@ export const aiMcpServerAuth = z.discriminatedUnion("type", [
   }),
 ])
 export type AIMcpServerAuth = z.infer<typeof aiMcpServerAuth>
+
+export const aiAgentSalesTargetProductSchema = z.object({
+  productId: zodBigintAsString(),
+  priority: z.number().int().min(1).max(10),
+  pitchNote: z.string().max(500).optional(),
+})
+export type AIAgentSalesTargetProduct = z.infer<
+  typeof aiAgentSalesTargetProductSchema
+>
+
+export const DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE =
+  "Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"
+
+export const aiAgentSalesProfileSchema = z.object({
+  enabled: z.boolean(),
+  tone: z.string().max(1000),
+  role: z.string().max(500),
+  objective: z.string().max(1000),
+  targetProducts: z.array(aiAgentSalesTargetProductSchema).max(10),
+  forbiddenTopics: z.array(z.string().max(200)).max(20),
+  offTopicLimit: z.number().int().min(1).max(10).default(3),
+  handoverOnHumanRequest: z.boolean().default(true),
+  handoffMessage: z
+    .string()
+    .max(500)
+    .default(DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE),
+  handoffTriggers: z.string().max(1000).default(""),
+})
+export type AIAgentSalesProfile = z.infer<typeof aiAgentSalesProfileSchema>
+
+export const aiAgentSalesProfileVersionSources = z.enum([
+  "manual",
+  "proposal",
+  "revert",
+])
+export type AIAgentSalesProfileVersionSource = z.infer<
+  typeof aiAgentSalesProfileVersionSources
+>
+
+export const aiAgentTrainingMessageRoles = z.enum(["admin", "assistant"])
+export type AIAgentTrainingMessageRole = z.infer<
+  typeof aiAgentTrainingMessageRoles
+>
+
+export const aiAgentSalesProfileDiffEntrySchema = z.object({
+  field: z.string().min(1),
+  before: z.unknown(),
+  after: z.unknown(),
+})
+export type AIAgentSalesProfileDiffEntry = z.infer<
+  typeof aiAgentSalesProfileDiffEntrySchema
+>
+
+export const aiAgentTrainingProposalSchema = z.object({
+  proposedProfile: aiAgentSalesProfileSchema,
+  diff: z.array(aiAgentSalesProfileDiffEntrySchema),
+  clarifyingQuestion: z.string().max(2000).optional(),
+  unmatchedProducts: z.array(z.string().max(200)).optional(),
+})
+export type AIAgentTrainingProposal = z.infer<
+  typeof aiAgentTrainingProposalSchema
+>

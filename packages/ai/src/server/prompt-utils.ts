@@ -50,10 +50,38 @@ export function appendKnowledgeBaseGuard(
   return `${systemPrompt}\n\n${helpTexts.knowledgeBaseGuard}`.trim()
 }
 
+export type SalesHandoffPolicyOptions = {
+  handoffMessage: string
+  handoffTriggers?: string
+}
+
+export function buildSalesHandoffPolicy(
+  options: SalesHandoffPolicyOptions,
+): string {
+  const message =
+    options.handoffMessage.trim() ||
+    "Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"
+  const triggers = options.handoffTriggers?.trim()
+  const triggerLine = triggers
+    ? `- Chuyển giao cho tư vấn viên (gọi '${systemFunctionNames.connectUserToHuman}' nếu có công cụ này) khi khách hàng thuộc một trong các trường hợp sau: ${triggers}; hoặc khi khách xin gặp người tư vấn / hỏi đang chat với bot hay người thật.`
+    : `- Chuyển giao cho tư vấn viên (gọi '${systemFunctionNames.connectUserToHuman}' nếu có công cụ này) khi khách đồng ý mua/đăng ký, muốn thanh toán, xin giảm giá ngoài chính sách, yêu cầu tư vấn VIP 1:1, hoặc khi khách xin gặp người tư vấn / hỏi đang chat với bot hay người thật.`
+
+  return [
+    "SALES HANDOFF POLICY (REQUIRED):",
+    triggerLine,
+    `- Khi chuyển giao, chỉ gửi cho khách đúng câu chờ: ${JSON.stringify(message)}.`,
+    '- Tuyệt đối KHÔNG dùng các từ ngữ làm lộ bot như "human agent", "bot", "AI", "trợ lý ảo", "hệ thống tự động", và KHÔNG tự khẳng định mình là người thật.',
+  ].join("\n")
+}
+
 export function appendHandoffPolicy(
   systemPrompt: string,
   tools: ToolSet,
+  salesHandoff?: SalesHandoffPolicyOptions | null,
 ): string {
+  if (salesHandoff) {
+    return `${systemPrompt}\n\n${buildSalesHandoffPolicy(salesHandoff)}`.trim()
+  }
   if (!tools[systemFunctionNames.connectUserToHuman]) {
     return systemPrompt
   }

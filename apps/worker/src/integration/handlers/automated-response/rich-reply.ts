@@ -1,7 +1,13 @@
 import { processStreamingText } from "@chatbotx.io/ai"
 import { aiContextService } from "@chatbotx.io/ai/server"
+import type { SalesPromptProduct } from "@chatbotx.io/business"
+import type {
+  AIAgentSalesProfile,
+  ConversationSalesState,
+} from "@chatbotx.io/database/partials"
 import { emit } from "@chatbotx.io/event-bus"
 import { createId } from "@chatbotx.io/utils"
+import type { LanguageModel } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import { sendMessageAndWait } from "../../utils/message"
@@ -13,11 +19,21 @@ import type {
   ReplyByAIExecutionResult,
   ReplyByAIProps,
 } from "./replies"
+import { evaluateSalesGuard, extractRichResponseTexts } from "./sales-guard"
 import { buildTrackingContext } from "./tracking-context"
 
 type DirectSendTracker = {
   sent: boolean
   sentText: string
+}
+
+export type RichReplySalesGuardContext = {
+  profile: AIAgentSalesProfile
+  products: SalesPromptProduct[]
+  salesState: ConversationSalesState
+  model: LanguageModel
+  systemPrompt: string
+  handoffAlreadyExecuted?: boolean
 }
 
 type HandleRichAIReplyOptions = {
@@ -28,6 +44,7 @@ type HandleRichAIReplyOptions = {
   provider: ReplyAIProvider
   startTime: number
   textStream: AsyncIterable<string>
+  salesGuardContext?: RichReplySalesGuardContext
 }
 
 export async function handleRichAIReply({
@@ -38,6 +55,7 @@ export async function handleRichAIReply({
   provider,
   startTime,
   textStream,
+  salesGuardContext,
 }: HandleRichAIReplyOptions): Promise<null | ReplyByAIExecutionResult> {
   const { conversation } = props
   const { fullText } = await processStreamingText(
@@ -101,6 +119,36 @@ export async function handleRichAIReply({
 
     if (parseResult.reason === "plain_text" && parseResult.text.trim()) {
       const trimmedText = parseResult.text.trim()
+      if (salesGuardContext) {
+        const sendRichGuardReply = async (text: string) => {
+          // evaluateSalesGuard emits the single `message:bot_received` analytics event.
+          await sendMessageAndWait(conversation.id, text)
+          await appendAssistantHistory(conversation.id, text)
+        }
+        const guardResult = await evaluateSalesGuard({
+          conversation,
+          contactInbox: props.contactInbox,
+          aiAgent: props.aiAgent,
+          profile: salesGuardContext.profile,
+          products: salesGuardContext.products,
+          salesState: salesGuardContext.salesState,
+          model: salesGuardContext.model,
+          modelId,
+          provider,
+          systemPrompt: salesGuardContext.systemPrompt,
+          messages: props.messages,
+          candidateText: trimmedText,
+          triggerMessageId: props.triggerMessageId,
+          channel: props.channel,
+          startTime,
+          handoffAlreadyExecuted: salesGuardContext.handoffAlreadyExecuted,
+          sendHandoffMessage: sendRichGuardReply,
+        })
+        if (guardResult.outcome !== "handoff" && guardResult.finalText) {
+          await sendRichGuardReply(guardResult.finalText)
+        }
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
       await sendMessageAndWait(conversation.id, trimmedText, trackingContext)
       await appendAssistantHistory(conversation.id, trimmedText)
       return buildSuccessResult({ buildToolStats, modelId, provider })
@@ -110,6 +158,46 @@ export async function handleRichAIReply({
   }
 
   const richResponse = parseResult.data
+  if (salesGuardContext) {
+    const extractedText = extractRichResponseTexts(richResponse).trim()
+    if (extractedText) {
+      const sendRichGuardReply = async (text: string) => {
+        // evaluateSalesGuard emits the single `message:bot_received` analytics event.
+        await sendMessageAndWait(conversation.id, text)
+        await appendAssistantHistory(conversation.id, text)
+      }
+      const guardResult = await evaluateSalesGuard({
+        conversation,
+        contactInbox: props.contactInbox,
+        aiAgent: props.aiAgent,
+        profile: salesGuardContext.profile,
+        products: salesGuardContext.products,
+        salesState: salesGuardContext.salesState,
+        model: salesGuardContext.model,
+        modelId,
+        provider,
+        systemPrompt: salesGuardContext.systemPrompt,
+        messages: props.messages,
+        candidateText: extractedText,
+        triggerMessageId: props.triggerMessageId,
+        channel: props.channel,
+        startTime,
+        handoffAlreadyExecuted: salesGuardContext.handoffAlreadyExecuted,
+        sendHandoffMessage: sendRichGuardReply,
+      })
+      if (guardResult.outcome === "handoff") {
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
+      if (
+        (guardResult.outcome === "rewritten" ||
+          guardResult.outcome === "fallback") &&
+        guardResult.finalText
+      ) {
+        await sendRichGuardReply(guardResult.finalText)
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
+    }
+  }
   const flowContextId = createId()
   const context = {
     workspaceId: conversation.workspaceId,

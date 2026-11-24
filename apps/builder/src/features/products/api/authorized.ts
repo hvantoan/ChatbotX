@@ -1,4 +1,5 @@
 import { productMessageService, productService } from "@chatbotx.io/business"
+import { productStatuses } from "@chatbotx.io/database/partials"
 import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
 import z from "zod"
 import { basePaginationRequest } from "@/lib/pagination"
@@ -18,6 +19,7 @@ const PRODUCT_IDS_FILTER_MAX = 50
 const listProductsAuthorizedRequest = listProductsRequest.and(
   z.object({
     workspaceId: z.string(),
+    status: productStatuses.nullish(),
     ids: z
       .array(zodBigintIdAsString())
       .min(1)
@@ -68,6 +70,7 @@ export const productsAuthorizedAPI = {
       async ({ input }) =>
         await productService.list({
           ...input,
+          status: input.status ?? undefined,
           page: input.page ?? undefined,
           perPage: input.perPage ?? undefined,
           sort: input.sort ?? undefined,
