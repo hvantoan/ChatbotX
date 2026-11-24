@@ -114,10 +114,18 @@ const writeAgentContent = async (
     .limit(1)
 
   const nextProfile = content.salesProfile
+  // Compare schema-normalized profiles: JSONB may return keys in a different
+  // order than the parsed object, which would otherwise bump the version and
+  // reset per-conversation sales state on every template sync.
+  const currentParsed = current?.salesProfile
+    ? aiAgentSalesProfileSchema.safeParse(current.salesProfile)
+    : null
+  const normalizedCurrent = currentParsed?.success
+    ? currentParsed.data
+    : (current?.salesProfile ?? null)
   const profileChanged =
     nextProfile != null &&
-    JSON.stringify(current?.salesProfile ?? null) !==
-      JSON.stringify(nextProfile)
+    JSON.stringify(normalizedCurrent) !== JSON.stringify(nextProfile)
   const nextVersion = profileChanged
     ? (current?.salesProfileVersion ?? 0) + 1
     : undefined
