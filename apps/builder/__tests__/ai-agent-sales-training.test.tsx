@@ -216,8 +216,8 @@ describe("SalesProfileView component", () => {
       )
     })
 
-    const addBtn = [...container.querySelectorAll("button")].find((btn) =>
-      btn.textContent?.includes("profile.addProduct"),
+    const addBtn = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent?.includes("profile.addProduct"),
     )
     expect(addBtn?.disabled).toBe(true)
 
