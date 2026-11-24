@@ -6,7 +6,7 @@ Stack nhẹ nhất cho host 4 vCPU / 4 GB: ~120–150 MB RAM thực tế, không
 |---|---|---|
 | **Beszel** (hub + agent) | CPU/RAM/disk/net host + từng container, lịch sử, alert Telegram | http://127.0.0.1:8090 |
 | **Gatus** | Health check HTTP/TCP, alert Telegram khi fail 3 lần liên tiếp | http://127.0.0.1:8081 |
-| **Dozzle** | Xem log realtime mọi container (không lưu), đăng nhập bằng `DOZZLE_USERNAME`/`DOZZLE_PASSWORD` | http://127.0.0.1:8088 |
+| **Dozzle** | Xem log realtime mọi container (không lưu), đăng nhập bằng tài khoản trong `dozzle/users.yml` | http://127.0.0.1:8088 |
 
 Lưu trữ log lịch sử **không** có trong stack này — thêm OpenObserve/VictoriaLogs khi cần (xem `plans/reports/research-261124-1448-selfhost-observability-chatbotx.md` §12).
 
@@ -21,8 +21,13 @@ Lưu trữ log lịch sử **không** có trong stack này — thêm OpenObserve
 
 ```bash
 cd infas/observability
-cp .env.example .env       # điền TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, DOZZLE_USERNAME, DOZZLE_PASSWORD
+cp .env.example .env       # điền TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 # nếu stack ChatbotX không tên "chatbotx-prod" thì sửa CHATBOTX_NETWORK
+
+# Dozzle chạy auth `simple` và bắt buộc file users.yml — tạo trước khi up:
+mkdir -p dozzle
+docker run --rm amir20/dozzle:v11.5.0 generate admin --password 'MAT_KHAU_MẠNH' > dozzle/users.yml
+
 docker compose up -d       # beszel + dozzle + gatus
 ```
 
