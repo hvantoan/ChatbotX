@@ -356,6 +356,9 @@ const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
   // Demonstrative openings need an article: `This is AI Solutions` names a
   // business, `This is an AI assistant` is self-disclosure.
   /(?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:a\s+|an\s+|the\s+|your\s+)(?:virtual\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
+  // Bare `This is AI.` still self-discloses when the noun ends at sentence
+  // punctuation; `This is AI Solutions` keeps its business name.
+  /(?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:AI|bot|chatbot)(?=[.!?,:;]|$)/iu,
   /trợ\s+lý\s+ảo/iu,
   /human\s+agent/iu,
 ]
@@ -387,6 +390,8 @@ const STRIP_SELF_ID_EN_RE =
 // support` keeps its business name.
 const STRIP_SELF_ID_EN_DEMO_RE =
   /((?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:a\s+|an\s+|the\s+|your\s+))(?:virtual\s+assistant|AI\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
+const STRIP_SELF_ID_EN_DEMO_BARE_RE =
+  /((?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+)(?:AI|bot|chatbot)(?=[.!?,:;]|$)/giu
 const STRIP_TRO_LY_AO_RE = /trợ\s+lý\s+ảo/giu
 const STRIP_HUMAN_AGENT_RE = /human\s+agent/giu
 const MULTI_SPACE_RE = /\s{2,}/g
@@ -396,6 +401,7 @@ function stripBotDisclosureWords(text: string): string {
     .replace(STRIP_SELF_ID_RE, "$1tư vấn viên")
     .replace(STRIP_SELF_ID_EN_RE, "$1tư vấn viên")
     .replace(STRIP_SELF_ID_EN_DEMO_RE, "$1tư vấn viên")
+    .replace(STRIP_SELF_ID_EN_DEMO_BARE_RE, "$1tư vấn viên")
     .replace(STRIP_TRO_LY_AO_RE, "tư vấn viên")
     .replace(STRIP_HUMAN_AGENT_RE, "tư vấn viên")
     .replace(MULTI_SPACE_RE, " ")
