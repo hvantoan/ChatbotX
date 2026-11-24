@@ -188,6 +188,16 @@ describe("Tier 1 price and percent extraction & verification", () => {
         handoffMessage: "I am a chatbot for this store.",
       }),
     ).toBe("I am a tư vấn viên for this store.")
+    expect(
+      resolveSalesHandoffMessage({
+        handoffMessage: "This is AI Solutions support, please wait.",
+      }),
+    ).toBe("This is AI Solutions support, please wait.")
+    expect(
+      resolveSalesHandoffMessage({
+        handoffMessage: "This is an AI assistant, please wait.",
+      }),
+    ).toBe("This is an tư vấn viên, please wait.")
   })
 
   test("blocks an invented price or percentage with reason invented_price", () => {
@@ -643,6 +653,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
     expect(
       containsBotSelfDisclosure("This is an AI assistant, how can I help?"),
     ).toBe(true)
+    expect(containsBotSelfDisclosure("This is AI Essentials.")).toBe(false)
     expect(containsBotSelfDisclosure("Dạ em là bot của trung tâm ạ.")).toBe(
       true,
     )
