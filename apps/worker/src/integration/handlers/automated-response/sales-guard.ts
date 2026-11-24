@@ -151,11 +151,11 @@ const PRICE_BEFORE_PERCENT_RE =
 // Same-line horizontal whitespace only (incl. NBSP) so a discount label on
 // the next line does not turn a product percentage like `Cotton 100%` into
 // a discount claim, while `20% off` with U+00A0 still parses.
-// `off` must not be hyphen-joined to another word unless an explicit
-// discount label follows: `off-grid` is a product attribute but
-// `off-peak discount` is a discount claim.
+// `off` must not be hyphen-joined to another word except known promotion
+// modifiers: `off-grid` is a product attribute even when a `sale` word
+// follows, while `off-peak discount` is a discount claim.
 const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
-  /^[^\S\n]*(?:off(?!-\w)\b|off-\w+[^\S\n]+(?:discount|giảm|giam|sale)\b|discount|giảm|giam)\b/iu
+  /^[^\S\n]*(?:off(?!-\w)\b|off-(?:peak|season)[^\S\n]+(?:discount|giảm|giam|sale)\b|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
 const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
 // Titles that are just an offer qualifier plus a percentage: `20%`,
@@ -222,7 +222,7 @@ export function extractMoneyAndPercentTokens(
       // offset sits on the separator PERCENT_RE consumed before the digits,
       // so include it: `2.500.000đ (50%)` keeps its `(` in `before`.
       const before = source.slice(Math.max(0, offset - 60), offset + 1)
-      // Look far enough to see a discount label behind a hyphenated
+      // Look far enough to see a discount label behind a promotion
       // modifier (`off-peak discount`) — `[^\S\n]` keeps it same-line.
       const after = source.slice(
         offset + full.length,
