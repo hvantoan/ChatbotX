@@ -22,8 +22,16 @@ import type {
   AIAgentTrainingMessageModel,
 } from "@chatbotx.io/database/types"
 import { z } from "zod"
+import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
-import { notFoundException, validationException } from "../errors"
+import {
+  conflictException,
+  notFoundException,
+  validationException,
+} from "../errors"
+import { assertResourceEditable } from "../template/installed-resource.service"
+import { withTemplateLockedTransaction } from "../template/template-resource-locks"
+import { referencedParentsOf } from "../template/uninstall-references"
 import { aiAgentService } from "./service"
 
 export const DEFAULT_AI_AGENT_SALES_PROFILE: AIAgentSalesProfile = {
@@ -163,7 +171,77 @@ class AiAgentSalesProfileService extends BaseService {
         throw notFoundException("AI agent not found")
       }
 
-      await this.validateTargetProducts(input.workspaceId, profile, tx)
+      const currentParsed = locked.salesProfile
+        ? aiAgentSalesProfileSchema.safeParse(locked.salesProfile)
+        : null
+      const currentProfile = currentParsed?.success ? currentParsed.data : null
+
+      // Apply a stored proposal's diff onto the live profile instead of
+      // writing its stale full snapshot: edits made after the proposal was
+      // generated are kept, and an edit to a field the proposal also touches
+      // is a conflict.
+      let profileToWrite = profile
+      if (input.messageId) {
+        const message = await tx.query.aiAgentTrainingMessageModel.findFirst({
+          where: {
+            id: input.messageId,
+            workspaceId: input.workspaceId,
+            aiAgentId: input.aiAgentId,
+          },
+        })
+        const storedProposal = message?.proposal
+          ? aiAgentTrainingProposalSchema.safeParse(message.proposal)
+          : null
+        if (storedProposal?.success) {
+          const base = currentProfile ?? DEFAULT_AI_AGENT_SALES_PROFILE
+          const merged: Record<string, unknown> = { ...base }
+          const staleFields: string[] = []
+          for (const entry of storedProposal.data.diff) {
+            if (
+              !isSameJsonValue(
+                base[entry.field as keyof AIAgentSalesProfile],
+                entry.before,
+              )
+            ) {
+              staleFields.push(entry.field)
+            }
+            merged[entry.field] = entry.after
+          }
+          if (staleFields.length > 0) {
+            throw conflictException(
+              `The proposal was generated from an older profile; ${staleFields.join(", ")} changed since. Generate a new proposal and apply it again.`,
+              "salesProfileProposalStale",
+            )
+          }
+          const mergedParsed = aiAgentSalesProfileSchema.safeParse(merged)
+          if (!mergedParsed.success) {
+            throw validationException(
+              "profile",
+              mergedParsed.error.issues[0]?.message ?? "Invalid sales profile.",
+            )
+          }
+          profileToWrite = mergedParsed.data
+        }
+      }
+
+      // A view-only template copy keeps salesProfile locked: any write to it
+      // (manual edit, proposal apply, revert) must go through the same guard.
+      const profileChanged = !isSameJsonValue(
+        currentProfile ?? null,
+        profileToWrite,
+      )
+      if (profileChanged) {
+        await assertResourceEditable({
+          workspaceId: input.workspaceId,
+          resourceKind: "aiAgent",
+          resourceIds: [input.aiAgentId],
+          changedKeys: ["salesProfile"],
+          referencedParents: referencedParentsOf(profileToWrite),
+          tx,
+        })
+      }
+
+      await this.validateTargetProducts(input.workspaceId, profileToWrite, tx)
 
       const nextVersion = (locked.salesProfileVersion ?? 0) + 1
       const versionRecord = await aiAgentSalesProfileVersionRepository.create(
@@ -171,7 +249,7 @@ class AiAgentSalesProfileService extends BaseService {
           workspaceId: input.workspaceId,
           aiAgentId: input.aiAgentId,
           version: nextVersion,
-          profile,
+          profile: profileToWrite,
           source: input.source,
           instruction: input.instruction ?? null,
           createdById: input.actorId ?? null,
@@ -183,7 +261,7 @@ class AiAgentSalesProfileService extends BaseService {
         {
           workspaceId: input.workspaceId,
           aiAgentId: input.aiAgentId,
-          profile,
+          profile: profileToWrite,
           version: nextVersion,
         },
         tx,
@@ -202,13 +280,21 @@ class AiAgentSalesProfileService extends BaseService {
       }
 
       return {
-        profile,
+        profile: profileToWrite,
         version: nextVersion,
         versionRecord,
       }
     }
 
-    const result = await (input.tx ? run(input.tx) : db.transaction(run))
+    const result = await (input.tx
+      ? run(input.tx)
+      : withTemplateLockedTransaction(run, {
+          workspaceId: input.workspaceId,
+          initialKeys: [
+            { kind: "aiAgent", resourceId: input.aiAgentId },
+            ...referencedParentsOf(profile),
+          ],
+        }))
     await aiAgentService.invalidateWorkspaceCache(input.workspaceId)
     return result
   }
@@ -280,6 +366,25 @@ class AiAgentSalesProfileService extends BaseService {
       }
 
       const parsed = aiAgentSalesProfileSchema.parse(target.profile)
+
+      const currentParsed = locked.salesProfile
+        ? aiAgentSalesProfileSchema.safeParse(locked.salesProfile)
+        : null
+      const profileChanged = !isSameJsonValue(
+        currentParsed?.success ? currentParsed.data : null,
+        parsed,
+      )
+      if (profileChanged) {
+        await assertResourceEditable({
+          workspaceId: input.workspaceId,
+          resourceKind: "aiAgent",
+          resourceIds: [input.aiAgentId],
+          changedKeys: ["salesProfile"],
+          referencedParents: referencedParentsOf(parsed),
+          tx,
+        })
+      }
+
       await this.validateTargetProducts(input.workspaceId, parsed, tx)
 
       const nextVersion = (locked.salesProfileVersion ?? 0) + 1
@@ -313,7 +418,12 @@ class AiAgentSalesProfileService extends BaseService {
       }
     }
 
-    const result = await (input.tx ? run(input.tx) : db.transaction(run))
+    const result = await (input.tx
+      ? run(input.tx)
+      : withTemplateLockedTransaction(run, {
+          workspaceId: input.workspaceId,
+          initialKeys: [{ kind: "aiAgent", resourceId: input.aiAgentId }],
+        }))
     await aiAgentService.invalidateWorkspaceCache(input.workspaceId)
     return result
   }

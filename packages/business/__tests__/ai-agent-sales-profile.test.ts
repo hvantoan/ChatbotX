@@ -22,8 +22,16 @@ const {
   mockClearMessages,
   mockFindProductsByIds,
   mockTransaction,
+  mockFindTrainingMessage,
 } = vi.hoisted(() => {
-  const txClient = { marker: "tx" }
+  const txClient = {
+    marker: "tx",
+    query: {
+      aiAgentTrainingMessageModel: {
+        findFirst: vi.fn(async () => null),
+      },
+    },
+  }
   return {
     mockFindBy: vi.fn(),
     mockInvalidateWorkspaceCache: vi.fn(),
@@ -40,6 +48,8 @@ const {
     mockTransaction: vi.fn(async (cb: (tx: unknown) => unknown) =>
       cb(txClient),
     ),
+    mockFindTrainingMessage: txClient.query.aiAgentTrainingMessageModel
+      .findFirst as ReturnType<typeof vi.fn>,
   }
 })
 
@@ -48,6 +58,17 @@ vi.mock("@chatbotx.io/database/client", () => ({
     transaction: mockTransaction,
   },
 }))
+
+vi.mock(
+  "@chatbotx.io/database/repositories/template-installed-resource",
+  () => ({
+    templateInstalledResourceRepository: {
+      findLiveKeys: vi.fn(async () => []),
+      findBlocking: vi.fn(async () => []),
+    },
+    templateUninstallRepository: {},
+  }),
+)
 
 vi.mock("@chatbotx.io/database/repositories", () => {
   class InvalidPipelineCursorError extends Error {
@@ -240,6 +261,95 @@ describe("aiAgentSalesProfileService.update", () => {
       },
       expect.anything(),
     )
+  })
+
+  test("applies a proposal's diff onto the live profile, keeping newer edits", async () => {
+    mockLockAgent.mockResolvedValueOnce({
+      id: aiAgentId,
+      workspaceId,
+      salesProfile: {
+        ...validProfile,
+        objective: "Objective cũ",
+        tone: "Giọng mới sau khi sửa tay",
+      },
+      salesProfileVersion: 2,
+    })
+    mockFindTrainingMessage.mockResolvedValueOnce({
+      id: "7001",
+      proposal: {
+        proposedProfile: {
+          ...validProfile,
+          objective: "Objective mới",
+          tone: "Giọng cũ trong snapshot",
+        },
+        diff: [
+          {
+            field: "objective",
+            before: "Objective cũ",
+            after: "Objective mới",
+          },
+        ],
+      },
+    })
+
+    const result = await aiAgentSalesProfileService.update({
+      workspaceId,
+      aiAgentId,
+      profile: {
+        ...validProfile,
+        objective: "Objective mới",
+        tone: "Giọng cũ trong snapshot",
+      },
+      source: "proposal",
+      messageId: "7001",
+    })
+
+    expect(result.profile.objective).toBe("Objective mới")
+    expect(result.profile.tone).toBe("Giọng mới sau khi sửa tay")
+    expect(mockUpdateAgentSalesProfile).toHaveBeenCalledWith(
+      expect.objectContaining({
+        profile: expect.objectContaining({
+          objective: "Objective mới",
+          tone: "Giọng mới sau khi sửa tay",
+        }),
+      }),
+      expect.anything(),
+    )
+  })
+
+  test("rejects applying a proposal when a field it touches changed since", async () => {
+    mockLockAgent.mockResolvedValueOnce({
+      id: aiAgentId,
+      workspaceId,
+      salesProfile: { ...validProfile, objective: "Objective đã đổi tay" },
+      salesProfileVersion: 2,
+    })
+    mockFindTrainingMessage.mockResolvedValueOnce({
+      id: "7001",
+      proposal: {
+        proposedProfile: { ...validProfile, objective: "Objective mới" },
+        diff: [
+          {
+            field: "objective",
+            before: validProfile.objective,
+            after: "Objective mới",
+          },
+        ],
+      },
+    })
+
+    await expect(
+      aiAgentSalesProfileService.update({
+        workspaceId,
+        aiAgentId,
+        profile: { ...validProfile, objective: "Objective mới" },
+        source: "proposal",
+        messageId: "7001",
+      }),
+    ).rejects.toThrow("older profile")
+
+    expect(mockCreateVersion).not.toHaveBeenCalled()
+    expect(mockMarkApplied).not.toHaveBeenCalled()
   })
 
   test("rejects a foreign-workspace productId", async () => {
