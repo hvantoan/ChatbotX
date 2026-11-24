@@ -11,10 +11,12 @@ CLI writes execute directly; MCP-only human approval (`x-mcp.hitlPolicy` and `_c
 ## Installation
 
 ```bash
-npm install -g chatbotx
+npm install -g @hvantoan/inboxos
 # or
-pnpm install -g chatbotx
+pnpm install -g @hvantoan/inboxos
 ```
+
+The npm package was renamed from `chatbotx` to `@hvantoan/inboxos`; the installed command is still `chatbotx`. If you installed the old package, run `npm uninstall -g chatbotx` (or `pnpm remove -g chatbotx`) first or it shadows the new one at version 1.22.0.
 
 ---
 
@@ -1669,6 +1671,6 @@ chatbotx contacts message send --help    # Show options for a specific action
 
 ## Releasing (maintainers)
 
-`chatbotx` on npm is published automatically by `.github/workflows/publish-cli.yml` when a `v*` release tag is pushed: tag `v1.9.0` publishes `chatbotx@1.9.0`. A tag with a prerelease suffix (`v2.0.0-rc.1`) publishes under the `next` dist-tag instead of `latest`.
+`@hvantoan/inboxos` on npm is published automatically by `.github/workflows/publish-cli.yml` when a `v*` release tag is pushed: tag `v1.9.0` publishes `@hvantoan/inboxos@1.9.0`. A tag with a prerelease suffix (`v2.0.0-rc.1`) publishes under the `next` dist-tag instead of `latest`.
 
 `version` in `apps/cli/package.json` is intentionally the placeholder `0.0.0-dev` — the workflow stamps the tag's version in before building, so it is never committed. Do not publish by hand; use the workflow's `Run workflow` button (with `dry_run` to rehearse) if you need an off-cycle release.
