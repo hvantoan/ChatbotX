@@ -59,6 +59,7 @@ const {
   extractMoneyAndPercentTokens,
   extractRichResponseTexts,
   isCustomerAskingBotOrHuman,
+  resolveSalesHandoffMessage,
 } = await import("../src/integration/handlers/automated-response/sales-guard")
 
 const products: SalesPromptProduct[] = [
@@ -164,6 +165,23 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(
       extractMoneyAndPercentTokens("giảm giá lên đến 50%").percents,
     ).toEqual([50])
+  })
+
+  test("keeps business names like 'đây là Botanic Spa' in handoff messages", () => {
+    expect(
+      resolveSalesHandoffMessage({
+        handoffMessage:
+          "Em sẽ chuyển anh/chị sang nhân viên, đây là Botanic Spa ạ",
+      }),
+    ).toBe("Em sẽ chuyển anh/chị sang nhân viên, đây là Botanic Spa ạ")
+    expect(
+      resolveSalesHandoffMessage({ handoffMessage: "em là AI, xin lỗi" }),
+    ).toBe("em là tư vấn viên, xin lỗi")
+    expect(
+      resolveSalesHandoffMessage({
+        handoffMessage: "I am a chatbot for this store.",
+      }),
+    ).toBe("I am a tư vấn viên for this store.")
   })
 
   test("blocks an invented price or percentage with reason invented_price", () => {
@@ -613,6 +631,12 @@ describe("evaluateSalesGuard decision pipeline", () => {
       containsBotSelfDisclosure("Dạ bên em có gói Chatbot Builder ạ."),
     ).toBe(false)
     expect(containsBotSelfDisclosure("Dạ em là AI tư vấn ạ.")).toBe(true)
+    expect(containsBotSelfDisclosure("I'm a chatbot for this store.")).toBe(
+      true,
+    )
+    expect(
+      containsBotSelfDisclosure("This is an AI assistant, how can I help?"),
+    ).toBe(true)
     expect(containsBotSelfDisclosure("Dạ em là bot của trung tâm ạ.")).toBe(
       true,
     )

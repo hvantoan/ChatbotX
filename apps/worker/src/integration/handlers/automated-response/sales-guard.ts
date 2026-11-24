@@ -338,6 +338,7 @@ const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
   /(?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:con\s+)?(?:trợ\s+lý\s+ảo\s+)?(?:AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
   /(?:đây|đó)\s+là\s+(?:một\s+)?(?:con\s+)?(?:AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
   /(?:^|[^\p{L}\p{N}_])(?:AI|bot|chatbot)\s+(?:assistant|trợ\s+lý)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:^|[^\p{L}\p{N}_])(?:i'?m|i\s+am|this\s+is|here'?s|we'?re|we\s+are)\s+(?:a\s+|an\s+|the\s+|your\s+)?(?:virtual\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
   /trợ\s+lý\s+ảo/iu,
   /human\s+agent/iu,
 ]
@@ -359,8 +360,12 @@ export function isCustomerAskingBotOrHuman(text: string): boolean {
   )
 }
 
+// Word boundary after the noun is required: `đây là Botanic Spa` must not
+// become `đây là tư vấn viênanic Spa`.
 const STRIP_SELF_ID_RE =
-  /((?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em|đây|đó)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:con\s+)?)(?:AI|bot|chatbot)/giu
+  /((?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em|đây|đó)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:con\s+)?)(?:AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
+const STRIP_SELF_ID_EN_RE =
+  /((?:^|[^\p{L}\p{N}_])(?:i'?m|i\s+am|this\s+is|here'?s|we'?re|we\s+are)\s+(?:a\s+|an\s+|the\s+|your\s+)?)(?:virtual\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
 const STRIP_TRO_LY_AO_RE = /trợ\s+lý\s+ảo/giu
 const STRIP_HUMAN_AGENT_RE = /human\s+agent/giu
 const MULTI_SPACE_RE = /\s{2,}/g
@@ -368,6 +373,7 @@ const MULTI_SPACE_RE = /\s{2,}/g
 function stripBotDisclosureWords(text: string): string {
   return text
     .replace(STRIP_SELF_ID_RE, "$1tư vấn viên")
+    .replace(STRIP_SELF_ID_EN_RE, "$1tư vấn viên")
     .replace(STRIP_TRO_LY_AO_RE, "tư vấn viên")
     .replace(STRIP_HUMAN_AGENT_RE, "tư vấn viên")
     .replace(MULTI_SPACE_RE, " ")
