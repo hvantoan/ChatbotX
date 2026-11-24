@@ -12,7 +12,7 @@ import type {
   ConversationModel,
 } from "@chatbotx.io/database/types"
 import { emit } from "@chatbotx.io/event-bus"
-import { percentOf } from "@chatbotx.io/utils/money"
+import { percentOf, roundMoney } from "@chatbotx.io/utils/money"
 import { generateText, type LanguageModel, type ModelMessage, Output } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
@@ -86,7 +86,7 @@ export function buildAllowedPriceAndPercentSets(
       addValueAndUnitVariants(priceSet, discountAmount, currency)
       addValueAndUnitVariants(
         priceSet,
-        Math.max(0, price - discountAmount),
+        Math.max(0, roundMoney(price - discountAmount, currency)),
         currency,
       )
       percentSet.add(discountPercent)
@@ -103,7 +103,7 @@ export function buildAllowedPriceAndPercentSets(
         const vDiscountAmount = percentOf(vPrice, discountPercent, currency)
         addValueAndUnitVariants(
           priceSet,
-          Math.max(0, vPrice - vDiscountAmount),
+          Math.max(0, roundMoney(vPrice - vDiscountAmount, currency)),
           currency,
         )
       }
@@ -408,7 +408,10 @@ export function buildSalesFallbackReply(input: {
       topProduct.discount ?? 0,
       currency,
     )
-    const finalPrice = Math.max(0, topProduct.price - discountAmount)
+    const finalPrice = Math.max(
+      0,
+      roundMoney(topProduct.price - discountAmount, currency),
+    )
     const productName =
       stripBotDisclosureWords(topProduct.name) || topProduct.name
     return `Dạ em xin phép quay lại nội dung tư vấn ${objectiveText} ạ. Hiện bên em đang có ${productName} với mức giá ${finalPrice} ${topProduct.currency}, em hỗ trợ thông tin chi tiết cho mình nhé ạ!`

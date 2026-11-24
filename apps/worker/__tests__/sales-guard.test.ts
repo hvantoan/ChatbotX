@@ -52,6 +52,7 @@ vi.mock("@chatbotx.io/event-bus", () => ({
 
 const {
   buildSalesFallbackReply,
+  buildAllowedPriceAndPercentSets,
   checkTier1Prices,
   containsBotSelfDisclosure,
   evaluateSalesGuard,
@@ -172,6 +173,28 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(resPercent.passed).toBe(false)
     expect(resPercent.reason).toBe("invented_price")
     expect(resPercent.unmatchedValues).toContain(50)
+  })
+
+  test("rounds discounted prices to the currency unit (no fractional cents)", () => {
+    const usdProducts: SalesPromptProduct[] = [
+      {
+        id: "4001",
+        name: "Ebook Premium",
+        price: 19.99,
+        discount: 20,
+        currency: "USD",
+        status: "active",
+      },
+    ]
+    const sets = buildAllowedPriceAndPercentSets(usdProducts)
+    expect(sets.allowedPrices).toContain(4)
+    expect(sets.allowedPrices).toContain(15.99)
+    expect(sets.allowedPrices).not.toContain(15.989_999_999_999_998)
+    const res = checkTier1Prices({
+      replyText: "Dạ Ebook Premium chỉ còn $15.99 sau khi giảm 20% ạ!",
+      products: usdProducts,
+    })
+    expect(res.passed).toBe(true)
   })
 
   test("ignores non-pricing percentages like 100% chính hãng or 98% hài lòng", () => {

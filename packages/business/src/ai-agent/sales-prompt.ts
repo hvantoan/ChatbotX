@@ -3,7 +3,7 @@ import {
   type ConversationSalesState,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
 } from "@chatbotx.io/database/partials"
-import { percentOf } from "@chatbotx.io/utils/money"
+import { percentOf, roundMoney } from "@chatbotx.io/utils/money"
 
 export type SalesPromptProductVariant = {
   id?: string
@@ -32,7 +32,10 @@ export type CompileSalesPromptInput = {
 function formatPriceLine(product: SalesPromptProduct): string {
   const discount = product.discount ?? 0
   const discountAmount = percentOf(product.price, discount, product.currency)
-  const finalPrice = Math.max(0, product.price - discountAmount)
+  const finalPrice = Math.max(
+    0,
+    roundMoney(product.price - discountAmount, product.currency),
+  )
   const parts = [`Giá gốc: ${product.price} ${product.currency}`]
   if (discount > 0) {
     parts.push(
@@ -51,7 +54,10 @@ function formatPriceLine(product: SalesPromptProduct): string {
             ? Object.values(v.combination).join("/")
             : "Biến thể"
         const vDiscount = percentOf(v.price, discount, product.currency)
-        const vFinal = discount > 0 ? Math.max(0, v.price - vDiscount) : v.price
+        const vFinal =
+          discount > 0
+            ? Math.max(0, roundMoney(v.price - vDiscount, product.currency))
+            : v.price
         return `${label}: ${vFinal} ${product.currency}`
       })
       .join("; ")
