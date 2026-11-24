@@ -148,7 +148,7 @@ const DISCOUNT_KEYWORD_BEFORE_PERCENT_RE =
   /(?:giảm|giam|off|sale|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|ưu\s*đãi|uu\s*dai|voucher|coupon|tiết\s*kiệm|tiet\s*kiem|hoàn\s*tiền|hoan\s*tien|trợ\s*giá|tro\s*gia)\s*(?:giá|gia)?\s*(?:lên\s*tới|len\s*toi|lên\s*đến|len\s*den|đến|den|tới|toi|thêm|them|sâu|sau|mạnh|manh|ngay|nhanh)?\s*[-~:]?\s*$/iu
 const PRICE_BEFORE_PERCENT_RE =
   /(?:\d[\d.,]*\s*(?:k|tr|triệu|trieu|ngàn|ngan|nghìn|nghin|đ|₫|vnd|vnđ|đồng|dong|\$|usd)?)\s*[(\-[~]\s*$/iu
-const DISCOUNT_KEYWORD_AFTER_PERCENT_RE = /^\s*(?:off|discount)\b/iu
+const DISCOUNT_KEYWORD_AFTER_PERCENT_RE = /^\s*(?:off|discount|giảm|giam)\b/iu
 
 // E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
 // end of one message chunk cannot merge with a label on the next chunk
@@ -212,10 +212,18 @@ export function extractMoneyAndPercentTokens(
         offset + full.length,
         offset + full.length + 12,
       )
+      // A `(N%)` suffix right after a price only counts as a discount when
+      // the parenthesis closes right after the percent or a discount label
+      // follows: `2.500.000đ (50%)` is a discount, `2.500.000đ (100% online)`
+      // is a product attribute.
+      const isParenPriceSuffix =
+        PRICE_BEFORE_PERCENT_RE.test(before) && /\(\s*$/.test(before)
       const isDiscountPercent =
         DISCOUNT_KEYWORD_BEFORE_PERCENT_RE.test(before) ||
-        PRICE_BEFORE_PERCENT_RE.test(before) ||
-        DISCOUNT_KEYWORD_AFTER_PERCENT_RE.test(after)
+        DISCOUNT_KEYWORD_AFTER_PERCENT_RE.test(after) ||
+        (isParenPriceSuffix
+          ? /^\s*\)/.test(after)
+          : PRICE_BEFORE_PERCENT_RE.test(before))
       if (!isDiscountPercent) {
         return full
       }

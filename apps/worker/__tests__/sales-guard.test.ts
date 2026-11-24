@@ -165,6 +165,12 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(
       extractMoneyAndPercentTokens("giảm giá lên đến 50%").percents,
     ).toEqual([50])
+    expect(
+      extractMoneyAndPercentTokens("Giá 2.500.000đ (100% online)").percents,
+    ).toEqual([])
+    expect(
+      extractMoneyAndPercentTokens("Giá 2.500.000đ (50% giảm)").percents,
+    ).toEqual([50])
   })
 
   test("keeps business names like 'đây là Botanic Spa' in handoff messages", () => {
