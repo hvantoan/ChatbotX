@@ -148,12 +148,13 @@ const DISCOUNT_KEYWORD_BEFORE_PERCENT_RE =
   /(?:giảm|giam|off|sale|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|ưu\s*đãi|uu\s*dai|voucher|coupon|tiết\s*kiệm|tiet\s*kiem|hoàn\s*tiền|hoan\s*tien|trợ\s*giá|tro\s*gia)\s*(?:giá|gia)?\s*(?:lên\s*tới|len\s*toi|lên\s*đến|len\s*den|đến|den|tới|toi|thêm|them|sâu|sau|mạnh|manh|ngay|nhanh)?\s*[-~:]?\s*$/iu
 const PRICE_BEFORE_PERCENT_RE =
   /(?:\d[\d.,]*\s*(?:k|tr|triệu|trieu|ngàn|ngan|nghìn|nghin|đ|₫|vnd|vnđ|đồng|dong|\$|usd)?)\s*[(\-[~]\s*$/iu
-// [ \t] (not \s) so a discount label on the next line does not turn a
-// product percentage like `Cotton 100%` into a discount claim.
+// Same-line horizontal whitespace only (incl. NBSP) so a discount label on
+// the next line does not turn a product percentage like `Cotton 100%` into
+// a discount claim, while `20% off` with U+00A0 still parses.
 const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
-  /^[ \t]*(?:off|discount|giảm|giam)\b/iu
+  /^[^\S\n]*(?:off|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
-const CLOSE_PAREN_AFTER_PERCENT_RE = /^[ \t]*\)/
+const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
 
 // E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
 // end of one message chunk cannot merge with a label on the next chunk
@@ -617,10 +618,10 @@ export function extractRichResponseTexts(rich: ParsedRichResponse): string {
           }
         } else if (payload.template_type === "generic") {
           for (const el of payload.elements) {
-            chunks.push(el.title)
-            if (el.subtitle) {
-              chunks.push(el.subtitle)
-            }
+            // Title and subtitle belong to the same card — keep them on one
+            // line so a split discount claim (`20%` + `Off for…`) parses,
+            // while the \n between cards stays a hard boundary.
+            chunks.push(el.subtitle ? `${el.title} ${el.subtitle}` : el.title)
             for (const button of el.buttons) {
               chunks.push(button.title)
             }

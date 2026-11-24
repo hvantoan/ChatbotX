@@ -174,6 +174,9 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(
       extractMoneyAndPercentTokens("Cotton 100%\nGiảm giá 20%").percents,
     ).toEqual([20])
+    expect(extractMoneyAndPercentTokens("20%\u00A0off today").percents).toEqual(
+      [20],
+    )
   })
 
   test("keeps business names like 'đây là Botanic Spa' in handoff messages", () => {
@@ -781,5 +784,32 @@ describe("extractRichResponseTexts", () => {
 
     expect(text).toContain("Mua ngay 99k")
     expect(text).toContain("Đăng ký 149k")
+  })
+
+  test("joins a card's title and subtitle on one line so split discounts parse", () => {
+    const text = extractRichResponseTexts({
+      messages: [
+        {
+          message: {
+            attachment: {
+              type: "template",
+              payload: {
+                template_type: "generic",
+                elements: [
+                  {
+                    title: "20%",
+                    subtitle: "Off for new customers",
+                    buttons: [],
+                  },
+                ],
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    expect(text).toBe("20% Off for new customers")
+    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20])
   })
 })
