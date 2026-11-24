@@ -156,10 +156,10 @@ const PRICE_BEFORE_PERCENT_RE =
 // product name. Only recognized promotion and price-basis modifiers
 // (`off-peak`, `off-season`, `off-hours`, `off-invoice`, `off-list`,
 // `off-menu`, `off-MSRP`, `off-RRP`, `off-retail`…) before a discount or
-// sale label form a discount claim. `off-price` is a merchandise term,
-// not a price basis, so `price` stays out of the list.
+// sale label form a discount claim. `off-price` counts only before an
+// explicit discount label — `off-price sale merchandise` is a product term.
 const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
-  /^[^\S\n]*(?:off(?!-\w)\b|off-(?:peak|season|hours?|days?|weekends?|weekdays?|invoice|list|menu|contract|msrp|s?rrp|retail|tag|sticker)[^\S\n]+(?:discount|giảm|giam|sale)\b|discount|giảm|giam)\b/iu
+  /^[^\S\n]*(?:off(?!-\w)\b|off-(?:peak|season|hours?|days?|weekends?|weekdays?|invoice|list|menu|contract|msrp|s?rrp|retail|tag|sticker)[^\S\n]+(?:discount|giảm|giam|sale)\b|off-price[^\S\n]+(?:discount|giảm|giam)\b|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
 const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
 // Titles that are just an offer qualifier plus a percentage: `20%`,
