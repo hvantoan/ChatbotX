@@ -875,6 +875,11 @@ describe("extractRichResponseTexts", () => {
                     subtitle: "off-peak discount",
                     buttons: [],
                   },
+                  {
+                    title: "20%",
+                    subtitle: "off-MSRP discount",
+                    buttons: [],
+                  },
                 ],
               },
             },
@@ -884,9 +889,11 @@ describe("extractRichResponseTexts", () => {
     })
 
     expect(text).toBe(
-      "20% Off for new customers\nUp to 20% off selected items\nUp to 100%\noff-grid operation\n20% off-peak discount",
+      "20% Off for new customers\nUp to 20% off selected items\nUp to 100%\noff-grid operation\n20% off-peak discount\n20% off-MSRP discount",
     )
-    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20, 20, 20])
+    expect(extractMoneyAndPercentTokens(text).percents).toEqual([
+      20, 20, 20, 20,
+    ])
   })
 
   test("keeps title/subtitle boundaries so warranty months stay out of prices", () => {
