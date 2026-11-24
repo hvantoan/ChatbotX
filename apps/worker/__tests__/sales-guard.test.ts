@@ -818,4 +818,36 @@ describe("extractRichResponseTexts", () => {
     expect(text).toBe("20% Off for new customers")
     expect(extractMoneyAndPercentTokens(text).percents).toEqual([20])
   })
+
+  test("keeps title/subtitle boundaries so warranty months stay out of prices", () => {
+    const text = extractRichResponseTexts({
+      messages: [
+        {
+          message: {
+            attachment: {
+              type: "template",
+              payload: {
+                template_type: "generic",
+                elements: [
+                  {
+                    title: "Giá 2 triệu",
+                    subtitle: "24 tháng bảo hành",
+                    buttons: [],
+                  },
+                  {
+                    title: "Cotton 100%",
+                    subtitle: "Discount applied at checkout",
+                    buttons: [],
+                  },
+                ],
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    expect(extractMoneyAndPercentTokens(text).prices).toEqual([2_000_000])
+    expect(extractMoneyAndPercentTokens(text).percents).toEqual([])
+  })
 })

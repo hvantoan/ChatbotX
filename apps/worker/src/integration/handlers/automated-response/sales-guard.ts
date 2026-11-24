@@ -155,6 +155,7 @@ const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
   /^[^\S\n]*(?:off|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
 const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
+const CARD_PERCENT_ONLY_TITLE_RE = /^\s*\d+(?:[.,]\d+)?\s*%\s*$/iu
 
 // E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
 // end of one message chunk cannot merge with a label on the next chunk
@@ -620,10 +621,22 @@ export function extractRichResponseTexts(rich: ParsedRichResponse): string {
           }
         } else if (payload.template_type === "generic") {
           for (const el of payload.elements) {
-            // Title and subtitle belong to the same card — keep them on one
-            // line so a split discount claim (`20%` + `Off for…`) parses,
-            // while the \n between cards stays a hard boundary.
-            chunks.push(el.subtitle ? `${el.title} ${el.subtitle}` : el.title)
+            // A percent-only title with a discount label subtitle is one
+            // claim split across fields — join it. Anything else stays on
+            // separate lines so `Giá 2 triệu` + `24 tháng bảo hành` does not
+            // merge into 2_240_000 and `Cotton 100%` is not a discount.
+            if (
+              el.subtitle &&
+              CARD_PERCENT_ONLY_TITLE_RE.test(el.title) &&
+              DISCOUNT_KEYWORD_AFTER_PERCENT_RE.test(el.subtitle)
+            ) {
+              chunks.push(`${el.title.trim()} ${el.subtitle.trim()}`)
+            } else {
+              chunks.push(el.title)
+              if (el.subtitle) {
+                chunks.push(el.subtitle)
+              }
+            }
             for (const button of el.buttons) {
               chunks.push(button.title)
             }
