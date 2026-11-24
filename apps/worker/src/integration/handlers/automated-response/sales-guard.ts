@@ -155,7 +155,11 @@ const DISCOUNT_KEYWORD_AFTER_PERCENT_RE =
   /^[^\S\n]*(?:off|discount|giảm|giam)\b/iu
 const OPEN_PAREN_BEFORE_PERCENT_RE = /\(\s*$/
 const CLOSE_PAREN_AFTER_PERCENT_RE = /^[^\S\n]*\)/
-const CARD_PERCENT_ONLY_TITLE_RE = /^\s*\d+(?:[.,]\d+)?\s*%\s*$/iu
+// Titles that are just an offer qualifier plus a percentage: `20%`,
+// `Up to 20%`, `Tối đa 20%`. Anything richer (a price, a product attribute
+// like `Cotton 100%`) must stay on its own line.
+const CARD_PERCENT_ONLY_TITLE_RE =
+  /^\s*(?:up\s+to|tối\s*đa|toi\s*da|lên\s*đến|len\s*den)?\s*\d+(?:[.,]\d+)?\s*%\s*$/iu
 
 // E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
 // end of one message chunk cannot merge with a label on the next chunk

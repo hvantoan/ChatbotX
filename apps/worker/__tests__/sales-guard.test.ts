@@ -813,6 +813,11 @@ describe("extractRichResponseTexts", () => {
                     subtitle: "Off for new customers",
                     buttons: [],
                   },
+                  {
+                    title: "Up to 20%",
+                    subtitle: "off selected items",
+                    buttons: [],
+                  },
                 ],
               },
             },
@@ -821,8 +826,8 @@ describe("extractRichResponseTexts", () => {
       ],
     })
 
-    expect(text).toBe("20% Off for new customers")
-    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20])
+    expect(text).toBe("20% Off for new customers\nUp to 20% off selected items")
+    expect(extractMoneyAndPercentTokens(text).percents).toEqual([20, 20])
   })
 
   test("keeps title/subtitle boundaries so warranty months stay out of prices", () => {
