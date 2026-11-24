@@ -13,7 +13,7 @@ RUN npm install -g turbo@^2
 # Generate a partial monorepo for a target package
 WORKDIR /app
 COPY . .
-RUN turbo prune chatbotx-mcp --docker
+RUN turbo prune inboxos-mcp --docker
 
 FROM base AS deps
 ENV NODE_OPTIONS="--max-old-space-size=4096"
@@ -28,7 +28,7 @@ COPY --from=pre /app/out/full/ .
 # tsconfig extends; copy it back so tsdown's dts plugin can resolve `extends`
 # instead of failing with "File '../../tsconfig.base.json' not found".
 COPY tsconfig.base.json ./tsconfig.base.json
-RUN pnpm turbo run build --filter=chatbotx-mcp
+RUN pnpm turbo run build --filter=inboxos-mcp
 
 FROM base AS release
 RUN apt update && \
