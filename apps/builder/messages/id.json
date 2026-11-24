@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Akun ini belum ada dan pendaftaran dinonaktifkan. Minta administrator untuk membuatnya bagi Anda.",
       "invalidInvitation": "Undangan ini tidak valid atau sudah kedaluwarsa.",
       "generic": "Login gagal. Silakan coba lagi."
-    }
+    },
+    "signedInSuccess": "Berhasil masuk"
   },
   "emailTopics": {
     "title": "Topik Email"

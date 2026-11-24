@@ -5101,7 +5101,8 @@
       "signUpDisabled": "此帳戶尚不存在，且註冊已停用。請要求管理員為您建立帳戶。",
       "invalidInvitation": "此邀請無效或已過期。",
       "generic": "登入失敗。請重試。"
-    }
+    },
+    "signedInSuccess": "登入成功"
   },
   "emailTopics": {
     "title": "電子郵件主題"

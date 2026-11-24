@@ -7,6 +7,14 @@ import type {
 import { Badge } from "@chatbotx.io/ui/components/ui/badge"
 import { Button } from "@chatbotx.io/ui/components/ui/button"
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@chatbotx.io/ui/components/ui/table"
+import {
   AlertTriangleIcon,
   CheckIcon,
   HelpCircleIcon,
@@ -123,37 +131,44 @@ export function ProposalCard({
       ) : null}
 
       {proposal.diff.length > 0 ? (
-        <div className="overflow-x-auto rounded-md border border-border">
-          <table className="w-full text-left text-xs">
-            <thead className="border-border border-b bg-muted/50 text-muted-foreground">
-              <tr>
-                <th className="px-3 py-2 font-medium">{t("proposal.field")}</th>
-                <th className="px-3 py-2 font-medium">
+        <div className="overflow-hidden rounded-md border border-border">
+          <Table className="text-xs">
+            <TableHeader className="bg-muted/50 text-muted-foreground">
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="h-auto px-3 py-2 text-muted-foreground">
+                  {t("proposal.field")}
+                </TableHead>
+                <TableHead className="h-auto px-3 py-2 text-muted-foreground">
                   {t("proposal.before")}
-                </th>
-                <th className="px-3 py-2 font-medium">{t("proposal.after")}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
+                </TableHead>
+                <TableHead className="h-auto px-3 py-2 text-muted-foreground">
+                  {t("proposal.after")}
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {proposal.diff.map((entry) => (
-                <tr data-testid={`diff-row-${entry.field}`} key={entry.field}>
-                  <td className="whitespace-nowrap px-3 py-2 font-medium">
+                <TableRow
+                  data-testid={`diff-row-${entry.field}`}
+                  key={entry.field}
+                >
+                  <TableCell className="px-3 py-2 font-medium">
                     {t(`fields.${entry.field}` as Parameters<typeof t>[0])}
-                  </td>
-                  <td className="px-3 py-2 text-muted-foreground">
+                  </TableCell>
+                  <TableCell className="whitespace-normal px-3 py-2 text-muted-foreground">
                     {formatDiffValue(
                       entry.field,
                       entry.before,
                       productNameById,
                     )}
-                  </td>
-                  <td className="px-3 py-2 font-medium text-foreground">
+                  </TableCell>
+                  <TableCell className="whitespace-normal px-3 py-2 font-medium text-foreground">
                     {formatDiffValue(entry.field, entry.after, productNameById)}
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       ) : (
         <p className="text-muted-foreground text-xs">

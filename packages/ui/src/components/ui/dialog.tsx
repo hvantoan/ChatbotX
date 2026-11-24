@@ -33,7 +33,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-black/10 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "fixed inset-0 isolate z-50 bg-black/50 transition-opacity duration-150 data-starting-style:opacity-0 data-ending-style:opacity-0",
         className
       )}
       {...props}
@@ -66,7 +66,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 start-1/2 z-50 grid w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] ltr:-translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-1/2 start-1/2 z-50 grid w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] ltr:-translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border bg-popover p-4 text-sm text-popover-foreground shadow-lg transition-[transform,opacity] duration-150 outline-none sm:max-w-sm data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:scale-95 data-ending-style:scale-95",
           className
         )}
         {...props}
@@ -120,7 +120,7 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
     <DialogPrimitive.Title
       data-slot="dialog-title"
       className={cn(
-        "cn-font-heading text-base leading-none font-medium",
+        "text-base leading-none font-medium",
         className
       )}
       {...props}

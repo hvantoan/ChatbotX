@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Ce compte n’existe pas encore et l’inscription est désactivée. Demandez à un administrateur de le créer pour vous.",
       "invalidInvitation": "Cette invitation est invalide ou a expiré.",
       "generic": "Échec de la connexion. Veuillez réessayer."
-    }
+    },
+    "signedInSuccess": "Connexion réussie"
   },
   "emailTopics": {
     "title": "Sujets d’e-mail"

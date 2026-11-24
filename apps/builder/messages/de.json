@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Dieses Konto existiert noch nicht und die Registrierung ist deaktiviert. Bitte einen Administrator, es für dich zu erstellen.",
       "invalidInvitation": "Diese Einladung ist ungültig oder abgelaufen.",
       "generic": "Anmeldung fehlgeschlagen. Bitte versuche es erneut."
-    }
+    },
+    "signedInSuccess": "Erfolgreich angemeldet"
   },
   "emailTopics": {
     "title": "E-Mail-Themen"

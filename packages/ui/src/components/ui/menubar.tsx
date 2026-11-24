@@ -69,6 +69,7 @@ function MenubarContent({
   className,
   align = "start",
   alignOffset = -4,
+  side,
   sideOffset = 8,
   ...props
 }: React.ComponentProps<typeof MenuPrimitive.Popup> &
@@ -81,6 +82,7 @@ function MenubarContent({
       <MenuPrimitive.Positioner
         align={align}
         alignOffset={alignOffset}
+        side={side}
         sideOffset={sideOffset}
         className="isolate z-50 origin-(--transform-origin)"
       >

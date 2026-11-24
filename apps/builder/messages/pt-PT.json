@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Esta conta ainda não existe e o registo está desativado. Peça a um administrador para a criar.",
       "invalidInvitation": "Este convite é inválido ou expirou.",
       "generic": "Falha ao iniciar sessão. Tente novamente."
-    }
+    },
+    "signedInSuccess": "Sessão iniciada com sucesso"
   },
   "emailTopics": {
     "title": "Tópicos de e-mail"

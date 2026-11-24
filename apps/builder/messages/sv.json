@@ -612,7 +612,8 @@
       "signUpDisabled": "Det här kontot finns inte ännu och registrering är inaktiverad. Be en administratör att skapa det åt dig.",
       "invalidInvitation": "Den här inbjudan är ogiltig eller har löpt ut.",
       "generic": "Inloggningen misslyckades. Försök igen."
-    }
+    },
+    "signedInSuccess": "Inloggad"
   },
   "autoAssignConversation": {
     "rule": {

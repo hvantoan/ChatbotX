@@ -1,9 +1,13 @@
 "use client"
 
-import type * as React from "react"
+import * as React from "react"
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
 
 import { cn } from "@chatbotx.io/ui/lib/utils"
+
+type TabsListVariant = "line" | "pills"
+
+const TabsListVariantContext = React.createContext<TabsListVariant>("line")
 
 function Tabs({
   className,
@@ -20,23 +24,28 @@ function Tabs({
 
 function TabsList({
   className,
+  variant = "line",
+  children,
   ...props
-}: React.ComponentProps<typeof TabsPrimitive.List>) {
-  const children = props.children as React.ReactElement
-  const defaultClassName = "bg-card text-card-foreground px-8 w-fit rounded-lg rounded-xl border shadow-sm"
+}: React.ComponentProps<typeof TabsPrimitive.List> & {
+  variant?: TabsListVariant
+}) {
   return (
-    <TabsPrimitive.List
-      data-slot="tabs-list"
-      className={cn(
-        defaultClassName,
-        className,
-      )}
-      {...props}
-    >
-      <div className="flex gap-8">
+    <TabsListVariantContext.Provider value={variant}>
+      <TabsPrimitive.List
+        data-slot="tabs-list"
+        data-variant={variant}
+        className={cn(
+          variant === "pills"
+            ? "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]"
+            : "bg-card text-card-foreground inline-flex w-fit items-center gap-8 rounded-xl border px-8 shadow-sm",
+          className,
+        )}
+        {...props}
+      >
         {children}
-      </div>
-    </TabsPrimitive.List>
+      </TabsPrimitive.List>
+    </TabsListVariantContext.Provider>
   )
 }
 
@@ -44,11 +53,15 @@ function TabsTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Tab>) {
+  const variant = React.useContext(TabsListVariantContext)
+
   return (
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
-        "py-6 cursor-pointer px focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] items-center justify-center gap-1.5 border-b-2 border-transparent text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-active:font-bold data-active:border-foreground dark:data-active:text-foreground dark:data-active:border-white [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        variant === "pills"
+          ? "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-active:bg-background dark:data-active:text-foreground dark:data-active:border-input dark:data-active:bg-input/30 data-active:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+          : "cursor-pointer py-6 focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] items-center justify-center gap-1.5 border-b-2 border-transparent text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-active:font-bold data-active:border-foreground dark:data-active:text-foreground dark:data-active:border-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}

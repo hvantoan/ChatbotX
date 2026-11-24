@@ -1,3 +1,5 @@
+"use client"
+
 import { ChevronDown, ChevronUp } from "lucide-react"
 import type { FocusEvent, Ref } from "react"
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react"

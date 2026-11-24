@@ -1,3 +1,5 @@
+"use client"
+
 import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
 import { Button } from "@chatbotx.io/ui/components/ui/button"
 import {

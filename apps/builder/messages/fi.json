@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Tätä tiliä ei vielä ole, ja rekisteröityminen on poistettu käytöstä. Pyydä järjestelmänvalvojaa luomaan se sinulle.",
       "invalidInvitation": "Tämä kutsu on virheellinen tai vanhentunut.",
       "generic": "Kirjautuminen epäonnistui. Yritä uudelleen."
-    }
+    },
+    "signedInSuccess": "Kirjauduttu sisään"
   },
   "emailTopics": {
     "title": "Sähköpostiaiheet"

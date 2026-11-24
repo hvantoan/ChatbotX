@@ -5032,7 +5032,8 @@
       "signUpDisabled": "このアカウントはまだ存在せず、新規登録は無効です。管理者に作成を依頼してください。",
       "invalidInvitation": "この招待は無効か、有効期限が切れています。",
       "generic": "ログインに失敗しました。もう一度お試しください。"
-    }
+    },
+    "signedInSuccess": "サインインしました"
   },
   "emailTopics": {
     "title": "メールトピック"

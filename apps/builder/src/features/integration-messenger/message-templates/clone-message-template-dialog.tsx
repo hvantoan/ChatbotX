@@ -11,6 +11,12 @@ import {
   DialogTitle,
 } from "@chatbotx.io/ui/components/ui/dialog"
 import { Form } from "@chatbotx.io/ui/components/ui/form"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@chatbotx.io/ui/components/ui/table"
 import { zodBigintAsString } from "@chatbotx.io/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
@@ -168,21 +174,18 @@ function CloneResultDialog({
         </DialogHeader>
 
         {result !== null && (
-          <table className="w-full table-fixed text-sm">
+          <Table className="table-fixed">
             <colgroup>
               <col className="w-48" />
               <col />
             </colgroup>
-            <tbody>
+            <TableBody>
               {result.succeeded.map((item) => (
-                <tr
-                  className="border-b border-dashed last:border-b-0"
-                  key={`ok-${item.channel}`}
-                >
-                  <td className="overflow-hidden text-ellipsis whitespace-nowrap py-3 pe-3 font-medium">
+                <TableRow className="border-dashed" key={`ok-${item.channel}`}>
+                  <TableCell className="overflow-hidden text-ellipsis py-3 ps-0 pe-3 font-medium">
                     {item.channel}
-                  </td>
-                  <td className="py-3 ps-3 text-start">
+                  </TableCell>
+                  <TableCell className="py-3 ps-3 pe-0 text-start">
                     <div className="flex w-full items-center gap-1.5 text-green-600">
                       <CheckCircle2Icon className="size-4 shrink-0" />
                       <span className="truncate">
@@ -191,29 +194,29 @@ function CloneResultDialog({
                         )}
                       </span>
                     </div>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
               {result.failed.map((item) => (
-                <tr
-                  className="border-b border-dashed last:border-b-0"
+                <TableRow
+                  className="border-dashed"
                   key={`fail-${item.channel}`}
                 >
-                  <td className="overflow-hidden text-ellipsis whitespace-nowrap py-3 pe-3 font-medium">
+                  <TableCell className="overflow-hidden text-ellipsis py-3 ps-0 pe-3 font-medium">
                     {item.channel}
-                  </td>
-                  <td className="py-3 ps-3 text-start">
+                  </TableCell>
+                  <TableCell className="whitespace-normal py-3 ps-3 pe-0 text-start">
                     <div className="flex w-full items-center gap-1.5 text-destructive">
                       <XCircleIcon className="size-4 shrink-0" />
                       <div className="wrap-break-word min-w-0 flex-1 whitespace-pre-wrap text-destructive text-xs leading-relaxed">
                         {item.error}
                       </div>
                     </div>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         )}
 
         <DialogFooter>

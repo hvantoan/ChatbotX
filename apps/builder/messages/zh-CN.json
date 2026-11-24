@@ -800,7 +800,8 @@
       "signUpDisabled": "此账户尚不存在，且注册已禁用。请让管理员为您创建账户。",
       "invalidInvitation": "此邀请无效或已过期。",
       "generic": "登录失败。请重试。"
-    }
+    },
+    "signedInSuccess": "登录成功"
   },
   "autoAssignConversation": {
     "rule": {

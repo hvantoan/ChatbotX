@@ -5097,7 +5097,8 @@
       "signUpDisabled": "Tài khoản này chưa tồn tại và đăng ký đã bị vô hiệu hóa. Hãy yêu cầu quản trị viên tạo tài khoản cho bạn.",
       "invalidInvitation": "Lời mời này không hợp lệ hoặc đã hết hạn.",
       "generic": "Đăng nhập thất bại. Vui lòng thử lại."
-    }
+    },
+    "signedInSuccess": "Đăng nhập thành công"
   },
   "emailTopics": {
     "title": "Chủ đề Email"

@@ -5737,7 +5737,8 @@
       "signUpDisabled": "This account does not exist yet and sign-up is disabled. Ask an administrator to create it for you.",
       "invalidInvitation": "This invitation is invalid or has expired.",
       "generic": "Sign-in failed. Please try again."
-    }
+    },
+    "signedInSuccess": "Signed in successfully"
   },
   "emailTopics": {
     "title": "Email Topics"

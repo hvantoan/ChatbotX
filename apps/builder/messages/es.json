@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Esta cuenta aún no existe y el registro está desactivado. Pide a un administrador que la cree por ti.",
       "invalidInvitation": "Esta invitación no es válida o ha caducado.",
       "generic": "Error al iniciar sesión. Inténtalo de nuevo."
-    }
+    },
+    "signedInSuccess": "Sesión iniciada correctamente"
   },
   "emailTopics": {
     "title": "Correo Topics"

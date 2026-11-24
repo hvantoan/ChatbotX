@@ -5737,7 +5737,8 @@
       "signUpDisabled": "Bu hesab hələ mövcud deyil və qeydiyyat deaktiv edilib. Administratorunuzdan onu sizin üçün yaratmasını istəyin.",
       "invalidInvitation": "Bu dəvət etibarsızdır və ya müddəti bitib.",
       "generic": "Giriş uğursuz oldu. Zəhmət olmasa yenidən cəhd edin."
-    }
+    },
+    "signedInSuccess": "Uğurla daxil oldunuz"
   },
   "emailTopics": {
     "title": "E-poçt mövzuları"

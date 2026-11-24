@@ -1,3 +1,5 @@
+"use client"
+
 import { Button, buttonVariants } from '@chatbotx.io/ui/components/ui/button';
 import { Input } from '@chatbotx.io/ui/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@chatbotx.io/ui/components/ui/popover';

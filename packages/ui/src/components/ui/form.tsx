@@ -25,9 +25,7 @@ type FormFieldContextValue<
   name: TName
 }
 
-const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
-)
+const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)
 
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -46,18 +44,24 @@ const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
   const { getFieldState } = useFormContext()
-  const formState = useFormState({ name: fieldContext.name })
-  const fieldState = getFieldState(fieldContext.name, formState)
-
-  if (!fieldContext) {
-    throw new Error("useFormField should be used within <FormField>")
-  }
+  const formState = useFormState(
+    fieldContext ? { name: fieldContext.name } : undefined,
+  )
+  const fieldState = fieldContext
+    ? getFieldState(fieldContext.name, formState)
+    : {
+        invalid: false,
+        isDirty: false,
+        isTouched: false,
+        isValidating: false,
+        error: undefined,
+      }
 
   const { id } = itemContext
 
   return {
     id,
-    name: fieldContext.name,
+    name: fieldContext?.name ?? "",
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
@@ -106,7 +110,8 @@ function FormLabel({
 
 function FormControl({
   children,
-}: {
+  ...props
+}: React.ComponentProps<"input"> & {
   children: React.ReactElement
 }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
@@ -122,7 +127,7 @@ function FormControl({
           : `${formDescriptionId} ${formMessageId}`,
         "aria-invalid": !!error,
       } as React.ComponentProps<"input">,
-      {},
+      props,
     ),
   })
 }

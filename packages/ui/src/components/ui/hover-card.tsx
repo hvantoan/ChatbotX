@@ -22,6 +22,8 @@ function HoverCardTrigger({
 function HoverCardContent({
   className,
   align = "center",
+  alignOffset = 0,
+  side,
   sideOffset = 4,
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Popup> &
@@ -33,6 +35,8 @@ function HoverCardContent({
     <HoverCardPrimitive.Portal data-slot="hover-card-portal">
       <HoverCardPrimitive.Positioner
         align={align}
+        alignOffset={alignOffset}
+        side={side}
         sideOffset={sideOffset}
         className="isolate z-50"
       >

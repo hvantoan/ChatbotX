@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Acest cont nu există încă, iar înregistrarea este dezactivată. Cere unui administrator să îl creeze pentru tine.",
       "invalidInvitation": "Această invitație este invalidă sau a expirat.",
       "generic": "Autentificarea a eșuat. Încearcă din nou."
-    }
+    },
+    "signedInSuccess": "Autentificare reușită"
   },
   "emailTopics": {
     "title": "Subiecte de e-mail"

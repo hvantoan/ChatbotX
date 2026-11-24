@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Questo account non esiste ancora e la registrazione è disabilitata. Chiedi a un amministratore di crearlo per te.",
       "invalidInvitation": "Questo invito non è valido o è scaduto.",
       "generic": "Accesso non riuscito. Riprova."
-    }
+    },
+    "signedInSuccess": "Accesso effettuato con successo"
   },
   "emailTopics": {
     "title": "Argomenti email"

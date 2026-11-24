@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Bu hesap henüz mevcut değil ve kayıt olma devre dışı. Bir yöneticiden sizin için oluşturmasını isteyin.",
       "invalidInvitation": "Bu davet geçersiz veya süresi dolmuş.",
       "generic": "Giriş başarısız oldu. Lütfen tekrar deneyin."
-    }
+    },
+    "signedInSuccess": "Başarıyla giriş yapıldı"
   },
   "emailTopics": {
     "title": "E-posta Konuları"

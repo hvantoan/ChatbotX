@@ -95,7 +95,7 @@ export function getSpreadsheetColumns({
             render={
               <Button
                 aria-label="Open menu"
-                className="flex size-8 p-0 data-[state=open]:bg-muted"
+                className="flex size-8 p-0 data-popup-open:bg-muted"
                 variant="ghost"
               >
                 <EllipsisVerticalIcon aria-hidden="true" className="size-4" />

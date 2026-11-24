@@ -5032,7 +5032,8 @@
       "signUpDisabled": "Esta conta ainda não existe e o cadastro está desativado. Peça a um administrador para criá-la para você.",
       "invalidInvitation": "Este convite é inválido ou expirou.",
       "generic": "Falha no login. Tente novamente."
-    }
+    },
+    "signedInSuccess": "Login realizado com sucesso"
   },
   "emailTopics": {
     "title": "Tópicos de e-mail"

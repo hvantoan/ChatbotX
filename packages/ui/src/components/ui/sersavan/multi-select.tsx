@@ -1,3 +1,5 @@
+"use client"
+
 // Locally patched for RTL; reapply after refreshing from the upstream shadcn registry.
 
 import { Badge } from "@chatbotx.io/ui/components/ui/badge"
@@ -200,12 +202,6 @@ export interface MultiSelectProps
   modalPopover?: boolean
 
   /**
-   * If true, renders the multi-select component as a child of another component.
-   * Optional, defaults to false.
-   */
-  asChild?: boolean
-
-  /**
    * Additional class names to apply custom styles to the multi-select component.
    * Optional, can be used to add custom styles.
    */
@@ -383,7 +379,6 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
       animationConfig,
       maxCount = 3,
       modalPopover = false,
-      asChild = false,
       className,
       hideSelectAll = false,
       searchable = true,
@@ -487,7 +482,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
             buttonRef.current.focus()
             const originalOutline = buttonRef.current.style.outline
             const originalOutlineOffset = buttonRef.current.style.outlineOffset
-            buttonRef.current.style.outline = "2px solid hsl(var(--ring))"
+            buttonRef.current.style.outline = "2px solid var(--ring)"
             buttonRef.current.style.outlineOffset = "2px"
             setTimeout(() => {
               if (buttonRef.current) {
@@ -623,31 +618,12 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
           uniqueOptions.push(option)
         }
       })
-      if (process.env.NODE_ENV === "development" && duplicates.length > 0) {
-        const action = deduplicateOptions ? "automatically removed" : "detected"
-        console.warn(
-          `MultiSelect: Duplicate option values ${action}: ${duplicates.join(
-            ", ",
-          )}. ` +
-            `${
-              deduplicateOptions
-                ? "Duplicates have been removed automatically."
-                : "This may cause unexpected behavior. Consider setting 'deduplicateOptions={true}' or ensure all option values are unique."
-            }`,
-        )
-      }
       return deduplicateOptions ? uniqueOptions : allOptions
     }, [options, deduplicateOptions, isGroupedOptions])
 
     const getOptionByValue = React.useCallback(
       (value: string): MultiSelectOption | undefined => {
-        const option = getAllOptions().find((option) => option.value === value)
-        if (!option && process.env.NODE_ENV === "development") {
-          console.warn(
-            `MultiSelect: Option with value "${value}" not found in options list`,
-          )
-        }
-        return option
+        return getAllOptions().find((option) => option.value === value)
       },
       [getAllOptions],
     )
@@ -996,7 +972,7 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
                               </span>
                               <div
                                 aria-label={labels.removeAriaLabel(option.label)}
-                                className="-m-0.5 ms-2 h-4 w-4 cursor-pointer rounded-sm p-0.5 hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-white/50"
+                                className="-m-0.5 ms-2 h-4 w-4 cursor-pointer rounded-sm p-0.5 hover:bg-foreground/10 focus:outline-none focus:ring-1 focus:ring-ring/50"
                                 onClick={(event) => {
                                   event.stopPropagation()
                                   toggleOption(value)

@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Denne konto findes ikke endnu, og registrering er deaktiveret. Bed en administrator om at oprette den for dig.",
       "invalidInvitation": "Denne invitation er ugyldig eller udløbet.",
       "generic": "Login mislykkedes. Prøv igen."
-    }
+    },
+    "signedInSuccess": "Logget ind"
   },
   "emailTopics": {
     "title": "E-mail Topics"

@@ -5055,7 +5055,8 @@
       "signUpDisabled": "Dit account bestaat nog niet en aanmelden is uitgeschakeld. Vraag een beheerder om het voor je aan te maken.",
       "invalidInvitation": "Deze uitnodiging is ongeldig of verlopen.",
       "generic": "Aanmelden mislukt. Probeer het opnieuw."
-    }
+    },
+    "signedInSuccess": "Succesvol ingelogd"
   },
   "emailTopics": {
     "title": "E-mailonderwerpen"
