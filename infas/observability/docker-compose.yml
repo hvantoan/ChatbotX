@@ -68,8 +68,11 @@ services:
     environment:
       DOZZLE_NO_ANALYTICS: "true"
       DOZZLE_ENABLE_ACTIONS: "false"
+      DOZZLE_AUTH_PROVIDER: simple
+      DOZZLE_USERNAME: ${DOZZLE_USERNAME:?DOZZLE_USERNAME is required}
+      DOZZLE_PASSWORD: ${DOZZLE_PASSWORD:?DOZZLE_PASSWORD is required}
     ports:
-      - "127.0.0.1:${DOZZLE_PORT:-8080}:8080"
+      - "127.0.0.1:${DOZZLE_PORT:-8088}:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks: [obs]
