@@ -192,6 +192,9 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(
       extractMoneyAndPercentTokens("100% Off-Grid Discount Solar Kit").percents,
     ).toEqual([])
+    expect(
+      extractMoneyAndPercentTokens("30% off-invoice discount").percents,
+    ).toEqual([30])
   })
 
   test("keeps business names like 'đây là Botanic Spa' in handoff messages", () => {
