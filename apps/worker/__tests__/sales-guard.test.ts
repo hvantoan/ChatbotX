@@ -139,7 +139,7 @@ beforeEach(() => {
 describe("Tier 1 price and percent extraction & verification", () => {
   test("parses VND and USD formats and percentages accurately", () => {
     const extracted = extractMoneyAndPercentTokens(
-      "Khóa học giá gốc 2.500.000đ, giảm 500k (tức 20%), chỉ còn 2tr hoặc bản Online 1tr99 và Ebook $49.",
+      "Khóa học giá gốc 2.500.000đ, giảm 20% (tức 500k), chỉ còn 2tr hoặc bản Online 1tr99 và Ebook $49.",
     )
     expect(extracted.prices).toEqual(
       expect.arrayContaining([2_500_000, 500_000, 2_000_000, 1_990_000, 49]),
@@ -206,6 +206,16 @@ describe("Tier 1 price and percent extraction & verification", () => {
     expect(res.passed).toBe(true)
     expect(res.unmatchedValues).toEqual([])
   })
+
+  test("does not treat a reassurance percentage next to a price as an invented discount", () => {
+    const res = checkTier1Prices({
+      replyText:
+        "Học phí 2.500.000đ, cam kết 100% đầu ra và 98% học viên hài lòng ạ!",
+      products,
+    })
+    expect(res.passed).toBe(true)
+    expect(res.unmatchedValues).toEqual([])
+  })
 })
 
 describe("evaluateSalesGuard decision pipeline", () => {
@@ -214,6 +224,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: false,
+      matchedHandoffTrigger: false,
       stage: "pitch",
       mentionedProductIds: ["3001"],
     })
@@ -265,6 +276,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: false,
+      matchedHandoffTrigger: false,
       stage: "pitch",
       mentionedProductIds: ["3001"],
     })
@@ -314,6 +326,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: true,
+      matchedHandoffTrigger: false,
       stage: "discover",
       mentionedProductIds: [],
     })
@@ -370,6 +383,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: false,
       inRole: true,
       customerAskedForHuman: false,
+      matchedHandoffTrigger: false,
       stage: "discover",
       mentionedProductIds: [],
     })
@@ -422,6 +436,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: true,
+      matchedHandoffTrigger: false,
       stage: "discover",
       mentionedProductIds: [],
     })
@@ -458,6 +473,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: true,
+      matchedHandoffTrigger: false,
       stage: "discover",
       mentionedProductIds: [],
     })
@@ -497,6 +513,7 @@ describe("evaluateSalesGuard decision pipeline", () => {
       onTopic: true,
       inRole: true,
       customerAskedForHuman: false,
+      matchedHandoffTrigger: false,
       stage: "discover",
       mentionedProductIds: [],
     })
@@ -534,6 +551,40 @@ describe("evaluateSalesGuard decision pipeline", () => {
     )
   })
 
+  test("hands off on a handoffTrigger match even when handoverOnHumanRequest is off", async () => {
+    const judgeRunner = vi.fn().mockResolvedValue({
+      onTopic: true,
+      inRole: true,
+      customerAskedForHuman: false,
+      matchedHandoffTrigger: true,
+      stage: "close",
+      mentionedProductIds: [],
+    })
+
+    const result = await evaluateSalesGuard({
+      conversation: fakeConversation,
+      contactInbox: fakeContactInbox,
+      aiAgent: fakeAgent,
+      profile: { ...profile, handoverOnHumanRequest: false },
+      products,
+      salesState: initialState,
+      model: fakeModel,
+      modelId: "gpt-5.4-mini",
+      provider: "openai",
+      systemPrompt: "System",
+      messages: [{ role: "user", content: "Ok em chốt đơn nhé" }],
+      candidateText: "Dạ em chuyển anh sang tư vấn viên ngay ạ.",
+      triggerMessageId: "msg-trigger-handoff",
+      startTime: Date.now(),
+      judgeRunner,
+    })
+
+    expect(result.outcome).toBe("handoff")
+    expect(mockHandoffExecute).toHaveBeenCalledWith(
+      expect.objectContaining({ reason: "sales_profile_human_request" }),
+    )
+  })
+
   test("flags inRole violation and rewrites when candidate reply self-identifies as AI or bot", async () => {
     expect(
       containsBotSelfDisclosure("Dạ em là trợ lý ảo AI của trung tâm ạ."),
@@ -546,16 +597,22 @@ describe("evaluateSalesGuard decision pipeline", () => {
         "Dạ Khóa IELTS Foundation phù hợp cho bất kỳ ai muốn học từ đầu ạ.",
       ),
     ).toBe(false)
-    // A bare "AI" inside a product name is not self-disclosure.
     expect(containsBotSelfDisclosure("Dạ Khóa học AI của bên em ạ.")).toBe(
       false,
     )
+    expect(
+      containsBotSelfDisclosure("Dạ bên em có gói Chatbot Builder ạ."),
+    ).toBe(false)
     expect(containsBotSelfDisclosure("Dạ em là AI tư vấn ạ.")).toBe(true)
+    expect(containsBotSelfDisclosure("Dạ em là bot của trung tâm ạ.")).toBe(
+      true,
+    )
 
     const judgeRunner = vi.fn().mockResolvedValue({
       onTopic: true,
       inRole: true,
       customerAskedForHuman: false,
+      matchedHandoffTrigger: false,
       stage: "pitch",
       mentionedProductIds: ["3001"],
     })

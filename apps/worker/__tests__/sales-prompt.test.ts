@@ -121,6 +121,8 @@ describe("compileSalesPrompt", () => {
     expect(idx2).toBeGreaterThan(idx1)
     // Inactive product 3003 and disabled variant Offline are excluded
     expect(prompt).not.toContain("Khóa TOEIC Cũ")
+    expect(prompt).toContain("Giảm giá: 20%")
+    expect(prompt).toContain("Giá sau giảm: 2000000 VND")
     expect(prompt).toContain("Online: 1592000 VND")
     expect(prompt).not.toContain("Offline: 2500000 VND")
     expect(prompt).toContain("[3. QUY TẮC BẮT BUỘC]")

@@ -352,7 +352,7 @@ export const listTrainingMessagesRequestSchema = z.object({
     .max(100)
     .optional()
     .describe(
-      "Maximum number of training messages to return per page (1-100, default 30).",
+      "Maximum number of training messages to return per page (1-100, default 20).",
     ),
 })
 

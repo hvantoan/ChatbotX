@@ -6,15 +6,12 @@ import type {
   AIAgentProviderModels,
   AIAgentSalesProfile,
 } from "@chatbotx.io/database/partials"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
 import { generateText, type LanguageModel, Output } from "ai"
 import { z } from "zod"
 import { aiTimeouts } from "../../constants"
-import { providerSdkFactories } from "../../core/factory"
 import { logger } from "../../logger"
-import { type AIProvider, aiProviders } from "../../schemas"
 import { getCachedAIIntegration } from "../cache"
-import type { AIIntegrationModel } from "../factory"
+import { createAIModelInstance } from "../factory"
 import { createOpenaiCompatibleModelInstance } from "../openai-compatible"
 
 export type SalesProfileProposalProduct = {
@@ -76,59 +73,6 @@ function isOpenaiCompatibleProviderModel(
   return "kind" in providerInfo && providerInfo.kind === "openaiCompatible"
 }
 
-const legacyModelIdMap: Partial<Record<AIProvider, Record<string, string>>> = {
-  [aiProviders.enum.deepseek]: {
-    "deepseek-v4-flash": "deepseek-flash",
-  },
-  [aiProviders.enum.claude]: {
-    "claude-3-5-sonnet-20241022": "claude-sonnet-4-6",
-    "claude-3-5-haiku-20241022": "claude-haiku-4-5-20251001",
-    "claude-3-opus-20240229": "claude-opus-4-8",
-    "claude-3-sonnet-20240229": "claude-sonnet-4-6",
-    "claude-3-haiku-20240307": "claude-haiku-4-5-20251001",
-    "claude-opus-4.6": "claude-opus-4-6",
-    "claude-4.5-haiku-20251001": "claude-haiku-4-5-20251001",
-    "claude-4.5-sonnet-20250929": "claude-sonnet-4-5-20250929",
-    "claude-sonnet-4.5-20250929": "claude-sonnet-4-5-20250929",
-    "claude-4.5-opus-20251101": "claude-opus-4-5-20251101",
-  },
-  [aiProviders.enum.gemini]: {
-    "gemini-3-flash": "gemini-3.5-flash",
-    "gemini-2.5-flash-lite": "gemini-3.5-flash",
-    "gemini-2.5-flash": "gemini-3.5-flash",
-    "gemini-2.5-pro": "gemini-3.5-flash",
-    "gemini-3.1-flash-image-preview": "gemini-3.1-flash-image",
-    "gemini-3-pro-image-preview": "gemini-3-pro-image",
-  },
-  [aiProviders.enum.openrouter]: {
-    "anthropic/claude-3-5-sonnet": "anthropic/claude-sonnet-4.5",
-    "anthropic/claude-3-5-haiku": "anthropic/claude-haiku-4.5",
-    "google/gemini-2.5-pro-preview": "google/gemini-2.5-pro",
-  },
-}
-
-function createTextModelInstance(props: {
-  model: AIIntegrationModel
-  provider: string
-  modelId: string
-}): LanguageModel {
-  const authParsed = secretTextAuthSchema.safeParse(props.model.auth)
-  if (!authParsed.success) {
-    throw new Error("Invalid AI integration auth configuration")
-  }
-  const parsedProvider = aiProviders.safeParse(props.provider)
-  if (!parsedProvider.success) {
-    throw new Error(`Unsupported provider: ${props.provider}`)
-  }
-  const createProvider = providerSdkFactories[parsedProvider.data]
-  const providerInstance = createProvider({
-    apiKey: authParsed.data.secretText,
-  })
-  const normalizedModelId =
-    legacyModelIdMap[parsedProvider.data]?.[props.modelId] ?? props.modelId
-  return providerInstance(normalizedModelId)
-}
-
 async function getOpenaiCompatibleIntegrationForWorkspace(props: {
   workspaceId: string
   id: string
@@ -186,7 +130,7 @@ export async function resolveSalesProfileProposalModel(props: {
     })
     if (integration) {
       return {
-        model: createTextModelInstance({
+        model: createAIModelInstance({
           model: integration,
           provider: modelConfig.provider,
           modelId: modelConfig.model,
@@ -223,7 +167,7 @@ function buildSalesProfileProposalPrompt(props: {
       ? props.products
           .map(
             (p) =>
-              `- id: "${p.id}" | name: ${JSON.stringify(p.name)} | price: ${p.price}${p.discount ? ` (discount: ${p.discount})` : ""} ${p.currency}`,
+              `- id: "${p.id}" | name: ${JSON.stringify(p.name)} | price: ${p.price}${p.discount ? ` (discount: ${p.discount}%)` : ""} ${p.currency}`,
           )
           .join("\n")
       : "(No active products in catalog)"

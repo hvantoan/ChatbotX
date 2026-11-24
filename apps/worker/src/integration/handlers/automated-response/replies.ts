@@ -81,7 +81,7 @@ import { logProviderAttempt } from "../shared/provider-attempt-logger"
 import { createMcpTokenResolver } from "../shared/resolve-mcp-token"
 import { triggerDefaultReplyFlow } from "./default-reply"
 import { handleRichAIReply } from "./rich-reply"
-import { evaluateSalesGuard } from "./sales-guard"
+import { evaluateSalesGuard, resolveSalesHandoffMessage } from "./sales-guard"
 import { createDocumentReaderExecutor } from "./system-tools/document-reader"
 import { createImageReaderExecutor } from "./system-tools/image-reader"
 import { createUrlReaderExecutor } from "./system-tools/url-reader"
@@ -1083,7 +1083,12 @@ async function runAIReply(
       }
     }
 
-    if (activeSalesProfile && salesState && fullText.trim()) {
+    const guardCandidateText = fullText.trim()
+    if (
+      activeSalesProfile &&
+      salesState &&
+      (guardCandidateText || handoffToolTracker.executed)
+    ) {
       const sendSalesGuardReply = async (text: string) => {
         // evaluateSalesGuard emits the single `message:bot_received` analytics event.
         await sendMessageAndWait(conversation.id, text)
@@ -1101,6 +1106,19 @@ async function runAIReply(
         })
       }
 
+      if (!guardCandidateText) {
+        await sendSalesGuardReply(
+          resolveSalesHandoffMessage(activeSalesProfile),
+        )
+        return {
+          responded: true,
+          provider,
+          modelId: selectedModelId,
+          usedFallbackText: false,
+          toolStats: logActionToolSelection(),
+        }
+      }
+
       const guardResult = await evaluateSalesGuard({
         conversation,
         contactInbox: props.contactInbox,
@@ -1113,7 +1131,7 @@ async function runAIReply(
         provider,
         systemPrompt,
         messages,
-        candidateText: fullText.trim(),
+        candidateText: guardCandidateText,
         triggerMessageId: props.triggerMessageId,
         channel: props.channel,
         startTime,

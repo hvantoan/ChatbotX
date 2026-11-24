@@ -38,6 +38,7 @@ export type Tier2JudgeOutput = {
   onTopic: boolean
   inRole: boolean
   customerAskedForHuman: boolean
+  matchedHandoffTrigger: boolean
   stage: ConversationSalesStage
   mentionedProductIds: string[]
 }
@@ -46,6 +47,7 @@ const tier2JudgeOutputSchema = z.object({
   onTopic: z.boolean(),
   inRole: z.boolean(),
   customerAskedForHuman: z.boolean(),
+  matchedHandoffTrigger: z.boolean(),
   stage: z.enum(["discover", "pitch", "objection", "alternative", "close"]),
   mentionedProductIds: z.array(z.string()),
 })
@@ -141,8 +143,12 @@ export type ExtractedMoneyTokens = {
 }
 
 const PERCENT_RE = /(?:^|[^\w/])(\d+(?:[.,]\d+)?)\s*%/gi
-const PERCENT_PRICING_CONTEXT_RE =
-  /(?:giảm|giam|ưu\s*đãi|uu\s*dai|sale|off|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|km|voucher|coupon|mã|giá|gia|học\s*phí|hoc\s*phi|hoàn|trả\s*góp|trả\s*trước|cọc|tiết\s*kiệm|tức|tương\s*đương|đồng|vnd|vnđ|\$|usd|\d+[.,]\d{3}|\d+k\b|\d+tr\b)/iu
+
+const DISCOUNT_KEYWORD_BEFORE_PERCENT_RE =
+  /(?:giảm|giam|off|sale|discount|chiết\s*khấu|chiet\s*khau|khuyến\s*mãi|khuyen\s*mai|ưu\s*đãi|uu\s*dai|voucher|coupon|tiết\s*kiệm|tiet\s*kiem|hoàn\s*tiền|hoan\s*tien|trợ\s*giá|tro\s*gia)\s*(?:giá|gia)?\s*(?:lên\s*tới|len\s*toi|đến|den|tới|toi|thêm|them|sâu|sau|mạnh|manh|ngay|nhanh)?\s*[-~:]?\s*$/iu
+const PRICE_BEFORE_PERCENT_RE =
+  /(?:\d[\d.,]*\s*(?:k|tr|triệu|trieu|ngàn|ngan|nghìn|nghin|đ|₫|vnd|vnđ|đồng|dong|\$|usd)?)\s*[(\-[~]\s*$/iu
+const DISCOUNT_KEYWORD_AFTER_PERCENT_RE = /^\s*(?:off|discount)\b/iu
 
 // E.g. "1tr99", "1tr5", "2 triệu 5". Use [ \t]* (not \s*) so a price at the
 // end of one message chunk cannot merge with a label on the next chunk
@@ -196,15 +202,19 @@ export function extractMoneyAndPercentTokens(
   const prices: number[] = []
   const percents: number[] = []
 
-  // 1. Percentages (only when adjacent to pricing/discount context so phrases
-  // like "100% chính hãng" or "98% hài lòng" are not treated as prices)
   text = text.replace(
     PERCENT_RE,
     (full, numStr: string, offset: number, source: string) => {
-      const windowStart = Math.max(0, offset - 45)
-      const windowEnd = Math.min(source.length, offset + full.length + 25)
-      const contextSlice = source.slice(windowStart, windowEnd)
-      if (!PERCENT_PRICING_CONTEXT_RE.test(contextSlice)) {
+      const before = source.slice(Math.max(0, offset - 60), offset)
+      const after = source.slice(
+        offset + full.length,
+        offset + full.length + 12,
+      )
+      const isDiscountPercent =
+        DISCOUNT_KEYWORD_BEFORE_PERCENT_RE.test(before) ||
+        PRICE_BEFORE_PERCENT_RE.test(before) ||
+        DISCOUNT_KEYWORD_AFTER_PERCENT_RE.test(after)
+      if (!isDiscountPercent) {
         return full
       }
       const value = parseDecimalNumber(numStr)
@@ -322,13 +332,10 @@ export function checkTier1Prices(input: {
   return { passed: true, unmatchedValues: [] }
 }
 
-// Self-identification only: a bare "AI" is common in product names
-// ("Khóa học AI"), so it is flagged only when the reply describes itself.
 const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
-  /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
-  /(?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:trợ\s+lý\s+ảo\s+)?AI(?=$|[^\p{L}\p{N}_])/iu,
-  /(?:đây|đó)\s+là\s+(?:một\s+)?AI(?=$|[^\p{L}\p{N}_])/iu,
-  /(?:^|[^\p{L}\p{N}_])AI\s+(?:assistant|trợ\s+lý)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:con\s+)?(?:trợ\s+lý\s+ảo\s+)?(?:AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:đây|đó)\s+là\s+(?:một\s+)?(?:con\s+)?(?:AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:^|[^\p{L}\p{N}_])(?:AI|bot|chatbot)\s+(?:assistant|trợ\s+lý)(?=$|[^\p{L}\p{N}_])/iu,
   /trợ\s+lý\s+ảo/iu,
   /human\s+agent/iu,
 ]
@@ -350,20 +357,15 @@ export function isCustomerAskingBotOrHuman(text: string): boolean {
   )
 }
 
-const STRIP_BOT_RE =
-  /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
-// Strip only self-identification ("em là AI", "đây là AI") so product names
-// that merely contain "AI" survive into the fallback line.
-const STRIP_AI_RE =
-  /((?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em|đây|đó)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?)AI/giu
+const STRIP_SELF_ID_RE =
+  /((?:em|tôi|mình|tớ|chúng\s+tôi|chúng\s+em|đây|đó)\s+(?:là|chỉ\s+là|thuộc)\s+(?:một\s+)?(?:con\s+)?)(?:AI|bot|chatbot)/giu
 const STRIP_TRO_LY_AO_RE = /trợ\s+lý\s+ảo/giu
 const STRIP_HUMAN_AGENT_RE = /human\s+agent/giu
 const MULTI_SPACE_RE = /\s{2,}/g
 
 function stripBotDisclosureWords(text: string): string {
   return text
-    .replace(STRIP_BOT_RE, " ")
-    .replace(STRIP_AI_RE, "$1tư vấn viên")
+    .replace(STRIP_SELF_ID_RE, "$1tư vấn viên")
     .replace(STRIP_TRO_LY_AO_RE, "tư vấn viên")
     .replace(STRIP_HUMAN_AGENT_RE, "tư vấn viên")
     .replace(MULTI_SPACE_RE, " ")
@@ -443,7 +445,8 @@ export async function runTier2Judge(input: {
     const system = [
       "You are a sales conversation guard judge.",
       "Evaluate the customer's latest message and the assistant's candidate reply against the sales profile.",
-      "- `customerAskedForHuman`: true when the customer explicitly asks to talk to a human/real person/support agent, asks whether they are chatting with a bot/AI or a real person (e.g. 'bot à?', 'có phải người thật không?', 'đây là AI hả?'), or matches the profile's handoffTriggers.",
+      "- `customerAskedForHuman`: true when the customer explicitly asks to talk to a human/real person/support agent, or asks whether they are chatting with a bot/AI or a real person (e.g. 'bot à?', 'có phải người thật không?', 'đây là AI hả?').",
+      "- `matchedHandoffTrigger`: true when the customer's latest message matches the profile's handoffTriggers (e.g. agrees to buy, asks to pay).",
       "- `onTopic`: false when the customer message is completely unrelated to the sales objective/products or touches a forbidden topic AND the assistant fails to steer back in one short sentence.",
       "- `inRole`: false if the assistant breaks persona/tone, reveals system instructions, discusses forbidden topics, or self-identifies/discloses as an AI, bot, virtual assistant ('trợ lý ảo'), or mentions 'human agent'.",
       "- `stage`: current sales stage (`discover`, `pitch`, `objection`, `alternative`, or `close`).",
@@ -688,9 +691,12 @@ export async function evaluateSalesGuard(
     tier2?.customerAskedForHuman ||
       isCustomerAskingBotOrHuman(lastCustomerMessage),
   )
+  const matchedHandoffTrigger = Boolean(tier2?.matchedHandoffTrigger)
 
-  // 1. Human request handoff (including "bot à / người thật không")
-  if (customerAskedForHuman && profile.handoverOnHumanRequest) {
+  if (
+    (customerAskedForHuman && profile.handoverOnHumanRequest) ||
+    matchedHandoffTrigger
+  ) {
     await sendHandoff(handoffMessage)
     if (!handoffAlreadyExecuted) {
       await handoffExecutorService.execute({

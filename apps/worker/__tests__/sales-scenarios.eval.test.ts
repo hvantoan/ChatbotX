@@ -187,6 +187,7 @@ describe("Sales Persona 30-Scenario Benchmark Evaluation", () => {
           onTopic: scenario.expected.onTopic,
           inRole: scenario.expected.inRole,
           customerAskedForHuman: scenario.expected.customerAskedForHuman,
+          matchedHandoffTrigger: false,
           stage: "pitch",
           mentionedProductIds: scenario.expected.firstPitchedProductId
             ? [scenario.expected.firstPitchedProductId]

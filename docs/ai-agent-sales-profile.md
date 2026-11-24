@@ -113,16 +113,17 @@ type ConversationSalesState = {
 
 ### Tier 1: Deterministic Price & Percentage Verifier (No Model Call)
 - Extracts money-like numbers and percentages from the candidate reply (supporting VND and USD notations: `2.500.000đ`, `1,990,000`, `1tr99`, `1.5 triệu`, `500k`, `$49`, `20%`).
-- Compares every extracted token against the allowed set built from the active target products and their enabled variants (`price`, `price - discount`, `discount` amount, and discount percentage) with a `±0.5%` rounding tolerance.
+- Compares every extracted token against the allowed set built from the active target products and their enabled variants (`price`, the price after the discount, the discount amount, and the discount percentage — `Product.discount` is a percentage 0–100, not an amount) with a `±0.5%` rounding tolerance.
+- A percentage is verified as a discount only when a discount keyword introduces it (`giảm 20%`, `ưu đãi lên đến 20%`) or it directly follows a price as a bracketed/dashed suffix (`2.500.000đ (20%)`); a reassurance percentage near a price (`cam kết 100% đầu ra`) is ignored.
 - Any unmatched money or percentage token fails Tier 1 with `invented_price`.
 
 ### Tier 2: Structured Model Judge
 - Uses the agent's own configured model with `maxOutputTokens: 150`, `temperature: 0`, and a dedicated 4-second deadline (`TIER2_JUDGE_TIMEOUT_MS`).
-- Returns `{ onTopic, inRole, customerAskedForHuman, stage, mentionedProductIds }`.
+- Returns `{ onTopic, inRole, customerAskedForHuman, matchedHandoffTrigger, stage, mentionedProductIds }`.
 - **Fail-open resilience:** If Tier 2 times out or errors, it logs a warning (`{ err }`) and fails open to Tier 1 so the customer still receives a reply.
 
 ### Decision, Single Rewrite, Fallback, and Handover
-1. **Immediate Human Handover:** If `customerAskedForHuman && profile.handoverOnHumanRequest` (including when the customer asks `"bot à?"` / `"có phải người thật không?"`), sends `profile.handoffMessage` (default `"Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"`) **before** calling `handoffExecutorService.execute` with reason `"sales_profile_human_request"`.
+1. **Immediate Human Handover:** If the customer asked for a human (including `"bot à?"` / `"có phải người thật không?"`) and `profile.handoverOnHumanRequest` is on, or the customer's message matches `profile.handoffTriggers` (which hands off regardless of that toggle), sends `profile.handoffMessage` (default `"Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"`) **before** calling `handoffExecutorService.execute` with reason `"sales_profile_human_request"`. The Tier 2 judge reports these separately (`customerAskedForHuman` and `matchedHandoffTrigger`).
 2. **At Most One Rewrite:** If Tier 1 fails (`invented_price`), the reply self-identifies as AI/bot (`containsBotSelfDisclosure`), or Tier 2 reports `!inRole` or `!onTopic`, makes **one** rewrite call with the violation feedback and re-checks Tier 1 and bot self-disclosure on the rewritten text.
 3. **Fixed Fallback:** If the rewritten text still fails Tier 1 or contains bot self-disclosure (or rewrite fails), sends a deterministic fallback line built from the profile and priority-1 product (`buildSalesFallbackReply`) in the `"em"` voice with zero bot-revealing terms.
 4. **State Update & Off-Topic Streak Handover:** Updates `offTopicStreak = onTopic ? 0 : offTopicStreak + 1`, `stage`, and `pitchedProductIds`. When `offTopicStreak >= profile.offTopicLimit`, sends `profile.handoffMessage` **before** calling `handoffExecutorService.execute` with reason `"sales_profile_off_topic"`.

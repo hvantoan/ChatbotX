@@ -91,10 +91,12 @@ export function resolveConversationSalesState(input: {
 
 export function compileSalesPrompt(input: CompileSalesPromptInput): string {
   const { profile } = input
-  const state = resolveConversationSalesState({
-    existing: input.salesState,
-    profileVersion: input.salesState?.profileVersion ?? 0,
-  })
+  const state: ConversationSalesState = input.salesState ?? {
+    stage: "discover",
+    pitchedProductIds: [],
+    offTopicStreak: 0,
+    profileVersion: 0,
+  }
 
   const activeProductsById = new Map(
     input.products
