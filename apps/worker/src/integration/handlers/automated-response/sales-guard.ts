@@ -360,9 +360,9 @@ const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
   /(?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:a\s+|an\s+|the\s+|your\s+)(?:virtual\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/iu,
   // Bare `This is AI.` still self-discloses when the noun ends at sentence
   // punctuation; `This is AI Solutions` keeps its business name.
-  // The punctuation must end the sentence: `This is AI.com support` is a
-  // domain, not a disclosure.
-  /(?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:AI|bot|chatbot)(?=$|[.!?,:;](?=\s|$))/iu,
+  // `.` must not open a domain/number: `This is AI.com support` is a
+  // business name, `This is AI!👋` and `This is AI.` are disclosures.
+  /(?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:AI|bot|chatbot)(?=$|[!?,:;]|\.(?![\p{L}\p{N}]))/iu,
   /trợ\s+lý\s+ảo/iu,
   /human\s+agent/iu,
 ]
@@ -395,7 +395,7 @@ const STRIP_SELF_ID_EN_RE =
 const STRIP_SELF_ID_EN_DEMO_RE =
   /((?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+(?:a\s+|an\s+|the\s+|your\s+))(?:virtual\s+assistant|AI\s+assistant|AI|bot|chatbot)(?=$|[^\p{L}\p{N}_])/giu
 const STRIP_SELF_ID_EN_DEMO_BARE_RE =
-  /((?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+)(?:AI|bot|chatbot)(?=$|[.!?,:;](?=\s|$))/giu
+  /((?:^|[^\p{L}\p{N}_])(?:this\s+is|here'?s)\s+)(?:AI|bot|chatbot)(?=$|[!?,:;]|\.(?![\p{L}\p{N}]))/giu
 const STRIP_TRO_LY_AO_RE = /trợ\s+lý\s+ảo/giu
 const STRIP_HUMAN_AGENT_RE = /human\s+agent/giu
 const MULTI_SPACE_RE = /\s{2,}/g
