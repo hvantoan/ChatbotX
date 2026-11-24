@@ -53,7 +53,7 @@ const sampleProducts: SalesPromptProduct[] = [
     id: "3001",
     name: "Khóa IELTS Foundation",
     price: 2_500_000,
-    discount: 500_000,
+    discount: 20,
     currency: "VND",
     productUrl: "https://example.com/ielts-foundation",
     status: "active",
@@ -121,7 +121,7 @@ describe("compileSalesPrompt", () => {
     expect(idx2).toBeGreaterThan(idx1)
     // Inactive product 3003 and disabled variant Offline are excluded
     expect(prompt).not.toContain("Khóa TOEIC Cũ")
-    expect(prompt).toContain("Online: 1990000 VND")
+    expect(prompt).toContain("Online: 1592000 VND")
     expect(prompt).not.toContain("Offline: 2500000 VND")
     expect(prompt).toContain("[3. QUY TẮC BẮT BUỘC]")
     expect(prompt).toContain(
