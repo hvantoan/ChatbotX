@@ -42,7 +42,7 @@ catalog:
   libphonenumber-js: "^1.12.42"
   lucide-react: "^1.17.0"
   mime-types: "^3.0.2"
-  msw: "^2.7.3"
+  msw: "^3.0.7"
   next: 16.4.6
   pg: "^8.20.0"
   react: 19.2.5
