@@ -71,7 +71,7 @@ CLAUDE.md
 .partykit/
 
 # MCP business-evaluation harness output (episodes, manifests, server
-# snapshots) — regenerated per run via `pnpm --filter chatbotx-mcp eval:business`.
+# snapshots) — regenerated per run via `pnpm --filter inboxos-mcp eval:business`.
 apps/mcp-server/evals/out/
 
 # Reference PDFs (vendor guides, spec exports) dropped alongside plan docs are

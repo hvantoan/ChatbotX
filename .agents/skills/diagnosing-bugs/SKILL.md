@@ -19,7 +19,7 @@ Reach for the cheapest that reaches the bug, in this order:
 
 1. **Failing Vitest test** at the seam that reaches the bug: `pnpm --filter <workspace> exec vitest run <path> -t "<name>"`. Placement follows `testing-workflow` (`<workspace>/__tests__/`).
 2. **curl against the public API** on a running builder (`http://localhost:3123/api/...`, `Authorization: Bearer $CHATBOTX_TOKEN`). Specs: `/api/public-spec.json`.
-3. **CLI call** (`pnpm --filter chatbotx dev:cli -- <command>`), diffing output against a known-good snapshot.
+3. **CLI call** (`pnpm --filter inboxos dev:cli -- <command>`), diffing output against a known-good snapshot.
 4. **Replay a captured payload** — a webhook body, a BullMQ job's `data`, a flow version JSON — saved to a fixture and fed straight into the handler (`integrations/<channel>/` parser, `apps/worker/src/**/handlers/`).
 5. **Throwaway harness** — a `tsx` script calling one service method with mocked repositories.
 6. **Loop the trigger** for a flaky bug (`for i in $(seq 100); do <red command> || echo FAIL; done`): the goal is a reproduction rate high enough to debug, not a clean single repro.
