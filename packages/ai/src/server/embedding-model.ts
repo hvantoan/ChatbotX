@@ -3,9 +3,13 @@ import { createOpenAI } from "@ai-sdk/openai"
 import { secretTextAuthSchema } from "@chatbotx.io/sdk"
 import type { EmbeddingModel } from "ai"
 import { geminiEmbeddingModels, openaiEmbeddingModels } from "../models"
-import { getAIIntegrationInDB } from "./factory"
+import {
+  getAIIntegrationInDB,
+  getOpenaiCompatibleEmbeddingIntegrationInDB,
+} from "./factory"
+import { createOpenaiCompatibleEmbeddingModelInstance } from "./openai-compatible"
 
-export type EmbeddingProvider = "openai" | "gemini"
+export type EmbeddingProvider = "openai" | "gemini" | "openaiCompatible"
 
 /**
  * The workspace has no usable embedding provider: none is connected, or the
@@ -72,7 +76,29 @@ export async function resolveEmbeddingModel(
     }
   }
 
+  // The `embedding` columns are fixed at 1536 dimensions
+  // (packages/database/src/schema/ai-embedding.ts,
+  // ai-conversation-embedding.ts), so the OpenAI-compatible embedding model
+  // must return 1536 (text-embedding-3-small / ada-002).
+  const integrationOpenaiCompatible =
+    await getOpenaiCompatibleEmbeddingIntegrationInDB({ workspaceId })
+
+  if (integrationOpenaiCompatible) {
+    const modelId =
+      process.env.OPENAI_COMPATIBLE_EMBEDDING_MODEL ??
+      openaiEmbeddingModels.enum["text-embedding-3-small"]
+
+    return {
+      model: createOpenaiCompatibleEmbeddingModelInstance({
+        integration: integrationOpenaiCompatible,
+        modelId,
+      }),
+      modelId,
+      provider: "openaiCompatible",
+    }
+  }
+
   throw new EmbeddingProviderNotConfiguredError(
-    "No embedding provider configured. AI file embeddings require OpenAI or Gemini integration. DeepSeek, Claude and Muse do not support embedding models.",
+    "No embedding provider configured. AI file embeddings require OpenAI, Gemini or an OpenAI-compatible integration. DeepSeek, Claude and Muse do not support embedding models.",
   )
 }
