@@ -1,5 +1,5 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import type { ConnectSessionModel } from "@chatbotx.io/database/types"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import type { ConnectSessionModel } from "@inboxos.io/database/types"
 import { env } from "@/env"
 import { getOriginUrlFromHeader } from "@/lib/domain"
 import { googleAdsException } from "./assert-can-manage-google-ads"

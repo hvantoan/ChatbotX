@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const requestAccountDeletion = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userService: { requestAccountDeletion },
 }))
 
@@ -14,7 +14,7 @@ vi.mock("@/lib/safe-action", () => ({
   },
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { requestAccountDeletion: requestAccountDeletionActionUntyped } =
   await import(
     "../src/features/account-deletion/actions/request-account-deletion"
@@ -31,7 +31,7 @@ beforeEach(() => {
 describe("requestAccountDeletion", () => {
   test("maps the reseller self-deletion refusal to supportRequired", async () => {
     requestAccountDeletion.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Reseller accounts must contact support to delete their account",
         "accountDeletionSupportRequired",
         403,

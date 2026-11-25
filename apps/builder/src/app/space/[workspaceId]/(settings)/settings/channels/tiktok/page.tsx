@@ -1,5 +1,5 @@
-import { platformCredentialService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { platformCredentialService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { listIntegrationTiktoks } from "@/features/integration-tiktok/queries"
 import { TiktokManage } from "@/features/integration-tiktok/tiktok-manage"

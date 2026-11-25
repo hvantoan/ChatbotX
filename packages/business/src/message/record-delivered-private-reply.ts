@@ -1,8 +1,8 @@
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { contactService } from "../contact/service"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"

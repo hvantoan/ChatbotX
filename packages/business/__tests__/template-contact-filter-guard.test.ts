@@ -18,7 +18,7 @@ vi.mock("../src/ecommerce-settings/store-source", () => ({
 vi.mock("../src/template/template-resource-locks", () => ({
   withTemplateLockedTransaction: (fn: (tx: unknown) => unknown) => fn({}),
 }))
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   discountCodeRepository: {
     create: mocks.create,

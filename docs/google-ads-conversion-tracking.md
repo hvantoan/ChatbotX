@@ -1,6 +1,6 @@
 # Google Ads conversion tracking (Click-to-Message)
 
-ChatbotX attributes chatbot conversations back to the **Google ad** that started
+InboxOS attributes chatbot conversations back to the **Google ad** that started
 them — Google "Message Ads" (Search / Performance Max) that open a **WhatsApp**,
 **Messenger** or **Zalo** chat — and reports downstream outcomes (qualified lead, purchase)
 into the advertiser's Google Ads account as **offline click conversions**, so
@@ -28,7 +28,7 @@ consent, back-dating) is in `docs/google-ads-conversion-options-admin-guide.md`.
 | Workspace options | `GoogleAdsSettings` (`packages/database/src/schema/google-ads-settings.ts`) | One row per workspace holding the versioned `settings` document (today: conversion data consent). Separate from `IntegrationGoogleAds` so it survives a disconnect. |
 | Enums | `packages/database/src/partials/google-ads.ts` (zod values) + `pgEnum`s in the event schema | Six enums, below. |
 | Pure helpers | `packages/utils/src/google-click.ts` | Decoder, ref parser, referral builder, lead-like categories, customer-id helpers. No I/O. |
-| Provider client | `integrations/google-ads` (`@chatbotx.io/integration-google-ads`) | `Integration` with a Connection-engine `oauth_redirect` strategy, thin `ky` REST clients for the Google Ads API and the Data Manager API. |
+| Provider client | `integrations/google-ads` (`@inboxos.io/integration-google-ads`) | `Integration` with a Connection-engine `oauth_redirect` strategy, thin `ky` REST clients for the Google Ads API and the Data Manager API. |
 | Business | `packages/business/src/google-ads/*`, `packages/business/src/integration-google-ads/*` | Recording, dedup, delivery, polling, housekeeping, setup, owner helper. |
 | Worker | `apps/worker/src/integration/handlers/google-ads/*`, `apps/worker/src/schedule/handlers/google-ads-housekeeping.ts` | Thin handlers around the business services. |
 
@@ -174,7 +174,7 @@ in `packages/utils/src/google-click.ts` (`consumeGoogleClickRef`,
   key wins, a pair needs a non-empty key before the first `:`).
 - When a Google click is parsed the `ref` is **consumed**: `ref` is set to
   `null` and removed from the stored `raw` referral so the click id is not kept
-  verbatim and the ChatbotX ref router never looks it up (no `runRef` job).
+  verbatim and the InboxOS ref router never looks it up (no `runRef` job).
 - `googleClickReceivedAt` = the Messenger messaging timestamp.
 - The legacy raw `ref=<gclid>` form (no `gclid:` prefix) is **not** supported.
 - **Where Meta delivers it** (`messaging_referrals` / `messaging_postbacks` reference,
@@ -283,7 +283,7 @@ capture wiring is the part that is specific to each channel:
      returns `{ text, googleReferral }` with only the consumed run stripped.
 3. Make sure the parsed ref is **consumed**: use the returned `ref` (it is `null`
    when a Google click was parsed) so the reflink router never looks the click id
-   up as a ChatbotX reflink. Strip any raw copy of it from stored `raw` payloads
+   up as a InboxOS reflink. Strip any raw copy of it from stored `raw` payloads
    (Messenger keeps its raw-without-ref stripping local).
 4. Add a capture test beside the channel's existing ones (see
    `integrations/whatsapp/__tests__/google-click-capture.test.ts`).
@@ -619,7 +619,7 @@ defaults it by the conversion action's category (lead-like → `click`, anything
   - Limits: a retry of the same job counts once (same key); a loop that comes back to
     the step, or a flow that starts again, is a new occurrence. A conversion action
     counted "One per click" in Google still keeps only the first conversion of a
-    click; `event` mode changes what ChatbotX sends, not Google's counting.
+    click; `event` mode changes what InboxOS sends, not Google's counting.
 
 ## Customer matching (hashed e-mail and phone)
 
@@ -932,7 +932,7 @@ setup/context lookup per workspace per run). The run keeps draining pages until 
 page comes back short, a 5-minute time budget is spent, or a 50-page ceiling is
 reached:
 
-- **Classification** (`classifyRequestStatus`): ChatbotX sends one event to one
+- **Classification** (`classifyRequestStatus`): InboxOS sends one event to one
   destination, so exactly one `requestStatusPerDestination` entry is expected.
   Zero or multiple entries, or an unrecognized status → `unknown` (poll again,
   never guess). `SUCCESS` → `processed`. `PROCESSING` → keep polling. `FAILED`
@@ -1029,7 +1029,7 @@ so both show the same numbers. No migration, no worker change.
   `processed`, `failed`, `skipped_no_account`, `skipped_expired`), all seven always
   present and zero-filled. The API never returns derived buckets. The UI groups them with
   `toStatBuckets` (`packages/business/src/google-ads/stat-buckets.ts`, subpath export
-  `@chatbotx.io/business/google-ads/stat-buckets`): confirmed = `processed`, awaiting
+  `@inboxos.io/business/google-ads/stat-buckets`): confirmed = `processed`, awaiting
   Google = `sent`, queued = `pending` + `sending`, failed = `failed`, skipped = both
   `skipped_*`. A new status that no bucket lists is a compile error.
 - **Day basis (D2).** Events are counted on `occurredAt`, the conversion time, the same
@@ -1165,7 +1165,7 @@ the parity manifest).
   resolved values only (never the consent value, never a click id).
 - **Error code translation.** The writer stores the provider in `ErrorLog.action`
   and the message in `ErrorLog.detail`. For Google Ads rows the first `detail` line
-  is a stable code from `googleAdsConversionErrorCodes` (`@chatbotx.io/utils/google-click`);
+  is a stable code from `googleAdsConversionErrorCodes` (`@inboxos.io/utils/google-click`);
   the Error Log table (`error-logs-table-columns.tsx`, `google-ads-error-detail.ts`)
   shows `googleAds.stepErrors.{code}` translated followed by the remaining lines.
   Unknown text and every other provider render unchanged. The map is an exhaustive
@@ -1207,7 +1207,7 @@ the parity manifest).
    Google Cloud project (see "Google Ads API access" below), so the developer token
    is optional and ignored by Google; the credential field may still be filled and sent.
 4. **Customer-ID allowlisting with Google is a manual ops step** (gTech, via the
-   Google partner contact). ChatbotX has no code for it, and **the connect UI does
+   Google partner contact). InboxOS has no code for it, and **the connect UI does
    not tell the advertiser about it**: a connection that succeeds does not mean
    Google has allowlisted the Customer ID, so until it does no click id is embedded
    and no click is recorded. Tell the advertiser out of band. Run the runbook query
@@ -1270,7 +1270,7 @@ LIMIT 50;
   `GoogleAdsConversionEvent` with its indexes, FKs and CHECKs). The feature was
   never deployed, so the three migrations written during development were merged
   into it. It is **generate-only**: produced and inspected, never applied by the
-  implementer. The owner applies it (`pnpm --filter @chatbotx.io/database
+  implementer. The owner applies it (`pnpm --filter @inboxos.io/database
   db:migrate`) after review. `db:check-drift` is registered under the package's
   `lint`. The migration starts with `DROP ... IF EXISTS` for its tables and enums,
   so a development database that already ran the earlier three migrations applies

@@ -10,14 +10,14 @@ const getDecryptedCredentials = vi.fn()
 const getAccountStatus = vi.fn()
 const startAccount = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationZaloPersonalService: {
     listForSessionRestore: () => listForSessionRestore(),
     getDecryptedCredentials: (input: unknown) => getDecryptedCredentials(input),
   },
 }))
 
-vi.mock("@chatbotx.io/integration-zalo-personal", () => ({
+vi.mock("@inboxos.io/integration-zalo-personal", () => ({
   buildZaloPersonalWebhookUrl: (origin: string, zaloUid: string) =>
     `${origin}/integrations/zalo_personal/webhook?zaloUid=${zaloUid}`,
   gatewayClient: {
@@ -26,7 +26,7 @@ vi.mock("@chatbotx.io/integration-zalo-personal", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: ({ fn }: { fn: () => Promise<unknown> }) => fn(),
   },

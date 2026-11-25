@@ -7,12 +7,12 @@ const mocks = vi.hoisted(() => ({
   workspaceFindOrFail: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { findOrFail: mocks.workspaceFindOrFail },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
   connectionWrongStrategyException: (provider: string) =>
     Object.assign(
       new Error(`${provider} cannot use this connection strategy`),

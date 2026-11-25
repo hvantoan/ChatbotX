@@ -2,8 +2,8 @@ import {
   contactCustomFieldService,
   contactService,
   tagService,
-} from "@chatbotx.io/business"
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
 import type {
   CartAbandonedMetadata,
   CartItemEventMetadata,
@@ -13,8 +13,8 @@ import type {
   PipelineItemEventMetadata,
   ShoppingCartSentMetadata,
   UserAskedAboutProductMetadata,
-} from "@chatbotx.io/events"
-import type { ResolvedInboundProductReference } from "@chatbotx.io/sdk"
+} from "@inboxos.io/events"
+import type { ResolvedInboundProductReference } from "@inboxos.io/sdk"
 import type { MatchableWebhookEventData, WebhookPayload } from "../types"
 
 type WebhookPayloadBase = {

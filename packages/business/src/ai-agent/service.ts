@@ -6,20 +6,20 @@ import {
   inArray,
   type RelationsFieldFilter,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type AIAgentActionRule,
   aiAgentActionRulesSchema,
-} from "@chatbotx.io/database/partials"
-import { aiAgentModel } from "@chatbotx.io/database/schema"
-import type { AIAgentModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { aiAgentModel } from "@inboxos.io/database/schema"
+import type { AIAgentModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
 import { customFieldService } from "../custom-field/service"

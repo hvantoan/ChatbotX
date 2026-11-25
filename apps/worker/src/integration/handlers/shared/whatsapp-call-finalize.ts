@@ -8,27 +8,27 @@ import {
   userService,
   whatsappVoipCallService,
   whatsappVoipSignalingService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   resolveWhatsappCallTerminalOutcomePair,
   type WhatsappCallTerminalStatusOutcomePair,
-} from "@chatbotx.io/database/partials"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
-import { emitCallEnded, emitMissedAudioCall } from "@chatbotx.io/events"
+} from "@inboxos.io/database/partials"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
+import { emitCallEnded, emitMissedAudioCall } from "@inboxos.io/events"
 import {
   type RealtimeEventData,
   RealtimeEventType,
   type RealtimeEventWhatsappCallTransportEnded,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import {
   getWhatsappCallEntity,
   type MessageWhatsappCallEntity,
   resolveWhatsappCallActivityLabelKey,
   type WhatsappCallActivityLabelKey,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { transcribesCalls } from "@chatbotx.io/utils/whatsapp-call"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { transcribesCalls } from "@inboxos.io/utils/whatsapp-call"
 import { logger } from "../../../lib/logger"
 
 /**

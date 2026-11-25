@@ -1,4 +1,4 @@
-import { getAuditActor } from "@chatbotx.io/business/audit"
+import { getAuditActor } from "@inboxos.io/business/audit"
 import { beforeAll, beforeEach, describe, expect, test, vi } from "vitest"
 import { AIFileProcessingError } from "../src/heavy/handlers/ai-file-processing-error"
 
@@ -46,14 +46,14 @@ const mocks = vi.hoisted(() => ({
       ) => Promise<void>),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: { markProcessingRunFailed: mocks.markProcessingRunFailed },
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     defaultWorkerOptions: {},

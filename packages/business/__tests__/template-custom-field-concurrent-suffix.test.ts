@@ -50,7 +50,7 @@ const mockDb = vi.hoisted(() => {
   return db
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: mockDb,
   and: vi.fn(),
   eq: vi.fn(),
@@ -58,20 +58,20 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(),
   sql: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "root" }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "root" }))
+vi.mock("@inboxos.io/database/schema", () => ({
   customFieldModel: { table: "CustomField" },
 }))
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: vi.fn(),
   parseOrderByAsObject: vi.fn(),
   parsePagination: vi.fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => `generated-${state.nextId++}`,
 }))
 vi.mock("../src/base.service", () => ({

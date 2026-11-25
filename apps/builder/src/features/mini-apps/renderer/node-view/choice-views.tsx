@@ -1,5 +1,5 @@
-import { MINI_APP_ACTION_KEY, readMiniAppAction } from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { MINI_APP_ACTION_KEY, readMiniAppAction } from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { readString, readStringArray, withId } from "../../lib/props"
 import { ChoiceControl } from "../choice-control"

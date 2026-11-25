@@ -10,12 +10,12 @@ import {
   connectSessionStatuses,
   connectSessionTargetSchema,
   integrationTypes,
-} from "@chatbotx.io/database/partials"
-import type { ConnectionStrategy } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/partials"
+import type { ConnectionStrategy } from "@inboxos.io/sdk"
 import {
   connectionConfigFieldSchema,
   selfServeSecretSchema,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"
 import { z } from "zod"
 
 /** Single source for the `strategy` enum shared by `connectionResource` and `connectionProviderResource` — kept in lockstep with the SDK's `ConnectionStrategy` via `satisfies`. */

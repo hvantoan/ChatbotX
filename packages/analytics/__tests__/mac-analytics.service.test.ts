@@ -12,7 +12,7 @@ const distributedStore = {
   getNumber: vi.fn(async () => null as number | null),
   setNumberIfNotExists: vi.fn(async () => undefined),
 }
-vi.mock("@chatbotx.io/redis", () => ({ distributedStore }))
+vi.mock("@inboxos.io/redis", () => ({ distributedStore }))
 
 const logger = { warn: vi.fn(), error: vi.fn(), info: vi.fn() }
 vi.mock("../src/lib/logger", () => ({ logger }))

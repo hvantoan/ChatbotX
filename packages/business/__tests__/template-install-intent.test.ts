@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const store = vi.hoisted(() => ({ put: vi.fn(), take: vi.fn() }))
 
-vi.mock("@chatbotx.io/redis", () => ({ distributedStore: store }))
+vi.mock("@inboxos.io/redis", () => ({ distributedStore: store }))
 vi.mock("../src/logger", () => ({ logger: { warn: vi.fn() } }))
 
 const { templateInstallIntentService } = await import(

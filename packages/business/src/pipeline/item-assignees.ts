@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   pipelineItemRepository,
   pipelineReferenceRepository,
-} from "@chatbotx.io/database/repositories"
-import type { PipelineItemModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { PipelineItemModel } from "@inboxos.io/database/types"
 import { notFoundException, validationException } from "../errors"
 import { sameIdSet } from "./equality"
 import type { PipelineItemWriteFields } from "./item-write-types"

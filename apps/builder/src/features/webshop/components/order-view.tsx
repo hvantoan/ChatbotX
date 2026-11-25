@@ -7,10 +7,10 @@ import {
   type PaymentMethod,
   type PaymentStatus,
   type ShippingType,
-} from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CircleCheckIcon, ClockIcon, Loader2Icon } from "lucide-react"
 import Link from "next/link"
 import { useFormatter, useTranslations } from "next-intl"

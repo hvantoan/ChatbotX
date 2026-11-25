@@ -1,7 +1,7 @@
 import {
   PIPELINE_DATE_RANGE,
   PIPELINE_LIMITS,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { ianaTimezoneSchema } from "@/lib/public-api/iana-timezone"
 

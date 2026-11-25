@@ -4,13 +4,13 @@ import {
   googleAdsFailureStageSchema,
   googleAdsProcessingStatusSchema,
   googleAdsUploadMethodSchema,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   googleAdsChannels,
   googleAdsCustomerTypes,
   googleAdsCustomerValueBuckets,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { z } from "zod"
 
 const DEFAULT_PER_PAGE = 20

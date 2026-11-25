@@ -2,11 +2,11 @@ import {
   capiDatasetResourceType,
   type MetaConversionsChannel,
   type ProvisionDatasetNowInput,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   buildDatasetName,
   ensureDataset,
-} from "@chatbotx.io/integration-meta-conversions"
+} from "@inboxos.io/integration-meta-conversions"
 
 type ProvisionDataset = ProvisionDatasetNowInput["provisionDataset"]
 

@@ -1,7 +1,7 @@
 "use client"
 
-import type { AIEmbeddingStatus } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import type { AIEmbeddingStatus } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useMemo } from "react"
 

@@ -1,16 +1,16 @@
-import { contactScanService } from "@chatbotx.io/business"
-import { CONTACT_SCAN_MAX_ATTEMPTS } from "@chatbotx.io/business/contact-scan"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { contactScanService } from "@inboxos.io/business"
+import { CONTACT_SCAN_MAX_ATTEMPTS } from "@inboxos.io/business/contact-scan"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 import {
   buildContactScanJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 const LOCK_KEY = "schedule:scan-contact-scans"
 const LOCK_TIMEOUT_SECONDS = 50

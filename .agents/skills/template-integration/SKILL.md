@@ -10,7 +10,7 @@ description: >-
   an existing template-copied kind, or a list/editor UI for one.
 ---
 
-# Template integration (ChatbotX)
+# Template integration (InboxOS)
 
 A template copies resources into another workspace and keeps managing the
 copies afterwards: View-only copies refuse content edits, auto-update
@@ -191,7 +191,7 @@ Every service method that changes a template-copied kind:
 
 ## 7. Before merge
 
-- `pnpm --filter @chatbotx.io/business check-types` (registry, lock policy and
+- `pnpm --filter @inboxos.io/business check-types` (registry, lock policy and
   uninstall handler maps fail to compile when a kind is missing).
 - Run: `reference-registry-completeness`, `contact-filter-reference-coverage`,
   `template-sync-handler-coverage`, `template-uninstall-handlers`,

@@ -4,7 +4,7 @@ import {
   previewInstallCollisions,
   type TemplateActor,
   templateService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 
 export type InstallCollisionPreview = {
   collisions: PredictedCollision[]

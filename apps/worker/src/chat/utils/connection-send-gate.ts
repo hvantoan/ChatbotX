@@ -1,5 +1,5 @@
-import { connectionStateService } from "@chatbotx.io/business"
-import { ChatJobAction, type ChatJobData } from "@chatbotx.io/worker-config"
+import { connectionStateService } from "@inboxos.io/business"
+import { ChatJobAction, type ChatJobData } from "@inboxos.io/worker-config"
 import { DelayedError, type Job } from "bullmq"
 import { deferralsSoFar } from "../../lib/lock-contention-deferral"
 import { logger } from "../../lib/logger"

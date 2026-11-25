@@ -1,6 +1,6 @@
-import type { BroadcastStatusReason } from "@chatbotx.io/database/partials"
-import { BROADCAST_STATUS_ERROR_MESSAGE_MAX_LENGTH } from "@chatbotx.io/database/partials"
-import { ChannelErrorReason } from "@chatbotx.io/sdk"
+import type { BroadcastStatusReason } from "@inboxos.io/database/partials"
+import { BROADCAST_STATUS_ERROR_MESSAGE_MAX_LENGTH } from "@inboxos.io/database/partials"
+import { ChannelErrorReason } from "@inboxos.io/sdk"
 
 /**
  * SDK error reason -> persisted broadcast status reason. Exhaustive on purpose:

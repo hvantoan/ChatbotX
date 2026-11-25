@@ -1,7 +1,7 @@
 import {
   fulfillmentStatuses,
   paymentStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const cancelOrderRequest = z.object({

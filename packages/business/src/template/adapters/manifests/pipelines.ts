@@ -1,5 +1,5 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import type { TemplatePipelineManifestEntry } from "@chatbotx.io/flow-config"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import type { TemplatePipelineManifestEntry } from "@inboxos.io/flow-config"
 import { pipelineTemplateService } from "../../../pipeline/pipeline-template.service"
 import { idMapOf, recordCopy } from "../shared"
 import type { TemplateInstallContext } from "../types"

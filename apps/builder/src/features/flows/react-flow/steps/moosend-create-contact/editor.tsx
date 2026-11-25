@@ -1,12 +1,13 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type MoosendCreateContactSchema,
   moosendCreateContactSchema,
-} from "@chatbotx.io/flow-config"
-import { MOOSEND_EDITOR_PAGE_SIZE } from "@chatbotx.io/integration-moosend"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { MOOSEND_EDITOR_PAGE_SIZE } from "@inboxos.io/integration-moosend"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -15,9 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useQuery } from "@tanstack/react-query"
 import { MailIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

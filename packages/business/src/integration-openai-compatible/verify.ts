@@ -1,5 +1,5 @@
 import ky, { isHTTPError } from "ky"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { validateOpenaiCompatibleBaseUrlForEnvironment } from "./validate-base-url"
 
 const VERIFY_TIMEOUT_MS = 10_000
@@ -34,7 +34,7 @@ export async function verifyOpenaiCompatibleProvider(props: {
     )
   } catch (error) {
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
     ) {
       return { ok: false, reason: "unsafe_base_url" }

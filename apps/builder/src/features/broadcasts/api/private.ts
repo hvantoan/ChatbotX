@@ -1,15 +1,15 @@
-import { broadcastAnalyticsService } from "@chatbotx.io/analytics"
+import { broadcastAnalyticsService } from "@inboxos.io/analytics"
 import {
   getBroadcastStatsResponse,
   listBroadcastContactsRequest,
   listBroadcastContactsResponse,
-} from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics/schemas"
 import {
   broadcastRecurrenceService,
   broadcastService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { channelTypes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { channelTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

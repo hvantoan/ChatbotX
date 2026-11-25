@@ -1,6 +1,6 @@
 "use client"
 
-import { DataTableLabelsProvider } from "@chatbotx.io/ui/components/data-table/data-table-labels"
+import { DataTableLabelsProvider } from "@inboxos.io/ui/components/data-table/data-table-labels"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useMemo } from "react"
 

@@ -1,5 +1,5 @@
-import { commentAutomationService } from "@chatbotx.io/business"
-import { igCommentAutomationTypes } from "@chatbotx.io/database/partials"
+import { commentAutomationService } from "@inboxos.io/business"
+import { igCommentAutomationTypes } from "@inboxos.io/database/partials"
 import { bulkUpdateIdsRequest } from "@/features/common/schema"
 import {
   possibleErrorsOnCreatingResource,

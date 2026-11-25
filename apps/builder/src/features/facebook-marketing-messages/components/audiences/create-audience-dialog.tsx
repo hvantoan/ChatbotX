@@ -1,13 +1,13 @@
 "use client"
 
-import type { AudienceUploadResult } from "@chatbotx.io/business/facebook-marketing-message-audience"
+import type { AudienceUploadResult } from "@inboxos.io/business/facebook-marketing-message-audience"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { useInvalidateMarketingMessagesAudiences } from "../../hooks/use-audiences"

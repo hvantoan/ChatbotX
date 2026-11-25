@@ -1,7 +1,7 @@
 "use client"
 
-import { isRecurringTemplate } from "@chatbotx.io/database/partials"
-import type { BroadcastModel } from "@chatbotx.io/database/types"
+import { isRecurringTemplate } from "@inboxos.io/database/partials"
+import type { BroadcastModel } from "@inboxos.io/database/types"
 import { useAction } from "next-safe-action/hooks"
 import { moveBroadcastToDraftAction } from "../actions/move-broadcast-to-draft.action"
 import {

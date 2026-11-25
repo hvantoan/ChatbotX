@@ -1,12 +1,12 @@
-import { db, sql } from "@chatbotx.io/database/client"
+import { db, sql } from "@inboxos.io/database/client"
 // Narrow subpath, NOT the `queries` barrel: that barrel re-exports the
 // contact-filter modules, which dereference schema tables at module scope
-// and therefore crash any suite that mocks `@chatbotx.io/database/schema`
+// and therefore crash any suite that mocks `@inboxos.io/database/schema`
 // narrowly. Analytics only needs the one timezone helper.
-import { resolvedTimezone } from "@chatbotx.io/database/queries/date-bucket"
-import { analyticsContactEventModel } from "@chatbotx.io/database/schema"
-import type { EventBusMessageMetadata } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+import { resolvedTimezone } from "@inboxos.io/database/queries/date-bucket"
+import { analyticsContactEventModel } from "@inboxos.io/database/schema"
+import type { EventBusMessageMetadata } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { buildEventFilter } from "../../lib/event-filter"
 import {
   fillContactStatsMonthlySeries,

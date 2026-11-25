@@ -5,13 +5,13 @@ import {
   eq,
   findOrFail,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   integrationWhatsappModel,
   whatsappFlowModel,
-} from "@chatbotx.io/database/schema"
-import { likeContains } from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { likeContains } from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 /** WhatsApp's flow shape, as returned by `listFlows`. */

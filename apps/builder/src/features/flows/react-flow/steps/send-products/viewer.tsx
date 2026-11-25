@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendProductsStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendProductsStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { ShoppingCartIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { SendProductsSummary } from "./components/send-products-summary"

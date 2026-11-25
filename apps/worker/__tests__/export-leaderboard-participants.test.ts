@@ -7,14 +7,14 @@ const mocks = vi.hoisted(() => ({
   updateExportFile: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardService: {
     exportPage: (...args: unknown[]) => mocks.exportPage(...args),
     updateExportFile: (...args: unknown[]) => mocks.updateExportFile(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/filesystem/node-upload", () => ({
+vi.mock("@inboxos.io/filesystem/node-upload", () => ({
   createUpload: (...args: unknown[]) => mocks.createUpload(...args),
 }))
 

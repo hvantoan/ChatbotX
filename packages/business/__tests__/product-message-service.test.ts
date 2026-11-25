@@ -1,4 +1,4 @@
-import type { SendProductsStepSchema } from "@chatbotx.io/flow-config"
+import type { SendProductsStepSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   findLinkedProductsByRetailerIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   metaCatalogItemRepository: {
     listSendableProducts: mocks.listSendableProducts,
     findSendableByProductIds: mocks.findSendableByProductIds,

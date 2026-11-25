@@ -1,13 +1,14 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   Dialog,
   DialogClose,
@@ -16,12 +17,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
-import { ScrollArea } from "@chatbotx.io/ui/components/ui/scroll-area"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
+import { ScrollArea } from "@inboxos.io/ui/components/ui/scroll-area"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { Loader2Icon, TagIcon } from "lucide-react"
 import Link from "next/link"
 import { useFormatter, useTranslations } from "next-intl"

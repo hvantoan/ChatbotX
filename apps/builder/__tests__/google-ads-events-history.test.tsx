@@ -19,7 +19,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ refresh: () => mocks.calls.push("refresh") }),
 }))
 vi.mock("sonner", () => ({ toast: { error: vi.fn() } }))
-vi.mock("@chatbotx.io/ui/components/ui/select", async () =>
+vi.mock("@inboxos.io/ui/components/ui/select", async () =>
   (await import("./helpers/google-ads-ui")).selectMock(),
 )
 vi.mock("@/lib/orpc/query", () => ({

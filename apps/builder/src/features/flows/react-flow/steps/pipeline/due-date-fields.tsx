@@ -1,8 +1,8 @@
 "use client"
 
-import type { PipelineStepDueDate } from "@chatbotx.io/flow-config"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import type { PipelineStepDueDate } from "@inboxos.io/flow-config"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useTranslations } from "next-intl"
 import { useFormContext, useWatch } from "react-hook-form"
 import { CustomFieldSelect } from "@/features/custom-fields/custom-field-select"

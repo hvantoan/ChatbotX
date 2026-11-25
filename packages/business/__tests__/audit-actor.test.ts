@@ -3,15 +3,15 @@ import { readAuditActor, SYSTEM_ACTOR } from "../src/audit/actor"
 import { getAuditActor, withAuditContext } from "../src/audit/context"
 
 type GlobalWithAuditStorage = typeof globalThis & {
-  __chatbotxAuditStorage?: unknown
+  __inboxosAuditStorage?: unknown
 }
 
 describe("readAuditActor", () => {
   const globalWithStorage = globalThis as GlobalWithAuditStorage
-  const originalStorage = globalWithStorage.__chatbotxAuditStorage
+  const originalStorage = globalWithStorage.__inboxosAuditStorage
 
   afterEach(() => {
-    globalWithStorage.__chatbotxAuditStorage = originalStorage
+    globalWithStorage.__inboxosAuditStorage = originalStorage
   })
 
   test("is undefined outside an audit context", () => {
@@ -70,7 +70,7 @@ describe("readAuditActor", () => {
   })
 
   test("is undefined when no audit store has been created yet", () => {
-    globalWithStorage.__chatbotxAuditStorage = undefined
+    globalWithStorage.__inboxosAuditStorage = undefined
 
     expect(readAuditActor()).toBeUndefined()
   })

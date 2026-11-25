@@ -2,7 +2,7 @@ import {
   type CopyTextStepSchema,
   copyTextStepDefaultFn,
   copyTextStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import CopyTextStepEditor from "./editor"
 import CopyTextStepViewer from "./viewer"

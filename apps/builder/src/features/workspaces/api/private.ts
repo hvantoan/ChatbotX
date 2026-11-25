@@ -1,4 +1,4 @@
-import { workspaceDeletionRecordService } from "@chatbotx.io/business"
+import { workspaceDeletionRecordService } from "@inboxos.io/business"
 import z from "zod"
 import { authorizedAPI } from "@/orpc"
 import { listMyWorkspaces } from "../lib/list-my-workspaces"

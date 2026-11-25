@@ -1,12 +1,12 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { formatCustomerId } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { formatCustomerId } from "@inboxos.io/utils/google-click"
 import { Loader2Icon, RefreshCwIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactElement } from "react"

@@ -1,5 +1,5 @@
-import type { CoexistRunStatus } from "@chatbotx.io/database/repositories"
-import type { CoexistSyncRunModel } from "@chatbotx.io/database/types"
+import type { CoexistRunStatus } from "@inboxos.io/database/repositories"
+import type { CoexistSyncRunModel } from "@inboxos.io/database/types"
 import { CONTACT_SCAN_COOLDOWN_MS, CONTACT_SCAN_ETA_MS } from "./constants"
 
 export type ContactScanBlockedReason = "cooldown" | "running"

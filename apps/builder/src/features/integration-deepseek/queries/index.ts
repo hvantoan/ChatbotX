@@ -1,4 +1,4 @@
-import { integrationDeepSeekService } from "@chatbotx.io/business"
+import { integrationDeepSeekService } from "@inboxos.io/business"
 import type { IntegrationDeepseekResource } from "../schema/resource"
 
 export const findIntegrationDeepSeek = async ({

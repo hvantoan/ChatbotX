@@ -1,7 +1,7 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { leaderboardService } from "@chatbotx.io/business/leaderboard"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { leaderboardService } from "@inboxos.io/business/leaderboard"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { isValidationException } from "@/lib/errors/validation-exception"
@@ -43,7 +43,7 @@ export const createLeaderboardAction = workspaceActionClient
       await leaderboardService.publish({ workspaceId, id: created.id })
       return { id: created.id, published: true, publishError: null }
     } catch (error) {
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         return { id: created.id, published: false, publishError: error.message }
       }
       throw error

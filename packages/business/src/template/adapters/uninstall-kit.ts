@@ -4,11 +4,11 @@ import {
   eq,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   TemplateResourceKind,
   TemplateUninstallEffect,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { PgColumn, PgTable } from "drizzle-orm/pg-core"
 import {
   findParentsWithOutsideDependents,

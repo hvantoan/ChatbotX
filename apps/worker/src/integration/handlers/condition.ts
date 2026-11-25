@@ -1,16 +1,16 @@
-import { contactService } from "@chatbotx.io/business"
-import { contactFilterFields } from "@chatbotx.io/database/partials"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import type { ConditionStepSchema } from "@chatbotx.io/flow-config"
+import { contactService } from "@inboxos.io/business"
+import { contactFilterFields } from "@inboxos.io/database/partials"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import type { ConditionStepSchema } from "@inboxos.io/flow-config"
 import {
   refreshContactProfileSnapshot,
   resolveContactVariablesDeep,
-} from "@chatbotx.io/variables"
+} from "@inboxos.io/variables"
 import {
   flowContinuationJobOptions,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { type ExecuteStepProps, seekConnectedNode } from "./flow-utils"
 

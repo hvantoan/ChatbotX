@@ -16,7 +16,7 @@ vi.mock("../src/workspace-support-access/consent", () => ({
   isSupportConsentRequired: mocks.isSupportConsentRequired,
 }))
 
-const user = { id: "user-1", email: "admin@chatbotx.io" }
+const user = { id: "user-1", email: "admin@inboxos.io" }
 
 beforeEach(() => {
   vi.clearAllMocks()

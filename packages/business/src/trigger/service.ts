@@ -5,20 +5,20 @@ import {
   eq,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
-import type { FolderType } from "@chatbotx.io/database/partials"
-import { triggerRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/client"
+import type { FolderType } from "@inboxos.io/database/partials"
+import { triggerRepository } from "@inboxos.io/database/repositories"
 import {
   conditionModel,
   triggerContactHistoryModel,
   triggerExecutionModel,
   triggerModel,
   triggerStatsModel,
-} from "@chatbotx.io/database/schema"
-import type { ConditionModel, TriggerModel } from "@chatbotx.io/database/types"
-import { removeTriggerCache, updateTriggerCache } from "@chatbotx.io/events"
-import { distributedStore } from "@chatbotx.io/redis"
-import { createId, withTimeout } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { ConditionModel, TriggerModel } from "@inboxos.io/database/types"
+import { removeTriggerCache, updateTriggerCache } from "@inboxos.io/events"
+import { distributedStore } from "@inboxos.io/redis"
+import { createId, withTimeout } from "@inboxos.io/utils"
 import { isSameJsonValue } from "../audit/diff"
 import {
   findInvalidActionReferences,

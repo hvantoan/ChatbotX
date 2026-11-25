@@ -1,4 +1,4 @@
-import { contactService, verifyUnsubscribeToken } from "@chatbotx.io/business"
+import { contactService, verifyUnsubscribeToken } from "@inboxos.io/business"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { loadServableWorkspace } from "@/lib/workspace/load-servable-workspace"

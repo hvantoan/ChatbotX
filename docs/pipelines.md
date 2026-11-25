@@ -61,7 +61,7 @@ the workspace. The currency every reader sees (boards, API, events, variables)
 is the **effective currency**, `override ?? workspace default`, where the
 workspace default (`resolveWorkspaceDefault`, `pipeline/currency.ts`) is the
 primary currency of `Workspace.targetCountry` (`primaryCurrencyForCountry`,
-`@chatbotx.io/utils/country-currency`), or `USD` when the country is `null`,
+`@inboxos.io/utils/country-currency`), or `USD` when the country is `null`,
 `"unknown"` or has no currency. The store currency is not consulted: a
 workspace without a store must not show one.
 

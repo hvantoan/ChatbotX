@@ -1,4 +1,4 @@
-import { pipelineSettingsSchema } from "@chatbotx.io/database/partials"
+import { pipelineSettingsSchema } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   buildPermissionChanges,

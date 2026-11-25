@@ -1,4 +1,4 @@
-import type { CapiConnection } from "@chatbotx.io/business/meta-conversions/connection-state"
+import type { CapiConnection } from "@inboxos.io/business/meta-conversions/connection-state"
 
 export type CapiStatus = "ready" | "reconnect" | "notConnected" | "unsupported"
 

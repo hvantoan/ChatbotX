@@ -2,7 +2,7 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type EcommerceSettings,
   type ExternalStoreSource,
@@ -20,7 +20,7 @@ import {
   type PaymentMethod,
   SHIPPING_TYPES_BY_MODE,
   type ShippingType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   ecommerceSettingsRepository,
   type OrderInsertValues,
@@ -29,28 +29,28 @@ import {
   type OrderUpdateValues,
   orderRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
-import type { OrderModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { OrderModel } from "@inboxos.io/database/types"
 import {
   emitOrderStatus,
   emitProductOrdered,
   type OrderEventMetadata,
   type OrderStatusEventType,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   computeLinePrice,
   percentOf,
   roundMoney,
   stackDiscountPercents,
   sumMoney,
-} from "@chatbotx.io/utils/money"
+} from "@inboxos.io/utils/money"
 import {
   getNewOrderNotificationJobId,
   IntegrationJobAction,
   integrationQueue,
   NotificationJobAction,
   notificationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import { conversationService } from "../conversation/service"
 import type { CouponLine } from "../discount-code/pricing"
@@ -61,7 +61,7 @@ import {
   discountCodeService,
 } from "../discount-code/service"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { externalStoreManagedException } from "../external-store/errors"
 import { logger } from "../logger"
 import { messageService } from "../message/service"
@@ -873,7 +873,7 @@ class OrderService extends BaseService {
       if (
         !(
           input.discountCode &&
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code.startsWith("discountCode")
         )
       ) {
@@ -1736,7 +1736,7 @@ class OrderService extends BaseService {
         channel: chosen.channel,
       }
     } catch (err) {
-      if (err instanceof ChatbotXException && err.code === "notFound") {
+      if (err instanceof InboxOSException && err.code === "notFound") {
         return contact
       }
       throw err

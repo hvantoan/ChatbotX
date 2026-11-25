@@ -1,5 +1,5 @@
-import { googleAdsEventStatusSchema } from "@chatbotx.io/database/partials"
-import { googleAdsChannels } from "@chatbotx.io/utils/google-click"
+import { googleAdsEventStatusSchema } from "@inboxos.io/database/partials"
+import { googleAdsChannels } from "@inboxos.io/utils/google-click"
 import { z } from "zod"
 import { publicListRequest, publicListResponse } from "@/lib/public-api/list"
 import { conversionActionIdFilter, googleAdsEventResource } from "./events"

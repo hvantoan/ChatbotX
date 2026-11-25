@@ -10,22 +10,22 @@ const mocks = vi.hoisted(() => ({
   error: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   googleAdsConversionService: {
     pollProcessingStatus: mocks.pollProcessingStatus,
     sweepStranded: mocks.sweepStranded,
     syncSetups: mocks.syncSetups,
   },
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/redis")>()
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/redis")>()
   return {
     ...actual,
     distributedLock: { runExclusive: mocks.runExclusive },
     distributedStore: { exists: mocks.lockExists },
   }
 })
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     warn: mocks.warn,
     error: mocks.error,

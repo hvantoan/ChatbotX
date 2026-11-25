@@ -55,12 +55,12 @@ vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
 vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
   assertWorkspaceSuperAdmin: mocks.assertWorkspaceSuperAdmin,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationGoogleAdsService: { getPublicSetup: mocks.getPublicSetup },
   googleAdsSettingsService: { getConsent: mocks.getConsent },
   googleAdsConversionService: { listEvents: mocks.listEvents },
 }))
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findLatestInFlightByProvider: mocks.findLatestInFlightByProvider,
   },

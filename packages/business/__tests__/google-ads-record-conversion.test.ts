@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
   isSendJobLive: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findGoogleClickAttribution: mocks.findGoogleClickAttribution,
   },

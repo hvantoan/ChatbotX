@@ -1,5 +1,5 @@
-import { WHATSAPP_VERIFICATION_CODE_METHODS } from "@chatbotx.io/integration-whatsapp/constants"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { WHATSAPP_VERIFICATION_CODE_METHODS } from "@inboxos.io/integration-whatsapp/constants"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const WHATSAPP_VERIFICATION_COOLDOWN_SECONDS = 60

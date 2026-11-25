@@ -55,14 +55,14 @@ const tx = {
   insert: mockTxInsert,
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mockDbTransaction },
   and: (...args: unknown[]) => ({ and: args }),
   eq: (...args: unknown[]) => ({ eq: args }),
   inArray: (...args: unknown[]) => ({ inArray: args }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   conditionModel: { id: "conditionModel.id" },
   webhookModel: {
     id: "webhookModel.id",
@@ -70,23 +70,23 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   listWebhooksPaginated: vi.fn(),
   conditionRepository: { listByWebhookIds: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   removeWebhookCache: vi.fn(),
   updateWebhookCache: mockUpdateWebhookCache,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: vi.fn(
     async (_key: string, fn: () => Promise<unknown>) => await fn(),
   ),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
 }))
 

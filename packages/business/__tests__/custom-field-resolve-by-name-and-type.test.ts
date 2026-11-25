@@ -42,7 +42,7 @@ const {
 const customFieldModel = { table: "CustomField" }
 const NUMERIC_ID_PATTERN = /^\d+$/
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: mockDb,
   and: vi.fn(),
   eq: vi.fn(),
@@ -51,15 +51,15 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "root",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   customFieldModel,
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   isBigintId: (value: string) =>
     value.length <= 19 && NUMERIC_ID_PATTERN.test(value),
   likeContains: vi.fn(),
@@ -67,17 +67,17 @@ vi.mock("@chatbotx.io/database/utils", () => ({
   parsePagination: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
   isNumericId: (value: string) => NUMERIC_ID_PATTERN.test(value),
 }))
 
-vi.mock("@chatbotx.io/utils/custom-field", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils/custom-field")>()),
+vi.mock("@inboxos.io/utils/custom-field", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils/custom-field")>()),
 }))
 
 vi.mock("../src/base.service", () => ({

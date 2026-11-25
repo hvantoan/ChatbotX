@@ -3,18 +3,18 @@
 import type {
   LeaderboardPlatform,
   LeaderboardRuleKey,
-} from "@chatbotx.io/database/partials"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+} from "@inboxos.io/database/partials"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/card"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { useWatch } from "react-hook-form"
 import {

@@ -6,8 +6,8 @@ import type {
   PRODUCT_MESSAGE_UNRESOLVABLE_CODE,
   ProductMessageUnresolvableReason,
   RestrictedBroadcastPlanPolicy,
-} from "@chatbotx.io/database/partials"
-import { SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/partials"
+import { SdkException } from "@inboxos.io/sdk"
 import { DrizzleQueryError } from "drizzle-orm"
 
 /**
@@ -147,14 +147,14 @@ export const toPublicErrorMessage = (
   }
   const message =
     channelErrorMessage(error) ??
-    (error instanceof ChatbotXException ? error.message : undefined)
+    (error instanceof InboxOSException ? error.message : undefined)
   if (!message || QUERY_DUMP_REGEX.test(message)) {
     return fallback
   }
   return sanitizePublicText(message) || fallback
 }
 
-export class ChatbotXException extends Error {
+export class InboxOSException extends Error {
   field?: string
   code = "systemError"
   httpStatusCode = 400
@@ -178,7 +178,7 @@ export class ChatbotXException extends Error {
     }
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ChatbotXException)
+      Error.captureStackTrace(this, InboxOSException)
     }
   }
 }
@@ -186,8 +186,8 @@ export class ChatbotXException extends Error {
 /** A field operation the calculator rejected; `reason` is machine-readable. */
 export const invalidFieldOperationException = (
   reason: string,
-): ChatbotXException => {
-  const exception = new ChatbotXException(
+): InboxOSException => {
+  const exception = new InboxOSException(
     `This operation cannot be applied to the field (${reason}).`,
     "invalidFieldOperation",
     400,
@@ -217,7 +217,7 @@ export class WorkspacePurgeIncompleteError extends Error {
 }
 
 export const workspaceDeletionStartedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Workspace deletion is already in progress",
     "workspaceDeletionStarted",
     409,
@@ -228,7 +228,7 @@ export const workspaceDeletionStartedException = () =>
  * ask for `countMode: "bounded"`, which stops at a fixed cap.
  */
 export const countTimeoutException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     'Counting took too long. Narrow the filter, or use countMode "bounded" for a capped count.',
     "countTimeout",
     503,
@@ -239,7 +239,7 @@ export const countTimeoutException = () =>
  * range or the channel and try again.
  */
 export const reportTimeoutException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The report took too long. Narrow the date range or the channel.",
     "reportTimeout",
     503,
@@ -264,7 +264,7 @@ export type BroadcastValidationField =
  * (`apps/builder/src/lib/errors/validation-exception.ts`) narrows on that
  * exact code before trusting `.field`.
  */
-export class BroadcastValidationException extends ChatbotXException {
+export class BroadcastValidationException extends InboxOSException {
   declare readonly field: BroadcastValidationField
 
   constructor(message: string, field: BroadcastValidationField) {
@@ -274,10 +274,10 @@ export class BroadcastValidationException extends ChatbotXException {
 }
 
 export const notFoundException = (message: string) =>
-  new ChatbotXException(message, "notFound", 404)
+  new InboxOSException(message, "notFound", 404)
 
 export const conflictException = (message: string, code: string) =>
-  new ChatbotXException(message, code, 409)
+  new InboxOSException(message, code, 409)
 
 /**
  * A field-scoped validation failure raised from inside a service. The
@@ -291,7 +291,7 @@ export const validationException = (
   message: string,
   data?: Record<string, string | number>,
 ) => {
-  const error = new ChatbotXException(message, "validation", 422)
+  const error = new InboxOSException(message, "validation", 422)
   error.field = field
   error.data = data
   return error
@@ -316,7 +316,7 @@ export const broadcastPlanLimitException = (
     planName: string | null
   },
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     broadcastPlanLimitMessages[reason](ctx.policy),
     BROADCAST_PLAN_LIMIT_CODE,
     403,
@@ -335,7 +335,7 @@ export const broadcastPlanLimitException = (
 }
 
 export const channelDuplicatedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This account is already connected to another workspace.",
     "channelDuplicated",
   )
@@ -343,13 +343,13 @@ export const channelDuplicatedException = () =>
 /**
  * The workspace's platform owner has no configured credential (Meta app,
  * WhatsApp Business app, etc.) for the channel being connected. Kept
- * distinct from a generic `ChatbotXException` so `toConnectSessionError`
+ * distinct from a generic `InboxOSException` so `toConnectSessionError`
  * (`packages/business/src/inbox/connect-outcome.ts`) can map it to the
  * `credentialMissing` session-error code without every call site having to
  * remember the exact code string.
  */
 export const credentialMissingException = (message: string) =>
-  new ChatbotXException(message, "credentialMissing")
+  new InboxOSException(message, "credentialMissing")
 
 /**
  * A connect flow's session (the `ConnectSession` row for Messenger/Instagram,
@@ -369,7 +369,7 @@ export const connectSessionExpiredException = (
   code:
     | "connectSessionExpired"
     | "signupSessionExpired" = "connectSessionExpired",
-) => new ChatbotXException(message, code)
+) => new InboxOSException(message, code)
 
 /**
  * The user cancelled the OAuth dialog (provider returned `?error=
@@ -382,7 +382,7 @@ export const connectSessionExpiredException = (
  * `ConnectSession.returnUrl` on this path.
  */
 export const connectSessionCancelledException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The connect session was cancelled.",
     "connectSessionCancelled",
   )
@@ -394,14 +394,14 @@ export const connectSessionCancelledException = () =>
  * "not found".
  */
 export const notWorkspaceMemberException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "You are not a member of this workspace.",
     "notWorkspaceMember",
     403,
   )
 
 export const channelLimitReachedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Channel limit reached for this plan",
     "channelLimitReached",
   )
@@ -414,21 +414,21 @@ export const channelLimitReachedException = () =>
  * a hard failure.
  */
 export const summaryAlreadyGeneratingException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A summary is already being generated for this call.",
     "summaryAlreadyGenerating",
     409,
   )
 
 export const workspaceLimitReachedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Workspace limit reached for this plan",
     "workspaceLimitReached",
   )
 
 /** The admin console's "create workspace for an owner" flow refuses a second workspace for an owner who already has a live one — one owner, one owned workspace. */
 export const ownerAlreadyHasWorkspaceException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This owner already has a workspace.",
     "ownerAlreadyHasWorkspace",
     409,
@@ -436,7 +436,7 @@ export const ownerAlreadyHasWorkspaceException = () =>
 
 /** A member email the admin console's create-workspace flow could not resolve to a user in the owner's tenant — only a root-tenant email auto-provisions; a reseller sub-tenant email must already exist. */
 export const adminWorkspaceMemberNotFoundException = (email: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `No user found for "${email}" in this tenant.`,
     "memberNotFound",
     404,
@@ -444,7 +444,7 @@ export const adminWorkspaceMemberNotFoundException = (email: string) =>
 
 /** The owner's `teamMembers` plan limit has no room left for the owner plus every requested member added in the same batch. */
 export const teamMembersLimitReachedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Team member limit reached for this plan",
     "teamMembersLimit",
   )
@@ -455,7 +455,7 @@ export const teamMembersLimitReachedException = () =>
  * own precondition in `transitionConnection` (`state.ts`).
  */
 export const connectionInactiveException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This connection is not active.",
     "connectionInactive",
     409,
@@ -464,10 +464,10 @@ export const connectionInactiveException = () =>
 /**
  * `refresh`/`verify` cannot run when a provider has no satellite store.
  * This is an expected unsupported operation for built-in connections such as
- * `chatbotx`, so clients receive a request error instead of a server failure.
+ * `inboxos`, so clients receive a request error instead of a server failure.
  */
 export const connectionNotConfiguredException = (provider: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `Connection provider "${provider}" is not configured.`,
     "connectionNotConfigured",
     400,
@@ -480,14 +480,14 @@ export const connectionNotConfiguredException = (provider: string) =>
  * membership.
  */
 export const connectionProviderDedicatedOnlyException = (provider: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `Connection provider "${provider}" can only be managed from its dedicated settings page.`,
     "connectionProviderDedicatedOnly",
     403,
   )
 
 export const connectionNotRefreshableException = (provider: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `Connection provider "${provider}" does not support refresh.`,
     "connectionNotRefreshable",
     400,
@@ -495,7 +495,7 @@ export const connectionNotRefreshableException = (provider: string) =>
 
 /** This provider is already connected in this workspace — a fresh `connectFromCredentials`/OAuth-connect call would collide with the unique `(workspaceId, provider, sourceId)` key. */
 export const connectionAlreadyConnectedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This provider is already connected in this workspace.",
     "connectionAlreadyConnected",
     409,
@@ -503,7 +503,7 @@ export const connectionAlreadyConnectedException = () =>
 
 /** Another request currently owns the short-lived lease for this target's connect attempt. */
 export const connectionInProgressException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A connection attempt for this target is already in progress.",
     "connectionInProgress",
     409,
@@ -511,7 +511,7 @@ export const connectionInProgressException = () =>
 
 /** `connectFromCredentials` called against a provider whose `strategy` isn't `token`/`api_key`/`self_serve` (or one that never declared `fromCredentials`). */
 export const connectionWrongStrategyException = (provider: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `Connection provider "${provider}" does not accept direct credentials.`,
     "connectionWrongStrategy",
     400,
@@ -519,13 +519,13 @@ export const connectionWrongStrategyException = (provider: string) =>
 
 /** `provider.fromCredentials` rejected the supplied config with a live validation call (e.g. an invalid API key). */
 export const connectionCredentialsRejectedException = (message: string) =>
-  new ChatbotXException(message, "connectionCredentialsRejected", 400)
+  new InboxOSException(message, "connectionCredentialsRejected", 400)
 
 /** A provider could not complete a connect request due to a transient upstream or transport failure. */
 export const connectionProviderUnavailableException = (
   httpStatusCode: 502 | 503,
 ) =>
-  new ChatbotXException(
+  new InboxOSException(
     "The provider is temporarily unavailable. Please try again.",
     "connectionProviderUnavailable",
     httpStatusCode,
@@ -533,7 +533,7 @@ export const connectionProviderUnavailableException = (
 
 /** `startSession`/`completeAuthorization` called against a provider with no `authorizeUrl`/`exchangeCode` handler — not an OAuth-strategy provider. */
 export const connectionNotOAuthException = (provider: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `Connection provider "${provider}" does not support an OAuth connect flow.`,
     "connectionNotOAuth",
     400,
@@ -541,7 +541,7 @@ export const connectionNotOAuthException = (provider: string) =>
 
 /** The OAuth callback's `sessionId`/nonce did not resolve to a matching `ConnectSession` — a forged, stale, or already-consumed `state` parameter. */
 export const connectionStateMismatchException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This connect session could not be verified. Please start the connection again.",
     "connectionStateMismatch",
     400,
@@ -549,7 +549,7 @@ export const connectionStateMismatchException = () =>
 
 /** `listCandidates`/`describe` returned nothing selectable after a successful code exchange. */
 export const connectionNoCandidatesException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "No connectable accounts were found for this authorization.",
     "connectionNoCandidates",
     400,
@@ -557,7 +557,7 @@ export const connectionNoCandidatesException = () =>
 
 /** `reconnect`'s completion: the re-authorized account does not match the `Connection` being reconnected (user picked/granted the wrong account). */
 export const connectionIdentityMismatchException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The reauthorized account does not match the connection being reconnected.",
     "connectionIdentityMismatch",
     400,
@@ -565,7 +565,7 @@ export const connectionIdentityMismatchException = () =>
 
 /** API-driven `POST /v1/connections` for a channel provider hidden by the tenant's channel-visibility policy (not already connected in this workspace) — a deliberate tightening for an unattended caller; the interactive builder UI grandfathers an already-connected channel instead of hiding it. */
 export const channelHiddenException = (channel: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `The "${channel}" channel is not available for this workspace.`,
     "channelHidden",
     403,
@@ -582,7 +582,7 @@ const productMessageUnresolvableCode: typeof PRODUCT_MESSAGE_UNRESOLVABLE_CODE =
  * The message cannot be built right now. Permanent for this send — the author
  * has to change the message or the catalog — so it is not worth retrying.
  */
-export class ProductMessageUnresolvableError extends ChatbotXException {
+export class ProductMessageUnresolvableError extends InboxOSException {
   readonly reason: ProductMessageUnresolvableReason
 
   constructor(
@@ -614,7 +614,7 @@ const imagesNotSupportedOnChannelCode: typeof IMAGES_NOT_SUPPORTED_ON_CHANNEL_CO
  * TikTok comment replies) or more images than it carries. Refused before any
  * row exists instead of letting the channel handler drop them silently.
  */
-export class ImagesNotSupportedOnChannelError extends ChatbotXException {
+export class ImagesNotSupportedOnChannelError extends InboxOSException {
   readonly reason: ImagesNotSupportedOnChannelReason
 
   constructor(props: {

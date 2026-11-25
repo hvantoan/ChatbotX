@@ -1,15 +1,15 @@
 import {
   type ShopifyAuthSecret,
   shopifyAuthSecretSchema,
-} from "@chatbotx.io/database/partials"
-import { shopifyRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationShopifyModel } from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
+} from "@inboxos.io/database/partials"
+import { shopifyRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationShopifyModel } from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
 import {
   requestShopifyAccessToken,
   type ShopifyCredentials,
-} from "@chatbotx.io/integration-shopify"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-shopify"
+import { distributedLock } from "@inboxos.io/redis"
 import { shopifyNotConnectedException } from "./errors"
 
 /** Ties the encrypted secret to its workspace: copied elsewhere it does not decrypt. */

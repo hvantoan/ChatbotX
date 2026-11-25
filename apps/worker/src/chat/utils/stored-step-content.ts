@@ -1,11 +1,11 @@
-import { type ContentType, contentTypes } from "@chatbotx.io/database/partials"
-import type { WhatsappLocationStepSchema } from "@chatbotx.io/flow-config"
-import { stepTypes } from "@chatbotx.io/flow-config"
+import { type ContentType, contentTypes } from "@inboxos.io/database/partials"
+import type { WhatsappLocationStepSchema } from "@inboxos.io/flow-config"
+import { stepTypes } from "@inboxos.io/flow-config"
 import type {
   MessageLocationEntity,
   MessageViewCatalogEntity,
   SendFlowStepData,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 
 /** How a delivered flow step is recorded on its outgoing Message row. */
 export type StoredStepContent = {

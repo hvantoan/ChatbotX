@@ -27,14 +27,14 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createAiFileEmbeddingRepository: () => ({
     findFileOrFail: mocks.findFileOrFail,
     reconcilePendingChunks: mocks.reconcilePendingChunks,
   }),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: {
     markChunked: mocks.markChunked,
     markProcessingRunStarted: mocks.markProcessingRunStarted,
@@ -43,11 +43,11 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AI_FILE_EMBEDDING_PRIORITY: 5,
   AIJobAction: { processPendingEmbedding: "processPendingEmbedding" },
   aiAgentQueue: { addBulk: mocks.addBulk },

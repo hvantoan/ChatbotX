@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   tenantRepository: { findById: mocks.findTenant },
   tenantDefaultTemplateRepository: { findWithTemplate: mocks.findWithTemplate },
   templateVersionRepository: { pinVersionNumber: mocks.pinVersionNumber },

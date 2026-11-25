@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { describe, expect, test } from "vitest"
 import { resolveDefaultTemplateStatus } from "../src/template/default-template-status"
 

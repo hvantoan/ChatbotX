@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2Icon } from "lucide-react"
 import Link from "next/link"

@@ -1,5 +1,5 @@
-import type { ContactInfoType } from "@chatbotx.io/database/partials"
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
+import type { ContactInfoType } from "@inboxos.io/database/partials"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
 import type {
   BaseEventEmitter,
   CallEndedMetadata,

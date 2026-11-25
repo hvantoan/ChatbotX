@@ -4,7 +4,7 @@ const mocks = vi.hoisted(() => ({
   listValuesByFieldKeys: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   contactCustomFieldRepository: {
     listValuesByFieldKeys: mocks.listValuesByFieldKeys,

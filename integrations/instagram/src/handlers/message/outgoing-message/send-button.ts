@@ -4,7 +4,7 @@ import {
   encodeButtonPayload,
   extractMetadata,
   type MetadataPayload,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { chunk } from "remeda"
 import { MAX_BUTTONS } from "../../../constants"
 import { logger } from "../../../lib/logger"

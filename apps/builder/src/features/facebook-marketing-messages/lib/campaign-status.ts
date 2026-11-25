@@ -2,7 +2,7 @@ import {
   type FacebookMarketingMessageStatus,
   type FacebookMarketingMessageStatusReason,
   MM_ACTIVE_STATUSES,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 const S = "facebookMarketingMessages.delivery.status" as const
 const R = "facebookMarketingMessages.delivery.reason" as const

@@ -1,4 +1,4 @@
-import { broadcastService, conversationService } from "@chatbotx.io/business"
+import { broadcastService, conversationService } from "@inboxos.io/business"
 import {
   type BroadcastStatus,
   broadcastStatuses,
@@ -6,13 +6,13 @@ import {
   channelTypes,
   resolveBroadcastAudienceRange,
   resolveBroadcastTargetInboxIds,
-} from "@chatbotx.io/database/partials"
-import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/partials"
+import type { ContactFilterCriteriaInput } from "@inboxos.io/database/queries"
 import {
   broadcastSendJobId,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"
 import { logger } from "../../lib/logger"
 

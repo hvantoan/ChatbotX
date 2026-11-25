@@ -1,11 +1,11 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
+import { triggerActions } from "@inboxos.io/database/partials"
 import {
   FilterMode,
   spreadsheetColumnFilterSchema,
   spreadsheetContactToSheetMappingSchema,
   spreadsheetSheetToContactMappingSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import z from "zod"
 
 const baseRunGoogleSheetSchema = {

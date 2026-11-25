@@ -6,7 +6,7 @@ import {
   findOrFail,
   inArray,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   AI_FILE_CHUNKER_VERSIONS,
   AI_FILE_PROCESSING_RUN_STALE_MS,
@@ -22,39 +22,39 @@ import {
   aiFileProcessingRunErrorCodes,
   type ResolvedAIFileChunkingConfig,
   resolveAIFileChunkingConfig,
-} from "@chatbotx.io/database/partials"
-import { createAiFileEmbeddingRepository } from "@chatbotx.io/database/repositories"
-import { aiEmbeddingModel, aiFileModel } from "@chatbotx.io/database/schema"
-import type { AIFileModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { createAiFileEmbeddingRepository } from "@inboxos.io/database/repositories"
+import { aiEmbeddingModel, aiFileModel } from "@inboxos.io/database/schema"
+import type { AIFileModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/utils"
 import {
   UploadValidationError,
   uploader,
   uploadFile,
   uploadFileFromUrl,
-} from "@chatbotx.io/filesystem"
+} from "@inboxos.io/filesystem"
 import {
   AI_FILE_MAX_UPLOAD_BYTES,
   isGenericMimeType,
   isKnowledgeMimeType,
   knowledgeMimeTypeFromFilename,
   normalizeBaseMimeType,
-} from "@chatbotx.io/sdk"
-import { createId, isNumericId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId, isNumericId } from "@inboxos.io/utils"
 import {
   buildAIFileReindexJobId,
   getHeavyJobOptions,
   HeavyJobAction,
   heavyQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -76,7 +76,7 @@ import {
   normalizeAIFileSourceUrl,
 } from "./public-url"
 
-export { AI_FILE_MAX_UPLOAD_BYTES } from "@chatbotx.io/sdk"
+export { AI_FILE_MAX_UPLOAD_BYTES } from "@inboxos.io/sdk"
 
 /** Whole download (redirects, body, storage put) for a create from URL. */
 const AI_FILE_URL_DOWNLOAD_TIMEOUT_MS = 60_000
@@ -134,10 +134,10 @@ function lastPathSegment(url: string): string | undefined {
 }
 
 /** A filesystem/service upload refusal as the 400 the caller sees. */
-function toCreateException(error: UploadValidationError): ChatbotXException {
+function toCreateException(error: UploadValidationError): InboxOSException {
   return isAIFileCreateErrorReason(error.reason)
     ? new AIFileCreateException(error.message, error.reason)
-    : new ChatbotXException(error.message, "businessError", 400)
+    : new InboxOSException(error.message, "businessError", 400)
 }
 
 export type AIFileWithProcessing = Omit<
@@ -196,7 +196,7 @@ function decodeChunkCursor(cursor: string): {
     )
     return { chunkIndex: parsed.i, id: parsed.id }
   } catch {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "The cursor is invalid. Start again without a cursor.",
       "invalidCursor",
       400,
@@ -364,7 +364,7 @@ class AiFileService extends BaseService {
       // "businessError") so the private create action can catch it and
       // surface a translated message via next-intl — see
       // apps/builder/src/features/ai-files/actions/create-ai-file.action.ts.
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "No embedding provider configured. AI file embeddings require OpenAI or Gemini integration. DeepSeek, Claude and Muse do not support embedding models.",
         "noEmbeddingProvider",
         400,
@@ -752,7 +752,7 @@ class AiFileService extends BaseService {
         { err: normalizeError(error), workspaceId, sourceKind, hostname },
         "Failed to store AI file",
       )
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Failed to store AI file. Please try again later.",
         "systemError",
         502,
@@ -946,7 +946,7 @@ class AiFileService extends BaseService {
     if (!claimed) {
       // Parameters the caller chose must not vanish silently behind a coalesce.
       if (chunkingConfig !== undefined) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "File is being processed; parameters were not applied. Retry when processingRun finishes.",
           "conflict",
           409,
@@ -997,7 +997,7 @@ class AiFileService extends BaseService {
         },
         "Failed to enqueue AI file reindex",
       )
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Failed to queue AI file processing. Please try again later.",
         "systemError",
         502,

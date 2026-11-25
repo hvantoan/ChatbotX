@@ -9,14 +9,14 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business
+// Mock @inboxos.io/business
 // ---------------------------------------------------------------------------
 const findByIdForWorkspace = vi.fn()
 const updateAuth = vi.fn()
 const seedPersistentMenu = vi.fn()
 const commitReconnect = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: {
     findByIdForWorkspace,
     updateAuth,
@@ -27,7 +27,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
 }))
 
@@ -40,7 +40,7 @@ vi.mock("@chatbotx.io/business/connection", () => ({
 const SENTINEL_TX = { __tx: true }
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/integration-messenger
+// Mock @inboxos.io/integration-messenger
 // ---------------------------------------------------------------------------
 const exchangeCodeForToken = vi.fn()
 const getFacebookUser = vi.fn()
@@ -49,7 +49,7 @@ const debugToken = vi.fn()
 const toAppAccessToken = vi.fn(() => "app-token")
 const messengerIntegrationModule = { runChannelHandler: vi.fn() }
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   exchangeCodeForToken,
   getFacebookUser,
   getUserPages,
@@ -63,14 +63,14 @@ const exchangeLongLivedToken = vi.fn()
 const scopesToPageSubscribeFields = vi.fn(() => ["field1", "field2"])
 const subscribePageToAppWebhook = vi.fn()
 
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   ensureMessengerWhitelistedDomain,
   exchangeLongLivedToken,
   scopesToPageSubscribeFields,
   subscribePageToAppWebhook,
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   AuthType: { oauth2: "oauth2" },
 }))
 

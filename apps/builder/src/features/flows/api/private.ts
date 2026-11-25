@@ -2,13 +2,13 @@ import {
   flowAnalyticsService,
   flowNodeStatsResponse,
   flowStatsRequest,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   flowVersionService,
   messengerWelcomeMessageFlowService,
-} from "@chatbotx.io/business"
-import { convertStartNodeToMessengerAdsJson } from "@chatbotx.io/integration-messenger/messenger-ads"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { convertStartNodeToMessengerAdsJson } from "@inboxos.io/integration-messenger/messenger-ads"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { flowVersionResource } from "@/features/flow-versions/schema/resource"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"

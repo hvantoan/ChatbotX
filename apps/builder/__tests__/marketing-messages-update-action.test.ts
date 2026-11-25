@@ -11,7 +11,7 @@ const update = vi.fn(() => {
 })
 const find = vi.fn()
 
-class ChatbotXException extends Error {
+class InboxOSException extends Error {
   code: string
   constructor(message: string, code = "systemError") {
     super(message)
@@ -32,7 +32,7 @@ const assertContentEditable = vi.fn(
       row.firstSentAt &&
       JSON.stringify(row.content) !== JSON.stringify(content)
     ) {
-      throw new ChatbotXException("mmContentLocked", "mmContentLocked")
+      throw new InboxOSException("mmContentLocked", "mmContentLocked")
     }
   },
 )
@@ -40,17 +40,17 @@ const resolveContentAttachments = vi.fn(({ content }: { content: unknown }) =>
   Promise.resolve(content),
 )
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   updateMessageCampaign,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessagesService: {
     find,
     update,
     assertContentEditable,
   },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({ ChatbotXException }))
+vi.mock("@inboxos.io/business/errors", () => ({ InboxOSException }))
 vi.mock("@/features/facebook-marketing-messages/lib/media-attachment", () => ({
   resolveContentAttachments,
 }))
@@ -201,7 +201,7 @@ describe("updateMarketingMessage", () => {
 
   test("F3: a content edit that loses the race to the first send surfaces a translated mmContentLocked", async () => {
     update.mockRejectedValueOnce(
-      new ChatbotXException("mmContentLocked", "mmContentLocked"),
+      new InboxOSException("mmContentLocked", "mmContentLocked"),
     )
 
     await expect(

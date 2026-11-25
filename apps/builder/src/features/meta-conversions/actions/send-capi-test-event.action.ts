@@ -1,10 +1,10 @@
 "use server"
 
-import { CapiTestEventError } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { metaCapiEventChannelSchema } from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { CAPI_TEST_MESSAGING_ID_MAX_LENGTH } from "@chatbotx.io/utils/meta-capi"
+import { CapiTestEventError } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { metaCapiEventChannelSchema } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { CAPI_TEST_MESSAGING_ID_MAX_LENGTH } from "@inboxos.io/utils/meta-capi"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
@@ -53,10 +53,10 @@ export const sendCapiTestEventAction = workspaceActionClient
         return { success: true }
       } catch (error) {
         if (error instanceof CapiTestEventError) {
-          throw new ChatbotXException(t(error.reason))
+          throw new InboxOSException(t(error.reason))
         }
         if (isNotFound(error)) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             t(integrationNotFoundErrorKey[parsedInput.channel]),
           )
         }

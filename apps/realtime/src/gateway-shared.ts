@@ -8,7 +8,7 @@ import { SHARED_COMPRESSOR } from "uWebSockets.js"
 import {
   isRealtimeSeqAfter,
   REALTIME_CLOSE_CODE,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { decrementKeyedCount, incrementKeyedCount } from "./lib/keyed-count"
 import { endSocket, runThenFlushEnds } from "./lib/socket-end"
 import type { StreamReader } from "./stream-reader"

@@ -1,5 +1,5 @@
-import { resolveAiProviderAuth } from "@chatbotx.io/business/connection/ai-provider-auth"
-import { db } from "@chatbotx.io/database/client"
+import { resolveAiProviderAuth } from "@inboxos.io/business/connection/ai-provider-auth"
+import { db } from "@inboxos.io/database/client"
 import type {
   IntegrationClaudeModel,
   IntegrationDeepseekModel,
@@ -8,8 +8,8 @@ import type {
   IntegrationOpenAIModel,
   IntegrationOpenaiCompatibleModel,
   IntegrationOpenrouterModel,
-} from "@chatbotx.io/database/types"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/types"
+import { secretTextAuthSchema } from "@inboxos.io/sdk"
 import type { ImageModel } from "ai"
 import { providerSdkFactories } from "../core/factory"
 import { type AIProvider, aiProviders } from "../schemas"

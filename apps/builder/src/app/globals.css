@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@chatbotx.io/ui/styles/default.css";
+@import "@inboxos.io/ui/styles/default.css";
 
 /**
  * Tailwind CSS official document:
@@ -14,9 +14,9 @@
  * dependencies (~360k files, ~6 GB during compile). Guarded by
  * `__tests__/tailwind-sources.test.ts`.
  */
-@source "../../node_modules/@chatbotx.io/ui/src";
-@source "../../node_modules/@chatbotx.io/analytics-nextjs/src";
-@source "../../node_modules/@chatbotx.io/minigame-ui/src";
+@source "../../node_modules/@inboxos.io/ui/src";
+@source "../../node_modules/@inboxos.io/analytics-nextjs/src";
+@source "../../node_modules/@inboxos.io/minigame-ui/src";
 
 /* A page that portals a `data-print-root` element into <body> prints only
    that element: the sidebar, tabs and pinned bars are left off the paper. */

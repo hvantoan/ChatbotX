@@ -1,8 +1,8 @@
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import type { MetadataPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import type { MetadataPayload } from "@inboxos.io/flow-config"
 
 // Kept apart from the reconciler registry so each reconciler can import the
 // contract without importing the registry that imports it (no module cycle).

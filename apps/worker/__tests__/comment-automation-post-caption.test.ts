@@ -20,17 +20,17 @@ const {
   mockResolveIntegrationContext: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn().mockResolvedValue({ ctx: true }),
   channelPostService: { findStoredCaption: mockFindStoredCaption },
   tiktokIntegrationService: { getPostDetails: mockTiktokGetPostDetails },
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   tiktokCanListVideos: mockTiktokCanListVideos,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: { get: mockStoreGet, put: mockStorePut },
 }))
 

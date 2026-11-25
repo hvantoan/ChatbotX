@@ -8,7 +8,7 @@ const campaignRepo = {
 const recipientRepo = { insertMany: vi.fn(), countOutcomes: vi.fn() }
 const audienceRepo = { findForWorkspace: vi.fn() }
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessageRepository: campaignRepo,
   facebookMarketingMessageRecipientRepository: recipientRepo,
   facebookMarketingMessageAudienceRepository: audienceRepo,
@@ -45,10 +45,10 @@ const ads = {
   listNotificationMessageTokens: vi.fn(),
   getMessageDeliveryEstimate: vi.fn(),
 }
-vi.mock("@chatbotx.io/integration-facebook-ads", async () => {
+vi.mock("@inboxos.io/integration-facebook-ads", async () => {
   const real = await vi.importActual<
-    typeof import("@chatbotx.io/integration-facebook-ads")
-  >("@chatbotx.io/integration-facebook-ads")
+    typeof import("@inboxos.io/integration-facebook-ads")
+  >("@inboxos.io/integration-facebook-ads")
   return {
     ...ads,
     classifyMarketingMessageError: real.classifyMarketingMessageError,

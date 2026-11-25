@@ -1,16 +1,17 @@
 "use client"
 
-import type { DecisionConnectionSafe } from "@chatbotx.io/business"
-import type { DecisionProfileModel } from "@chatbotx.io/database/types"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { DecisionConnectionSafe } from "@inboxos.io/business"
+import type { DecisionProfileModel } from "@inboxos.io/database/types"
 import {
   type GlobalRouterDestination,
   globalRouterConfigSchema,
-} from "@chatbotx.io/decision-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
+} from "@inboxos.io/decision-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,8 +21,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Form,
   FormControl,
@@ -29,14 +30,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/radio-group"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import {
   AlertTriangleIcon,
   ArrowDownIcon,

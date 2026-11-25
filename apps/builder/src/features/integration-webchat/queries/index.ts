@@ -1,6 +1,6 @@
 "use server"
 
-import { integrationWebchatService } from "@chatbotx.io/business"
+import { integrationWebchatService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListIntegrationWebchatsRequest } from "../schema/query"
 

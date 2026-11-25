@@ -197,28 +197,28 @@ const {
 // Module mocks
 // ---------------------------------------------------------------------------
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
   contactInboxRepository: {
     findWithContact: mockFindContactInbox,
   },
 }))
 
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   automatedResponseService: {
     enqueueFlowAction: mockAutomatedResponseEnqueueFlowAction,
   },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { putObject: mockUploaderPutObject },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   isUniqueViolationError: mockIsUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   CONTACT_INBOX_SOURCE_ID_KEY: "ContactInbox_inboxId_sourceId_key",
   CONTACT_INBOX_SOURCE_PARENT_USER_ID_KEY:
     "ContactInbox_inboxId_sourceParentUserId_key",
@@ -240,15 +240,15 @@ vi.mock("@chatbotx.io/database/schema", () => ({
 // Mirror of the real capability table
 // (packages/business/src/contact/profile-refresh/rules.ts) — pure, so
 // re-implemented here rather than partially importing the real (heavy)
-// `@chatbotx.io/business` barrel, matching this file's existing convention
-// for `@chatbotx.io/sdk`'s pure helpers above.
+// `@inboxos.io/business` barrel, matching this file's existing convention
+// for `@inboxos.io/sdk`'s pure helpers above.
 //
-// Tried switching to `vi.mock("@chatbotx.io/business", async (importOriginal)
+// Tried switching to `vi.mock("@inboxos.io/business", async (importOriginal)
 // => ...)` (as done in contact-profile-refresh.test.ts, which has no
-// `@chatbotx.io/database/schema` mock to conflict with) — it breaks here: the
+// `@inboxos.io/database/schema` mock to conflict with) — it breaks here: the
 // real barrel's module graph reaches `ads-conversion/schema.ts`, which calls
-// `createSelectSchema` from `@chatbotx.io/database/schema` at import time,
-// and this file's `@chatbotx.io/database/schema` mock above is deliberately
+// `createSelectSchema` from `@inboxos.io/database/schema` at import time,
+// and this file's `@inboxos.io/database/schema` mock above is deliberately
 // minimal (a handful of table shapes) and has no such export. Keeping the
 // mirror here rather than widening that mock (and whatever else the real
 // barrel transitively touches) to stay a small, scoped fix.
@@ -295,7 +295,7 @@ const mockFindMessageWithAttachments = vi.hoisted(() =>
   vi.fn(async (_params: unknown): Promise<unknown> => null),
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   productMessageService: {
     resolveInboundProducts: mockResolveInboundProducts,
   },
@@ -416,7 +416,7 @@ vi.mock("@chatbotx.io/business", () => ({
     message.contentAttributes?.threadControlPromoted === undefined,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mockDistributedLockRunExclusive },
   isLockAcquisitionError: () => false,
   // `resolveLiveComment` remembers Facebook live posts here; no post is known
@@ -427,23 +427,23 @@ vi.mock("@chatbotx.io/redis", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: mockEmit,
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: vi.fn().mockResolvedValue(undefined),
   emitShoppingCartSent: mockEmitShoppingCartSent,
   emitUserAskedAboutProduct: mockEmitUserAskedAboutProduct,
   setWebhookExecutionContext: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageCreated: "messageCreated" },
   routeForConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   contentTypes: { enum: { text: "text", location: "location" } },
   // Mirror of the real pure helper — `resolveLastUserInputTracking` calls it.
   isStoryMention: (contentAttributes: unknown) =>
@@ -540,26 +540,26 @@ vi.mock("@chatbotx.io/sdk", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "test-id") }
 })
 
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/flow-config")>()
+    await importOriginal<typeof import("@inboxos.io/flow-config")>()
   return { ...actual }
 })
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   parseAppointmentCancelPostback: mockParseAppointmentCancelPostback,
   verifyAppointmentCancelPostback: mockVerifyAppointmentCancelPostback,
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
   // The real job builder: the tests assert what producers actually enqueue.
   buildResolveStepInputJob: (
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   ).buildResolveStepInputJob,
   // `logProviderError` short-circuits on this, as `defaultQueue` does.
   isNoRedisEnv: () => true,
@@ -706,7 +706,7 @@ vi.mock(
 
 const { metaReferralToContactSource, receiveComment, receiveMessage } =
   await import("../src/integration/handlers/received-message")
-const { encodeButtonPayload } = await import("@chatbotx.io/flow-config")
+const { encodeButtonPayload } = await import("@inboxos.io/flow-config")
 const { logger } = await import("../src/lib/logger")
 const { allIntegrations, integrationService } = await import(
   "../src/services/integrations"
@@ -720,7 +720,7 @@ const fakeInbox = {
   id: "inbox-1",
   workspaceId: "ws-1",
   channel: "messenger",
-} as unknown as import("@chatbotx.io/database/types").InboxModel
+} as unknown as import("@inboxos.io/database/types").InboxModel
 
 const fakeIntegrationRow = {
   id: "integration-1",
@@ -735,19 +735,19 @@ const fakeContactInbox = {
   sourceId: "psid-123",
   channel: "messenger",
   source: "messenger",
-} as unknown as import("@chatbotx.io/database/types").ContactInboxModel
+} as unknown as import("@inboxos.io/database/types").ContactInboxModel
 
 const fakeContact = {
   id: "contact-1",
   workspaceId: "ws-1",
   blockedAt: new Date("2026-01-01T00:00:00Z"),
-} as unknown as import("@chatbotx.io/database/types").ContactModel
+} as unknown as import("@inboxos.io/database/types").ContactModel
 
 const fakeConversation = {
   id: "conv-1",
   workspaceId: "ws-1",
   contactId: "contact-1",
-} as unknown as import("@chatbotx.io/database/types").ConversationModel
+} as unknown as import("@inboxos.io/database/types").ConversationModel
 
 const baseIncomingMessage = {
   sourceId: "msg-src-1",
@@ -1819,7 +1819,7 @@ describe("receiveMessage — message repository branch", () => {
 
   test("skips activity and mark-read for matching text with no provider source id", async () => {
     const matchingOwnSend = {
-      id: "msg-chatbotx-send",
+      id: "msg-inboxos-send",
       sourceId: null,
       text: fakeCreatedMessage.text,
     }
@@ -3021,7 +3021,7 @@ describe("receiveMessage — new contact MAC gate", () => {
     // Threads the freshly-created ContactInbox id — not merely the contact
     // id — so a Trigger action reacting to newContact attributes to THIS
     // channel instead of falling back to most-recent-inbox.
-    const { emitContactCreated } = await import("@chatbotx.io/events")
+    const { emitContactCreated } = await import("@inboxos.io/events")
     expect(emitContactCreated).toHaveBeenCalledWith(
       "ws-1",
       "contact-new",
@@ -7189,7 +7189,7 @@ describe("receiveMessage — outbound automated response on message echoes", () 
     )
   })
 
-  test("skips the check when the echo duplicates a message ChatbotX itself sent", async () => {
+  test("skips the check when the echo duplicates a message InboxOS itself sent", async () => {
     // A sourceId dedupe miss: our own row is already there, so the echo was
     // inserted a second time. Running keyword automation over it would let an
     // outbound rule match the bot's own reply.

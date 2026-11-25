@@ -1,7 +1,7 @@
-import { db, eq } from "@chatbotx.io/database/client"
-import type { WebchatPersistentMenu } from "@chatbotx.io/database/partials"
-import { integrationWebchatModel } from "@chatbotx.io/database/schema"
-import { ChatbotXException } from "../../errors"
+import { db, eq } from "@inboxos.io/database/client"
+import type { WebchatPersistentMenu } from "@inboxos.io/database/partials"
+import { integrationWebchatModel } from "@inboxos.io/database/schema"
+import { InboxOSException } from "../../errors"
 import {
   type CreateWebchatRequest,
   integrationWebchatService,
@@ -39,7 +39,7 @@ type TemplateWebchatEntry = {
 }
 
 const isChannelLimitReached = (error: unknown): boolean =>
-  error instanceof ChatbotXException && error.code === "channelLimitReached"
+  error instanceof InboxOSException && error.code === "channelLimitReached"
 
 /**
  * Webchats provision a brand-new Inbox + Connection row per row, gated by

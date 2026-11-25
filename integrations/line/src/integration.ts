@@ -4,7 +4,7 @@ import {
   Integration,
   type IntegrationDefinition,
   probeVerify,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   getBotInfo,
   getWebhookEndpoint,

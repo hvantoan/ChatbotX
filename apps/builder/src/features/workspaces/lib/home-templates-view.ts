@@ -1,4 +1,4 @@
-import type { PublicTemplateProjection } from "@chatbotx.io/business"
+import type { PublicTemplateProjection } from "@inboxos.io/business"
 import type { StoreCatalogData } from "@/features/template-store/queries/load-store-catalog"
 import type { HomeTab } from "../schema/home-search-params"
 

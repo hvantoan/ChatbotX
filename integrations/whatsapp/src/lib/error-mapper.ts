@@ -3,8 +3,8 @@ import {
   ChannelErrorCategory,
   ChannelErrorReason,
   UNKNOWN_ERROR,
-} from "@chatbotx.io/sdk"
-import { formatGraphErrorMessage } from "@chatbotx.io/utils/graph-error"
+} from "@inboxos.io/sdk"
+import { formatGraphErrorMessage } from "@inboxos.io/utils/graph-error"
 import { WHATSAPP_CALLING_ERROR_CODES } from "../constants"
 import {
   type ChannelErrorSource,

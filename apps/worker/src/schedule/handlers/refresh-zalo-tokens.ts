@@ -1,10 +1,10 @@
-import { zaloIntegrationService } from "@chatbotx.io/business"
+import { zaloIntegrationService } from "@inboxos.io/business"
 import {
   calculateExpiresAt,
   isRevokedTokenError,
   refreshAccessToken,
   type ZaloAuthValue,
-} from "@chatbotx.io/integration-zalo"
+} from "@inboxos.io/integration-zalo"
 import { logger } from "../../lib/logger"
 import { refreshWithErrorHandling, runRefreshBatch } from "./refresh-runner"
 

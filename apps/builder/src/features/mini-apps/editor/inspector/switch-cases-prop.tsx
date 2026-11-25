@@ -1,8 +1,8 @@
 "use client"
 
-import { type MiniAppNode, slotEntries } from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { type MiniAppNode, slotEntries } from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { PlusIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { nextFreeId } from "../../lib/list-editing"

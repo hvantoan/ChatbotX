@@ -1,4 +1,4 @@
-import { CONNECT_ERROR_QUERY_PARAM } from "@chatbotx.io/utils/connection"
+import { CONNECT_ERROR_QUERY_PARAM } from "@inboxos.io/utils/connection"
 
 export const GOOGLE_ADS_PROVIDER = "googleAds" as const
 

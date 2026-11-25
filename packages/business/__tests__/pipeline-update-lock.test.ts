@@ -14,11 +14,11 @@ vi.mock("../src/broadcast/plan-policy.service", () => ({
   broadcastPlanPolicyService: {},
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { marker: "db" },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   acquirePipelineAdvisoryLock: mocks.acquireAdvisory,
   pipelineActivityRepository: {},
   pipelineItemRepository: {},

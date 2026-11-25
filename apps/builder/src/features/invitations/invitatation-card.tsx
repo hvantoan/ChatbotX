@@ -1,14 +1,14 @@
 "use client"
 
-import type { InvitationSummary } from "@chatbotx.io/business"
-import { isWorkspaceScheduledForDeletion } from "@chatbotx.io/business/workspace-lifecycle/predicates"
+import type { InvitationSummary } from "@inboxos.io/business"
+import { isWorkspaceScheduledForDeletion } from "@inboxos.io/business/workspace-lifecycle/predicates"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

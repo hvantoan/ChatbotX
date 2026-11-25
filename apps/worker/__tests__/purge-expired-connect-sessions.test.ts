@@ -4,10 +4,10 @@ const purgeExpired = vi.fn()
 const info = vi.fn()
 const warn = vi.fn()
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { purgeExpired },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ info, warn }),
 }))
 

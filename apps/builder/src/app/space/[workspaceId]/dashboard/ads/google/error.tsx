@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useTransition } from "react"

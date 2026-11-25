@@ -5,7 +5,7 @@ import {
   isFileAnswer,
   type MiniAppDefinition,
   type MiniAppFileAnswer,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { useTranslations } from "next-intl"
 import { useCallback, useState } from "react"
 import { toast } from "sonner"

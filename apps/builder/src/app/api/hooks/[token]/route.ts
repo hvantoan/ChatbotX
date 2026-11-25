@@ -1,4 +1,4 @@
-import { toLoggableDatabaseError } from "@chatbotx.io/database/client"
+import { toLoggableDatabaseError } from "@inboxos.io/database/client"
 import { type NextRequest, NextResponse } from "next/server"
 import { INBOUND_WEBHOOK_ERROR_CODE } from "@/features/inbound-webhooks/lib/error-codes"
 import { handleInboundWebhookRequest } from "@/features/inbound-webhooks/lib/handle-inbound-request"

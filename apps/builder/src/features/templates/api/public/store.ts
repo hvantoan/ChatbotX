@@ -1,8 +1,8 @@
 import {
   resolveTenantSettings,
   templateStoreService,
-} from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import { possibleErrorsOnListingResource } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"

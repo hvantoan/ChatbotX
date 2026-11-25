@@ -1,4 +1,4 @@
-import { getChildLogger } from "@chatbotx.io/logger"
+import { getChildLogger } from "@inboxos.io/logger"
 import { imageOptimizationKeys } from "./keys"
 
 /**

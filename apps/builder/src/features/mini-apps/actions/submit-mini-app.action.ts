@@ -1,6 +1,6 @@
 "use server"
 
-import { miniAppSubmissionService } from "@chatbotx.io/business/mini-app"
+import { miniAppSubmissionService } from "@inboxos.io/business/mini-app"
 import { actionClient } from "@/lib/safe-action"
 import {
   assertVisitorNotRateLimited,

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   publishGuestRealtimeEvent: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   getChannelMediaPrefix: mocks.getChannelMediaPrefix,
   getStoragePrefix: (workspaceId: string) => `storage/${workspaceId}`,
   uploader: {},

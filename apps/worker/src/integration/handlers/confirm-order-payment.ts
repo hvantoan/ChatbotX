@@ -1,8 +1,8 @@
 import {
   orderPaymentService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import type { IntegrationJobConfirmOrderPayment } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { IntegrationJobConfirmOrderPayment } from "@inboxos.io/worker-config"
 
 /**
  * A signed Stripe or PayPal webhook about a web shop payment: the provider is

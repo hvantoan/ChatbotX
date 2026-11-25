@@ -28,7 +28,7 @@ const { dbTransactionSpy } = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ op: "and", conditions })),
   asc: vi.fn(),
   count: vi.fn(),
@@ -44,7 +44,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactModel: { id: "Contact.id", fullName: "Contact.fullName" },
   conversationModel: {},
   minigameContactModel: {
@@ -60,20 +60,20 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   minigamePlayModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(),
   likeContains: vi.fn(),
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: {},
   chatQueue: { add: vi.fn() },
   IntegrationJobAction: {},
   integrationQueue: { add: vi.fn() },
 }))
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 vi.mock("../src/contact-custom-field/service", () => ({
   contactCustomFieldService: { setValues: vi.fn() },

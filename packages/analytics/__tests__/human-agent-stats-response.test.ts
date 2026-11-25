@@ -5,14 +5,14 @@ const findMembers = vi.fn()
 const getAssignedByAdmin = vi.fn()
 const getAveragesByAdmin = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", async () => ({
+vi.mock("@inboxos.io/database/client", async () => ({
   db: { execute, query: { workspaceMemberModel: { findMany: findMembers } } },
   sql: (await import("./helpers/fake-sql")).fakeSql,
 }))
-vi.mock("@chatbotx.io/database/queries/date-bucket", () => ({
+vi.mock("@inboxos.io/database/queries/date-bucket", () => ({
   resolvedTimezone: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   analyticsMessageEventModel: {},
 }))
 vi.mock("../src/repositories/postgres/conversation-stats.repository", () => ({

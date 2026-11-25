@@ -1,21 +1,21 @@
 {
-  "name": "@chatbotx.io/integration-tiktok",
+  "name": "@inboxos.io/integration-tiktok",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chatbotx.io/flow-config": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/flow-config": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "@types/node": "catalog:",
     "ky": "catalog:",
     "remeda": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "msw": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

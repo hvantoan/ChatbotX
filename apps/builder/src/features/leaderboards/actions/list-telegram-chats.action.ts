@@ -1,6 +1,6 @@
 "use server"
 
-import { listTelegramLeaderboardChats } from "@chatbotx.io/business/leaderboard"
+import { listTelegramLeaderboardChats } from "@inboxos.io/business/leaderboard"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { listTelegramChatsRequest } from "../lib/action-schemas"

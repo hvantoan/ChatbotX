@@ -1,7 +1,7 @@
 import {
   agentResponseAnalyticsService,
   conversationAnalyticsService,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   getAgentResponseSeriesResponseSchema,
   getConversationArchivedResponseSchema,
@@ -11,7 +11,7 @@ import {
   getConversationHandoffsResponseSchema,
   getUniqueConversationsByAdminResponseSchema,
   timeRangeQueryWithFilterSchema,
-} from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics/schemas"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

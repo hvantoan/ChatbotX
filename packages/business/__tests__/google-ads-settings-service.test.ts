@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   upsertSettings: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsSettingsRepository: {
     findByWorkspaceId: mocks.findByWorkspaceId,
     upsertSettings: mocks.upsertSettings,

@@ -1,7 +1,4 @@
-import {
-  type OperatorType,
-  operatorTypes,
-} from "@chatbotx.io/database/partials"
+import { type OperatorType, operatorTypes } from "@inboxos.io/database/partials"
 import type { ConditionOption, FieldConfig } from "./contact-filter-config"
 import type { CustomFieldValueInputConfig } from "./custom-field-filter-config"
 

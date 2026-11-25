@@ -22,7 +22,7 @@ type AuditActorStore = { getStore(): AuditActor | undefined }
  */
 export function readAuditActor(): AuditActor | undefined {
   const globalWithStorage = globalThis as typeof globalThis & {
-    __chatbotxAuditStorage?: AuditActorStore
+    __inboxosAuditStorage?: AuditActorStore
   }
-  return globalWithStorage.__chatbotxAuditStorage?.getStore()
+  return globalWithStorage.__inboxosAuditStorage?.getStore()
 }

@@ -1,8 +1,8 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   mapToChannelError,
   readWhatsappOriginErrorDetail,
-} from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/integration-whatsapp"
 
 /**
  * Picks the most helpful sentence Meta sent back for a failed Graph call.
@@ -32,7 +32,7 @@ export function throwWhatsappApiActionError(
   error: unknown,
   fallbackMessage: string,
 ): never {
-  throw new ChatbotXException(
+  throw new InboxOSException(
     buildWhatsappApiActionErrorMessage(error, fallbackMessage),
   )
 }

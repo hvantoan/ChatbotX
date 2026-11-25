@@ -37,10 +37,10 @@ vi.mock("@/lib/log", () => ({
 vi.mock("@/lib/oauth-broker", () => ({
   buildBrokerCallbackUrl: (p: string) => `https://b${p}`,
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: vi.fn() },
 }))
-vi.mock("@chatbotx.io/business", async (importOriginal) => ({
+vi.mock("@inboxos.io/business", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   hasWorkspaceAccess: vi.fn(async () => true),
   userQuotaService: {},
@@ -92,7 +92,7 @@ describe("connectLine", () => {
   })
 
   test("maps a LINE 401 to connectionCredentialsRejected", async () => {
-    const { SdkException } = await import("@chatbotx.io/sdk")
+    const { SdkException } = await import("@inboxos.io/sdk")
     m.runAction.mockRejectedValueOnce(new SdkException("bad", "lineError", 401))
     await expect(
       connectLine({
@@ -104,7 +104,7 @@ describe("connectLine", () => {
     ).rejects.toMatchObject({ code: "connectionCredentialsRejected" })
   })
 
-  test("wraps an unknown error in a generic ChatbotXException", async () => {
+  test("wraps an unknown error in a generic InboxOSException", async () => {
     m.runAction.mockRejectedValueOnce(new Error("boom"))
     await expect(
       connectLine({
@@ -151,7 +151,7 @@ describe("connectLine", () => {
   })
 
   test("a 4xx while registering the webhook is lineWebhookRejected", async () => {
-    const { SdkException } = await import("@chatbotx.io/sdk")
+    const { SdkException } = await import("@inboxos.io/sdk")
     m.connect.mockImplementationOnce(async (input: any) => {
       m.runAction.mockRejectedValueOnce(
         new SdkException("bad url", "lineError", 400),
@@ -218,7 +218,7 @@ describe("connectLine", () => {
   })
 
   test("checkConnectedLineWebhook reports a revoked-credentials refresh failure and marks the channel offline", async () => {
-    const { AuthException } = await import("@chatbotx.io/sdk")
+    const { AuthException } = await import("@inboxos.io/sdk")
     m.refreshAuth.mockRejectedValueOnce(
       new AuthException("invalid_client", "lineAuthError", 400),
     )

@@ -1,13 +1,13 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   ResourceDeletionResourceType,
   ResourceDeletionStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type ResourceDeletionLogInsert,
   type ResourceDeletionLogResourceKey,
   resourceDeletionLogRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { type AuditActor, readAuditActor, SYSTEM_ACTOR } from "../audit/actor"
 import { logger } from "../logger"
 

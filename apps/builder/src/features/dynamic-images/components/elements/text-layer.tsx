@@ -3,12 +3,12 @@
 import type {
   DynamicImageFontFamily,
   DynamicImageTextElement,
-} from "@chatbotx.io/database/partials"
-import { ColorPickerField } from "@chatbotx.io/ui/components/form/color-picker-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/database/partials"
+import { ColorPickerField } from "@inboxos.io/ui/components/form/color-picker-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useTranslations } from "next-intl"
 import type { CSSProperties } from "react"
 import { useEffect } from "react"

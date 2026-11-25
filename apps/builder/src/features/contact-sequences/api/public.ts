@@ -1,4 +1,4 @@
-import { contactSequenceService } from "@chatbotx.io/business/contact-sequence"
+import { contactSequenceService } from "@inboxos.io/business/contact-sequence"
 import { z } from "zod"
 import {
   contactSequenceIdsPublicRequest,

@@ -6,10 +6,10 @@ import {
   resolveTenantSettings,
   summarizeMarketingMessage,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import { mmContentSchema } from "@chatbotx.io/database/partials"
-import type { FacebookMarketingMessageModel } from "@chatbotx.io/database/types"
-import type { IntegrationJobProcessMarketingMessageWebhook } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import { mmContentSchema } from "@inboxos.io/database/partials"
+import type { FacebookMarketingMessageModel } from "@inboxos.io/database/types"
+import type { IntegrationJobProcessMarketingMessageWebhook } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 import { saveAndBroadcastMessage } from "./received-message"

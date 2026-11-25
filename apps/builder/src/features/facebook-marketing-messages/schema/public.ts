@@ -1,7 +1,7 @@
 import {
   facebookMarketingMessageStatuses,
   facebookMarketingMessageStatusReasons,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { AUDIENCE_DESCRIPTION_MAX, AUDIENCE_NAME_MAX } from "./audience"
 import { mmContentSchema } from "./content"

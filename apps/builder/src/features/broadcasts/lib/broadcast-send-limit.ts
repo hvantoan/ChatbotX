@@ -5,7 +5,7 @@ import {
   broadcastSendLimitIssues,
   clampCappedAudienceCount,
   resolveBroadcastAudienceRange,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 export type BroadcastSendLimitIssue = keyof typeof broadcastSendLimitIssues
 

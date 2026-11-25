@@ -1,9 +1,9 @@
 import {
   listContactActivityValueOptions,
   resolveContactFilterValueLabels,
-} from "@chatbotx.io/business"
-import { contactActivityValueSources } from "@chatbotx.io/database/partials"
-import { isContactActivityFiltersEnabled } from "@chatbotx.io/database/queries/contact-filter"
+} from "@inboxos.io/business"
+import { contactActivityValueSources } from "@inboxos.io/database/partials"
+import { isContactActivityFiltersEnabled } from "@inboxos.io/database/queries/contact-filter"
 import { z } from "zod"
 import {
   ACTIVITY_AVAILABILITY_PATH,

@@ -1,11 +1,11 @@
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
-import { userRepository } from "@chatbotx.io/database/repositories"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
+import { userRepository } from "@inboxos.io/database/repositories"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import {
   adminWorkspaceMemberNotFoundException,
-  ChatbotXException,
+  InboxOSException,
   ownerAlreadyHasWorkspaceException,
   teamMembersLimitReachedException,
 } from "../errors"
@@ -63,7 +63,7 @@ class AdminWorkspaceService {
       ...new Set(props.memberEmails.map(normalizeEmail)),
     ].filter((email) => email !== ownerEmail)
     if (memberEmails.length > MAX_ADMIN_WORKSPACE_MEMBERS) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `At most ${MAX_ADMIN_WORKSPACE_MEMBERS} members can be added at once.`,
         "tooManyMembers",
         400,

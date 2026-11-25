@@ -4,8 +4,8 @@ import {
   type SendTextStepSchema,
   type StepType,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import { sendMessage as sendMessageApi } from "../../../apis/message"
 import { mapToChannelError } from "../../../lib/error-mapper"
 import { requireConversationId } from "../../../lib/guards"

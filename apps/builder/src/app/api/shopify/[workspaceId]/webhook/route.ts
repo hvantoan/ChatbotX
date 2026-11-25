@@ -1,4 +1,4 @@
-import { receiveShopifyWebhook } from "@chatbotx.io/business"
+import { receiveShopifyWebhook } from "@inboxos.io/business"
 import { type NextRequest, NextResponse } from "next/server"
 import { logger } from "@/lib/log"
 

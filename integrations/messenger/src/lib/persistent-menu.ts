@@ -1,9 +1,9 @@
-import { encodeButtonPayload } from "@chatbotx.io/flow-config"
+import { encodeButtonPayload } from "@inboxos.io/flow-config"
 import type { FacebookButton } from "../schema"
 
 /**
  * Structural shape of a stored persistent-menu item. Matches
- * `MessengerPersistentMenu` from `@chatbotx.io/database/partials` without
+ * `MessengerPersistentMenu` from `@inboxos.io/database/partials` without
  * creating a dependency on the database package from this integration.
  */
 export type PersistentMenuItem =

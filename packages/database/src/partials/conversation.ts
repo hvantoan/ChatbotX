@@ -1,7 +1,7 @@
 import z from "zod"
 
 /**
- * `inboxStatuses` is defined in `@chatbotx.io/utils/conversation` so a
+ * `inboxStatuses` is defined in `@inboxos.io/utils/conversation` so a
  * "use client" component (e.g. the broadcast inbox picker) can use it without
  * depending on the database layer. Re-exported here because this has long
  * been the import site for the rest of the repo; both paths resolve to the
@@ -10,7 +10,7 @@ import z from "zod"
 export {
   type InboxStatus,
   inboxStatuses,
-} from "@chatbotx.io/utils/conversation"
+} from "@inboxos.io/utils/conversation"
 
 export const conversationBotCategories = z.enum(["bot", "human", "all"])
 export type ConversationBotCategory = z.infer<typeof conversationBotCategories>
@@ -33,7 +33,7 @@ export type AssignerFilterType =
   (typeof assignerFilterTypes)[keyof typeof assignerFilterTypes]
 
 /**
- * `InboxDisconnectReason` is defined in `@chatbotx.io/utils/connection`
+ * `InboxDisconnectReason` is defined in `@inboxos.io/utils/connection`
  * alongside `CONNECTION_TO_INBOX_DISCONNECT_REASON`, which maps onto it —
  * same rationale as `inboxStatuses` above. Re-exported here as the
  * conventional database-layer import site.
@@ -41,7 +41,7 @@ export type AssignerFilterType =
 export {
   type InboxDisconnectReason,
   inboxDisconnectReasons,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"
 
 export type ConversationStepChallenge = {
   type: "step"

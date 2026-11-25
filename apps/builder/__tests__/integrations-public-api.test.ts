@@ -47,7 +47,7 @@ const { workspaceTokenAuthAPIForScope, capturedProcedures } = vi.hoisted(() => {
 
 vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 
-class MockChatbotXException extends Error {
+class MockInboxOSException extends Error {
   code: string
   constructor(message: string, code = "systemError") {
     super(message)
@@ -55,16 +55,16 @@ class MockChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
   IMAGES_NOT_SUPPORTED_ON_CHANNEL_CODE: "imagesNotSupportedOnChannel",
   PRODUCT_MESSAGE_UNRESOLVABLE_CODE: "productMessageUnresolvable",
   notFoundException: vi.fn(
-    (message: string) => new MockChatbotXException(message, "notFound"),
+    (message: string) => new MockInboxOSException(message, "notFound"),
   ),
   validationException: vi.fn(
     (_field: string, message: string) =>
-      new MockChatbotXException(message, "validation"),
+      new MockInboxOSException(message, "validation"),
   ),
 }))
 
@@ -72,9 +72,9 @@ const aiIntegrationService = {
   invalidateCache: vi.fn(),
 }
 
-vi.mock("@chatbotx.io/ai/server", () => ({ aiIntegrationService }))
-vi.mock("@chatbotx.io/ai", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/ai")>()
+vi.mock("@inboxos.io/ai/server", () => ({ aiIntegrationService }))
+vi.mock("@inboxos.io/ai", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/ai")>()
   return {
     ...actual,
     aiProviders: {
@@ -134,7 +134,7 @@ const integrationOpenaiCompatibleService = {
 
 const connectionStateService = { findByProviderSourceId: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationService,
   integrationClaudeService,
   integrationDeepSeekService,
@@ -149,7 +149,7 @@ const connectionService = {
   disconnect: vi.fn(),
   connectFromCredentials: vi.fn(),
 }
-vi.mock("@chatbotx.io/connections", () => ({ connectionService }))
+vi.mock("@inboxos.io/connections", () => ({ connectionService }))
 
 const { getAiProviderRequest, updateAiProviderRequest } = await import(
   "@/features/integrations/schema/ai-provider"
@@ -424,7 +424,7 @@ describe("PUT /v1/integrations/ai/{provider}", () => {
 
   test("propagates connectionCredentialsRejected without invalidating the cache", async () => {
     connectionService.connectFromCredentials.mockRejectedValueOnce(
-      new MockChatbotXException(
+      new MockInboxOSException(
         "Invalid Gemini API key",
         "connectionCredentialsRejected",
       ),

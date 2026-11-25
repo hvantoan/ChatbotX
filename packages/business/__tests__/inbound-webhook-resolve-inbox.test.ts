@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("../src/inbox/service", () => ({
   inboxService: { find: mocks.inboxFind },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByProviderSourceId: mocks.findConnection },
   integrationWhatsappRepository: {
     listByDisplayPhoneDigits: mocks.listByDisplayPhoneDigits,

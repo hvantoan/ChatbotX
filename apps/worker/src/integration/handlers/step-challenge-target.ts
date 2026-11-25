@@ -1,6 +1,6 @@
-import type { ConversationStepChallenge } from "@chatbotx.io/database/partials"
-import type { FlowNode } from "@chatbotx.io/flow-config"
-import { initVariables, SdkException, type Variables } from "@chatbotx.io/sdk"
+import type { ConversationStepChallenge } from "@inboxos.io/database/partials"
+import type { FlowNode } from "@inboxos.io/flow-config"
+import { initVariables, SdkException, type Variables } from "@inboxos.io/sdk"
 import { detectFlowVersion } from "../../lib/db"
 import type { runStepsAndQuickReplies } from "./flow"
 

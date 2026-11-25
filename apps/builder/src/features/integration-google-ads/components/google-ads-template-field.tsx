@@ -1,15 +1,15 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { useFormOptionalLabel } from "@chatbotx.io/ui/components/form/optional-label-context"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { useFormOptionalLabel } from "@inboxos.io/ui/components/form/optional-label-context"
 import {
   FormDescription,
   FormField,
   FormItem,
   FormLabel,
   useFormField,
-} from "@chatbotx.io/ui/components/ui/form"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/form"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   type FocusEvent,
   type ReactNode,

@@ -3,8 +3,8 @@ import type {
   DiscountMinimumType,
   DiscountType,
   ShippingType,
-} from "@chatbotx.io/database/partials"
-import { percentOf, roundMoney, sumMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/partials"
+import { percentOf, roundMoney, sumMoney } from "@inboxos.io/utils/money"
 import {
   discountCodeExpiredException,
   discountCodeInactiveException,

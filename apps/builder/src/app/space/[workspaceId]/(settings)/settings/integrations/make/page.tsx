@@ -1,8 +1,8 @@
 import {
   platformCredentialService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageMake } from "@/features/integration-make/components/manage-make"
 import { resolveOwnerForWorkspace } from "@/lib/platform-credential-owner"

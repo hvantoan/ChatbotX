@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 // Base UI mounts the popup only once hovered; render the primitives as plain
 // markup so the test covers StageName's own branching (hover is browser-verified).
-vi.mock("@chatbotx.io/ui/components/ui/tooltip", () => ({
+vi.mock("@inboxos.io/ui/components/ui/tooltip", () => ({
   Tooltip: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   TooltipTrigger: ({
     render,

@@ -1,15 +1,16 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import {
   type AppointmentSchedulingMode,
   type AppointmentSchedulingStepSchema,
   appointmentSchedulingModes,
   appointmentSchedulingStepSchema,
-} from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -17,16 +18,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form, FormField } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form, FormField } from "@inboxos.io/ui/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/select"
 import { CalendarClockIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useId, useMemo, useState } from "react"

@@ -1,4 +1,4 @@
-import type { McpOAuthGrant } from "@chatbotx.io/business"
+import type { McpOAuthGrant } from "@inboxos.io/business"
 
 export type McpOAuthGrantDto = {
   activeUntil: string | null

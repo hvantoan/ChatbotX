@@ -19,7 +19,7 @@ import type {
   WhatsappFlowStepSchema,
   WhatsappLocationStepSchema,
   WhatsappOptionListStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 export type SendFlowStepData =
   | SendTextStepSchema

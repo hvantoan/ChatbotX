@@ -9,19 +9,19 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: {
     stopSendingForBlockedAccount: mocks.stopSendingForBlockedAccount,
   },
   threadControlService: { recordEvent: vi.fn() },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   casStore: { setIfAbsent: mocks.setIfAbsent, del: mocks.del },
 }))
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   syncThreadOwner: mocks.syncThreadOwner,
 }))
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   isThreadControlRejection: () => false,
 }))
 vi.mock("../src/lib/logger", () => ({
@@ -36,7 +36,7 @@ const { reconcileChannelSendError } = await import(
   "../src/chat/handlers/channel-send-error-reconcilers"
 )
 const { ChannelError, ChannelErrorCategory, ChannelErrorReason } = await import(
-  "@chatbotx.io/sdk"
+  "@inboxos.io/sdk"
 )
 
 const conversation = { id: "conv-1", workspaceId: "ws-1" }

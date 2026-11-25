@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { THREAD_CONTROL_METADATA_MAX_LENGTH } from "@chatbotx.io/database/partials"
+import { THREAD_CONTROL_METADATA_MAX_LENGTH } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { threadControlPublicRequest } from "../src/features/conversations/schema/public"
 

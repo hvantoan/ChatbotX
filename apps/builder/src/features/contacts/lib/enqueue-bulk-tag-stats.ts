@@ -2,9 +2,9 @@ import type {
   BroadcastEventType,
   CommentAutomationEventType,
   SequenceStepEventType,
-} from "@chatbotx.io/analytics/schemas"
-import { tagService } from "@chatbotx.io/business"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/analytics/schemas"
+import { tagService } from "@inboxos.io/business"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import type { BulkTagStatsContactsRequest } from "../schema/contact-tag"
 
 /**

@@ -1,10 +1,10 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
+import { platformCredentialService } from "@inboxos.io/business"
 import {
   type InstagramCredential,
   instagramCredentialUpdateSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 import { authActionClient } from "@/lib/safe-action"
 import { credentialScopeSchema, resolveCredentialScopedUserId } from "../scope"

@@ -16,7 +16,7 @@ const {
   checkGuestRateLimit: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/mini-app", () => {
+vi.mock("@inboxos.io/business/mini-app", () => {
   class MiniAppUploadError extends Error {
     reason: string
     httpStatusCode: number
@@ -32,7 +32,7 @@ vi.mock("@chatbotx.io/business/mini-app", () => {
     miniAppUploadService: { create },
   }
 })
-vi.mock("@chatbotx.io/encryption/mini-app-token", () => ({
+vi.mock("@inboxos.io/encryption/mini-app-token", () => ({
   verifyMiniAppToken,
 }))
 vi.mock("@/lib/workspace/load-servable-workspace", () => ({
@@ -45,7 +45,7 @@ vi.mock("@/lib/rate-limit/guest-rate-limit", () => ({
 vi.mock("@/lib/log", () => ({ logger: { error: vi.fn() } }))
 
 const { POST } = await import("../src/app/api/mini-apps/[id]/uploads/route")
-const { MiniAppUploadError } = await import("@chatbotx.io/business/mini-app")
+const { MiniAppUploadError } = await import("@inboxos.io/business/mini-app")
 
 const send = (id: string, form: FormData, site = "same-origin") =>
   POST(

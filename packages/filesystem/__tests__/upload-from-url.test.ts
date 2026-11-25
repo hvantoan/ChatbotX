@@ -6,7 +6,7 @@ vi.mock("../src/lib/uploader", () => ({
   uploader: { putObject: mockPutObject },
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     debug: vi.fn(),
     error: vi.fn(),

@@ -1,3 +1,3 @@
-import { getChildLogger } from "@chatbotx.io/logger"
+import { getChildLogger } from "@inboxos.io/logger"
 
 export const mailchimpLogger = getChildLogger("mailchimp")

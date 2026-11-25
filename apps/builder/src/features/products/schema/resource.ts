@@ -1,10 +1,10 @@
-import { inventoryPolicyTypes } from "@chatbotx.io/database/partials"
-import { createSelectSchema, productModel } from "@chatbotx.io/database/schema"
+import { inventoryPolicyTypes } from "@inboxos.io/database/partials"
+import { createSelectSchema, productModel } from "@inboxos.io/database/schema"
 import type {
   ProductAddonModel,
   ProductVariantModel,
   ProductVariantOptionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import z from "zod"
 
 export const productResource = createSelectSchema(productModel, {

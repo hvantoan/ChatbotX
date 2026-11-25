@@ -13,8 +13,8 @@ import {
   resolveRenderedNodes,
   screenLabel,
   validateAnswer,
-} from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   ArrowLeftIcon,
   CheckCircle2Icon,

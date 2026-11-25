@@ -1,6 +1,6 @@
 import "server-only"
 
-import { webshopService } from "@chatbotx.io/business"
+import { webshopService } from "@inboxos.io/business"
 import type { SearchParams } from "next/dist/server/request/search-params"
 import { getTranslations } from "next-intl/server"
 import { loadShop, type ShopView } from "./load-shop"

@@ -1,4 +1,4 @@
-import { aiSegmentImageDefaultFn } from "@chatbotx.io/flow-config"
+import { aiSegmentImageDefaultFn } from "@inboxos.io/flow-config"
 import sharp from "sharp"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -13,20 +13,20 @@ const mocks = vi.hoisted(() => ({
   segmentImage: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiProviders: { enum: { muse: "muse" } },
   aiTimeouts: { aiTotal: 30_000 },
 }))
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiIntegrationService: { findBy: mocks.aiFindBy },
 }))
-vi.mock("@chatbotx.io/ai/sam", () => ({
+vi.mock("@inboxos.io/ai/sam", () => ({
   segmentImage: mocks.segmentImage,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   resolveTenantSettings: vi.fn(async () => ({ storageUrl: "https://cdn" })),
 }))
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, base: string) => `${base}/${path}`,
 }))
 vi.mock("../src/env", () => ({ env: mocks.env }))

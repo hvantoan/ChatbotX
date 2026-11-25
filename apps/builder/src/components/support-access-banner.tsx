@@ -2,8 +2,8 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/alert"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import { ShieldCheckIcon } from "lucide-react"
 import { getLocale, getTranslations } from "next-intl/server"
 

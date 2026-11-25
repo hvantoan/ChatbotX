@@ -16,27 +16,27 @@ import {
   whatsappAuthForCapiScopeSchema,
   withBlockedOwnerGuard,
   workspaceService,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { isCapiScopeRequired } from "@chatbotx.io/business/meta-conversions/capi-scope-policy"
-import type { AdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { isCapiScopeRequired } from "@inboxos.io/business/meta-conversions/capi-scope-policy"
+import type { AdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   buildDatasetName,
   ensureDataset as ensureMetaConversionsDataset,
   type MetaCapiEventName,
   type MetaConversionEventInput,
   sendConversionEvent as sendMetaConversionEvent,
-} from "@chatbotx.io/integration-meta-conversions"
+} from "@inboxos.io/integration-meta-conversions"
 import {
   ensureDataset as ensureWhatsappConversionsDataset,
   sendConversionEvent as sendWhatsappConversionEvent,
-} from "@chatbotx.io/integration-whatsapp/api/conversions"
-import type { ErrorLogProvider } from "@chatbotx.io/utils/error-log"
+} from "@inboxos.io/integration-whatsapp/api/conversions"
+import type { ErrorLogProvider } from "@inboxos.io/utils/error-log"
 import type {
   HashedCapiUserData,
   PurchaseContentItem,
-} from "@chatbotx.io/utils/meta-capi"
-import type { AdsConversionJobSendConversionEvent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/utils/meta-capi"
+import type { AdsConversionJobSendConversionEvent } from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import {
   findEventIntegration,
@@ -382,7 +382,7 @@ async function handleSendWhatsappConversionEvent(
 
 /**
  * Messenger/Instagram CAPI send branch (Phase 3): uses the generic
- * `@chatbotx.io/integration-meta-conversions` client (the same one
+ * `@inboxos.io/integration-meta-conversions` client (the same one
  * `send-meta-capi-event.ts`'s LeadSubmitted pipeline uses) instead of the
  * WhatsApp-native client — identity comes from the integration row
  * (`pageId`/`igId`) plus `ContactInbox.sourceId` (PSID/IGSID). Scope-check

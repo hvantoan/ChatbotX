@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -9,18 +9,18 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { ScrollArea } from "@chatbotx.io/ui/components/ui/scroll-area"
-import { DirectUploadButton } from "@chatbotx.io/ui/components/uploader/direct-upload-button"
-import { getMimeTypeFromFile } from "@chatbotx.io/ui/lib/file-types"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { ScrollArea } from "@inboxos.io/ui/components/ui/scroll-area"
+import { DirectUploadButton } from "@inboxos.io/ui/components/uploader/direct-upload-button"
+import { getMimeTypeFromFile } from "@inboxos.io/ui/lib/file-types"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   ChevronLeftIcon,
   FolderIcon,

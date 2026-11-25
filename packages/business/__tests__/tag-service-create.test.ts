@@ -33,7 +33,7 @@ const lockOptions = vi.hoisted(() => vi.fn())
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -45,7 +45,7 @@ vi.mock("../src/template/template-resource-locks", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       tagModel: { findFirst: (...args: unknown[]) => findFirst(...args) },
@@ -67,7 +67,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: (...args: unknown[]) => findOrFail(...args),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tagModel: {},
 }))
 
@@ -77,13 +77,13 @@ vi.mock("../src/tag/sync.service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => invalidateCacheByTags(...args),
   withCache: async (_key: string, callback: () => Promise<unknown>) =>
     await callback(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitTagApplied: vi.fn(),
   emitTagRemoved: vi.fn(),
 }))
@@ -108,8 +108,8 @@ vi.mock("../src/logger", () => ({
   logger: { warn: vi.fn(), error: vi.fn(), debug: vi.fn(), info: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => "generated-id" }
 })
 
@@ -277,7 +277,7 @@ describe("tagService.update", () => {
     const { assertResourceEditable } = await import(
       "../src/template/installed-resource.service"
     )
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     vi.mocked(assertResourceEditable).mockClear()
     updateSet.mockClear()
     findOrFail.mockResolvedValue({ id: "tag-1", name: "Old" })

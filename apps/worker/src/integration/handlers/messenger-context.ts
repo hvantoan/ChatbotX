@@ -1,5 +1,5 @@
-import { contactInboxService } from "@chatbotx.io/business"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
+import { contactInboxService } from "@inboxos.io/business"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
 import { resolveIntegrationContextFromContactInbox } from "../../services/integrations"
 import type { ExecuteStepProps } from "./flow-utils"
 

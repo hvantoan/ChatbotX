@@ -1,10 +1,10 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import {
-  ChatbotXException,
   channelDuplicatedException,
   channelLimitReachedException,
   connectSessionExpiredException,
+  InboxOSException,
   notWorkspaceMemberException,
   workspaceLimitReachedException,
 } from "../src/errors"
@@ -104,7 +104,7 @@ describe("toConnectItemFailure", () => {
 
   test("maps an unrecognized exception code to failed/unknown", () => {
     expect(
-      toConnectItemFailure(new ChatbotXException("boom", "somethingElse")),
+      toConnectItemFailure(new InboxOSException("boom", "somethingElse")),
     ).toEqual({ status: "failed", reason: "unknown" })
   })
 
@@ -140,7 +140,7 @@ describe("toConnectSessionError", () => {
   test.each(
     exceptionCodeToSessionError,
   )("maps exception code %s to session error %s", (code, expected) => {
-    expect(toConnectSessionError(new ChatbotXException("boom", code))).toBe(
+    expect(toConnectSessionError(new InboxOSException("boom", code))).toBe(
       expected,
     )
   })
@@ -171,11 +171,11 @@ describe("toConnectSessionError", () => {
 
   test("returns null for an unrecognized exception code", () => {
     expect(
-      toConnectSessionError(new ChatbotXException("boom", "somethingElse")),
+      toConnectSessionError(new InboxOSException("boom", "somethingElse")),
     ).toBeNull()
   })
 
-  test("returns null for a non-ChatbotXException error", () => {
+  test("returns null for a non-InboxOSException error", () => {
     expect(toConnectSessionError(new Error("boom"))).toBeNull()
   })
 })

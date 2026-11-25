@@ -1,9 +1,9 @@
 "use server"
 
-import { telegramIntegrationService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { telegramIntegrationService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel } from "@inboxos.io/database/types"
 import { redirect } from "next/navigation"
 import { resolveConnectOwnerId } from "@/features/channel-connect/lib/resolve-connect-owner"
 import { integrations } from "@/integration"
@@ -78,7 +78,7 @@ export const connectTelegramAction = authActionClient
 
         return { workspaceId: result.workspaceId }
       } catch (error) {
-        if (error instanceof ChatbotXException) {
+        if (error instanceof InboxOSException) {
           if (error.code === "channelDuplicated" && parsedInput.workspaceId) {
             redirect(
               `/space/${parsedInput.workspaceId}/settings/channels?channel=telegram&error=duplicated`,
@@ -88,7 +88,7 @@ export const connectTelegramAction = authActionClient
         }
 
         logger.error(error, "Failed to connect Telegram bot")
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Failed to connect Telegram. Please check the bot token and try again.",
         )
       }

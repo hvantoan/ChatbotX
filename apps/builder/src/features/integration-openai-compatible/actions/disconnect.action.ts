@@ -1,6 +1,6 @@
 "use server"
 
-import { integrationOpenaiCompatibleService } from "@chatbotx.io/business"
+import { integrationOpenaiCompatibleService } from "@inboxos.io/business"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

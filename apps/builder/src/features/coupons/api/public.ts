@@ -1,7 +1,7 @@
-import { contactService, couponService } from "@chatbotx.io/business"
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { contactService, couponService } from "@inboxos.io/business"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import {

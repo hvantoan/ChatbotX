@@ -14,14 +14,14 @@ vi.mock("../src/lib/http-client", () => ({
   facebookGraphClient: { get: mockGet },
 }))
 
-vi.mock("@chatbotx.io/utils/media-download", () => ({
+vi.mock("@inboxos.io/utils/media-download", () => ({
   fetchMediaWithLimits: mockFetchMedia,
 }))
 
-vi.mock("@chatbotx.io/utils/store-incoming-image", async (importOriginal) => {
+vi.mock("@inboxos.io/utils/store-incoming-image", async (importOriginal) => {
   const actual =
     await importOriginal<
-      typeof import("@chatbotx.io/utils/store-incoming-image")
+      typeof import("@inboxos.io/utils/store-incoming-image")
     >()
   return { ...actual, storeIncomingImage: mockStoreIncomingImage }
 })

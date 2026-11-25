@@ -1,5 +1,5 @@
-import { getPublicFileUrl } from "@chatbotx.io/utils"
-import { hasRealAvatar } from "@chatbotx.io/utils/no-avatar-sentinel"
+import { getPublicFileUrl } from "@inboxos.io/utils"
+import { hasRealAvatar } from "@inboxos.io/utils/no-avatar-sentinel"
 import { useTenantSettings } from "@/features/tenant"
 
 type ContactInboxReadTimestamp = {

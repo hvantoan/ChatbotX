@@ -22,7 +22,7 @@ const workingHoursService = {
   delete: vi.fn(),
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -102,7 +102,7 @@ describe("real router: working-hours public API scope wiring", () => {
 
 describe("real router: service errors map to declared statuses", () => {
   test("a service validation error on update surfaces as the declared 422 validation code", async () => {
-    const { validationException } = await import("@chatbotx.io/business/errors")
+    const { validationException } = await import("@inboxos.io/business/errors")
     findWorkspaceByTokenHash.mockResolvedValue(authResult(["inbox"]))
     workingHoursService.update.mockRejectedValue(
       validationException("intervals", "Intervals overlap on weekday 1"),

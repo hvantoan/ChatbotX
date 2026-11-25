@@ -1,4 +1,4 @@
-import { flowService } from "@chatbotx.io/business"
+import { flowService } from "@inboxos.io/business"
 import { withWorkspaceIdAndIdSchema } from "@/features/workspaces/schema/resource"
 import {
   hasWorkspacePermission,

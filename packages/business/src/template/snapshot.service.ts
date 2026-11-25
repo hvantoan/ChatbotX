@@ -4,12 +4,12 @@ import type {
   TemplateResourceCategory,
   TemplateResourceKind,
   TemplateSelection,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   inboxRepository,
   templateSnapshotRepository,
-} from "@chatbotx.io/database/repositories"
-import type { CustomFieldModel, TagModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { CustomFieldModel, TagModel } from "@inboxos.io/database/types"
 import {
   parseTemplateExport,
   TEMPLATE_EXPORT_FORMAT_VERSION,
@@ -17,9 +17,9 @@ import {
   type TemplateCustomFieldManifestEntry,
   type TemplateExport,
   type TemplateTagManifestEntry,
-} from "@chatbotx.io/flow-config"
-import { isNumericId } from "@chatbotx.io/utils/id"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/flow-config"
+import { isNumericId } from "@inboxos.io/utils/id"
+import { InboxOSException } from "../errors"
 import {
   collectFolderAncestry,
   collectProductCategoryAncestry,
@@ -77,7 +77,7 @@ export const viewOnlyCheckKinds = (
 }
 
 export const templateIncludesViewOnlyCopyException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A copy installed from a view-only template can not be included in a new template",
     "templateIncludesViewOnlyCopy",
     403,
@@ -227,7 +227,7 @@ const finalizeSnapshotPayload = (
     ...payload,
   })
   if (!parsed.ok) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `Template snapshot failed validation: ${parsed.reason}`,
       "templateSnapshotInvalid",
     )

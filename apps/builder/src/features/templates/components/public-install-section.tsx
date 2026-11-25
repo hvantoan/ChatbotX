@@ -1,8 +1,8 @@
 import {
   templateInstallationRequestService,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { getTenantSettings } from "@/features/tenant/utils"
 import { CreateWorkspaceFromTemplateLink } from "./create-workspace-from-template-link"

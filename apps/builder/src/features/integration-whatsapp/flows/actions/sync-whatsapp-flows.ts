@@ -1,7 +1,7 @@
 "use server"
 
-import { integrationWhatsappService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { integrationWhatsappService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { syncWhatsappFlows } from "../lib/whatsapp-flow-operations"
 

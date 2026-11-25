@@ -12,12 +12,12 @@
  * from it) afterwards. Needs the template migrations applied locally.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   templateInstallationRepository,
   templateResourceBackupRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   templateInstallationModel,
   templateInstallationSyncModel,
@@ -25,9 +25,9 @@ import {
   triggerModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */
@@ -46,13 +46,13 @@ const realDatabaseUrl = (): string | null => {
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/events", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/events")>()),
+vi.mock("@inboxos.io/events", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/events")>()),
   updateTriggerCache: vi.fn().mockResolvedValue(undefined),
 }))
 
@@ -60,7 +60,7 @@ const { templateInstallService } = await import(
   "../../src/template/install.service"
 )
 const { templateInstallationSyncRepository } = await import(
-  "@chatbotx.io/database/repositories"
+  "@inboxos.io/database/repositories"
 )
 const { templateSyncRequestService } = await import(
   "../../src/template/sync-request.service"

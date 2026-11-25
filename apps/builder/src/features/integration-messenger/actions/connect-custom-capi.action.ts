@@ -3,10 +3,10 @@
 import {
   messengerIntegrationService,
   metaConversionsService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getDataset } from "@chatbotx.io/integration-meta-conversions"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getDataset } from "@inboxos.io/integration-meta-conversions"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
@@ -37,7 +37,7 @@ export const connectMessengerCustomCapiAction = workspaceActionClient
           workspaceId,
         })
       if (!integration) {
-        throw new ChatbotXException(t("messengerNotFound"))
+        throw new InboxOSException(t("messengerNotFound"))
       }
 
       try {
@@ -49,7 +49,7 @@ export const connectMessengerCustomCapiAction = workspaceActionClient
           validate: getDataset,
         })
       } catch {
-        throw new ChatbotXException(t("invalidToken"))
+        throw new InboxOSException(t("invalidToken"))
       }
 
       return { success: true }

@@ -6,7 +6,7 @@ import {
   type MiniAppDefinition,
   MiniAppImportError,
   miniAppDefinitionSchema,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { validationException } from "../errors"
 
 /** Where a write takes a Mini App's screens from. */

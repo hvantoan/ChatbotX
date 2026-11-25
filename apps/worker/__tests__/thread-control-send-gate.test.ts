@@ -17,11 +17,11 @@ const mocks = vi.hoisted(() => ({
 
 const REJECTION_CODE = 1_234_567
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService: { settleEvent: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: {
     recordOutboundMessageSent: mocks.recordOutboundMessageSent,
     recordSendFailure: mocks.recordSendFailure,
@@ -43,23 +43,23 @@ vi.mock("@chatbotx.io/business", () => ({
   whatsappFlowService: { findSourceId: mocks.findWhatsappFlowSourceId },
 }))
 
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   getChannelThreadOwner: vi.fn(),
   syncThreadOwner: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { update: vi.fn() },
   eq: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   messageModel: { id: "id", sourceId: "sourceId" },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mocks.emit }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mocks.emit }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn().mockResolvedValue({
     updateSourceId: mocks.updateSourceId,
     updateSendError: mocks.updateSendError,
@@ -67,15 +67,15 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp", () => ({
+vi.mock("@inboxos.io/integration-whatsapp", () => ({
   THREAD_CONTROL_REJECTION_CODES: new Set([REJECTION_CODE]),
   readWhatsappOriginErrorDetail: (originError: { fbtraceId?: string }) => ({
     fbtraceId: originError?.fbtraceId,
   }),
 }))
 
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     parseSdkError: vi.fn().mockResolvedValue({ message: "sdk error" }),
@@ -96,7 +96,7 @@ vi.mock("../src/services/integrations", () => ({
   resolveIntegrationContextFromContactInbox: mocks.resolveIntegrationContext,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   chatQueue: { add: vi.fn() },
 }))
 
@@ -105,7 +105,7 @@ const {
   sendMessageToChannel,
   THREAD_NOT_OWNED_ERROR_CODE,
 } = await import("../src/chat/handlers/send-message")
-const { ChannelError, ChannelErrorCategory } = await import("@chatbotx.io/sdk")
+const { ChannelError, ChannelErrorCategory } = await import("@inboxos.io/sdk")
 
 const NOW = new Date("2026-09-29T12:00:00.000Z")
 const HOUR = 60 * 60 * 1000

@@ -1,4 +1,4 @@
-import { resolveBotFieldVariableText } from "@chatbotx.io/variables"
+import { resolveBotFieldVariableText } from "@inboxos.io/variables"
 
 /**
  * Keeps MCP credentials workspace-scoped. Contact variables deliberately do

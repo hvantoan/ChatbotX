@@ -1,14 +1,14 @@
 import {
   decisionFlowOriginSchema,
   extractContactInboxId,
-} from "@chatbotx.io/events"
-import { runWithWebhookExecutionContext } from "@chatbotx.io/events/context"
-import { SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/events"
+import { runWithWebhookExecutionContext } from "@inboxos.io/events/context"
+import { SdkException } from "@inboxos.io/sdk"
 import {
   queueNames,
   TriggerJobAction,
   type TriggerJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { createQueueWorker } from "../lib/create-queue-worker"
 import { isBlockedWorkspace } from "../lib/is-blocked-workspace"

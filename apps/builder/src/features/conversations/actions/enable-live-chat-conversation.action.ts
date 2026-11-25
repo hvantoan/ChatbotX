@@ -1,5 +1,5 @@
-import { conversationService } from "@chatbotx.io/business"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { conversationService } from "@inboxos.io/business"
+import type { UserModel } from "@inboxos.io/database/types"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

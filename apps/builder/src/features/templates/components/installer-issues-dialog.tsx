@@ -1,12 +1,12 @@
 "use client"
 
-import type { TemplateInstallerIssues } from "@chatbotx.io/business"
+import type { TemplateInstallerIssues } from "@inboxos.io/business"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"

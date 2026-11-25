@@ -1,16 +1,16 @@
 {
-  "name": "@chatbotx.io/integration-meta-conversions",
+  "name": "@inboxos.io/integration-meta-conversions",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "ky": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

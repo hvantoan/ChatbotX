@@ -1,4 +1,4 @@
-import { BOUNDED_COUNT_CAP } from "@chatbotx.io/database/partials"
+import { BOUNDED_COUNT_CAP } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   isStatementTimeoutError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
   setLocalStatementTimeout: mocks.setLocalStatementTimeout,
   isStatementTimeoutError: mocks.isStatementTimeoutError,

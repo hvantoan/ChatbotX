@@ -1,11 +1,11 @@
-import { aiContextStore } from "@chatbotx.io/ai/server"
-import { conversationService } from "@chatbotx.io/business"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
+import { aiContextStore } from "@inboxos.io/ai/server"
+import { conversationService } from "@inboxos.io/business"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
 import {
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import type { AIDeleteMessageHistorySchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { AIDeleteMessageHistorySchema } from "@inboxos.io/flow-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import type { ExecuteStepProps } from "../flow"

@@ -1,4 +1,4 @@
-import logger from "@chatbotx.io/logger"
+import logger from "@inboxos.io/logger"
 import type { SuperJSONResult } from "superjson"
 import superjson from "superjson"
 import { distributedStore } from "."

@@ -3,8 +3,8 @@ import {
   isCopyableText,
   isCopyTextButton,
   isNativeButtonType,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import { readStepButtons } from "./step-buttons"
 

@@ -9,17 +9,17 @@ const state = vi.hoisted(() => ({
   stopWorker: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents:
     state.flushAllPendingWorkspaceRealtimeEvents,
 }))
 
-vi.mock("@chatbotx.io/event-bus/worker", () => ({
+vi.mock("@inboxos.io/event-bus/worker", () => ({
   startWorker: state.startWorker,
   stopWorker: state.stopWorker,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   closeAllQueueEvents: vi.fn(async () => undefined),
 }))
 

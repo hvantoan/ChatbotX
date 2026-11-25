@@ -5,23 +5,23 @@ import {
   type PaymentMethod,
   SHIPPING_TYPES_BY_MODE,
   type ShippingType,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
+} from "@inboxos.io/ui/components/ui/radio-group"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/select"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   ArrowRightIcon,
   BanknoteIcon,

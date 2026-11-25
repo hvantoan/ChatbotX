@@ -26,7 +26,7 @@ const {
   identifyInbox: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward,
   enqueueLeaderboardReverse,
   recordTelegramBotChatStatus,
@@ -44,12 +44,12 @@ vi.mock("../src/services/integrations", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactBlockedBot,
   emitContactUnblockedBot,
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   runWithWebhookExecutionContext: (
     context: unknown,
     callback: () => unknown,
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/events/context", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   getRedisConnection: () => ({ set: redisSet }),
 }))
 

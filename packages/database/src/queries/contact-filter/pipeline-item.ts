@@ -98,7 +98,7 @@ const membership =
 /**
  * `column IN (...)` over values checked against their enum, cast to its type.
  * The column is read per call, so importing this module never touches the
- * schema (tests that mock `@chatbotx.io/database/schema` stay unaffected).
+ * schema (tests that mock `@inboxos.io/database/schema` stay unaffected).
  */
 const enumIn =
   <T extends string>(

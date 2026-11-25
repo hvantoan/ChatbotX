@@ -32,7 +32,7 @@ const updateChain = {
   }),
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       templateModel: { findFirst: mocks.templateFindFirst },
@@ -47,11 +47,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: vi.fn(),
   isNull: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   templateInstallationModel: {},
   templateModel: {},
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateInstallationRepository: {
     failUnclaimed: mocks.failUnclaimed,
     findByIdAndWorkspace: mocks.installationFindFirst,
@@ -74,7 +74,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     find: mocks.findVersion,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueFanOutTemplateUpdate: mocks.enqueueFanOut,
 }))
 vi.mock("../src/logger", () => ({
@@ -84,7 +84,7 @@ vi.mock("../src/logger", () => ({
 vi.mock("../src/template/version-changes", () => ({
   describeVersionChanges: () => [],
 }))
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   // `__counts` is shorthand for how many of each category the payload holds.
   parseTemplateExport: (payload: { __counts?: Record<string, number> }) => {
     const counts = payload?.__counts ?? {}

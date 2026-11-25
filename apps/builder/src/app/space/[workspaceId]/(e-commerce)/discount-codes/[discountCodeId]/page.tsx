@@ -1,5 +1,5 @@
-import { discountCodeService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { discountCodeService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { notFound } from "next/navigation"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import { DiscountCodeFormPage } from "../form-page"
@@ -11,7 +11,7 @@ async function findDiscountCode(workspaceId: string, discountCodeId: string) {
   try {
     return await discountCodeService.get({ workspaceId, discountCodeId })
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       notFound()
     }
     throw error

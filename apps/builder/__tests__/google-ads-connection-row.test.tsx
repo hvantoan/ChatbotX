@@ -56,7 +56,7 @@ vi.mock("next-safe-action/hooks", () => ({
   },
 }))
 
-import { googleAdsSetupErrorSchema } from "@chatbotx.io/database/partials"
+import { googleAdsSetupErrorSchema } from "@inboxos.io/database/partials"
 import { ConnectionRow } from "@/features/integration-google-ads/components/connection-row"
 import { setupErrorKey } from "@/features/integration-google-ads/lib/status"
 import type { GoogleAdsSettingsView } from "@/features/integration-google-ads/lib/to-settings-view"

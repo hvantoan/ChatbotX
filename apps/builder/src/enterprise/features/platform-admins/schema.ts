@@ -1,4 +1,4 @@
-import { platformAdminRoles } from "@chatbotx.io/database/partials"
+import { platformAdminRoles } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const addPlatformAdminSchema = z.object({

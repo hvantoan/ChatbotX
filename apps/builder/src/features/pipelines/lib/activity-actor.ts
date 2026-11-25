@@ -1,4 +1,4 @@
-import type { PipelineActorKind } from "@chatbotx.io/database/partials"
+import type { PipelineActorKind } from "@inboxos.io/database/partials"
 import {
   CogIcon,
   KeyRoundIcon,

@@ -1,4 +1,4 @@
-import { ecommerceSettingsService } from "@chatbotx.io/business"
+import { ecommerceSettingsService } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 
 import { findWebhook } from "@/features/webhooks/queries"

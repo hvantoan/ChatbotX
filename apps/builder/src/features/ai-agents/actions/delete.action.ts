@@ -1,6 +1,6 @@
 "use server"
 
-import { aiAgentService } from "@chatbotx.io/business"
+import { aiAgentService } from "@inboxos.io/business"
 import {
   bulkUpdateIdsRequest,
   workspaceIdrequestParams,

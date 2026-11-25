@@ -1,8 +1,8 @@
 "use server"
 
-import { externalRequestService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { externalRequestFieldsSchema } from "@chatbotx.io/flow-config"
+import { externalRequestService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { externalRequestFieldsSchema } from "@inboxos.io/flow-config"
 import { getTranslations } from "next-intl/server"
 import {
   type WorkspaceIdRequestParams,
@@ -35,12 +35,12 @@ export const testExternalRequestAction = workspaceActionClient
           responseBody: result.responseBody,
         }
       } catch (err) {
-        if (err instanceof ChatbotXException) {
+        if (err instanceof InboxOSException) {
           throw err
         }
 
         logger.error({ err, workspaceId }, "External request test failed")
-        throw new ChatbotXException(t("requestFailed"), "externalRequestFailed")
+        throw new InboxOSException(t("requestFailed"), "externalRequestFailed")
       }
     },
   )

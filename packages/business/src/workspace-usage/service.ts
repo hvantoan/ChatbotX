@@ -3,15 +3,15 @@ import {
   type DatabaseClient,
   db,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactModel,
   inboxModel,
   workspaceMemberModel,
   workspaceModel,
   workspaceUsageModel,
-} from "@chatbotx.io/database/schema"
-import type { WorkspaceUsageModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { WorkspaceUsageModel } from "@inboxos.io/database/types"
 import { LiveCounterStore } from "../quota-shared/live-counter-store"
 
 export type ReconcileWorkspaceCounts = {
@@ -133,7 +133,7 @@ class WorkspaceUsageService {
    * `sync-user-quota.ts` reconcileWorkspaceUsage: the workspace-id list plus
    * the three grouped counts (contacts / channels / team members) the
    * display-only `WorkspaceUsage` breakdown is re-grounded from. MAC counts
-   * come from `@chatbotx.io/analytics`'s `macRepository`, which stays called
+   * come from `@inboxos.io/analytics`'s `macRepository`, which stays called
    * from the handler and is merged with this method's result there.
    */
   async loadReconcileCounts(): Promise<ReconcileWorkspaceCounts> {

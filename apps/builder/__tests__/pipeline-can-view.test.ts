@@ -8,14 +8,14 @@ const get = vi.hoisted(() => vi.fn())
 vi.mock("@/lib/auth/utils", () => ({
   getCurrentUserAndTargetWorkspace: getCurrent,
 }))
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   pipelineService: { get },
 }))
 vi.mock("@/features/pipelines/lib/access", () => ({
   pipelineScopeFromMember: () => ({ kind: "support" }),
 }))
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { canViewPipeline } from "@/features/pipelines/queries/can-view-pipeline.query"
 
 const input = { workspaceId: "1", pipelineId: "2" }
@@ -45,7 +45,7 @@ describe("canViewPipeline", () => {
 
   test("is false for a missing or forbidden pipeline (service notFound)", async () => {
     get.mockRejectedValue(
-      new ChatbotXException("Pipeline not found", "notFound", 404),
+      new InboxOSException("Pipeline not found", "notFound", 404),
     )
 
     expect(await canViewPipeline(input)).toBe(false)

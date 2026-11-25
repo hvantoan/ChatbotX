@@ -1,4 +1,4 @@
-import { IntegrationException, SdkException } from "@chatbotx.io/sdk"
+import { IntegrationException, SdkException } from "@inboxos.io/sdk"
 
 export class ZaloPersonalAPIException extends IntegrationException {
   override readonly httpStatusCode: number

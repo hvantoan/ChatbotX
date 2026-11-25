@@ -1,7 +1,7 @@
 import {
   type AIAgentSalesProfile,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 vi.mock("../src/broadcast/plan-policy.service", () => ({
@@ -53,14 +53,14 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mockTransaction,
   },
 }))
 
 vi.mock(
-  "@chatbotx.io/database/repositories/template-installed-resource",
+  "@inboxos.io/database/repositories/template-installed-resource",
   () => ({
     templateInstalledResourceRepository: {
       findLiveKeys: vi.fn(async () => []),
@@ -70,7 +70,7 @@ vi.mock(
   }),
 )
 
-vi.mock("@chatbotx.io/database/repositories", () => {
+vi.mock("@inboxos.io/database/repositories", () => {
   class InvalidPipelineCursorError extends Error {
     constructor(message = "Invalid cursor") {
       super(message)

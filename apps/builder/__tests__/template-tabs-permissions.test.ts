@@ -5,7 +5,7 @@ vi.mock("next-intl/server", () => ({
   getTranslations: () => Promise.resolve((key: string) => key),
 }))
 vi.mock("@/components/app-tab", () => ({ AppTab: () => null }))
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const permissions = await import(
     "../../../packages/business/src/template/permissions"
   )

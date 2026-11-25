@@ -9,11 +9,11 @@ import {
   ilike,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
-import type { StoreSource } from "@chatbotx.io/database/partials"
-import { productModel, vendorModel } from "@chatbotx.io/database/schema"
-import { likeContains, parsePagination } from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import type { StoreSource } from "@inboxos.io/database/partials"
+import { productModel, vendorModel } from "@inboxos.io/database/schema"
+import { likeContains, parsePagination } from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 /** Every column a vendor form or API writes. */
 export type VendorWriteValues = Omit<

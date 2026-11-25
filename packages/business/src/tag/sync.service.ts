@@ -1,8 +1,8 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { tagChannelRepository } from "@chatbotx.io/database/repositories"
-import type { TagChannelModel } from "@chatbotx.io/database/types"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { tagChannelRepository } from "@inboxos.io/database/repositories"
+import type { TagChannelModel } from "@inboxos.io/database/types"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 
 const SYNC_TAG_BULK_CHUNK_SIZE = 1000

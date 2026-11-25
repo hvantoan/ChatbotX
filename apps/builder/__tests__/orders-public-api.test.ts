@@ -42,7 +42,7 @@ const orderService = {
   delete: vi.fn(),
 }
 const contactService = { resolveIdByIdentifier: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({ orderService, contactService }))
+vi.mock("@inboxos.io/business", () => ({ orderService, contactService }))
 
 await import("@/features/orders/api/public")
 

@@ -1,8 +1,8 @@
 "use client"
 
-import type { ProductImageSize } from "@chatbotx.io/database/partials"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { ProductImageSize } from "@inboxos.io/database/partials"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   CheckIcon,
   ExternalLinkIcon,

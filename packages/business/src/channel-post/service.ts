@@ -1,13 +1,13 @@
-import { isDatabaseError } from "@chatbotx.io/database/client"
-import { type ChannelType, channelTypes } from "@chatbotx.io/database/partials"
+import { isDatabaseError } from "@inboxos.io/database/client"
+import { type ChannelType, channelTypes } from "@inboxos.io/database/partials"
 import {
   type ChannelPostFilterCursor,
   type ChannelPostMetadata,
   channelPostRepository,
-} from "@chatbotx.io/database/repositories"
-import { uploadFileFromUrl } from "@chatbotx.io/filesystem"
-import type { ChannelPostDetails } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { uploadFileFromUrl } from "@inboxos.io/filesystem"
+import type { ChannelPostDetails } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { logger } from "../logger"
 import { resolveTenantSettings } from "../platform/settings"

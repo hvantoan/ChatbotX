@@ -6,7 +6,7 @@ const pdfParse = vi.hoisted(() => vi.fn())
 const getObjectStream = vi.hoisted(() => vi.fn())
 
 vi.mock("pdf-parse-new", () => ({ default: pdfParse }))
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { getObjectStream },
 }))
 

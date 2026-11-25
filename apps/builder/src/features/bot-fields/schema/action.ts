@@ -1,6 +1,6 @@
-import { customFieldTypes } from "@chatbotx.io/database/partials"
-import { zodFieldName } from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { customFieldTypes } from "@inboxos.io/database/partials"
+import { zodFieldName } from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const createBotFieldRequest = z.object({

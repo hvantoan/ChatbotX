@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { resolveSendTextLengthLimits } from "@chatbotx.io/flow-config"
+import { resolveSendTextLengthLimits } from "@inboxos.io/flow-config"
 import type { ComponentProps, ReactNode } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
@@ -31,15 +31,15 @@ vi.mock("@/features/inboxes/provider/inbox-hook", () => ({
   useWhatsappInboxOptions: () => [],
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/combobox-field", () => ({
   ComboboxField: () => <select data-testid="combobox-field" />,
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: () => <select data-testid="select-field" />,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({ children, ...props }: ComponentProps<"button">) => (
     <button {...props}>{children}</button>
   ),

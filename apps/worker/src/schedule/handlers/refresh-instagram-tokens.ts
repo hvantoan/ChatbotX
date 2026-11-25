@@ -1,9 +1,9 @@
-import { instagramIntegrationService } from "@chatbotx.io/business"
+import { instagramIntegrationService } from "@inboxos.io/business"
 import {
   type InstagramAuthValue,
   integration as integrationInstagram,
   isRevokedTokenError,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import { logger } from "../../lib/logger"
 import { refreshWithErrorHandling, runRefreshBatch } from "./refresh-runner"
 

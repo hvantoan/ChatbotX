@@ -1,8 +1,8 @@
 import {
   type BroadcastScheduleType,
   broadcastScheduleTypes,
-} from "@chatbotx.io/database/partials"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 
 /**
  * `BroadcastScheduleType` → the message key that labels it.

@@ -58,7 +58,7 @@ export const templateInstalledResourceModel = pgTable(
     // Typed to the closed `templateResourceKinds` list; the column stays `text`
     // (no pgEnum). Readers skip and log an unknown value
     // (`keepKnownResourceKinds`); preflight before a rename/removal with
-    // `pnpm --filter @chatbotx.io/database template:kinds-preflight`.
+    // `pnpm --filter @inboxos.io/database template:kinds-preflight`.
     resourceKind: text().$type<TemplateResourceKind>().notNull(),
     resourceId: bigintAsString().notNull(),
     sourceResourceId: text().notNull(),

@@ -1,10 +1,10 @@
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
-import { FieldOperationType } from "@chatbotx.io/flow-config"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
+import { FieldOperationType } from "@inboxos.io/flow-config"
 import {
   FIELD_OPERATION_DEFINITIONS,
   FieldOperandKind,
   isFieldOperationAllowed,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { useCallback, useEffect, useRef } from "react"
 import { type UseFormReturn, useFormContext, useWatch } from "react-hook-form"
 

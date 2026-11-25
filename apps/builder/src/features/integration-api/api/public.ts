@@ -1,5 +1,5 @@
-import { incomingApiMessageSchema } from "@chatbotx.io/integration-api"
-import { enqueueIntegrationJob } from "@chatbotx.io/worker-config"
+import { incomingApiMessageSchema } from "@inboxos.io/integration-api"
+import { enqueueIntegrationJob } from "@inboxos.io/worker-config"
 import { z } from "zod"
 import { logger } from "@/lib/log"
 import { possibleErrorsOnCreatingResource } from "@/lib/orpc/orpc-error-helper"

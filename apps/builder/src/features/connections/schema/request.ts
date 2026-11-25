@@ -3,7 +3,7 @@ import {
   connectionKinds,
   connectionStatuses,
   integrationTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 const connectionIdField = z

@@ -1,7 +1,7 @@
 "use client"
 
-import type { CapiConnection } from "@chatbotx.io/business/meta-conversions/connection-state"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
+import type { CapiConnection } from "@inboxos.io/business/meta-conversions/connection-state"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
 import { CapiConnectButton } from "@/features/meta-conversions/components/capi-connect-button"
 import { CapiConnectionTab } from "@/features/meta-conversions/components/capi-connection-tab"
 import { useWorkspaceId } from "@/hooks/routing"

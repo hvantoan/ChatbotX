@@ -4,16 +4,16 @@ import {
   templateSyncRequestService,
   templateUninstallNoticeService,
   templateUninstallSweepService,
-} from "@chatbotx.io/business"
-import { templateUninstallExecuteService } from "@chatbotx.io/business/template-uninstall/execute"
-import { getChildLogger } from "@chatbotx.io/logger"
+} from "@inboxos.io/business"
+import { templateUninstallExecuteService } from "@inboxos.io/business/template-uninstall/execute"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   enqueueFanOutTemplateUpdate,
   enqueueInstallTemplate,
   enqueueProcessAIFile,
   enqueueSyncTemplateInstallation,
   enqueueUninstallTemplate,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { settleAndLog } from "../../lib/settle-and-log"
 
 const log = getChildLogger("redispatch-template-jobs")

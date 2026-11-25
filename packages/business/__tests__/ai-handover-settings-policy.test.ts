@@ -1,4 +1,4 @@
-import type { AiHandoverTimeRange } from "@chatbotx.io/database/partials"
+import type { AiHandoverTimeRange } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   isAiHandoverActive,

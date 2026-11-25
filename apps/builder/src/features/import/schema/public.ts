@@ -1,6 +1,6 @@
-import { importStatuses } from "@chatbotx.io/database/partials"
-import { flowCapabilitySchema } from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { importStatuses } from "@inboxos.io/database/partials"
+import { flowCapabilitySchema } from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { publicListRequest, publicListResponse } from "@/lib/public-api/list"
 

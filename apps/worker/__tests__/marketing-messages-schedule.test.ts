@@ -14,7 +14,7 @@ const mmAddSpy = vi.fn()
 const isBlockedWorkspace = vi.fn()
 const getBotMessageQuotaRemaining = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessageDeliveryService: {
     prepare: (...a: unknown[]) => prepare(...a),
     startDay: (...a: unknown[]) => startDay(...a),
@@ -25,19 +25,19 @@ vi.mock("@chatbotx.io/business", () => ({
   },
   withBlockedOwnerGuard: (_ws: unknown, fn: () => Promise<unknown>) => fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessageRepository: {
     listDueToStart: (...a: unknown[]) => listDueToStart(...a),
     listByStatus: (...a: unknown[]) => listByStatus(...a),
     findById: (...a: unknown[]) => findById(...a),
   },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: (opts: { fn: () => Promise<unknown> }) => opts.fn(),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   marketingMessageCampaignJobId: (id: string, step: string) =>
     `mm-campaign-${step}-${id}`,
   MarketingMessageJobAction: { processCampaign: "processCampaign" },

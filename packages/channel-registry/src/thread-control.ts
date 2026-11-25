@@ -6,10 +6,10 @@ import {
   type ThreadControlSnapshot,
   ThreadControlUnsupportedError,
   threadControlService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import type { ThreadControlAction } from "@chatbotx.io/database/partials"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import type { ThreadControlAction } from "@inboxos.io/database/partials"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
 import type {
   BulkThreadControlAction,
   BulkThreadControlLimits,
@@ -17,7 +17,7 @@ import type {
   OutgoingContact,
   ThreadControlRole,
   ThreadOwnerResult,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   type ContactInboxRoute,
   resolveIntegrationContextFromContactInbox,

@@ -6,14 +6,14 @@ const { mockListFieldsByPipelineIds } = vi.hoisted(() => ({
   mockListFieldsByPipelineIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pipelineRepository: {
     listFieldsByPipelineIds: (...args: unknown[]) =>
       mockListFieldsByPipelineIds(...args),
   },
 }))
 
-const { pipelineStepDefaultFn } = await import("@chatbotx.io/flow-config")
+const { pipelineStepDefaultFn } = await import("@inboxos.io/flow-config")
 const { assertFlowPipelineStepsPublishable } = await import(
   "../src/pipeline/flow-publish-check"
 )

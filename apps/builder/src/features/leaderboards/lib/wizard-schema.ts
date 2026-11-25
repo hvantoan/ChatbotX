@@ -2,7 +2,7 @@ import type {
   LeaderboardPlatform,
   LeaderboardRuleKey,
   LeaderboardRules,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { leaderboardConfigRequest } from "../schema/action"
 import { supportsPostScope } from "./platforms"

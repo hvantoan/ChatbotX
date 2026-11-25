@@ -1,11 +1,11 @@
 import {
   integrationWhatsappService,
   whatsappNumberLabel,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   miniAppService,
   miniAppSubmissionService,
-} from "@chatbotx.io/business/mini-app"
+} from "@inboxos.io/business/mini-app"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListMiniAppsRequest } from "../schema/query"
 

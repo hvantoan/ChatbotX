@@ -5,7 +5,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { Cell, Pie, PieChart } from "recharts"

@@ -1,15 +1,15 @@
-import { contactInboxService } from "@chatbotx.io/business"
+import { contactInboxService } from "@inboxos.io/business"
 import {
   type ProfileSnapshotChannel,
   supportsProfileSnapshot,
-} from "@chatbotx.io/database/partials"
-import { toLogSafeError } from "@chatbotx.io/logger"
+} from "@inboxos.io/database/partials"
+import { toLogSafeError } from "@inboxos.io/logger"
 import {
   ChannelError,
   type ContactProfileSnapshot,
   SdkException,
-} from "@chatbotx.io/sdk"
-import type { ProfileSnapshotJobData } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import type { ProfileSnapshotJobData } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { resolveIntegrationContextFromContactInbox } from "../../services/integrations"
 import { isRetryable } from "./shared/http-retry"

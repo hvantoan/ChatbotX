@@ -11,7 +11,7 @@ const { mockExecute, mockTransaction } = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mockTransaction },
   sql: Object.assign(
     vi.fn(() => ({})),

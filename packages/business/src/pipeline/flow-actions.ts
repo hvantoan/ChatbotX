@@ -1,20 +1,20 @@
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   pipelineReferenceRepository,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import { isBigintId } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/repositories"
+import { isBigintId } from "@inboxos.io/database/utils"
 import type {
   PipelineActionOf,
   PipelineStepAction,
   PipelineStepDueDate,
   PipelineStepSchema,
-} from "@chatbotx.io/flow-config"
-import { isTemporalCustomFieldType } from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/flow-config"
+import { isTemporalCustomFieldType } from "@inboxos.io/utils/datetime"
 import { contactCustomFieldValueService } from "../contact-custom-field/value-service"
 import { customFieldService } from "../custom-field/service"
-import { ChatbotXException, validationException } from "../errors"
+import { InboxOSException, validationException } from "../errors"
 import { logger } from "../logger"
 import type { PipelineAccessScope } from "./access"
 import { pipelineItemService } from "./item.service"
@@ -565,7 +565,7 @@ export async function runPipelineAction(
     ] as ActionHandler<PipelineStepAction>
     return await handler(action, env)
   } catch (error) {
-    if (error instanceof ChatbotXException) {
+    if (error instanceof InboxOSException) {
       return fail(error.message)
     }
     throw error

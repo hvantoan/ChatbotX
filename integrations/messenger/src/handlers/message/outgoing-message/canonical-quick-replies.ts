@@ -2,7 +2,7 @@ import {
   getCanonicalReplyPayload,
   MESSENGER_NATIVE_QUICK_REPLY,
   type MessageButtonTemplate,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { FacebookQuickReply } from "../../../schema"
 
 export function convertCanonicalQuickReplies(

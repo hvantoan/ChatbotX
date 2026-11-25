@@ -1,8 +1,8 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
+import { triggerActions } from "@inboxos.io/database/partials"
 import {
   googleAdsConversionFieldsSchema,
   withGoogleAdsConversionRefinements,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import z from "zod"
 
 export const sendGoogleAdsConversion = withGoogleAdsConversionRefinements(

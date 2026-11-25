@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   select: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ and: conditions })),
   db: {
     select: (...args: unknown[]) => mocks.select(...args),
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   or: vi.fn((...conditions: unknown[]) => ({ or: conditions })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationMetaCatalogModel: {
     deletedAt: "metaDeletedAt",
     id: "metaId",
@@ -34,7 +34,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 

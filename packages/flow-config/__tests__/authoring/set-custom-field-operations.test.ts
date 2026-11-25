@@ -1,7 +1,7 @@
 import {
   FIELD_OPERATION_DEFINITIONS,
   fieldOperationCodes,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { describe, expect, test } from "vitest"
 import {
   compileFlowSpec,

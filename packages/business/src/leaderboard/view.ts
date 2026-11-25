@@ -1,12 +1,12 @@
 import {
   leaderboardParticipantRepository,
   leaderboardRepository,
-} from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import {
   signLeaderboardViewToken,
   verifyLeaderboardViewToken,
-} from "@chatbotx.io/encryption/leaderboard-view-token"
+} from "@inboxos.io/encryption/leaderboard-view-token"
 import { contactInboxService } from "../contact-inbox/service"
 import { notFoundException } from "../errors"
 import { logger } from "../logger"

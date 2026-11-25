@@ -5,7 +5,7 @@ import {
   ecommerceProFeatures,
   ecommerceSettingsSchema,
   ecommerceShippingSettingsSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const ecommerceSettingsPublicResource = ecommerceSettingsSchema.extend({

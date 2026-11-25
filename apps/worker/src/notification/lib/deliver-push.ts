@@ -1,4 +1,4 @@
-import { deviceTokenService } from "@chatbotx.io/business"
+import { deviceTokenService } from "@inboxos.io/business"
 import { Expo, type ExpoPushMessage, type ExpoPushToken } from "expo-server-sdk"
 import { logger } from "../../lib/logger"
 

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { inArray, sql } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { Client } from "pg"

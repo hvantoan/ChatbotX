@@ -1,5 +1,5 @@
-import { qrStyles, reflinkTypes } from "@chatbotx.io/database/partials"
-import { createSelectSchema, reflinkModel } from "@chatbotx.io/database/schema"
+import { qrStyles, reflinkTypes } from "@inboxos.io/database/partials"
+import { createSelectSchema, reflinkModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 // Shares the Reflink table; the chat widget settings only apply to ref links.

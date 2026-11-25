@@ -1,4 +1,4 @@
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 
 const PLACEHOLDER_COLUMNS = [0, 1, 2]
 

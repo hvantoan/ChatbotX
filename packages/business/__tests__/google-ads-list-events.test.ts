@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const listByWorkspace = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsConversionEventRepository: { listByWorkspace },
 }))
 vi.mock("../src/google-ads/delivery", () => ({

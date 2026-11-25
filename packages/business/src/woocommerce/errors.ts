@@ -1,14 +1,14 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 export const woocommerceNotConnectedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Connect a WooCommerce store in Ecommerce → Settings → WooCommerce first.",
     "woocommerceNotConnected",
   )
 
 /** The store refused the REST API keys, or could not be reached as a store. */
 export const woocommerceCredentialsInvalidException = (detail?: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `WooCommerce did not accept this connection${detail ? `: ${detail}` : "."} Check the store address and the REST API keys (Read/Write permission).`,
     "woocommerceCredentialsInvalid",
   )
@@ -17,7 +17,7 @@ export const woocommerceCredentialsInvalidException = (detail?: string) => {
 }
 
 export const woocommerceSyncInProgressException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A WooCommerce sync is already running. Wait for it to finish.",
     "woocommerceSyncInProgress",
     409,
@@ -25,7 +25,7 @@ export const woocommerceSyncInProgressException = () =>
 
 /** The store refused the order (out of stock, invalid coupon, …). */
 export const woocommerceOrderRejectedException = (detail: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `WooCommerce could not place the order: ${detail}`,
     "woocommerceOrderRejected",
     422,
@@ -36,7 +36,7 @@ export const woocommerceOrderRejectedException = (detail: string) => {
 
 /** A product in the cart is not on the store any more. */
 export const woocommerceProductMissingException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A product in the cart is no longer sold on WooCommerce. Remove it and try again.",
     "woocommerceProductMissing",
     409,

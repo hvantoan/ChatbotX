@@ -1,5 +1,5 @@
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useFormContext } from "react-hook-form"

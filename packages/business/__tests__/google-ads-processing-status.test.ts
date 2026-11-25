@@ -1,4 +1,4 @@
-import type { GoogleAdsRequestStatus } from "@chatbotx.io/integration-google-ads"
+import type { GoogleAdsRequestStatus } from "@inboxos.io/integration-google-ads"
 import { describe, expect, test } from "vitest"
 import {
   classifyRequestStatus,

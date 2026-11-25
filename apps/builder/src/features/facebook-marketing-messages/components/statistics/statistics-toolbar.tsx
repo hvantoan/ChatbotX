@@ -1,20 +1,20 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Calendar } from "@chatbotx.io/ui/components/ui/calendar"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Calendar } from "@inboxos.io/ui/components/ui/calendar"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { format } from "date-fns"
 import { ArrowRightIcon, CalendarIcon, SearchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

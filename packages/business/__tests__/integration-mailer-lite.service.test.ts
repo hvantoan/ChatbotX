@@ -15,7 +15,7 @@ const updateChain = {
 
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationMailerLiteModel: { findFirst: vi.fn() },
@@ -28,16 +28,16 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isDatabaseError: vi.fn().mockReturnValue(false),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationMailerLiteModel: { id: "id", workspaceId: "workspaceId" },
   integrationModel: { id: "id" },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptUtils: { encryptObject: mocks.encryptObject },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
@@ -99,7 +99,7 @@ describe("IntegrationMailerLiteService", () => {
         constraint: "IntegrationMailerLite_workspaceId_key",
       },
     })
-    const { isDatabaseError } = await import("@chatbotx.io/database/client")
+    const { isDatabaseError } = await import("@inboxos.io/database/client")
     vi.mocked(isDatabaseError).mockImplementationOnce(
       (e: unknown) => e === uniqueError,
     )

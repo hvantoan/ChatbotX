@@ -1,7 +1,7 @@
 import {
   contactInfoTypes,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import z from "zod"
 
 export const contactInfoUpdated = z.object({

@@ -4,9 +4,9 @@ import {
   eq,
   type PgTable,
   sql,
-} from "@chatbotx.io/database/client"
-import { cacheConnections, distributedStore } from "@chatbotx.io/redis"
-import { cacheKeyFor, liveKeyFor } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { cacheConnections, distributedStore } from "@inboxos.io/redis"
+import { cacheKeyFor, liveKeyFor } from "@inboxos.io/utils"
 import type { PgColumn } from "drizzle-orm/pg-core"
 import { logger } from "../logger"
 

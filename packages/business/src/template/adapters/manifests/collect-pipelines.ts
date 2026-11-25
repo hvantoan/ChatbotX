@@ -1,8 +1,8 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   collectReferencesByKind,
   type TemplateExport,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   collectTriggerConditionReferences,
   type TriggerConditionRow,

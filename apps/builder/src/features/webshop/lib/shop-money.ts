@@ -1,5 +1,5 @@
-import type { CurrencyPosition } from "@chatbotx.io/database/partials"
-import { formatMoney } from "@chatbotx.io/utils/money"
+import type { CurrencyPosition } from "@inboxos.io/database/partials"
+import { formatMoney } from "@inboxos.io/utils/money"
 
 /** How the store shows money, from its Payments settings. */
 export type ShopMoneyFormat = {

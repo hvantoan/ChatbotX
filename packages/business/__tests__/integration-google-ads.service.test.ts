@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
   getConsent: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationGoogleAdsRepository: {
     findByWorkspaceId: mocks.findByWorkspaceId,
     existsByWorkspaceId: mocks.existsByWorkspaceId,
@@ -22,9 +22,9 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
   connectionRepository: { findByIntegrationId: mocks.findByIntegrationId },
 }))
-vi.mock("@chatbotx.io/integration-google-ads", async (importOriginal) => {
+vi.mock("@inboxos.io/integration-google-ads", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/integration-google-ads")>()
+    await importOriginal<typeof import("@inboxos.io/integration-google-ads")>()
   return { ...actual, integration: { runAction: mocks.runAction } }
 })
 vi.mock("../src/platform-credential/service", () => ({
@@ -44,9 +44,9 @@ vi.mock("../src/base.service", () => ({
 }))
 
 const { GoogleAdsException } = await import(
-  "@chatbotx.io/integration-google-ads"
+  "@inboxos.io/integration-google-ads"
 )
-const { AuthException, AuthRefreshException } = await import("@chatbotx.io/sdk")
+const { AuthException, AuthRefreshException } = await import("@inboxos.io/sdk")
 const { integrationGoogleAdsService } = await import(
   "../src/integration-google-ads/service"
 )

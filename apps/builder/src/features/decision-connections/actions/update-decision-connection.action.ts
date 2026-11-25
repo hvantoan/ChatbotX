@@ -1,6 +1,6 @@
 "use server"
 
-import { decisionConnectionService } from "@chatbotx.io/business"
+import { decisionConnectionService } from "@inboxos.io/business"
 import { z } from "zod"
 import {
   type WorkspaceIdRequestParams,

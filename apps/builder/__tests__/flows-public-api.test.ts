@@ -4,7 +4,7 @@ import {
   FlowAuthoringException,
   performActionNodeDefaultFn,
   sendMessageNodeDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const SPEC_STEP_PATH_PATTERN = /^steps\[/
@@ -76,14 +76,14 @@ const importService = {
 const messengerWelcomeMessageFlowService = {
   listCurrentByFlow: vi.fn(async () => []),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowService,
   flowVersionService,
   messengerWelcomeMessageFlowService,
 }))
-vi.mock("@chatbotx.io/business/import", () => ({ importService }))
+vi.mock("@inboxos.io/business/import", () => ({ importService }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
   validationException: (field: string, message: string) =>
     new Error(`${field}: ${message}`),
@@ -94,16 +94,16 @@ const getFlowAuthoringContext = vi.fn(async () => ({
   customFieldsByName: new Map(),
   flowsByName: new Map(),
 }))
-vi.mock("@chatbotx.io/business/capabilities", () => ({
+vi.mock("@inboxos.io/business/capabilities", () => ({
   getFlowAuthoringContext,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: { runImport: "runImport" },
   defaultQueue: { add: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),
@@ -118,7 +118,7 @@ vi.mock("@chatbotx.io/database/schema", () => {
 })
 
 await import("@/features/flows/api/public")
-const { defaultQueue } = await import("@chatbotx.io/worker-config")
+const { defaultQueue } = await import("@inboxos.io/worker-config")
 
 const findProcedure = (method: string, path: string) => {
   const found = capturedProcedures.find(
@@ -680,7 +680,7 @@ describe("POST /v1/flows", () => {
     ],
     [
       "an OpenAI step with Muse-only fields",
-      { provider: "openai", model: "whisper-1", keywords: ["ChatbotX"] },
+      { provider: "openai", model: "whisper-1", keywords: ["InboxOS"] },
     ],
   ])("publish: true rejects %s", async (_name, step) => {
     await expect(createSpeechFlow(step)).rejects.toBeInstanceOf(

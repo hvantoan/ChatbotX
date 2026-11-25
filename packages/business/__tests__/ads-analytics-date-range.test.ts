@@ -1,4 +1,4 @@
-import { timezoneCandidates } from "@chatbotx.io/utils/timezone"
+import { timezoneCandidates } from "@inboxos.io/utils/timezone"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import {
   enumerateDateKeys,

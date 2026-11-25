@@ -3,8 +3,8 @@ import {
   findPaymentRequestMismatches,
   type SendWaTemplateMessageStepSchema,
   type TemplateComponent,
-} from "@chatbotx.io/flow-config"
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 
 /**
  * Pre-send guard for payment requests: what is about to be sent must match the

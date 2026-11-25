@@ -1,11 +1,11 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { describe, expect, test, vi } from "vitest"
 
 // `create-first-workspace` imports `workspaceService` for an unrelated path;
 // the real barrel drags in realtime/DB wiring this pure mapping never touches.
-vi.mock("@chatbotx.io/business", () => ({ workspaceService: {} }))
+vi.mock("@inboxos.io/business", () => ({ workspaceService: {} }))
 
 const SESSION_ERROR_KEY_PREFIX = /^channels\.connectMany\.sessionError\./
 
@@ -34,7 +34,7 @@ describe("createChannelPath", () => {
 })
 
 function expiredWith(failureCode?: string) {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     "Your connect session expired. Please start again.",
     "connectSessionExpired",
   )
@@ -46,7 +46,7 @@ function expiredWith(failureCode?: string) {
 
 describe("startFailureErrorCode", () => {
   test("the active connect-session cap asks the user to wait", () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "Too many pending connect sessions for this workspace.",
       "connectSessionLimitReached",
       429,
@@ -55,14 +55,14 @@ describe("startFailureErrorCode", () => {
   })
 
   test("a known plan-limit code passes through", () => {
-    const error = new ChatbotXException("limit", "workspaceLimitReached", 403)
+    const error = new InboxOSException("limit", "workspaceLimitReached", 403)
     expect(startFailureErrorCode(error)).toBe("workspaceLimitReached")
   })
 
   test("anything unexpected is a failed connect, never an expired session", () => {
     expect(startFailureErrorCode(new Error("db down"))).toBe("connectFailed")
     expect(
-      startFailureErrorCode(new ChatbotXException("x", "somethingElse")),
+      startFailureErrorCode(new InboxOSException("x", "somethingElse")),
     ).toBe("connectFailed")
   })
 })
@@ -125,7 +125,7 @@ describe("selectPageErrorCode", () => {
   })
 
   test("connect_error never masks a membership or plan failure", () => {
-    const error = new ChatbotXException("Trial expired", "trialExpired", 403)
+    const error = new InboxOSException("Trial expired", "trialExpired", 403)
     expect(
       selectPageErrorCode(error, {
         ...pages,
@@ -135,7 +135,7 @@ describe("selectPageErrorCode", () => {
   })
 
   test("a lost workspace membership says so instead of expiring", () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "You are not a member of this workspace.",
       "notWorkspaceMember",
       403,
@@ -144,7 +144,7 @@ describe("selectPageErrorCode", () => {
   })
 
   test("an unknown exception code falls back to sessionExpired", () => {
-    const error = new ChatbotXException("nope", "somethingElse")
+    const error = new InboxOSException("nope", "somethingElse")
     expect(selectPageErrorCode(error, pages)).toBe("sessionExpired")
   })
 

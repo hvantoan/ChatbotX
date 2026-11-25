@@ -107,7 +107,7 @@ export type PaymentWebhookEvent =
       eventId: string
       /** The attempt it is about (session or PayPal order id). */
       reference: string
-      /** Null for an attempt ChatbotX did not create. */
+      /** Null for an attempt InboxOS did not create. */
       metadata: PaymentMetadata | null
       /** Stripe: the connected account the event came from; null on a store's own webhook. */
       account: string | null

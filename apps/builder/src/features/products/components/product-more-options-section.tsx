@@ -1,25 +1,25 @@
 "use client"
 
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+} from "@inboxos.io/ui/components/ui/card"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
-import { MultiSelect } from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
+} from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
+import { MultiSelect } from "@inboxos.io/ui/components/ui/sersavan/multi-select"
 import { PlusIcon, TrashIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFieldArray, useFormContext } from "react-hook-form"

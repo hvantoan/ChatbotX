@@ -1,9 +1,9 @@
-import { tiktokIntegrationService } from "@chatbotx.io/business"
+import { tiktokIntegrationService } from "@inboxos.io/business"
 import type {
   TiktokAuthValue,
   TiktokComment,
-} from "@chatbotx.io/integration-tiktok"
-import { listTiktokComments } from "@chatbotx.io/integration-tiktok/apis/comment"
+} from "@inboxos.io/integration-tiktok"
+import { listTiktokComments } from "@inboxos.io/integration-tiktok/apis/comment"
 import { filterIntegrationsByAccount } from "../account-filter"
 import { collectCommentsSince, toEpochSeconds } from "./paging"
 import {

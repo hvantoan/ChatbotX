@@ -32,7 +32,7 @@ const { workspaceTokenAuthAPIForScope, capturedProcedures } = vi.hoisted(() => {
 vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 
 const ecommerceAnalyticsService = { getDashboard: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({ ecommerceAnalyticsService }))
+vi.mock("@inboxos.io/business", () => ({ ecommerceAnalyticsService }))
 
 await import("@/features/ecommerce-analytics/api/public")
 

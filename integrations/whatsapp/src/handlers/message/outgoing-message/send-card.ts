@@ -1,5 +1,5 @@
-import type { ButtonStepProps, MetadataPayload } from "@chatbotx.io/flow-config"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
+import type { ButtonStepProps, MetadataPayload } from "@inboxos.io/flow-config"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
 import { Image, Text } from "whatsapp-api-js/messages"
 import type { ClientMessage } from "whatsapp-api-js/types"
 import { generateFooter } from "../interactive"

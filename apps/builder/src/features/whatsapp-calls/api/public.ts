@@ -1,13 +1,13 @@
-import { aiProviders } from "@chatbotx.io/ai"
-import { listConnectedCallSummaryProviders } from "@chatbotx.io/ai/server"
+import { aiProviders } from "@inboxos.io/ai"
+import { listConnectedCallSummaryProviders } from "@inboxos.io/ai/server"
 import {
   callRecordingService,
   whatsappCallHistoryService,
   whatsappCallSummaryService,
   whatsappCallTranscriptService,
-} from "@chatbotx.io/business"
-import { whatsappCallAiSummarySchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { whatsappCallAiSummarySchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnFindingResource,

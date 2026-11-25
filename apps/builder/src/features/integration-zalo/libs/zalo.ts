@@ -1,5 +1,5 @@
-import type { ZaloCredentialPublic } from "@chatbotx.io/database/partials"
-import { generateAuthUrl } from "@chatbotx.io/integration-zalo"
+import type { ZaloCredentialPublic } from "@inboxos.io/database/partials"
+import { generateAuthUrl } from "@inboxos.io/integration-zalo"
 import { getOriginFromHeader } from "@/lib/domain"
 import { buildProviderCallbackUrl } from "@/lib/provider-origin"
 

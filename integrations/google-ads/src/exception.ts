@@ -1,4 +1,4 @@
-import { AuthException, SdkException } from "@chatbotx.io/sdk"
+import { AuthException, SdkException } from "@inboxos.io/sdk"
 import { z } from "zod"
 import { redactSecrets } from "./lib/redact"
 

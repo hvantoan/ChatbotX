@@ -1,7 +1,4 @@
-import {
-  type ImportFormat,
-  importFormats,
-} from "@chatbotx.io/database/partials"
+import { type ImportFormat, importFormats } from "@inboxos.io/database/partials"
 import type { ImportConfig } from "./types"
 
 const getFileExtension = (fileName: string): string => {

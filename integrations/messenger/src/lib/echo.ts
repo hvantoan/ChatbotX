@@ -1,4 +1,4 @@
-import { type EchoOrigin, echoOrigins } from "@chatbotx.io/sdk"
+import { type EchoOrigin, echoOrigins } from "@inboxos.io/sdk"
 import {
   META_FIRST_PARTY_ECHO_APP_IDS,
   type MessengerAttachment,

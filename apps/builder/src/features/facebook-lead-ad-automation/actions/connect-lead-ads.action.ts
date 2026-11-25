@@ -1,9 +1,9 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel, WorkspaceModel } from "@chatbotx.io/database/types"
-import { generateLeadAdsAuthUrl } from "@chatbotx.io/integration-messenger"
+import { platformCredentialService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel, WorkspaceModel } from "@inboxos.io/database/types"
+import { generateLeadAdsAuthUrl } from "@inboxos.io/integration-messenger"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { workspaceIdrequestParams } from "@/features/common/schema"
@@ -29,7 +29,7 @@ export const connectLeadAdsAction = workspaceActionClient
         })
       if (!messengerCredential) {
         const t = await getTranslations()
-        throw new ChatbotXException(t("facebookAds.errors.invalidAppSettings"))
+        throw new InboxOSException(t("facebookAds.errors.invalidAppSettings"))
       }
 
       // Only the Messenger callback is registered as a redirect_uri with the

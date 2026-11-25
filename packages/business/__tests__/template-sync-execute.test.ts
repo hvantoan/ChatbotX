@@ -33,7 +33,7 @@ const mocks = vi.hoisted(() => ({
   acquireLocks: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (callback: (tx: unknown) => unknown) =>
       callback({ execute: vi.fn() }),
@@ -58,11 +58,11 @@ vi.mock("../src/template/template-resource-locks", async (importOriginal) => {
 vi.mock("../src/template/installed-resource.service", () => ({
   assertResourceEditable: mocks.assertEditable,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({ customFieldModel: {} }))
-vi.mock("@chatbotx.io/database/statement-timeout", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({ customFieldModel: {} }))
+vi.mock("@inboxos.io/database/statement-timeout", () => ({
   setLocalStatementTimeout: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   loadResourceLabels: mocks.labels,
   templateInstallationRepository: {
     findByIdAndWorkspace: mocks.findInstallation,
@@ -93,12 +93,12 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     findByIdAndInstallation: mocks.findBackup,
   },
 }))
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/flow-config")>()),
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/flow-config")>()),
   parseTemplateExport: (payload: unknown) => ({ ok: true, data: payload }),
 }))
 let counter = 0
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   createId: () => `id-${++counter}`,
 }))

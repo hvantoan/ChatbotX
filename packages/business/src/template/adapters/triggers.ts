@@ -1,10 +1,10 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
-import { conditionModel, triggerModel } from "@chatbotx.io/database/schema"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
+import { conditionModel, triggerModel } from "@inboxos.io/database/schema"
 import {
   remapReferences,
   type UnresolvedReference,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { omitKeys } from "../fingerprint"
 import { collectResourceDependencies } from "../manifest-references"

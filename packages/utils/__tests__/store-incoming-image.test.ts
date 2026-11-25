@@ -16,7 +16,7 @@ const {
 
 const mocks = vi.hoisted(() => ({ info: vi.fn(), error: vi.fn() }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ info: mocks.info, error: mocks.error }),
 }))
 

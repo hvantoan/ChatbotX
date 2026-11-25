@@ -1,16 +1,16 @@
 {
-  "name": "@chatbotx.io/utils",
+  "name": "@inboxos.io/utils",
   "version": "0.1.0",
   "type": "module",
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@chatbotx.io/logger": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "countries-list": "catalog:",
     "date-fns": "catalog:",

@@ -1,9 +1,9 @@
-import { keywordConditionOperators } from "@chatbotx.io/database/partials"
+import { keywordConditionOperators } from "@inboxos.io/database/partials"
 import {
   automatedResponseModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
-import type { AutomatedResponseModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { AutomatedResponseModel } from "@inboxos.io/database/types"
 import z from "zod"
 import type { FlowResource } from "@/features/flows/schema/resource"
 

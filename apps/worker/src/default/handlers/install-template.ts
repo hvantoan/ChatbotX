@@ -1,6 +1,6 @@
-import { templateInstallService, templateService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
+import { templateInstallService, templateService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
 import type { Job } from "bullmq"
 import { runLeasedTemplateJob } from "../../lib/run-leased-template-job"
 import { enqueueInstalledAiFiles } from "./template-ai-files"
@@ -49,7 +49,7 @@ export async function installTemplate(data: InstallTemplateData, job: Job) {
       // validated once at save time.
       const parsed = parseTemplateExport(payload)
       if (!parsed.ok) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           `Template payload failed validation at install time: ${parsed.reason}`,
           "templatePayloadIncompatible",
         )

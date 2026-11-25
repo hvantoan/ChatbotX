@@ -29,7 +29,7 @@ const tx = {
   })),
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   db: {
     transaction: vi.fn(
@@ -41,12 +41,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isUniqueViolationError: vi.fn(),
   sql: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   miniAppModel: { id: "id", submissionsCount: "submissionsCount" },
   miniAppPublicationModel: {},
   miniAppSubmissionModel: { id: "id" },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   miniAppRepository: {},
   miniAppSubmissionRepository: {},
 }))
@@ -62,7 +62,7 @@ vi.mock("../src/mini-app/upload-service", () => ({
   miniAppUploadService: { claimForSubmission },
 }))
 
-const { applyCustomFieldMappings } = await import("@chatbotx.io/mini-app")
+const { applyCustomFieldMappings } = await import("@inboxos.io/mini-app")
 const { miniAppSubmissionService } = await import(
   "../src/mini-app/submission-service"
 )

@@ -19,17 +19,17 @@ const mocks = vi.hoisted(() => ({
 
 // The trigger action registry imports the sequence actions, which reach
 // `contactSequenceService` through its (non-barrel) subpath.
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {},
 }))
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   runPipelineAction: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   metaCapiEventChannelSchema: { safeParse: () => ({ success: false }) },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findByIdForContact: (...args: unknown[]) =>
       mocks.findByIdForContact(...args),
@@ -37,7 +37,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
       mocks.findMostRecentByContact(...args),
   },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsConversionService: {},
   botFieldService: {},
   contactCustomFieldService: {
@@ -64,13 +64,13 @@ vi.mock("@chatbotx.io/business", () => ({
   contactInboxService: {},
   googleAdsConversionService: {},
 }))
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: vi.fn(),
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   default: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
   getChildLogger: () => ({
     warn: vi.fn(),
@@ -79,12 +79,12 @@ vi.mock("@chatbotx.io/logger", () => ({
     debug: vi.fn(),
   }),
 }))
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: async (_contactId: string, value: unknown) =>
     value,
   contactVariableService: {},
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },
 }))

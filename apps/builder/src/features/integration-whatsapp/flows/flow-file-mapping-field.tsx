@@ -4,12 +4,12 @@ import {
   WHATSAPP_FLOW_FILE_ANSWER_FIELD_TYPES,
   type WhatsappFlowFileFormat,
   whatsappFlowFileFormats,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   SelectField,
   type SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+} from "@inboxos.io/ui/components/form/select-field"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 

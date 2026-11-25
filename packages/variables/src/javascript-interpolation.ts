@@ -2,11 +2,11 @@ import {
   type CustomFieldType,
   type SystemFieldType,
   systemFieldTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   FieldReferenceKind,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { isCouponVariable, resolveCouponVariable } from "./coupon-variable"
 import {
   isPipelineVariable,

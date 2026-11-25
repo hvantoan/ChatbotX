@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { type ReactNode, useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { useShop } from "./shop-provider"

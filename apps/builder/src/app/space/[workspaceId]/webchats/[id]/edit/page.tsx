@@ -1,4 +1,4 @@
-import { inboxService, integrationWebchatService } from "@chatbotx.io/business"
+import { inboxService, integrationWebchatService } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import { UpdateWebchatForm } from "@/features/integration-webchat/components/update-webchat-form"

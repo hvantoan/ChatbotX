@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type CartLine,
   type EcommerceSettings,
@@ -8,26 +8,26 @@ import {
   type OrderShippingAddress,
   type PaymentMethod,
   type ShippingType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   cartRepository,
   ecommerceOpenHoursRepository,
   orderRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
-import type { CartModel } from "@chatbotx.io/database/types"
-import { emitCartAbandoned, emitCartItemChanged } from "@chatbotx.io/events"
-import type { MessageInboundOrderEntity } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/repositories"
+import type { CartModel } from "@inboxos.io/database/types"
+import { emitCartAbandoned, emitCartItemChanged } from "@inboxos.io/events"
+import type { MessageInboundOrderEntity } from "@inboxos.io/sdk"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import { conversationService } from "../conversation/service"
 import { isWithinOpenHours } from "../ecommerce-open-hours/is-open"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -564,7 +564,7 @@ class WebshopService extends BaseService {
         channel: cartInbox.channel,
       }
     } catch (error) {
-      if (error instanceof ChatbotXException && error.code === "notFound") {
+      if (error instanceof InboxOSException && error.code === "notFound") {
         return null
       }
       throw error

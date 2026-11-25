@@ -1,12 +1,12 @@
-import type { SocialProvider } from "@chatbotx.io/auth/server"
+import type { SocialProvider } from "@inboxos.io/auth/server"
 import {
   isSignUpDisabled,
   resolveGenericOAuthConfig,
   SOCIAL_PROVIDERS,
   warnIfGenericOAuthUnlicensed,
-} from "@chatbotx.io/auth/server"
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
-import { hasEnterpriseFeatures } from "@chatbotx.io/business"
+} from "@inboxos.io/auth/server"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
+import { hasEnterpriseFeatures } from "@inboxos.io/business"
 import { env } from "@/env"
 import { resolveInvitationFromCookie } from "@/features/invitations/lib/invitation-cookie"
 import { resolveEnabledProvidersForDomain } from "@/lib/auth/auth-instances"

@@ -9,13 +9,13 @@ import {
   type OnDemandProfileChannel,
   telegramIntegrationService,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
-import type { InstagramAuthValue } from "@chatbotx.io/integration-instagram/schema"
-import type { LineAuthValue } from "@chatbotx.io/integration-line"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import type { TelegramAuthValue } from "@chatbotx.io/integration-telegram"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo/schema"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business"
+import type { InstagramAuthValue } from "@inboxos.io/integration-instagram/schema"
+import type { LineAuthValue } from "@inboxos.io/integration-line"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import type { TelegramAuthValue } from "@inboxos.io/integration-telegram"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo/schema"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { integrations } from "@/integration"
 
 export type ProfileFetcherFactoryInput = {

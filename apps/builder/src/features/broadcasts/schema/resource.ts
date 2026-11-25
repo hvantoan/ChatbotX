@@ -1,8 +1,5 @@
-import { broadcastStatusReasons } from "@chatbotx.io/database/partials"
-import {
-  broadcastModel,
-  createSelectSchema,
-} from "@chatbotx.io/database/schema"
+import { broadcastStatusReasons } from "@inboxos.io/database/partials"
+import { broadcastModel, createSelectSchema } from "@inboxos.io/database/schema"
 import type {
   BroadcastModel,
   BroadcastRecurrenceModel,
@@ -11,8 +8,8 @@ import type {
   InboxModel,
   IntegrationMessengerModel,
   IntegrationWhatsappModel,
-} from "@chatbotx.io/database/types"
-import { recurrenceRuleShape } from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/database/types"
+import { recurrenceRuleShape } from "@inboxos.io/utils/recurrence"
 import { z } from "zod"
 
 export const broadcastResource = createSelectSchema(broadcastModel)

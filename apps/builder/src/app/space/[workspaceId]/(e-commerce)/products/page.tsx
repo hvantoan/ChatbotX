@@ -4,7 +4,7 @@ import {
   metaCatalogSyncRunService,
   productCategoryService,
   productService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { resolveExternalStoreLinks } from "@/features/external-store/lib/resolve-store-links"
 import { listImports } from "@/features/import/queries/list-imports.queries"
 import { CategorySidebar } from "@/features/product-categories/components/category-sidebar"

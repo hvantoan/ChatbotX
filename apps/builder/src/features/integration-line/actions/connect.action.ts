@@ -1,6 +1,6 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { redirect } from "next/navigation"
 import { authActionClient } from "@/lib/safe-action"
 import { connectLine } from "../lib/connect-line"
@@ -37,7 +37,7 @@ export const connectLineAction = authActionClient
           webhook: result.webhook,
         }
       } catch (error) {
-        if (error instanceof ChatbotXException) {
+        if (error instanceof InboxOSException) {
           if (error.code === "channelDuplicated" && parsedInput.workspaceId) {
             redirect(
               `/space/${parsedInput.workspaceId}/settings/channels?channel=line&error=duplicated`,

@@ -1,4 +1,4 @@
-import { inboundWebhookService } from "@chatbotx.io/business"
+import { inboundWebhookService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import {
   toInboundWebhookRequestSummary,

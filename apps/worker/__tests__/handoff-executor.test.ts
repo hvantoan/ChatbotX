@@ -12,23 +12,23 @@ const { cancelSpy, emitSpy, handOffSpy, transferredSpy, warnSpy } = vi.hoisted(
   }),
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: { handOffIfBotEnabled: handOffSpy },
 }))
 
-vi.mock("@chatbotx.io/business/smart-delay", () => ({
+vi.mock("@inboxos.io/business/smart-delay", () => ({
   smartDelayService: { cancelQuickReplyFollowUps: cancelSpy },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: emitSpy,
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitConversationTransferredToHuman: transferredSpy,
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   default: {
     error: vi.fn(),
     warn: warnSpy,

@@ -40,11 +40,11 @@ vi.mock("better-auth/plugins", () => ({
   oneTimeToken: () => ({ id: "one-time-token" }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   accountModel: {},
   jwkModel: {},
   oauthAccessTokenModel: {},
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   verificationModel: {},
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { listActiveDomains },
   platformCredentialService: {
     findDecryptedPlatform: vi.fn(),
@@ -69,16 +69,16 @@ vi.mock("@chatbotx.io/business", () => ({
   invitationService: { findActiveByCode: vi.fn().mockResolvedValue(null) },
 }))
 
-// @chatbotx.io/utils sets up a process-global Snowflake ID generator at
+// @inboxos.io/utils sets up a process-global Snowflake ID generator at
 // module scope; re-importing it after `vi.resetModules()` collides on the
 // same "Place ID" and throws. Stub it since these tests never generate ids.
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "test-id",
   getPublicOriginFromRequest: vi.fn(),
   parseEnvBool: (value: unknown) => value === true || value === "true",
 }))
 
-vi.mock("@chatbotx.io/mail", () => ({
+vi.mock("@inboxos.io/mail", () => ({
   DEFAULT_FORGOT_PASSWORD_SUBJECT: "reset",
   DEFAULT_MAGIC_LINK_SUBJECT: "magic",
   DEFAULT_SIGNUP_SUBJECT: "signup",
@@ -121,7 +121,7 @@ describe("trustedOrigins during next build", () => {
         BROKER_URL,
         BUILDER_URL,
         "chatconnectxapp://",
-        "chatbotxmobileapp://",
+        "inboxosmobileapp://",
       ]),
     )
     expect(origins).toHaveLength(4)

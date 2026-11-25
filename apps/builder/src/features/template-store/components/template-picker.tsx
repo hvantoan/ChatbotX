@@ -1,7 +1,7 @@
 "use client"
 
-import type { TemplateStoreCandidate } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateStoreCandidate } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -9,13 +9,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@chatbotx.io/ui/components/ui/command"
+} from "@inboxos.io/ui/components/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
+} from "@inboxos.io/ui/components/ui/popover"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { ChevronsUpDown } from "lucide-react"
 import { useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
-import type { TiktokCredentialPublic } from "@chatbotx.io/database/partials"
-import { generateAuthUrl } from "@chatbotx.io/integration-tiktok"
+import type { TiktokCredentialPublic } from "@inboxos.io/database/partials"
+import { generateAuthUrl } from "@inboxos.io/integration-tiktok"
 import { getOriginFromHeader } from "@/lib/domain"
 import { buildProviderCallbackUrl } from "@/lib/provider-origin"
 

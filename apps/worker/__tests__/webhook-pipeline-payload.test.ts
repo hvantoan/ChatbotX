@@ -1,7 +1,7 @@
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: { listWithDefinitions: vi.fn() },
   contactService: { findById: vi.fn() },
   tagService: { findNameByIdForWorkspace: vi.fn() },

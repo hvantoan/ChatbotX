@@ -1,11 +1,11 @@
 import type {
   QuestionnaireQuestionImage,
   SupportedQuestionnaireQuestionType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   QuestionnaireAnswerValue,
   QuestionnaireChoiceOption,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 
 export type QuestionnaireQuestionInput = {
   id?: string

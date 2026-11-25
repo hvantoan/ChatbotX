@@ -1,4 +1,4 @@
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { parsePhoneNumber } from "libphonenumber-js"
 
 /**

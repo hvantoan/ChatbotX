@@ -3,7 +3,7 @@ import {
   MarketingMessageJobAction,
   marketingMessageCampaignJobId,
   marketingMessageQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 /**
  * Enqueues one campaign step on the dedicated queue: a dispatch makes hundreds

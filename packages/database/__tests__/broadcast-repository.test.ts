@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
   ne: vi.fn((field: unknown, value: unknown) => ({ ne: [field, value] })),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: mocks.and,
   db: {
     query: {
@@ -37,7 +37,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(() => "sql-filter"),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: "broadcastModel.id",
     name: "broadcastModel.name",
@@ -49,7 +49,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   contactsOnBroadcastsModel: { broadcastId: "broadcastId-column" },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(() => ({ limit: 10, offset: 0 })),
   likeContains: vi.fn((value: string) => `%${value}%`),
   parseOrderByAsObject: vi.fn(() => ({})),

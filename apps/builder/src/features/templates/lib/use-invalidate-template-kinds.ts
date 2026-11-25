@@ -1,4 +1,4 @@
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import { useQueryClient } from "@tanstack/react-query"
 import { useInvalidateAIAgents } from "@/features/ai-agents/hooks/use-ai-agents"
 import {

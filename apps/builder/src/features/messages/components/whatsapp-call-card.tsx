@@ -1,22 +1,22 @@
 "use client"
 
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { channelTypes } from "@inboxos.io/database/partials"
 import {
   type MessageWhatsappCallEntity,
   resolveWhatsappCallActivityLabelKey,
-} from "@chatbotx.io/sdk"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/sdk"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import {
   DownloadIcon,
   FileTextIcon,

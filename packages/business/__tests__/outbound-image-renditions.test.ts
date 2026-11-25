@@ -11,13 +11,13 @@ const mockPut = vi.fn((key: string, value: unknown) => {
   return Promise.resolve()
 })
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: { get: mockGet, put: mockPut },
 }))
 vi.mock("../src/net/ssrf-guard", () => ({
   assertPublicUrl: vi.fn(async () => undefined),
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     debug: vi.fn(),
     error: vi.fn(),
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/logger", () => ({
     warn: vi.fn(),
   }),
 }))
-vi.mock("@chatbotx.io/filesystem", async () => {
+vi.mock("@inboxos.io/filesystem", async () => {
   const { fetchFollowingSafeRedirects, readBodyWithLimit } = await import(
     "../../filesystem/src/lib/bounded-fetch"
   )

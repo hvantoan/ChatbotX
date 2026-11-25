@@ -1,9 +1,9 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { channelTypes } from "@inboxos.io/database/partials"
 import { describe, expect, test, vi } from "vitest"
 
 vi.mock("remeda", () => ({ randomString: () => "rand" }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => "minted" }
 })
 

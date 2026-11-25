@@ -4,7 +4,7 @@ import {
   buttonTypes,
   COPY_TEXT_MAX,
   isNativeButtonType,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { PlainTextEditorField } from "@/components/tiptap/plain-text-editor-field"
 import { useButtonEditorChannel } from "../../button-editor-channel"

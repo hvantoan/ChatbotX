@@ -1,7 +1,7 @@
 "use server"
 
-import type { UserModel, WorkspaceModel } from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import type { UserModel, WorkspaceModel } from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { updateMarketingMessage } from "../lib/campaign-operations"
 import {

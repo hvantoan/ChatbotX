@@ -1,4 +1,4 @@
-import { expectStateVerbatim } from "@chatbotx.io/vitest-config/test-utils"
+import { expectStateVerbatim } from "@inboxos.io/vitest-config/test-utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type * as ThreadsAuthApi from "../src/apis/auth"
 import { THREADS_SCOPES } from "../src/constants"

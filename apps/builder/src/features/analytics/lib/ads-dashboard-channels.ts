@@ -1,8 +1,8 @@
-import { inboxService } from "@chatbotx.io/business"
+import { inboxService } from "@inboxos.io/business"
 import {
   type AdsEligibleChannelType,
   adsEligibleChannelTypes,
-} from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/utils/channel"
 
 /**
  * Which Ads Analytics nav entries (`AnalyticsNav`) a workspace should see.

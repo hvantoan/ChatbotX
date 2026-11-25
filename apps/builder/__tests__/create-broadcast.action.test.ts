@@ -1,7 +1,7 @@
 // @vitest-environment node
 
-import { broadcastPlanLimitException } from "@chatbotx.io/business/errors"
-import { TRIAL_BROADCAST_PLAN_POLICY } from "@chatbotx.io/database/partials"
+import { broadcastPlanLimitException } from "@inboxos.io/business/errors"
+import { TRIAL_BROADCAST_PLAN_POLICY } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -34,7 +34,7 @@ vi.mock("@/lib/safe-action", () => {
   return { workspaceActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: { create: mockCreate },
   BroadcastValidationException: MockBroadcastValidationException,
 }))

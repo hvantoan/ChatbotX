@@ -4,8 +4,8 @@ import {
   WHATSAPP_LOCATION_LONGITUDE_LIMIT,
   WHATSAPP_LOCATION_TEXT_MAX,
   type WhatsappLocationStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import type { LocationMessage, WhatsappAuthValue } from "../../../schema"
 
 const clean = (value: string | undefined) =>

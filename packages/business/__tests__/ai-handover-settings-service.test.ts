@@ -1,4 +1,4 @@
-import type { AiHandoverSettingsModel } from "@chatbotx.io/database/types"
+import type { AiHandoverSettingsModel } from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -20,7 +20,7 @@ vi.mock("../src/template/template-resource-locks", () => ({
   withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(TX),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   aiHandoverSettingsRepository: {
     findByInbox: mocks.findByInbox,
     upsert: mocks.upsert,
@@ -35,7 +35,7 @@ vi.mock("../src/inbox/service", () => ({
 vi.mock("../src/workspace/service", () => ({
   workspaceService: { find: mocks.findWorkspace },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.invalidateCacheByTags,
   withCache: mocks.withCache,
 }))

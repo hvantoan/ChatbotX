@@ -9,37 +9,37 @@ import {
   resolveContactAvatarUrl,
   resolveTenantSettings,
   workspaceApiTokenService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   languageFromLocale,
   normalizeStoredTimezone,
   offsetFromStoredTimezone,
-} from "@chatbotx.io/business/contact-locale"
-import { loadLastPipelineItemId } from "@chatbotx.io/business/pipeline/variable-targets"
-import { resolveGenderLabel } from "@chatbotx.io/business/system-field"
-import { isWorkspaceScheduledForDeletion } from "@chatbotx.io/business/workspace-lifecycle/predicates"
-import { ensureContactAvatarMirrored } from "@chatbotx.io/channel-registry/media-hydration"
+} from "@inboxos.io/business/contact-locale"
+import { loadLastPipelineItemId } from "@inboxos.io/business/pipeline/variable-targets"
+import { resolveGenderLabel } from "@inboxos.io/business/system-field"
+import { isWorkspaceScheduledForDeletion } from "@inboxos.io/business/workspace-lifecycle/predicates"
+import { ensureContactAvatarMirrored } from "@inboxos.io/channel-registry/media-hydration"
 import {
   type ContactSource,
   contactSources,
   type SystemFieldType,
   systemFieldTypes,
-} from "@chatbotx.io/database/partials"
-import type { MessageModel } from "@chatbotx.io/database/types"
-import { signAppointmentScheduleToken } from "@chatbotx.io/encryption"
-import { signLeaderboardViewToken } from "@chatbotx.io/encryption/leaderboard-view-token"
-import { signMiniAppToken } from "@chatbotx.io/encryption/mini-app-token"
-import { signMinigamePlayToken } from "@chatbotx.io/encryption/minigame-play-token"
-import { signShopToken } from "@chatbotx.io/encryption/shop-token"
-import { signUserHash } from "@chatbotx.io/encryption/user-hash"
+} from "@inboxos.io/database/partials"
+import type { MessageModel } from "@inboxos.io/database/types"
+import { signAppointmentScheduleToken } from "@inboxos.io/encryption"
+import { signLeaderboardViewToken } from "@inboxos.io/encryption/leaderboard-view-token"
+import { signMiniAppToken } from "@inboxos.io/encryption/mini-app-token"
+import { signMinigamePlayToken } from "@inboxos.io/encryption/minigame-play-token"
+import { signShopToken } from "@inboxos.io/encryption/shop-token"
+import { signUserHash } from "@inboxos.io/encryption/user-hash"
 import {
   DATE_FORMAT,
   DATE_TIME_FORMAT,
   DEFAULT_FILTER_TIMEZONE,
   formatCustomFieldValueInTimeZone,
   formatWithFallback,
-} from "@chatbotx.io/utils/datetime"
-import { VARIABLE_PLACEHOLDER_SOURCE } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/utils/datetime"
+import { VARIABLE_PLACEHOLDER_SOURCE } from "@inboxos.io/utils/variables"
 import {
   getAssignedTeamName,
   listSenderTeamNames,
@@ -79,7 +79,7 @@ import type { ContactVariableContext, ReplaceVariableProps } from "./schema"
 const LOCALE_SEPARATOR_RE = /[-_]/
 // Exported so javascript-interpolation.ts scans the same placeholder syntax as
 // the message-text path. Built (global, for `matchAll`/`replace`) from the
-// shared canonical grammar in `@chatbotx.io/utils` — the single source of truth,
+// shared canonical grammar in `@inboxos.io/utils` — the single source of truth,
 // so both resolvers and the flow-builder validators can't drift.
 export const VARIABLE_PLACEHOLDER_REGEX = new RegExp(
   VARIABLE_PLACEHOLDER_SOURCE,

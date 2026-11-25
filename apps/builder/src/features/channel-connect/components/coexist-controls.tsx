@@ -1,6 +1,6 @@
 "use client"
 
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import type { MessageKey } from "../lib/message-key"

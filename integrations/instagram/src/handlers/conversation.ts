@@ -1,4 +1,4 @@
-import { type ConversationHandlers, SdkException } from "@chatbotx.io/sdk"
+import { type ConversationHandlers, SdkException } from "@inboxos.io/sdk"
 import { sendMessage } from "../apis/message"
 import type { InstagramAuthValue } from "../schema"
 

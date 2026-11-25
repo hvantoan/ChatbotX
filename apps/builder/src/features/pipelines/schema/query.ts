@@ -7,8 +7,8 @@ import {
   pipelineItemSortKeys,
   pipelineItemStatuses,
   pipelineValueOperators,
-} from "@chatbotx.io/database/partials"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { datePresets } from "../lib/date-presets"
 import {

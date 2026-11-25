@@ -2,8 +2,8 @@ import {
   type ContactInboxPhoneTransition,
   contactInboxService,
   contactService,
-} from "@chatbotx.io/business"
-import type { IntegrationJobWhatsappIdentityChange } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { IntegrationJobWhatsappIdentityChange } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 

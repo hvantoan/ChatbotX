@@ -18,7 +18,7 @@ vi.mock("../src/dispatch-manager", () => ({
   createDispatch: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {},
     insert: (table: unknown) => {
@@ -64,25 +64,25 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactsOnSequenceModel: { id: "__contactsOnSequence_id" },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   sequenceConnections: {
     useExisting: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock("@chatbotx.io/scheduler", () => ({
+vi.mock("@inboxos.io/scheduler", () => ({
   // Must be a class so it survives `new` and Biome's useArrowFunction rule
   SchedulerClient: class {
     addToSchedule = addToScheduleMock
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: () => "test-id",
@@ -215,7 +215,7 @@ describe("enrollContactInSequence", () => {
     })
 
     test("uses the provided root db client without wrapping another transaction", async () => {
-      const { db } = await import("@chatbotx.io/database/client")
+      const { db } = await import("@inboxos.io/database/client")
 
       await enrollContactInSequence(makeEnrollParams({ client: db as never }))
 

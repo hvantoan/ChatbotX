@@ -1,8 +1,8 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
 import {
   templateInstallationSyncRepository,
   templateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { notFoundException } from "../errors"
 import { type TemplateActor, visibleInstallCategories } from "./permissions"
 

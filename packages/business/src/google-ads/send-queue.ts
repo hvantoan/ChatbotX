@@ -1,9 +1,9 @@
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 type EventRef = Pick<GoogleAdsConversionEventModel, "id" | "workspaceId">
 

@@ -1,7 +1,7 @@
 import "server-only"
 
-import type { MmDeliveryErrorCode } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import type { MmDeliveryErrorCode } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 
 type Translate = Awaited<ReturnType<typeof getTranslations>>
@@ -35,7 +35,7 @@ export async function withMmDeliveryErrors<T>(
   try {
     return await fn()
   } catch (error) {
-    if (!(error instanceof ChatbotXException)) {
+    if (!(error instanceof InboxOSException)) {
       throw error
     }
     const messages: Record<string, (() => string) | undefined> = buildMessages(
@@ -45,7 +45,7 @@ export async function withMmDeliveryErrors<T>(
     if (!message) {
       throw error
     }
-    throw new ChatbotXException(
+    throw new InboxOSException(
       message(),
       error.code,
       error.code === "mmNotFound" ? 404 : error.httpStatusCode,

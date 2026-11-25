@@ -19,9 +19,9 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
+vi.mock("@inboxos.io/database/client", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/client")>()
+    await importOriginal<typeof import("@inboxos.io/database/client")>()
   return {
     ...actual,
     db: {
@@ -32,7 +32,7 @@ vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn((callback) => callback),
   invalidateCacheByTags: vi.fn(async () => undefined),
   createRedisConnection: vi.fn(() => ({ on: vi.fn() })),

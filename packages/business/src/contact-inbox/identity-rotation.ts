@@ -1,17 +1,17 @@
 import type {
   ContactInboxIdentityFields,
   ContactInboxIdentityGuard,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ContactInboxOperationalModel,
   ContactModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   type IncomingContact,
   isDistinctPrimaryIdentity,
   isSourceUserIdKeyedIdentity,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 
 export type ContactInboxWithContact = ContactInboxModel & {
   contact: ContactModel

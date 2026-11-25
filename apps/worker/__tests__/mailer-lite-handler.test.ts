@@ -1,5 +1,5 @@
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
-import { mailerLiteAddSubscriberDefaultFn } from "@chatbotx.io/flow-config"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
+import { mailerLiteAddSubscriberDefaultFn } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { buildMailerLiteSubscriberProps } from "../src/integration/handlers/mailer-lite-handler"
 
@@ -23,7 +23,7 @@ const mocks = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async ({ integration }: { integration: unknown }) => ({
     auth: mocks.state.auth,
     integration,
@@ -33,21 +33,21 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptedDataSchema: { parse: vi.fn((value: unknown) => value) },
   encryptUtils: {
     decryptObject: vi.fn(async () => mocks.state.auth),
   },
 }))
 
-vi.mock("@chatbotx.io/integration-mailer-lite", () => ({
+vi.mock("@inboxos.io/integration-mailer-lite", () => ({
   MAILER_LITE_HTTP_TIMEOUT_MS: 15_000,
   MailerLiteApiError: class MailerLiteApiError extends Error {},
   mailerLiteAuthSchema: {},
   integration: { runAction: mocks.runAction },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 

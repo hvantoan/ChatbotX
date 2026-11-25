@@ -45,18 +45,18 @@ const { workspaceTokenAuthAPIForScope, capturedProcedures } = vi.hoisted(() => {
 
 vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   quotaEnforcementService: {},
   userQuotaService: {},
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
-  ChatbotXException: class extends Error {},
+  InboxOSException: class extends Error {},
 }))
 
 const getCapabilities = vi.fn()
-vi.mock("@chatbotx.io/business/capabilities", () => ({
+vi.mock("@inboxos.io/business/capabilities", () => ({
   CAPABILITIES_INCLUDES: [
     "inboxes",
     "templates",

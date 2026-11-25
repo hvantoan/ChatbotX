@@ -3,8 +3,8 @@ import "server-only"
 import {
   facebookMarketingMessageDeliveryService,
   facebookMarketingMessagesService,
-} from "@chatbotx.io/business"
-import type { FacebookMarketingMessageModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import type { FacebookMarketingMessageModel } from "@inboxos.io/database/types"
 
 export function listMarketingMessages(
   workspaceId: string,

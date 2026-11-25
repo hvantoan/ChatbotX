@@ -1,8 +1,8 @@
 import type {
   InboundWebhookFieldError,
   InboundWebhookSkipReason,
-} from "@chatbotx.io/database/partials"
-import type { InboundWebhookModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { InboundWebhookModel } from "@inboxos.io/database/types"
 import { mergeRichSystemFields } from "../contact/service"
 import {
   applyMappedContactFields,

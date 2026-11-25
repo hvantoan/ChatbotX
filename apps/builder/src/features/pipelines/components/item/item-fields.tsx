@@ -1,8 +1,8 @@
 "use client"
 
-import { pipelineItemStatuses } from "@chatbotx.io/database/partials"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import { pipelineItemStatuses } from "@inboxos.io/database/partials"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import { FlagIcon } from "lucide-react"
 import { useFormatter, useLocale, useTranslations } from "next-intl"
 import type { ReactNode } from "react"

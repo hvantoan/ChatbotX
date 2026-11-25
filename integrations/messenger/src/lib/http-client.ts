@@ -1,4 +1,4 @@
-import { UNKNOWN_ERROR } from "@chatbotx.io/sdk"
+import { UNKNOWN_ERROR } from "@inboxos.io/sdk"
 import ky, { isHTTPError, type KyInstance, type ShouldRetryState } from "ky"
 import {
   type ChannelErrorSource,

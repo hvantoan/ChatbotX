@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { TemplateResourceCategory } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { TemplateResourceCategory } from "@inboxos.io/database/partials"
 import {
   loadResourceLabels,
   templateInstallationSyncRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import {
   isLabelledManifestKind,
   isManifestKind,

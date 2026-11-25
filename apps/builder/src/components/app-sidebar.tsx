@@ -1,12 +1,12 @@
 "use client"
 
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-} from "@chatbotx.io/ui/components/ui/sidebar"
+} from "@inboxos.io/ui/components/ui/sidebar"
 import {
   AtomIcon,
   BrainIcon,

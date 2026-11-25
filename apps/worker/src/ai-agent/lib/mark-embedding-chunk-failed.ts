@@ -1,5 +1,5 @@
-import { aiFileService } from "@chatbotx.io/business"
-import { AIJobAction, type AIJobData } from "@chatbotx.io/worker-config"
+import { aiFileService } from "@inboxos.io/business"
+import { AIJobAction, type AIJobData } from "@inboxos.io/worker-config"
 import { type Job, UnrecoverableError } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { hasExhaustedAttempts } from "../../lib/job-attempts"

@@ -7,4 +7,4 @@ export {
   formatCustomFieldValueInTimeZone,
   hasExplicitOffset,
   resolveFilterTimezone,
-} from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/utils/datetime"

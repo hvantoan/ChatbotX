@@ -6,10 +6,10 @@ import {
   connectionProviderUnavailableException,
   connectionStateMismatchException,
   connectSessionExpiredException,
-} from "@chatbotx.io/business/errors"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import type * as DatabaseSchema from "@chatbotx.io/database/schema"
-import type * as ChatbotxUtilsModule from "@chatbotx.io/utils"
+} from "@inboxos.io/business/errors"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import type * as DatabaseSchema from "@inboxos.io/database/schema"
+import type * as ChatbotxUtilsModule from "@inboxos.io/utils"
 import type { NextRequest } from "next/server"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -51,7 +51,7 @@ const {
   mockIsCloud: vi.fn(() => false),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: { resolveForOwner: mockResolveForOwner },
   hasWorkspaceAccess: vi.fn(),
   workspaceService: { findById: vi.fn(), create: vi.fn() },
@@ -67,20 +67,20 @@ vi.mock("@chatbotx.io/business", () => ({
   tenantService: { findByOwner: mockFindByOwner },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: vi.fn() },
   withAuditContext: async (_ctx: unknown, fn: () => Promise<unknown>) =>
     await fn(),
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByNonce: mockFindByNonce,
     fail: mockFailSession,
   },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     completeAuthorization: mockCompleteAuthorization,
     connectTargets: mockConnectTargets,
@@ -124,11 +124,11 @@ vi.mock("@chatbotx.io/connections", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => {
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => {
   const actual = await importOriginal<typeof DatabaseSchema>()
   return {
     ...actual,
@@ -138,45 +138,45 @@ vi.mock("@chatbotx.io/database/schema", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   exchangeCodeForToken: vi.fn(),
   exchangeLongLivedToken: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   exchangeCodeForToken: vi.fn(),
   getInstagramAccount: vi.fn(),
   subscribePageToInstagramWebhook: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   exchangeCodeForToken: vi.fn(),
   getFacebookUser: vi.fn(),
   getUserInstagramAccounts: vi.fn(),
   subscribePageToInstagramWebhook: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   exchangeCodeForToken: vi.fn(),
   getFacebookUser: vi.fn(),
   getUserPages: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   exchangeLongLivedToken: vi.fn(),
   subscribePageToAppWebhook: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   TiktokMissingScopesError: class TiktokMissingScopesError extends Error {},
 }))
-vi.mock("@chatbotx.io/integration-threads", () => ({
+vi.mock("@inboxos.io/integration-threads", () => ({
   buildThreadsAuthValue: vi.fn(),
   exchangeCodeForToken: vi.fn(),
   getThreadsProfile: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   AuthType: { oauth2: "oauth2", custom: "custom" },
   SdkException: class SdkException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
   const actual = await importOriginal<typeof ChatbotxUtilsModule>()
   return {
     ...actual,

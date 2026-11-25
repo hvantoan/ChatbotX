@@ -1,25 +1,25 @@
-import { and, db, eq, isDatabaseError } from "@chatbotx.io/database/client"
+import { and, db, eq, isDatabaseError } from "@inboxos.io/database/client"
 import {
   connectionModel,
   integrationModel,
   integrationOpenaiCompatibleModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   AuthType,
   type SecretTextAuthValue,
   secretTextAuthSchema,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
   encryptAiProviderAuth,
   resolveAiProviderAuth,
 } from "../connection/store-bindings"
 import {
-  ChatbotXException,
   conflictException,
   connectionAlreadyConnectedException,
   connectionCredentialsRejectedException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -33,7 +33,7 @@ const PRESET_UNIQUE_INDEX = "IntegrationOpenaiCompatible_workspaceId_preset_key"
 const CONNECTION_SOURCE_UNIQUE_INDEX =
   "Connection_workspaceId_provider_sourceId_key"
 
-export class OpenaiCompatiblePresetAlreadyConnectedError extends ChatbotXException {
+export class OpenaiCompatiblePresetAlreadyConnectedError extends InboxOSException {
   constructor() {
     super(
       "OpenAI-compatible preset is already connected",
@@ -48,8 +48,7 @@ export const isOpenaiCompatiblePresetAlreadyConnectedError = (
   error: unknown,
 ): error is OpenaiCompatiblePresetAlreadyConnectedError =>
   error instanceof OpenaiCompatiblePresetAlreadyConnectedError ||
-  (error instanceof ChatbotXException &&
-    error.code === "presetAlreadyConnected")
+  (error instanceof InboxOSException && error.code === "presetAlreadyConnected")
 
 /**
  * An endpoint the connect/update probe could not reach. Keeps the public
@@ -58,7 +57,7 @@ export const isOpenaiCompatiblePresetAlreadyConnectedError = (
  * `providerUnreachable` message. Carries no `data` so the public error message
  * stays byte-identical to a plain `invalidBaseUrl` rejection.
  */
-export class OpenaiCompatibleProviderUnreachableError extends ChatbotXException {
+export class OpenaiCompatibleProviderUnreachableError extends InboxOSException {
   constructor() {
     super(
       "OpenAI-compatible base URL could not be verified.",
@@ -73,7 +72,7 @@ export const isOpenaiCompatibleProviderUnreachableError = (
   error: unknown,
 ): error is OpenaiCompatibleProviderUnreachableError =>
   error instanceof OpenaiCompatibleProviderUnreachableError ||
-  (error instanceof ChatbotXException &&
+  (error instanceof InboxOSException &&
     error.name === "OpenaiCompatibleProviderUnreachableError")
 
 const isUniqueConstraintViolation = (
@@ -430,7 +429,7 @@ class IntegrationOpenaiCompatibleService extends BaseService {
 
       if (!verifyResult.ok) {
         if (verifyResult.reason === "unsafe_base_url") {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "OpenAI-compatible base URL is not allowed.",
             "ssrfBlocked",
             400,

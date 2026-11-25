@@ -1,6 +1,6 @@
-import type { TriggerModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import type { TriggerModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   createSearchParamsCache,
   parseAsInteger,

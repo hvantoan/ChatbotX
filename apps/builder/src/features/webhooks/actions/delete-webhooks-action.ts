@@ -1,6 +1,6 @@
 "use server"
 
-import { webhookService } from "@chatbotx.io/business"
+import { webhookService } from "@inboxos.io/business"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

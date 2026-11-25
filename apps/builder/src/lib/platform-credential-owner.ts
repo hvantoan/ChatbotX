@@ -2,13 +2,13 @@ import "server-only"
 import {
   resolveTenantByDomain,
   resolveTenantOwnerId,
-} from "@chatbotx.io/auth/tenant"
+} from "@inboxos.io/auth/tenant"
 import {
   resolveCredentialOwnerIdForWorkspace,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { cache } from "react"
 import { isCloud } from "@/env"
 import { getDomainFromHeader } from "@/lib/domain"

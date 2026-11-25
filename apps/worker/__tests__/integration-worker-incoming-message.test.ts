@@ -286,14 +286,14 @@ vi.mock("../src/integration/handlers/thread-control", () => ({
 // runs for real.
 // ---------------------------------------------------------------------------
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
   contactInboxRepository: {
     findWithContact: mockFindContactInbox,
   },
 }))
 
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   automatedResponseService: {
     enqueue: mockAutomatedResponseEnqueue,
     enqueueFlowAction: vi.fn().mockResolvedValue(undefined),
@@ -303,7 +303,7 @@ vi.mock("@chatbotx.io/automated-response", () => ({
     ["image", "gif", "video", "audio"].includes(fileType),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: mockDbUpdate,
     query: { contactInboxModel: { findFirst: mockFindContactInbox } },
@@ -315,7 +315,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isUniqueViolationError: mockIsUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = { pick: vi.fn(() => schema) }
   return {
     createSelectSchema: vi.fn(() => schema),
@@ -356,7 +356,7 @@ const CONTACT_PROFILE_NAME_CAPABILITIES: Record<
   omnichannel: { inbound: null, onDemand: false },
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentService: { cancelAppointmentByToken: vi.fn() },
   // Mirror of the real pure helper — the module is fully mocked here.
   getContactInputAttachments: (message: {
@@ -481,7 +481,7 @@ const lockAcquisitionError = (key: string) =>
     key,
   })
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,
@@ -489,22 +489,22 @@ vi.mock("@chatbotx.io/redis", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn().mockResolvedValue(undefined),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: vi.fn().mockResolvedValue(undefined),
   setWebhookExecutionContext: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageCreated: "messageCreated" },
   routeForConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/sdk")>()),
+vi.mock("@inboxos.io/sdk", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/sdk")>()),
   contentTypes: { enum: { text: "text", location: "location" } },
   echoOrigins: { enum: { firstParty: "firstParty", thirdParty: "thirdParty" } },
   resolveSourceScopedIdentityMatch: async <T>(
@@ -538,26 +538,26 @@ vi.mock("@chatbotx.io/sdk", async (importOriginal) => ({
   getWhatsappCallPermissionReply: mockGetWhatsappCallPermissionReply,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "test-id") }
 })
 
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/flow-config")>()
+    await importOriginal<typeof import("@inboxos.io/flow-config")>()
   return { ...actual }
 })
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   parseAppointmentCancelPostback: vi.fn().mockReturnValue(null),
   verifyAppointmentCancelPostback: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
   // The real job builder: the tests assert what producers actually enqueue.
   buildResolveStepInputJob: (
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   ).buildResolveStepInputJob,
   // heavy-step-runner builds its outcome schema from this at import time.
   heavyStepOutputValueSchema: await import("zod").then(({ z }) =>
@@ -652,7 +652,7 @@ const fakeInbox = {
   id: "inbox-1",
   workspaceId: "ws-1",
   channel: "messenger",
-} as unknown as import("@chatbotx.io/database/types").InboxModel
+} as unknown as import("@inboxos.io/database/types").InboxModel
 
 const fakeIntegrationRow = {
   id: "integration-1",
@@ -667,7 +667,7 @@ const fakeContactInbox = {
   sourceId: "psid-123",
   channel: "messenger",
   source: "messenger",
-} as unknown as import("@chatbotx.io/database/types").ContactInboxModel
+} as unknown as import("@inboxos.io/database/types").ContactInboxModel
 
 // Nameless — eligible for the post-save refresh (`hasEmptyProfileName`).
 const fakeContact = {
@@ -676,13 +676,13 @@ const fakeContact = {
   firstName: null,
   lastName: null,
   blockedAt: null,
-} as unknown as import("@chatbotx.io/database/types").ContactModel
+} as unknown as import("@inboxos.io/database/types").ContactModel
 
 const fakeConversation = {
   id: "conv-1",
   workspaceId: "ws-1",
   contactId: "contact-1",
-} as unknown as import("@chatbotx.io/database/types").ConversationModel
+} as unknown as import("@inboxos.io/database/types").ConversationModel
 
 const fakeCreatedMessage = {
   id: "msg-created",
@@ -845,7 +845,7 @@ describe("integration worker — incomingMessage case: profile refresh vs. autom
   test("a Click-to-Messenger ad tap whose text is only in referral.text is stored as text and dispatched to automations", async () => {
     const adText = "Register to visit the project"
     const { integration: messengerIntegration } = await import(
-      "@chatbotx.io/integration-messenger"
+      "@inboxos.io/integration-messenger"
     )
     // Parse with the REAL Messenger handler so the channel payload shape,
     // not a hand-built parsed message, is what reaches the worker.

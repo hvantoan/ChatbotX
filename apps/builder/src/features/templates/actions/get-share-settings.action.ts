@@ -1,7 +1,7 @@
 "use server"
 
-import { resolveTemplateShareUrl, templateService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { resolveTemplateShareUrl, templateService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { templateActionClient } from "./template-action-client"
 
 /** Loaded on demand: the list payload carries no share token. */

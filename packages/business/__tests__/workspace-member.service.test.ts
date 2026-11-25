@@ -45,17 +45,17 @@ vi.mock("../src/workspace-usage/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => ({ and: args }),
   db: makeClient(),
   eq: (...args: unknown[]) => ({ eq: args }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   workspaceMemberRoles: { enum: { owner: "owner" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   workspaceMemberModel: {
     id: "workspaceMember.id",
     workspaceId: "workspaceMember.workspaceId",
@@ -66,7 +66,7 @@ vi.mock("../src/working-hours/service", () => ({
   workingHoursService: { removeMembersForUsers: mocks.deleteMembersForUsers },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   workspaceMemberRepository: {
     listPermissionsByUserIds: mocks.listPermissionsByUserIds,
     markOnlineBulk: mocks.markOnlineBulk,
@@ -76,7 +76,7 @@ vi.mock("../src/platform/realtime-broadcast", () => ({
   tryRevokeWorkspaceMemberRealtimeConnections: vi.fn().mockResolvedValue(true),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn(),
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))

@@ -1,5 +1,5 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { getChildLogger } from "@inboxos.io/logger"
 
 const log = getChildLogger("purge-expired-connect-sessions")
 

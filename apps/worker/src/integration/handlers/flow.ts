@@ -1,16 +1,16 @@
 import { createHash } from "node:crypto"
-import { automatedResponseService } from "@chatbotx.io/automated-response"
-import { broadcastService, contactActivityService } from "@chatbotx.io/business"
-import { and, db, eq } from "@chatbotx.io/database/client"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
-import { contactsOnBroadcastsModel } from "@chatbotx.io/database/schema"
+import { automatedResponseService } from "@inboxos.io/automated-response"
+import { broadcastService, contactActivityService } from "@inboxos.io/business"
+import { and, db, eq } from "@inboxos.io/database/client"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
+import { contactsOnBroadcastsModel } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ConversationModel,
   FlowVersionModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   type BaseStepSchema,
   BROADCAST_PAYLOAD_TYPE,
@@ -27,14 +27,14 @@ import {
   resolveFlowActionTarget,
   type StepType,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { logDiagnostic } from "@chatbotx.io/logger"
+} from "@inboxos.io/flow-config"
+import { logDiagnostic } from "@inboxos.io/logger"
 import {
   type CommentAnchor,
   initVariables,
   SdkException,
   type Variables,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   type BotResponseTrackingContext,
   flowContinuationJobOptions,
@@ -44,7 +44,7 @@ import {
   type IntegrationJobSendFlowQuickReply,
   integrationQueue,
   type NodeVisits,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   detectConversationAndContactInbox,
   detectFlowVersion,

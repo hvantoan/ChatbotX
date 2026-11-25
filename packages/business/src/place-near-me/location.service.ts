@@ -1,9 +1,9 @@
 import {
   placeCategoryRepository,
   placeLocationRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { type NearestPlace, pickNearestPlace } from "./nearest"
 import { buildGoogleMapsPreviewUrl } from "./preview-url"
 
@@ -34,7 +34,7 @@ const toItem = (row: LocationRow): PlaceLocationItem => ({
 })
 
 const nameRequired = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Place location name is required",
     "placeLocationNameRequired",
   )

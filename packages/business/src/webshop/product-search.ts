@@ -1,4 +1,4 @@
-import { productRepository } from "@chatbotx.io/database/repositories"
+import { productRepository } from "@inboxos.io/database/repositories"
 import {
   buttonTypes,
   getChannelFlowPolicy,
@@ -6,9 +6,9 @@ import {
   type SendTextStepSchema,
   stepSupport,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
 import { customerMessageStrings } from "../order/customer-messages"
 import { resolveCustomerMessageLanguage } from "../order/message-language"

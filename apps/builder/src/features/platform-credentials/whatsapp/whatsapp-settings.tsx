@@ -1,30 +1,30 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+import { SiWhatsapp, SiWhatsappHex } from "@icons-pack/react-simple-icons"
 import {
   type WhatsappCredentialPublic,
   type WhatsappCredentialUpdate,
   whatsappCredentialUpdateSchema,
-} from "@chatbotx.io/database/partials"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { SiWhatsapp, SiWhatsappHex } from "@icons-pack/react-simple-icons"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { CopyIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

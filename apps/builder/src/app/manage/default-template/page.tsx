@@ -1,4 +1,4 @@
-import { tenantDefaultTemplateService } from "@chatbotx.io/business"
+import { tenantDefaultTemplateService } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { Suspense } from "react"

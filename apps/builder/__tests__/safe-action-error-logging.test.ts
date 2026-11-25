@@ -8,28 +8,28 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isPlatformAdmin: vi.fn(),
   isSuperAdmin: vi.fn(),
   isWorkspaceScheduledForDeletion: vi.fn(),
   resolveWorkspaceAccess: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: () => undefined,
   withAuditContext: (_actor: unknown, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: vi.fn(),
   isDatabaseError: mocks.isDatabaseError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   userModel: {},
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   SdkException: class SdkException extends Error {
     httpStatusCode: number
     constructor(message: string, httpStatusCode = 400) {
@@ -61,10 +61,10 @@ vi.mock("@/lib/log", () => ({
   logger: { error: mocks.loggerError, warn: mocks.loggerWarn },
 }))
 
-const { ChatbotXException, notFoundException, validationException } =
-  await import("@chatbotx.io/business/errors")
-const { FlowAuthoringException } = await import("@chatbotx.io/flow-config")
-const { SdkException } = await import("@chatbotx.io/sdk")
+const { InboxOSException, notFoundException, validationException } =
+  await import("@inboxos.io/business/errors")
+const { FlowAuthoringException } = await import("@inboxos.io/flow-config")
+const { SdkException } = await import("@inboxos.io/sdk")
 const { actionClient } = await import("@/lib/safe-action")
 
 function buildFailingAction(error: unknown) {
@@ -85,15 +85,15 @@ beforeEach(() => {
   mocks.isDatabaseError.mockReturnValue(false)
 })
 
-describe("actionClient.handleServerError — ChatbotXException / SdkException logging", () => {
+describe("actionClient.handleServerError — InboxOSException / SdkException logging", () => {
   // Regression test for the PR #1098 refactor: `findOrFail` (which threw a
   // bare `ModelNotfoundException extends Error`) was replaced by
-  // `notFoundException` (a `ChatbotXException`) at several call sites.
-  // `ChatbotXException` returns early in `handleServerError` — without this
+  // `notFoundException` (a `InboxOSException`) at several call sites.
+  // `InboxOSException` returns early in `handleServerError` — without this
   // warn call, every one of those not-found rejections vanished from the
   // logs entirely, unlike the `ModelNotfoundException` throws that used to
   // fall through to the generic `logger.error` branch below.
-  test("warn-logs a 4xx ChatbotXException (e.g. notFoundException) instead of dropping it silently", async () => {
+  test("warn-logs a 4xx InboxOSException (e.g. notFoundException) instead of dropping it silently", async () => {
     const error = notFoundException("Workspace member not found")
 
     const result = await runFailingAction(error)
@@ -119,8 +119,8 @@ describe("actionClient.handleServerError — ChatbotXException / SdkException lo
     expect(mocks.loggerError).not.toHaveBeenCalled()
   })
 
-  test("error-logs a 5xx ChatbotXException instead of warn", async () => {
-    const error = new ChatbotXException("Boom", "systemError", 500)
+  test("error-logs a 5xx InboxOSException instead of warn", async () => {
+    const error = new InboxOSException("Boom", "systemError", 500)
 
     const result = await runFailingAction(error)
 

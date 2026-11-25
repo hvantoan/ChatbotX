@@ -1,4 +1,4 @@
-import { templateUninstallExecuteService } from "@chatbotx.io/business/template-uninstall/execute"
+import { templateUninstallExecuteService } from "@inboxos.io/business/template-uninstall/execute"
 import type { Job } from "bullmq"
 import { runLeasedTemplateJob } from "../../lib/run-leased-template-job"
 

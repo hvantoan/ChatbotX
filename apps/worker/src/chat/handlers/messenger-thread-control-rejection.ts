@@ -1,15 +1,15 @@
 import {
   type ThreadControlSnapshot,
   threadControlService,
-} from "@chatbotx.io/business"
-import { syncThreadOwner } from "@chatbotx.io/channel-registry/thread-control"
-import { toThreadControlTimestamp } from "@chatbotx.io/database/partials"
-import { isThreadControlRejection } from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/business"
+import { syncThreadOwner } from "@inboxos.io/channel-registry/thread-control"
+import { toThreadControlTimestamp } from "@inboxos.io/database/partials"
+import { isThreadControlRejection } from "@inboxos.io/integration-messenger"
 import {
   ChannelError,
   ChannelErrorCategory,
   isAccountSendBlocked,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import type { ChannelSendErrorContext } from "./channel-send-error-types"
 

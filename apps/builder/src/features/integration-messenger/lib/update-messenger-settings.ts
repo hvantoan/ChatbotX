@@ -4,16 +4,16 @@ import {
   type IntegrationContext,
   inboxService,
   messengerIntegrationService,
-} from "@chatbotx.io/business"
-import { moveBrandingMenuLast } from "@chatbotx.io/business/branding"
+} from "@inboxos.io/business"
+import { moveBrandingMenuLast } from "@inboxos.io/business/branding"
 import {
-  ChatbotXException,
+  InboxOSException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import { db } from "@chatbotx.io/database/client"
-import type { MessengerPersona } from "@chatbotx.io/database/partials"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
-import { encodeButtonPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/business/errors"
+import { db } from "@inboxos.io/database/client"
+import type { MessengerPersona } from "@inboxos.io/database/partials"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
+import { encodeButtonPayload } from "@inboxos.io/flow-config"
 import {
   ensureMessengerWhitelistedDomain,
   integration as integrationMessenger,
@@ -21,10 +21,10 @@ import {
   logMessengerWelcomeProfile,
   type MessengerProfileRequest,
   messengerMenusToCallToActions,
-} from "@chatbotx.io/integration-messenger"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import { distributedLock, distributedStore } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-messenger"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import { distributedLock, distributedStore } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { normalizeError } from "universal-error-normalizer"
 import { getBrandingUrl } from "@/features/integration-webchat/lib"
 import { logger } from "@/lib/log"
@@ -137,7 +137,7 @@ const writeMessengerSettings = async (
       // the page's persona identity from every outbound message, so surface the
       // failure (rolls back the tx) instead of degrading to the generic page.
       if (defaultPersona && !isRegisteredPersona(defaultPersona)) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Couldn't register the default persona with Facebook. Please try saving again.",
         )
       }
@@ -248,11 +248,11 @@ const writeMessengerSettings = async (
   } catch (error) {
     // Preserve explicit, actionable messages (e.g. persona registration); only
     // unknown failures collapse to the generic message.
-    if (error instanceof ChatbotXException) {
+    if (error instanceof InboxOSException) {
       throw error
     }
     logger.debug(error, "Failed to update Facebook page")
-    throw new ChatbotXException("Failed to update Facebook page")
+    throw new InboxOSException("Failed to update Facebook page")
   }
 }
 

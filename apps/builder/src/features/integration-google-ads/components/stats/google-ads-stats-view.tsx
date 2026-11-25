@@ -3,11 +3,11 @@
 import type {
   GoogleAdsConversionReport,
   GoogleAdsStatsResponse,
-} from "@chatbotx.io/business"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import { GOOGLE_ADS_CHANNEL_VALUES } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/business"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { cn } from "@inboxos.io/ui/lib/utils"
+import { GOOGLE_ADS_CHANNEL_VALUES } from "@inboxos.io/utils/google-click"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useWorkspaceId } from "@/hooks/routing"

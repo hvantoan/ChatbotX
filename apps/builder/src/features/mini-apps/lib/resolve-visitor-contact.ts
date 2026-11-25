@@ -3,7 +3,7 @@ import "server-only"
 import {
   verifyMiniAppResumeToken,
   verifyMiniAppToken,
-} from "@chatbotx.io/encryption/mini-app-token"
+} from "@inboxos.io/encryption/mini-app-token"
 
 /**
  * The contact behind a Mini App link, taken only from its signed `token`. A

@@ -2,8 +2,8 @@ import {
   adsConversionService,
   contactReferralEventService,
   resolveChannelAdAccountSources,
-} from "@chatbotx.io/business"
-import { facebookAdAccountSchema } from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/business"
+import { facebookAdAccountSchema } from "@inboxos.io/integration-facebook-ads"
 import { z } from "zod"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

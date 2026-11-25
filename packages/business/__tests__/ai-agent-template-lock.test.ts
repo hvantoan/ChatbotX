@@ -1,4 +1,4 @@
-import type { AIAgentModel } from "@chatbotx.io/database/types"
+import type { AIAgentModel } from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 vi.mock("../src/broadcast/plan-policy.service", () => ({
@@ -35,7 +35,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   db: {
     query: { aiAgentModel: { findFirst: mockFindFirst, findMany: vi.fn() } },
@@ -45,10 +45,10 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(),
   relationsFilterToSQL: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiAgentModel: { id: "id", workspaceId: "workspaceId" },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: vi.fn(async (_k: string, cb: () => unknown) => cb()),
 }))

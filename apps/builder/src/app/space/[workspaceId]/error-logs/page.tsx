@@ -1,5 +1,5 @@
-import { listErrorLogs } from "@chatbotx.io/business/error-log"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { listErrorLogs } from "@inboxos.io/business/error-log"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import type { SearchParams } from "nuqs/server"

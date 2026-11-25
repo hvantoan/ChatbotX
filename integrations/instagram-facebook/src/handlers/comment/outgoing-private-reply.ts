@@ -2,7 +2,7 @@ import {
   ChannelError,
   ChannelErrorCategory,
   type CommentHandlers,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { sendPrivateReplyMessage } from "../../apis/comment"
 import { mapToChannelError } from "../../lib/error-mapper"
 import { logger } from "../../lib/logger"

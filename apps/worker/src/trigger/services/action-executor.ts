@@ -1,4 +1,4 @@
-import baseLogger from "@chatbotx.io/logger"
+import baseLogger from "@inboxos.io/logger"
 import type { ActionExecutionContext, ActionExecutionOutcome } from "../types"
 import { resolveTriggerActionHandler } from "./actions/registry"
 import { createTriggerActionScope } from "./actions/scope"

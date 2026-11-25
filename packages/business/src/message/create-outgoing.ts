@@ -1,47 +1,47 @@
-import { REPLY_TARGET_CREATED_AT_KEY } from "@chatbotx.io/database/partials"
+import { REPLY_TARGET_CREATED_AT_KEY } from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   flowRepository,
   mediaLibraryFileRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ConversationModel,
   MessageModel,
   UserModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   guessFileTypeFromMimeType,
   pathJoin,
   type UploadedFile,
   uploader,
   uploadMultipleFiles,
-} from "@chatbotx.io/filesystem"
-import type { SendProductsContent } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/filesystem"
+import type { SendProductsContent } from "@inboxos.io/flow-config"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/realtime-protocol"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import {
   checkInboxImages,
   type InboxReplyKind,
   isImageMimeType,
   resolveInboxReplyKind,
-} from "@chatbotx.io/utils/inbox-image-support"
+} from "@inboxos.io/utils/inbox-image-support"
 import {
   ChatJobAction,
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"
 import {
-  ChatbotXException,
   ImagesNotSupportedOnChannelError,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -148,7 +148,7 @@ const resolveMediaLibraryFiles = async (
       path: input.mediaFile.path,
     })
     if (!mediaLibraryFile) {
-      throw new ChatbotXException("Media library file not found")
+      throw new InboxOSException("Media library file not found")
     }
     return [mediaLibraryFile]
   }
@@ -172,7 +172,7 @@ const resolveMediaLibraryFiles = async (
   return mediaFileIds.map((mediaFileId) => {
     const mediaLibraryFile = filesById.get(mediaFileId)
     if (!mediaLibraryFile) {
-      throw new ChatbotXException("Media library file not found")
+      throw new InboxOSException("Media library file not found")
     }
     return mediaLibraryFile
   })

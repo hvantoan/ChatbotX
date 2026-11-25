@@ -44,12 +44,12 @@ describe("aiSpeechToText step schema", () => {
 
   test("accepts a Muse step with language bias and keywords", () => {
     const parsed = aiSpeechToTextSchema.parse(
-      museStep({ languageBias: ["Vietnamese"], keywords: ["ChatbotX"] }),
+      museStep({ languageBias: ["Vietnamese"], keywords: ["InboxOS"] }),
     )
     expect(parsed).toMatchObject({
       provider: "muse",
       languageBias: ["Vietnamese"],
-      keywords: ["ChatbotX"],
+      keywords: ["InboxOS"],
     })
   })
 

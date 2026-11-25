@@ -1,8 +1,8 @@
 "use client"
 
-import { Avatar, AvatarFallback } from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Avatar, AvatarFallback } from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   MessageSquareTextIcon,
   MicIcon,

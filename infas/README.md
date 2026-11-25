@@ -33,7 +33,7 @@ docker compose up -d postgres redis filesystem filesystem-init adminer mailhog r
 docker compose --env-file ../.env -f infas/docker-compose.prod.yml up -d --build
 ```
 
-All five application images are built locally from `apps/*/docker/Dockerfile`, so a fresh install needs no registry access (this repository's images must run the code in this checkout — the upstream `ghcr.io/chatbotxio/*` images do not contain fork-specific features such as `zalo-personal`). The built tag for each service can be overridden with its `CHATBOTX_*_IMAGE` variable.
+All five application images are built locally from `apps/*/docker/Dockerfile`, so a fresh install needs no registry access (this repository's images must run the code in this checkout — the upstream `ghcr.io/chatbotxio/*` images do not contain fork-specific features such as `zalo-personal`). The built tag for each service can be overridden with its `INBOXOS_*_IMAGE` (the old `CHATBOTX_*_IMAGE` still works) variable.
 
 The stack bundles `filesystem` (RustFS) for object storage, mirroring the root `docker-compose.yml`: point `S3_ENDPOINT` at `http://filesystem:9000`, `S3_BUCKET=chatbotx`, and reuse the `RUSTFS_ACCESS_KEY`/`RUSTFS_SECRET_KEY` values as the S3 credentials. The `public/` key prefix is anonymous-readable (channel media, avatars); everything else stays private. To use an external S3-compatible store (e.g. Cloudflare R2) instead, set `S3_*` to that endpoint — the `filesystem` services can then be left out.
 

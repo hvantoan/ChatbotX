@@ -1,8 +1,8 @@
-import { webshopService } from "@chatbotx.io/business"
+import { webshopService } from "@inboxos.io/business"
 import {
   SHIPPING_TYPES_BY_MODE,
   type ShippingType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { Metadata } from "next"
 import { CartView } from "@/features/webshop/components/cart-view"
 import {

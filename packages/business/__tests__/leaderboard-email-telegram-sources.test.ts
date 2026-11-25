@@ -14,7 +14,7 @@ const {
   listChats: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       analyticsEmailTopicModel: { findFirst: findRecipient },
@@ -23,7 +23,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   telegramChatRepository: { upsert: upsertChat, listByInbox: listChats },
 }))
 

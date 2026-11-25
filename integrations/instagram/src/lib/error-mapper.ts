@@ -3,7 +3,7 @@ import {
   ChannelErrorCategory,
   ChannelErrorReason,
   UNKNOWN_ERROR,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   type ChannelErrorSource,
   InstagramException,

@@ -69,12 +69,12 @@ const webchatConnectConfigSchema = z.object({
   customCss: z.string().optional(),
   enable: z.boolean().default(true),
 })
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWebchatService,
   webchatConnectConfigSchema,
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const { z } = await import("zod")
   return {
     broadcastPlanLimitDataSchema: z.object({}),
@@ -99,7 +99,7 @@ const { webchatSelectSchema } = vi.hoisted(() => {
   }
   return { webchatSelectSchema }
 })
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   createSelectSchema: vi.fn(() => webchatSelectSchema),
   integrationWebchatModel: {},
 }))

@@ -15,17 +15,17 @@ const mocks = vi.hoisted(() => ({
   waitForChatJobCompletion: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 30_000 },
 }))
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: mocks.logProviderError,
 }))
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiIntegrationService: { findBy: mocks.aiFindBy },
   createAIModelInstance: mocks.createAIModelInstance,
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       contactCustomFieldModel: {
@@ -34,7 +34,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn(async () => ({})),
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),

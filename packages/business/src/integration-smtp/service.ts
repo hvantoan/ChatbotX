@@ -1,12 +1,12 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq, findOrFail } from "@chatbotx.io/database/client"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { integrationSmtpModel } from "@chatbotx.io/database/schema"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq, findOrFail } from "@inboxos.io/database/client"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { integrationSmtpModel } from "@inboxos.io/database/schema"
 import type {
   InboxModel,
   IntegrationSmtpModel,
-} from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
 import {
@@ -16,12 +16,12 @@ import {
   withQuotaCompensation,
 } from "../connection"
 import { connectionStateService } from "../connection/state-service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { inboxService } from "../inbox/service"
 import type { IntegrationSmtpResource } from "./schema"
 
 /**
- * Mirrors `SmtpAuthValue` from `@chatbotx.io/integration-smtp` without
+ * Mirrors `SmtpAuthValue` from `@inboxos.io/integration-smtp` without
  * importing that package into business (it would pull `nodemailer` +
  * `next-intl` transitively into every business consumer, including the
  * worker). Host/port resolution against `smtpHostMap` stays in the builder
@@ -202,7 +202,7 @@ class IntegrationSmtpService extends BaseService {
       .returning()
 
     if (!updated) {
-      throw new ChatbotXException("SMTP integration not found")
+      throw new InboxOSException("SMTP integration not found")
     }
 
     const hasChanged = !isSameJsonValue(

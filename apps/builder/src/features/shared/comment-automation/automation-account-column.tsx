@@ -1,7 +1,7 @@
 "use client"
 
-import type { CommentAutomationType } from "@chatbotx.io/database/partials"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
+import type { CommentAutomationType } from "@inboxos.io/database/partials"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
 import type { ColumnDef } from "@tanstack/react-table"
 import { useTranslations } from "next-intl"
 import { useAutomationAccounts } from "./automation-account-field"

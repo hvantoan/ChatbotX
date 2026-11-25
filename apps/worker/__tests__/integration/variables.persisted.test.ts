@@ -1,6 +1,6 @@
-import { db, eq } from "@chatbotx.io/database/client"
-import { contactInboxModel, workspaceModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { db, eq } from "@inboxos.io/database/client"
+import { contactInboxModel, workspaceModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, beforeAll, describe, expect, test } from "vitest"
 import {
   assertThrowawayDatabase,

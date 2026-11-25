@@ -1,5 +1,5 @@
 import { createHmac } from "node:crypto"
-import { stepTypes } from "@chatbotx.io/flow-config"
+import { stepTypes } from "@inboxos.io/flow-config"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import {
   receiveMessage,

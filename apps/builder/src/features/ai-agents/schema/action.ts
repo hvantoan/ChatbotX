@@ -6,15 +6,15 @@ import {
   museModels,
   openaiModels,
   openrouterModels,
-} from "@chatbotx.io/ai"
+} from "@inboxos.io/ai"
 import {
   aiAgentActionRulesSchema,
   aiMessageRoles,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   MUSE_MAX_TEMPERATURE,
   MUSE_REASONING_HEADROOM_TOKENS,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 import { MAX_WEB_SEARCH_AUTHORIZED_DOMAINS } from "../lib/web-search-tool"
 

@@ -4,7 +4,7 @@ import {
   isSuperAdmin,
   type WorkspaceSupportAccessList,
   workspaceSupportAccessService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { getCurrentUser } from "@/lib/auth/utils"
 import type { ListAdminWorkspacesRequest } from "../schema/query"

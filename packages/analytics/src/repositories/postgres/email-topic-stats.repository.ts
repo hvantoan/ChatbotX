@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq, isNull, sql } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq, isNull, sql } from "@inboxos.io/database/client"
 import {
   analyticsEmailTopicModel,
   emailTopicModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 export type CreateEmailRecipientInput = {
   /** Omit for an email sent without a topic ("No Topic"). */

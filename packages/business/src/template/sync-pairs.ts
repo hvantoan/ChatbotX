@@ -1,14 +1,14 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   TemplateCategory,
   TemplateWarning,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type TemplateSyncRow,
   templateInstallationSyncRepository,
   templateResourceBackupRepository,
-} from "@chatbotx.io/database/repositories"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { createId } from "@inboxos.io/utils"
 import { isUpdatable } from "./adapters/shared"
 import type { SyncPair } from "./adapters/types"
 import { hashCanonical } from "./payload-hash"

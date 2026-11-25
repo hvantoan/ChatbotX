@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
 
 const auditRecorderNotRegisteredMessage = /Audit recorder is not registered/
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: {
     sendAuditLog: "sendAuditLog",
   },
@@ -20,7 +20,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => "11643703873355776"),
 }))
 
@@ -236,10 +236,10 @@ describe("audit service", () => {
 
   test("throws in test/dev when explicit actor audit dispatch is not bootstrapped", () => {
     const globalForAudit = globalThis as typeof globalThis & {
-      __chatbotxAuditRecord?: unknown
+      __inboxosAuditRecord?: unknown
     }
-    const original = globalForAudit.__chatbotxAuditRecord
-    globalForAudit.__chatbotxAuditRecord = undefined
+    const original = globalForAudit.__inboxosAuditRecord
+    globalForAudit.__inboxosAuditRecord = undefined
 
     try {
       expect(() =>
@@ -251,7 +251,7 @@ describe("audit service", () => {
         }),
       ).toThrow(auditRecorderNotRegisteredMessage)
     } finally {
-      globalForAudit.__chatbotxAuditRecord = original
+      globalForAudit.__inboxosAuditRecord = original
     }
   })
 })

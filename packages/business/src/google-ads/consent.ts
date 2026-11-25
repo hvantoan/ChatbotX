@@ -1,8 +1,8 @@
 import type {
   GoogleAdsConsent,
   GoogleAdsConsentSource,
-} from "@chatbotx.io/database/partials"
-import type { GoogleAdsUploadMethod } from "@chatbotx.io/integration-google-ads"
+} from "@inboxos.io/database/partials"
+import type { GoogleAdsUploadMethod } from "@inboxos.io/integration-google-ads"
 import { z } from "zod"
 
 export const googleAdsConsentSettings = [

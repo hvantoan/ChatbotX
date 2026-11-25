@@ -1,8 +1,8 @@
 "use client"
 
-import type { AIProvider } from "@chatbotx.io/ai"
-import type { CallSummaryResult } from "@chatbotx.io/ai/server"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import type { AIProvider } from "@inboxos.io/ai"
+import type { CallSummaryResult } from "@inboxos.io/ai/server"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,13 +10,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2Icon, SparklesIcon } from "lucide-react"
 import Link from "next/link"

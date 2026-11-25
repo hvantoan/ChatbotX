@@ -1,4 +1,4 @@
-import type { OrderStatus } from "@chatbotx.io/database/partials"
+import type { OrderStatus } from "@inboxos.io/database/partials"
 
 /** The workspace languages the bot's store messages are written in. */
 export const CUSTOMER_MESSAGE_LANGUAGES = [

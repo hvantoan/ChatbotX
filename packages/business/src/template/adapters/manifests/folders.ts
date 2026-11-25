@@ -1,9 +1,9 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import { rootFolderId } from "@chatbotx.io/database/partials"
-import { folderModel } from "@chatbotx.io/database/schema"
-import type { FolderModel } from "@chatbotx.io/database/types"
-import type { TemplateFolderManifestEntry } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import { rootFolderId } from "@inboxos.io/database/partials"
+import { folderModel } from "@inboxos.io/database/schema"
+import type { FolderModel } from "@inboxos.io/database/types"
+import type { TemplateFolderManifestEntry } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import type { TemplateInstallContext } from "../types"
 
 /**

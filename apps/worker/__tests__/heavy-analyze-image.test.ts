@@ -1,4 +1,4 @@
-import type { HeavyJobAnalyzeImage } from "@chatbotx.io/worker-config"
+import type { HeavyJobAnalyzeImage } from "@inboxos.io/worker-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -8,8 +8,8 @@ const mocks = vi.hoisted(() => ({
   headObject: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({ aiTimeouts: { aiStep: 30_000 } }))
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/ai", () => ({ aiTimeouts: { aiStep: 30_000 } }))
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     getObject: mocks.getObject,
     headObject: mocks.headObject,

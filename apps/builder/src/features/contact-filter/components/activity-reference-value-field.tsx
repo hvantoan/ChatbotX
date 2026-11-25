@@ -1,8 +1,8 @@
 "use client"
 
-import type { ContactActivityValueSource } from "@chatbotx.io/database/partials"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+import type { ContactActivityValueSource } from "@inboxos.io/database/partials"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react"

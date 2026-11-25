@@ -16,7 +16,7 @@ const {
   assertApiNotRateLimited: vi.fn().mockResolvedValue(undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -35,7 +35,7 @@ const minigameService = {
 }
 const minigameContactService = { listPlays: vi.fn(), list: vi.fn() }
 
-vi.mock("@chatbotx.io/business/minigame", () => ({
+vi.mock("@inboxos.io/business/minigame", () => ({
   minigameService,
   minigameContactService,
 }))

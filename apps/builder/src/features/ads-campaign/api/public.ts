@@ -3,9 +3,9 @@ import {
   listCachedMessagingAdAccounts,
   messagingAdCampaignService,
   messagingAdsConnectionService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { facebookAdAccountSchema } from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { facebookAdAccountSchema } from "@inboxos.io/integration-facebook-ads"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import {
@@ -414,7 +414,7 @@ export const adsCampaignPublicRouter = {
     .errors(possibleErrorsOnReadingMessagingAds)
     .handler(async ({ context, input }) => {
       if (input.channel !== "whatsapp") {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Messenger pages are only listed for the WhatsApp channel",
           "invalidRequest",
           400,

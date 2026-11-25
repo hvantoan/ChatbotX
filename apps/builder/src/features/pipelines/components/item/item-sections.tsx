@@ -4,13 +4,13 @@ import type {
   PipelineActivityGroup,
   PipelineActorKind,
   PipelineItemStatus,
-} from "@chatbotx.io/database/partials"
-import { Avatar, AvatarFallback } from "@chatbotx.io/ui/components/ui/avatar"
+} from "@inboxos.io/database/partials"
+import { Avatar, AvatarFallback } from "@inboxos.io/ui/components/ui/avatar"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import {
   HistoryIcon,
   Loader2Icon,

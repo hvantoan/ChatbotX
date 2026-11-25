@@ -1,6 +1,6 @@
-import { runPipelineAction } from "@chatbotx.io/business/pipeline"
-import { pipelineActionSchema } from "@chatbotx.io/flow-config"
-import { contactVariableService } from "@chatbotx.io/variables"
+import { runPipelineAction } from "@inboxos.io/business/pipeline"
+import { pipelineActionSchema } from "@inboxos.io/flow-config"
+import { contactVariableService } from "@inboxos.io/variables"
 import { skipped, succeeded, type TriggerActionHandler } from "./types"
 
 /**

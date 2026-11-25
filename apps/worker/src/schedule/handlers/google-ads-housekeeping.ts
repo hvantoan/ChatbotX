@@ -1,10 +1,10 @@
-import { googleAdsConversionService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { googleAdsConversionService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 
 const log = getChildLogger("google-ads-housekeeping")
 const LOCK_TTL_SECONDS = 60 * 60

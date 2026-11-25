@@ -1,11 +1,11 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   isImageMimeType,
   SAVED_REPLY_MAX_IMAGES,
-} from "@chatbotx.io/utils/inbox-image-support"
+} from "@inboxos.io/utils/inbox-image-support"
 import { ImagePlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"

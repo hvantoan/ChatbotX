@@ -3,7 +3,7 @@
 import {
   readJsonPath,
   stringifyJsonPathValue,
-} from "@chatbotx.io/utils/json-path"
+} from "@inboxos.io/utils/json-path"
 import { useTranslations } from "next-intl"
 
 /**

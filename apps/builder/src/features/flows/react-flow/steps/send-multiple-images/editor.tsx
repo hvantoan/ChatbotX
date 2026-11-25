@@ -1,8 +1,8 @@
 "use client"
 
-import { sendMultipleImagesItemDefaultFn } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { sendMultipleImagesItemDefaultFn } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

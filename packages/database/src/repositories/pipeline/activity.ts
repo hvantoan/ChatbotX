@@ -7,9 +7,9 @@ import {
   inArray,
   lte,
   sql,
-} from "@chatbotx.io/database/client"
-import { pipelineItemActivityModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { pipelineItemActivityModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import {
   PIPELINE_AUTOMATION_ACTOR_KINDS,
   type PipelineActivityKind,

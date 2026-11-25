@@ -1,4 +1,4 @@
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import { logger } from "../lib/logger"
 import type { WebchatAuthValue } from "../schema"
 

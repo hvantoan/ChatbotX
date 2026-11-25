@@ -1,17 +1,18 @@
+import { faker } from "@faker-js/faker"
 import {
   botFieldService,
   contactCustomFieldService,
   customFieldService,
   externalRequestService,
-} from "@chatbotx.io/business"
-import { createSourceTimezoneResolver } from "@chatbotx.io/business/contact-custom-field"
-import { javascriptExecutionService } from "@chatbotx.io/business/javascript-execution"
+} from "@inboxos.io/business"
+import { createSourceTimezoneResolver } from "@inboxos.io/business/contact-custom-field"
+import { javascriptExecutionService } from "@inboxos.io/business/javascript-execution"
 import {
   type CustomFieldType,
   onDemandSystemFieldTypes,
   type SystemFieldType,
   systemFieldTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type CountCharactersStepSchema,
   type ExecuteJavascriptStepSchema,
@@ -23,11 +24,11 @@ import {
   GenerateCodeType,
   type GetDataFromJsonStepSchema,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   isTemporalCustomFieldType,
   SourceTimezoneStrategy,
-} from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/utils/datetime"
 import {
   coerceCustomFieldValueForJavascript,
   contactVariableService,
@@ -37,8 +38,7 @@ import {
   interpolateIntoJavascript,
   resolveContactVariablesDeep,
   resolveJavascriptInput,
-} from "@chatbotx.io/variables"
-import { faker } from "@faker-js/faker"
+} from "@inboxos.io/variables"
 import { formatInTimeZone } from "date-fns-tz"
 import { getProperty } from "dot-prop"
 import { logger } from "../../lib/logger"
@@ -586,7 +586,7 @@ export async function handleExecuteJavascript({
     // property-access expressions — never a spliced value — so a
     // contact-controlled value can never be interpreted as JavaScript. See
     // resolveJavascriptInput / interpolateIntoJavascript in
-    // @chatbotx.io/variables.
+    // @inboxos.io/variables.
     const jsInputEntries = await resolveJavascriptInput(step.code, variables)
     for (const [name, value] of jsInputEntries) {
       input[name] = value

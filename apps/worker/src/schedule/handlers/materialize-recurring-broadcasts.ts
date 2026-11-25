@@ -1,12 +1,12 @@
-import { broadcastRecurrenceService } from "@chatbotx.io/business"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+import { broadcastRecurrenceService } from "@inboxos.io/business"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import {
   broadcastPrepareJobId,
   MATERIALIZE_ITEM_CONCURRENCY,
   type MaterializeRecurringBroadcastItem,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"
 import { logger } from "../../lib/logger"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"

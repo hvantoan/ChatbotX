@@ -1,9 +1,9 @@
-import { db } from "@chatbotx.io/database/client"
-import type { AIFileChunkingConfig } from "@chatbotx.io/database/partials"
-import { uploader } from "@chatbotx.io/filesystem"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { db } from "@inboxos.io/database/client"
+import type { AIFileChunkingConfig } from "@inboxos.io/database/partials"
+import { uploader } from "@inboxos.io/filesystem"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { aiFileService } from "../../ai-file/service"
-import { ChatbotXException } from "../../errors"
+import { InboxOSException } from "../../errors"
 import { logger } from "../../logger"
 import { aiFileObjectPrefix } from "../template-object-keys"
 import {
@@ -95,7 +95,7 @@ export const aiFilesAdapter: ResourceAdapter<TemplateAIFileEntry> = {
     try {
       await aiFileService.assertEmbeddingProviderConfigured(ctx.workspaceId)
     } catch (error) {
-      if (!(error instanceof ChatbotXException)) {
+      if (!(error instanceof InboxOSException)) {
         throw error
       }
       for (const entry of entries) {

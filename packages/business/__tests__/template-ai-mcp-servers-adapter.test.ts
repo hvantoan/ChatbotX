@@ -9,18 +9,18 @@ const mocks = vi.hoisted(() => ({
   findMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { aiMCPServerModel: { findMany: mocks.findMany } } },
   sql: (strings: TemplateStringsArray, ...values: unknown[]) => ({
     sql: strings.join("?"),
     values,
   }),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiMCPServerModel: { table: "mcp" },
 }))
 let counter = 0
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => `new-${++counter}` }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => `new-${++counter}` }))
 
 const { aiMcpServersAdapter, stripUrlSecrets } = await import(
   "../src/template/adapters/ai-mcp-servers"

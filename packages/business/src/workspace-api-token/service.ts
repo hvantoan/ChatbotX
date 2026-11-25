@@ -1,18 +1,18 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import type {
   TokenHash,
   WorkspaceApiTokenPermission,
   WorkspaceApiTokenScope,
-} from "@chatbotx.io/database/partials"
-import { workspaceApiTokenRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { workspaceApiTokenRepository } from "@inboxos.io/database/repositories"
 import type {
   WorkspaceApiTokenModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { logger } from "../logger"
 import { workspaceService } from "../workspace/service"
 import { generateWorkspaceToken } from "./credentials"
@@ -150,7 +150,7 @@ class WorkspaceApiTokenService extends BaseService {
         txClient,
       )
       if (count >= MAX_WORKSPACE_API_TOKENS) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           `Workspace has reached the maximum of ${MAX_WORKSPACE_API_TOKENS} API tokens`,
           "workspaceApiTokenLimitReached",
         )

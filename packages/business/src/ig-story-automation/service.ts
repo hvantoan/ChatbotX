@@ -5,7 +5,7 @@ import {
   inArray,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CommentIncludeKeywords,
   type IgStoryAutomationTrigger,
@@ -13,15 +13,15 @@ import {
   type IgStoryTarget,
   igStoryAutomationTriggers,
   igStoryAutomationTypes,
-} from "@chatbotx.io/database/partials"
-import { igStoryAutomationModel } from "@chatbotx.io/database/schema"
-import type { IgStoryAutomationModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { igStoryAutomationModel } from "@inboxos.io/database/schema"
+import type { IgStoryAutomationModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { assertAutomationAccount } from "../comment-automation/account-scope"
 import { notFoundException } from "../errors"

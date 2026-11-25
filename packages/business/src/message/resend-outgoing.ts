@@ -1,11 +1,11 @@
 import {
   isResendableMessage,
   REPLY_TARGET_CREATED_AT_KEY,
-} from "@chatbotx.io/database/partials"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
-import type { MessageModel } from "@chatbotx.io/database/types"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
+import type { MessageModel } from "@inboxos.io/database/types"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"
 import { conflictException, notFoundException } from "../errors"

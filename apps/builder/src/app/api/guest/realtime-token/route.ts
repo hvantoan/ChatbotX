@@ -3,13 +3,13 @@ import {
   isWorkspaceScheduledForDeletion,
   resolveBroadcastSecret,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   extractBearerToken,
   signGuestConnectToken,
-} from "@chatbotx.io/realtime-protocol"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/realtime-protocol"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { type NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { isAllowedGuestOrigin } from "@/features/integration-webchat/lib/authorized-domain"
@@ -130,7 +130,7 @@ export const POST = async (request: NextRequest) => {
     )
     return NextResponse.json({ token })
   } catch (error) {
-    if (error instanceof ChatbotXException || error instanceof z.ZodError) {
+    if (error instanceof InboxOSException || error instanceof z.ZodError) {
       return serverErrorHandler(error)
     }
     logger.error(

@@ -1,10 +1,10 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
 import {
   appAccessToken,
   exchangeAccessToken,
-} from "@chatbotx.io/integration-whatsapp/api/auth"
-import { resolveOwningWabaId } from "@chatbotx.io/integration-whatsapp/api/waba-owner"
+} from "@inboxos.io/integration-whatsapp/api/auth"
+import { resolveOwningWabaId } from "@inboxos.io/integration-whatsapp/api/waba-owner"
 import { WHATSAPP_OAUTH_CALLBACK_PATH } from "./embedded-signup"
 
 /**
@@ -43,10 +43,10 @@ export async function exchangeCodeForOwnedWabaToken(input: {
     phoneNumberIds: [input.existing.phoneNumberId],
   })
   if (!wabaId) {
-    throw new ChatbotXException(input.messages.wabaResolveFailed)
+    throw new InboxOSException(input.messages.wabaResolveFailed)
   }
   if (wabaId !== input.existing.wabaId) {
-    throw new ChatbotXException(input.messages.wabaMismatch)
+    throw new InboxOSException(input.messages.wabaMismatch)
   }
 
   return { accessToken, appAccessToken: appToken, wabaId }

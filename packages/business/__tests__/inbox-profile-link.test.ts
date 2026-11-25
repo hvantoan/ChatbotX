@@ -1,4 +1,4 @@
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 import { describe, expect, test, vi } from "vitest"
 
 vi.mock("../src/logger", () => ({

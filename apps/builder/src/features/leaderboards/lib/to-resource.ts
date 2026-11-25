@@ -1,5 +1,5 @@
-import { LEADERBOARD_ACTIONS_BY_STATUS } from "@chatbotx.io/business/leaderboard"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+import { LEADERBOARD_ACTIONS_BY_STATUS } from "@inboxos.io/business/leaderboard"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import { buildLeaderboardViewUrl } from "./view-url"
 
 type LeaderboardWithStats = LeaderboardModel & {

@@ -1,5 +1,5 @@
-import { commentAutomationEventType } from "@chatbotx.io/analytics/schemas"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { commentAutomationEventType } from "@inboxos.io/analytics/schemas"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 const MAX_BULK_CONTACT_IDS = 1000

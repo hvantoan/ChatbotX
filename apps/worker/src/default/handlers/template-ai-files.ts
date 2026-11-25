@@ -1,5 +1,5 @@
-import { templateAiFileDispatchService } from "@chatbotx.io/business"
-import { enqueueProcessAIFile } from "@chatbotx.io/worker-config"
+import { templateAiFileDispatchService } from "@inboxos.io/business"
+import { enqueueProcessAIFile } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 
 /**

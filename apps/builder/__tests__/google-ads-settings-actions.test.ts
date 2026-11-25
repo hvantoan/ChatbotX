@@ -22,7 +22,7 @@ vi.mock("next-intl/server", () => ({
   getTranslations: async () => (key: string) => key,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: {
     findDecrypted: findDecryptedSpy,
     remove: removeSpy,
@@ -36,7 +36,7 @@ vi.mock("../src/features/platform-credentials/scope", () => ({
 }))
 
 const { googleAdsCredentialPublicSchema } = await import(
-  "@chatbotx.io/database/partials"
+  "@inboxos.io/database/partials"
 )
 const { deleteGoogleAdsSettingsAction } = await import(
   "../src/features/platform-credentials/google-ads/delete-google-ads-settings.action"

@@ -1,4 +1,4 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { channelTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { reflinkResource } from "./resource"
 

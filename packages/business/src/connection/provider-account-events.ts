@@ -10,7 +10,7 @@ import {
   type ConnectionStatusState,
   isProviderOffboardedConnection,
   type ProviderAccountEventKind,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { ConnectionEvent } from "./state"
 
 type ProviderAccountEventStrategy = {

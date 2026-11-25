@@ -32,7 +32,7 @@ const {
   flowRepository: { existsInWorkspace: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/business", () => ({
 
 // The real poll service runs against these repositories, so the candidate
 // count rule and the response mapping are exercised end to end.
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   pollRepository,
   flowRepository,

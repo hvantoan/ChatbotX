@@ -25,7 +25,7 @@ const {
   tx: { tag: "tx" },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationWhatsappModel: { findFirst: findIntegrationWhatsapp },
@@ -39,7 +39,7 @@ vi.mock("../src/contact-activity/service", () => ({
   contactActivityService: { record: recordActivity },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappFlowRepository: {
     incrementCompletedCount,
   },

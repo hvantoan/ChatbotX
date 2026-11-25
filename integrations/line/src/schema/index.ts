@@ -1,4 +1,4 @@
-import type { BaseConfig, Oauth2AuthValue } from "@chatbotx.io/sdk"
+import type { BaseConfig, Oauth2AuthValue } from "@inboxos.io/sdk"
 
 /**
  * `clientId` is the LINE Channel ID and `clientSecret` the Channel secret.

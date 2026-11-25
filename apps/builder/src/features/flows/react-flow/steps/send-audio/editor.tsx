@@ -1,4 +1,4 @@
-import { buttonContainers } from "@chatbotx.io/flow-config"
+import { buttonContainers } from "@inboxos.io/flow-config"
 import { useParams } from "next/navigation"
 import { useFormContext } from "react-hook-form"
 import { MediaLibraryOrInsertLink } from "@/components/media-library-or-insert-link"

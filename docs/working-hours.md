@@ -33,7 +33,7 @@ Code: schema in `packages/database/src/schema/working-hours*.ts` and `schema/ana
 |---|---|---|
 | Contact message, any channel | `recordInboundActivity` (worker `received-message.ts`) | Opens the window at the message time (keeps the earliest open start). |
 | Contact message, webchat (builder) | `create-webchat-message.action.ts` via `updateFlowStepState` | Same open (no longer a direct db write). |
-| Native-app outgoing echo (human replied outside ChatbotX) | `received-message.ts` | Closes (`externalHuman`), **no event**, only for first-party/unclassified echoes; third-party app and Meta AI (`keepUnread`) standby echoes do not close. |
+| Native-app outgoing echo (human replied outside InboxOS) | `received-message.ts` | Closes (`externalHuman`), **no event**, only for first-party/unclassified echoes; third-party app and Meta AI (`keepUnread`) standby echoes do not close. |
 | Bot message (flow step, `sendChatMessage`) | `recordOutboundFlowStep`, `recordOutboundMessageActivity` | Closes (`bot`) **only if `botEnabled`**; a conversation whose bot is paused stays waiting for a human. Does not advance `awaitingHumanReplyClosedAt`, so a later pause still reopens. An inbox-originated flow step (`sendFrom: "inbox"`) does not close here: `createOutgoing`'s claim owns it. |
 | Proactive/bulk sends: broadcast, sequence, bulk outbound, WhatsApp/Messenger template handlers, private reply / AI-handover bulk takeover (`recordDeliveredDirectMessage`) | same | Pass `closeHumanReplyWindow: false`; do not close. |
 | Bot paused / handover | `updateBotEnabled(false)`, `handOffIfBotEnabled` (trigger handoff executor) | **Opt-in** (`reopenUnansweredHumanReplyWindow`): only pauses that react to the contact's message pass it: the flow step Disable Bot (`stepDisableBot`) **only for message-driven flow runs** (job flag `startedByContactMessage`, set by the keyword / default-reply / AI-triggered / global-router flow starters, button and quick-reply taps and challenge answers, forwarded through same-run continuations and dropped by wait / smart-delay / heavy-step resumes, broadcast, sequence and trigger-started runs; unknown origin = no reopen) and the handoff executor for AI tools, automated replies, rich-response and the global router. Manual UI/API pause, bulk thread control, thread-control handback and trigger actions (`disableBot`, `transferConversationToHuman`, which can fire on non-message events) do not. When opted in, reopens at `contactRepliedAt` **only if** the contact's last message is unanswered (no later `adminRepliedAt`, not before `awaitingHumanReplyClosedAt`, which only human closes advance). |
@@ -179,7 +179,7 @@ Analytics (scope `analytics`):
 - `analytics.humanAgentStats` (`GET /v1/analytics/human-agent-stats`) gains `avgResponseSeconds`, `avgWorkingResponseSeconds`, `avgFirstResponseSeconds`, `avgWorkingFirstResponseSeconds` (nullable) and `responseCount`, `firstResponseCount`.
 - `analytics.agentResponseSeries` (`GET /v1/analytics/agent-response-series`): one row per `(adminId, date)` with the same measures; `date` is `YYYY-MM-DD` bucketed in the request `timezone`.
 
-CLI: `chatbotx working-hours ...`, `chatbotx analytics agent-response-series` (see `apps/cli/README.md`).
+CLI: `inboxos working-hours ...`, `inboxos analytics agent-response-series` (see `apps/cli/README.md`).
 
 ## UI
 
@@ -200,7 +200,7 @@ Settings -> Inbox Teams, a Working Hours card under the Inbox Team card (list, c
 
 ## Operations
 
-- Migration `packages/database/drizzle/20261018142305_working_hours/` is generated (including the Timescale statements) but **applied by the owner**; agents never run `db:migrate`. `pnpm --filter @chatbotx.io/database db:check-drift` guards schema/snapshot agreement; opt-in `test:db` covers constraints and the concurrent-close claim.
+- Migration `packages/database/drizzle/20261018142305_working_hours/` is generated (including the Timescale statements) but **applied by the owner**; agents never run `db:migrate`. `pnpm --filter @inboxos.io/database db:check-drift` guards schema/snapshot agreement; opt-in `test:db` covers constraints and the concurrent-close claim.
 - The three new `Conversation` columns are nullable (metadata-only change).
 - Cache: `working-hours:<workspaceId>` tag; the schedule lookup per agent is cached and invalidated on writes and member deletion.
 - Migration `packages/database/drizzle/20261019032527_workspace_member_workspace_user_index/` adds the non-unique index `WorkspaceMember_workspaceId_userId_idx` on `(workspaceId, userId)` (auth membership lookups, the working-hours member check, the roster list), built with `CREATE INDEX CONCURRENTLY IF NOT EXISTS`; if a run dies midway, check `pg_index.indisvalid` and drop the invalid index before re-running.

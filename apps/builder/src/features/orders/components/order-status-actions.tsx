@@ -3,8 +3,8 @@
 import {
   ORDER_STATUS_TRANSITIONS,
   type OrderStatus,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -12,9 +12,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

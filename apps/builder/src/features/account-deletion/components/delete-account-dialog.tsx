@@ -1,14 +1,14 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Separator } from "@chatbotx.io/ui/components/ui/separator"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Separator } from "@inboxos.io/ui/components/ui/separator"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { AccountDeletionDetails } from "./account-deletion-details"

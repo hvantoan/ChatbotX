@@ -1,5 +1,5 @@
-import type { GoogleAdsStatBucket } from "@chatbotx.io/business/google-ads/stat-buckets"
-import { GOOGLE_ADS_STAT_BUCKETS } from "@chatbotx.io/business/google-ads/stat-buckets"
+import type { GoogleAdsStatBucket } from "@inboxos.io/business/google-ads/stat-buckets"
+import { GOOGLE_ADS_STAT_BUCKETS } from "@inboxos.io/business/google-ads/stat-buckets"
 import { eventStatusTone, type StatusTone } from "./status"
 
 /** Left to right everywhere: tiles, chart stack, table columns. */

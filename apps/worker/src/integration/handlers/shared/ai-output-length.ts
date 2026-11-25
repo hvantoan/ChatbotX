@@ -1,4 +1,4 @@
-import { resolveSendTextLengthLimits } from "@chatbotx.io/flow-config"
+import { resolveSendTextLengthLimits } from "@inboxos.io/flow-config"
 
 /**
  * Share of the channel's text limit offered to the model. The answer is

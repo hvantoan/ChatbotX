@@ -1,21 +1,21 @@
-import { aiTimeouts } from "@chatbotx.io/ai"
-import { automatedResponseService } from "@chatbotx.io/automated-response"
+import { aiTimeouts } from "@inboxos.io/ai"
+import { automatedResponseService } from "@inboxos.io/automated-response"
 import {
   aiAgentService,
   conversationService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type AIAgentProviderModels,
   aiAgentActionRulesSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import { emit } from "@chatbotx.io/event-bus"
-import { distributedLock } from "@chatbotx.io/redis"
-import type { AIJobProcessHandoffReentry } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import { emit } from "@inboxos.io/event-bus"
+import { distributedLock } from "@inboxos.io/redis"
+import type { AIJobProcessHandoffReentry } from "@inboxos.io/worker-config"
 import { isStepCount, streamText } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { createReplyModel, getProviderName } from "../../../lib/ai/reply-model"

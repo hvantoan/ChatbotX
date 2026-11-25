@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import type {
   ConnectSessionErrorCode,
   ConnectSessionOutcome,
@@ -6,13 +6,13 @@ import type {
   ConnectSessionStatus,
   ConnectSessionTarget,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
-import { connectSessionRepository } from "@chatbotx.io/database/repositories"
-import type { ConnectSessionModel } from "@chatbotx.io/database/types"
-import type { EncryptedData } from "@chatbotx.io/encryption"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { connectSessionRepository } from "@inboxos.io/database/repositories"
+import type { ConnectSessionModel } from "@inboxos.io/database/types"
+import type { EncryptedData } from "@inboxos.io/encryption"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
-import { ChatbotXException, connectSessionExpiredException } from "../errors"
+import { connectSessionExpiredException, InboxOSException } from "../errors"
 
 /** 10 min to complete the OAuth/credential round trip before the session goes stale. */
 const PENDING_TTL_MS = 10 * 60 * 1000
@@ -45,14 +45,14 @@ const hashNonce = async (nonce: string): Promise<string> => {
   return toHex(new Uint8Array(digest))
 }
 
-class ConnectSessionNotFoundException extends ChatbotXException {
+class ConnectSessionNotFoundException extends InboxOSException {
   constructor() {
     super("Connect session not found.", "notFound", 404)
   }
 }
 
 const sessionLimitReachedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Too many pending connect sessions for this workspace. Complete or cancel an existing one first.",
     "connectSessionLimitReached",
     429,
@@ -82,7 +82,7 @@ const validateReturnUrl = (
     return null
   }
   if (!isSafeRelativePath(returnUrl)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Connect session return URL must be an application-relative path.",
       "validation",
       400,
@@ -90,7 +90,7 @@ const validateReturnUrl = (
   }
   const url = new URL(returnUrl, "http://x.invalid")
   if (url.origin !== "http://x.invalid") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Connect session return URL must be an application-relative path.",
       "validation",
       400,
@@ -99,7 +99,7 @@ const validateReturnUrl = (
   const normalized = `${url.pathname}${url.search}${url.hash}`
   // Dot-segment collapsing can turn `/..//evil.com` into `//evil.com`.
   if (!isSafeRelativePath(normalized)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Connect session return URL must be an application-relative path.",
       "validation",
       400,
@@ -120,12 +120,12 @@ export type ConnectSessionActor =
  * advanced by server-driven steps rather than a client-owned state machine).
  *
  * Deliberately **registry-free**, mirroring `connectionStateService`: it
- * never imports `@chatbotx.io/connections`, so it stays safe to call from
+ * never imports `@inboxos.io/connections`, so it stays safe to call from
  * the OAuth callback hub and the completion page's private API without
  * pulling in the full provider registry. The registry-aware orchestration
  * (provider `authorizeUrl`/`exchangeCode`/`listCandidates`/`connect` calls)
  * lives in `ConnectionService.startSession`/`completeAuthorization`/
- * `connectTargets` (`@chatbotx.io/connections`), which call this service for
+ * `connectTargets` (`@inboxos.io/connections`), which call this service for
  * every state read/write.
  */
 class ConnectSessionService extends BaseService {

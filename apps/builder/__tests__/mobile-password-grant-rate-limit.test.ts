@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { assertApiNotRateLimited } = vi.hoisted(() => ({
@@ -73,7 +73,7 @@ describe("rateLimitMobilePasswordGrant", () => {
 
   test("answers 429 with Retry-After once either bucket is exhausted", async () => {
     assertApiNotRateLimited.mockRejectedValueOnce(
-      new ChatbotXException(
+      new InboxOSException(
         "Too many requests. Retry after 7s.",
         "tooManyRequests",
         429,

@@ -1,15 +1,15 @@
-import { and, type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { and, type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   userQuotaModel,
   workspaceMemberModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   type BloomFilter,
   bloomFilter,
   cacheConnections,
   distributedStore,
-} from "@chatbotx.io/redis"
-import { liveKeyFor, USER_QUOTA_LABEL } from "@chatbotx.io/utils"
+} from "@inboxos.io/redis"
+import { liveKeyFor, USER_QUOTA_LABEL } from "@inboxos.io/utils"
 import { logger } from "../lib/logger"
 import {
   anchoredPeriod,

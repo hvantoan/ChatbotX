@@ -1,12 +1,12 @@
 "use client"
 
-import type { SocialProvider } from "@chatbotx.io/auth/server"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { SocialProvider } from "@inboxos.io/auth/server"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { ArrowLeftIcon, LinkIcon, MailIcon } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"

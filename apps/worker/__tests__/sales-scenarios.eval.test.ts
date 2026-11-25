@@ -1,16 +1,16 @@
 // @vitest-environment node
 
-import type { SalesPromptProduct } from "@chatbotx.io/business"
+import type { SalesPromptProduct } from "@inboxos.io/business"
 import {
   type AIAgentSalesProfile,
   type ConversationSalesState,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type { LanguageModel } from "ai"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import scenarios from "./fixtures/sales-scenarios.json"
@@ -22,8 +22,8 @@ const { mockUpdateSalesState, mockHandoffExecute, mockSendMessageAndWait } =
     mockSendMessageAndWait: vi.fn(),
   }))
 
-vi.mock("@chatbotx.io/business", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/business")>()
+vi.mock("@inboxos.io/business", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/business")>()
   return {
     ...actual,
     conversationService: {
@@ -42,7 +42,7 @@ vi.mock("../src/integration/utils/message", () => ({
   sendMessageAndWait: mockSendMessageAndWait,
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn(),
 }))
 

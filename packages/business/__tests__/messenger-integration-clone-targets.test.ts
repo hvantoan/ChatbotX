@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   findMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { integrationMessengerModel: { findMany: mocks.findMany } } },
   and: vi.fn(),
   eq: vi.fn(),
@@ -15,7 +15,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: {},
 }))
 
@@ -27,14 +27,14 @@ vi.mock("../src/connection/state-service", () => ({
   connectionStateService: {},
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   integrationMessengerModel: {},
   tagChannelModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/partials")>()),
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/partials")>()),
 }))
 
 // flow-version/service imports these for quick reply cleanup on publish.

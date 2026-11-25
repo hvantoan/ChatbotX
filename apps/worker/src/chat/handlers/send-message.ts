@@ -7,7 +7,7 @@ import {
   queueWorkspaceRealtimeEvent,
   threadControlService,
   whatsappFlowService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   channelTypes,
   isServiceSendBlocked,
@@ -15,25 +15,25 @@ import {
   resolveChannelConversationId,
   resolveThreadControlState,
   toThreadControlTimestamp,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 import type {
   ContactInboxModel,
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
 import {
   isBulkOutboundMetadata,
   type MetadataPayload,
   messageEventTypeSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   type RealtimeEventData,
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import {
   ChannelError,
   ChannelErrorCategory,
@@ -43,8 +43,8 @@ import {
   parseSdkError,
   type ResolvedProductMessage,
   type SendFlowStepData,
-} from "@chatbotx.io/sdk"
-import { resolveStackFrames } from "@chatbotx.io/utils/error-log"
+} from "@inboxos.io/sdk"
+import { resolveStackFrames } from "@inboxos.io/utils/error-log"
 import type {
   ChatJobChangeChannelMessageState,
   ChatJobDeleteChannelMessage,
@@ -52,7 +52,7 @@ import type {
   ChatJobSendChannelMessage,
   ChatJobSendFlowStep,
   ChatJobSendTyping,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   settleCommentAutomationDelivered,
   settleCommentAutomationFailure,

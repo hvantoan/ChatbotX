@@ -1,4 +1,4 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect, useRef } from "react"
 import { orpc } from "@/lib/orpc/query"

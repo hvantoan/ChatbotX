@@ -5,12 +5,12 @@ import {
   type SendProductsContent,
   sendProductsStepDefaultFn,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type {
   MessageProductEntity,
   ResolvedInboundProductReference,
   ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { ProductMessageUnresolvableError, validationException } from "../errors"
 import { logger } from "../logger"
 

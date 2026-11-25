@@ -1,8 +1,8 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { logger } from "@/lib/log"
 
 const isNotFound = (err: unknown): boolean =>
-  err instanceof ChatbotXException && err.code === "notFound"
+  err instanceof InboxOSException && err.code === "notFound"
 
 /**
  * Resolves `null` for the not-found error a page maps to `notFound()`. Any

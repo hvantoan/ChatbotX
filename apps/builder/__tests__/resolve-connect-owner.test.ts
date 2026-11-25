@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // `resolveConnectOwnerId` gates a direct (token/credential) channel connect by
@@ -22,7 +22,7 @@ const {
   isScheduledForDeletionMock: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   hasWorkspaceAccess: hasWorkspaceAccessMock,
   isWorkspaceScheduledForDeletion: isScheduledForDeletionMock,
   userQuotaService: { getAccessState: getAccessStateMock },
@@ -36,7 +36,7 @@ vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
   checkWorkspaceOwnerAccess: checkWorkspaceOwnerAccessMock,
   workspaceAccessDenialException: (
     reason: "trialExpired" | "macLimitReached",
-  ) => new ChatbotXException(`denied: ${reason}`, reason, 403),
+  ) => new InboxOSException(`denied: ${reason}`, reason, 403),
 }))
 
 import { resolveConnectOwnerId } from "@/features/channel-connect/lib/resolve-connect-owner"

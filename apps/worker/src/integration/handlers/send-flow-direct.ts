@@ -1,5 +1,5 @@
-import { contactInboxService, conversationService } from "@chatbotx.io/business"
-import type { MetadataPayload } from "@chatbotx.io/flow-config"
+import { contactInboxService, conversationService } from "@inboxos.io/business"
+import type { MetadataPayload } from "@inboxos.io/flow-config"
 import { runFlowNode } from "./flow"
 
 export interface SendFlowDirectParams {

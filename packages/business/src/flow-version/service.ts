@@ -5,12 +5,12 @@ import {
   desc,
   eq,
   lte,
-} from "@chatbotx.io/database/client"
-import { flowModel, flowVersionModel } from "@chatbotx.io/database/schema"
-import type { FlowVersionModel } from "@chatbotx.io/database/types"
-import { normalizeFlowGraphDecisionMappings } from "@chatbotx.io/flow-config"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { flowModel, flowVersionModel } from "@inboxos.io/database/schema"
+import type { FlowVersionModel } from "@inboxos.io/database/types"
+import { normalizeFlowGraphDecisionMappings } from "@inboxos.io/flow-config"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { conversationService } from "../conversation/service"
 import { decisionProfileService } from "../decision/profile-service"

@@ -4,13 +4,13 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const mockCreate = vi.fn()
 const mockReturnValidationErrors = vi.fn((_schema, errors) => errors)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   automatedResponseService: {
     create: (...args: unknown[]) => mockCreate(...args),
   },
 }))
 
-class FakeChatbotXException extends Error {
+class FakeInboxOSException extends Error {
   code: string
   field?: string
   constructor(message: string, code = "validation", field?: string) {
@@ -20,11 +20,11 @@ class FakeChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: FakeChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: FakeInboxOSException,
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   automatedResponseFolderTypeByType: { keyword: "automatedResponse" },
   automatedResponseTypes: {},
 }))
@@ -87,7 +87,7 @@ describe("createAutomatedResponseAction", () => {
 
   test("maps a field-scoped validation exception (e.g. flowId not found) to a form field error", async () => {
     mockCreate.mockRejectedValue(
-      new FakeChatbotXException("Flow not found", "validation", "flowId"),
+      new FakeInboxOSException("Flow not found", "validation", "flowId"),
     )
 
     await expect(

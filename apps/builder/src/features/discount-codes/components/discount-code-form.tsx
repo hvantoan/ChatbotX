@@ -5,23 +5,23 @@ import type {
   DiscountEligibility,
   DiscountMinimumType,
   DiscountType,
-} from "@chatbotx.io/database/partials"
-import { DateTimePickerField } from "@chatbotx.io/ui/components/form/date-picker-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { DateTimePickerField } from "@inboxos.io/ui/components/form/date-picker-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/card"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

@@ -1,12 +1,13 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   WHATSAPP_CALL_BUTTON_LABEL_MAX,
   type WhatsappCallButtonLabelFormValues,
   whatsappCallButtonLabelFormSchema,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -15,8 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { PhoneIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { memo, useState } from "react"

@@ -2,7 +2,7 @@ import {
   type ExecuteJavascriptStepSchema,
   executeJavascriptStepDefaultFn,
   executeJavascriptStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import ExecuteJavascriptStepEditor from "./editor"
 import ExecuteJavascriptStepViewer from "./viewer"

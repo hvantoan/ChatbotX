@@ -1,5 +1,5 @@
-import { createId } from "@chatbotx.io/utils"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { createId } from "@inboxos.io/utils"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../logger"
 import { getAuditActor } from "./context"
@@ -73,7 +73,7 @@ class AuditService {
 export const auditService = new AuditService()
 
 const globalForAudit = globalThis as typeof globalThis & {
-  __chatbotxAuditRecord?: typeof auditService.record
+  __inboxosAuditRecord?: typeof auditService.record
 }
 
-globalForAudit.__chatbotxAuditRecord = (input) => auditService.record(input)
+globalForAudit.__inboxosAuditRecord = (input) => auditService.record(input)

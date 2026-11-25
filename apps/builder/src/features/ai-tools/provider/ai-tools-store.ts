@@ -1,4 +1,4 @@
-import { systemFunctionCatalog } from "@chatbotx.io/ai"
+import { systemFunctionCatalog } from "@inboxos.io/ai"
 import { createStore } from "zustand/vanilla"
 import type { ListAIFilesResponse } from "@/features/ai-files/schema"
 import type { ListAIFunctionsResponse } from "@/features/ai-functions/schema"

@@ -51,7 +51,7 @@ const { authorizedAPI, mocks, workspaceAuthorizedMidddleware } = vi.hoisted(
 
 vi.mock("@/orpc", () => ({ authorizedAPI }))
 vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationMemberScope: {
     resolve: vi.fn(({ userId }: { userId: string }) => ({
       chatScope: "all",
@@ -61,7 +61,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
   resolveBroadcastSecret: mocks.resolveBroadcastSecret,
 }))
-vi.mock("@chatbotx.io/realtime-protocol/auth", () => ({
+vi.mock("@inboxos.io/realtime-protocol/auth", () => ({
   signMemberConnectToken: mocks.signMemberConnectToken,
 }))
 

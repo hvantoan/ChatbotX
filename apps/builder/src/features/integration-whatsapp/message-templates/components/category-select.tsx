@@ -1,7 +1,7 @@
 "use client"
 
-import { whatsappTemplateCategories } from "@chatbotx.io/database/partials"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+import { whatsappTemplateCategories } from "@inboxos.io/database/partials"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { VolumeIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"

@@ -10,8 +10,8 @@
  * Commits for real, so each test deletes its workspaces afterwards.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
-import { templateInstallationRepository } from "@chatbotx.io/database/repositories"
+import { db, eq } from "@inboxos.io/database/client"
+import { templateInstallationRepository } from "@inboxos.io/database/repositories"
 import {
   botFieldModel,
   flowVersionModel,
@@ -19,9 +19,9 @@ import {
   triggerModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {
@@ -39,13 +39,13 @@ const realDatabaseUrl = (): string | null => {
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/events", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/events")>()),
+vi.mock("@inboxos.io/events", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/events")>()),
   updateTriggerCache: vi.fn().mockResolvedValue(undefined),
 }))
 

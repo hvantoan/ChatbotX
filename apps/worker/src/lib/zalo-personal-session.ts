@@ -1,8 +1,8 @@
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
 import {
   buildZaloPersonalWebhookUrl,
   gatewayClient,
-} from "@chatbotx.io/integration-zalo-personal"
+} from "@inboxos.io/integration-zalo-personal"
 import { env } from "../env"
 import { logger } from "./logger"
 

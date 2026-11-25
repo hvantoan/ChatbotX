@@ -1,5 +1,5 @@
-import { reflinkService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { reflinkService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { type NextRequest, NextResponse } from "next/server"
 import { createTranslator } from "next-intl"
 import { isEmbedOriginAllowed } from "@/features/integration-webchat/lib/authorized-domain"

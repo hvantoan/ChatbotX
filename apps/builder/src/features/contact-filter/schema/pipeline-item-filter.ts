@@ -4,7 +4,7 @@ import {
   PIPELINE_ITEM_EXISTS_VALUES,
   pipelineItemPriorities,
   pipelineItemStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { isFilterValueId } from "./value-labels"
 

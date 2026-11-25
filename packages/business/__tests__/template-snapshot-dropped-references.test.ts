@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   pipelineManifest: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       tagModel: { findMany: mocks.tagFindMany },
@@ -21,8 +21,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
 }))
 // The reference walker is real; only the strict envelope parse is bypassed,
 // since these hand-built flow nodes are not full valid graphs.
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/flow-config")>()),
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/flow-config")>()),
   parseTemplateExport: (payload: unknown) => ({ ok: true, data: payload }),
 }))
 vi.mock("../src/template/adapters/registry", () => ({

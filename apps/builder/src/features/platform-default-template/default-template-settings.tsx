@@ -1,9 +1,10 @@
 "use client"
 
-import type { TenantDefaultTemplateConfig } from "@chatbotx.io/business"
-import type { TenantDefaultTemplateStatus } from "@chatbotx.io/database/partials"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { TenantDefaultTemplateConfig } from "@inboxos.io/business"
+import type { TenantDefaultTemplateStatus } from "@inboxos.io/database/partials"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,9 +14,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
@@ -23,10 +24,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/card"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

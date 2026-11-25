@@ -3,14 +3,14 @@ import {
   WHATSAPP_FLOW_FILE_ANSWER_FIELD_TYPES,
   type WhatsappFlowFieldMapping,
   type WhatsappFlowFileFormat,
-} from "@chatbotx.io/flow-config"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/flow-config"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import {
   DATE_FORMAT,
   isTemporalCustomFieldType,
-} from "@chatbotx.io/utils/datetime"
-import { formatDateRange } from "@chatbotx.io/utils/form-answer-format"
-import type { ResolvedFlowFile } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/utils/datetime"
+import { formatDateRange } from "@inboxos.io/utils/form-answer-format"
+import type { ResolvedFlowFile } from "@inboxos.io/worker-config"
 import { formatInTimeZone } from "date-fns-tz"
 import type { SourceTimezoneResolver } from "../contact-custom-field/normalize"
 

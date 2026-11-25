@@ -1,8 +1,8 @@
-import { db, eq, sql } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import { inboxModel } from "@chatbotx.io/database/schema"
-import { distributedLock } from "@chatbotx.io/redis"
-import { type AuthStore, type AuthValue, SdkException } from "@chatbotx.io/sdk"
+import { db, eq, sql } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import { inboxModel } from "@inboxos.io/database/schema"
+import { distributedLock } from "@inboxos.io/redis"
+import { type AuthStore, type AuthValue, SdkException } from "@inboxos.io/sdk"
 import { authExpiresAtOf } from "../connection/auth-expiry"
 import { InvalidConnectionTransitionException } from "../connection/state"
 import { connectionStateService } from "../connection/state-service"
@@ -36,7 +36,7 @@ export type AuthStoreIntegrationRow = {
  * `makeAuthStore` derives (e.g. `MessagingAdsConnection`, which is keyed to a
  * channel integration but is not itself an `Integration<Channel>` row) —
  * see `buildMessagingAdsContext` in
- * `@chatbotx.io/business/messaging-ads-connection`: passing a
+ * `@inboxos.io/business/messaging-ads-connection`: passing a
  * `MessagingAdsConnection` row through `makeAuthStore` would read/write the
  * WRONG table (`channelToIntegrationTable` would derive
  * `IntegrationMessagingAdsConnection`, which does not exist).

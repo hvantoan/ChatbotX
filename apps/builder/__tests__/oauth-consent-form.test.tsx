@@ -28,14 +28,14 @@ vi.mock("next-safe-action/hooks", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({ children, ...props }: { children: ReactNode }) => (
     <button type="button" {...props}>
       {children}
     </button>
   ),
 }))
-vi.mock("@chatbotx.io/ui/components/ui/card", () => ({
+vi.mock("@inboxos.io/ui/components/ui/card", () => ({
   Card: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   CardContent: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   CardDescription: ({ children }: { children: ReactNode }) => (
@@ -44,10 +44,10 @@ vi.mock("@chatbotx.io/ui/components/ui/card", () => ({
   CardHeader: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   CardTitle: ({ children }: { children: ReactNode }) => <div>{children}</div>,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/label", () => ({
+vi.mock("@inboxos.io/ui/components/ui/label", () => ({
   Label: ({ children }: { children: ReactNode }) => <span>{children}</span>,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/select", () => ({
+vi.mock("@inboxos.io/ui/components/ui/select", () => ({
   Select: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   SelectContent: ({ children }: { children: ReactNode }) => (
     <div>{children}</div>

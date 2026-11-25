@@ -3,18 +3,18 @@ import {
   aiHandoverTimeRangesSchema,
   inboxStatuses,
   parseAiHandoverChannel,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type AiHandoverSettingsInboxRef,
   aiHandoverSettingsRepository,
   type UpsertAiHandoverSettingsInput,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   AiHandoverSettingsModel,
   InboxModel,
-} from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
-import { AI_HANDOVER_CHANNEL_POLICIES } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
+import { AI_HANDOVER_CHANNEL_POLICIES } from "@inboxos.io/utils/channel"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { flowService } from "../flow/service"

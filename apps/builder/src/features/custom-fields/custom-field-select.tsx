@@ -4,16 +4,16 @@ import type {
   ChannelType,
   CustomFieldType,
   SystemFieldType,
-} from "@chatbotx.io/database/partials"
-import { FieldOperationType } from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+} from "@inboxos.io/database/partials"
+import { FieldOperationType } from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import {
   SelectField,
   type SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { FormItem, FormLabel } from "@chatbotx.io/ui/components/ui/form"
-import { fieldOperationsForType } from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { FormItem, FormLabel } from "@inboxos.io/ui/components/ui/form"
+import { fieldOperationsForType } from "@inboxos.io/utils/custom-field-operation"
 import { useTranslations } from "next-intl"
 import { useCallback, useMemo } from "react"
 import { useWorkspaceId } from "@/hooks/routing"

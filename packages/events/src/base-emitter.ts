@@ -5,11 +5,11 @@ import {
   type PipelineItemStatus,
   type TriggerEventType,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   MessageInboundOrderEntity,
   ResolvedInboundProductReference,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { withContactInboxMetadata } from "./contact-inbox-context"
 import type { DecisionFlowOrigin } from "./decision-flow-lineage"
 import type {

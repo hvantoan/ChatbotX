@@ -24,11 +24,11 @@
  * logged (`err`) and the exit code is 1, so a re-run picks the stragglers up.
  */
 import { pathToFileURL } from "node:url"
-import { telegramIntegrationService } from "@chatbotx.io/business"
+import { telegramIntegrationService } from "@inboxos.io/business"
 import {
   isRevokedTokenError,
   registerWebhook,
-} from "@chatbotx.io/integration-telegram"
+} from "@inboxos.io/integration-telegram"
 import { logger } from "../src/lib/logger"
 
 const PAGE_SIZE = 200

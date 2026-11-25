@@ -63,7 +63,7 @@ Both `AIAgentSalesProfileVersion` and `AIAgentTrainingMessage` are registered in
    - Takes `{ instruction }` (1–4000 chars).
    - Rate-limited per workspace (5 requests per 10 seconds) and enforces the workspace owner's bot message quota.
    - Loads the active profile, up to 50 active products from the workspace catalog, and the last 20 training messages.
-   - Calls the agent's first configured AI provider (`@chatbotx.io/ai/sales-profile-proposer`) with `Output.object()` (`temperature: 0`) to produce a structured patch.
+   - Calls the agent's first configured AI provider (`@inboxos.io/ai/sales-profile-proposer`) with `Output.object()` (`temperature: 0`) to produce a structured patch.
    - Never trusts the LLM output blindly: merges the patch with the current profile, validates with `aiAgentSalesProfileSchema`, verifies every `productId` belongs to the workspace and is `active`, computes a field-by-field diff, and appends the `admin` + `assistant` messages to `AIAgentTrainingMessage`.
    - Does **not** mutate `AIAgent.salesProfile`.
 2. **Apply (`POST /v1/ai-agents/{id}/sales-profile/apply`):**
@@ -153,14 +153,14 @@ type ConversationSalesState = {
 
 ### CLI Commands
 ```bash
-chatbotx ai-agents sales-profile get <id>
-chatbotx ai-agents sales-profile update <id> --profile <json>
-chatbotx ai-agents sales-profile propose <id> --instruction <text>
-chatbotx ai-agents sales-profile apply <id> --profile <json> [--instruction <text> --messageId <id>]
-chatbotx ai-agents versions list <id> [--cursor --limit]
-chatbotx ai-agents sales-profile revert <id> --version <n>
-chatbotx ai-agents training-messages list <id> [--cursor --limit]
-chatbotx ai-agents training-messages clear <id>
+inboxos ai-agents sales-profile get <id>
+inboxos ai-agents sales-profile update <id> --profile <json>
+inboxos ai-agents sales-profile propose <id> --instruction <text>
+inboxos ai-agents sales-profile apply <id> --profile <json> [--instruction <text> --messageId <id>]
+inboxos ai-agents versions list <id> [--cursor --limit]
+inboxos ai-agents sales-profile revert <id> --version <n>
+inboxos ai-agents training-messages list <id> [--cursor --limit]
+inboxos ai-agents training-messages clear <id>
 ```
 
 ---

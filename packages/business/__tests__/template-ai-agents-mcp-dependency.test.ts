@@ -4,11 +4,11 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ findMany: vi.fn() }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { aiAgentModel: { findMany: mocks.findMany } } },
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({ aiAgentModel: {} }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/schema", () => ({ aiAgentModel: {} }))
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   createId: () => "new",
 }))

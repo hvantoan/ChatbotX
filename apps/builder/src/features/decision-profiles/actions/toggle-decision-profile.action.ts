@@ -1,6 +1,6 @@
 "use server"
 
-import { decisionProfileService } from "@chatbotx.io/business"
+import { decisionProfileService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { requireWorkspacePermission } from "@/lib/auth/require-workspace-permission"
 import { workspaceActionClient } from "@/lib/safe-action"

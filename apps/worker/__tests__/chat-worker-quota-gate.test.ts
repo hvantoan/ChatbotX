@@ -1,4 +1,4 @@
-import { getAuditActor } from "@chatbotx.io/business/audit"
+import { getAuditActor } from "@inboxos.io/business/audit"
 import { beforeAll, beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -15,22 +15,22 @@ const mocks = vi.hoisted(() => ({
   sendWhatsappTemplateToConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   replyByOutboundAutomatedResponse: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
 }))
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     SdkException: class SdkException extends Error {},
   }
 })
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     ChatJobAction: {

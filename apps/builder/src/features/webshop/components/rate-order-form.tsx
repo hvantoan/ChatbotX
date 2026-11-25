@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { Loader2Icon, StarIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

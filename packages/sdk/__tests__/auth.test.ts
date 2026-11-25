@@ -3,7 +3,7 @@ import {
   customAuthSchema,
   oauth2AuthSchema,
   secretTextAuthSchema,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, it } from "vitest"
 
 describe("customAuthSchema", () => {

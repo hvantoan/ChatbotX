@@ -1,9 +1,9 @@
 import {
   getWhatsappFlowResponse,
   type MessageWhatsappFlowResponseEntity,
-} from "@chatbotx.io/sdk"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
-import type { ResolvedFlowFile } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import { getPublicFileUrl } from "@inboxos.io/utils"
+import type { ResolvedFlowFile } from "@inboxos.io/worker-config"
 
 type StoredAttachmentRef = { sourceId: string | null; originPath: string }
 

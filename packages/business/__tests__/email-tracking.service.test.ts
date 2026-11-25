@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   tx: { tag: "tx" },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   emailTopicAnalyticsService: {
     createRecipient: mocks.createRecipient,
     incrementTopicCounter: mocks.incrementTopicCounter,
@@ -22,14 +22,14 @@ vi.mock("@chatbotx.io/analytics", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (callback: (client: unknown) => Promise<unknown>) =>
       callback(mocks.tx),
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     recordEmailTrackingTransition: "recordEmailTrackingTransition",
   },

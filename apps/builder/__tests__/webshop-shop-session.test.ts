@@ -8,14 +8,14 @@ const { verifyShopToken, checkGuestRateLimit } = vi.hoisted(() => ({
   checkGuestRateLimit: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/encryption/shop-token", () => ({ verifyShopToken }))
+vi.mock("@inboxos.io/encryption/shop-token", () => ({ verifyShopToken }))
 vi.mock("next/headers", () => ({ headers: async () => new Headers() }))
 vi.mock("@/lib/rate-limit/guest-rate-limit", () => ({
   checkGuestRateLimit,
   resolveGuestRateLimitKey: (_headers: Headers, fallback: string) => fallback,
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { resolveShopSession } = await import(
   "../src/features/webshop/lib/shop-session"
 )
@@ -124,7 +124,7 @@ describe("runShopAction", () => {
     })
 
     test("a store refusal in preview comes back as its code", async () => {
-      const error = new ChatbotXException("full", "webshopCartFull")
+      const error = new InboxOSException("full", "webshopCartFull")
       await expect(
         runShopAction(input, vi.fn(), () => Promise.reject(error)),
       ).resolves.toMatchObject({
@@ -145,7 +145,7 @@ describe("runShopAction", () => {
   })
 
   test("a store refusal comes back as its code for the page to translate", async () => {
-    const error = new ChatbotXException("below", "orderBelowMinimum")
+    const error = new InboxOSException("below", "orderBelowMinimum")
     error.data = { minimum: 50 }
     await expect(
       runShopAction(input, () => Promise.reject(error)),

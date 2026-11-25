@@ -1,12 +1,12 @@
 import "server-only"
 
-import type { ConnectWarning } from "@chatbotx.io/business/inbox/connect-outcome-types"
-import { connectionService } from "@chatbotx.io/connections"
+import type { ConnectWarning } from "@inboxos.io/business/inbox/connect-outcome-types"
+import { connectionService } from "@inboxos.io/connections"
 import type {
   ChannelType,
   CredentialType,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { logger } from "@/lib/log"
 import type { ConnectActionResultWire } from "../schema"
 import {

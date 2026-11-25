@@ -1,8 +1,8 @@
 "use client"
 
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import type { z } from "zod"

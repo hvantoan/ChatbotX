@@ -1,8 +1,8 @@
-import type { systemFunctionNames } from "@chatbotx.io/ai"
+import type { systemFunctionNames } from "@inboxos.io/ai"
 import type {
   SystemToolExecutors,
   UrlContextInput,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../../lib/logger"
 import { getContextSourceAdapter } from "./context-sources/registry"

@@ -3,9 +3,9 @@
 import {
   MINI_APP_NAME_MAX_LENGTH,
   type MiniAppValidationIssue,
-} from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   BracesIcon,
   EyeIcon,

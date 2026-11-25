@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   calls: [] as { from: string; join?: string; where: unknown }[],
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...parts: unknown[]) => ({ and: parts }),
   db: {},
   eq: (field: unknown, value: unknown) => ({ eq: [field, value] }),
@@ -20,7 +20,7 @@ const table = (name: string, columns: string[]) =>
     ...columns.map((column) => [column, `${name}.${column}`]),
   ])
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   decisionProfileModel: table("decisionProfile", ["id", "workspaceId"]),
   folderModel: table("folder", ["id", "workspaceId"]),
   pipelineModel: table("pipeline", ["id", "workspaceId"]),

@@ -2,7 +2,7 @@ import type {
   DynamicImageImageElement,
   DynamicImageQrCodeElement,
   DynamicImageTextElement,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 /**
  * A patch that can carry any field from any element variant, without the

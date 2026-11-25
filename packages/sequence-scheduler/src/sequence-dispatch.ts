@@ -3,8 +3,8 @@ import {
   type DatabaseClient,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import { sequenceDispatchModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/client"
+import { sequenceDispatchModel } from "@inboxos.io/database/schema"
 
 export const sequenceDispatchUtils = {
   bulkCancelPendingDispatches: async (props: {

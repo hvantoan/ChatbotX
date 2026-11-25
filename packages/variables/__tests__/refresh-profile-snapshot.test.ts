@@ -1,4 +1,4 @@
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
 import { beforeEach, expect, test, vi } from "vitest"
 
 const {
@@ -15,39 +15,39 @@ const {
   mockRunChannelHandler: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: { refreshProfileSnapshot: mockRefreshProfileSnapshot },
   inboxService: { findWithIntegrationsById: mockFindWithIntegrationsById },
   resolveTenantSettings: vi.fn(),
   resolveWorkspaceAppUrl: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/contact-locale", () => ({
+vi.mock("@inboxos.io/business/contact-locale", () => ({
   normalizeStoredTimezone: (value: string) => value,
 }))
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   systemFieldService: { create: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/encryption/link-signature", () => ({
+vi.mock("@inboxos.io/encryption/link-signature", () => ({
   signMeLink: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   getPostDetails: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   getPostDetails: vi.fn(),
   getUserInboxLink: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/channel-registry/registry", () => ({
+vi.mock("@inboxos.io/channel-registry/registry", () => ({
   resolveIntegrationContextFromContactInbox: mockResolveIntegrationContext,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheKeys: mockInvalidateCacheKeys,
   withCache: vi.fn((_key: string, resolve: () => Promise<unknown>) =>
     resolve(),

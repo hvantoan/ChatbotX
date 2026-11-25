@@ -7,7 +7,7 @@ const { mockFindByIdForWorkspace, mockFindInbox, mockListConversations } =
     mockListConversations: vi.fn(),
   }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: {
     findByIdForWorkspace: mockFindByIdForWorkspace,
   },
@@ -17,11 +17,11 @@ vi.mock("@chatbotx.io/business", () => ({
   extractContactInfo: vi.fn(() => ({})),
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/sync", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/sync", () => ({
   listConversations: mockListConversations,
 }))
 
-import { MessengerAPIException } from "@chatbotx.io/integration-messenger/exception"
+import { MessengerAPIException } from "@inboxos.io/integration-messenger/exception"
 import { messengerContactScanAdapter } from "../src/integration/handlers/contact-scan/adapters/messenger"
 
 const workspaceId = "ws-1"

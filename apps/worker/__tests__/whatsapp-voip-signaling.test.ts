@@ -25,7 +25,7 @@ const mocks = vi.hoisted(() => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   publishWorkspaceMemberRealtimeEvent:
     mocks.publishWorkspaceMemberRealtimeEvent,
   resolveWhatsappCallerName: mocks.resolveWhatsappCallerName,
@@ -50,12 +50,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/calling", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/calling", () => ({
   rejectCall: mocks.rejectCall,
   terminateCall: mocks.terminateCall,
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: {
     whatsappCallTransportIncoming: "whatsappCallTransportIncoming",
     whatsappCallTransportEnded: "whatsappCallTransportEnded",
@@ -63,7 +63,7 @@ vi.mock("@chatbotx.io/realtime-protocol", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   WhatsappVoipSignalingJobAction: {
     handleConnect: "handleConnect",
     expireIfUnanswered: "expireIfUnanswered",

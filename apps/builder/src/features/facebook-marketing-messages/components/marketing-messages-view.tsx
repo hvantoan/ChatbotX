@@ -1,6 +1,6 @@
 "use client"
 
-import type { FacebookMarketingMessageModel } from "@chatbotx.io/database/types"
+import type { FacebookMarketingMessageModel } from "@inboxos.io/database/types"
 import type { MarketingMessagesGrant } from "../lib/grant"
 import type { MarketingMessagesTab } from "../lib/tab"
 import type { CampaignCounts } from "../queries"

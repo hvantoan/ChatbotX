@@ -1,5 +1,5 @@
-import { decodeBase64UrlText, encodeBase64UrlText } from "@chatbotx.io/utils"
-import { ChatbotXException } from "../errors"
+import { decodeBase64UrlText, encodeBase64UrlText } from "@inboxos.io/utils"
+import { InboxOSException } from "../errors"
 
 export const PUBLISHER_PAGE_SIZE = 25
 
@@ -33,7 +33,7 @@ export const decodePublisherCursor = (
     Number.isNaN(lastInstalledAt.getTime()) ||
     !PUBLISHER_REF_PATTERN.test(publisherRef)
   ) {
-    throw new ChatbotXException("Invalid cursor", "invalidCursor", 400)
+    throw new InboxOSException("Invalid cursor", "invalidCursor", 400)
   }
   return { lastInstalledAt, publisherRef }
 }

@@ -1,10 +1,10 @@
 import {
   type AIFileCreateErrorReason,
   AIFileCreateException,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { AI_FILE_MAX_UPLOAD_BYTES } from "@chatbotx.io/sdk"
-import { formatBytes } from "@chatbotx.io/ui/lib/number-format"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { AI_FILE_MAX_UPLOAD_BYTES } from "@inboxos.io/sdk"
+import { formatBytes } from "@inboxos.io/ui/lib/number-format"
 import { getTranslations } from "next-intl/server"
 
 const createErrorKey = {
@@ -30,12 +30,12 @@ const createErrorKey = {
 export async function toAIFileCreateActionError(
   error: unknown,
 ): Promise<unknown> {
-  if (!(error instanceof ChatbotXException)) {
+  if (!(error instanceof InboxOSException)) {
     return error
   }
   const t = await getTranslations()
   if (error.code === "noEmbeddingProvider") {
-    return new ChatbotXException(t("aiFiles.noEmbeddingProvider"))
+    return new InboxOSException(t("aiFiles.noEmbeddingProvider"))
   }
   if (!(error instanceof AIFileCreateException)) {
     return error
@@ -51,5 +51,5 @@ export async function toAIFileCreateActionError(
           maxSize: formatBytes(error.maxBytes ?? AI_FILE_MAX_UPLOAD_BYTES, 0),
         })
       : t(key)
-  return new ChatbotXException(message, error.code, error.httpStatusCode)
+  return new InboxOSException(message, error.code, error.httpStatusCode)
 }

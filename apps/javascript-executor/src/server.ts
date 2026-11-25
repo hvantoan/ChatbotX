@@ -11,8 +11,8 @@ import {
   JavascriptSandboxError,
   type JavascriptSandboxErrorCode,
   MAX_EXECUTION_RESULT_BYTES,
-} from "@chatbotx.io/javascript-sandbox"
-import { getChildLogger } from "@chatbotx.io/logger"
+} from "@inboxos.io/javascript-sandbox"
+import { getChildLogger } from "@inboxos.io/logger"
 import { env } from "./env"
 import { executeJavascript as executeJavascriptInSandbox } from "./sandbox"
 

@@ -1,10 +1,10 @@
-import { inboxRepository } from "@chatbotx.io/database/repositories"
-import type { TemplateInboxManifestEntry } from "@chatbotx.io/flow-config"
-import { ChatbotXException } from "../../../errors"
+import { inboxRepository } from "@inboxos.io/database/repositories"
+import type { TemplateInboxManifestEntry } from "@inboxos.io/flow-config"
+import { InboxOSException } from "../../../errors"
 import type { TemplateInstallContext } from "../types"
 
 export const templateInvalidInboxBindingException = (sourceInboxId: string) => {
-  const exception = new ChatbotXException(
+  const exception = new InboxOSException(
     "The chosen inbox does not match the template's inbox",
     "templateInvalidInboxBinding",
   )

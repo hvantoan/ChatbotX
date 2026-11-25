@@ -1,7 +1,7 @@
 "use server"
 
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
-import type { UserModel, WorkspaceModel } from "@chatbotx.io/database/types"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
+import type { UserModel, WorkspaceModel } from "@inboxos.io/database/types"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { workspaceActionClient } from "@/lib/safe-action"

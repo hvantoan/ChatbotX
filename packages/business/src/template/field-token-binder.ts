@@ -1,5 +1,5 @@
-import { mapStringLeaves, splitPrefixedToken } from "@chatbotx.io/flow-config"
-import { VARIABLE_PLACEHOLDER_SOURCE } from "@chatbotx.io/utils/variables"
+import { mapStringLeaves, splitPrefixedToken } from "@inboxos.io/flow-config"
+import { VARIABLE_PLACEHOLDER_SOURCE } from "@inboxos.io/utils/variables"
 import { customFieldNameFromToken } from "./manifest-references"
 
 const RAW_PREFIX = "raw:"

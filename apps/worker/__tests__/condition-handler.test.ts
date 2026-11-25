@@ -2,8 +2,8 @@ import type {
   ContactInboxModel,
   ConversationModel,
   FlowVersionModel,
-} from "@chatbotx.io/database/types"
-import type { ConditionStepSchema, EdgeSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import type { ConditionStepSchema, EdgeSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { ExecuteStepProps } from "../src/integration/handlers/flow-utils"
 
@@ -19,20 +19,20 @@ const {
   resolveContactVariablesDeep: vi.fn(async (_contactId, cases) => cases),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactService: { matchesContactFilter },
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   refreshContactProfileSnapshot,
   resolveContactVariablesDeep,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   flowContinuationJobOptions: () => ({}),
   integrationQueue: { add: integrationQueueAdd },

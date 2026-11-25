@@ -1,4 +1,4 @@
-import { broadcastPlanLimitDataSchema } from "@chatbotx.io/database/partials"
+import { broadcastPlanLimitDataSchema } from "@inboxos.io/database/partials"
 import { isBroadcastPlanLimitException } from "@/lib/errors/validation-exception"
 import type { BroadcastPlanLimitOutcome } from "../lib/broadcast-plan-limit"
 

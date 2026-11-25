@@ -1,14 +1,14 @@
-import type { IgStoryAutomationTrigger } from "@chatbotx.io/database/partials"
+import type { IgStoryAutomationTrigger } from "@inboxos.io/database/partials"
 import {
   commentIncludeKeywordsSchema,
   commentReplySchema,
   igStoryAutomationTriggers,
   igStoryAutomationTypes,
   igStoryTargetSchema,
-} from "@chatbotx.io/database/partials"
-import type { IgStoryAutomationModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import type { IgStoryAutomationModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   createSearchParamsCache,
   parseAsArrayOf,

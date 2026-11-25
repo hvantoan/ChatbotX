@@ -21,7 +21,7 @@ import {
   updateNodeCustomField,
   updateNodeProps,
   updateNodeSlots,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { createStore } from "zustand/vanilla"
 import { moveItem } from "../lib/list-editing"
 

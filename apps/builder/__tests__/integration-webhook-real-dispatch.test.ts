@@ -1,9 +1,9 @@
 // @vitest-environment node
 
 import { createHmac } from "node:crypto"
-import type * as MessengerIntegration from "@chatbotx.io/integration-messenger"
-import type * as TiktokIntegration from "@chatbotx.io/integration-tiktok"
-import type * as WhatsappIntegration from "@chatbotx.io/integration-whatsapp"
+import type * as MessengerIntegration from "@inboxos.io/integration-messenger"
+import type * as TiktokIntegration from "@inboxos.io/integration-tiktok"
+import type * as WhatsappIntegration from "@inboxos.io/integration-whatsapp"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const COEXIST_JOB_ID = /^wa-coexist-phone-1-/
@@ -15,7 +15,7 @@ const integrationQueueAdd = vi.fn()
 const identifyInboxAndIntegrationAuthFromIdentifier = vi.fn()
 const isCloud = vi.fn(() => true)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     markLegacyInboxUnhealthy: vi.fn(),
     markUnhealthyByIdentifier: vi.fn(),
@@ -30,13 +30,13 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceMemberService: { findOwnerUserIdByWorkspaceId },
 }))
 
-vi.mock("@chatbotx.io/channel-registry/registry", () => ({
+vi.mock("@inboxos.io/channel-registry/registry", () => ({
   integrationService: {
     identifyInboxAndIntegrationAuthFromIdentifier,
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     providerAccountEvent: "providerAccountEvent",
     messageStatus: "messageStatus",
@@ -63,13 +63,11 @@ vi.mock("@/lib/webhook-log", () => ({
 vi.mock("@/integration", async () => {
   const [messenger, tiktok, whatsapp] = await Promise.all([
     vi.importActual<typeof MessengerIntegration>(
-      "@chatbotx.io/integration-messenger",
+      "@inboxos.io/integration-messenger",
     ),
-    vi.importActual<typeof TiktokIntegration>(
-      "@chatbotx.io/integration-tiktok",
-    ),
+    vi.importActual<typeof TiktokIntegration>("@inboxos.io/integration-tiktok"),
     vi.importActual<typeof WhatsappIntegration>(
-      "@chatbotx.io/integration-whatsapp",
+      "@inboxos.io/integration-whatsapp",
     ),
   ])
 

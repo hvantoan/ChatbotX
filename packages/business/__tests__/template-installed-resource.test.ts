@@ -23,7 +23,7 @@ const { mockFindMany, routeFindMany } = vi.hoisted(() => {
   return { mockFindMany, routeFindMany }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       templateInstalledResourceModel: { findMany: routeFindMany },
@@ -31,7 +31,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-const { templateResourceKinds } = await import("@chatbotx.io/database/partials")
+const { templateResourceKinds } = await import("@inboxos.io/database/partials")
 const { TEMPLATE_LOCKED_CONTENT_KEYS } = await import(
   "../src/template/lock-policy"
 )

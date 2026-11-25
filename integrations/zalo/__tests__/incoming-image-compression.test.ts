@@ -1,12 +1,12 @@
-import type { Context } from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import type { Context } from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ storeIncomingImage: vi.fn() }))
 
-vi.mock("@chatbotx.io/utils/store-incoming-image", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils/store-incoming-image", async (importOriginal) => ({
   ...(await importOriginal<
-    typeof import("@chatbotx.io/utils/store-incoming-image")
+    typeof import("@inboxos.io/utils/store-incoming-image")
   >()),
   storeIncomingImage: mocks.storeIncomingImage,
 }))

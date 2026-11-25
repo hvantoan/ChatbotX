@@ -1,7 +1,4 @@
-import {
-  type OperatorType,
-  operatorTypes,
-} from "@chatbotx.io/database/partials"
+import { type OperatorType, operatorTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const LEADERBOARD_SCORE_OPERATORS = [

@@ -1,4 +1,4 @@
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { FileIcon, VideoIcon, Volume2Icon } from "lucide-react"
 
 /** Placeholder icon for a media file that has no image preview. */

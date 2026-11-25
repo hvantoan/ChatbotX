@@ -1,9 +1,9 @@
 "use client"
 
-import type { BroadcastEventType } from "@chatbotx.io/analytics/schemas"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import type { BroadcastEventType } from "@inboxos.io/analytics/schemas"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { Loader2Icon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"

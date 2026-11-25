@@ -1,19 +1,19 @@
 import {
   type DatabaseClient,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type ChannelType,
   channelTypes,
   type IntegrationType,
-} from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import type { ConnectionModel } from "@inboxos.io/database/types"
 import type {
   AuthValue,
   ConnectionDescriptor,
   ConnectionKind,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { connectionAlreadyConnectedException } from "../errors"
 import { logger } from "../logger"
 import {
@@ -28,7 +28,7 @@ import type { ConnectionStoreBinding } from "./store-bindings"
 /**
  * The FK a `Connection` row actually carries to its satellite row —
  * `inboxId` for channels, `integrationId` for workspace integrations.
- * `null` for providers with no satellite table at all (e.g. `chatbotx`,
+ * `null` for providers with no satellite table at all (e.g. `inboxos`,
  * the internal built-in channel) or whose `Connection` row hasn't been
  * linked to one yet.
  */
@@ -194,7 +194,7 @@ export const saveOrInsertSatellite = async (input: {
  * (create it with `inboxService.create({ skipQuota: true })` first, since
  * this is the sole quota-consumption point for a brand-new channel via the
  * `connect.completed` transition edge). Shared by every direct (non-OAuth-
- * session) connect path: `@chatbotx.io/connections`'
+ * session) connect path: `@inboxos.io/connections`'
  * `connectFromCredentials`/`connectAndPersist` call it wrapped in their own
  * transaction; a business-layer service already inside its own `tx` (api/
  * smtp/webchat/tiktok/zalo/whatsapp connect) calls it directly.

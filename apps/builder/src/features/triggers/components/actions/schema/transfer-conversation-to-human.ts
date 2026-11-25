@@ -1,4 +1,4 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
+import { triggerActions } from "@inboxos.io/database/partials"
 import z from "zod"
 
 export const transferConversationToHuman = z.object({

@@ -1,8 +1,8 @@
-import type { FileType } from "@chatbotx.io/database/partials"
+import type { FileType } from "@inboxos.io/database/partials"
 import {
   COORDINATE_PAIR_PATTERN,
   parseCoordinatePair,
-} from "@chatbotx.io/utils/coordinates"
+} from "@inboxos.io/utils/coordinates"
 import type {
   ReplyAttachmentRef,
   ReplyInputKind,

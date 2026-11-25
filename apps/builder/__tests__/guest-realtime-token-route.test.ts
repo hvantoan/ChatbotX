@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { NextRequest } from "next/server"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { z } from "zod"
@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => ({
   workspaceServiceFind: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWebchatService: {
     findByIdForWorkspaceOrNull:
       mocks.integrationWebchatServiceFindByIdForWorkspaceOrNull,
@@ -27,7 +27,7 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceService: { find: mocks.workspaceServiceFind },
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   extractBearerToken: (header: string | null) =>
     header?.startsWith("Bearer ") ? header.slice("Bearer ".length) : null,
   signGuestConnectToken: mocks.signGuestConnectToken,
@@ -56,8 +56,8 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // Dynamic import required: the route module must load after the vi.mock
-// calls above are registered, so its `@chatbotx.io/business` /
-// `@chatbotx.io/realtime-protocol` imports resolve to the mocks instead of
+// calls above are registered, so its `@inboxos.io/business` /
+// `@inboxos.io/realtime-protocol` imports resolve to the mocks instead of
 // the real modules (matches apps/builder/__tests__/media-proxy-route.test.ts).
 const { POST } = await import("@/app/api/guest/realtime-token/route")
 
@@ -271,7 +271,7 @@ describe("POST /api/guest/realtime-token", () => {
   })
 
   test.each([
-    new ChatbotXException("Known error", "knownError", 400),
+    new InboxOSException("Known error", "knownError", 400),
     new z.ZodError([]),
   ])("delegates expected errors to the server error handler", async (error) => {
     mocks.workspaceServiceFind.mockRejectedValue(error)

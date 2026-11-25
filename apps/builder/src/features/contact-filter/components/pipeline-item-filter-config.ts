@@ -3,8 +3,8 @@ import {
   type OperatorType,
   operatorTypes,
   type PipelineItemFilterAttribute,
-} from "@chatbotx.io/database/partials"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import {
   pipelinePriorityOptions,
   pipelineStatusOptions,

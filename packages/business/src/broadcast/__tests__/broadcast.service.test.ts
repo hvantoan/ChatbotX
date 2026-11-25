@@ -30,11 +30,11 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   casStore: { setIfAbsent: mocks.setIfAbsent },
 }))
@@ -49,7 +49,7 @@ vi.mock("../../inbox/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: "Broadcast.id",
     name: "Broadcast.name",
@@ -121,7 +121,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   countQueryCapped: mocks.countQueryCapped,
   isStatementTimeoutError: mocks.isStatementTimeoutError,
   setLocalStatementTimeout: vi.fn(),
@@ -194,7 +194,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   ne: (left: unknown, right: unknown) => ({ __ne: [left, right] }),
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: mocks.buildContactInboxContactFilterSQL,
   contactFilterUsesField: (
     contactFilter: { conditions: unknown[] } | null | undefined,
@@ -230,20 +230,20 @@ vi.mock("@chatbotx.io/database/queries", () => ({
         },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: mocks.chunkById,
 }))
 
 const { broadcastService, broadcastTemplateSelections } = await import(
   "../service"
 )
-const { contactRepository } = await import("@chatbotx.io/database/repositories")
+const { contactRepository } = await import("@inboxos.io/database/repositories")
 // The real loop (packages/database/src/utils.ts), used by the
 // `forEachAudienceChunk` window tests so they prove the actual stop/continue
 // contract instead of a hand-rolled re-implementation of it.
 const { chunkById: actualChunkById } = await vi.importActual<
-  typeof import("@chatbotx.io/database/utils")
->("@chatbotx.io/database/utils")
+  typeof import("@inboxos.io/database/utils")
+>("@inboxos.io/database/utils")
 
 const contactFilter = {
   operator: "and" as const,

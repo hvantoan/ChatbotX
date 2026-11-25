@@ -1,4 +1,4 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 /**
  * Codes the builder maps to translated messages. The exception `message` is
@@ -20,8 +20,8 @@ export type AudienceErrorCode = (typeof AUDIENCE_ERROR_CODES)[number]
 export function audienceError(
   code: AudienceErrorCode,
   data?: Record<string, string | number>,
-): ChatbotXException {
-  const error = new ChatbotXException(code, code)
+): InboxOSException {
+  const error = new InboxOSException(code, code)
   if (data) {
     error.data = data
   }
@@ -30,9 +30,9 @@ export function audienceError(
 
 export function isAudienceError(
   error: unknown,
-): error is ChatbotXException & { code: AudienceErrorCode } {
+): error is InboxOSException & { code: AudienceErrorCode } {
   return (
-    error instanceof ChatbotXException &&
+    error instanceof InboxOSException &&
     (AUDIENCE_ERROR_CODES as readonly string[]).includes(error.code)
   )
 }

@@ -6,17 +6,17 @@ import {
   inArray,
   isNotNull,
   lt,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   OnlinePaymentProvider,
   OrderPaymentStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   ecommercePaymentProviderModel,
   orderModel,
   orderPaymentModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 export type PaymentProviderUpsertValues = Omit<
   typeof ecommercePaymentProviderModel.$inferInsert,

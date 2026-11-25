@@ -3,7 +3,7 @@
 import {
   automatedResponseService,
   isKeywordMediaFileType,
-} from "@chatbotx.io/automated-response"
+} from "@inboxos.io/automated-response"
 import {
   contactInboxService,
   contactService,
@@ -14,30 +14,30 @@ import {
   queueMessageCreatedEvent,
   resolveTenantSettings,
   workspaceService,
-} from "@chatbotx.io/business"
-import { resolveLastUserInputTracking } from "@chatbotx.io/business/contact-inbox"
-import { normalizeLanguage } from "@chatbotx.io/business/contact-locale"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
+} from "@inboxos.io/business"
+import { resolveLastUserInputTracking } from "@inboxos.io/business/contact-inbox"
+import { normalizeLanguage } from "@inboxos.io/business/contact-locale"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
 
 import {
   type ConversationAttributes,
   channelTypes,
-} from "@chatbotx.io/database/partials"
-import type { IntegrationWebchatModel } from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { setWebhookExecutionContext } from "@chatbotx.io/events/context"
-import { type UploadedFile, uploadMultipleFiles } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/partials"
+import type { IntegrationWebchatModel } from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { setWebhookExecutionContext } from "@inboxos.io/events/context"
+import { type UploadedFile, uploadMultipleFiles } from "@inboxos.io/filesystem"
 import {
   decodeStepInputSkipPostback,
   messageEventTypeSchema,
   stepInputResolutionReasons,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   buildResolveStepInputJob,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { headers } from "next/headers"
 import { getTranslations } from "next-intl/server"
 import { isAllowedGuestOrigin } from "@/features/integration-webchat/lib/authorized-domain"
@@ -78,11 +78,11 @@ export async function handleCreateWebchatMessage({
     where: { id: parsedInput.workspaceId },
   })
   if (!workspace) {
-    throw new ChatbotXException("Workspace not found")
+    throw new InboxOSException("Workspace not found")
   }
   if (isWorkspaceScheduledForDeletion(workspace)) {
     const t = await getTranslations("webchat")
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("workspaceUnavailable"),
       "workspaceScheduledDeletion",
       403,
@@ -109,7 +109,7 @@ export async function handleCreateWebchatMessage({
 
   if (!authorized) {
     const t = await getTranslations("webchat.unauthorizedDomain")
-    throw new ChatbotXException(t("description"), "forbidden", 403)
+    throw new InboxOSException(t("description"), "forbidden", 403)
   }
 
   const requestHeaders = await _getRequestHeaders()
@@ -122,7 +122,7 @@ export async function handleCreateWebchatMessage({
     )
   ) {
     const t = await getTranslations("webchat.unauthorizedDomain")
-    throw new ChatbotXException(t("description"), "forbidden", 403)
+    throw new InboxOSException(t("description"), "forbidden", 403)
   }
 
   const rateLimit = await checkGuestRateLimit({
@@ -132,11 +132,7 @@ export async function handleCreateWebchatMessage({
   })
   if (rateLimit.limited) {
     const t = await getTranslations("webchat")
-    throw new ChatbotXException(
-      t("rateLimitExceeded"),
-      "rateLimitExceeded",
-      429,
-    )
+    throw new InboxOSException(t("rateLimitExceeded"), "rateLimitExceeded", 429)
   }
 
   const { conversation, isNewContact, contact, contactInbox } =
@@ -172,7 +168,7 @@ export async function handleCreateWebchatMessage({
       (menu) => menu.type === "flow" && menu.flowId === parsedInput.flowId,
     )
     if (!isConfiguredFlow) {
-      throw new ChatbotXException("Flow not found", "notFound", 404)
+      throw new InboxOSException("Flow not found", "notFound", 404)
     }
 
     await integrationQueue.add(IntegrationJobAction.sendFlow, {
@@ -490,10 +486,10 @@ async function getConversationFromInput(
       id: existingContactInbox.contactId,
     })
     if (!conversation) {
-      throw new ChatbotXException("Conversation not found")
+      throw new InboxOSException("Conversation not found")
     }
     if (!contact) {
-      throw new ChatbotXException("Contact not found")
+      throw new InboxOSException("Contact not found")
     }
 
     return {
@@ -516,7 +512,7 @@ async function getConversationFromInput(
     },
   )
   if (!created) {
-    throw new ChatbotXException("Contact limit reached", "quotaExceeded", 422)
+    throw new InboxOSException("Contact limit reached", "quotaExceeded", 422)
   }
 
   return {

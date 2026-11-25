@@ -1,8 +1,8 @@
 "use client"
 
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { ConfirmDialog } from "@/components/confirm-dialog"

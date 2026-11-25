@@ -3,9 +3,9 @@ import {
   conversationService,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
-import type { ConversationModel } from "@chatbotx.io/database/types"
-import type { NotificationJobConversation } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { ConversationModel } from "@inboxos.io/database/types"
+import type { NotificationJobConversation } from "@inboxos.io/worker-config"
 import { buildNotificationContent } from "../lib/build-notification-content"
 import { deliverPushToUsers } from "../lib/deliver-push"
 import { getExpoClient } from "../lib/expo"

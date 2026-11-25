@@ -1,4 +1,4 @@
-import type { ContentType } from "@chatbotx.io/database/partials"
+import type { ContentType } from "@inboxos.io/database/partials"
 import { Queue } from "bullmq"
 import {
   defaultJobOptions,

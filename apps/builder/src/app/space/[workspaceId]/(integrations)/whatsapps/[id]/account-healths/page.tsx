@@ -1,14 +1,14 @@
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   findPhoneNumberDetail,
   type WhatsappPhoneNumberDetail,
-} from "@chatbotx.io/integration-whatsapp/api/phone-number"
+} from "@inboxos.io/integration-whatsapp/api/phone-number"
 import {
   findWaba,
   type WhatsappWabaMMLite,
-} from "@chatbotx.io/integration-whatsapp/api/waba"
-import { BUSINESS_URL } from "@chatbotx.io/integration-whatsapp/constants"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/integration-whatsapp/api/waba"
+import { BUSINESS_URL } from "@inboxos.io/integration-whatsapp/constants"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { WhatsappAccountHealths } from "@/features/integration-whatsapp/components/whatsapp-account-healths"

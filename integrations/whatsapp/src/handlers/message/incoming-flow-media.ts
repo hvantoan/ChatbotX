@@ -8,17 +8,17 @@ import {
   type IncomingFileType,
   type IncomingMessage,
   type MessageWhatsappFlowResponseEntity,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   createConcurrencyLimiter,
   mapWithConcurrency,
   withTimeout,
-} from "@chatbotx.io/utils"
-import { sanitizeFileName } from "@chatbotx.io/utils/sanitize-file-name"
+} from "@inboxos.io/utils"
+import { sanitizeFileName } from "@inboxos.io/utils/sanitize-file-name"
 import {
   storeIncomingImage,
   toStoredMediaFields,
-} from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/utils/store-incoming-image"
 import { DEFAULT_API_VERSION } from "../../constants"
 import { logger } from "../../lib/logger"
 import { asString, isRecord } from "../../lib/value"

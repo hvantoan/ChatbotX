@@ -1,12 +1,13 @@
 "use client"
 
-import { aiChatProviders, openaiCompatiblePresetConfigs } from "@chatbotx.io/ai"
-import { aiMessageRoles } from "@chatbotx.io/database/partials"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { SliderField } from "@chatbotx.io/ui/components/form/slider-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { aiChatProviders, openaiCompatiblePresetConfigs } from "@inboxos.io/ai"
+import { aiMessageRoles } from "@inboxos.io/database/partials"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { SliderField } from "@inboxos.io/ui/components/form/slider-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -15,15 +16,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/popover"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
   Loader2Icon,

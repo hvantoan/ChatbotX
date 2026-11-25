@@ -1,9 +1,9 @@
-import { messengerIntegrationService } from "@chatbotx.io/business"
+import { messengerIntegrationService } from "@inboxos.io/business"
 import {
   type FacebookPostComment,
   listPostComments,
-} from "@chatbotx.io/integration-messenger/apis/comment"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
+} from "@inboxos.io/integration-messenger/apis/comment"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
 import { filterIntegrationsByAccount } from "../account-filter"
 import { collectCommentsSince, parseGraphTime, toEpochSeconds } from "./paging"
 import {

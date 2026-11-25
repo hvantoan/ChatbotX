@@ -10,7 +10,7 @@ import {
 
 /**
  * The pool `max` is read out of the source rather than imported: importing
- * `@chatbotx.io/database/client` constructs a real `pg.Pool` and validates
+ * `@inboxos.io/database/client` constructs a real `pg.Pool` and validates
  * `DATABASE_URL` at module load, which a unit test must not do. The pool size
  * is env-driven (`DATABASE_POOL_MAX`), so the test asserts against its
  * default — the size a deployment gets unless it opts into a larger pool. If

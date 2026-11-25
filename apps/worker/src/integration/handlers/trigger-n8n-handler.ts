@@ -4,9 +4,9 @@ import {
   externalRequestService,
   externalWebhookService,
   tagService,
-} from "@chatbotx.io/business"
-import { contactSequenceService } from "@chatbotx.io/business/contact-sequence"
-import type { TriggerN8nStepSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/business"
+import { contactSequenceService } from "@inboxos.io/business/contact-sequence"
+import type { TriggerN8nStepSchema } from "@inboxos.io/flow-config"
 import type { ExecuteStepProps } from "./flow"
 import type { ExecuteStepResult } from "./step"
 

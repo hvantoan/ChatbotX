@@ -1,4 +1,4 @@
-import { distributedStore } from "@chatbotx.io/redis"
+import { distributedStore } from "@inboxos.io/redis"
 import { logger } from "../lib/logger"
 import { calcEndOfDayTtl, workspaceMacCacheKey } from "../lib/mac-period"
 import { macRepository } from "../repositories/postgres/mac.repository"

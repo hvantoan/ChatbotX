@@ -15,11 +15,11 @@ describe("connect-outcome-types.ts stays a dependency-free leaf", () => {
     expect(source).not.toMatch(IMPORT_STATEMENT_REGEX)
   })
 
-  test("it can be imported with @chatbotx.io/sdk and drizzle-orm mocked to throw", async () => {
+  test("it can be imported with @inboxos.io/sdk and drizzle-orm mocked to throw", async () => {
     vi.resetModules()
-    vi.doMock("@chatbotx.io/sdk", () => {
+    vi.doMock("@inboxos.io/sdk", () => {
       throw new Error(
-        "connect-outcome-types.ts must not import @chatbotx.io/sdk",
+        "connect-outcome-types.ts must not import @inboxos.io/sdk",
       )
     })
     vi.doMock("drizzle-orm", () => {
@@ -33,7 +33,7 @@ describe("connect-outcome-types.ts stays a dependency-free leaf", () => {
       "sessionExpired",
     )
 
-    vi.doUnmock("@chatbotx.io/sdk")
+    vi.doUnmock("@inboxos.io/sdk")
     vi.doUnmock("drizzle-orm")
     vi.resetModules()
   })

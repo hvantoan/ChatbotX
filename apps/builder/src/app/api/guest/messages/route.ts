@@ -4,7 +4,7 @@ import {
   integrationWebchatService,
   isWorkspaceScheduledForDeletion,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { type NextRequest, NextResponse } from "next/server"
 import { getTranslations } from "next-intl/server"
 import { isAllowedGuestOrigin } from "@/features/integration-webchat/lib/authorized-domain"

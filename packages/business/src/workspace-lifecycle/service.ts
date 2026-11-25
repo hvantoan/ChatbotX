@@ -4,11 +4,11 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   channelTypes,
   type InboxDisconnectReason,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   coexistSyncRunRepository,
   connectionRepository,
@@ -19,7 +19,7 @@ import {
   PULL_CLAIMABLE_STATUSES,
   WORKSPACE_ANALYTICS_HYPERTABLES,
   workspacePurgeRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   coexistSyncRunModel,
   integrationInstagramModel,
@@ -35,8 +35,8 @@ import {
   integrationZaloPersonalModel,
   tagChannelModel,
   whatsappCoexistStagingModel,
-} from "@chatbotx.io/database/schema"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 // Subpath, not the barrel: the barrel re-exports `dispatch-manager`, whose
 // bucket hashing imports Node's `crypto`. This module ends up in the builder's
 // Edge bundle (instrumentation → oRPC → workspace token auth → workspace
@@ -45,7 +45,7 @@ import {
   cancelPendingDispatchBatch,
   removeDispatchesFromSchedule,
   WORKSPACE_DISPATCH_CANCEL_BATCH_SIZE,
-} from "@chatbotx.io/sequence-scheduler/dispatch-cancel"
+} from "@inboxos.io/sequence-scheduler/dispatch-cancel"
 import { BaseService } from "../base.service"
 import { coexistService } from "../coexist/service"
 import type { ConnectionEvent } from "../connection/state"

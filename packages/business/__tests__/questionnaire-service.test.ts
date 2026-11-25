@@ -77,9 +77,9 @@ vi.mock("../src/template/installed-resource.service", async () => ({
 
   changedKeysOf: () => [],
 }))
-vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
+vi.mock("@inboxos.io/database/client", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/client")>()
+    await importOriginal<typeof import("@inboxos.io/database/client")>()
   return {
     ...actual,
     db: {
@@ -101,12 +101,12 @@ vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn((callback) => callback),
   invalidateCacheByTags: vi.fn(async () => undefined),
   createRedisConnection: vi.fn(() => ({ on: vi.fn() })),
 }))
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   macAnalyticsService: {},
 }))
 
@@ -124,7 +124,7 @@ vi.mock("../src/response-sla/service", () => ({
     trackWindow: async (
       props: { tx?: unknown },
       run: (client: unknown) => Promise<unknown>,
-    ) => run(props.tx ?? (await import("@chatbotx.io/database/client")).db),
+    ) => run(props.tx ?? (await import("@inboxos.io/database/client")).db),
   },
 }))
 

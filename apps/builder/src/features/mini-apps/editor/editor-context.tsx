@@ -1,6 +1,6 @@
 "use client"
 
-import { findScreen, type MiniAppScreen } from "@chatbotx.io/mini-app"
+import { findScreen, type MiniAppScreen } from "@inboxos.io/mini-app"
 import { createContext, type ReactNode, useContext, useState } from "react"
 import { useStore } from "zustand"
 import {

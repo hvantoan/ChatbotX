@@ -1,6 +1,6 @@
 "use client"
 
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"

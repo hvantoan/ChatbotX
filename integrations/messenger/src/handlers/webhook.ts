@@ -1,5 +1,5 @@
-import type { ContextQueue, HandleRequestProps } from "@chatbotx.io/sdk"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import type { ContextQueue, HandleRequestProps } from "@inboxos.io/sdk"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import z from "zod"
 import { MessengerWebhookException } from "../exception"
 import {

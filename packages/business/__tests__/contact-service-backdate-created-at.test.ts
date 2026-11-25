@@ -5,7 +5,7 @@ const { mockBackdateCreatedAt, mockInvalidateCacheByTags } = vi.hoisted(() => ({
   mockInvalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   db: {},
   eq: vi.fn(),
@@ -16,24 +16,24 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 vi.mock(
-  "@chatbotx.io/database/schema",
+  "@inboxos.io/database/schema",
   async (importOriginal) =>
-    await importOriginal<typeof import("@chatbotx.io/database/schema")>(),
+    await importOriginal<typeof import("@inboxos.io/database/schema")>(),
 )
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactRepository: { backdateCreatedAt: mockBackdateCreatedAt },
 }))
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: vi.fn() }))
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: vi.fn() }))
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: vi.fn(),
   emitContactInfoUpdated: vi.fn(),
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploadFileFromUrl: vi.fn() }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({ uploadFileFromUrl: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mockInvalidateCacheByTags,
   withCache: vi.fn(),
 }))
-vi.mock("@chatbotx.io/analytics", () => ({ macAnalyticsService: {} }))
+vi.mock("@inboxos.io/analytics", () => ({ macAnalyticsService: {} }))
 vi.mock("../src/quota-enforcement/service", () => ({
   quotaEnforcementService: {},
 }))

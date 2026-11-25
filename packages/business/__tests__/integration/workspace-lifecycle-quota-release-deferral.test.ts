@@ -18,22 +18,22 @@
  * does) could never observe a real premature release.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
 import {
   CONNECTION_STORE_BINDINGS,
   upsertConnectionRow,
-} from "@chatbotx.io/business/connection"
-import { db, eq } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business/connection"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   connectionModel,
   userModel,
   userQuotaModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { AuthType } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { AuthType } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { describe, expect, test } from "vitest"
 import { inboxService } from "../../src/inbox/service"
 import { workspaceLifecycleService } from "../../src/workspace-lifecycle/service"

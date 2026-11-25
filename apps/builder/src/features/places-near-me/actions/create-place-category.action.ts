@@ -1,6 +1,6 @@
 "use server"
 
-import { placeCategoryService } from "@chatbotx.io/business"
+import { placeCategoryService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { throwCategoryFormError } from "../lib/category-form-error"

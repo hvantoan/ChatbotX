@@ -6,12 +6,12 @@ const mocks = vi.hoisted(() => ({
   transaction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
   isUniqueViolationError: mocks.isUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   INSTAGRAM_IG_ID_UNIQUE_CONSTRAINT: "IntegrationInstagram_igId_key",
   MESSENGER_PAGE_ID_UNIQUE_CONSTRAINT: "IntegrationMessenger_pageId_key",
   THREADS_USER_ID_UNIQUE_CONSTRAINT: "IntegrationThreads_threadsUserId_key",
@@ -24,7 +24,7 @@ vi.mock("../src/audit/dispatcher", () => ({
 }))
 
 // Dynamic import, not static: must load AFTER the `vi.mock` calls above are
-// hoisted, or the mocked `@chatbotx.io/database/client`/`schema` wouldn't be
+// hoisted, or the mocked `@inboxos.io/database/client`/`schema` wouldn't be
 // in place yet when this module's own top-level imports run.
 const { auditChannelConnected, runConnectTransaction } = await import(
   "../src/inbox/connect-channel"

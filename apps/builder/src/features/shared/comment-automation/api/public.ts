@@ -1,8 +1,8 @@
 import {
   commentAutomationService,
   listAutomationAccounts,
-} from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnFindingResource,

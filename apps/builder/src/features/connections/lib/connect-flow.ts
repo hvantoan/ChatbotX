@@ -2,19 +2,19 @@ import {
   channelHiddenException,
   connectionNotConfiguredException,
   connectionNotOAuthException,
-} from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business/errors"
 import {
   CONNECTION_REGISTRY,
   connectionService,
   isCredentialStrategy,
   type SelfServeSecret,
   toChannelType,
-} from "@chatbotx.io/connections"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/connections"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 import type {
   ConnectionModel,
   ConnectSessionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { sanitizeOptionalReturnUrl } from "@/lib/oauth-referer"
 import { resolveChannelPolicy } from "@/lib/workspace/resolve-visible-channels"
 import { resolveOAuthCredential } from "./resolve-connect-credential"

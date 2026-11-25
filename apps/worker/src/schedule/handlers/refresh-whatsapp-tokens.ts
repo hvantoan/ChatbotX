@@ -1,15 +1,15 @@
 import {
   integrationWhatsappService,
   whatsappBusinessAccountService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { logProviderError } from "@chatbotx.io/business/error-log"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import {
   integration as integrationWhatsapp,
   isRevokedTokenError,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-whatsapp"
+import { distributedLock } from "@inboxos.io/redis"
 import { logger } from "../../lib/logger"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"
 import {

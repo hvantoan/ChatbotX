@@ -1,4 +1,4 @@
-import { formatGraphErrorMessage } from "@chatbotx.io/utils/graph-error"
+import { formatGraphErrorMessage } from "@inboxos.io/utils/graph-error"
 
 const FALLBACK_HTTP_STATUS = 400
 

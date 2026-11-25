@@ -1,8 +1,8 @@
-import type { AIGenerateImageProvider } from "@chatbotx.io/flow-config"
+import type { AIGenerateImageProvider } from "@inboxos.io/flow-config"
 import {
   SelectField,
   type SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 

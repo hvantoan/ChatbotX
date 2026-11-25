@@ -1,6 +1,6 @@
 "use server"
 
-import { ecommerceSettingsService } from "@chatbotx.io/business"
+import { ecommerceSettingsService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {

@@ -3,10 +3,10 @@ import {
   contactInboxService,
   inboxService,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
-import { buildInboxLink, canShareMinigame } from "@chatbotx.io/business/utils"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { buildInboxLink, canShareMinigame } from "@inboxos.io/business/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 
 /**
  * The URL the "Share to earn points" button shares: a ref link for the

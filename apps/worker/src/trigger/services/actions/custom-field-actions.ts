@@ -1,13 +1,13 @@
 import {
   botFieldService,
   contactCustomFieldService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   FieldReferenceKind,
   parseFieldReference,
   setCustomFieldActionSchema,
-} from "@chatbotx.io/flow-config"
-import baseLogger from "@chatbotx.io/logger"
+} from "@inboxos.io/flow-config"
+import baseLogger from "@inboxos.io/logger"
 import { applyCustomFieldOperation } from "../../../integration/handlers/custom-field-operation"
 import { skipped, succeeded, type TriggerActionHandler } from "./types"
 

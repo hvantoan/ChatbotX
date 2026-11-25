@@ -1,4 +1,4 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

@@ -2,9 +2,9 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const integrationQueueAdd = vi.hoisted(() => vi.fn(async () => undefined))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return { ...actual, integrationQueue: { add: integrationQueueAdd } }
 })
 

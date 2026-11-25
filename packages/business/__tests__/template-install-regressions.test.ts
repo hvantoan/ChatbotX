@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { remapFlowGraphReferences } from "@chatbotx.io/flow-config"
+import { remapFlowGraphReferences } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { rewriteFieldTokens } from "../src/template/field-token-binder"
 
@@ -9,10 +9,10 @@ const mocks = vi.hoisted(() => ({
   customFieldRows: [] as { id: string; name: string }[],
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   inArray: (column: unknown, values: unknown) => ({ column, values }),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tagModel: { table: "Tag" },
   customFieldModel: { table: "CustomField", id: "id", name: "name" },
 }))

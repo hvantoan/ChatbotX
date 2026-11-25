@@ -1,15 +1,15 @@
 "use client"
 
-import type { inboundWebhookRequestStatuses } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { inboundWebhookRequestStatuses } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { ChevronLeftIcon, ChevronRightIcon, RefreshCwIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useFormatter, useTranslations } from "next-intl"

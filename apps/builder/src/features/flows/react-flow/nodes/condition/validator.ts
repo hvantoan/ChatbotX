@@ -2,8 +2,8 @@ import {
   baseNodeDataSchema,
   conditionNodeSchema,
   conditionStepSchema,
-} from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { flowConditionFilterCriteriaSchema } from "@/features/contact-filter/schema"
 

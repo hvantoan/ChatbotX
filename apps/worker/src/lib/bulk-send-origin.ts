@@ -1,7 +1,7 @@
 import {
   BROADCAST_PAYLOAD_TYPE,
   SEQUENCE_SCHEDULE_PAYLOAD_TYPE,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 /**
  * Audience fan-out. One failing broadcast or sequence run produces one failure

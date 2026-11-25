@@ -1,4 +1,4 @@
-import { buildZaloPersonalWebhookUrl as buildWebhookUrl } from "@chatbotx.io/integration-zalo-personal"
+import { buildZaloPersonalWebhookUrl as buildWebhookUrl } from "@inboxos.io/integration-zalo-personal"
 import { z } from "zod"
 import { getBrokerOrigin } from "@/lib/oauth-broker"
 

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
-import { ChatbotXException, WorkspacePurgeIncompleteError } from "../../errors"
+import { InboxOSException, WorkspacePurgeIncompleteError } from "../../errors"
 
 const mocks = vi.hoisted(() => ({
   businessLoggerError: vi.fn(),
@@ -27,16 +27,16 @@ const mocks = vi.hoisted(() => ({
   hasLiveUninstallTouchingWorkspace: vi.fn(async () => false),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<
-    typeof import("@chatbotx.io/database/repositories")
+    typeof import("@inboxos.io/database/repositories")
   >()),
   templateUninstallStateRepository: {
     hasLiveUninstallTouchingWorkspace: mocks.hasLiveUninstallTouchingWorkspace,
   },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   anchoredPeriod: vi.fn(() => ({ start: new Date(), end: new Date() })),
   macRepository: { ensureWorkspaceMac: vi.fn(async () => undefined) },
 }))
@@ -61,7 +61,7 @@ vi.mock("../../workspace-deletion-record/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       userModel: { findFirst: vi.fn(async () => undefined) },
@@ -102,24 +102,24 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: Object.assign(vi.fn(), { raw: vi.fn(() => "") }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => {
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/partials")>()
+    await importOriginal<typeof import("@inboxos.io/database/partials")>()
   return {
     ...actual,
     workspaceMemberRoles: { enum: { owner: "owner" } },
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   ROOT_TENANT_ID: "1",
   workspaceDeletionRecordModel: { workspaceId: {} },
   workspaceMemberModel: {},
   workspaceModel: {},
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn(async (_key: string, resolver: () => unknown) => resolver()),
   invalidateCacheByTags: mocks.invalidateCacheByTags,
   distributedLock: {
@@ -128,7 +128,7 @@ vi.mock("@chatbotx.io/redis", () => ({
   createRedisConnection: vi.fn(() => ({ on: vi.fn() })),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   PURGE_WORKSPACES_INTERVAL_MINUTES: 30,
 }))
 
@@ -318,7 +318,7 @@ describe("WorkspaceService.create", () => {
       message: "Workspace limit reached for this plan",
     })
     await expect(createWorkspace.catch((err) => err)).resolves.toBeInstanceOf(
-      ChatbotXException,
+      InboxOSException,
     )
     expect(mocks.workspaceInsert).not.toHaveBeenCalled()
   })

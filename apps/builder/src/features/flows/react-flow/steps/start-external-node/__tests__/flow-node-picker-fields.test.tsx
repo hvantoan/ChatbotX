@@ -41,7 +41,7 @@ vi.mock("@/features/flows/provider/flow-hook", async () => {
 
 const setValueSpy = vi.fn()
 
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/combobox-field", () => ({
   ComboboxField: (props: ComboProps) => (
     <div data-testid={`combo-${props.name}`}>
       <span data-testid={`empty-${props.name}`}>{props.emptyText}</span>

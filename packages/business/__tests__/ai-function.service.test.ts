@@ -1,4 +1,4 @@
-import type { AIFunctionModel } from "@chatbotx.io/database/types"
+import type { AIFunctionModel } from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // The broadcast policy import reaches quota/workspace modules these narrow mocks omit.
@@ -49,7 +49,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     delete: mockDelete,
     insert: mockInsert,
@@ -97,7 +97,7 @@ vi.mock("../src/template/template-resource-locks", () => ({
     }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiFunctionModel: {
     id: "id",
     workspaceId: "workspaceId",
@@ -105,7 +105,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "function-1",
 }))
 

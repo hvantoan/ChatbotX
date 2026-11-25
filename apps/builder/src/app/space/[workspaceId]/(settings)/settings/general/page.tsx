@@ -1,5 +1,5 @@
-import { isSupportConsentRequired } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { isSupportConsentRequired } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 
 import { UpdateWorkspaceForm } from "@/features/workspaces/update-workspace-form"

@@ -1,6 +1,6 @@
 "use server"
 
-import { triggerLeaderboardRewards } from "@chatbotx.io/business/leaderboard"
+import { triggerLeaderboardRewards } from "@inboxos.io/business/leaderboard"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 

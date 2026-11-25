@@ -1,7 +1,7 @@
 "use client"
 
-import type { PipelineActivityGroup } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { PipelineActivityGroup } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,15 +10,15 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/sheet"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import {
   AlignLeftIcon,

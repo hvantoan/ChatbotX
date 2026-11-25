@@ -30,18 +30,18 @@ const {
 })
 
 // The service queues draft cleanups; these suites never reach that path.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {},
   broadcastDraftPurgeJobId: vi.fn(),
   scheduleQueue: { add: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
   sequenceAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mockDbTransaction,
   },
@@ -63,10 +63,10 @@ vi.mock("@chatbotx.io/database/client", () => ({
 // `normalizeBroadcastSendLimit` (and every other export this file doesn't
 // stub) comes from the real module via `vi.importActual` — a pure Phase-1
 // helper, so this test can't drift from its actual implementation.
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/database/partials")
-  >("@chatbotx.io/database/partials")
+    typeof import("@inboxos.io/database/partials")
+  >("@inboxos.io/database/partials")
   return {
     ...actual,
     broadcastStatuses: { enum: { draft: "draft", scheduled: "scheduled" } },
@@ -83,7 +83,7 @@ vi.mock("@chatbotx.io/database/partials", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {},
   broadcastTargetModel: {},
   contactInboxModel: {},
@@ -96,19 +96,19 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: vi.fn((filter: unknown) => filter),
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   likeContains: vi.fn(),
   getPaginationWithDefaults: vi.fn(() => ({ limit: 10, offset: 0 })),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRecurrenceRepository: {
     findByBroadcastId: vi.fn().mockResolvedValue(null),
     lockForWrite: vi.fn().mockResolvedValue([]),
@@ -124,14 +124,14 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-// The real `@chatbotx.io/database/partials` barrel (imported actual above)
+// The real `@inboxos.io/database/partials` barrel (imported actual above)
 // pulls in other partials (e.g. automated-response.ts) that need real utils
 // exports such as `zodBigintAsString`, so this mock spreads the actual
 // module rather than replacing it outright.
-vi.mock("@chatbotx.io/utils", async () => {
+vi.mock("@inboxos.io/utils", async () => {
   const actual =
-    await vi.importActual<typeof import("@chatbotx.io/utils")>(
-      "@chatbotx.io/utils",
+    await vi.importActual<typeof import("@inboxos.io/utils")>(
+      "@inboxos.io/utils",
     )
   return {
     ...actual,
@@ -145,7 +145,7 @@ vi.mock("../src/template/uninstall-references", () => ({
   contactFilterParentsOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   BUTTON_LABEL_MAX: 20,
   findTemplateStartStep: vi.fn(),
   stepTypes: {
@@ -223,7 +223,7 @@ vi.mock("../src/broadcast/plan-policy.service", () => ({
 }))
 
 const { pruneEmailPhoneFilterConditions } = await import(
-  "@chatbotx.io/database/queries"
+  "@inboxos.io/database/queries"
 )
 const { broadcastPlanPolicyService } = await import(
   "../src/broadcast/plan-policy.service"

@@ -4,9 +4,9 @@ import {
   pipelineItemStatuses,
   pipelineSettingsSchema,
   pipelineTypes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
-import { customFieldTypes } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/partials"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
+import { customFieldTypes } from "@inboxos.io/utils/custom-field"
 import { z } from "zod"
 
 // Ids shared by requests and resources (descriptions tell agents where ids come from).

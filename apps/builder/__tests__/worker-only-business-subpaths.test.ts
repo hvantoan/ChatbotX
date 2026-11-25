@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url"
 import { describe, expect, test } from "vitest"
 
 /**
- * `@chatbotx.io/business/*\/execute` subpaths are the Node-only execution half
+ * `@inboxos.io/business/*\/execute` subpaths are the Node-only execution half
  * of a request/execute split (AGENTS.md invariant 25): only the worker may
  * import them. The builder's router graph is compiled into the Edge
  * instrumentation bundle, so a builder file importing one drags worker-only
@@ -14,7 +14,7 @@ import { describe, expect, test } from "vitest"
  */
 const HERE = dirname(fileURLToPath(import.meta.url))
 const BUILDER_SRC = join(HERE, "..", "src")
-const WORKER_ONLY_SUBPATH = /["']@chatbotx\.io\/business\/[\w-]+\/execute["']/
+const WORKER_ONLY_SUBPATH = /["']@inboxos\.io\/business\/[\w-]+\/execute["']/
 
 const TS_SOURCE = /\.tsx?$/
 
@@ -39,7 +39,7 @@ describe("worker-only business subpaths", () => {
   test("the builder reaches sync restore through its own subpath", () => {
     const files = sourceFiles(BUILDER_SRC).filter((file) =>
       readFileSync(file, "utf8").includes(
-        "@chatbotx.io/business/template-sync/restore",
+        "@inboxos.io/business/template-sync/restore",
       ),
     )
 

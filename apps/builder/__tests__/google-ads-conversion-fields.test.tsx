@@ -1,9 +1,10 @@
 // @vitest-environment jsdom
+
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   googleAdsConversionFieldsSchema,
   withGoogleAdsConversionRefinements,
-} from "@chatbotx.io/flow-config"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/flow-config"
 import type { ReactNode } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
@@ -51,7 +52,7 @@ vi.mock(
   "@/features/integration-google-ads/components/google-ads-template-field",
   async () => {
     const { FormField, FormItem } = await import(
-      "@chatbotx.io/ui/components/ui/form"
+      "@inboxos.io/ui/components/ui/form"
     )
     const { TranslatedFieldMessage } = await import(
       "@/features/integration-google-ads/components/translated-field-message"

@@ -6,11 +6,11 @@ import {
   eq,
   inArray,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import { reflinkRepository } from "@chatbotx.io/database/repositories"
-import { reflinkModel } from "@chatbotx.io/database/schema"
-import type { ReflinkModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { reflinkRepository } from "@inboxos.io/database/repositories"
+import { reflinkModel } from "@inboxos.io/database/schema"
+import type { ReflinkModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { inboxService } from "../inbox/service"

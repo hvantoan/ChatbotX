@@ -4,8 +4,8 @@ import {
   inboundWebhookFieldMappingsSchema,
   inboundWebhookIdentifiersSchema,
   inboundWebhookInboxResolutionSchema,
-} from "@chatbotx.io/database/partials"
-import { isJsonbStorable } from "@chatbotx.io/utils/json-path"
+} from "@inboxos.io/database/partials"
+import { isJsonbStorable } from "@inboxos.io/utils/json-path"
 import z from "zod"
 import { allActions } from "@/features/triggers/components/actions/schema"
 

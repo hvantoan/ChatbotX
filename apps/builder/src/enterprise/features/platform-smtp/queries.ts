@@ -1,8 +1,8 @@
 import {
   assertEnterpriseFeatures,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import type { SmtpCredentialPublic } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import type { SmtpCredentialPublic } from "@inboxos.io/database/partials"
 import { assertPlatformSuperAdmin } from "@/lib/auth/assert-platform-super-admin"
 
 export async function getPlatformSmtpSettings(): Promise<SmtpCredentialPublic | null> {

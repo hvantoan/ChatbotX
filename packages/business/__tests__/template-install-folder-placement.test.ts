@@ -13,10 +13,10 @@ const mocks = vi.hoisted(() => ({
   existingTags: [] as { id: string; name: string }[],
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   inArray: (column: unknown, values: unknown) => ({ column, values }),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tagModel: { table: "Tag", id: "Tag.id" },
   customFieldModel: { table: "CustomField", id: "CustomField.id" },
 }))
@@ -24,7 +24,7 @@ vi.mock("../src/tag/service", () => ({
   tagService: { upsertByNames: mocks.upsertByNames },
 }))
 vi.mock(
-  "@chatbotx.io/database/repositories/template-installed-resource",
+  "@inboxos.io/database/repositories/template-installed-resource",
   () => ({
     templateInstalledResourceRepository: {
       findPriorCopies: vi.fn().mockResolvedValue([]),

@@ -6,7 +6,7 @@ import {
   type InboundWebhookInboxResolution,
   type InboundWebhookRequestStatus,
   inboundWebhookRequestStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   checkpointInboundWebhookRequest,
   claimInboundWebhookRequest,
@@ -31,13 +31,13 @@ import {
   purgeInboundWebhookRequests,
   releaseInboundWebhookRequest,
   updateInboundWebhook,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   InboundWebhookModel,
   InboundWebhookRequestModel,
-} from "@chatbotx.io/database/types"
-import { distributedLock, withCache } from "@chatbotx.io/redis"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/database/types"
+import { distributedLock, withCache } from "@inboxos.io/redis"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { BaseService } from "../base.service"
 import { customFieldService } from "../custom-field/service"
 import { notFoundException, validationException } from "../errors"

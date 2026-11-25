@@ -1,7 +1,4 @@
-import {
-  appointmentService,
-  resolveTenantSettings,
-} from "@chatbotx.io/business"
+import { appointmentService, resolveTenantSettings } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListAppointmentsRequest } from "../schema/query"
 

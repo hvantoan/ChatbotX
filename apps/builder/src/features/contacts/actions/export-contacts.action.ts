@@ -1,9 +1,9 @@
 "use server"
 
-import { contactExportService } from "@chatbotx.io/business"
-import { getAuditActor } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { contactExportService } from "@inboxos.io/business"
+import { getAuditActor } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel } from "@inboxos.io/database/types"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,
@@ -31,9 +31,7 @@ export const exportContactsAction = workspaceActionClient
     }): Promise<ExportContactsResponse> => {
       const scope = await resolveContactPermissionScope(workspaceId)
       if (!scope) {
-        throw new ChatbotXException(
-          "User is not associated with this workspace",
-        )
+        throw new InboxOSException("User is not associated with this workspace")
       }
 
       const actor = getAuditActor()

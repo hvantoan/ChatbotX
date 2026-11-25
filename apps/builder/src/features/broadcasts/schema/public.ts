@@ -1,4 +1,4 @@
-import { broadcastEventType } from "@chatbotx.io/analytics/schemas"
+import { broadcastEventType } from "@inboxos.io/analytics/schemas"
 import {
   broadcastOccurrenceOutcomes,
   broadcastOccurrenceReasons,
@@ -9,9 +9,9 @@ import {
   channelTypes,
   isAudienceRangeOrdered,
   occurrenceBucketGranularities,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { recurrenceRuleSchema } from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { recurrenceRuleSchema } from "@inboxos.io/utils/recurrence"
 import { z } from "zod"
 import { strictContactFilter } from "@/features/contacts/schema/public/crud"
 import {
@@ -26,7 +26,7 @@ import {
   withBroadcastRules,
 } from "./action"
 
-// `listBroadcastContactsRequest`/`Response` in `@chatbotx.io/analytics/schemas`
+// `listBroadcastContactsRequest`/`Response` in `@inboxos.io/analytics/schemas`
 // carry `workspaceId` (injected from the token's resolved workspace, never
 // accepted from client input) and `conversationId` (an internal builder-
 // navigation detail, not a public API concern) — narrow variants declared

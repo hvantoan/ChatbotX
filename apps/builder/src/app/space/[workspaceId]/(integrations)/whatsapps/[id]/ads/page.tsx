@@ -2,7 +2,7 @@ import {
   integrationWhatsappService,
   platformCredentialService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { WhatsappCapiTab } from "@/features/integration-whatsapp/components/whatsapp-capi-tab"
 import { WHATSAPP_OAUTH_CALLBACK_PATH } from "@/features/integration-whatsapp/libs/embedded-signup"

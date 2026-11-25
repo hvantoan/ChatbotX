@@ -6,13 +6,13 @@ import {
   eq,
   inArray,
   or,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   automatedResponseTypeByFolderType,
   type FolderType,
   folderTypes,
   rootFolderId,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   automatedResponseModel,
   commentAutomationModel,
@@ -25,11 +25,11 @@ import {
   tagModel,
   triggerModel,
   webhookModel,
-} from "@chatbotx.io/database/schema"
-import type { FolderModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { FolderModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import {
   assertResourceEditable,
   changedKeysOf,
@@ -280,7 +280,7 @@ class FolderService extends BaseService {
       .where(scopeConditions)
 
     if (!resources || resources.length === 0) {
-      throw new ChatbotXException("Resource not found")
+      throw new InboxOSException("Resource not found")
     }
 
     const resolvedFolderId = toStoredFolderId(newFolderId)
@@ -320,7 +320,7 @@ class FolderService extends BaseService {
       case folderTypes.enum.igStory:
         return igStoryAutomationModel
       default:
-        throw new ChatbotXException("Invalid folder type")
+        throw new InboxOSException("Invalid folder type")
     }
   }
 }

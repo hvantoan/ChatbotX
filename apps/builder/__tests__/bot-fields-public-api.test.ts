@@ -63,7 +63,7 @@ const botFieldService = {
   applyValueOperation: vi.fn(),
   bulkClearValues: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ botFieldService }))
+vi.mock("@inboxos.io/business", () => ({ botFieldService }))
 
 await import("@/features/bot-fields/api/public")
 
@@ -297,9 +297,9 @@ describe("POST /v1/bot-fields/{idOrName}/operations", () => {
   })
 
   test("a type the operation does not fit surfaces the service's invalidFieldOperation", async () => {
-    const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+    const { InboxOSException } = await import("@inboxos.io/business/errors")
     botFieldService.applyValueOperation.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "increase is not valid for text",
         "invalidFieldOperation",
       ),

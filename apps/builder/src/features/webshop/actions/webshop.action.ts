@@ -1,6 +1,6 @@
 "use server"
 
-import { webshopService } from "@chatbotx.io/business"
+import { webshopService } from "@inboxos.io/business"
 import { actionClient } from "@/lib/safe-action"
 import {
   countPreviewCartItems,

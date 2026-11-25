@@ -1,4 +1,4 @@
-import { workspaceMemberService } from "@chatbotx.io/business"
+import { workspaceMemberService } from "@inboxos.io/business"
 
 /**
  * The workspaces `userId` is a member of. Shared by the session `/rpc`

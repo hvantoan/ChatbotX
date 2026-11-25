@@ -1,19 +1,19 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Command,
   CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
-} from "@chatbotx.io/ui/components/ui/command"
+} from "@inboxos.io/ui/components/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/popover"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import type { CountryCode } from "libphonenumber-js"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useTranslations } from "next-intl"

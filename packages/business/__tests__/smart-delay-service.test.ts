@@ -88,7 +88,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const db = {
     insert: mockDbInsert,
     select: mockDbSelect,
@@ -115,9 +115,7 @@ vi.mock("@chatbotx.io/database/client", () => {
   }
 })
 
-const { contactOnSmartDelayModel } = await import(
-  "@chatbotx.io/database/schema"
-)
+const { contactOnSmartDelayModel } = await import("@inboxos.io/database/schema")
 const { smartDelayService } = await import("../src/smart-delay/service")
 
 const smartDelayRow = {

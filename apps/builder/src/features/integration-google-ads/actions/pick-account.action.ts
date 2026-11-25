@@ -1,8 +1,8 @@
 "use server"
 
-import { integrationGoogleAdsService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { connectionService } from "@chatbotx.io/connections"
+import { integrationGoogleAdsService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { connectionService } from "@inboxos.io/connections"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {

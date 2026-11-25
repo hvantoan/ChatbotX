@@ -1,19 +1,19 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   PIPELINE_LIMITS,
   type PipelineType,
   pipelineSettingsSchema,
   pipelineTypeDefaults,
   referenceNameFromName,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   pipelineRepository,
-} from "@chatbotx.io/database/repositories"
-import type { PipelineModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { PipelineModel } from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -97,7 +97,7 @@ export class PipelineBaseService extends BaseService {
       throw notFoundException("Pipeline not found")
     }
     if (!permitsPipelineAction(permissions, input.action)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You do not have permission to do this on this pipeline",
         "forbidden",
         403,

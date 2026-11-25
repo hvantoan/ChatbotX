@@ -1,17 +1,17 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+} from "@inboxos.io/ui/components/ui/card"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

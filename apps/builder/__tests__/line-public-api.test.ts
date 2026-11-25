@@ -56,12 +56,12 @@ const services = vi.hoisted(() => ({
   workspace: { findById: vi.fn(async () => ({ ownerId: "owner1" })) },
   audit: { record: vi.fn(async () => undefined) },
 }))
-vi.mock("@chatbotx.io/business", async (importOriginal) => ({
+vi.mock("@inboxos.io/business", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   lineIntegrationService: services.line,
   workspaceService: services.workspace,
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: services.audit,
 }))
 
@@ -144,7 +144,7 @@ describe("line public api", () => {
 
   test("connect propagates the typed channelDuplicated error", async () => {
     const { channelDuplicatedException } = await import(
-      "@chatbotx.io/business/errors"
+      "@inboxos.io/business/errors"
     )
     connect.connectLine.mockRejectedValue(channelDuplicatedException())
     await expect(
@@ -170,7 +170,7 @@ describe("line public api", () => {
 
   test("get with an id from another workspace is a 404", async () => {
     const { ModelNotfoundException } = await import(
-      "@chatbotx.io/database/errors"
+      "@inboxos.io/database/errors"
     )
     services.line.findById.mockRejectedValue(
       new ModelNotfoundException("Integration LINE not found"),

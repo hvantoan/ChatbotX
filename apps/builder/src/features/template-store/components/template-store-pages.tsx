@@ -1,5 +1,5 @@
-import { templateStoreService } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { templateStoreService } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ExternalLinkIcon } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"

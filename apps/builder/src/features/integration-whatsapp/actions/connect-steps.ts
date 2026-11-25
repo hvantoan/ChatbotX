@@ -1,18 +1,18 @@
-import { buildContext, integrationWhatsappService } from "@chatbotx.io/business"
-import type { ConnectWarning } from "@chatbotx.io/business/inbox/connect-outcome-types"
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
+import { buildContext, integrationWhatsappService } from "@inboxos.io/business"
+import type { ConnectWarning } from "@inboxos.io/business/inbox/connect-outcome-types"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
 import {
   integration as integrationWhatsapp,
   registerPhoneNumber,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
-import { appAccessToken } from "@chatbotx.io/integration-whatsapp/api/auth"
+} from "@inboxos.io/integration-whatsapp"
+import { appAccessToken } from "@inboxos.io/integration-whatsapp/api/auth"
 import {
   getCoexistEligibility,
   type WhatsappPhoneNumber,
-} from "@chatbotx.io/integration-whatsapp/api/phone-number"
-import { subscribeWebhook } from "@chatbotx.io/integration-whatsapp/api/webhook"
+} from "@inboxos.io/integration-whatsapp/api/phone-number"
+import { subscribeWebhook } from "@inboxos.io/integration-whatsapp/api/webhook"
 import { runConnectFollowUps } from "@/features/channel-connect/lib/connect-action-outcomes"
 import { updateWorkspaceLogo } from "@/features/workspaces/actions/upload-logo"
 import { logger } from "@/lib/log"

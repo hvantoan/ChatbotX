@@ -1,10 +1,10 @@
-import { broadcastService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { broadcastService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   broadcastStatuses,
   resolveBroadcastAudienceRange,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { resolveContactAvatars } from "@/features/contacts/queries/resolve-contact-avatars"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"

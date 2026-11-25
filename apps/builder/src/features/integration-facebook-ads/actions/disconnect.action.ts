@@ -1,11 +1,11 @@
 "use server"
 
-import { integrationFacebookAdsService } from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
+import { integrationFacebookAdsService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
 import {
   facebookAdsAuthSchema,
   integration as integrationFacebookAds,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { logger } from "@/lib/log"

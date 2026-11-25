@@ -1,7 +1,7 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { connectionService, failSession } from "@chatbotx.io/connections"
-import type { MessengerCredential } from "@chatbotx.io/database/partials"
-import type { AuthValue } from "@chatbotx.io/sdk"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { connectionService, failSession } from "@inboxos.io/connections"
+import type { MessengerCredential } from "@inboxos.io/database/partials"
+import type { AuthValue } from "@inboxos.io/sdk"
 import type { NextRequest } from "next/server"
 import type {
   BeforeStartContext,

@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
@@ -15,7 +15,7 @@ export function serverErrorHandler(error: unknown, headers?: Headers) {
     )
   }
 
-  if (error instanceof ChatbotXException) {
+  if (error instanceof InboxOSException) {
     return NextResponse.json(
       { message: error.message, errors: [] },
       { status: error.httpStatusCode, headers },

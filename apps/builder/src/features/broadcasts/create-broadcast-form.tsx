@@ -1,5 +1,6 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type BroadcastPlanPolicy,
   type BroadcastScheduleType,
@@ -10,22 +11,21 @@ import {
   type ChannelType,
   findBroadcastChannelCapability,
   isTemplateBroadcastSubaction,
-} from "@chatbotx.io/database/partials"
-import { stepTypes } from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { DateTimePickerField } from "@chatbotx.io/ui/components/form/date-picker-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { stepTypes } from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { DateTimePickerField } from "@inboxos.io/ui/components/form/date-picker-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Separator } from "@chatbotx.io/ui/components/ui/separator"
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/card"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Separator } from "@inboxos.io/ui/components/ui/separator"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { add } from "date-fns"
 import { Loader2Icon, XIcon } from "lucide-react"

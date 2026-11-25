@@ -45,7 +45,7 @@ const makeTx = () => ({
   delete: mocks.delete,
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     delete: mocks.delete,
     query: {
@@ -64,17 +64,17 @@ vi.mock("@chatbotx.io/database/client", () => ({
 
 // Plain object stubs only — importing the real schema opens a database
 // connection through the sharding client.
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   inboxTeamModel: {},
   inboxTeamMemberModel: {},
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn(),
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   inboxTeamMemberRepository: {
     listUserIdsByTeamId: mocks.listUserIdsByTeamId,
     listTeamNamesByUserId: mocks.listTeamNamesByUserId,

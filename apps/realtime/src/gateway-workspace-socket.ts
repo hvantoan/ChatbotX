@@ -4,8 +4,8 @@ import {
   REALTIME_CLOSE_CODE,
   type RealtimeMemberClaims,
   verifyMemberConnectToken,
-} from "@chatbotx.io/realtime-protocol"
-import type { Redis } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import type { Redis } from "@inboxos.io/redis"
 import type { RealtimeDelivery, WorkspaceSocketData } from "./delivery"
 import {
   acquireSlot,

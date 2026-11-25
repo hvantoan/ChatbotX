@@ -1,4 +1,4 @@
-import { macAnalyticsService } from "@chatbotx.io/analytics"
+import { macAnalyticsService } from "@inboxos.io/analytics"
 import {
   and,
   type DatabaseClient,
@@ -9,44 +9,41 @@ import {
   isNull,
   or,
   sql,
-} from "@chatbotx.io/database/client"
-import {
-  type ContactSource,
-  channelTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { type ContactSource, channelTypes } from "@inboxos.io/database/partials"
 import {
   buildContactWhere,
   type ContactFilterCriteriaInput,
   contactFilterHasPredicate,
-} from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/queries"
 import {
   contactInboxRepository,
   contactRepository,
   pipelineActivityRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   contactInboxModel,
   contactModel,
   conversationModel,
   inboxModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ContactModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { emitContactCreated } from "@chatbotx.io/events"
-import { uploadFileFromUrl } from "@chatbotx.io/filesystem"
-import { invalidateCacheByTags, withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
-import { enqueueStoredImageOptimizations } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { emitContactCreated } from "@inboxos.io/events"
+import { uploadFileFromUrl } from "@inboxos.io/filesystem"
+import { invalidateCacheByTags, withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
+import { enqueueStoredImageOptimizations } from "@inboxos.io/worker-config"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import { BaseService } from "../base.service"
 import { contactActivityService } from "../contact-activity/service"
 import { getContactInboxSinceTime } from "../contact-inbox/service"
 import { contactInboxPostService } from "../contact-inbox-post/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { NO_AVATAR_SENTINEL_KEY } from "../media/no-avatar-sentinel"
 import { messageCleanupService } from "../message-cleanup/service"
@@ -985,7 +982,7 @@ class ContactService extends BaseService {
         columns: { id: true },
       })
       if (phoneConflict) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Phone number already exists",
           "phoneExists",
           422,
@@ -1034,7 +1031,7 @@ class ContactService extends BaseService {
             })
             .returning()
           if (!newContactInbox) {
-            throw new ChatbotXException("Contact inbox not found")
+            throw new InboxOSException("Contact inbox not found")
           }
 
           // No cancelByInboxSource here: this path mints a fresh random sourceId,

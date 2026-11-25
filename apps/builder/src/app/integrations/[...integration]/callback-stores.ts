@@ -6,19 +6,19 @@ import {
   integrationWhatsappService,
   messagingAdsConnectionService,
   messengerIntegrationService,
-} from "@chatbotx.io/business"
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
 import {
   exchangeCodeForToken as exchangeFacebookAdsCode,
   exchangeLongLivedToken as exchangeFacebookAdsLongLivedToken,
   type FacebookAdsAuthValue,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 import {
   type FacebookUser,
   getFacebookUser as getMessengerFacebookUser,
-} from "@chatbotx.io/integration-messenger"
-import type { MetaCatalogAuthValue } from "@chatbotx.io/integration-meta-catalog/schemas"
-import { AuthType } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-messenger"
+import type { MetaCatalogAuthValue } from "@inboxos.io/integration-meta-catalog/schemas"
+import { AuthType } from "@inboxos.io/sdk"
 import { logger } from "@/lib/log"
 
 // Exchange the OAuth code for a long-lived Facebook Ads token and store it

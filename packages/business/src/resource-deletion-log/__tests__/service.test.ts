@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   resourceDeletionLogRepository: {
     insert: mocks.insert,
     findPendingIdByResource: mocks.findPendingIdByResource,

@@ -3,7 +3,7 @@ import { z } from "zod"
 export {
   type DecisionProfileForm,
   decisionProfileFormSchema,
-} from "@chatbotx.io/decision-config"
+} from "@inboxos.io/decision-config"
 
 const key = z
   .string()

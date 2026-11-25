@@ -1,7 +1,7 @@
 "use server"
 
-import { dynamicImageService } from "@chatbotx.io/business/dynamic-image"
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
+import { dynamicImageService } from "@inboxos.io/business/dynamic-image"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import {

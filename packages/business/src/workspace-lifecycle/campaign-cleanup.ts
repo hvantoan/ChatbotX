@@ -4,10 +4,10 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import { broadcastStatuses } from "@chatbotx.io/database/partials"
-import { sequenceRepository } from "@chatbotx.io/database/repositories/sequence"
-import { broadcastModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/client"
+import { broadcastStatuses } from "@inboxos.io/database/partials"
+import { sequenceRepository } from "@inboxos.io/database/repositories/sequence"
+import { broadcastModel } from "@inboxos.io/database/schema"
 import { disarmAllSeriesForWorkspace } from "../broadcast/recurrence-ledger"
 
 export async function cancelInFlightBroadcastsForWorkspace(props: {

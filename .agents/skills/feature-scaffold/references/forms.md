@@ -21,7 +21,7 @@ export const CreateItemForm = ({ workspaceId }: { workspaceId: string }) => {
 
   return (
     <form onSubmit={handleSubmitWithAction}>
-      {/* Form fields using @chatbotx.io/ui form components */}
+      {/* Form fields using @inboxos.io/ui form components */}
     </form>
   )
 }
@@ -31,9 +31,9 @@ export const CreateItemForm = ({ workspaceId }: { workspaceId: string }) => {
 
 Always pick the highest-priority option that fits the field type:
 
-1. **Defined form field** from `@chatbotx.io/ui/components/form/*` — **first choice**.
+1. **Defined form field** from `@inboxos.io/ui/components/form/*` — **first choice**.
    Handles label, optional marker, description, and `FormMessage` automatically.
-2. **Shadcn UI primitive** from `@chatbotx.io/ui/components/ui/*` inside a manual
+2. **Shadcn UI primitive** from `@inboxos.io/ui/components/ui/*` inside a manual
    `FormField`/`FormItem` block — only when no defined field covers the use case.
 3. **Raw React/HTML element** — last resort.
 
@@ -60,12 +60,12 @@ needed as long as a `<Form {...form}>` provider wraps the form.
 ### Use the shared components, never raw HTML
 
 - **Sections:** group multi-section forms with `<Card>` / `<CardHeader>` / `<CardTitle>` /
-  `<CardContent className="space-y-4">` (`@chatbotx.io/ui/components/ui/card`). Never a plain
+  `<CardContent className="space-y-4">` (`@inboxos.io/ui/components/ui/card`). Never a plain
   `<div className="rounded-lg border p-6">`.
-- **Buttons:** always `<Button>` (`@chatbotx.io/ui/components/ui/button`) — including icon-only
+- **Buttons:** always `<Button>` (`@inboxos.io/ui/components/ui/button`) — including icon-only
   buttons and ones inside a base-ui trigger's `render` prop. Never a raw `<button>`. Use the
   `variant` prop (`ghost`, `outline`, `dashed`, …) rather than re-styling with `className`.
-- **Sticky save bars, empty states, and table shells** already exist in `@chatbotx.io/ui` and in
+- **Sticky save bars, empty states, and table shells** already exist in `@inboxos.io/ui` and in
   sibling features — copy the nearest real page rather than rebuilding the markup.
 
 For the full component ladder (which field component to reach for first) see the

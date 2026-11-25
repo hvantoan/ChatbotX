@@ -1,10 +1,10 @@
-import { EmojiPicker } from "@chatbotx.io/ui/components/emoji-picker"
+import { EmojiPicker } from "@inboxos.io/ui/components/emoji-picker"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@chatbotx.io/ui/components/ui/hover-card"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+} from "@inboxos.io/ui/components/ui/hover-card"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { CodeIcon, SmileIcon } from "lucide-react"
 import { useFormContext } from "react-hook-form"
 

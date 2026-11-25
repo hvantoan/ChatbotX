@@ -3,7 +3,7 @@ import {
   LowJobAction,
   type LowJobCoexistAttachmentDownload,
   lowQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 type AttachmentDownloadChannel =
   LowJobCoexistAttachmentDownload["data"]["channel"]

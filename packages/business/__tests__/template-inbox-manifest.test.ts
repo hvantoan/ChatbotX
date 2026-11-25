@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ listIdentitiesByIds: vi.fn() }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   inboxRepository: {
     listIdentitiesByIds: (...args: unknown[]) =>
       mocks.listIdentitiesByIds(...args),

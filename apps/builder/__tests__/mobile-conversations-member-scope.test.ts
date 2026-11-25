@@ -123,7 +123,7 @@ const conversationMemberScope = {
   },
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationMemberScope,
   conversationService,
   messageService,
@@ -137,7 +137,7 @@ vi.mock("@chatbotx.io/business", () => ({
     permissions.onlyAssignedContacts === true,
 }))
 
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   requestConversationThreadControl: vi.fn(),
   syncConversationThreadOwner: vi.fn(),
 }))

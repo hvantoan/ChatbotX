@@ -1,7 +1,7 @@
 "use client"
 
-import type { IntegrationThreadsModel } from "@chatbotx.io/database/types"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { IntegrationThreadsModel } from "@inboxos.io/database/types"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

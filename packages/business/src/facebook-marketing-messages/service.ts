@@ -3,25 +3,25 @@ import {
   type FacebookMarketingMessageStatus,
   type FacebookMarketingMessageTargetType,
   MM_START_DELAY_MS,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   facebookMarketingMessageAudienceRepository,
   facebookMarketingMessageRepository,
   facebookMarketingMessagesAuthRepository,
   type MarketingMessageAdAccountSummary,
   type MarketingMessageStatisticsListInput,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   FacebookMarketingMessageAudienceModel,
   FacebookMarketingMessageModel,
   FacebookMarketingMessagesAuthModel,
-} from "@chatbotx.io/database/types"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
+} from "@inboxos.io/database/types"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
 import {
   type FacebookAdsAuthValue,
   facebookAdsAuthSchema,
-} from "@chatbotx.io/integration-facebook-ads"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-facebook-ads"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { mmDeliveryError } from "../facebook-marketing-message-delivery/errors"
 

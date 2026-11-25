@@ -1,19 +1,19 @@
 "use client"
 
-import type { BroadcastTemplateDetail } from "@chatbotx.io/business"
-import { resolveBroadcastTemplateSend } from "@chatbotx.io/database/partials"
+import type { BroadcastTemplateDetail } from "@inboxos.io/business"
+import { resolveBroadcastTemplateSend } from "@inboxos.io/database/partials"
 import type {
   MessengerTemplateComponent,
   MessengerTemplateParams,
   TemplateComponent,
   WaTemplateParams,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@chatbotx.io/ui/components/ui/collapsible"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/collapsible"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { ChevronDownIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { MessengerTemplatePreview } from "@/features/integration-messenger/message-templates/components/template-preview"

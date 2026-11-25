@@ -36,7 +36,7 @@ const mocks = vi.hoisted(() => ({
   connectionTransition: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationThreadsModel: {
@@ -58,7 +58,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: mocks.findOrFail,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationThreadsModel: {
     id: "IntegrationThreads.id",
     workspaceId: "IntegrationThreads.workspaceId",
@@ -68,7 +68,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByInboxId: mocks.findByInboxId,
     findByProviderSourceId: mocks.findByProviderSourceId,
@@ -151,7 +151,7 @@ describe("integrationThreadsService", () => {
       auth: { token: "token" },
       threadsUserId: "user-1",
       username: "chatbotx",
-      name: "ChatbotX",
+      name: "InboxOS",
     })
 
     expect(mocks.inboxCreate).toHaveBeenCalledWith(
@@ -170,7 +170,7 @@ describe("integrationThreadsService", () => {
         workspaceId: "workspace-1",
         provider: "threads",
         kind: "channel",
-        descriptor: { sourceId: "user-1", displayName: "ChatbotX" },
+        descriptor: { sourceId: "user-1", displayName: "InboxOS" },
         extraConfig: { username: "chatbotx" },
         inboxId: "inbox-1",
       }),
@@ -188,7 +188,7 @@ describe("integrationThreadsService", () => {
       auth: { token: "token" },
       threadsUserId: "user-1",
       username: "chatbotx",
-      name: "ChatbotX",
+      name: "InboxOS",
     })
 
     expect(mocks.findByProviderSourceId).toHaveBeenCalledWith(
@@ -211,7 +211,7 @@ describe("integrationThreadsService", () => {
       auth: { token: "token" },
       threadsUserId: "user-1",
       username: "chatbotx",
-      name: "ChatbotX",
+      name: "InboxOS",
     })
 
     expect(mocks.withQuotaCompensation).toHaveBeenCalledWith(
@@ -335,7 +335,7 @@ describe("integrationThreadsService", () => {
         id: "threads-1",
         auth: { tokens: { accessToken: "token-2" } },
         username: "chatbotx",
-        name: "ChatbotX",
+        name: "InboxOS",
       }),
     ).resolves.toBe(true)
 
@@ -360,7 +360,7 @@ describe("integrationThreadsService", () => {
         id: "threads-missing",
         auth: { tokens: { accessToken: "token-2" } },
         username: "chatbotx",
-        name: "ChatbotX",
+        name: "InboxOS",
       }),
     ).resolves.toBe(false)
   })
@@ -379,7 +379,7 @@ describe("integrationThreadsService", () => {
         id: "threads-1",
         auth: { tokens: { accessToken: "token-2" } },
         username: "chatbotx",
-        name: "ChatbotX",
+        name: "InboxOS",
       }),
     ).resolves.toBe(false)
   })
@@ -402,7 +402,7 @@ describe("integrationThreadsService", () => {
         id: "threads-1",
         auth: { tokens: { accessToken: "token-2" } },
         username: "chatbotx",
-        name: "ChatbotX Updated",
+        name: "InboxOS Updated",
       }),
     ).resolves.toBe(true)
 
@@ -410,10 +410,10 @@ describe("integrationThreadsService", () => {
       expect.objectContaining({
         workspaceId: "workspace-1",
         inboxId: "inbox-1",
-        descriptor: { sourceId: "user-1", displayName: "ChatbotX Updated" },
+        descriptor: { sourceId: "user-1", displayName: "InboxOS Updated" },
         extraConfig: {
           username: "chatbotx",
-          name: "ChatbotX Updated",
+          name: "InboxOS Updated",
           tokenRefreshError: null,
         },
       }),

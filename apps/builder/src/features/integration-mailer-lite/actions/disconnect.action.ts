@@ -1,6 +1,6 @@
 "use server"
 
-import { integrationMailerLiteService } from "@chatbotx.io/business"
+import { integrationMailerLiteService } from "@inboxos.io/business"
 import { createDisconnectAction } from "@/lib/integration-actions"
 
 export const disconnectMailerLiteAction = createDisconnectAction(

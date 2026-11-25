@@ -7,12 +7,12 @@ const broadcastInsert = vi.fn()
 const targetInsert = vi.fn()
 const pruneFilter = vi.fn()
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
   sequenceAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       broadcastModel: {
@@ -63,7 +63,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: (...args: unknown[]) => ({ __sql: args }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {},
   broadcastTargetModel: {},
   inboxModel: {},
@@ -78,13 +78,13 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: (...args: unknown[]) => pruneFilter(...args),
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   likeContains: (value: string) => `%${value}%`,
   escapeLikePattern: (value: string) => value,
@@ -191,7 +191,7 @@ describe("broadcastService.cloneBroadcast", () => {
 
     test("a cloned repeating broadcast keeps its rule as a disarmed draft", async () => {
       const { broadcastRecurrenceRepository } = await import(
-        "@chatbotx.io/database/repositories"
+        "@inboxos.io/database/repositories"
       )
       const findSeries = vi
         .spyOn(broadcastRecurrenceRepository, "findByBroadcastId")
@@ -224,7 +224,7 @@ describe("broadcastService.cloneBroadcast", () => {
 
     test("a clone of a run, or of a one-off, carries no rule", async () => {
       const { broadcastRecurrenceRepository } = await import(
-        "@chatbotx.io/database/repositories"
+        "@inboxos.io/database/repositories"
       )
       const insertSeries = vi
         .spyOn(broadcastRecurrenceRepository, "insertIfMissing")

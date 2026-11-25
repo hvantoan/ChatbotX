@@ -30,7 +30,7 @@ const mockLockOptions = vi.hoisted(() => vi.fn())
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -77,7 +77,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     delete: mockDelete,
     insert: mockInsert,
@@ -94,7 +94,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   and: vi.fn((...args: unknown[]) => ({ and: args })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiMCPServerModel: {
     id: "id",
     workspaceId: "workspaceId",
@@ -102,7 +102,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "mcp-server-1",
 }))
 
@@ -253,7 +253,7 @@ describe("aiMcpServerService.update template lock", () => {
   }
 
   test("guards first on the locked transaction, before the write", async () => {
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     // The duplicate-name lookup runs first, then the row read.
     vi.mocked(db.query.aiMCPServerModel.findFirst)
       .mockResolvedValueOnce(undefined)
@@ -278,7 +278,7 @@ describe("aiMcpServerService.update template lock", () => {
   })
 
   test("locks the server before the stored row is read inside the transaction", async () => {
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     const findFirst = vi.mocked(db.query.aiMCPServerModel.findFirst)
     findFirst
       .mockResolvedValueOnce(undefined)
@@ -300,7 +300,7 @@ describe("aiMcpServerService.update template lock", () => {
   })
 
   test("a blocked edit never writes or audits", async () => {
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     // The duplicate-name lookup runs first, then the row read.
     vi.mocked(db.query.aiMCPServerModel.findFirst)
       .mockResolvedValueOnce(undefined)

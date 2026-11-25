@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   isUniqueViolationError: (error: unknown, constraint?: string) =>
     (error as { code?: string })?.code === "23505" &&
     (constraint === undefined || constraint === "Menu_key"),

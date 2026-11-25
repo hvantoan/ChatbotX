@@ -1,8 +1,8 @@
 import {
   canViewTemplateInstalls,
   type TemplateActor,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   workspaceActionClient,
   workspaceActionClientAllowExpired,
@@ -15,7 +15,7 @@ import { type MemberPermissions, memberActor } from "../lib/actor"
  */
 export const assertCanViewInstalls = (permissions: MemberPermissions): void => {
   if (!canViewTemplateInstalls(permissions)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "You don't have permission to use template installs",
       "templateCategoryPermissionDenied",
       403,

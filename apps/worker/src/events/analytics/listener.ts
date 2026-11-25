@@ -3,8 +3,8 @@ import type {
   AnalyticsDashboardEventMap,
   BaseEventListener,
   EventBusMessageMetadata,
-} from "@chatbotx.io/event-bus"
-import { EVENT_BUS_MESSAGE_ID } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/event-bus"
+import { EVENT_BUS_MESSAGE_ID } from "@inboxos.io/event-bus"
 import { logger } from "../../lib/logger"
 import { handleAgentReplied } from "./agent-response"
 import { handleMessageBotReceived } from "./bot-message"

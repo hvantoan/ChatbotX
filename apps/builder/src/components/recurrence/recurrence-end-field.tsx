@@ -1,17 +1,17 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { NumberInput } from "@chatbotx.io/ui/components/ui/input-number"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { NumberInput } from "@inboxos.io/ui/components/ui/input-number"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/radio-group"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   RECURRENCE_MAX_OCCURRENCES,
   type RecurrenceRule,
   recurrenceEndKinds,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import { useTranslations } from "next-intl"
 import { useId } from "react"
 import { useFormContext } from "react-hook-form"

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { inSourceOrder } from "../src/template/source-order"
 

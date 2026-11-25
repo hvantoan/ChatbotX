@@ -3,7 +3,7 @@ import {
   Integration,
   type IntegrationDefinition,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { moosendRequest } from "./client"
 import { moosendListsPagePath, moosendSubscribePath } from "./constants"
 import {

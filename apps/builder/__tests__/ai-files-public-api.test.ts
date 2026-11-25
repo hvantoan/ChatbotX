@@ -56,19 +56,19 @@ const aiFileService = {
   listChunks: vi.fn(),
   reindex: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService,
   AI_FILE_MAX_UPLOAD_BYTES: 25 * 1024 * 1024,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
-  ChatbotXException: class extends Error {},
+  InboxOSException: class extends Error {},
   notFoundException: (message: string) => new Error(message),
 }))
 
 const searchAIFiles = vi.fn()
-vi.mock("@chatbotx.io/ai/server", () => ({ searchAIFiles }))
+vi.mock("@inboxos.io/ai/server", () => ({ searchAIFiles }))
 const assertAIFileCreateFromUrlNotRateLimited = vi.fn()
 vi.mock("@/features/ai-files/lib/rate-limit", () => ({
   assertAIFileCreateFromUrlNotRateLimited,
@@ -76,7 +76,7 @@ vi.mock("@/features/ai-files/lib/rate-limit", () => ({
   assertAIFileSearchNotRateLimited: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),
@@ -90,7 +90,7 @@ vi.mock("@chatbotx.io/database/schema", () => {
 })
 
 // Deferred until after `vi.mock` calls above are hoisted, so the router
-// module picks up the mocked `@/orpc`/`@chatbotx.io/business` bindings.
+// module picks up the mocked `@/orpc`/`@inboxos.io/business` bindings.
 await import("@/features/ai-files/api/public")
 const { createAIFilePublicRequest } = await import(
   "@/features/ai-files/schema/public"

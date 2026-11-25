@@ -1,6 +1,6 @@
 "use server"
 
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

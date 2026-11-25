@@ -1,7 +1,7 @@
 import {
   googleAdsSettingsService,
   integrationGoogleAdsService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { SESSION_QUERY_PARAM } from "./constants"
 import { loadSettingsSession } from "./load-settings-session"
 import { toConsentView } from "./to-consent-view"

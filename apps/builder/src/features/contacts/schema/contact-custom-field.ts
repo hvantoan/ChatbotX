@@ -1,12 +1,12 @@
 import {
   contactCustomFieldModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   FieldOperationType,
   withFieldOperationOperandRule,
-} from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { publicCustomFieldResource } from "@/features/custom-fields/schema/resource"
 

@@ -6,14 +6,14 @@ import {
   FormField,
   FormItem,
   useFormField,
-} from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { useFormContext } from "react-hook-form"
 import { TranslatedFieldMessage } from "./translated-field-message"
 

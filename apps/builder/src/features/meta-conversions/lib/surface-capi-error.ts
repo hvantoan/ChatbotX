@@ -1,10 +1,10 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { MetaConversionsException } from "@chatbotx.io/integration-meta-conversions"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { MetaConversionsException } from "@inboxos.io/integration-meta-conversions"
 
 /**
  * Surface a Meta Conversions API failure to the user.
  *
- * The safe-action client forwards a `ChatbotXException` message to the toast,
+ * The safe-action client forwards a `InboxOSException` message to the toast,
  * so Meta's own message — e.g. "(#200) App does not have
  * instagram_manage_events permission on the Instagram Account" — reaches the
  * user instead of a generic "something went wrong". In the dataset-only (no
@@ -18,10 +18,10 @@ export const CAPI_REQUEST_FAILED_CODE = "capiRequestFailed"
 
 export function surfaceCapiError(error: unknown, fallback?: string): never {
   if (error instanceof MetaConversionsException) {
-    throw new ChatbotXException(error.message, CAPI_REQUEST_FAILED_CODE, 400)
+    throw new InboxOSException(error.message, CAPI_REQUEST_FAILED_CODE, 400)
   }
   if (fallback) {
-    throw new ChatbotXException(fallback, CAPI_REQUEST_FAILED_CODE, 400)
+    throw new InboxOSException(fallback, CAPI_REQUEST_FAILED_CODE, 400)
   }
   throw error
 }

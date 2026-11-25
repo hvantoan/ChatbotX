@@ -1,4 +1,4 @@
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { cardLayouts } from "../types"
 import { baseStepSchema } from "./base"

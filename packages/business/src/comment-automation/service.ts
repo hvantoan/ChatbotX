@@ -7,7 +7,7 @@ import {
   ne,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CommentAIModeration,
   type CommentAutomationType,
@@ -26,22 +26,22 @@ import {
   isLiveCommentAutomation,
   liveCommentCapabilities,
   normalizeReplyTexts,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   commentAutomationEventModel,
   commentAutomationMissModel,
   commentAutomationModel,
   commentAutomationReplyModel,
   contactInboxModel,
-} from "@chatbotx.io/database/schema"
-import type { CommentAutomationModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { CommentAutomationModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { distributedStore } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { distributedStore } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { formatInTimeZone } from "date-fns-tz"
 import { aiAgentService } from "../ai-agent/service"
 import { BaseService } from "../base.service"

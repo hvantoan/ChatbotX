@@ -1,8 +1,8 @@
-import { SYSTEM_ACTOR } from "@chatbotx.io/business/audit"
-import { db } from "@chatbotx.io/database/client"
-import { auditLogModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
-import type { JobSendAuditLog } from "@chatbotx.io/worker-config"
+import { SYSTEM_ACTOR } from "@inboxos.io/business/audit"
+import { db } from "@inboxos.io/database/client"
+import { auditLogModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
+import type { JobSendAuditLog } from "@inboxos.io/worker-config"
 import { env } from "../../env"
 
 export const sendAuditLog = async (data: JobSendAuditLog["data"]) => {

@@ -1,6 +1,6 @@
 "use server"
 
-import { wooCommerceIntegrationService } from "@chatbotx.io/business"
+import { wooCommerceIntegrationService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { syncWooCommerceRequest } from "../schema/public"

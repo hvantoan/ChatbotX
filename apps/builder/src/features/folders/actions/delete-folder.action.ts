@@ -1,6 +1,6 @@
 "use server"
 
-import { folderService } from "@chatbotx.io/business"
+import { folderService } from "@inboxos.io/business"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

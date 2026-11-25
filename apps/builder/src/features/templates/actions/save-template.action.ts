@@ -1,7 +1,7 @@
 "use server"
 
-import { templateService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { templateService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { saveTemplateRequest } from "../schema/mutation"
 import { templateActionClient } from "./template-action-client"
 

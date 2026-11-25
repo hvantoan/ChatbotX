@@ -1,8 +1,8 @@
-import type { MetaConversionsIntegration } from "@chatbotx.io/business"
+import type { MetaConversionsIntegration } from "@inboxos.io/business"
 import {
   type CapiConnection,
   resolveCapiConnection,
-} from "@chatbotx.io/business/meta-conversions/connection-state"
+} from "@inboxos.io/business/meta-conversions/connection-state"
 
 type StoredCapiColumns = Pick<
   MetaConversionsIntegration,

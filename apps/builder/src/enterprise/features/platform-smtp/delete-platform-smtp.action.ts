@@ -3,7 +3,7 @@
 import {
   assertEnterpriseFeatures,
   platformCredentialService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { superAdminActionClient } from "@/lib/safe-action"
 
 export const deletePlatformSmtpAction = superAdminActionClient.action(

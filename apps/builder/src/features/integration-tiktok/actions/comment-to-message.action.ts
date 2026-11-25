@@ -1,6 +1,6 @@
 "use server"
 
-import { tiktokIntegrationService } from "@chatbotx.io/business"
+import { tiktokIntegrationService } from "@inboxos.io/business"
 import { z } from "zod"
 import {
   type WorkspaceIdAndIdRequestParams,

@@ -1,9 +1,9 @@
-import { flowAnalyticsService } from "@chatbotx.io/analytics"
+import { flowAnalyticsService } from "@inboxos.io/analytics"
 import {
   flowNodeStatsResponse,
   flowStatsRequest,
-} from "@chatbotx.io/analytics/schemas"
-import { invalidateCacheByTags, withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/analytics/schemas"
+import { invalidateCacheByTags, withCache } from "@inboxos.io/redis"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

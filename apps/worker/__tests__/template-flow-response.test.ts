@@ -1,11 +1,11 @@
 import {
   encodeTemplateFlowToken,
   TemplateFlowOrigin,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // Resolving the token to a template FLOW button lives in
-// `@chatbotx.io/business` (`resolveTemplateFlowButton`, covered by
+// `@inboxos.io/business` (`resolveTemplateFlowButton`, covered by
 // packages/business/__tests__/resolve-sent-whatsapp-flow.test.ts); this file
 // covers the worker's job: guard the workspace, then apply the response.
 const resolveTemplateFlowButton = vi.fn()
@@ -13,7 +13,7 @@ const applyWhatsappFlowResponse = vi.fn(async () => undefined)
 const detectConversationAndContactInbox = vi.fn()
 const loggerWarn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   resolveTemplateFlowButton: (...args: unknown[]) =>
     resolveTemplateFlowButton(...args),
   whatsappFlowResponseService: {

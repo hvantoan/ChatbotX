@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CrownIcon, Share2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

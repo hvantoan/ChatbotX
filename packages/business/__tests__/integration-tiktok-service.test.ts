@@ -47,7 +47,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     delete: mockDelete,
     transaction: mockTransaction,
@@ -63,7 +63,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn((field: unknown, values: unknown[]) => ({ field, values })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationTiktokModel: {
     id: "id",
     openId: "openId",
@@ -71,15 +71,15 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-// Partial: the service now pulls in `@chatbotx.io/integration-tiktok` for
+// Partial: the service now pulls in `@inboxos.io/integration-tiktok` for
 // `getPostDetails`, and that graph reads other helpers (`zodBigintAsString`)
 // from this module. Only `createId` needs to be deterministic here.
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => "integration-1",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mockFindByProviderSourceId,
     // Defaults to "no Connection row" so the existing disconnect test below

@@ -1,26 +1,26 @@
-import { trackingResponseTypes } from "@chatbotx.io/analytics"
+import { trackingResponseTypes } from "@inboxos.io/analytics"
 import {
   adsConversionService,
   contactActivityService,
-} from "@chatbotx.io/business"
-import { enqueueLeaderboardAward } from "@chatbotx.io/business/leaderboard"
-import { db } from "@chatbotx.io/database/client"
-import type { FileType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { enqueueLeaderboardAward } from "@inboxos.io/business/leaderboard"
+import { db } from "@inboxos.io/database/client"
+import type { FileType } from "@inboxos.io/database/partials"
 import type {
   AutomatedResponseModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { createdAtFromId } from "@chatbotx.io/utils"
-import { applySpintax } from "@chatbotx.io/utils/spintax"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { createdAtFromId } from "@inboxos.io/utils"
+import { applySpintax } from "@inboxos.io/utils/spintax"
+import { contactVariableService } from "@inboxos.io/variables"
 import {
   ChatJobAction,
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { ruleMatchesMessage } from "./keyword-match"
 
 /** Channels whose leaderboards offer the "keywords" rule. */

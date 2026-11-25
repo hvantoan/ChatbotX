@@ -1,7 +1,7 @@
 // @vitest-environment node
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { AuthType } from "@chatbotx.io/sdk"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { AuthType } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { CONNECTION_STORE_BINDINGS } from "../src/connection/store-bindings"
 

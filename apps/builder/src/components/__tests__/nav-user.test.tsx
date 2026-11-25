@@ -35,7 +35,7 @@ vi.mock("next/link", () => ({
   }) => <a href={href}>{children}</a>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/avatar", () => ({
+vi.mock("@inboxos.io/ui/components/ui/avatar", () => ({
   Avatar: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -45,7 +45,7 @@ vi.mock("@chatbotx.io/ui/components/ui/avatar", () => ({
   AvatarImage: () => null,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/dropdown-menu", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dropdown-menu", () => ({
   DropdownMenu: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -71,7 +71,7 @@ vi.mock("@chatbotx.io/ui/components/ui/dropdown-menu", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/sidebar", () => ({
+vi.mock("@inboxos.io/ui/components/ui/sidebar", () => ({
   SidebarMenu: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),

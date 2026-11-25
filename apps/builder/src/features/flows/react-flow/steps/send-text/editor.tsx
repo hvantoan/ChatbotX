@@ -3,7 +3,7 @@
 import {
   buttonContainers,
   resolveSendTextLengthLimits,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { useWatch } from "react-hook-form"
 import { TiptapEditorField } from "@/components/tiptap/tiptap-editor-field"
 import { ButtonGroupEditor } from "../button/editor"

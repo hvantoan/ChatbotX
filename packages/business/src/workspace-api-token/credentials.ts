@@ -1,7 +1,7 @@
 import {
   INBOUND_WEBHOOK_TOKEN_PREFIX,
   type TokenHash,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 const API_TOKEN_PREFIX = "cbx_api_"
 const WORKSPACE_TOKEN_PREFIX = "cbx_ws_"

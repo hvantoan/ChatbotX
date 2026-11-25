@@ -12,7 +12,7 @@ const {
   mockListInstagramFacebookConversations: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   instagramIntegrationService: {
     findByIdForWorkspace: mockFindByIdForWorkspace,
   },
@@ -22,11 +22,11 @@ vi.mock("@chatbotx.io/business", () => ({
   extractContactInfo: vi.fn(() => ({})),
 }))
 
-vi.mock("@chatbotx.io/integration-instagram/apis/sync", () => ({
+vi.mock("@inboxos.io/integration-instagram/apis/sync", () => ({
   listInstagramConversations: mockListInstagramConversations,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook/apis/sync", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook/apis/sync", () => ({
   listInstagramFacebookConversations: mockListInstagramFacebookConversations,
 }))
 
@@ -34,11 +34,11 @@ vi.mock("@chatbotx.io/integration-instagram-facebook/apis/sync", () => ({
 // helpers (FIX 4). That module also imports `listMessages` from this
 // package — stubbed here (unused by these tests) purely to keep the module
 // graph hermetic instead of pulling in the real Graph HTTP client.
-vi.mock("@chatbotx.io/integration-messenger/apis/sync", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/sync", () => ({
   listMessages: vi.fn(),
 }))
 
-import { InstagramAPIException } from "@chatbotx.io/integration-instagram/exception"
+import { InstagramAPIException } from "@inboxos.io/integration-instagram/exception"
 import { instagramContactScanAdapter } from "../src/integration/handlers/contact-scan/adapters/instagram"
 
 const workspaceId = "ws-1"

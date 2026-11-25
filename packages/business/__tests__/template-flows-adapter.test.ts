@@ -22,10 +22,10 @@ const {
 }))
 
 // The fixtures below are partial nodes; structural validation has its own tests.
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => {
   const { z } = await import("zod")
   const original =
-    await importOriginal<typeof import("@chatbotx.io/flow-config")>()
+    await importOriginal<typeof import("@inboxos.io/flow-config")>()
   return {
     ...original,
     flowVersionSchema: z.unknown(),
@@ -53,17 +53,17 @@ vi.mock("../src/template/reference-sanitizer", async (importOriginal) => {
 vi.mock("../src/decision/profile-service", () => ({
   decisionProfileService: { assertFlowReferencesPublishable: vi.fn() },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { flowModel: { findMany: mockFlowModelFindMany } } },
   eq: vi.fn(),
   and: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "0",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowVersionModel: { table: "FlowVersion" },
   flowModel: { table: "Flow" },
 }))
@@ -76,7 +76,7 @@ vi.mock("../src/flow-version", () => ({
   flowVersionService: { findDraft: mockFindDraft },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowVersionRepository: { findPreferredByFlowIds: mockFindPreferred },
   referenceExistenceRepository: { findExistingIds: mockFindExistingIds },
   isVerifiableReferenceKind: (kind: string) => kind === "inbox",
@@ -305,7 +305,7 @@ describe("flowsAdapter", () => {
 
     test("a flow whose step is still being written installs as an inactive draft", async () => {
       const { sendMessageNodeDefaultFn, whatsappFlowStepDefaultFn } =
-        await import("@chatbotx.io/flow-config")
+        await import("@inboxos.io/flow-config")
       const base = sendMessageNodeDefaultFn({ nodeProps: { id: "1" } })
       const node = {
         ...base,

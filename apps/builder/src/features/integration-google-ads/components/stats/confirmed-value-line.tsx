@@ -1,11 +1,11 @@
 "use client"
 
-import type { GoogleAdsStatsResponse } from "@chatbotx.io/business"
+import type { GoogleAdsStatsResponse } from "@inboxos.io/business"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { useLocale, useTranslations } from "next-intl"
 import {
   formatCurrencyValue,

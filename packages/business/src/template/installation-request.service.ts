@@ -2,7 +2,7 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   parseTemplateUninstallCounts,
   type TemplateCategory,
@@ -11,7 +11,7 @@ import {
   type TemplateResourceKind,
   type TemplateUninstallCounts,
   type TemplateUninstallState,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   inboxRepository,
   loadResourceLabels,
@@ -20,14 +20,14 @@ import {
   templateInstalledResourceRepository,
   templateRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   TemplateInstallationModel,
   WorkspaceMemberModel,
-} from "@chatbotx.io/database/types"
-import { templateInboxManifestEntrySchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import { templateInboxManifestEntrySchema } from "@inboxos.io/flow-config"
 import { z } from "zod"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { userService } from "../user"
 import { isWorkspaceAdminMember } from "../workspace-member/predicates"
 import {
@@ -98,7 +98,7 @@ const RESOURCES_PAGE_SIZE = 100
 const MAX_DETAIL_WARNINGS = 200
 
 export const templateAlreadyInstalledException = (installationId: string) => {
-  const exception = new ChatbotXException(
+  const exception = new InboxOSException(
     "This template is already installed in this workspace",
     "templateAlreadyInstalled",
     409,
@@ -108,7 +108,7 @@ export const templateAlreadyInstalledException = (installationId: string) => {
 }
 
 const templateInstallationNotRetryableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Only a failed installation can be retried",
     "templateInstallationNotRetryable",
     409,
@@ -845,7 +845,7 @@ class TemplateInstallationRequestService {
         },
       }
     } catch (error) {
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         return {
           preview: {
             installable: false,

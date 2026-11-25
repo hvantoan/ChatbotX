@@ -8,8 +8,8 @@ import {
   ilike,
   isDatabaseError,
   type SQL,
-} from "@chatbotx.io/database/client"
-import type { ContactImportMeta } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { ContactImportMeta } from "@inboxos.io/database/partials"
 import {
   fileContextTypes,
   fileStatuses,
@@ -18,30 +18,30 @@ import {
   type ImportType,
   importStatuses,
   importTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   fileModel,
   type ImportErrorSample,
   importModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderBy,
-} from "@chatbotx.io/database/utils"
-import { inferImportFormat } from "@chatbotx.io/imports"
-import { resolveImportFileFormat } from "@chatbotx.io/imports/file-validation"
-import { getImportEntry } from "@chatbotx.io/imports/registry"
-import { createId } from "@chatbotx.io/utils"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/utils"
+import { inferImportFormat } from "@inboxos.io/imports"
+import { resolveImportFileFormat } from "@inboxos.io/imports/file-validation"
+import { getImportEntry } from "@inboxos.io/imports/registry"
+import { createId } from "@inboxos.io/utils"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
-import { ChatbotXException, toPublicErrorMessage } from "../errors"
+import { InboxOSException, toPublicErrorMessage } from "../errors"
 import { inboxService } from "../inbox/service"
 
 const GENERIC_IMPORT_FAILURE =
   "The import failed. Please try again or contact support."
 
-export type { ImportErrorSample } from "@chatbotx.io/database/schema"
+export type { ImportErrorSample } from "@inboxos.io/database/schema"
 export type ImportCounters = {
   processed: number
   success: number
@@ -89,7 +89,7 @@ class ImportService extends BaseService {
       where: { id: input.fileId, workspaceId },
     })
     if (!file) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "File not found",
         "contactImportFileNotFound",
         404,
@@ -99,7 +99,7 @@ class ImportService extends BaseService {
       file.contextType !== fileContextTypes.enum.import ||
       file.subType !== importTypes.enum.contacts
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "File is not a contacts import",
         "contactImportFileTypeInvalid",
       )
@@ -111,7 +111,7 @@ class ImportService extends BaseService {
     })
     const contactsConfig = getImportEntry(importTypes.enum.contacts).config
     if (!(format && contactsConfig.acceptedFormats.includes(format))) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Unsupported file format",
         "contactImportUnsupportedFormat",
       )
@@ -121,7 +121,7 @@ class ImportService extends BaseService {
       where: { id: input.inboxId, workspaceId },
     })
     if (!inbox) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Inbox not found",
         "contactImportInboxNotFound",
         404,
@@ -137,7 +137,7 @@ class ImportService extends BaseService {
       columns: { id: true },
     })
     if (activeImport) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "An import is already in progress for this workspace. Please wait for it to complete.",
         "contactImportAlreadyRunning",
         409,
@@ -209,7 +209,7 @@ class ImportService extends BaseService {
   }) {
     const file = await this.findFile(input)
     if (!file) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Product import file not found",
         "productImportFileNotFound",
         404,
@@ -218,14 +218,14 @@ class ImportService extends BaseService {
     const config = getImportEntry("products").config
     const fileFormat = resolveImportFileFormat(config, file)
     if (file.subType !== "products" || !fileFormat) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Product import file type is invalid",
         "productImportFileTypeInvalid",
         422,
       )
     }
     if (input.format && fileFormat !== input.format) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Product import format does not match the uploaded file",
         "productImportFormatMismatch",
         422,
@@ -240,7 +240,7 @@ class ImportService extends BaseService {
       columns: { id: true },
     })
     if (active) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "A product import is already running",
         "productImportAlreadyRunning",
         409,
@@ -281,7 +281,7 @@ class ImportService extends BaseService {
       })
     } catch (error) {
       if (isActiveProductImportViolation(error)) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "A product import is already running",
           "productImportAlreadyRunning",
           409,

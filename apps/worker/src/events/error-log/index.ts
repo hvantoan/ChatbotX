@@ -1,4 +1,4 @@
-import { errorLogEventBus } from "@chatbotx.io/event-bus"
+import { errorLogEventBus } from "@inboxos.io/event-bus"
 import { errorLogListeners } from "./listener"
 
 export default {

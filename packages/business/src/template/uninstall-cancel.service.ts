@@ -1,14 +1,14 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   isActiveInstallation,
   type TemplateUninstallEffect,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateInstallationRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import { InboxOSException, notFoundException } from "../errors"
 import { UNINSTALL_HANDLER_BY_KIND } from "./adapters/uninstall-handlers"
 import { noFreeze, uninstallContext } from "./adapters/uninstall-kit"
 import {
@@ -27,7 +27,7 @@ const CANCEL_STATEMENT_TIMEOUT = "30s"
 type Tx = DatabaseClient
 
 const notCancellable = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This uninstall can not be cancelled in its current state",
     "templateUninstallNotCancellable",
     409,

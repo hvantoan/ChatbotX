@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { LockIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useLockedIdSet } from "./lock-context"

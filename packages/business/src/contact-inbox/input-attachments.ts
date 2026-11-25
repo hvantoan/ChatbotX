@@ -1,4 +1,4 @@
-import { getWhatsappFlowResponse } from "@chatbotx.io/sdk"
+import { getWhatsappFlowResponse } from "@inboxos.io/sdk"
 
 /**
  * The attachments a message carries as the contact's own input, for the rules

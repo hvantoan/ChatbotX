@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { mcpOAuthService } from "../src/mcp-oauth/service"
 
@@ -22,7 +22,7 @@ const mocks = vi.hoisted(() => ({
   transaction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   oauthAccessTokenRepository: {
     deleteByUserAndClient: mocks.deleteAccessTokens,
     deleteExpired: mocks.deleteExpiredAccessTokens,
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
 vi.mock("../src/logger", () => ({ logger: { info: mocks.logInfo } }))
@@ -59,7 +59,7 @@ vi.mock("../src/workspace-member/service", () => ({
 vi.mock("../src/workspace-support-access/resolve-access", () => ({
   resolveWorkspaceAccess: mocks.resolveWorkspaceAccess,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))
 
@@ -128,7 +128,7 @@ describe("mcpOAuthService.resolvePrincipal", () => {
 
   test("rejects a deleted token subject", async () => {
     mocks.findUserById.mockRejectedValueOnce(
-      new ChatbotXException("Not found", "notFound", 404),
+      new InboxOSException("Not found", "notFound", 404),
     )
 
     await expect(

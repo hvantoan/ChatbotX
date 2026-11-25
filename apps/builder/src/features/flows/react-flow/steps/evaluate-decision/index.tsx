@@ -2,7 +2,7 @@ import {
   type EvaluateDecisionStepSchema,
   evaluateDecisionStepDefaultFn,
   evaluateDecisionStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import EvaluateDecisionStepEditor from "./editor"
 import EvaluateDecisionStepViewer from "./viewer"

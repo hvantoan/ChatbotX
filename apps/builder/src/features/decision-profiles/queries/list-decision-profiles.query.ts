@@ -1,4 +1,4 @@
-import { decisionProfileService } from "@chatbotx.io/business"
+import { decisionProfileService } from "@inboxos.io/business"
 import type { ListDecisionProfilesRequest } from "../schema/query"
 
 export const listDecisionProfiles = async (

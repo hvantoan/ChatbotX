@@ -7,7 +7,7 @@ const mockUploadFileFromUrl = vi.fn()
 const mockAssertPublicUrl = vi.fn()
 const mockRunThreadsAction = vi.fn()
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   getChannelMediaPrefix: (location: {
     channel: string
     workspaceId: string
@@ -17,7 +17,7 @@ vi.mock("@chatbotx.io/filesystem", () => ({
   uploadFileFromUrl: mockUploadFileFromUrl,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertPublicUrl: mockAssertPublicUrl,
   buildContext: vi.fn(async () => ({ ctx: "threads" })),
 }))

@@ -1,13 +1,13 @@
 import "server-only"
 
-import { messengerIntegrationService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { messengerIntegrationService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   type AudienceUploadSource,
   facebookMarketingMessageAudienceService,
-} from "@chatbotx.io/business/facebook-marketing-message-audience"
-import { facebookMarketingMessageAudienceUploadService } from "@chatbotx.io/business/facebook-marketing-message-audience/upload"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/facebook-marketing-message-audience"
+import { facebookMarketingMessageAudienceUploadService } from "@inboxos.io/business/facebook-marketing-message-audience/upload"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { getTranslations } from "next-intl/server"
 import { toUploadOutcome, withAudienceErrors } from "./audience-errors"
 import type { UploadOutcome } from "./audience-upload"
@@ -65,13 +65,13 @@ async function runPreflight({
       pageId: input.pageId,
     })
     if (!page) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("facebookMarketingMessages.audiences.errors.pageNotConnected"),
       )
     }
     return { ok: true as const, grant }
   } catch (error) {
-    if (error instanceof ChatbotXException) {
+    if (error instanceof InboxOSException) {
       return {
         ok: false as const,
         outcome: {

@@ -1,12 +1,12 @@
-# ChatbotX MCP Server
+# InboxOS MCP Server
 
-[Model Context Protocol](https://modelcontextprotocol.io) server for ChatbotX. Gives AI agents (Claude, Cursor, ChatGPT, etc.) access to your ChatbotX workspace through tools that are **automatically generated** from the ChatbotX OpenAPI spec — no manual tool definitions needed.
+[Model Context Protocol](https://modelcontextprotocol.io) server for InboxOS. Gives AI agents (Claude, Cursor, ChatGPT, etc.) access to your InboxOS workspace through tools that are **automatically generated** from the InboxOS OpenAPI spec — no manual tool definitions needed.
 
 Published skill/agent distribution docs live in the separate `chatbotx-agent` package; this repo owns the MCP server implementation and README.
 
 ## How it works
 
-On startup the server fetches `{CHATBOTX_API_URL}/public-spec.json` and registers one MCP tool per API operation the spec marks `x-mcp.visibility: "default"`. `CHATBOTX_API_URL` is the origin **including** the `/api` path prefix (e.g. `https://app.chatbotx.io/api`). Adding a new default-visible API endpoint in ChatbotX automatically makes it available as a tool — the spec is re-fetched in the background whenever it's older than `CHATBOTX_SPEC_TTL_MS` (default 5 minutes), so a new/changed operation shows up on the next `tools/list` call without a server restart.
+On startup the server fetches `{INBOXOS_API_URL}/public-spec.json` and registers one MCP tool per API operation the spec marks `x-mcp.visibility: "default"`. `INBOXOS_API_URL` is the origin **including** the `/api` path prefix (e.g. `https://app.chatbotx.io/api`). Adding a new default-visible API endpoint in InboxOS automatically makes it available as a tool — the spec is re-fetched in the background whenever it's older than `INBOXOS_SPEC_TTL_MS` (default 5 minutes), so a new/changed operation shows up on the next `tools/list` call without a server restart.
 
 
 ## OAuth 2.1
@@ -21,13 +21,13 @@ An explicit `?workspace_id=<id>` (or `x-workspace-id` header) may select a
 workspace only for legacy connections that predate the picker. A different
 workspace than the one consented for a new connection is rejected; disconnect
 and connect again to switch.
-The builder settings block **Settings → Integrations → ChatbotX MCP** provides the exact
+The builder settings block **Settings → Integrations → InboxOS MCP** provides the exact
 connection URL and lets each user revoke their OAuth grants.
 
 Legacy workspace tokens remain supported for stdio and existing connections.
 ### Default tools vs. the full API
 
-ChatbotX's public API has ~350 operations. Listing all of them as MCP tools overwhelms an agent's context and its ability to pick the right one, so `tools/list` returns only a curated default set (see below) plus three meta-tools:
+InboxOS's public API has ~350 operations. Listing all of them as MCP tools overwhelms an agent's context and its ability to pick the right one, so `tools/list` returns only a curated default set (see below) plus three meta-tools:
 
 | Tool | Description |
 |---|---|
@@ -54,7 +54,7 @@ Every `tools/list` definition also includes a human-readable `title` and explici
 
 ### Scope-based filtering
 
-`tools/list` is further narrowed to what the calling token can actually use, resolved once per token via `GET /v1/token` (`introspectToken`, cached per token value for `CHATBOTX_SPEC_TTL_MS`):
+`tools/list` is further narrowed to what the calling token can actually use, resolved once per token via `GET /v1/token` (`introspectToken`, cached per token value for `INBOXOS_SPEC_TTL_MS`):
 
 - A token missing a scope never sees that scope's tools (they still exist for `search_tools`/`call_tool`, which always hit the real API and get a real 403 if unauthorized).
 - A `read_only` token only sees tools whose `readOnlyHint` annotation is true — every `GET` by default, plus any POST explicitly marked `x-mcp.readOnlyHint: true` for an endpoint that reads without writing (no default tool currently uses this).
@@ -217,7 +217,7 @@ no workspace token belongs in the client configuration.
 
 **Claude Code:**
 ```bash
-claude mcp add chatbotx -t http -s user \
+claude mcp add inboxos -t http -s user \
   "https://app.chatbotx.io/mcp/messages"
 ```
 
@@ -225,7 +225,7 @@ claude mcp add chatbotx -t http -s user \
 ```json
 {
   "mcpServers": {
-    "chatbotx": {
+    "inboxos": {
       "type": "http",
       "url": "https://app.chatbotx.io/mcp/messages"
     }
@@ -242,16 +242,16 @@ The load balancer must forward `/mcp/*` to the MCP server **without stripping th
 
 ### Option B — stdio (workspace token, local use)
 
-Claude spawns the server process on demand. No server needs to be running. The workspace token is supplied via `CHATBOTX_API_KEY`.
+Claude spawns the server process on demand. No server needs to be running. The workspace token is supplied via `INBOXOS_API_KEY`.
 
 The package is published to npm as [`@hvantoan/inboxos-mcp`](https://www.npmjs.com/package/@hvantoan/inboxos-mcp) — `npx -y @hvantoan/inboxos-mcp` fetches and runs it with no local checkout or build required. Use a local `node /path/to/dist/index.mjs` instead when developing against this repo.
 
 **Claude Code CLI:**
 ```bash
-claude mcp add chatbotx \
-  -e CHATBOTX_API_KEY=<your-token> \
-  -e CHATBOTX_API_URL=https://your-instance.com/api \
-  -e CHATBOTX_MCP_TRANSPORT=stdio \
+claude mcp add inboxos \
+  -e INBOXOS_API_KEY=<your-token> \
+  -e INBOXOS_API_URL=https://your-instance.com/api \
+  -e INBOXOS_MCP_TRANSPORT=stdio \
   -s user \
   -- npx -y @hvantoan/inboxos-mcp
 ```
@@ -260,13 +260,13 @@ claude mcp add chatbotx \
 ```json
 {
   "mcpServers": {
-    "chatbotx": {
+    "inboxos": {
       "command": "npx",
       "args": ["-y", "@hvantoan/inboxos-mcp"],
       "env": {
-        "CHATBOTX_API_KEY": "<your-token>",
-        "CHATBOTX_API_URL": "https://your-instance.com/api",
-        "CHATBOTX_MCP_TRANSPORT": "stdio"
+        "INBOXOS_API_KEY": "<your-token>",
+        "INBOXOS_API_URL": "https://your-instance.com/api",
+        "INBOXOS_MCP_TRANSPORT": "stdio"
       }
     }
   }
@@ -284,7 +284,7 @@ Run the server once and multiple clients connect via URL. Pass the workspace tok
 pnpm start
 
 # Add to Claude Code CLI
-claude mcp add chatbotx \
+claude mcp add inboxos \
   -t sse \
   -H "x-workspace-token: <your-token>" \
   -s user \
@@ -295,7 +295,7 @@ claude mcp add chatbotx \
 ```json
 {
   "mcpServers": {
-    "chatbotx": {
+    "inboxos": {
       "type": "sse",
       "url": "https://your-mcp-server.com/sse",
       "headers": {
@@ -310,23 +310,23 @@ claude mcp add chatbotx \
 
 ChatGPT.com connects via SSE. The server must be publicly reachable. Because ChatGPT does not support custom request headers, pass the workspace token directly in the URL:
 
-1. Start the server with `CHATBOTX_MCP_TRANSPORT=sse` (or `both`).
+1. Start the server with `INBOXOS_MCP_TRANSPORT=sse` (or `both`).
 2. In ChatGPT Settings → Connectors → Add custom connector, set the URL:
    ```
    https://your-mcp-server.com/sse?workspace_token=<your-token>
    ```
    When using this URL in a shell command, always quote it to prevent `?` being interpreted as a glob:
    ```bash
-   claude mcp add chatbotx -t sse -s user "https://your-mcp-server.com/sse?workspace_token=<your-token>"
+   claude mcp add inboxos -t sse -s user "https://your-mcp-server.com/sse?workspace_token=<your-token>"
    ```
-3. Set `CHATBOTX_MCP_SERVER_INSTRUCTIONS` so ChatGPT uses tools instead of its training data. Leave it unset unless replacing the full built-in workflow, including OAuth checkpoints.
+3. Set `INBOXOS_MCP_SERVER_INSTRUCTIONS` so ChatGPT uses tools instead of its training data. Leave it unset unless replacing the full built-in workflow, including OAuth checkpoints.
 
 ## Token resolution order
 
 | Transport | Priority |
 |-----------|----------|
-| SSE / Streamable HTTP | `Authorization: Bearer` (OAuth access token or workspace token) → `?workspace_token=` or `?token=` query param → `x-workspace-token` / `x-chatbo-token` header → `CHATBOTX_API_KEY` env |
-| stdio | `CHATBOTX_API_KEY` env |
+| SSE / Streamable HTTP | `Authorization: Bearer` (OAuth access token or workspace token) → `?workspace_token=` or `?token=` query param → `x-workspace-token` / `x-chatbo-token` header → `INBOXOS_API_KEY` env |
+| stdio | `INBOXOS_API_KEY` env |
 
 ## Configuration
 
@@ -338,22 +338,22 @@ cp .env.example .env
 
 | Variable | Description | Default | Required |
 |---|---|---|---|
-| `CHATBOTX_API_KEY` | Workspace token for stdio only; leave empty on shared HTTP deployments | — | Yes (stdio) |
-| `CHATBOTX_API_URL` | ChatbotX API origin, including `/api` (e.g. `https://app.chatbotx.io/api`) | `https://app.chatbotx.io/api` | Yes |
-| `CHATBOTX_ALLOW_SELF_SIGNED_CERT` | Disable TLS verification (`true`/`false`) | — | No |
-| `CHATBOTX_SPEC_TTL_MS` | How long the fetched OpenAPI spec/tool list and a token's introspected scopes are trusted before a background re-fetch | `300000` | No |
-| `CHATBOTX_HTTP_TIMEOUT_MS` | Maximum duration for each OpenAPI, token introspection, or tool-call HTTP request | `30000` | No |
-| `CHATBOTX_MCP_TRANSPORT` | `stdio` \| `sse` \| `both` | `both` | No |
-| `CHATBOTX_MCP_HOST` | SSE server host | `0.0.0.0` | No |
-| `CHATBOTX_MCP_PORT` | SSE server port | `3333` | No |
-| `CHATBOTX_MCP_SSE_PATH` | SSE endpoint path | `/sse` | No |
-| `CHATBOTX_MCP_MESSAGES_PATH` | JSON-RPC messages path | `/messages` | No |
-| `CHATBOTX_MCP_CORS_ORIGIN` | CORS origin allowed to call the SSE/HTTP endpoints | `*` | No |
-| `CHATBOTX_MCP_SERVER_NAME` | Display name sent to AI clients | package name | No |
-| `CHATBOTX_MCP_SERVER_INSTRUCTIONS` | Instructions sent to AI clients on connect (helps ChatGPT know when to call tools) | built-in default | No |
-| `CHATBOTX_MCP_OAUTH_ENABLED` | Enable OAuth 2.1 protected-resource metadata and bearer challenges | `true` | No |
-| `CHATBOTX_MCP_OAUTH_ISSUER` | Authorization server issuer URL | derived from `CHATBOTX_API_URL` | No |
-| `CHATBOTX_MCP_PUBLIC_URL` | Canonical public origin; required in production so metadata advertises the TLS endpoint | derived from request headers | Yes (production) |
+| `INBOXOS_API_KEY` | Workspace token for stdio only; leave empty on shared HTTP deployments | — | Yes (stdio) |
+| `INBOXOS_API_URL` | InboxOS API origin, including `/api` (e.g. `https://app.chatbotx.io/api`) | `https://app.chatbotx.io/api` | Yes |
+| `INBOXOS_ALLOW_SELF_SIGNED_CERT` | Disable TLS verification (`true`/`false`) | — | No |
+| `INBOXOS_SPEC_TTL_MS` | How long the fetched OpenAPI spec/tool list and a token's introspected scopes are trusted before a background re-fetch | `300000` | No |
+| `INBOXOS_HTTP_TIMEOUT_MS` | Maximum duration for each OpenAPI, token introspection, or tool-call HTTP request | `30000` | No |
+| `INBOXOS_MCP_TRANSPORT` | `stdio` \| `sse` \| `both` | `both` | No |
+| `INBOXOS_MCP_HOST` | SSE server host | `0.0.0.0` | No |
+| `INBOXOS_MCP_PORT` | SSE server port | `3333` | No |
+| `INBOXOS_MCP_SSE_PATH` | SSE endpoint path | `/sse` | No |
+| `INBOXOS_MCP_MESSAGES_PATH` | JSON-RPC messages path | `/messages` | No |
+| `INBOXOS_MCP_CORS_ORIGIN` | CORS origin allowed to call the SSE/HTTP endpoints | `*` | No |
+| `INBOXOS_MCP_SERVER_NAME` | Display name sent to AI clients | package name | No |
+| `INBOXOS_MCP_SERVER_INSTRUCTIONS` | Instructions sent to AI clients on connect (helps ChatGPT know when to call tools) | built-in default | No |
+| `INBOXOS_MCP_OAUTH_ENABLED` | Enable OAuth 2.1 protected-resource metadata and bearer challenges | `true` | No |
+| `INBOXOS_MCP_OAUTH_ISSUER` | Authorization server issuer URL | derived from `INBOXOS_API_URL` | No |
+| `INBOXOS_MCP_PUBLIC_URL` | Canonical public origin; required in production so metadata advertises the TLS endpoint | derived from request headers | Yes (production) |
 
 ## Scripts
 
@@ -370,7 +370,7 @@ pnpm start
 # Type check
 pnpm check-types
 
-# List loaded tools (requires CHATBOTX_API_URL and CHATBOTX_API_KEY in .env)
+# List loaded tools (requires INBOXOS_API_URL and INBOXOS_API_KEY in .env)
 dotenv -e .env -- tsx src/test-tools.ts
 ```
 
@@ -454,9 +454,9 @@ evals/
 ## Troubleshooting
 
 **Tools not showing up**
-- Check that `CHATBOTX_API_URL` is reachable and `{CHATBOTX_API_URL}/public-spec.json` returns a valid OpenAPI spec.
+- Check that `INBOXOS_API_URL` is reachable and `{INBOXOS_API_URL}/public-spec.json` returns a valid OpenAPI spec.
 - Only operations the spec marks `x-mcp.visibility: "default"` appear in `tools/list` — everything else is reachable via `search_tools`/`call_tool`. See "Default tools vs. the full API" above.
-- The spec/tool list refreshes automatically every `CHATBOTX_SPEC_TTL_MS` (default 5 minutes); a brand-new operation may take that long to appear without a restart.
+- The spec/tool list refreshes automatically every `INBOXOS_SPEC_TTL_MS` (default 5 minutes); a brand-new operation may take that long to appear without a restart.
 - A token missing a required scope, or a `read_only` token calling a write endpoint's tool, will not see that tool — see "Scope-based filtering" above.
 - Check stderr output on startup — the server logs `Loaded N tools from OpenAPI spec`.
 
@@ -467,7 +467,7 @@ lsof -ti:3333 | xargs kill -9
 
 **Self-signed certificate errors**
 ```bash
-CHATBOTX_ALLOW_SELF_SIGNED_CERT=true
+INBOXOS_ALLOW_SELF_SIGNED_CERT=true
 ```
 
 **SSE connection fails in Claude**
@@ -475,5 +475,5 @@ CHATBOTX_ALLOW_SELF_SIGNED_CERT=true
 - For SSE, verify the server is running and the URL/port are reachable from the client.
 
 **ChatGPT uses its training knowledge instead of calling tools**
-- Set `CHATBOTX_MCP_SERVER_INSTRUCTIONS` to explicitly instruct ChatGPT to use tools (see `.env.example`).
+- Set `INBOXOS_MCP_SERVER_INSTRUCTIONS` to explicitly instruct ChatGPT to use tools (see `.env.example`).
 - Make sure the connector URL includes `?workspace_token=<your-token>` so authentication is handled automatically.

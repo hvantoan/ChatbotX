@@ -1,4 +1,4 @@
-import type { WorkspaceApiTokenModel } from "@chatbotx.io/database/types"
+import type { WorkspaceApiTokenModel } from "@inboxos.io/database/types"
 import { describe, expect, test } from "vitest"
 import { toWorkspaceApiTokenDto } from "../schema/workspace-token-dto"
 

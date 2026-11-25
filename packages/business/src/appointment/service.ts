@@ -1,23 +1,23 @@
-import { type DatabaseClient, db, sql } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, sql } from "@inboxos.io/database/client"
 import {
   type AppointmentListTab,
   appointmentRepository,
   contactInboxRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   type AppointmentWebviewPayload,
   signAppointmentCancelToken,
   signAppointmentScheduleToken,
-} from "@chatbotx.io/encryption"
-import type { MetadataPayload } from "@chatbotx.io/flow-config"
-import { isValidTimezone } from "@chatbotx.io/utils/timezone"
+} from "@inboxos.io/encryption"
+import type { MetadataPayload } from "@inboxos.io/flow-config"
+import { isValidTimezone } from "@inboxos.io/utils/timezone"
 import {
   DefaultJobAction,
   defaultQueue,
   IntegrationJobAction,
   integrationQueue,
   syncExternalCalendarEventJobId,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { formatInTimeZone } from "date-fns-tz"
 import { normalizeError } from "universal-error-normalizer"
 import {
@@ -29,17 +29,17 @@ import { appointmentReminderService } from "../appointment-reminder"
 import { BaseService } from "../base.service"
 import { type ContactAccessScope, contactService } from "../contact"
 import { conversationService } from "../conversation"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { resolveTenantSettings } from "../platform/settings"
 
-export class SlotUnavailableException extends ChatbotXException {
+export class SlotUnavailableException extends InboxOSException {
   constructor() {
     super("Appointment slot is unavailable", "slotUnavailable", 409)
   }
 }
 
-export class AppointmentAvailabilityChangedException extends ChatbotXException {
+export class AppointmentAvailabilityChangedException extends InboxOSException {
   constructor() {
     super(
       "Appointment calendar availability changed. Please try again.",
@@ -49,7 +49,7 @@ export class AppointmentAvailabilityChangedException extends ChatbotXException {
   }
 }
 
-export class AppointmentAlreadyScheduledException extends ChatbotXException {
+export class AppointmentAlreadyScheduledException extends InboxOSException {
   constructor() {
     super(
       "Contact already has a scheduled appointment for this calendar",
@@ -59,7 +59,7 @@ export class AppointmentAlreadyScheduledException extends ChatbotXException {
   }
 }
 
-export class AmbiguousCancelException extends ChatbotXException {
+export class AmbiguousCancelException extends InboxOSException {
   constructor(count: number) {
     super(
       `Expected exactly one future appointment to cancel, found ${count}`,
@@ -297,7 +297,7 @@ class AppointmentService extends BaseService {
       // Confirmation flows and reminders go to the booking's conversation, so
       // it must be this contact's — never another contact's thread.
       if (conversation.contactId !== input.contactId) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Appointment conversation does not belong to the contact",
           "invalidAppointmentConversation",
           400,
@@ -417,7 +417,7 @@ class AppointmentService extends BaseService {
           tx,
         )
         if (!contactInbox) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Appointment contact inbox does not belong to the contact",
             "invalidAppointmentContactInbox",
             400,
@@ -731,7 +731,7 @@ class AppointmentService extends BaseService {
         tx,
       )
       if (row.status !== "scheduled" || row.startAt <= new Date()) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Appointment cannot be cancelled",
           "appointmentNotCancellable",
           409,
@@ -784,7 +784,7 @@ class AppointmentService extends BaseService {
         appointment.status === "scheduled" &&
         appointment.startAt > new Date()
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Cancel upcoming appointments before deleting them",
           "appointmentDeleteBlocked",
           409,

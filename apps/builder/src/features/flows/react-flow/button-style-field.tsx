@@ -4,8 +4,8 @@ import {
   type ButtonStyle,
   type ButtonStyleSupport,
   getChannelFlowPolicy,
-} from "@chatbotx.io/flow-config"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/flow-config"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useWatch } from "react-hook-form"

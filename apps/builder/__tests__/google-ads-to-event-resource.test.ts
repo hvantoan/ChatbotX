@@ -1,5 +1,5 @@
-import type { GoogleAdsEventOptions } from "@chatbotx.io/database/partials"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+import type { GoogleAdsEventOptions } from "@inboxos.io/database/partials"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import { describe, expect, test } from "vitest"
 import { toGoogleAdsEventResource } from "@/features/integration-google-ads/lib/to-event-resource"
 

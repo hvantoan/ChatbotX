@@ -1,5 +1,6 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   formatWhatsappLocationCoordinate,
   isWhatsappLocationUnset,
@@ -9,9 +10,9 @@ import {
   type WhatsappLocationFormValues,
   whatsappLocationFormErrors,
   whatsappLocationFormSchema,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -20,8 +21,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { PencilIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { memo, useCallback, useState } from "react"

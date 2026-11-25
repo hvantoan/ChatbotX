@@ -1,5 +1,5 @@
-import { integrationDripService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationDripService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageDrip } from "@/features/integration-drip/components/manage-drip"
 

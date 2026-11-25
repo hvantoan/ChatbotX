@@ -1,4 +1,4 @@
-import { googleAdsEventStatusValues } from "@chatbotx.io/database/partials"
+import { googleAdsEventStatusValues } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   EVERY_STATUS_IS_BUCKETED,

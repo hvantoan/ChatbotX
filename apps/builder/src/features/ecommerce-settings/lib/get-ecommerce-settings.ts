@@ -1,5 +1,5 @@
 import "server-only"
-import { ecommerceSettingsService } from "@chatbotx.io/business"
+import { ecommerceSettingsService } from "@inboxos.io/business"
 import type { EcommerceSettingsPublicResource } from "../schema/public"
 
 /**

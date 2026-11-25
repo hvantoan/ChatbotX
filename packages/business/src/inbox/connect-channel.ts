@@ -2,13 +2,13 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import type { ChannelType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   INSTAGRAM_IG_ID_UNIQUE_CONSTRAINT,
   MESSENGER_PAGE_ID_UNIQUE_CONSTRAINT,
   WHATSAPP_PHONE_NUMBER_UNIQUE_CONSTRAINT,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { dispatchAuditRecordSafely } from "../audit/dispatcher"
 import { channelDuplicatedException } from "../errors"
 

@@ -1,8 +1,8 @@
-import { adsConversionChannelSchema } from "@chatbotx.io/database/schema"
+import { adsConversionChannelSchema } from "@inboxos.io/database/schema"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { z } from "zod"
 import { adsConversionExportSegments } from "../ads-conversion"
 import {

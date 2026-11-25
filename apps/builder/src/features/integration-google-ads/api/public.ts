@@ -1,7 +1,7 @@
 import {
   googleAdsConversionService,
   googleAdsStatsResponse,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { possibleErrorsOnListingResource } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"
 import { listGoogleAdsEventResources } from "../lib/list-google-ads-events"

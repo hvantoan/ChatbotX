@@ -1,4 +1,4 @@
-import type { ParameterInfo } from "@chatbotx.io/flow-config"
+import type { ParameterInfo } from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, useForm } from "react-hook-form"

@@ -1,8 +1,8 @@
 import {
   SidebarProvider,
   useSidebar,
-} from "@chatbotx.io/ui/components/ui/sidebar"
-import { setViewportWidth } from "@chatbotx.io/vitest-config/setup-dom"
+} from "@inboxos.io/ui/components/ui/sidebar"
+import { setViewportWidth } from "@inboxos.io/vitest-config/setup-dom"
 import type { ComponentProps, ReactNode } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"

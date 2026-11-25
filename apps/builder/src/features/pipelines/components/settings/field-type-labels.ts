@@ -1,4 +1,4 @@
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 
 export const FIELD_TYPE_LABEL_KEYS = {
   shortText: "fields.shortText.label",

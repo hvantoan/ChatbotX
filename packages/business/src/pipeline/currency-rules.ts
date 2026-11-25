@@ -1,5 +1,5 @@
-import type { PipelineModel } from "@chatbotx.io/database/types"
-import { primaryCurrencyForCountry } from "@chatbotx.io/utils/country-currency"
+import type { PipelineModel } from "@inboxos.io/database/types"
+import { primaryCurrencyForCountry } from "@inboxos.io/utils/country-currency"
 
 /**
  * The pipeline currency rules with no I/O, so a light module (variable

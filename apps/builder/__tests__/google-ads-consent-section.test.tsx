@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import "./helpers/tiptap-jsdom-shims"
-import { googleAdsConsentSchema } from "@chatbotx.io/database/partials"
+import { googleAdsConsentSchema } from "@inboxos.io/database/partials"
 import { act, type ReactNode } from "react"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import { type Mounted, mount } from "./helpers/google-ads-ui"
@@ -45,7 +45,7 @@ vi.mock("@/components/tiptap/use-prompt-variable-options", () => ({
 // aria-*, so a helper attached to the root is never announced) and hands them to
 // the trigger, which is where aria-describedby must live. The trigger renders as a
 // native <select> so the tests can drive it.
-vi.mock("@chatbotx.io/ui/components/ui/select", async () => {
+vi.mock("@inboxos.io/ui/components/ui/select", async () => {
   const { createContext, useContext } = await import("react")
   type Items = { value: string; label: string }[]
   type Root = {

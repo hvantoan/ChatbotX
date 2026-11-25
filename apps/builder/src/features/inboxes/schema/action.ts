@@ -1,5 +1,5 @@
-import { listInboxesRequest } from "@chatbotx.io/business/inbox/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { listInboxesRequest } from "@inboxos.io/business/inbox/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server"
 import { z } from "zod"
 import { inboxResource } from "./resource"

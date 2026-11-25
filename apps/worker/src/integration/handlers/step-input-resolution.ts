@@ -1,15 +1,15 @@
-import { conversationService, workspaceService } from "@chatbotx.io/business"
-import { smartDelayService } from "@chatbotx.io/business/smart-delay"
+import { conversationService, workspaceService } from "@inboxos.io/business"
+import { smartDelayService } from "@inboxos.io/business/smart-delay"
 import {
   type ConversationAttributes,
   smartDelayStatuses,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
-import { stepInputResolutionPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import { stepInputResolutionPayload } from "@inboxos.io/flow-config"
 import type {
   IntegrationJobResolveStepInput,
   IntegrationJobResumeStepInputTimeout,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { detectConversationAndContactInbox } from "../../lib/db"
 import { logger } from "../../lib/logger"
 import { runStepChallenge } from "./challenge"

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateRepository: { findForStagingByShareToken: mocks.findForStaging },
   templateInstallationRepository: { create: mocks.create },
   templateVersionRepository: { pinVersionNumber: mocks.pinVersionNumber },

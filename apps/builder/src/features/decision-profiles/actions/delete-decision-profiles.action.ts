@@ -1,6 +1,6 @@
 "use server"
 
-import { decisionProfileService } from "@chatbotx.io/business"
+import { decisionProfileService } from "@inboxos.io/business"
 import {
   bulkUpdateIdsRequest,
   workspaceIdrequestParams,

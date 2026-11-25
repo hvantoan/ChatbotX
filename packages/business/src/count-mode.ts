@@ -3,12 +3,12 @@ import {
   db,
   isStatementTimeoutError,
   setLocalStatementTimeout,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   BOUNDED_COUNT_CAP,
   type CountMode,
   EXACT_COUNT_STATEMENT_TIMEOUT,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { countTimeoutException } from "./errors"
 
 /** A count plus whether it stopped at `countCap` (then `total` is a lower bound). */

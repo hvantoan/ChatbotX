@@ -1,5 +1,5 @@
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
-import { LEADERBOARD_RULES_BY_PLATFORM } from "@chatbotx.io/database/partials"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
+import { LEADERBOARD_RULES_BY_PLATFORM } from "@inboxos.io/database/partials"
 import { NextIntlClientProvider } from "next-intl"
 import type { ReactNode } from "react"
 import { act } from "react"

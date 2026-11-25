@@ -1,5 +1,5 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
-import { CONNECT_ERROR_QUERY_PARAM } from "@chatbotx.io/utils/connection"
+import { getIdFromParams } from "@inboxos.io/utils"
+import { CONNECT_ERROR_QUERY_PARAM } from "@inboxos.io/utils/connection"
 import { notFound } from "next/navigation"
 import { GoogleAdsSettings } from "@/features/integration-google-ads/components/google-ads-settings"
 import { loadGoogleAdsSettingsPage } from "@/features/integration-google-ads/lib/load-settings-page"

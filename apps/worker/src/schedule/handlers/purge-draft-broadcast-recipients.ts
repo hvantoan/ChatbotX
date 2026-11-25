@@ -1,4 +1,4 @@
-import { broadcastService } from "@chatbotx.io/business"
+import { broadcastService } from "@inboxos.io/business"
 import { DelayedError } from "bullmq"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"
 import {

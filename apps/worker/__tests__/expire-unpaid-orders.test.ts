@@ -6,7 +6,7 @@ const settleStaleAttempt = vi.fn()
 const postponeStaleAttempt = vi.fn()
 const warn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   orderPaymentService: {
     listOverdue,
     listStaleAttempts,
@@ -16,12 +16,12 @@ vi.mock("@chatbotx.io/business", () => ({
   withBlockedOwnerGuard: async (_workspaceId: string, fn: () => unknown) =>
     await fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: async ({ fn }: { fn: () => unknown }) => await fn(),
   },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ warn, info: vi.fn() }),
 }))
 

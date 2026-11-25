@@ -5,13 +5,13 @@ import {
   eq,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   pipelineItemAttachmentModel,
   pipelineItemCommentModel,
-} from "@chatbotx.io/database/schema"
-import type { PipelineItemCommentModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { PipelineItemCommentModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { newestFirstKeyset } from "./item-cursor"
 
 export type PipelineCommentInsert = Omit<

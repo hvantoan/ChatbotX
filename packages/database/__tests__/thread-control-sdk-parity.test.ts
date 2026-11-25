@@ -1,11 +1,11 @@
 import {
   THREAD_CONTROL_STEP_METADATA_MAX_LENGTH,
   threadControlStepTargetRoles,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   threadControlActions as sdkActions,
   threadControlRoles as sdkRoles,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, it } from "vitest"
 import {
   THREAD_CONTROL_METADATA_MAX_LENGTH,

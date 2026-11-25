@@ -1,6 +1,6 @@
-import { type DatabaseClient, inArray } from "@chatbotx.io/database/client"
-import { customFieldModel } from "@chatbotx.io/database/schema"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+import { type DatabaseClient, inArray } from "@inboxos.io/database/client"
+import { customFieldModel } from "@inboxos.io/database/schema"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import { computeCustomFieldNameBindings } from "./field-token-binder"
 
 /**

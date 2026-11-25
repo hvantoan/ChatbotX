@@ -1,7 +1,7 @@
 import type {
   CustomFieldType,
   InboundWebhookFieldMapping,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { customFieldService } from "../custom-field/service"
 import { notFoundException } from "../errors"
 import { workspaceService } from "../workspace/service"

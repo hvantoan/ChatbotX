@@ -1,6 +1,6 @@
-import type { Context } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { storeIncomingImage } from "@chatbotx.io/utils/store-incoming-image"
+import type { Context } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { storeIncomingImage } from "@inboxos.io/utils/store-incoming-image"
 import type { ZaloAuthValue } from "../schema/definition"
 
 export const fetchAndReuploadImage = async ({

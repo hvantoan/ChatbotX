@@ -4,7 +4,7 @@ import { z } from "zod"
 /**
  * Kill switch for the contact activity store writers: off, every producer call
  * is a no-op. (The read side, `CONTACT_ACTIVITY_FILTERS_ENABLED`, lives with
- * the SQL builder in `@chatbotx.io/database` because the builder enforces it.)
+ * the SQL builder in `@inboxos.io/database` because the builder enforces it.)
  * Defaults to on.
  */
 export const contactActivityEnv = () =>

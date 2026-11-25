@@ -11,17 +11,17 @@ import {
   ne,
   notInArray,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type SmartDelayStatus,
   type SmartDelayType,
   smartDelayStatuses,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactOnSmartDelayModel,
   conversationModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { BaseService } from "../base.service"
 
 /** The challenge a step-input timeout belongs to (its metadata names it). */

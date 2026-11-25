@@ -2,11 +2,11 @@ import {
   CHANNEL_AUDIENCE_EVENT_JOB_NAME,
   type ChannelAudienceEventJobData,
   type HandleRequestProps,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   hmacSha256Base64,
   timingSafeStringEqual,
-} from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/utils/crypto"
 import { LineException } from "../exception"
 import type { LineConfig } from "../schema"
 import { type LineWebhookEvent, lineWebhookBodySchema } from "../schema/webhook"

@@ -18,7 +18,7 @@ globs:
 
 ## Principle
 
-The chain is: **action / API handler → service (`packages/business/`) → repository (`packages/database/src/repositories/`) → DB**. No app-layer code (`apps/builder`, `apps/worker`, `integrations/`) may import `db` from `@chatbotx.io/database/client` and execute queries directly. The one exception is a **pure read with zero business logic** — see the carve-out below.
+The chain is: **action / API handler → service (`packages/business/`) → repository (`packages/database/src/repositories/`) → DB**. No app-layer code (`apps/builder`, `apps/worker`, `integrations/`) may import `db` from `@inboxos.io/database/client` and execute queries directly. The one exception is a **pure read with zero business logic** — see the carve-out below.
 
 ## Why
 
@@ -63,7 +63,7 @@ A file under `apps/builder/src/features/*/queries/` (`get-x.query.ts`, `list-x.q
 
 The public API (workspace-token) handler and the private action/query adapter for the same operation **must call the same service method**. Only the app layer resolves the caller's permission scope (member permissions vs. an unscoped token) and passes it into the service as plain data (`scope`/`accessScope`) — the service itself never knows whether the caller was a signed-in member or a token. Do not write a second, parallel implementation of the same logic for the public path "because it's simpler" — that is exactly the duplication this layering exists to prevent.
 
-The public path is **not optional**: ChatbotX is agent-first, so every operation has a public procedure unless it is on the exempt list of invariant 23 in `docs/agents/invariants.md` — and that includes result-returning operations (links, previews, test runs, stats, exports, AI generation). When such an operation touches no DB (e.g. `createBotSimulatorLink` building the bot simulator URL), its shared implementation lives in `features/<x>/lib/`, and the public handler and the UI path both call it.
+The public path is **not optional**: InboxOS is agent-first, so every operation has a public procedure unless it is on the exempt list of invariant 23 in `docs/agents/invariants.md` — and that includes result-returning operations (links, previews, test runs, stats, exports, AI generation). When such an operation touches no DB (e.g. `createBotSimulatorLink` building the bot simulator URL), its shared implementation lives in `features/<x>/lib/`, and the public handler and the UI path both call it.
 
 ## How to add new data access
 
@@ -83,8 +83,8 @@ Many older features still import `db` directly in actions and queries. These are
 
 Before marking a task done:
 
-- [ ] No new `import { db } from "@chatbotx.io/database/client"` in `apps/` or `integrations/` (outside the pure-read repository exception)
-- [ ] No new `import ... from "@chatbotx.io/database/schema"` with direct query execution in `apps/` or `integrations/`
+- [ ] No new `import { db } from "@inboxos.io/database/client"` in `apps/` or `integrations/` (outside the pure-read repository exception)
+- [ ] No new `import ... from "@inboxos.io/database/schema"` with direct query execution in `apps/` or `integrations/`
 - [ ] All DB mutations go through a service method
 - [ ] All DB reads go through a service (or, for a pure read with zero business logic, a repository)
 - [ ] Every new operation (CRUD or result-returning) has a public API handler, or is on the invariant 23 exempt list (`docs/agents/invariants.md`) with the reason stated in the PR

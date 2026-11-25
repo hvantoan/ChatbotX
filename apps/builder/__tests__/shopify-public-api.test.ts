@@ -37,7 +37,7 @@ const shopifyIntegrationService = {
   requestSync: vi.fn(),
   disconnect: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ shopifyIntegrationService }))
+vi.mock("@inboxos.io/business", () => ({ shopifyIntegrationService }))
 
 await import("@/features/shopify/api/public")
 const { connectShopifyRequest, syncShopifyRequest } = await import(

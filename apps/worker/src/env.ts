@@ -125,7 +125,7 @@ export const env = createEnv({
     // Muse needs its own cap: a 10-minute 24 kHz mono WAV (~28.8 MB) is over
     // HEAVY_MAX_AUDIO_BYTES. Bounded by the client's 32 MiB request limit
     // minus multipart overhead (`MUSE_TRANSCRIBE_MAX_REQUEST_BYTES` and
-    // `MUSE_TRANSCRIBE_MULTIPART_OVERHEAD_BYTES` in @chatbotx.io/ai/server).
+    // `MUSE_TRANSCRIBE_MULTIPART_OVERHEAD_BYTES` in @inboxos.io/ai/server).
     MUSE_TRANSCRIBE_MAX_AUDIO_BYTES: z.coerce
       .number()
       .int()

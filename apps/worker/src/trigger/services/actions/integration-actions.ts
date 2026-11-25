@@ -2,8 +2,8 @@ import {
   contactInboxService,
   googleAdsConversionService,
   metaConversionsService,
-} from "@chatbotx.io/business"
-import { metaCapiEventChannelSchema } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import { metaCapiEventChannelSchema } from "@inboxos.io/database/schema"
 import {
   errorStateDefaultFn,
   googleAdsConversionFieldsSchema,
@@ -22,15 +22,15 @@ import {
   successStateDefaultFn,
   withGoogleAdsConversionRefinements,
   withMetaCapiEventRefinements,
-} from "@chatbotx.io/flow-config"
-import { sanitizeGoogleAdsError } from "@chatbotx.io/integration-google-ads"
-import baseLogger from "@chatbotx.io/logger"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { sanitizeGoogleAdsError } from "@inboxos.io/integration-google-ads"
+import baseLogger from "@inboxos.io/logger"
+import { createId } from "@inboxos.io/utils"
 import {
   googleAdsConversionErrorCodes,
   hasGoogleClick,
-} from "@chatbotx.io/utils/google-click"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/utils/google-click"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import type { ExecuteStepProps } from "../../../integration/handlers/flow"
 import {
   configRefusalCodes,

@@ -1,8 +1,8 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { ReactNode } from "react"
 

@@ -4,8 +4,8 @@ import {
   REALTIME_MEMBER_REVOKED_TTL_SECONDS,
   type RealtimeStreamRecord,
   realtimeStreamRecordSchema,
-} from "@chatbotx.io/realtime-protocol"
-import { createRedisConnection, type Redis } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import { createRedisConnection, type Redis } from "@inboxos.io/redis"
 import { logger } from "../logger"
 import { resolveRealtimeRedisUrl } from "./settings"
 

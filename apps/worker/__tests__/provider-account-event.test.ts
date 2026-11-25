@@ -1,4 +1,4 @@
-import { PROVIDER_ACCOUNT_TARGET_BATCH_SIZE } from "@chatbotx.io/database/partials"
+import { PROVIDER_ACCOUNT_TARGET_BATCH_SIZE } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: { listAccountTargets: mocks.listAccountTargets },
   providerAccountEventService: { applyToTarget: mocks.applyToTarget },
   withBlockedOwnerGuard: mocks.withBlockedOwnerGuard,

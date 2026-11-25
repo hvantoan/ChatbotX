@@ -5,7 +5,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-} from "@chatbotx.io/ui/components/ui/sidebar"
+} from "@inboxos.io/ui/components/ui/sidebar"
 import {
   Building2Icon,
   CircleHelpIcon,

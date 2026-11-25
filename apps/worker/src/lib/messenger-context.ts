@@ -1,7 +1,7 @@
-import { buildContext } from "@chatbotx.io/business"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
+import { buildContext } from "@inboxos.io/business"
+import { channelTypes } from "@inboxos.io/database/partials"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
 
 /** Messenger integration context for calling Graph APIs from a worker job. */
 export function buildMessengerContext(props: {

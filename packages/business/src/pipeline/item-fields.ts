@@ -1,11 +1,11 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { pipelineRepository } from "@chatbotx.io/database/repositories"
-import type { PipelineFieldModel } from "@chatbotx.io/database/types"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { pipelineRepository } from "@inboxos.io/database/repositories"
+import type { PipelineFieldModel } from "@inboxos.io/database/types"
 import {
   createSourceTimezoneResolver,
   normalizeCustomFieldValueForStorage,
 } from "../contact-custom-field/normalize"
-import { ChatbotXException, validationException } from "../errors"
+import { InboxOSException, validationException } from "../errors"
 
 /**
  * Share-locks the fields a write stores values for, inside the write
@@ -50,7 +50,7 @@ async function normalizeFieldValue(input: {
       return normalized
     }
   } catch (error) {
-    if (!(error instanceof ChatbotXException)) {
+    if (!(error instanceof InboxOSException)) {
       throw error
     }
   }

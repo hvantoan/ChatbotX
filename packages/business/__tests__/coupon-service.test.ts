@@ -46,7 +46,7 @@ vi.mock("../src/template/template-resource-locks", () => ({
     return run(lockedTx)
   },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
     select: () => ({
@@ -62,7 +62,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     mocks.isUniqueViolationError(...args),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   couponTopicStatuses: { enum: { active: "active", archived: "archived" } },
   fileStatuses: {
     enum: { uploaded: "uploaded" },
@@ -70,7 +70,7 @@ vi.mock("@chatbotx.io/database/partials", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   couponRepository: {
     lockTopic: (...args: unknown[]) => mocks.lockTopic(...args),
     countTopicCoupons: (...args: unknown[]) => mocks.countTopicCoupons(...args),
@@ -95,15 +95,15 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   workspaceModel: {},
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { headObject: (...args: unknown[]) => mocks.headObject(...args) },
 }))
 

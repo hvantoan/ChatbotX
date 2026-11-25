@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   hasAnyEvent: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationGoogleAdsService: { getSetup: mocks.getSetup },
   googleAdsConversionService: { hasAnyEvent: mocks.hasAnyEvent },
 }))

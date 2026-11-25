@@ -112,7 +112,7 @@ An event is only dispatched to subscribers if:
    ignored — this keeps staggered deploys forward-compatible).
 2. When a zod schema exists for that event in
    `features/realtime/realtime-event-validation.ts` (sourced from
-   `@chatbotx.io/realtime-protocol`), the payload passes it. A schema failure
+   `@inboxos.io/realtime-protocol`), the payload passes it. A schema failure
    is logged (`logger.warn`) and the event is dropped — your handler is never
    called with a payload that failed validation.
 
@@ -125,7 +125,7 @@ schema in `features/realtime/`; only reuse schemas that already exist in
 
 - `features/realtime/` is channel-agnostic: it must never import chat or
   WhatsApp code. It only knows about `RealtimeEventName`/`RealtimeEventData`
-  from `@chatbotx.io/realtime-protocol`.
+  from `@inboxos.io/realtime-protocol`.
 - Chat's subscriber: `features/chat/chat-realtime.tsx` (`ChatRealtime`).
 - WhatsApp calling's subscriber:
   `features/integration-whatsapp/calling/voip/whatsapp-call-realtime.tsx`
@@ -260,10 +260,10 @@ connect and presence-report paths that share a `workspace:<id>` audience and
 
 `apps/builder/src/lib/http/same-site-request.ts` (the same-site check
 behind `api/whatsapp-voip-call-hangup`)
-and `@chatbotx.io/utils`'s `getPublicHostFromRequest`/
+and `@inboxos.io/utils`'s `getPublicHostFromRequest`/
 `getPublicUrlFromRequest` (OAuth callbacks, `proxy.ts`) all trust the
 `Forwarded` and `X-Forwarded-Host` request headers as the deployment's real
-public host. Any reverse proxy in front of a ChatbotX deployment (nginx,
+public host. Any reverse proxy in front of a InboxOS deployment (nginx,
 an ALB, Cloudflare, etc.) MUST overwrite these headers with the values it
 itself determines for the inbound connection — never simply pass through
 whatever a client happened to send. This is safe specifically because a

@@ -25,7 +25,7 @@ const mocks = vi.hoisted(() => ({
   createId: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mocks.createId,
 }))
 

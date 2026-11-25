@@ -3,17 +3,17 @@
 import {
   waitStepDateTypes,
   waitStepOffsetOperators,
-} from "@chatbotx.io/flow-config"
-import { DateTimePickerField } from "@chatbotx.io/ui/components/form/date-picker-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/flow-config"
+import { DateTimePickerField } from "@inboxos.io/ui/components/form/date-picker-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { InfoIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"

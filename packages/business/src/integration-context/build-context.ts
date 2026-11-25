@@ -3,14 +3,14 @@ import {
   uploader as defaultUploader,
   getChannelMediaPrefix,
   getStoragePrefix,
-} from "@chatbotx.io/filesystem"
-import { distributedStore } from "@chatbotx.io/redis"
+} from "@inboxos.io/filesystem"
+import { distributedStore } from "@inboxos.io/redis"
 import type {
   AuthStore,
   AuthValue,
   Context,
   ContextEphemeralStore,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { publishGuestRealtimeEvent } from "../platform/realtime-broadcast"
 import { resolveTenantSettings } from "../platform/settings"
 import { type AuthStoreIntegrationRow, makeAuthStore } from "./auth-store"

@@ -3,7 +3,7 @@
 import {
   sendMessageNodeDefaultFn,
   sendVideoStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   insert: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     insert: mocks.insert,
     query: { flowModel: { findFirst: vi.fn() } },
@@ -23,19 +23,19 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/partials")>()),
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/partials")>()),
   rootFolderId: "0",
 }))
 vi.mock("../src/messenger-welcome-message-flow/service", () => ({
   messengerWelcomeMessageFlowService: { enqueueSync: vi.fn() },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: { listIdsByIds: vi.fn(), listPublishedOptions: vi.fn() },
   whatsappMessageTemplateRepository: { listIdsByIntegration: vi.fn() },
 }))
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   flowAnalyticsSessionModel: {},
   flowModel: {},
   flowVersionModel: {},

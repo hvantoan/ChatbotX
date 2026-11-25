@@ -1,4 +1,4 @@
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 
 const SENDABLE_PRODUCTS_KEYWORD_MAX = 255

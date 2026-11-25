@@ -1,5 +1,5 @@
-import { commentAutomationService } from "@chatbotx.io/business"
-import type { CommentAutomationModel } from "@chatbotx.io/database/types"
+import { commentAutomationService } from "@inboxos.io/business"
+import type { CommentAutomationModel } from "@inboxos.io/database/types"
 import { toChannelPostTarget } from "@/features/shared/comment-automation/lib/channel-post-target"
 import {
   type TiktokCommentResource,

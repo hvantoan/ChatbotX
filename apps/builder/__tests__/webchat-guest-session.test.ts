@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type { IntegrationWebchatModel } from "@chatbotx.io/database/types"
+import type { IntegrationWebchatModel } from "@inboxos.io/database/types"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import {
   getClientEmbeddingOrigin,
@@ -27,8 +27,8 @@ vi.mock("@/features/messages/actions/create-webchat-message.action", () => ({
   createWebchatMessageAction: {},
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "generated-id") }
 })
 

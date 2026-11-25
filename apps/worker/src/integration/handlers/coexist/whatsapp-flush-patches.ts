@@ -2,13 +2,13 @@ import {
   contactInboxRepository,
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PendingCoexistAttachment,
   PendingCoexistPatch,
-} from "@chatbotx.io/database/schema"
-import { type IncomingAttachment, toKeepOriginal } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { type IncomingAttachment, toKeepOriginal } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { logger } from "../../../lib/logger"
 
 /**

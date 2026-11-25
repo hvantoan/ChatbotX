@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { workingHoursIntervalsSchema } from "@chatbotx.io/database/partials"
+import { workingHoursIntervalsSchema } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   addInterval,

@@ -29,7 +29,7 @@ vi.mock("@/lib/safe-action", () => {
   chain.action = (handler: unknown) => handler
   return { authActionClient: chain }
 })
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: {
     findDecryptedForUser: vi.fn(),
     findForUser: findForUserSpy,
@@ -39,11 +39,11 @@ vi.mock("@chatbotx.io/business", () => ({
   customDomainService: { findActiveByTenantId: mockFindActiveByTenantId },
   tenantService: { findByOwner: mockFindByOwner },
 }))
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   subscribeTiktokWebhooks: subscribeSpy,
 }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: createIdSpy,
 }))
 vi.mock("@/lib/log", () => ({
@@ -58,7 +58,7 @@ vi.mock("../src/features/platform-credentials/scope", () => ({
   resolveCredentialScopedUserId: resolveSpy,
 }))
 const { tiktokCredentialUpdateSchema } = await import(
-  "@chatbotx.io/database/partials"
+  "@inboxos.io/database/partials"
 )
 const { deleteTiktokSettingsAction } = await import(
   "../src/features/platform-credentials/tiktok/delete-tiktok-settings.action"

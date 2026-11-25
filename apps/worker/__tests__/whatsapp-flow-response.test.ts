@@ -1,4 +1,4 @@
-import type { FlowNode } from "@chatbotx.io/flow-config"
+import type { FlowNode } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, type Mock, test, vi } from "vitest"
 
 // --- mock vars (must be declared before vi.mock calls) ---
@@ -19,7 +19,7 @@ const dbInsert = vi.fn(() => ({ values: dbInsertValues }))
 
 // --- mocks ---
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationWhatsappModel: { findFirst: dbQueryIntegrationFindFirst },
@@ -34,7 +34,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn((strings: TemplateStringsArray) => strings.join("")),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactCustomFieldModel: {
     contactId: "contactId",
     customFieldId: "customFieldId",
@@ -51,18 +51,18 @@ vi.mock("../src/lib/logger", () => ({
 }))
 
 const emitCustomFieldChanged = vi.fn(async () => undefined)
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCustomFieldChanged,
 }))
 
 // The handler now delegates custom-field writes to the business service (which
 // owns normalization + change events). Mock the whole barrel so its real schema
 // graph isn't pulled into this test's partial schema mock.
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward: (input: unknown) => enqueueLeaderboardAward(input),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: {
     setValues: (...args: unknown[]) => setCustomFieldValues(...args),
   },
@@ -71,8 +71,8 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: vi.fn(() => "test-id"),
@@ -82,7 +82,7 @@ vi.mock("@chatbotx.io/utils", async (importOriginal) => {
 // --- imports after mocks ---
 
 const { findWhatsappFlowStepByButtonId } = await import(
-  "@chatbotx.io/flow-config"
+  "@inboxos.io/flow-config"
 )
 const { applyWhatsappFlowResponseSideEffects } = await import(
   "../src/integration/handlers/whatsapp-flow-response"
@@ -255,7 +255,7 @@ describe("applyWhatsappFlowResponseSideEffects", () => {
   })
 
   test("scores the WhatsApp survey rule once per stored response message", async () => {
-    const { createdAtFromId } = await import("@chatbotx.io/utils")
+    const { createdAtFromId } = await import("@inboxos.io/utils")
     const messageId = "8443913625935740928"
     const step = makeWhatsappFlowStep("btn-1")
 

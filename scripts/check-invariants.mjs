@@ -114,7 +114,7 @@ const checkLines = (file, lines) => {
       report(
         file,
         line,
-        "ChatbotX uses @base-ui/react via @chatbotx.io/ui, never Radix UI",
+        "InboxOS uses @base-ui/react via @inboxos.io/ui, never Radix UI",
       )
     }
 
@@ -122,7 +122,7 @@ const checkLines = (file, lines) => {
       report(
         file,
         line,
-        "import UI primitives from @chatbotx.io/ui/* instead of @base-ui/react directly",
+        "import UI primitives from @inboxos.io/ui/* instead of @base-ui/react directly",
       )
     }
 

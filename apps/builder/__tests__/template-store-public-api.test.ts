@@ -18,7 +18,7 @@ const {
   isAtLimit: vi.fn().mockResolvedValue(false),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion: vi.fn().mockReturnValue(false),
   userQuotaService: { getAccessState },

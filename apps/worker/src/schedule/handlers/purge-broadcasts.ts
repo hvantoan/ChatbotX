@@ -4,15 +4,15 @@ import {
   listPurgeableBroadcasts,
   type PurgeStopReason,
   purgeBroadcastRecipients,
-} from "@chatbotx.io/database/repositories"
-import { getChildLogger } from "@chatbotx.io/logger"
+} from "@inboxos.io/database/repositories"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
-import { PURGE_BROADCAST_CONCURRENCY } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/redis"
+import { mapWithConcurrency } from "@inboxos.io/utils"
+import { PURGE_BROADCAST_CONCURRENCY } from "@inboxos.io/worker-config"
 
 const LOCK_KEY = "schedule:purge-broadcasts"
 const log = getChildLogger("purge-broadcasts")

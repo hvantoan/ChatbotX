@@ -1,14 +1,14 @@
 "use client"
 
-import { DateTimePickerField } from "@chatbotx.io/ui/components/form/date-picker-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
+import { DateTimePickerField } from "@inboxos.io/ui/components/form/date-picker-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useTranslations } from "next-intl"
 import type { LeaderboardWizardInput } from "../../lib/wizard-schema"
 import { CoverImageField } from "./cover-image-field"

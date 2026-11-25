@@ -1,5 +1,5 @@
-import type { SmtpCredential } from "@chatbotx.io/database/partials"
-import type { SmtpTransportOptions } from "@chatbotx.io/mail/transport"
+import type { SmtpCredential } from "@inboxos.io/database/partials"
+import type { SmtpTransportOptions } from "@inboxos.io/mail/transport"
 import { platformCredentialService } from "../platform-credential/service"
 
 export type PlatformSmtpTransport = SmtpTransportOptions & {

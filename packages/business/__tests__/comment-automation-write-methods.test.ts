@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   findAIAgent: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => ({ and: args }),
   db: {
     query: {
@@ -33,9 +33,9 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: (...args: unknown[]) => ({ sql: args }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   // The real allowlists, so the pins below are tested against what ships. Read
-  // from the source file, not the barrel, which pulls in `@chatbotx.io/utils`
+  // from the source file, not the barrel, which pulls in `@inboxos.io/utils`
   // (mocked below).
   const actual = await vi.importActual<
     typeof import("../../database/src/partials/comment-automation")
@@ -64,13 +64,13 @@ vi.mock("@chatbotx.io/database/partials", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactInboxModel: {},
   commentAutomationModel: { name: "commentAutomation.name" },
   commentAutomationReplyModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: (input: { page: number; perPage: number }) => ({
     limit: input.perPage,
     offset: (input.page - 1) * input.perPage,
@@ -79,7 +79,7 @@ vi.mock("@chatbotx.io/database/utils", () => ({
   parseOrderByAsObject: () => ({}),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "id-1",
 }))
 
@@ -91,7 +91,7 @@ const mockLockOptions = vi.hoisted(() => vi.fn())
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -210,7 +210,7 @@ describe("commentAutomationService — type-scoped writes", () => {
     const { assertResourceEditable } = await import(
       "../src/template/installed-resource.service"
     )
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     vi.mocked(assertResourceEditable).mockClear()
     mocks.findFirst.mockResolvedValue({ id: "9", type: "messenger" })
     mocks.flowExists.mockResolvedValue(true)

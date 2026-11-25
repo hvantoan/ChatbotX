@@ -1,4 +1,4 @@
-import type { IncomingMessage } from "@chatbotx.io/sdk"
+import type { IncomingMessage } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: {
     exists: mocks.exists,
     setNumberIfNotExists: mocks.setNumberIfNotExists,

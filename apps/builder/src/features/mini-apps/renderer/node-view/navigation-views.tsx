@@ -2,7 +2,7 @@ import {
   MINI_APP_ACTION_KEY,
   type MiniAppNavigationItem,
   readMiniAppAction,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { ChevronRightIcon } from "lucide-react"
 import { toImageSrc } from "../../lib/image-src"
 import { readArray } from "../../lib/props"

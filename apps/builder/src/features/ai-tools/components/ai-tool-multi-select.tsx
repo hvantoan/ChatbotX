@@ -1,6 +1,6 @@
 "use client"
 
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
 import { useTranslations } from "next-intl"
 import { type ComponentPropsWithoutRef, useEffect } from "react"
 import { useFormContext } from "react-hook-form"

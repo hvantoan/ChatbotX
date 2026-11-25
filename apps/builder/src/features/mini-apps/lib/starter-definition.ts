@@ -1,7 +1,7 @@
 import {
   createStarterDefinition,
   type MiniAppDefinition,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { getTranslations } from "next-intl/server"
 import { defaultTextKey } from "./labels"
 

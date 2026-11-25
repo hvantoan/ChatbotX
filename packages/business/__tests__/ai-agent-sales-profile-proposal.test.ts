@@ -1,7 +1,7 @@
 import {
   type AIAgentSalesProfile,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 vi.mock("../src/broadcast/plan-policy.service", () => ({
@@ -34,11 +34,11 @@ const {
   mockIncrementWorkspaceUsage: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   productRepository: {
     list: mockListProducts,
     findByIds: mockFindProductsByIds,
@@ -48,7 +48,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: {
     incrWithWindow: mockIncrWithWindow,
   },

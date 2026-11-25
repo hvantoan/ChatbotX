@@ -1,6 +1,6 @@
 "use client"
 
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import { useTimeZone } from "next-intl"
 import { useCallback, useRef } from "react"
 import { buildDefaultRecurrenceRule } from "./recurrence-defaults"

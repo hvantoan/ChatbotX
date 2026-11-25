@@ -2,7 +2,7 @@ import {
   adsConversionService,
   tagService,
   tagSyncService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { succeeded, type TriggerActionHandler } from "./types"
 
 export const addTag: TriggerActionHandler = async ({

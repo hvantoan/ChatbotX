@@ -105,7 +105,7 @@ const mockRecordDeliveredPrivateReply = vi
   .mockResolvedValue({ id: "private-reply-message-1" })
 const mockEmitBotMessageSentEvents = vi.fn().mockResolvedValue(undefined)
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService: {
     recordEvent: mockRecordEvent,
     settleEvent: mockSettleEvent,
@@ -117,7 +117,7 @@ vi.mock("@chatbotx.io/analytics", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   publishWorkspaceRealtimeEvent: vi.fn().mockResolvedValue(undefined),
   queueWorkspaceRealtimeEvent: vi.fn(),
   queueMessageCreatedEvent: vi.fn(),
@@ -158,39 +158,39 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   sendPrivateReply: mockSendPrivateReply,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   sendPrivateReply: mockSendInstagramPrivateReply,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   sendPrivateReply: mockSendInstagramFacebookPrivateReply,
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   sendPrivateReply: mockSendTiktokPrivateReply,
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageCreated: "messageCreated" },
   routeForConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: mockContactVariableGetAll,
     replaceAll: mockContactVariableReplaceAll,
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: {
     commentAIReply: "commentAIReply",
     commentModeration: "commentModeration",
@@ -295,7 +295,7 @@ const { recordInlinePrivateReply, supportsPrivateReply } = await import(
   "../src/integration/handlers/comment-automation/private-reply"
 )
 const { commentAutomationChannelSupportsPrivateReply, commentAutomationTypes } =
-  await import("@chatbotx.io/database/partials")
+  await import("@inboxos.io/database/partials")
 
 // ---------------------------------------------------------------------------
 // Fixtures

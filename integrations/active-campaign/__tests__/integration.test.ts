@@ -1,5 +1,5 @@
-import type { Context } from "@chatbotx.io/sdk"
-import { jsonResponse } from "@chatbotx.io/vitest-config/test-utils"
+import type { Context } from "@inboxos.io/sdk"
+import { jsonResponse } from "@inboxos.io/vitest-config/test-utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { ActiveCampaignApiError } from "../src/error"
 import { integration } from "../src/integration"

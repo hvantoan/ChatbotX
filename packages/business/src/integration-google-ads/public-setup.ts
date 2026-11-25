@@ -2,11 +2,11 @@ import type {
   GoogleAdsConversionActionCacheEntry,
   GoogleAdsSetupError,
   GoogleAdsUploadMethod,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type GoogleAdsAuthValue,
   uploadMethodOf,
-} from "@chatbotx.io/integration-google-ads"
+} from "@inboxos.io/integration-google-ads"
 import type { GoogleAdsReadiness, GoogleAdsSetup } from "./service"
 
 /** The transport a connection's new events use (`auth.metadata`, pinned at connect time; absent = Data Manager). */

@@ -1,5 +1,5 @@
-import { integrationWhatsappService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { integrationWhatsappService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 
 const log = getChildLogger("purge-whatsapp-signup-sessions")
 

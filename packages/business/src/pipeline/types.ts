@@ -1,8 +1,8 @@
-import type { PipelineActorKind } from "@chatbotx.io/database/partials"
+import type { PipelineActorKind } from "@inboxos.io/database/partials"
 import type {
   PipelineItemActivityModel,
   PipelineItemModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 /** What caused a change; recorded on every activity row and event. */
 export type PipelineActor = {

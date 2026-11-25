@@ -36,7 +36,7 @@ const flatten = (options: StubOption[] | StubGroup[]): StubOption[] =>
 // The real picker (covered by `packages/ui/__tests__/multi-select-select-all`)
 // is a Radix popover; here what matters is the contract the filter drives:
 // options and ticked values in, the newly ticked values out.
-vi.mock("@chatbotx.io/ui/components/ui/sersavan/multi-select", () => ({
+vi.mock("@inboxos.io/ui/components/ui/sersavan/multi-select", () => ({
   MultiSelect: ({
     options,
     defaultValue = [],

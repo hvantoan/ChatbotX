@@ -4,8 +4,8 @@ import {
   resolveThreadTakePermission,
   type ThreadTakePermission,
   threadTakePermissions,
-} from "@chatbotx.io/database/partials"
-import type { ThreadControlChannel } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/database/partials"
+import type { ThreadControlChannel } from "@inboxos.io/utils/channel"
 import { useQuery } from "@tanstack/react-query"
 import { THREAD_CONTROL_CHANNEL_UI } from "@/features/messages/lib/thread-control-channel-ui"
 import { orpc } from "@/lib/orpc/query"

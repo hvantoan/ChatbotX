@@ -1,10 +1,10 @@
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { formatBotFieldReference } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import { formatBotFieldReference } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { BotFieldValue, ContactCustomFieldValue } from "../src/schema"
 import { extractVariables } from "../src/utils"
@@ -29,7 +29,7 @@ const {
   mockResolveCouponVariable: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   botFieldWorkspaceCacheTags: (workspaceId: string) => [
     "bot-fields",
     `bot-fields:${workspaceId}`,
@@ -48,12 +48,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, baseUrl: string) =>
     new URL(path, baseUrl).toString(),
 }))
 
-vi.mock("@chatbotx.io/business/coupon", () => ({
+vi.mock("@inboxos.io/business/coupon", () => ({
   couponService: {
     resolveCouponVariable: mockResolveCouponVariable,
   },
@@ -62,12 +62,12 @@ vi.mock("@chatbotx.io/business/coupon", () => ({
 // Pass-through cache (partial mock: the business import chain also pulls
 // other redis exports, e.g. bloomFilter): each test's mocked bot-field rows
 // must flow fresh through withCache.
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: async (_key: string, fn: () => Promise<unknown>) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       contactModel: {

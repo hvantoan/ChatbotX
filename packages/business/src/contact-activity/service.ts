@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type ContactActivityReferenceType,
   type ContactActivityType,
@@ -7,15 +7,15 @@ import {
   isAllowedContactActivity,
   NO_REFERENCE_ID,
   UNSCOPED_PARENT_REFERENCE_ID,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   CONTACT_ACTIVITY_TABLES,
   type ContactActivityRecord,
   type ContactDeliveredRecord,
   contactActivityRepository,
-} from "@chatbotx.io/database/repositories/contact-activity"
-import { workspaceRepository } from "@chatbotx.io/database/repositories/workspace"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+} from "@inboxos.io/database/repositories/contact-activity"
+import { workspaceRepository } from "@inboxos.io/database/repositories/workspace"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 import { workspaceDeletionStartedException } from "../errors"
 import { logger } from "../logger"
 import { contactActivityEnv } from "./keys"

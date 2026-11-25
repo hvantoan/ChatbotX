@@ -1,9 +1,9 @@
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
 import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { workspaceService } from "../workspace/service"
 import { workspaceMemberService } from "../workspace-member/service"
 import { resolveWorkspaceMembership } from "../workspace-member/synthetic"

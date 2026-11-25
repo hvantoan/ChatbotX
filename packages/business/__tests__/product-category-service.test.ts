@@ -34,7 +34,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   changedKeysOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   // `transaction` is not enumerable so `{ name: "default-db" }` still equals it.
   db: Object.defineProperty({ name: "default-db" }, "transaction", {
     // A fresh client per transaction, like a real driver (the lock registry is
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     mocks.isUniqueViolationError(...args),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   discountCodeRepository: {
     deactivateByCategoryIds: (...args: unknown[]) =>
       mocks.deactivateCodes(...args),
@@ -83,7 +83,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) =>
     mocks.invalidateCacheByTags(...args),
 }))

@@ -1,5 +1,5 @@
-import { DataTableSkeleton } from "@chatbotx.io/ui/components/data-table/data-table-skeleton"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { DataTableSkeleton } from "@inboxos.io/ui/components/data-table/data-table-skeleton"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import type { ReactNode } from "react"
 import { FullBleed } from "@/components/full-bleed"
 

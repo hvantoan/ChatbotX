@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mocks.findByProviderSourceId,
   },
@@ -22,7 +22,7 @@ vi.mock("../state-service", () => ({
 
 // Dynamic `import()` is required here, not a static import: the `vi.mock`
 // calls above must be registered before the SUT (and its
-// `@chatbotx.io/database/repositories`/`../logger`/`../state-service`
+// `@inboxos.io/database/repositories`/`../logger`/`../state-service`
 // dependencies) is evaluated, which only a post-`vi.mock` dynamic import
 // guarantees.
 const { recordRefreshedAuth } = await import("../record-refreshed-auth")

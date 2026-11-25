@@ -34,24 +34,24 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: mocks.db,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mocks.createMessageRepository,
   mediaLibraryFileRepository: {},
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: mocks.withCache,
 }))
 
 // The following are reached only because messageService.createOutgoing is
 // wired in as a class field (module-scope import), not because any test here
 // exercises it — this file only covers the pre-existing read/delete methods.
-vi.mock("@chatbotx.io/filesystem", () => ({}))
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({}))
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: {
     conversationAssigned: "conversationAssigned",
     messageCreated: "messageCreated",
@@ -60,7 +60,7 @@ vi.mock("@chatbotx.io/realtime-protocol", () => ({
     whatsappCallTransportEnded: "whatsappCallTransportEnded",
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({}))
+vi.mock("@inboxos.io/worker-config", () => ({}))
 vi.mock("../src/contact-inbox/service", () => ({ contactInboxService: {} }))
 vi.mock("../src/conversation/service", () => ({ conversationService: {} }))
 vi.mock("../src/working-hours/agent-reply-metric", () => ({

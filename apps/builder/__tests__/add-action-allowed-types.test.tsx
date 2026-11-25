@@ -60,7 +60,7 @@ describe("AddAction allowedTypes", () => {
     ])
   })
 
-  test("lists the actions in the reference order, ChatbotX-only ones last", () => {
+  test("lists the actions in the reference order, InboxOS-only ones last", () => {
     expect(openMenuLabels()).toEqual([
       "trigger.actions.startAnotherFlow",
       "trigger.actions.startExternalStep",

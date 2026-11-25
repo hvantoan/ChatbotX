@@ -1,16 +1,17 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type MailerLiteAddSubscriberSchema,
   mailerLiteAddSubscriberSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   MAILER_LITE_EDITOR_PAGE_SIZE,
   type MailerLiteField,
   type MailerLiteGroup,
-} from "@chatbotx.io/integration-mailer-lite"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/integration-mailer-lite"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -19,10 +20,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowRightIcon, Loader2Icon, MailIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

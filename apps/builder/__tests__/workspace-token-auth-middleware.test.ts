@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -30,7 +30,7 @@ const {
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   mcpOAuthService: { resolvePrincipal },
   isWorkspaceScheduledForDeletion,
@@ -38,7 +38,7 @@ vi.mock("@chatbotx.io/business", () => ({
   quotaEnforcementService: { isAtLimit },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({ withAuditContext }))
+vi.mock("@inboxos.io/business/audit", () => ({ withAuditContext }))
 
 vi.mock("@/lib/log", () => ({
   logger: { warn: loggerWarn, error: vi.fn() },
@@ -55,7 +55,7 @@ vi.mock("@/lib/rate-limit/guest-rate-limit", () => ({
 vi.mock("@/env", () => ({ isCloud: () => true }))
 
 vi.mock("@/lib/auth/auth", () => ({ auth: {} }))
-vi.mock("@chatbotx.io/auth/mcp-resource", () => ({
+vi.mock("@inboxos.io/auth/mcp-resource", () => ({
   McpTokenVerificationUnavailableError: class McpTokenVerificationUnavailableError extends Error {},
   verifyMcpAccessToken,
 }))
@@ -64,7 +64,7 @@ const { workspaceTokenAuthMidddleware } = await import(
   "@/middlewares/workspace-token-auth"
 )
 const { hashToken } = await import(
-  "@chatbotx.io/business/workspace-api-token/credentials"
+  "@inboxos.io/business/workspace-api-token/credentials"
 )
 
 const next = vi.fn(async (opts?: { context: Record<string, unknown> }) => ({
@@ -143,7 +143,7 @@ describe("workspaceTokenAuthMidddleware", () => {
 
   test("stale cached token pointing at a purged workspace → INVALID_CHATBOT_TOKEN, not a raw notFound", async () => {
     findWorkspaceByTokenHash.mockRejectedValue(
-      new ChatbotXException("Workspace not found", "notFound"),
+      new InboxOSException("Workspace not found", "notFound"),
     )
 
     const headers = new Headers({ Authorization: "Bearer ws1_abc" })
@@ -465,7 +465,7 @@ describe("workspaceTokenAuthMidddleware", () => {
   test("maps a JWKS outage to 503 instead of 500", async () => {
     findWorkspaceByTokenHash.mockResolvedValue(undefined)
     const { McpTokenVerificationUnavailableError } = await import(
-      "@chatbotx.io/auth/mcp-resource"
+      "@inboxos.io/auth/mcp-resource"
     )
     verifyMcpAccessToken.mockRejectedValue(
       new McpTokenVerificationUnavailableError(),

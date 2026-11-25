@@ -1,10 +1,10 @@
 "use server"
 
 import { createMCPClient, type MCPClient } from "@ai-sdk/mcp"
-import { assertSafeMcpEndpoint } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { aiMcpServerAuthTypes } from "@chatbotx.io/database/partials"
-import { resolveBotFieldVariableText } from "@chatbotx.io/variables/bot-field-variable-resolver"
+import { assertSafeMcpEndpoint } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { aiMcpServerAuthTypes } from "@inboxos.io/database/partials"
+import { resolveBotFieldVariableText } from "@inboxos.io/variables/bot-field-variable-resolver"
 import type { ValidatePrivateAIMcpServerRequest } from "../schema/action"
 
 export const validateAIMcpServer = async ({
@@ -21,7 +21,7 @@ export const validateAIMcpServer = async ({
       workspaceId: parsedInput.workspaceId,
     })
     if (resolution.status !== "resolved") {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Unable to validate MCP server.",
         "invalidMcpTokenTemplate",
         400,

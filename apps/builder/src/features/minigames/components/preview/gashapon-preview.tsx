@@ -3,12 +3,9 @@
 import type {
   MinigameAppearance,
   MinigamePrizeSettings,
-} from "@chatbotx.io/database/partials"
-import {
-  GashaponMachineArt,
-  JackpotStartButton,
-} from "@chatbotx.io/minigame-ui"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/database/partials"
+import { GashaponMachineArt, JackpotStartButton } from "@inboxos.io/minigame-ui"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { Share2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { MinigamePreviewLayout } from "./minigame-preview-layout"

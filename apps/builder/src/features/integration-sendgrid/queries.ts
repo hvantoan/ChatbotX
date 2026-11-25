@@ -1,6 +1,6 @@
-import { buildContext, integrationSendGridService } from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import { sendGridAuthSchema } from "@chatbotx.io/integration-sendgrid"
+import { buildContext, integrationSendGridService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import { sendGridAuthSchema } from "@inboxos.io/integration-sendgrid"
 
 export const getSendGridContext = async (workspaceId: string) => {
   const row =

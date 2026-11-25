@@ -1,5 +1,5 @@
-import { keywordConditionsSchema } from "@chatbotx.io/database/partials/keyword-condition-schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { keywordConditionsSchema } from "@inboxos.io/database/partials/keyword-condition-schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const responseModes = z.enum(["flowId", "text"])

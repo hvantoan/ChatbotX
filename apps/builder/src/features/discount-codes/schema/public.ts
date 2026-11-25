@@ -4,8 +4,8 @@ import {
   discountMinimumTypes,
   discountTypes,
   shippingTypes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { contactFilterCriteriaSchema } from "@/features/contact-filter/schema"
 import { publicContactIdentifier } from "@/lib/public-api/contact-identifier"

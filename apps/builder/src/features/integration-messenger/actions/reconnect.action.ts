@@ -3,11 +3,11 @@
 import {
   messengerIntegrationService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { generateAuthUrl } from "@chatbotx.io/integration-messenger"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { generateAuthUrl } from "@inboxos.io/integration-messenger"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { redirect } from "next/navigation"
 import { getOriginUrlFromHeader } from "@/lib/domain"
 import { resolveOwnerForWorkspace } from "@/lib/platform-credential-owner"
@@ -36,7 +36,7 @@ export const reconnectMessengerAction = workspaceActionClient
           workspaceId,
         })
       if (!integrationMessenger) {
-        throw new ChatbotXException("Integration Messenger not found")
+        throw new InboxOSException("Integration Messenger not found")
       }
 
       const messengerCredential =
@@ -45,7 +45,7 @@ export const reconnectMessengerAction = workspaceActionClient
           type: "messenger",
         })
       if (!messengerCredential) {
-        throw new ChatbotXException("Messenger App settings not found")
+        throw new InboxOSException("Messenger App settings not found")
       }
 
       const redirectUrl = await buildProviderCallbackUrl(

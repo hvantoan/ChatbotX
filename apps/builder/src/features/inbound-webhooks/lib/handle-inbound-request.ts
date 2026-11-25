@@ -2,14 +2,14 @@ import { isIP } from "node:net"
 import {
   inboundWebhookService,
   resolveWorkspaceFreezeReasonById,
-} from "@chatbotx.io/business"
-import { toLoggableDatabaseError } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business"
+import { toLoggableDatabaseError } from "@inboxos.io/database/client"
 import {
   INBOUND_WEBHOOK_LIMITS,
   INBOUND_WEBHOOK_TOKEN_PREFIX,
-} from "@chatbotx.io/database/partials"
-import { isJsonbStorable } from "@chatbotx.io/utils/json-path"
-import { enqueueProcessInboundWebhookRequest } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import { isJsonbStorable } from "@inboxos.io/utils/json-path"
+import { enqueueProcessInboundWebhookRequest } from "@inboxos.io/worker-config"
 import { logger } from "@/lib/log"
 import { checkApiRateLimit } from "@/lib/rate-limit/api-rate-limit"
 import {

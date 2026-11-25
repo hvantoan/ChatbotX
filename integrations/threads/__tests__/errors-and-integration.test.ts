@@ -2,7 +2,7 @@ import {
   AuthException,
   ChannelError,
   ChannelErrorCategory,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { HTTPError } from "ky"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 

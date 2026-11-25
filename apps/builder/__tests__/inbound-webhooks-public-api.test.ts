@@ -49,7 +49,7 @@ const inboundWebhookService = {
   deleteMany: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboundWebhookService,
   resolveTenantSettings: vi.fn(async () => ({
     appUrl: "https://chat.acme.test",

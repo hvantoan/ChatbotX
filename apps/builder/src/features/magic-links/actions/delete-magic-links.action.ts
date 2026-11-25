@@ -1,6 +1,6 @@
 "use server"
 
-import { magicLinkService } from "@chatbotx.io/business"
+import { magicLinkService } from "@inboxos.io/business"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

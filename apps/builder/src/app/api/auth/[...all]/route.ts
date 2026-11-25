@@ -4,16 +4,16 @@ import {
   SOCIAL_PROVIDERS,
   type SocialProvider,
   warnIfGenericOAuthUnlicensed,
-} from "@chatbotx.io/auth/server"
+} from "@inboxos.io/auth/server"
 import {
   resolveOAuthStateCallbackURL,
   resolveTenantByDomain,
   resolveTenantFromOAuthState,
   withTenant,
-} from "@chatbotx.io/auth/tenant"
-import { hasEnterpriseFeatures } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getPublicUrlFromRequest } from "@chatbotx.io/utils"
+} from "@inboxos.io/auth/tenant"
+import { hasEnterpriseFeatures } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getPublicUrlFromRequest } from "@inboxos.io/utils"
 import { auth } from "@/lib/auth/auth"
 import { getSocialAuthForTenant } from "@/lib/auth/auth-instances"
 import { rewriteAuthRedirectToPublicHost } from "@/lib/auth-redirect"
@@ -60,7 +60,7 @@ const withMcpCors = (pathname: string, response: Response): Response => {
  * root-tenant row only). So a reseller signs into the builder on both the platform URL and
  * their own domain; their sub-accounts only on the reseller's domain. This
  * fallback applies to every auth method, including OAuth social sign-in — see
- * the findOne reseller-owner fallback in `@chatbotx.io/auth` `server.ts`.
+ * the findOne reseller-owner fallback in `@inboxos.io/auth` `server.ts`.
  *
  * OAuth still needs special tenant recovery: the provider redirects to a
  * redirect URI pinned per-credential (the reseller's own active custom domain
@@ -156,7 +156,7 @@ const handle = async (request: Request): Promise<Response> => {
       })
     } catch (error) {
       if (
-        error instanceof ChatbotXException &&
+        error instanceof InboxOSException &&
         error.code === "tooManyRequests"
       ) {
         const retryAfter = error.message.match(retryAfterPattern)?.[1]

@@ -1,6 +1,6 @@
 "use server"
 
-import { leaderboardService } from "@chatbotx.io/business/leaderboard"
+import { leaderboardService } from "@inboxos.io/business/leaderboard"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { changeLeaderboardStatusRequest } from "../lib/action-schemas"

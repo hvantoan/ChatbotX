@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://github.com/ChatbotXIO/ChatbotX" target="_blank" rel="noopener">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/readme/chatbotx-logo-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset=".github/assets/readme/chatbotx-logo-light.svg">
-      <img alt="ChatbotX Logo" src=".github/assets/readme/chatbotx-logo-light.svg" width="280">
+      <source media="(prefers-color-scheme: dark)" srcset=".github/assets/readme/inboxos-logo-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset=".github/assets/readme/inboxos-logo-light.svg">
+      <img alt="InboxOS Logo" src=".github/assets/readme/inboxos-logo-light.svg" width="280">
     </picture>
   </a>
 </p>
@@ -14,7 +14,7 @@
   </a>
 </p>
 
-<h3 align="center"><strong><a href="https://chatbotx.io/lifetime/?ref=github">NEW: Get a Lifetime Deal on ChatbotX Cloud</a></strong></h3>
+<h3 align="center"><strong><a href="https://chatbotx.io/lifetime/?ref=github">NEW: Get a Lifetime Deal on InboxOS Cloud</a></strong></h3>
 <h3 align="center"><strong><a href="https://github.com/ChatbotXIO/chatbotx-agent">NEW: get 500+ MCP and CLI Tools for Your AI Agents</a></strong></h3>
 
 <p align="center">
@@ -26,7 +26,7 @@
 <p align="center">
   <a href="https://chatbotx.io/">Website</a>
   |
-  <a href="https://chatbotx.canny.io/">Roadmap</a>
+  <a href="https://inboxos.canny.io/">Roadmap</a>
   |
   <a href="https://chatbotx.io/docs" rel="dofollow">Docs</a>
   |
@@ -65,7 +65,7 @@
 </p>
 
 <p align="center">
-  <a href="https://youtube.com/@chatbotxofficial" rel="dofollow"><strong>Watch the YouTube Tutorials»</strong></a>
+  <a href="https://youtube.com/@inboxosofficial" rel="dofollow"><strong>Watch the YouTube Tutorials»</strong></a>
   <br />
 </p>
 
@@ -87,7 +87,7 @@
 
 <p align="center">
   <a href="https://youtu.be/lB2MRuWoiKI" target="_blank">
-    <img alt="ChatbotX Omnichannel" src=".github/assets/readme/chatbotx-hero.png?v=1786238500653">
+    <img alt="InboxOS Omnichannel" src=".github/assets/readme/inboxos-hero.png?v=1786238500653">
   </a>
 </p>
 
@@ -116,9 +116,9 @@
 | ![Broadcast and Sequence](.github/assets/readme/3-broadcast-and-sequence.webp) | ![Growth Tools](.github/assets/readme/4-growth-tools.webp) |
 | ![Import Contacts](.github/assets/readme/5-import-contacts.webp) | ![OpenClaw and Hermes](.github/assets/readme/6-openclaw-hermes.webp) |
 
-## Why ChatbotX?
+## Why InboxOS?
 
-| Feature | ManyChat | ChatbotX |
+| Feature | ManyChat | InboxOS |
 |---|---:|---:|
 | Self-Hosted | ❌ | ✅ |
 | White Label | ❌ | ✅ |
@@ -146,7 +146,7 @@
 
 To have the project up and running, please follow the [Quick Start Guide](https://chatbotx.io/docs/quickstart).
 
-**Self-hosting ChatbotX without developing on it?** Use **[chatbotx-docker-compose](https://github.com/ChatbotXIO/chatbotx-docker-compose)** — a standalone repo that runs the pre-built `ghcr.io` images with `docker compose up`, no local checkout of this monorepo required. The compose files in this repository (`docker-compose.yml`, `docker-compose.dev.yml`) provision local infrastructure only and expect the apps to run from source via `pnpm dev`.
+**Self-hosting InboxOS without developing on it?** Use **[inboxos-docker-compose](https://github.com/ChatbotXIO/inboxos-docker-compose)** — a standalone repo that runs the pre-built `ghcr.io` images with `docker compose up`, no local checkout of this monorepo required. The compose files in this repository (`docker-compose.yml`, `docker-compose.dev.yml`) provision local infrastructure only and expect the apps to run from source via `pnpm dev`.
 
 ## Project Structure
 
@@ -156,7 +156,7 @@ To have the project up and running, please follow the [Quick Start Guide](https:
 |   |-- builder/       # Next.js web app and product builder
 |   |-- worker/        # background workers for chat, AI, triggers, webhooks, analytics, sequences
 |   |-- realtime/      # realtime server
-|   |-- cli/           # ChatbotX command line client
+|   |-- cli/           # InboxOS command line client
 |   `-- mcp-server/    # MCP server backed by public APIs
 |-- integrations/
 |   |-- whatsapp/
@@ -212,7 +212,7 @@ pnpm --filter worker dev
 pnpm --filter realtime dev
 pnpm --filter @hvantoan/inboxos dev:cli
 pnpm --filter @hvantoan/inboxos-mcp dev:mcp
-pnpm --filter @chatbotx.io/database db:studio
+pnpm --filter @inboxos.io/database db:studio
 ```
 
 ### Worker process modes
@@ -249,9 +249,9 @@ The default Docker Compose stack includes:
 
 ## Support
 
-If ChatbotX helps you avoid expensive chatbot automation tools, please give us a ⭐ on GitHub.
+If InboxOS helps you avoid expensive chatbot automation tools, please give us a ⭐ on GitHub.
 We're also working hard to bring open-source mobile apps to **iOS and Android** this year
 
 ## License
 
-ChatbotX' Community Edition is released as open source under the [MIT License](https://github.com/ChatbotXIO/ChatbotX/blob/main/LICENSE) and enterprise features are released under [Commercial License](https://github.com/ChatbotXIO/ChatbotX/blob/main/apps/builder/src/enterprise/LICENSE)
+InboxOS' Community Edition is released as open source under the [MIT License](https://github.com/ChatbotXIO/ChatbotX/blob/main/LICENSE) and enterprise features are released under [Commercial License](https://github.com/ChatbotXIO/ChatbotX/blob/main/apps/builder/src/enterprise/LICENSE)

@@ -6,20 +6,20 @@ const mocks = vi.hoisted(() => ({
   runExclusive: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   metaCatalogSyncRunService: {
     listRecoverablePushRuns: (...args: unknown[]) =>
       mocks.listRecoverable(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: (...args: unknown[]) => mocks.runExclusive(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: {
     checkMetaCatalogSync: "checkMetaCatalogSync",
     submitMetaCatalogSync: "submitMetaCatalogSync",

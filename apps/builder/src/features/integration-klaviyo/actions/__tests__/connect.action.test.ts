@@ -32,7 +32,7 @@ vi.mock("@/lib/log", () => ({
   logger: { error: mocks.loggerError },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { connectFromCredentials: mocks.connectFromCredentials },
 }))
 

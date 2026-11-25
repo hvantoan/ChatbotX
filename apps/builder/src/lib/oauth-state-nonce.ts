@@ -1,7 +1,7 @@
 import { randomBytes, timingSafeEqual } from "node:crypto"
 import { cookies } from "next/headers"
 
-const OAUTH_NONCE_COOKIE_NAME = "chatbotx_oauth_nonce"
+const OAUTH_NONCE_COOKIE_NAME = "inboxos_oauth_nonce"
 const OAUTH_NONCE_BYTES = 24
 const OAUTH_NONCE_MAX_AGE_SECONDS = 10 * 60
 /** Every OAuth callback lives under this prefix, so the cookie never rides on other requests. */

@@ -12,7 +12,7 @@ issued subscription tokens.
 The `fb-marketing-messages` page gains two tabs:
 
 - **Campaigns** — today's page, unchanged.
-- **Audiences** — new: a table of audiences created through ChatbotX, a
+- **Audiences** — new: a table of audiences created through InboxOS, a
   3-step creation wizard, "Upload more rows", and delete.
 
 Success: a user uploads the template file, sees "uploaded N rows", and the
@@ -26,7 +26,7 @@ tokens.
 - A column-mapping UI.
 - Editing an audience's name/description.
 - Storing the uploaded file.
-- Listing Marketing Messages audiences created outside ChatbotX.
+- Listing Marketing Messages audiences created outside InboxOS.
 
 ## 2. Meta API reference
 
@@ -59,7 +59,7 @@ Facts the design relies on:
 | # | Decision |
 |---|---|
 | D1 | Step 2 has a **Page** select (connected Messenger integrations); the table shows a Page column. |
-| D2 | Audiences are **persisted in our DB**; count and delivery status are fetched live from Meta. Only audiences created via ChatbotX are listed. |
+| D2 | Audiences are **persisted in our DB**; count and delivery status are fetched live from Meta. Only audiences created via InboxOS are listed. |
 | D3 | Supported identifiers: EMAIL, PHONE (one required) + FN, LN, CT, ST, ZIP, COUNTRY, DOB (→ DOBY/DOBM/DOBD), DOBY, GEN, MADID. Age and App/Page/Instagram-scoped IDs are not supported. |
 | D4 | Parse, normalize, hash, and upload **synchronously in a server action** (`bodySizeLimit` is already `20mb`). |
 | D5 | Limits: **20 MB** file, **100,000** data rows. |
@@ -82,7 +82,7 @@ Facts the design relies on:
 | D22 | DOB accepts `MM/DD/YY`, `MM/DD/YYYY`, `YYYY-MM-DD`; a 2-digit year greater than the current 2-digit year maps to 19xx, otherwise 20xx. An explicit `doby` column wins over DOB's year. Invalid → blank. |
 | D23 | An audience in our DB but absent from Meta's list shows status **"Deleted on Meta"**. |
 | D24 | The shared XLSX parser's hardcoded caps (10,000 rows / 10 MB compressed) become an optional `limits` argument; defaults unchanged for existing imports; the audience upload passes 100,000 rows / 20 MB. |
-| D25 | Hashing in `customer-file/` uses synchronous `node:crypto` SHA-256 (100k rows × 13 keys is too slow through async Web Crypto). The module is exposed via its own package export `@chatbotx.io/integration-facebook-ads/customer-file` and is **not** re-exported from the package root, so the builder's edge/middleware graph never pulls `node:crypto`. |
+| D25 | Hashing in `customer-file/` uses synchronous `node:crypto` SHA-256 (100k rows × 13 keys is too slow through async Web Crypto). The module is exposed via its own package export `@inboxos.io/integration-facebook-ads/customer-file` and is **not** re-exported from the package root, so the builder's edge/middleware graph never pulls `node:crypto`. |
 | D26 | Meta's create response is accepted as either `{ id }` or `{ data: [{ id }] }` (the guide shows the latter, the Graph default is the former). |
 
 ## 4. Architecture
@@ -206,7 +206,7 @@ Inputs are plain data; the builder resolves the grant/session.
   4. `createMarketingMessagesAudience`; insert the row with `rowsUploaded: 0`.
   5. `uploadAudienceUsersSession`.
   6. `rowsUploaded += received` (also in the failure path, then re-throw a
-     `ChatbotXException` carrying the partial count).
+     `InboxOSException` carrying the partial count).
   7. Return `{ id, customAudienceId, received, skipped, invalid }`.
 - **`uploadMore({ workspaceId, grant, id, file })`** — load the row scoped by `workspaceId`;
   steps 1–3, 5–7.
@@ -227,7 +227,7 @@ Inputs are plain data; the builder resolves the grant/session.
 
 **Page / tabs** — `page.tsx` reads `searchParams.tab` (`campaigns` default, `audiences`).
 The grant gate stays above the tabs (missing → grant panel only; expired → panel +
-read-only tabs). Tabs use `@chatbotx.io/ui` `Tabs`, syncing to the URL via
+read-only tabs). Tabs use `@inboxos.io/ui` `Tabs`, syncing to the URL via
 `router.replace`. The Campaigns tab renders the existing `MarketingMessagesTable`.
 
 **oRPC** (`api/private.ts`, `authorizedAPI` + `workspaceAuthorizedMidddleware`):

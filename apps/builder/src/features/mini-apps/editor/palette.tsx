@@ -1,15 +1,15 @@
 "use client"
 
+import { useDraggable } from "@dnd-kit/core"
 import {
   MINI_APP_COMPONENT_CATEGORIES,
   MINI_APP_COMPONENT_LIST,
   type MiniAppComponentDefinition,
   type MiniAppComponentType,
-} from "@chatbotx.io/mini-app"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { ScrollArea } from "@chatbotx.io/ui/components/ui/scroll-area"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import { useDraggable } from "@dnd-kit/core"
+} from "@inboxos.io/mini-app"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { ScrollArea } from "@inboxos.io/ui/components/ui/scroll-area"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { SearchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

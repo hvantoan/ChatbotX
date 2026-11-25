@@ -1,8 +1,5 @@
-import {
-  AuthException,
-  ConnectionProviderRejectedError,
-} from "@chatbotx.io/sdk"
-import { connectFailureCauses } from "@chatbotx.io/utils/connection"
+import { AuthException, ConnectionProviderRejectedError } from "@inboxos.io/sdk"
+import { connectFailureCauses } from "@inboxos.io/utils/connection"
 import { describe, expect, test } from "vitest"
 import { GoogleAdsException } from "../src/exception"
 import {

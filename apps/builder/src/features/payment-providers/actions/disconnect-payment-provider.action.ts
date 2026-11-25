@@ -1,6 +1,6 @@
 "use server"
 
-import { paymentProviderService } from "@chatbotx.io/business"
+import { paymentProviderService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"

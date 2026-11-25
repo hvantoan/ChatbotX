@@ -3,9 +3,9 @@
 import type {
   GetSequenceStepStatsResponse,
   SequenceStepEventType,
-} from "@chatbotx.io/analytics/schemas"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/analytics/schemas"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useParams } from "next/navigation"
 import { useFormatter, useTranslations } from "next-intl"
 import { memo, useEffect, useState } from "react"

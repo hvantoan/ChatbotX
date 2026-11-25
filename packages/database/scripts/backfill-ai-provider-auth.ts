@@ -4,8 +4,8 @@
  * openaiCompatible).
  *
  * Usage:
- *   pnpm --filter @chatbotx.io/database exec tsx scripts/backfill-ai-provider-auth.ts          # dry run (default)
- *   pnpm --filter @chatbotx.io/database exec tsx scripts/backfill-ai-provider-auth.ts --apply  # writes
+ *   pnpm --filter @inboxos.io/database exec tsx scripts/backfill-ai-provider-auth.ts          # dry run (default)
+ *   pnpm --filter @inboxos.io/database exec tsx scripts/backfill-ai-provider-auth.ts --apply  # writes
  *
  * Rolling-deploy order — do NOT run --apply until every builder and worker
  * runs the version whose readers resolve both `auth` and `encryptedAuth`:

@@ -1,5 +1,5 @@
-import type { BroadcastModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
+import type { BroadcastModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server"
 import z from "zod"
 import type {

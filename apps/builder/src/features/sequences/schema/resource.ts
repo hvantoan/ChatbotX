@@ -2,7 +2,7 @@ import {
   createSelectSchema,
   sequenceModel,
   sequenceStepModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import z from "zod"
 
 export const sequenceResource = createSelectSchema(sequenceModel, {

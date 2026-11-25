@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import type { ConnectSessionErrorCode } from "@chatbotx.io/utils/connection"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import type { ConnectSessionErrorCode } from "@inboxos.io/utils/connection"
 import { Loader2Icon, TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"

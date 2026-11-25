@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   getDualRemainingSlots: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   quotaEnforcementService: {
     isAtLimit: mocks.isAtLimit,
     getDualRemainingSlots: mocks.getDualRemainingSlots,

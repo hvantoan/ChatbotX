@@ -1,12 +1,12 @@
-import { aiIntegrationService } from "@chatbotx.io/ai/server"
-import { dispatchAuditRecordSafely } from "@chatbotx.io/business/audit"
-import { connectionStateService } from "@chatbotx.io/business/connection"
+import { aiIntegrationService } from "@inboxos.io/ai/server"
+import { dispatchAuditRecordSafely } from "@inboxos.io/business/audit"
+import { connectionStateService } from "@inboxos.io/business/connection"
 import {
   type AiKeyProvider,
   verifyAiProviderApiKey,
-} from "@chatbotx.io/business/integration-ai-provider/verify"
-import { connectionService } from "@chatbotx.io/connections"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/integration-ai-provider/verify"
+import { connectionService } from "@inboxos.io/connections"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors, type ValidationErrors } from "next-safe-action"
 import { normalizeError } from "universal-error-normalizer"

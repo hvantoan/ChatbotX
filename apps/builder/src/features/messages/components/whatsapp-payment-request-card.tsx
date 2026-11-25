@@ -1,7 +1,7 @@
 "use client"
 
-import type { PaymentRequestMethod } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { PaymentRequestMethod } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   BarcodeIcon,
   CopyIcon,

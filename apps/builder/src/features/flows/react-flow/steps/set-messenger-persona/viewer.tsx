@@ -1,6 +1,6 @@
 "use client"
 
-import type { SetMessengerPersonaStepSchema } from "@chatbotx.io/flow-config"
+import type { SetMessengerPersonaStepSchema } from "@inboxos.io/flow-config"
 import { UserIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFlowTemplate } from "../../stores/flow-template-store-provider"

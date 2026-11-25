@@ -1,7 +1,7 @@
 import {
   contactSources,
   type IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { integrationService } from "../../../services/integrations"
 import { detectContactAndConversation } from "../received-message"
 

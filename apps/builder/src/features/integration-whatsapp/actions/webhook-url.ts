@@ -1,8 +1,8 @@
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
-import { debugToken } from "@chatbotx.io/integration-whatsapp/api/auth"
-import type { WhatsappPhoneNumber } from "@chatbotx.io/integration-whatsapp/api/phone-number"
-import { AuthType } from "@chatbotx.io/sdk"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
+import { debugToken } from "@inboxos.io/integration-whatsapp/api/auth"
+import type { WhatsappPhoneNumber } from "@inboxos.io/integration-whatsapp/api/phone-number"
+import { AuthType } from "@inboxos.io/sdk"
 
 /**
  * Build the WhatsApp webhook callback config.

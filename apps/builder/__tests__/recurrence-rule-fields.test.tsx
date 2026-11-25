@@ -1,8 +1,8 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type RecurrenceRule,
   recurrenceRuleSchema,
-} from "@chatbotx.io/utils/recurrence"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/utils/recurrence"
 import { NextIntlClientProvider } from "next-intl"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"

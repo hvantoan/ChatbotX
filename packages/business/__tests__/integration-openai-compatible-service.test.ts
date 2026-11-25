@@ -26,7 +26,7 @@ vi.mock("../src/integration-openai-compatible/verify", () => ({
 
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...args: unknown[]) => ({ and: args })),
   db: {
     query: {
@@ -46,8 +46,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   connectionModel: {
     id: "conn.id",
     integrationId: "conn.integrationId",
@@ -63,12 +63,12 @@ vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: vi.fn(() => "generated-id"),
 }))
 

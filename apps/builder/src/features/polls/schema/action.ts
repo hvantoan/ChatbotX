@@ -1,4 +1,4 @@
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const POLL_NAME_MAX = 80

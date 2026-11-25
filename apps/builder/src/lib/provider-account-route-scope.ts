@@ -1,13 +1,13 @@
-import { messageStatusBranchService } from "@chatbotx.io/business"
-import type { ProviderAccountRouteScope } from "@chatbotx.io/database/partials"
-import type { ContextQueue } from "@chatbotx.io/sdk"
+import { messageStatusBranchService } from "@inboxos.io/business"
+import type { ProviderAccountRouteScope } from "@inboxos.io/database/partials"
+import type { ContextQueue } from "@inboxos.io/sdk"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
   type IntegrationJobData,
   type IntegrationJobMessageStatus,
   type IntegrationJobProviderAccountEvent,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "@/lib/log"
 
 /**

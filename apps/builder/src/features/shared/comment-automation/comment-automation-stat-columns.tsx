@@ -1,6 +1,6 @@
 "use client"
 
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
 import type { ColumnDef } from "@tanstack/react-table"
 import { CommentAutomationStatsCell } from "./comment-automation-stats-cell"
 import {

@@ -8,7 +8,7 @@ import {
   sendCarouselStepDefaultFn,
   sendMessageNodeDefaultFn,
   waitNodeDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { publishFlowSchema } from "@/features/flows/schema/action"
 

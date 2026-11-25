@@ -1,9 +1,9 @@
 import {
   contactIdentityKinds,
   inboxIdentifierKinds,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
-import { formatJsonPath, parseJsonPath } from "@chatbotx.io/utils/json-path"
-import { zodBigintAsString } from "@chatbotx.io/utils/zod"
+} from "@inboxos.io/utils/inbound-webhook-channel"
+import { formatJsonPath, parseJsonPath } from "@inboxos.io/utils/json-path"
+import { zodBigintAsString } from "@inboxos.io/utils/zod"
 import z from "zod"
 import { channelTypes } from "./channel"
 import { triggerActions } from "./trigger"

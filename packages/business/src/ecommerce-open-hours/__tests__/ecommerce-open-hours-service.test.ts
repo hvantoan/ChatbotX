@@ -7,11 +7,11 @@ const mocks = vi.hoisted(() => ({
   invalidate: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   ecommerceOpenHoursRepository: {
     create: (...args: unknown[]) => mocks.create(...args),
     update: (...args: unknown[]) => mocks.update(...args),

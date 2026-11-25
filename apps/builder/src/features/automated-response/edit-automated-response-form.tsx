@@ -1,17 +1,17 @@
 "use client"
 
-import type { AutomatedResponseType } from "@chatbotx.io/database/partials"
-import type { AutomatedResponseModel } from "@chatbotx.io/database/types"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form, FormMessage } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { AutomatedResponseType } from "@inboxos.io/database/partials"
+import type { AutomatedResponseModel } from "@inboxos.io/database/types"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form, FormMessage } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@chatbotx.io/ui/components/ui/toggle-group"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/toggle-group"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PlusCircleIcon, XIcon } from "lucide-react"
 import { useRouter } from "next/navigation"

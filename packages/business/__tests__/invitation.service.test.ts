@@ -11,18 +11,18 @@ const mocks = vi.hoisted(() => ({
   resolveServingHost: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   invitationRepository: {
     create: mocks.createInvitation,
     findByCode: mocks.findByCode,
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "invitation-1",
 }))
 
-vi.mock("@chatbotx.io/utils/web-url", () => ({
+vi.mock("@inboxos.io/utils/web-url", () => ({
   joinAppUrl: (appUrl: string, path: string) =>
     `${appUrl.replace(TRAILING_SLASHES, "")}${path}`,
 }))
@@ -76,7 +76,7 @@ describe("invitationService", () => {
     mocks.findWorkspace.mockResolvedValue({ tenantId: ROOT_TENANT_ID })
     mocks.resolveServingHost.mockResolvedValue({
       tenantId: ROOT_TENANT_ID,
-      appUrl: "https://app.chatbotx.test/",
+      appUrl: "https://app.inboxos.test/",
     })
   })
 
@@ -194,14 +194,14 @@ describe("invitationService", () => {
 
     mocks.resolveServingHost.mockResolvedValue({
       tenantId: ROOT_TENANT_ID,
-      appUrl: "https://app.chatbotx.test/",
+      appUrl: "https://app.inboxos.test/",
     })
     await expect(
       invitationService.buildInviteUrl({
         code: activeInvitation.code,
         workspace,
       }),
-    ).resolves.toBe("https://app.chatbotx.test/invitations/invite-code")
+    ).resolves.toBe("https://app.inboxos.test/invitations/invite-code")
     await expect(
       invitationService.findActiveByCode(activeInvitation.code, {
         tenantId: ROOT_TENANT_ID,
@@ -215,14 +215,14 @@ describe("invitationService", () => {
         code: activeInvitation.code,
         workspace: { tenantId: ROOT_TENANT_ID } as never,
       }),
-    ).resolves.toBe("https://app.chatbotx.test/invitations/invite-code")
+    ).resolves.toBe("https://app.inboxos.test/invitations/invite-code")
 
     await expect(
       invitationService.buildInviteUrl({
         code: activeInvitation.code,
         workspace: { tenantId: RESELLER_TENANT_ID } as never,
       }),
-    ).resolves.toBe("https://app.chatbotx.test/invitations/invite-code")
+    ).resolves.toBe("https://app.inboxos.test/invitations/invite-code")
   })
 
   test("logs a tenant mismatch without logging the bearer code", async () => {
@@ -357,7 +357,7 @@ describe("invitationService", () => {
 
     mocks.resolveServingHost.mockResolvedValue({
       tenantId: ROOT_TENANT_ID,
-      appUrl: "https://app.chatbotx.test/",
+      appUrl: "https://app.inboxos.test/",
     })
     await expect(
       invitationService.findActiveByCodeOrFail(

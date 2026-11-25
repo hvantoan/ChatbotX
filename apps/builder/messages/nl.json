@@ -2205,7 +2205,7 @@
     },
     "fromName": {
       "label": "Afzendernaam",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "Berichtsjabloon"
@@ -3446,7 +3446,7 @@
     "title": "Algemeen"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Hiermee verwijder je de Meta-berichtencampagne en haal je de campagne uit ChatbotX. Als Meta het verwijderen weigert, blijft de campagne behouden.",
+    "deleteWarning": "Hiermee verwijder je de Meta-berichtencampagne en haal je de campagne uit InboxOS. Als Meta het verwijderen weigert, blijft de campagne behouden.",
     "title": "Facebook Marketing Messages",
     "description": "Verhoog betrokkenheid en verkoop met gepersonaliseerde promotieberichten op Messenger.",
     "create": "Nieuw maken",
@@ -3487,7 +3487,7 @@
       "tosNotAccepted": "Accepteer de voorwaarden voor aangepaste objecten op {url} om deze functie te gebruiken",
       "notFound": "Marketingbericht niet gevonden.",
       "audienceNotTargetable": "De geselecteerde aangepaste doelgroep is niet gereed of hoort niet bij deze pagina en dit advertentieaccount.",
-      "connectFirst": "Verbind Marketing Messages eerst in de ChatbotX-app.",
+      "connectFirst": "Verbind Marketing Messages eerst in de InboxOS-app.",
       "mmInvalidState": "Deze actie is niet beschikbaar in de huidige status van de campagne.",
       "mmCampaignEnded": "De Meta-berichtencampagne is afgelopen en kan daarom niet worden verzonden of hervat.",
       "mmPageNotConnected": "De pagina van deze campagne is niet verbonden met deze werkruimte.",
@@ -3507,7 +3507,7 @@
       "uploadMore": "Meer rijen uploaden",
       "empty": "Nog geen aangepaste doelgroepen.",
       "deleteTitle": "Aangepaste doelgroep verwijderen",
-      "deleteWarning": "Hiermee wordt de aangepaste doelgroep \"{name}\" op Meta en in ChatbotX verwijderd. Dit kan niet ongedaan worden gemaakt.",
+      "deleteWarning": "Hiermee wordt de aangepaste doelgroep \"{name}\" op Meta en in InboxOS verwijderd. Dit kan niet ongedaan worden gemaakt.",
       "deleted": "Aangepaste doelgroep verwijderd.",
       "pageDisconnected": "Pagina losgekoppeld",
       "status": {
@@ -5521,7 +5521,7 @@
         "title": "Belgeschiktheid",
         "appSubscriptionMissing": "Configureer eerst de WhatsApp-webhook voor deze app in het Meta App Dashboard en probeer het daarna opnieuw.",
         "appSubscriptionFailed": "Kan het 'calls'-webhookabonnement van de app niet verifiëren. Probeer het straks opnieuw.",
-        "callsNotSubscribed": "Deze app is niet geabonneerd op het 'calls'-webhookveld, waardoor oproepgebeurtenissen ChatbotX niet kunnen bereiken (Meta-fout 138018: technische vereisten zijn niet vervuld — zorg dat minstens één app die op de WABA is geabonneerd ook het webhookveld voor oproepen heeft).",
+        "callsNotSubscribed": "Deze app is niet geabonneerd op het 'calls'-webhookveld, waardoor oproepgebeurtenissen InboxOS niet kunnen bereiken (Meta-fout 138018: technische vereisten zijn niet vervuld — zorg dat minstens één app die op de WABA is geabonneerd ook het webhookveld voor oproepen heeft).",
         "fixButton": "Oplossen",
         "fixSuccess": "De app is nu geabonneerd op WhatsApp-oproepwebhooks.",
         "manualIntegrationNotice": "Dit nummer is handmatig verbonden en heeft hier geen app-gegevens. Abonneer het 'calls'-webhookveld van je app in het Meta App Dashboard.",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Actiebron",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "Winkelbron",
         "description": "Selecteer de winkelbron waarmee je producten, voorraad en bestellingen beheert. Bij Shopify / WooCommerce worden alle producten en bestellingen rechtstreeks vanuit je Shopify / WooCommerce-winkel beheerd.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "Authenticatie",
-        "description": "Hoe ChatbotX inlogt bij je winkel: met de Admin API-toegangstoken van een aangepaste app, of met de Client ID en het secret van een app die in het Shopify Dev Dashboard is gemaakt.",
+        "description": "Hoe InboxOS inlogt bij je winkel: met de Admin API-toegangstoken van een aangepaste app, of met de Client ID en het secret van een app die in het Shopify Dev Dashboard is gemaakt.",
         "options": {
           "token": "Admin API-toegangstoken",
           "clientCredentials": "Client ID en secret (Dev Dashboard-app)"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} kan alleen in deze werkruimte handelen. Verbreek de verbinding en maak opnieuw verbinding om later te wisselen.",
     "noWorkspaces": "Je bent geen beheerder van een werkruimte, dus je kunt deze applicatie niet autoriseren."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "Verwijder je ChatbotX-account",
+    "title": "Verwijder je InboxOS-account",
     "intro": "Je kunt je account en bijbehorende gegevens op een van deze manieren verwijderen.",
     "waysTitle": "Zo verwijder je je account",
     "wayMobile": "In de mobiele app: Instellingen → Account verwijderen.",

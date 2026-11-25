@@ -1,7 +1,7 @@
 "use server"
 
-import { templateInstallIntentService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { templateInstallIntentService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { memberActor } from "../lib/actor"
 import { requestTemplateInstall } from "../lib/request-install"

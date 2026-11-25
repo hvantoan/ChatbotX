@@ -1,13 +1,13 @@
 import { createHash } from "node:crypto"
-import type { systemFunctionNames } from "@chatbotx.io/ai"
+import type { systemFunctionNames } from "@inboxos.io/ai"
 import type {
   DocumentReaderInput,
   SystemToolExecutors,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import {
   ensureAttachmentStored,
   MediaNotReadyError,
-} from "@chatbotx.io/channel-registry/media-hydration"
+} from "@inboxos.io/channel-registry/media-hydration"
 import {
   getHeavyJobCompletionWaitTimeoutMs,
   getHeavyJobOptions,
@@ -17,7 +17,7 @@ import {
   heavyQueue,
   queueNames,
   waitForJobCompletionWithRetries,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { env } from "../../../../env"
 import { logger } from "../../../../lib/logger"

@@ -44,7 +44,7 @@ vi.mock("../src/audit/dispatcher", () => ({
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(db),
   }
@@ -60,8 +60,8 @@ vi.mock("../src/template/installed-resource.service", async () => ({
 }))
 
 // This suite doesn't exercise `create` (which needs `flowService.exists`),
-// but the real `flow/service.ts` transitively needs `@chatbotx.io/flow-config`
-// (needs the real `zodBigintAsString` from `@chatbotx.io/utils`, conflicting
+// but the real `flow/service.ts` transitively needs `@inboxos.io/flow-config`
+// (needs the real `zodBigintAsString` from `@inboxos.io/utils`, conflicting
 // with the narrow mock below).
 vi.mock("../src/flow/service", () => ({
   flowService: { exists: mocks.flowExists },
@@ -71,7 +71,7 @@ vi.mock("../src/folder/service", () => ({
   folderService: { ensureExists: mocks.ensureExists },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => ({ and: args }),
   db: makeClient(),
   eq: (...args: unknown[]) => ({ eq: args }),
@@ -80,7 +80,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   automatedResponseFolderTypeByType: { keyword: "automatedResponse" },
   rootFolderId: "root",
   flattenKeywordConditionValues: (
@@ -97,9 +97,9 @@ vi.mock("@chatbotx.io/database/partials", () => ({
   ],
 }))
 
-// The real schema needs the real `@chatbotx.io/utils`; its rules are covered
+// The real schema needs the real `@inboxos.io/utils`; its rules are covered
 // in packages/database. Here only "empty" and "over 50 values" matter.
-vi.mock("@chatbotx.io/database/partials/keyword-condition-schema", () => ({
+vi.mock("@inboxos.io/database/partials/keyword-condition-schema", () => ({
   keywordConditionsSchema: {
     safeParse: (value: unknown) =>
       Array.isArray(value) &&
@@ -112,7 +112,7 @@ vi.mock("@chatbotx.io/database/partials/keyword-condition-schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   automatedResponseModel: {
     id: "automatedResponse.id",
     workspaceId: "automatedResponse.workspaceId",
@@ -120,17 +120,17 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(),
   likeContains: vi.fn(),
   parseOrderByAsObject: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheKeys: mocks.invalidateCacheKeys,
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => "generated-id"),
 }))
 

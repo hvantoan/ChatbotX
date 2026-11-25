@@ -13,7 +13,7 @@ const tearDownForIntegrationMock = vi.fn()
 const findByInboxIdMock = vi.fn()
 const connectionTransitionMock = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   eq: vi.fn((column: unknown, value: unknown) => ({ eq: [column, value] })),
   sql: Object.assign((strings: TemplateStringsArray) => ({ strings }), {
     raw: vi.fn((value: string) => value),
@@ -23,14 +23,14 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/sequence-scheduler/dispatch-cancel", () => ({
+vi.mock("@inboxos.io/sequence-scheduler/dispatch-cancel", () => ({
   cancelPendingDispatchBatch: cancelPendingDispatchBatchMock,
   removeDispatchesFromSchedule: removeDispatchesFromScheduleMock,
   WORKSPACE_DISPATCH_CANCEL_BATCH_SIZE: 500,
 }))
 
 const cancelContactScanMock = vi.hoisted(() => vi.fn())
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   coexistSyncRunRepository: {
     cancelActiveContactScanRuns: cancelContactScanMock,
   },

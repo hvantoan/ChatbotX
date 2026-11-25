@@ -2,8 +2,8 @@ import {
   type ContactAccessScope,
   type ContactAdTouch,
   listContactAdTouches,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { decodeCursor, encodeCursor } from "@/lib/pagination/cursor-pagination"
 import type {
   ContactAdReferralResource,
@@ -34,7 +34,7 @@ export async function listContactAdReferrals(input: {
   const cursor = decodeCursor(input.cursor)
   // A corrupt cursor must not restart at page 1 (a client appending pages would repeat rows).
   if (input.cursor && !cursor) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "The cursor is invalid. Start again without a cursor.",
       "invalidCursor",
       400,

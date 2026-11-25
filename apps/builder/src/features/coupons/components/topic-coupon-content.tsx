@@ -5,7 +5,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@chatbotx.io/ui/components/ui/tabs"
+} from "@inboxos.io/ui/components/ui/tabs"
 import { useTranslations } from "next-intl"
 import { TopicList } from "./topic-list"
 

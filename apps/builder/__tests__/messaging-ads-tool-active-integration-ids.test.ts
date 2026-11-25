@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   logError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messagingAdsConnectionService: {
     listForChannel: mocks.listForChannel,
   },

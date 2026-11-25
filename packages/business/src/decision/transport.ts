@@ -1,4 +1,4 @@
-import { readBodyWithLimit } from "@chatbotx.io/filesystem"
+import { readBodyWithLimit } from "@inboxos.io/filesystem"
 import ky from "ky"
 import {
   Agent,

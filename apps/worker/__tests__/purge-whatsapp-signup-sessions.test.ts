@@ -3,10 +3,10 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const purgeFinishedSignupSessions = vi.fn()
 const info = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: { purgeFinishedSignupSessions },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ info }),
 }))
 

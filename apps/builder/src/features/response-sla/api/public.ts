@@ -1,4 +1,4 @@
-import { responseSlaService } from "@chatbotx.io/business"
+import { responseSlaService } from "@inboxos.io/business"
 import {
   possibleErrorsOnDeletingResource,
   possibleErrorsOnFindingResource,

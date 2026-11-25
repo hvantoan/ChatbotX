@@ -1,4 +1,4 @@
-import { contactReferralEventProviderSchema } from "@chatbotx.io/database/schema"
+import { contactReferralEventProviderSchema } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const contactAdReferralResource = z.object({

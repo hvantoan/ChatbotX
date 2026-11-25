@@ -1,4 +1,4 @@
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 
 export const listIntegrationZaloPersonals = async (input: {

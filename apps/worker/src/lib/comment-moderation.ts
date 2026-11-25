@@ -1,5 +1,5 @@
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
-import type { ChatJobCommentModeration } from "@chatbotx.io/worker-config"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
+import type { ChatJobCommentModeration } from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 
 /**

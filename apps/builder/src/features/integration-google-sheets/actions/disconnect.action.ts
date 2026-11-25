@@ -1,11 +1,11 @@
 "use server"
 
-import { integrationGoogleSheetService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+import { integrationGoogleSheetService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
   type GoogleSheetsAuthValue,
   integration as integrationGoogleSheets,
-} from "@chatbotx.io/integration-google-sheets"
+} from "@inboxos.io/integration-google-sheets"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

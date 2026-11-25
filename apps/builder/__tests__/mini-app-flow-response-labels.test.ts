@@ -1,11 +1,11 @@
 // @vitest-environment node
 
-import { parseFlowResponseFields } from "@chatbotx.io/integration-whatsapp/api/flow"
+import { parseFlowResponseFields } from "@inboxos.io/integration-whatsapp/api/flow"
 import {
   createNode,
   createStarterDefinition,
   toFlowJson,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { describe, expect, test } from "vitest"
 import { buildWhatsappFlowResponseFields } from "@/features/messages/lib/build-whatsapp-flow-response-fields"
 

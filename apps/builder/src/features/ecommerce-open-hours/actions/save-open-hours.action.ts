@@ -1,8 +1,8 @@
 "use server"
 
-import { ecommerceOpenHoursService } from "@chatbotx.io/business"
-import { openHoursScheduleSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { ecommerceOpenHoursService } from "@inboxos.io/business"
+import { openHoursScheduleSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import {
   workspaceActionClient,

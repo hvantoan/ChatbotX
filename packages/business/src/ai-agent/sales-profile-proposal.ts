@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   type AIAgentProviderModels,
   type AIAgentSalesProfile,
@@ -6,18 +6,18 @@ import {
   type AIAgentTrainingProposal,
   aiAgentProviderModels,
   aiAgentSalesProfileSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   aiAgentTrainingMessageRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
-import type { AIAgentTrainingMessageModel } from "@chatbotx.io/database/types"
-import { distributedStore } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { AIAgentTrainingMessageModel } from "@inboxos.io/database/types"
+import { distributedStore } from "@inboxos.io/redis"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
 import { resolveStoreSource } from "../ecommerce-settings/store-source"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -142,14 +142,14 @@ class AiAgentSalesProfileProposalService extends BaseService {
         SALES_PROFILE_PROPOSE_WINDOW_SECONDS,
       )
       if (count > SALES_PROFILE_PROPOSE_LIMIT) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           `Too many requests. Retry after ${retryAfter}s.`,
           "tooManyRequests",
           429,
         )
       }
     } catch (error) {
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         throw error
       }
       logger.warn(
@@ -182,7 +182,7 @@ class AiAgentSalesProfileProposalService extends BaseService {
           }),
         ])
         if (totalAtLimit || monthlyAtLimit) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Bot message quota reached for this plan.",
             "quotaExceeded",
             403,
@@ -208,7 +208,7 @@ class AiAgentSalesProfileProposalService extends BaseService {
         workspaceUsageService.increment(workspace.id, "botMessages"),
       ])
     } catch (error) {
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         throw error
       }
       logger.warn(
@@ -293,7 +293,7 @@ class AiAgentSalesProfileProposalService extends BaseService {
 
     const runner = input.generatePatch ?? this.modelRunner
     if (!runner) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Sales profile proposal model runner is not configured.",
         "aiProviderNotConfigured",
         422,
@@ -322,13 +322,13 @@ class AiAgentSalesProfileProposalService extends BaseService {
         error instanceof Error &&
         error.name === "SalesProfileProposalProviderNotConnectedError"
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           error.message,
           "aiProviderNotConfigured",
           422,
         )
       }
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         throw error
       }
       logger.error(
@@ -343,7 +343,7 @@ class AiAgentSalesProfileProposalService extends BaseService {
         error instanceof Error && error.message
           ? `: ${error.message.slice(0, 180)}`
           : "."
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `AI provider failed to generate a sales profile proposal${detail}`,
         "aiProviderFailed",
         502,

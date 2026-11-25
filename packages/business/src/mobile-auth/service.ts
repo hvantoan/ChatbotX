@@ -1,6 +1,6 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { mobileRefreshTokenRepository } from "@chatbotx.io/database/repositories"
-import { createId } from "@chatbotx.io/utils"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { mobileRefreshTokenRepository } from "@inboxos.io/database/repositories"
+import { createId } from "@inboxos.io/utils"
 import { hashToken } from "../workspace-api-token/credentials"
 
 export const MOBILE_REFRESH_TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000

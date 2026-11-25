@@ -1,7 +1,7 @@
 import "server-only"
 
-import type { WebshopShopper } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import type { WebshopShopper } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { headers } from "next/headers"
 import {
   checkGuestRateLimit,
@@ -62,7 +62,7 @@ async function runReportingRefusals<T>(
   try {
     return { ok: true, data: await operation() }
   } catch (error) {
-    if (error instanceof ChatbotXException && error.httpStatusCode < 500) {
+    if (error instanceof InboxOSException && error.httpStatusCode < 500) {
       return fail({
         code: error.code,
         field: error.field,

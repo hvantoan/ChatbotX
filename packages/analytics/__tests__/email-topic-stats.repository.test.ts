@@ -20,7 +20,7 @@ const capturedInsertValues: unknown[] = []
 const UUID_REGEX =
   /^[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/i
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const builder: Record<string, unknown> = {}
   builder.set = vi.fn(() => builder)
   builder.where = vi.fn(() => builder)
@@ -82,20 +82,20 @@ const emailTopicModelMock = {
   deliveredsTotal: "deliveredsTotal_col",
 }
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   analyticsEmailTopicModel: analyticsEmailTopicModelMock,
   emailTopicModel: emailTopicModelMock,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: vi.fn(() => "snowflake-id"),
   }
 })
 
-const { db } = await import("@chatbotx.io/database/client")
+const { db } = await import("@inboxos.io/database/client")
 const { emailTopicStatsRepository } = await import(
   "../src/repositories/postgres/email-topic-stats.repository"
 )

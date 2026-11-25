@@ -1,7 +1,7 @@
 "use server"
-import { aiIntegrationService } from "@chatbotx.io/ai/server"
-import { integrationOpenAIService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { aiIntegrationService } from "@inboxos.io/ai/server"
+import { integrationOpenAIService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {
   type UpdateOpenAIRequest,

@@ -1,5 +1,5 @@
-import { googleAdsConversionService } from "@chatbotx.io/business"
-import { GOOGLE_ADS_EVENTS_MAX_PER_PAGE } from "@chatbotx.io/database/partials"
+import { googleAdsConversionService } from "@inboxos.io/business"
+import { GOOGLE_ADS_EVENTS_MAX_PER_PAGE } from "@inboxos.io/database/partials"
 import type { GoogleAdsEventResource } from "../schema/events"
 import { toGoogleAdsEventResource } from "./to-event-resource"
 

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import { DrizzleQueryError } from "drizzle-orm/errors"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { PipelineItemBaseService } from "../src/pipeline/item-base.service"

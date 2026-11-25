@@ -1,5 +1,5 @@
-import { couponService } from "@chatbotx.io/business"
-import { uploader } from "@chatbotx.io/filesystem"
+import { couponService } from "@inboxos.io/business"
+import { uploader } from "@inboxos.io/filesystem"
 import { ORPCError } from "@orpc/server"
 import { getCurrentUserId } from "@/lib/auth/utils"
 import type {

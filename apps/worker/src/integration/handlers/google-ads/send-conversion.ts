@@ -1,8 +1,8 @@
 import {
   googleAdsConversionService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import type { IntegrationJobSendGoogleAdsConversion } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { IntegrationJobSendGoogleAdsConversion } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { isFinalAttempt } from "../../../lib/job-attempts"
 import { resolveMatchingTemplates } from "./resolve-matching-templates"

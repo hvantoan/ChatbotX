@@ -1,4 +1,4 @@
-import type { EvaluateDecisionStepSchema } from "@chatbotx.io/flow-config"
+import type { EvaluateDecisionStepSchema } from "@inboxos.io/flow-config"
 import { contactCustomFieldService } from "../contact-custom-field/service"
 
 const MAX_CONTEXT_CHARACTERS = 12_000

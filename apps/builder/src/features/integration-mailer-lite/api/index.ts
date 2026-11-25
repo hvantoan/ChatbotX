@@ -1,12 +1,12 @@
-import { buildContext } from "@chatbotx.io/business"
+import { buildContext } from "@inboxos.io/business"
 import {
   MAILER_LITE_EDITOR_PAGE_SIZE,
   MailerLiteApiError,
   mailerLiteFieldPageSchema,
   mailerLiteGroupPageSchema,
   integration as mailerLiteIntegration,
-} from "@chatbotx.io/integration-mailer-lite"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-mailer-lite"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

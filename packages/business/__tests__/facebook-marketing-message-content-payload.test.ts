@@ -1,4 +1,4 @@
-import { encodeButtonPayload } from "@chatbotx.io/flow-config"
+import { encodeButtonPayload } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import {
   buildMarketingMessagePayload,

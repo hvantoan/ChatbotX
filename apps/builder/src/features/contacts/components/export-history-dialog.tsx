@@ -1,8 +1,8 @@
 "use client"
 
-import { CONTACT_EXPORT_RETENTION_DAYS } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { CONTACT_EXPORT_RETENTION_DAYS } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { DownloadIcon, Loader2Icon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"

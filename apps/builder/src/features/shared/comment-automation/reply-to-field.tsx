@@ -3,24 +3,24 @@
 import {
   COMMENT_MENTION_COUNT_MAX,
   type CommentIncludeKeywordsType,
-} from "@chatbotx.io/database/partials"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
+} from "@inboxos.io/ui/components/ui/form"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo } from "react"
 import { useFormContext, useWatch } from "react-hook-form"

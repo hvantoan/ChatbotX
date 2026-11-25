@@ -18,7 +18,7 @@ const {
   mockHasGlobalRouterEnabled: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService: {
     findDefault: mockAiAgentFindDefault,
   },
@@ -36,13 +36,13 @@ vi.mock("../src/utils", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   simpleQueue: {
     enqueue: mockSimpleQueueEnqueue,
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: {
     processAutomatedResponse: "processAutomatedResponse",
   },

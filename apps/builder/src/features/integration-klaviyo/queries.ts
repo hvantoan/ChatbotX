@@ -1,6 +1,6 @@
-import { buildContext, integrationKlaviyoService } from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import { klaviyoAuthSchema } from "@chatbotx.io/integration-klaviyo"
+import { buildContext, integrationKlaviyoService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import { klaviyoAuthSchema } from "@inboxos.io/integration-klaviyo"
 
 export const getKlaviyoContext = async (workspaceId: string) => {
   const row =

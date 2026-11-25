@@ -1,23 +1,23 @@
-# @chatbotx.io/vitest-config
+# @inboxos.io/vitest-config
 
-Shared Vitest presets for the ChatbotX monorepo. Mirrors how
-[`@chatbotx.io/typescript-config`](../typescript-config) works for TypeScript:
+Shared Vitest presets for the InboxOS monorepo. Mirrors how
+[`@inboxos.io/typescript-config`](../typescript-config) works for TypeScript:
 one place to bump versions, one place to tune the config.
 
 ## Presets
 
 | Preset | Environment | Use for |
 |--------|-------------|---------|
-| `@chatbotx.io/vitest-config/node` | `node` | Libraries, workers, CLIs, integrations |
-| `@chatbotx.io/vitest-config/react` | `jsdom` + React | `@chatbotx.io/ui` and other React libs |
-| `@chatbotx.io/vitest-config/nextjs` | `jsdom` + React + Next.js | `apps/builder` |
+| `@inboxos.io/vitest-config/node` | `node` | Libraries, workers, CLIs, integrations |
+| `@inboxos.io/vitest-config/react` | `jsdom` + React | `@inboxos.io/ui` and other React libs |
+| `@inboxos.io/vitest-config/nextjs` | `jsdom` + React + Next.js | `apps/builder` |
 
 ## Usage
 
 In a workspace's `vitest.config.ts`:
 
 ```ts
-import preset from "@chatbotx.io/vitest-config/node" // or /react, /nextjs
+import preset from "@inboxos.io/vitest-config/node" // or /react, /nextjs
 
 export default preset
 ```
@@ -26,7 +26,7 @@ To extend a preset with workspace-specific overrides:
 
 ```ts
 import { mergeConfig } from "vitest/config"
-import preset from "@chatbotx.io/vitest-config/node"
+import preset from "@inboxos.io/vitest-config/node"
 
 export default mergeConfig(preset, {
   test: {
@@ -38,7 +38,7 @@ export default mergeConfig(preset, {
 ## MSW (HTTP mocking)
 
 The preset boots a shared MSW server before every test suite. The server
-starts with **no default handlers** — `@chatbotx.io/vitest-config` is a pure
+starts with **no default handlers** — `@inboxos.io/vitest-config` is a pure
 lifecycle module and knows nothing about specific upstream APIs. Outbound HTTP
 requests are still intercepted, and **any request without a matching handler
 fails the test** (`onUnhandledRequest: "error"`).
@@ -50,12 +50,12 @@ and ships it as a `./test-handlers` export:
 
 | Package | Export | Mocks |
 |---------|--------|-------|
-| `@chatbotx.io/integration-telegram` | `/test-handlers` | Telegram Bot API |
-| `@chatbotx.io/integration-whatsapp` | `/test-handlers` | WhatsApp Cloud API |
-| `@chatbotx.io/integration-messenger` | `/test-handlers` | Facebook Graph (Messenger) |
-| `@chatbotx.io/integration-zalo` | `/test-handlers` | Zalo OA |
-| `@chatbotx.io/integration-openai` | `/test-handlers` | OpenAI chat + embeddings |
-| `@chatbotx.io/integration-google-sheets` | `/test-handlers` | Google Sheets |
+| `@inboxos.io/integration-telegram` | `/test-handlers` | Telegram Bot API |
+| `@inboxos.io/integration-whatsapp` | `/test-handlers` | WhatsApp Cloud API |
+| `@inboxos.io/integration-messenger` | `/test-handlers` | Facebook Graph (Messenger) |
+| `@inboxos.io/integration-zalo` | `/test-handlers` | Zalo OA |
+| `@inboxos.io/integration-openai` | `/test-handlers` | OpenAI chat + embeddings |
+| `@inboxos.io/integration-google-sheets` | `/test-handlers` | Google Sheets |
 
 Each module exports `testHandlers` (an array of `RequestHandler` from MSW).
 
@@ -65,8 +65,8 @@ Use `beforeEach` (not `beforeAll`) to register integration baselines, because
 `setup-msw.ts` resets handlers between every test:
 
 ```ts
-import { server, http, HttpResponse } from "@chatbotx.io/vitest-config/msw"
-import { testHandlers as telegramHandlers } from "@chatbotx.io/integration-telegram/test-handlers"
+import { server, http, HttpResponse } from "@inboxos.io/vitest-config/msw"
+import { testHandlers as telegramHandlers } from "@inboxos.io/integration-telegram/test-handlers"
 import { beforeEach, test } from "vitest"
 
 beforeEach(() => {
@@ -100,7 +100,7 @@ in-memory).
    ```ts
    import { vi } from "vitest"
 
-   vi.mock("@chatbotx.io/database/client", () => ({
+   vi.mock("@inboxos.io/database/client", () => ({
      db: {
        /* stub */
      },

@@ -40,7 +40,7 @@ const {
   mockEnqueueProfileSnapshots: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   bulkImportChannelContacts: mockBulkImportChannelContacts,
   contactScanService: {
     claim: mockClaim,
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/contact-scan", () => ({
+vi.mock("@inboxos.io/business/contact-scan", () => ({
   CONTACT_SCAN_ERRORS: {
     integrationUnavailable: "integrationUnavailable",
     tokenInvalid: "tokenInvalid",
@@ -74,15 +74,15 @@ vi.mock("@chatbotx.io/business/contact-scan", () => ({
   CONTACT_SCAN_MAX_PAGES: 5000,
 }))
 
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: mockLogProviderError,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   sanitizePublicText: (value: string) => value,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { contactScan: "contactScan" },
   buildContactScanPageJobId: ({
     runId,

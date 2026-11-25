@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import type {
   ChannelType,
   LeaderboardPlatform,
@@ -6,23 +6,23 @@ import type {
   LeaderboardRules,
   LeaderboardScope,
   LeaderboardStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   fileRepository,
   leaderboardAuditLogRepository,
   leaderboardParticipantRepository,
   leaderboardRepository,
-} from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import {
   DefaultJobAction,
   defaultQueue,
   LeaderboardJobAction,
   leaderboardQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -106,7 +106,7 @@ const assertActionAllowed = (
   action: LeaderboardAction,
 ) => {
   if (!LEADERBOARD_ACTIONS_BY_STATUS[leaderboard.status].includes(action)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `Cannot ${action} a ${leaderboard.status} leaderboard`,
       "leaderboardActionNotAllowed",
       409,
@@ -416,7 +416,7 @@ class LeaderboardService extends BaseService {
     )
     if (!row) {
       // Another transition (e.g. the finish cron) won the race.
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "The leaderboard status changed meanwhile; reload and try again",
         "leaderboardActionNotAllowed",
         409,
@@ -495,7 +495,7 @@ class LeaderboardService extends BaseService {
       } catch (err) {
         if (
           !(
-            err instanceof ChatbotXException &&
+            err instanceof InboxOSException &&
             err.code === "leaderboardActionNotAllowed"
           )
         ) {

@@ -1,4 +1,4 @@
-import type { IntegrationLineModel } from "@chatbotx.io/database/types"
+import type { IntegrationLineModel } from "@inboxos.io/database/types"
 import type { LineChannelResource } from "../schema/resource"
 
 /** Explicit projection: `auth` and the channel secret never leave the server. */

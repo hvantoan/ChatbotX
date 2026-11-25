@@ -1,8 +1,8 @@
 "use server"
 
-import { magicLinkService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { magicLinkService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {
@@ -38,7 +38,7 @@ export const updateMagicLink = async (
   try {
     await magicLinkService.update({ ...ctx, data: parsedInput })
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "validation") {
+    if (error instanceof InboxOSException && error.code === "validation") {
       return returnValidationErrors(updateMagicLinkRequest, {
         _errors: ["Validation Exception"],
         name: { _errors: ["Name is already taken"] },

@@ -2,17 +2,17 @@ import {
   lineIntegrationService,
   tenantService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
-  ChatbotXException,
   channelHiddenException,
   connectionCredentialsRejectedException,
   connectionProviderUnavailableException,
-} from "@chatbotx.io/business/errors"
-import type { UserModel } from "@chatbotx.io/database/types"
-import type { LineAuthValue } from "@chatbotx.io/integration-line"
-import { AuthException, SdkException } from "@chatbotx.io/sdk"
+  InboxOSException,
+} from "@inboxos.io/business/errors"
+import type { UserModel } from "@inboxos.io/database/types"
+import type { LineAuthValue } from "@inboxos.io/integration-line"
+import { AuthException, SdkException } from "@inboxos.io/sdk"
 import { resolveConnectOwnerId } from "@/features/channel-connect/lib/resolve-connect-owner"
 import { assertChannelCreatable } from "@/features/connections/lib/connect-flow"
 import { integrations } from "@/integration"
@@ -103,7 +103,7 @@ const isTransportError = (error: unknown): boolean =>
 
 /** LINE rejected the webhook endpoint (e.g. the broker URL), not the credentials. */
 const lineWebhookRejectedException = (detail: string) =>
-  new ChatbotXException(
+  new InboxOSException(
     `LINE rejected the webhook URL: ${detail}`,
     "lineWebhookRejected",
     400,
@@ -111,7 +111,7 @@ const lineWebhookRejectedException = (detail: string) =>
 
 /** Raw LINE / HTTP failures become typed public errors (Telegram parity). */
 const toTypedConnectError = (error: unknown, stage: ConnectStage): unknown => {
-  if (error instanceof ChatbotXException) {
+  if (error instanceof InboxOSException) {
     return error
   }
   if (isTransportError(error)) {
@@ -135,7 +135,7 @@ const toTypedConnectError = (error: unknown, stage: ConnectStage): unknown => {
     }
   }
   logger.error({ err: error }, "Failed to connect LINE channel")
-  return new ChatbotXException(
+  return new InboxOSException(
     "Failed to connect LINE. Please check the Channel ID and Channel secret and try again.",
   )
 }
@@ -174,7 +174,7 @@ const resolveOwnerId = async (props: {
     return resolveConnectOwnerId({ workspaceId, user })
   }
   if (!workspaceId) {
-    throw new ChatbotXException("Workspace not found", "notFound", 404)
+    throw new InboxOSException("Workspace not found", "notFound", 404)
   }
   const workspace = await workspaceService.findOrFail({
     where: { id: workspaceId },

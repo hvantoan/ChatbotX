@@ -1,9 +1,6 @@
-import type { LastUserInputType } from "@chatbotx.io/database/partials"
-import {
-  contentTypes,
-  lastUserInputTypes,
-} from "@chatbotx.io/database/partials"
-import { isReelShare, isStoryMention } from "@chatbotx.io/sdk"
+import type { LastUserInputType } from "@inboxos.io/database/partials"
+import { contentTypes, lastUserInputTypes } from "@inboxos.io/database/partials"
+import { isReelShare, isStoryMention } from "@inboxos.io/sdk"
 import { getPublicFileUrl } from "../utils"
 import { getContactInputAttachments } from "./input-attachments"
 

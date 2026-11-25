@@ -3,36 +3,36 @@ import {
   inboxService,
   resolveTenantSettings,
   resolveWorkspaceAppUrl,
-} from "@chatbotx.io/business"
-import { normalizeStoredTimezone } from "@chatbotx.io/business/contact-locale"
-import { systemFieldService } from "@chatbotx.io/business/system-field"
-import { resolveIntegrationContextFromContactInbox } from "@chatbotx.io/channel-registry/registry"
+} from "@inboxos.io/business"
+import { normalizeStoredTimezone } from "@inboxos.io/business/contact-locale"
+import { systemFieldService } from "@inboxos.io/business/system-field"
+import { resolveIntegrationContextFromContactInbox } from "@inboxos.io/channel-registry/registry"
 import type {
   ChannelType,
   SystemFieldType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   channelTypes,
   supportsProfileSnapshot,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
   InboxWithIntegrations,
-} from "@chatbotx.io/database/types"
-import { signMeLink } from "@chatbotx.io/encryption/link-signature"
+} from "@inboxos.io/database/types"
+import { signMeLink } from "@inboxos.io/encryption/link-signature"
 import {
   getPostDetails as getInstagramPostDetails,
   type InstagramAuthValue,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import {
   getPostDetails as getMessengerPostDetails,
   getUserInboxLink,
   type MessengerAuthValue,
-} from "@chatbotx.io/integration-messenger"
-import { toLogSafeError } from "@chatbotx.io/logger"
-import { invalidateCacheKeys, withCache } from "@chatbotx.io/redis"
-import type { ContactProfileSnapshot } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-messenger"
+import { toLogSafeError } from "@inboxos.io/logger"
+import { invalidateCacheKeys, withCache } from "@inboxos.io/redis"
+import type { ContactProfileSnapshot } from "@inboxos.io/sdk"
 import { logger } from "../logger"
 
 type IntegrationFieldKey = Extract<

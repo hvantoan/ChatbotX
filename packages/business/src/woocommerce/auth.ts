@@ -1,10 +1,10 @@
 import {
   type WoocommerceAuthSecret,
   woocommerceAuthSecretSchema,
-} from "@chatbotx.io/database/partials"
-import type { IntegrationWoocommerceModel } from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import type { WooCommerceCredentials } from "@chatbotx.io/integration-woocommerce"
+} from "@inboxos.io/database/partials"
+import type { IntegrationWoocommerceModel } from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
+import type { WooCommerceCredentials } from "@inboxos.io/integration-woocommerce"
 import { checkSsrfSafety } from "../net/ssrf-guard"
 import {
   woocommerceCredentialsInvalidException,

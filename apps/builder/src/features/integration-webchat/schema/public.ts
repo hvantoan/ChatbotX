@@ -1,12 +1,12 @@
-import { webchatConnectConfigSchema } from "@chatbotx.io/business/integration-webchat/schema"
+import { webchatConnectConfigSchema } from "@inboxos.io/business/integration-webchat/schema"
 import {
   webchatConversationStarter,
   webchatPersistentMenu,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createSelectSchema,
   integrationWebchatModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const webchatPublicResource = createSelectSchema(

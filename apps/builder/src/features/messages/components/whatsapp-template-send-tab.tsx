@@ -1,15 +1,15 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   extractTemplateParams,
   type TemplateComponent,
   type WaTemplateParams,
-} from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { DialogClose } from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { DialogClose } from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2 } from "lucide-react"

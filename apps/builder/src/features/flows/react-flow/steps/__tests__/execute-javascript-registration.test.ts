@@ -4,7 +4,7 @@ import {
   executeJavascriptStepDefaultFn,
   executeJavascriptStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 
 describe("executeJavascript step registration", () => {

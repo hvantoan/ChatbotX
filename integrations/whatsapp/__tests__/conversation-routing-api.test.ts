@@ -1,7 +1,7 @@
 import {
   ChannelErrorCategory,
   ThreadControlTakeRefusedError,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { getRoutingRoles } from "../src/api/routing-roles"
 import { postThreadControl } from "../src/api/thread-control"

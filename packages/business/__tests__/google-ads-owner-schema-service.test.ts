@@ -14,7 +14,7 @@ vi.mock("../src/workspace/service", () => ({
 vi.mock("../src/enterprise/tenant/service", () => ({
   tenantService: { findById: mocks.findTenant },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsConversionEventRepository: {
     findWorkspaceEvent: mocks.findWorkspaceEvent,
     redrive: mocks.redrive,

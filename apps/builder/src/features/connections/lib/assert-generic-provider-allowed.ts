@@ -1,10 +1,10 @@
-import { connectionStateService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { connectionStateService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import {
   connectionProviderDedicatedOnlyException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/errors"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 
 /**
  * Providers whose connect lifecycle is owned by a dedicated, permission-gated

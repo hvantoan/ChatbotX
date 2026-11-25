@@ -1,12 +1,12 @@
-import { createId } from "@chatbotx.io/utils"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import { createId } from "@inboxos.io/utils"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import {
   FIELD_OPERATION_DEFINITIONS,
   fieldOperationByApiName,
   fieldOperationsForType,
   isFieldOperationAllowed,
-} from "@chatbotx.io/utils/custom-field-operation"
-import { isTemporalCustomFieldType } from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/utils/custom-field-operation"
+import { isTemporalCustomFieldType } from "@inboxos.io/utils/datetime"
 import { addNotesNodeDefaultFn } from "../nodes/add-notes"
 import { conditionNodeDefaultFn } from "../nodes/condition"
 import type { EdgeSchema, FlowVersionSchema } from "../nodes/index"

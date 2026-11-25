@@ -1,5 +1,5 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 
 /**
  * The category installed before the early entries (a bot field's value can

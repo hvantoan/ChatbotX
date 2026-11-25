@@ -1,7 +1,7 @@
 import "server-only"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getMarketingMessagesAdAccounts } from "@chatbotx.io/integration-facebook-ads"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getMarketingMessagesAdAccounts } from "@inboxos.io/integration-facebook-ads"
 import { getTranslations } from "next-intl/server"
 import type { MarketingMessagesGrant } from "./grant"
 import { customAudienceTosUrl, isCustomAudienceTosAccepted } from "./tos"
@@ -22,12 +22,10 @@ export async function requireTosAcceptedAdAccount(
   const account = accounts.find((row) => row.id === adAccountId)
   const t = await getTranslations()
   if (!account) {
-    throw new ChatbotXException(
-      t("facebookMarketingMessages.errors.notGranted"),
-    )
+    throw new InboxOSException(t("facebookMarketingMessages.errors.notGranted"))
   }
   if (!isCustomAudienceTosAccepted(account.tosAccepted)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("facebookMarketingMessages.errors.tosNotAccepted", {
         url: customAudienceTosUrl(account.accountId),
       }),

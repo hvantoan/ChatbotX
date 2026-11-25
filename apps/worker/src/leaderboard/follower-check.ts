@@ -1,16 +1,16 @@
-import { contactInboxService } from "@chatbotx.io/business"
-import type { LeaderboardFollowerCheck } from "@chatbotx.io/business/leaderboard"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+import { contactInboxService } from "@inboxos.io/business"
+import type { LeaderboardFollowerCheck } from "@inboxos.io/business/leaderboard"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import {
   getTelegramChatMemberStatus,
   isTelegramMemberStatus,
   type TelegramAuthValue,
-} from "@chatbotx.io/integration-telegram"
-import { integration as integrationZalo } from "@chatbotx.io/integration-zalo"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo/schema"
-import { toLogSafeError } from "@chatbotx.io/logger"
-import { withCache } from "@chatbotx.io/redis"
-import type { Context } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-telegram"
+import { integration as integrationZalo } from "@inboxos.io/integration-zalo"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo/schema"
+import { toLogSafeError } from "@inboxos.io/logger"
+import { withCache } from "@inboxos.io/redis"
+import type { Context } from "@inboxos.io/sdk"
 import { logger } from "../lib/logger"
 import { resolveIntegrationContextFromContactInbox } from "../services/integrations"
 

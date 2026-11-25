@@ -69,7 +69,7 @@ vi.mock("@/features/integration-whatsapp/libs/capi-scope", () => ({
   getWhatsappGrantedScopes: getWhatsappGrantedScopesMock,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: {
     findWorkspaceIntegration: findWorkspaceIntegrationMock,
     replaceAuth: replaceAuthMock,
@@ -86,33 +86,33 @@ vi.mock("@chatbotx.io/business", () => ({
   WHATSAPP_CAPI_SCOPE: "whatsapp_business_manage_events",
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: authExpiresAtOfMock,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/auth", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/auth", () => ({
   appAccessToken: (settings: { clientId: string; clientSecret: string }) =>
     `${settings.clientId}|${settings.clientSecret}`,
   exchangeAccessToken: exchangeAccessTokenMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba-owner", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba-owner", () => ({
   resolveOwningWabaId: resolveOwningWabaIdMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/phone-number", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/phone-number", () => ({
   listPhoneNumbers: listPhoneNumbersMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba", () => ({
   findWaba: findWabaMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/webhook", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/webhook", () => ({
   subscribeWebhook: subscribeWebhookMock,
 }))
 

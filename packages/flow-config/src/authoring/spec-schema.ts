@@ -1,10 +1,10 @@
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import {
   FieldOperationType,
   fieldOperationApiNames,
   fieldOperationByApiName,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { z } from "zod"
 import { countMessageCharacters } from "../channel-rules/characters"
 import {

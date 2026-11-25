@@ -1,5 +1,5 @@
-import { integrationMailerLiteService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationMailerLiteService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageMailerLite } from "@/features/integration-mailer-lite/components/manage-mailer-lite"
 

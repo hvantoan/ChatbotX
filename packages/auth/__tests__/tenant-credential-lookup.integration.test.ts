@@ -3,13 +3,13 @@ import { memoryAdapter } from "better-auth/adapters/memory"
 import { createInternalAdapter } from "better-auth/db"
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/schema", () => ({
   ROOT_TENANT_ID: "1",
   tenantModel: {},
   verificationModel: {},
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { listActiveDomains: vi.fn().mockResolvedValue([]) },
   tenantService: { findById: vi.fn() },
   platformCredentialService: {

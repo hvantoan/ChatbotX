@@ -1,11 +1,11 @@
-import type { StripeCredential } from "@chatbotx.io/database/partials"
-import { paymentProviderRepository } from "@chatbotx.io/database/repositories"
+import type { StripeCredential } from "@inboxos.io/database/partials"
+import { paymentProviderRepository } from "@inboxos.io/database/repositories"
 import {
   deleteStripeConnectWebhook,
   ensureStripeConnectWebhook,
   readPlatformStripeAccountId,
-} from "@chatbotx.io/payments"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/payments"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import { logger } from "../logger"
 import { platformCredentialService } from "../platform-credential/service"
 import {

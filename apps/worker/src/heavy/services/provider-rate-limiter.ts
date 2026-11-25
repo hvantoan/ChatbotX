@@ -1,4 +1,4 @@
-import { getRedisConnection } from "@chatbotx.io/worker-config"
+import { getRedisConnection } from "@inboxos.io/worker-config"
 
 const RATE_LIMIT_LUA = `
 local current = redis.call("GET", KEYS[1])

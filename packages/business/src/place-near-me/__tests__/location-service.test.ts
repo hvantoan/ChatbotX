@@ -11,11 +11,11 @@ const mocks = vi.hoisted(() => ({
   invalidate: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   placeLocationRepository: {
     list: (...args: unknown[]) => mocks.list(...args),
     find: (...args: unknown[]) => mocks.find(...args),

@@ -4,12 +4,12 @@ import {
   getMediaStoragePrefix,
   guessFileTypeFromMimeType,
   type IncomingAttachment,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   storeIncomingImage,
   toStoredMediaFields,
-} from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/utils/store-incoming-image"
 import fetch from "cross-fetch"
 import { rescue } from "../exception"
 import { instagramBusinessClient } from "../lib/http-client"

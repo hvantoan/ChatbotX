@@ -1,5 +1,5 @@
-import type { WhatsappCallActivityChip } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import type { WhatsappCallActivityChip } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { createSearchParamsCache, parseAsStringLiteral } from "nuqs/server"
 import z from "zod"
 import { parseAsBigInt } from "@/lib/nuqs"

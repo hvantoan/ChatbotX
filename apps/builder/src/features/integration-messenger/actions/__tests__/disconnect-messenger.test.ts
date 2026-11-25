@@ -4,23 +4,23 @@ import { fileURLToPath } from "node:url"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business
+// Mock @inboxos.io/business
 // ---------------------------------------------------------------------------
 const findByIdForWorkspace = vi.fn()
 const findWorkspaceById = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: { findByIdForWorkspace },
   workspaceService: { findById: findWorkspaceById },
 }))
 
 const record = vi.fn()
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record },
 }))
 
 const disconnectMessengerConnection = vi.fn()
-vi.mock("@chatbotx.io/connections/messenger-teardown", () => ({
+vi.mock("@inboxos.io/connections/messenger-teardown", () => ({
   disconnectMessengerConnection,
 }))
 
@@ -32,7 +32,7 @@ vi.mock("@chatbotx.io/connections/messenger-teardown", () => ({
 // ---------------------------------------------------------------------------
 const { disconnectMessenger } = await import("../disconnect-messenger")
 
-const DATABASE_CLIENT_IMPORT_PATTERN = /@chatbotx\.io\/database\/client/
+const DATABASE_CLIENT_IMPORT_PATTERN = /@inboxos\.io\/database\/client/
 
 const WORKSPACE_ID = "100"
 const INTEGRATION_ID = "200"
@@ -56,7 +56,7 @@ beforeEach(() => {
 
 describe("disconnect-messenger.ts source", () => {
   // Data-access rule: apps/builder must never import `db` from
-  // `@chatbotx.io/database/client`, not even to open a transaction. The
+  // `@inboxos.io/database/client`, not even to open a transaction. The
   // transaction now opens inside `packages/connections/src/messenger-teardown.ts`
   // instead — this guards against the import creeping back in.
   test("never imports the database client — opening a transaction here would violate the data-access layering rule", () => {

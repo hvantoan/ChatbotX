@@ -1,9 +1,9 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"

@@ -27,7 +27,7 @@ vi.mock("@/features/common/schema", () => ({
   workspaceIdrequestParams: [],
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationOpenaiCompatibleService: {
     connect: mocks.connect,
     updateWithVerification: mocks.updateWithVerification,
@@ -39,21 +39,21 @@ vi.mock("@chatbotx.io/business", () => ({
   validateOpenaiCompatibleBaseUrlForEnvironment: mocks.validateBaseUrl,
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     connectFromCredentials: mocks.connectFromCredentials,
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code = "systemError"
     httpStatusCode = 400
     field?: string
 
     constructor(message: string, code?: string, httpStatusCode?: number) {
       super(message)
-      this.name = "ChatbotXException"
+      this.name = "InboxOSException"
       if (code) {
         this.code = code
       }
@@ -76,7 +76,7 @@ vi.mock("@/features/integration-openai-compatible/lib", () => ({
   verifyOpenaiCompatibleProvider: mocks.verifyProvider,
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { connectOpenaiCompatibleAction } = await import(
   "@/features/integration-openai-compatible/actions/connect.action"
 )
@@ -111,7 +111,7 @@ describe("OpenAI-compatible actions", () => {
 
   test("connect maps unsafe base URL errors before provider verification", async () => {
     mocks.validateBaseUrl.mockRejectedValue(
-      new ChatbotXException("blocked", "ssrfBlocked", 400),
+      new InboxOSException("blocked", "ssrfBlocked", 400),
     )
 
     const result = await (
@@ -217,7 +217,7 @@ describe("OpenAI-compatible actions", () => {
 
   test("connect maps a connectionAlreadyConnected error from connectFromCredentials to a localized preset validation error instead of letting it propagate", async () => {
     mocks.connectFromCredentials.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "This provider is already connected in this workspace.",
         "connectionAlreadyConnected",
         409,
@@ -245,7 +245,7 @@ describe("OpenAI-compatible actions", () => {
 
   test("update delegates to updateWithVerification and maps ssrfBlocked to baseURL validation error", async () => {
     mocks.updateWithVerification.mockRejectedValue(
-      new ChatbotXException("blocked", "ssrfBlocked", 400),
+      new InboxOSException("blocked", "ssrfBlocked", 400),
     )
 
     const result = await (
@@ -276,7 +276,7 @@ describe("OpenAI-compatible actions", () => {
   })
 
   test("update maps an unreachable endpoint to providerUnreachable while keeping the public invalidBaseUrl code", async () => {
-    const unreachable = new ChatbotXException(
+    const unreachable = new InboxOSException(
       "OpenAI-compatible base URL could not be verified.",
       "invalidBaseUrl",
       400,
@@ -305,7 +305,7 @@ describe("OpenAI-compatible actions", () => {
 
   test("update maps connectionCredentialsRejected, apiKey validation, connectionAlreadyConnected, and presetAlreadyConnected", async () => {
     mocks.updateWithVerification.mockRejectedValueOnce(
-      new ChatbotXException("rejected", "connectionCredentialsRejected", 400),
+      new InboxOSException("rejected", "connectionCredentialsRejected", 400),
     )
 
     const rejected = await (
@@ -326,7 +326,7 @@ describe("OpenAI-compatible actions", () => {
       },
     })
 
-    const apiKeyValidationError = new ChatbotXException(
+    const apiKeyValidationError = new InboxOSException(
       "Provide an API key",
       "validation",
       422,
@@ -352,7 +352,7 @@ describe("OpenAI-compatible actions", () => {
     })
 
     mocks.updateWithVerification.mockRejectedValueOnce(
-      new ChatbotXException("duplicate url", "connectionAlreadyConnected", 409),
+      new InboxOSException("duplicate url", "connectionAlreadyConnected", 409),
     )
     const duplicateUrl = await (
       updateOpenaiCompatibleAction as unknown as ActionHandler<
@@ -371,7 +371,7 @@ describe("OpenAI-compatible actions", () => {
       },
     })
 
-    const presetErr = new ChatbotXException(
+    const presetErr = new InboxOSException(
       "duplicate preset",
       "presetAlreadyConnected",
       409,

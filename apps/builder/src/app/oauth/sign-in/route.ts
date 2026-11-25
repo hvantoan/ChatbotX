@@ -1,4 +1,4 @@
-import { getPublicOriginFromRequest } from "@chatbotx.io/utils"
+import { getPublicOriginFromRequest } from "@inboxos.io/utils"
 import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth/auth"
 

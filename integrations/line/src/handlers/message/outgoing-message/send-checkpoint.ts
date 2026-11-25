@@ -1,5 +1,5 @@
-import type { Context } from "@chatbotx.io/sdk"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import type { Context } from "@inboxos.io/sdk"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { z } from "zod"
 import { logger } from "../../../lib/logger"
 import type { LineAuthValue } from "../../../schema"
@@ -7,7 +7,7 @@ import type { LineAuthValue } from "../../../schema"
 /**
  * How long a multi-batch send's progress survives a failed batch. The chat
  * queue retries a failed send once, after an exponential backoff starting at
- * 5 s (`defaultJobOptions` in `@chatbotx.io/worker-config`), so 10 minutes
+ * 5 s (`defaultJobOptions` in `@inboxos.io/worker-config`), so 10 minutes
  * comfortably covers the retry while keeping stale progress short-lived.
  */
 export const SEND_CHECKPOINT_TTL_SECONDS = 600

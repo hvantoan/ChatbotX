@@ -1,6 +1,6 @@
 "use client"
 
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import { type ReactNode, useId } from "react"
 
 type CheckboxFieldProps = {

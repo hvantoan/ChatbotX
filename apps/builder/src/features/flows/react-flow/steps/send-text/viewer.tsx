@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendTextStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendTextStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { useMemo } from "react"
 import { replaceCouponVariableTokensWithLabels } from "@/components/tiptap/extensions/variable-injection/mention"
 import { useBotFieldTokenLabels } from "@/components/tiptap/use-bot-field-token-labels"

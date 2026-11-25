@@ -83,7 +83,7 @@ const {
   listConversations: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     updateReadStatus: vi.fn(),
     archiveByIds,
@@ -97,13 +97,13 @@ vi.mock("@chatbotx.io/business", () => ({
   userQuotaService: { getForUser },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     httpStatusCode: number
     constructor(message: string, code = "systemError", httpStatusCode = 400) {
       super(message)
-      this.name = "ChatbotXException"
+      this.name = "InboxOSException"
       this.code = code
       this.httpStatusCode = httpStatusCode
     }

@@ -1,6 +1,6 @@
 "use server"
 
-import { deleteErrorLogs } from "@chatbotx.io/business/error-log"
+import { deleteErrorLogs } from "@inboxos.io/business/error-log"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

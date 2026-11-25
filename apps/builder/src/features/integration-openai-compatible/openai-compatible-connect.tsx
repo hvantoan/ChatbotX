@@ -1,7 +1,7 @@
 "use client"
 
-import { openaiCompatiblePresetConfigs } from "@chatbotx.io/ai"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import { openaiCompatiblePresetConfigs } from "@inboxos.io/ai"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

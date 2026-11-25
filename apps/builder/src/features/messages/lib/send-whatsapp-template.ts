@@ -1,9 +1,9 @@
-import { contactInboxService, conversationService } from "@chatbotx.io/business"
+import { contactInboxService, conversationService } from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business/errors"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import type { SendWhatsappTemplateRequest } from "../schema/send-template"
 
 /**
@@ -39,7 +39,7 @@ export async function sendWhatsappTemplateToConversation(props: {
   // The worker silently drops a send on any other channel, so refuse it here
   // rather than answer 202 for a message that will never go out.
   if (contactInbox.channel !== "whatsapp") {
-    throw new ChatbotXException("This conversation has no WhatsApp inbox")
+    throw new InboxOSException("This conversation has no WhatsApp inbox")
   }
 
   await chatQueue.add(ChatJobAction.sendWhatsappTemplateToConversation, {

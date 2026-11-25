@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
-import { ChatbotXException } from "../src/errors"
+import { InboxOSException } from "../src/errors"
 
 const mocks = vi.hoisted(() => ({
   assertPublicUrl: vi.fn(),
@@ -39,19 +39,19 @@ vi.mock("../src/connection/state-service", () => ({
   connectionStateService: { disconnectInbox: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   integrationTypes: { enum: { api: "api" } },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationApiRepository: { findByInboxId: mocks.findByInboxId },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mocks.createId,
 }))
 
@@ -238,7 +238,7 @@ describe("integrationApiService.connect", () => {
       callbackUrl: "http://10.0.0.1/hook",
     })
 
-    await expect(result).rejects.toBeInstanceOf(ChatbotXException)
+    await expect(result).rejects.toBeInstanceOf(InboxOSException)
     await expect(result).rejects.toMatchObject({
       code: "invalidRequestData",
       httpStatusCode: 422,

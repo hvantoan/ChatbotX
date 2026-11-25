@@ -2,8 +2,8 @@ import {
   type Context,
   type IncomingContact,
   normalizeGender,
-} from "@chatbotx.io/sdk"
-import { consumeGoogleClickRef } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/sdk"
+import { consumeGoogleClickRef } from "@inboxos.io/utils/google-click"
 import { ZALO_API_ENDPOINTS } from "../constants"
 import { handleZaloError } from "../lib/exception"
 import { ZaloHttpClient } from "../lib/http-client"

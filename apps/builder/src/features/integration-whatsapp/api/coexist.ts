@@ -1,4 +1,4 @@
-import { integrationWhatsappService } from "@chatbotx.io/business"
+import { integrationWhatsappService } from "@inboxos.io/business"
 import {
   setCoexistRequestSchema,
   setCoexistResponseSchema,

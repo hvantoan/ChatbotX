@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   WORKING_HOURS_MAX_DATE_OVERRIDES,
   type WorkingHoursDateOverrideInput,
@@ -8,14 +8,14 @@ import {
   workingHoursDateOverridesSchema,
   workingHoursDateRangesSchema,
   workingHoursIntervalsSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type ReplaceMembersResult,
   type WorkingHoursWithRelations,
   workingHoursRepository,
-} from "@chatbotx.io/database/repositories"
-import type { WorkingHoursDateOverrideModel } from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { WorkingHoursDateOverrideModel } from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { workingHoursCacheTag } from "./cache-tag"

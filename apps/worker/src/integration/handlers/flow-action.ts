@@ -1,5 +1,5 @@
-import type { ConversationAttributes } from "@chatbotx.io/database/partials"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+import type { ConversationAttributes } from "@inboxos.io/database/partials"
+import type { ConversationModel } from "@inboxos.io/database/types"
 import {
   decodeButtonPayload,
   encodeStepInputSkipPostback,
@@ -7,8 +7,8 @@ import {
   getUserDataStepSchema,
   resolveFlowActionTarget,
   ZALO_POSTBACK_TEXT_PREFIX,
-} from "@chatbotx.io/flow-config"
-import type { IncomingMessage } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { IncomingMessage } from "@inboxos.io/sdk"
 import { normalizeError } from "universal-error-normalizer"
 import { detectFlowVersion } from "../../lib/db"
 import { logger } from "../../lib/logger"

@@ -54,7 +54,7 @@ vi.mock("../../../actions/book-contact-appointment.action", () => ({
 vi.mock("../../../lib/use-invalidate-appointments", () => ({
   useInvalidateAppointments: () => mocks.invalidate,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => {
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => {
   const Pass = ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   )

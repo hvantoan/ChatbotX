@@ -1,5 +1,5 @@
-import type { MagicLinkModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
+import type { MagicLinkModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
 import {
   createSearchParamsCache,
   parseAsInteger,

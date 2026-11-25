@@ -1,4 +1,4 @@
-import { flowResponseFileFailureReasons } from "@chatbotx.io/sdk"
+import { flowResponseFileFailureReasons } from "@inboxos.io/sdk"
 import { z } from "zod"
 
 const fileNameSchema = z

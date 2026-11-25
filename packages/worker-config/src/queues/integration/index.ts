@@ -7,25 +7,25 @@ import type {
   ProviderAccountEventDetail,
   ProviderAccountEventKind,
   ProviderAccountRouteScope,
-} from "@chatbotx.io/database/partials"
-import type { AdsConversionChannel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import type { AdsConversionChannel } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   BROADCAST_PAYLOAD_TYPE,
   type FlowActionTargetType,
   type MetadataPayload,
   SEQUENCE_SCHEDULE_PAYLOAD_TYPE,
   type StepInputResolutionReason,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type {
   ChannelAudienceEventJobData,
   CommentAnchor,
   MessageInboundOrderEntity,
   OutgoingMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { type JobsOptions, Queue } from "bullmq"
 import {
   defaultJobOptions,
@@ -944,7 +944,7 @@ export type IntegrationJobAdsAutomaticEvent = {
 
 // Ads-conversion job-data variants (merged from the retired `adsConversion`
 // queue).
-// Kept as `AdsConversionJob*` type names since `@chatbotx.io/business` and the
+// Kept as `AdsConversionJob*` type names since `@inboxos.io/business` and the
 // handlers under `apps/worker/src/integration/handlers/ads-conversion/` import
 // them by these names.
 
@@ -1258,7 +1258,7 @@ export type IntegrationJobConfirmOrderPayment = {
     workspaceId: string
     /** The Checkout Session (Stripe) or order (PayPal) id. */
     reference: string
-    /** What ChatbotX put on the attempt; null for one it did not create. */
+    /** What InboxOS put on the attempt; null for one it did not create. */
     metadata: {
       workspaceId: string
       orderId: string

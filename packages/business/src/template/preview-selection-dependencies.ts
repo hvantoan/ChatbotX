@@ -1,4 +1,4 @@
-import type { TemplateSelection } from "@chatbotx.io/database/partials"
+import type { TemplateSelection } from "@inboxos.io/database/partials"
 import { previewDependencies } from "./install-preview"
 import {
   assertCanReadTemplateCategories,

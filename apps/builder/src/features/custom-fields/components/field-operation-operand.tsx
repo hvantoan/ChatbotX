@@ -1,11 +1,11 @@
 "use client"
 
-import { FieldOperationType } from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
+import { FieldOperationType } from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
 import {
   FIELD_OPERATION_DEFINITIONS,
   type FieldOperandKind,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import { PlainTextEditorField } from "@/components/tiptap/plain-text-editor-field"

@@ -1,9 +1,9 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
 import {
   BarChart3Icon,
   FilterIcon,

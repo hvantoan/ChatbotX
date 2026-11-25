@@ -1,4 +1,4 @@
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 import {
   beforeEach,
   describe,
@@ -27,13 +27,13 @@ function makeEmptySelectChain(): Promise<never[]> & Record<string, unknown> {
 
 // updateSourceId routes shards via getShardsForRange, which wraps the lookup
 // in withCache(); without this stub it hits a real (non-routable) Redis.
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn((_key: string, factory: () => unknown) => factory()),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
   distributedLock: { runExclusive: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: (() => {
     const update = vi.fn().mockReturnValue({
       set: vi.fn().mockReturnValue({
@@ -94,7 +94,7 @@ vi.mock("../src/integration/handlers/messenger-template-handler", () => ({
   replaceMessengerTemplateVariables: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: { getAll: vi.fn().mockResolvedValue({}) },
 }))
 
@@ -102,14 +102,14 @@ const { findUnscopedMiniApp, signMiniAppResumeToken } = vi.hoisted(() => ({
   findUnscopedMiniApp: vi.fn(),
   signMiniAppResumeToken: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findUnscoped: findUnscopedMiniApp },
 }))
-vi.mock("@chatbotx.io/encryption/mini-app-token", () => ({
+vi.mock("@inboxos.io/encryption/mini-app-token", () => ({
   signMiniAppToken: vi.fn(),
   signMiniAppResumeToken,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   publishWorkspaceRealtimeEvent: vi.fn(),
   queueWorkspaceRealtimeEvent: vi.fn(),
   queueMessageCreatedEvent: vi.fn(),
@@ -137,11 +137,11 @@ vi.mock("../src/lib/logger", () => ({
   logger: { error: vi.fn(), warn: vi.fn(), info: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn().mockResolvedValue(undefined),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     evaluateTemplateSent: "evaluateTemplateSent",
   },
@@ -156,10 +156,10 @@ const { sendFlowStepToChannel } = await import(
 )
 const { validateMessengerTemplate, replaceMessengerTemplateVariables } =
   await import("../src/integration/handlers/messenger-template-handler")
-const { messageService } = await import("@chatbotx.io/business")
-const { db } = await import("@chatbotx.io/database/client")
-const { emit } = await import("@chatbotx.io/event-bus")
-const { enqueueIntegrationJob } = await import("@chatbotx.io/worker-config")
+const { messageService } = await import("@inboxos.io/business")
+const { db } = await import("@inboxos.io/database/client")
+const { emit } = await import("@inboxos.io/event-bus")
+const { enqueueIntegrationJob } = await import("@inboxos.io/worker-config")
 
 const mockSendFlowStep = sendFlowStepToChannel as MockInstance
 const mockValidate = validateMessengerTemplate as MockInstance
@@ -209,7 +209,7 @@ describe("processMessengerTemplate — sourceId persistence", () => {
   })
 
   test("builds the variable context with the inbox sender of the running flow", async () => {
-    const { contactVariableService } = await import("@chatbotx.io/variables")
+    const { contactVariableService } = await import("@inboxos.io/variables")
     mockSendFlowStep.mockResolvedValueOnce({
       messageIds: ["mid.XYZ"],
       sentCount: 1,

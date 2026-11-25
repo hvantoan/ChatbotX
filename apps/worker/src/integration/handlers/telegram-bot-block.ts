@@ -1,12 +1,12 @@
-import type { InboxModel } from "@chatbotx.io/database/types"
+import type { InboxModel } from "@inboxos.io/database/types"
 import {
   emitContactBlockedBot,
   emitContactUnblockedBot,
-} from "@chatbotx.io/events"
-import { runWithWebhookExecutionContext } from "@chatbotx.io/events/context"
-import { isTelegramMemberStatus } from "@chatbotx.io/integration-telegram"
-import type { ChannelAudienceEvent } from "@chatbotx.io/sdk"
-import { getRedisConnection } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/events"
+import { runWithWebhookExecutionContext } from "@inboxos.io/events/context"
+import { isTelegramMemberStatus } from "@inboxos.io/integration-telegram"
+import type { ChannelAudienceEvent } from "@inboxos.io/sdk"
+import { getRedisConnection } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { resolveExistingContactInbox } from "./received-message"
 

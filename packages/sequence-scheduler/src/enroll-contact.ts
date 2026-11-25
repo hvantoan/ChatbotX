@@ -1,8 +1,8 @@
-import { db, type Transaction } from "@chatbotx.io/database/client"
-import { contactsOnSequenceModel } from "@chatbotx.io/database/schema"
-import { sequenceConnections } from "@chatbotx.io/redis"
-import { SchedulerClient } from "@chatbotx.io/scheduler"
-import { createId } from "@chatbotx.io/utils"
+import { db, type Transaction } from "@inboxos.io/database/client"
+import { contactsOnSequenceModel } from "@inboxos.io/database/schema"
+import { sequenceConnections } from "@inboxos.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
+import { createId } from "@inboxos.io/utils"
 import { getContactInboxes } from "./contacts-on-sequences"
 import { createDispatch } from "./dispatch-manager"
 

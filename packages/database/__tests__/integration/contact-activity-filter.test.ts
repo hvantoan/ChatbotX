@@ -8,7 +8,7 @@
  * other. Runs only against an explicitly configured, migrated local database.
  */
 
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 import { and, eq, relationsFilterToSQL } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { Client } from "pg"

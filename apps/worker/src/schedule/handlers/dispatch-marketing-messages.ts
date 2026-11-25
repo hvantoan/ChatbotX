@@ -1,5 +1,5 @@
-import { facebookMarketingMessageRepository } from "@chatbotx.io/database/repositories"
-import { distributedLock } from "@chatbotx.io/redis"
+import { facebookMarketingMessageRepository } from "@inboxos.io/database/repositories"
+import { distributedLock } from "@inboxos.io/redis"
 import { logger } from "../../lib/logger"
 import { enqueueMarketingMessageStep } from "../../marketing-message/enqueue-step"
 

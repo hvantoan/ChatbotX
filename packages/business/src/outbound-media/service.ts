@@ -2,10 +2,10 @@ import {
   fetchFollowingSafeRedirects,
   UploadValidationError,
   uploadFileFromUrl,
-} from "@chatbotx.io/filesystem"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { distributedStore } from "@chatbotx.io/redis"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/filesystem"
+import { getChildLogger } from "@inboxos.io/logger"
+import { distributedStore } from "@inboxos.io/redis"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { assertPublicUrl } from "../net/ssrf-guard"
 import { getPublicFileUrl, HTTP_URL_RE } from "../utils"
 

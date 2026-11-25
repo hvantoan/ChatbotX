@@ -9,13 +9,13 @@ import {
   type IncomingMessage,
   messageTypes,
   type ReceivedMessageResult,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import type { ImageOptimizeProfile } from "@chatbotx.io/utils/image-optimize"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import type { ImageOptimizeProfile } from "@inboxos.io/utils/image-optimize"
 import {
   storeIncomingImage,
   toStoredMediaFields,
-} from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/utils/store-incoming-image"
 import { getTelegramFileUrl } from "../../apis/bot"
 import { TelegramException } from "../../exception"
 import { logger } from "../../lib/logger"

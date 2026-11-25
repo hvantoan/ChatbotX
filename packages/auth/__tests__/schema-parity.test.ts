@@ -13,7 +13,7 @@ import {
   sessionModel,
   userModel,
   verificationModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { anonymous, jwt } from "better-auth/plugins"
 import { getTableColumns } from "drizzle-orm"
 import { describe, expect, test } from "vitest"

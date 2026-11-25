@@ -3,7 +3,7 @@
  * not know, with its row count. Run it before shipping a rename or removal of
  * a kind (readers skip and log such rows, but nothing should depend on that):
  *
- *   pnpm --filter @chatbotx.io/database template:kinds-preflight
+ *   pnpm --filter @inboxos.io/database template:kinds-preflight
  *
  * Exits 1 when unknown kinds exist.
  */

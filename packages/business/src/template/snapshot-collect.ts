@@ -1,8 +1,8 @@
 import type {
   TemplateResourceCategory,
   TemplateSelection,
-} from "@chatbotx.io/database/partials"
-import { templateSnapshotRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { templateSnapshotRepository } from "@inboxos.io/database/repositories"
 import { templateAdapterRegistry } from "./adapters/registry"
 import { collectManifestReferences } from "./manifest-references"
 import {

@@ -1,5 +1,5 @@
-import { integrationWhatsappResource } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { integrationWhatsappResource } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { whatsappFlowResource } from "./resource"
 

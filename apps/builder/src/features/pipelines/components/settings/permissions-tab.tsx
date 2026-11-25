@@ -1,8 +1,8 @@
 "use client"
 
-import type { PipelineGrantPolicy } from "@chatbotx.io/business/pipeline"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import type { PipelineGrantPolicy } from "@inboxos.io/business/pipeline"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { useTranslations } from "next-intl"
 import { useWorkspaceMembers } from "@/features/users/provider/user-hook"
 import { CheckboxField } from "../shared/checkbox-field"

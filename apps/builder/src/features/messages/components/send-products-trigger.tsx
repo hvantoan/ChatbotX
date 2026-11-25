@@ -1,9 +1,9 @@
 "use client"
 
-import { sendProductsStepDefaultFn } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { createId } from "@chatbotx.io/utils"
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+import { sendProductsStepDefaultFn } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { createId } from "@inboxos.io/utils"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import { ShoppingCartIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

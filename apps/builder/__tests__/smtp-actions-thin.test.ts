@@ -26,7 +26,7 @@ vi.mock("@/lib/safe-action", () => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationSmtpService: {
     connect: mocks.connect,
     disconnect: mocks.disconnect,
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/business", () => ({
 // actions — the actions must never call `auditService` themselves, or a
 // public-API/worker caller of the same service method would get no audit
 // trail. This mock exists purely to assert that they don't.
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
 
@@ -178,7 +178,7 @@ describe("updateSmtpAction", () => {
     expect(callOrder).toEqual(["verify", "update"])
   })
 
-  // `smtpHostMap` lives in `@chatbotx.io/integration-smtp`, which business must
+  // `smtpHostMap` lives in `@inboxos.io/integration-smtp`, which business must
   // not depend on, so the action resolves host/port and hands the pair over.
   test("passes smtpHostMap-resolved host/port into the service", async () => {
     await run()

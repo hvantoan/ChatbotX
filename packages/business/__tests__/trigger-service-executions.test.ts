@@ -31,7 +31,7 @@ vi.mock("../src/automation-action/references", () => ({
   indexesOfNewActions: vi.fn(() => new Set<number>()),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       triggerModel: { findMany: (...a: unknown[]) => findManyTrigger(...a) },
@@ -64,7 +64,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   triggerModel: { id: "trigger.id", workspaceId: "trigger.workspaceId" },
   triggerContactHistoryModel: {},
   triggerExecutionModel: {
@@ -83,19 +83,19 @@ vi.mock("@chatbotx.io/database/schema", () => ({
 
 // `trigger/service.ts` imports `triggerRepository` at module scope for the
 // listPaginatedWithConditions/findWithConditions surface this file doesn't
-// exercise. Left unmocked, the real `@chatbotx.io/database/repositories`
+// exercise. Left unmocked, the real `@inboxos.io/database/repositories`
 // barrel loads (pulling in contact-filter query builders that need the real
 // schema) against the partial schema mock above and crashes at import time.
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   triggerRepository: {
     listPaginatedWithConditions: vi.fn(),
     findWithConditions: vi.fn(),
   },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({ removeTriggerCache: vi.fn() }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/events", () => ({ removeTriggerCache: vi.fn() }))
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   distributedStore: {
     incrWithWindow: (...a: unknown[]) => incrWithWindow(...a),
   },

@@ -1,5 +1,5 @@
-import { facebookLeadAdsAutomationService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { facebookLeadAdsAutomationService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   possibleErrorsOnCreatingResource,
   possibleErrorsOnDeletingResource,

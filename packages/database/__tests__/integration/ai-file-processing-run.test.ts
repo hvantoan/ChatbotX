@@ -12,7 +12,7 @@
  * `add_ai_file_processing_run` migration applied to the local database.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/database test:db`.
+ * `pnpm --filter @inboxos.io/database test:db`.
  */
 
 import { eq, inArray } from "drizzle-orm"

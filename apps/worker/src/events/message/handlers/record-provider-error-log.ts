@@ -1,11 +1,11 @@
-import type { LogProviderErrorInput } from "@chatbotx.io/business/error-log"
-import { logProviderErrors } from "@chatbotx.io/business/error-log"
+import type { LogProviderErrorInput } from "@inboxos.io/business/error-log"
+import { logProviderErrors } from "@inboxos.io/business/error-log"
 import type {
   EventBusMessageMetadata,
   MessageFailedPayload,
   MessagePayload,
-} from "@chatbotx.io/event-bus"
-import { errorLogProviders } from "@chatbotx.io/utils/error-log"
+} from "@inboxos.io/event-bus"
+import { errorLogProviders } from "@inboxos.io/utils/error-log"
 import { isBulkSendOrigin } from "../../../lib/bulk-send-origin"
 import { logger } from "../../../lib/logger"
 

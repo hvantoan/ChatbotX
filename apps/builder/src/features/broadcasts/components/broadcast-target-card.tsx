@@ -3,7 +3,7 @@
 import type {
   BroadcastSubaction,
   ChannelType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   extractMessengerFlowButtons,
   extractMessengerTemplateParams,
@@ -12,14 +12,14 @@ import {
   type MessengerTemplateParams,
   type TemplateComponent,
   type WaTemplateParams,
-} from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+} from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useTranslations } from "next-intl"
 import { type ComponentType, type ReactNode, useEffect, useMemo } from "react"
 import { useFormContext, useWatch } from "react-hook-form"

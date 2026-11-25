@@ -6,15 +6,15 @@ import {
   conversationService,
   flowService,
   UNSCOPED,
-} from "@chatbotx.io/business"
-import { maskContactEmailAndPhone } from "@chatbotx.io/business/contact-utils"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { hasWorkspacePermission } from "@chatbotx.io/business/workspace-member/permissions"
+} from "@inboxos.io/business"
+import { maskContactEmailAndPhone } from "@inboxos.io/business/contact-utils"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { hasWorkspacePermission } from "@inboxos.io/business/workspace-member/permissions"
 import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 /**
  * Member scoping for `/v1` handlers.

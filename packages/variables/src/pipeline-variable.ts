@@ -2,13 +2,13 @@ import {
   loadLastPipelineItemId,
   loadPipelineVariableTargets,
   type PipelineVariableTarget,
-} from "@chatbotx.io/business/pipeline/variable-targets"
+} from "@inboxos.io/business/pipeline/variable-targets"
 import {
   PIPELINE_REFERENCE_NAME_PATTERN,
   PIPELINE_VARIABLE_ATTRIBUTES,
   type PipelineVariableAttribute,
-} from "@chatbotx.io/database/partials"
-import { formatMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/partials"
+import { formatMoney } from "@inboxos.io/utils/money"
 import type { PipelineItemsLoader, ReplaceVariableProps } from "./schema"
 import { formatDate } from "./utils"
 

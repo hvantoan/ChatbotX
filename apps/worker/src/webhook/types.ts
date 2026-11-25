@@ -1,6 +1,6 @@
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import type { ConditionModel, WebhookModel } from "@chatbotx.io/database/types"
-import type { MatchableEventType } from "@chatbotx.io/events"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import type { ConditionModel, WebhookModel } from "@inboxos.io/database/types"
+import type { MatchableEventType } from "@inboxos.io/events"
 
 export type WebhookWithConditions = WebhookModel & {
   conditions: ConditionModel[]

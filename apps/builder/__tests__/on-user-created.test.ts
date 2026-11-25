@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type { AuthCreatedUser } from "@chatbotx.io/auth/server"
+import type { AuthCreatedUser } from "@inboxos.io/auth/server"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -17,12 +17,12 @@ const {
   quotaQueueAdd: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformAdminService: { provisionBootstrapAdmin },
   userQuotaService: { ensureBootstrapPlan },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   QuotaJobAction: { publishEntitlements: "publishEntitlements" },
   quotaQueue: { add: quotaQueueAdd },
 }))

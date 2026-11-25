@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   applyInboundWebhookPayload: mocks.applyPayload,
   contactInboxService: { findByIdForContact: mocks.findByIdForContact },
   inboundWebhookService: {
@@ -32,8 +32,8 @@ vi.mock("../src/lib/logger", () => ({
   logger: { error: mocks.loggerError, warn: vi.fn(), info: vi.fn() },
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
-const { DrizzleQueryError } = await import("@chatbotx.io/database/client")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
+const { DrizzleQueryError } = await import("@inboxos.io/database/client")
 const { processInboundWebhookRequest, skipBlockedInboundWebhookRequest } =
   await import("../src/default/handlers/process-inbound-webhook-request")
 
@@ -442,7 +442,7 @@ describe("failures", () => {
 
   test("the final failure closes the request as failed with a sanitised message", async () => {
     mocks.applyPayload.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Invalid phone Bearer abc.def.ghi",
         "invalidPhone",
         422,
@@ -530,9 +530,9 @@ describe("the last job attempt", () => {
     expect(mocks.completeRequest).not.toHaveBeenCalled()
   })
 
-  test("a lock timeout (a 5xx ChatbotXException) is transient too", async () => {
+  test("a lock timeout (a 5xx InboxOSException) is transient too", async () => {
     mocks.applyPayload.mockRejectedValue(
-      new ChatbotXException("Lock timeout", "lockTimeout", 500),
+      new InboxOSException("Lock timeout", "lockTimeout", 500),
     )
 
     await expect(run(lastAttempt())).rejects.toThrow("Lock timeout")
@@ -543,7 +543,7 @@ describe("the last job attempt", () => {
 
   test("a business error closes the request as failed, since a retry would fail again", async () => {
     mocks.applyPayload.mockRejectedValue(
-      new ChatbotXException("Quota exceeded", "quotaExceeded", 422),
+      new InboxOSException("Quota exceeded", "quotaExceeded", 422),
     )
 
     await expect(run(lastAttempt())).rejects.toThrow("Quota exceeded")

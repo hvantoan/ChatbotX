@@ -24,7 +24,7 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: {
     findWorkspaceByTokenHash: mocks.findWorkspaceByTokenHash,
   },
@@ -35,7 +35,7 @@ vi.mock("@chatbotx.io/business", () => ({
   userService: { findById: mocks.findUserById },
   workspaceMemberService: { findMembership: mocks.findMembership },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   withAuditContext: mocks.withAuditContext,
 }))
 vi.mock("@/lib/log", () => ({ logger: { warn: vi.fn(), error: vi.fn() } }))
@@ -47,15 +47,15 @@ vi.mock("@/lib/rate-limit/guest-rate-limit", () => ({
 }))
 vi.mock("@/env", () => ({ isCloud: () => true }))
 vi.mock("@/lib/auth/auth", () => ({ auth: {} }))
-vi.mock("@chatbotx.io/auth/mcp-resource", () => ({
+vi.mock("@inboxos.io/auth/mcp-resource", () => ({
   McpTokenVerificationUnavailableError: class extends Error {},
   verifyMcpAccessToken: mocks.verifyMcpAccessToken,
 }))
-vi.mock("@chatbotx.io/auth/mobile-resource", () => ({
+vi.mock("@inboxos.io/auth/mobile-resource", () => ({
   MobileTokenVerificationUnavailableError: class extends Error {},
   verifyMobileAccessToken: mocks.verifyMobileAccessToken,
 }))
-vi.mock("@chatbotx.io/auth/mobile-resource-candidate", () => ({
+vi.mock("@inboxos.io/auth/mobile-resource-candidate", () => ({
   isMobileAccessTokenCandidate: (token: string) => token === MOBILE_TOKEN,
 }))
 

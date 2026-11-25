@@ -1,5 +1,5 @@
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import { webhookQueue } from "@chatbotx.io/worker-config"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import { webhookQueue } from "@inboxos.io/worker-config"
 import { BaseEventEmitter } from "../base-emitter"
 import {
   CONTEXT_FREE_EVENT_TYPE_SET,

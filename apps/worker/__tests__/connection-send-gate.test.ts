@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ resolveSendDecision: vi.fn() }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: { resolveSendDecision: mocks.resolveSendDecision },
 }))
 vi.mock("../src/lib/logger", () => ({

@@ -5,8 +5,8 @@ import {
   isSuperAdmin,
   type TenantAdminScope,
   templateStoreService,
-} from "@chatbotx.io/business"
-import type { UserModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import type { UserModel } from "@inboxos.io/database/types"
 import { authActionClient } from "@/lib/safe-action"
 import { runTemplateStoreMutation } from "./outcome"
 import {

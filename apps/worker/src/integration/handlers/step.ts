@@ -1,7 +1,7 @@
-import { contactCustomFieldValueService } from "@chatbotx.io/business/contact-custom-field-value"
-import { smartDelayTypes } from "@chatbotx.io/database/partials"
-import type { FlowVersionModel } from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+import { contactCustomFieldValueService } from "@inboxos.io/business/contact-custom-field-value"
+import { smartDelayTypes } from "@inboxos.io/database/partials"
+import type { FlowVersionModel } from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   type ButtonStepProps,
   computeTriggerAt,
@@ -17,14 +17,14 @@ import {
   WA_TEMPLATE_STATUS_BUTTON_LABELS,
   type WaitStepSchema,
   type WaTemplateStatusBranch,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   type ChatJobSendFlowStep,
   flowContinuationJobOptions,
   HeavyJobAction,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { mintRandomFlowExecutionKey } from "../flow-execution-key"
 import { syncActiveCampaignContact } from "./active-campaign-handler"

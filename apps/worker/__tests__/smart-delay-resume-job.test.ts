@@ -1,5 +1,5 @@
-import { smartDelayTypes } from "@chatbotx.io/database/partials"
-import { ENQUEUE_DELAY_MS } from "@chatbotx.io/flow-config"
+import { smartDelayTypes } from "@inboxos.io/database/partials"
+import { ENQUEUE_DELAY_MS } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -11,11 +11,11 @@ const mocks = vi.hoisted(() => ({
   queueAdd: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/business/smart-delay", () => ({
+vi.mock("@inboxos.io/business/smart-delay", () => ({
   smartDelayService: mocks.smartDelayService,
 }))
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   integrationQueue: { add: mocks.queueAdd },
 }))
 vi.mock("../src/lib/logger", () => ({

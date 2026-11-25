@@ -1,18 +1,18 @@
-import { db } from "@chatbotx.io/database/client"
-import { fileContextTypes } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import { fileContextTypes } from "@inboxos.io/database/partials"
 import {
   mediaLibraryFileRepository,
   mediaLibraryFolderRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   MediaLibraryFileModel,
   MediaLibraryFolderModel,
-} from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -158,7 +158,7 @@ class MediaLibraryService extends BaseService {
       input.path.startsWith(`workspaces/${input.workspaceId}/`) ||
       input.path.startsWith(`public/space/${input.workspaceId}/`)
     if (!isWorkspaceScopedPath) {
-      throw new ChatbotXException("Invalid file path", "invalidPath", 400)
+      throw new InboxOSException("Invalid file path", "invalidPath", 400)
     }
 
     const file = await mediaLibraryFileRepository.create({

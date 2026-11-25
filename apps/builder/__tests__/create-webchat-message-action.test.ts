@@ -114,7 +114,7 @@ vi.mock("@/lib/safe-action", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   automatedResponseService: {
     enqueue: mockAutomatedResponseEnqueue,
     enqueueFlowAction: mockAutomatedResponseEnqueueFlowAction,
@@ -124,7 +124,7 @@ vi.mock("@chatbotx.io/automated-response", () => ({
     ["image", "gif", "video", "audio"].includes(fileType),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   queueWorkspaceRealtimeEvent: mockQueueWorkspaceRealtimeEvent,
   queueMessageCreatedEvent: (
     workspaceId: string,
@@ -229,8 +229,8 @@ vi.mock("next-intl/server", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     httpStatusCode: number
     constructor(message: string, code = "systemError", httpStatusCode = 400) {
@@ -241,11 +241,11 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: vi.fn((path: string, base: string) => `${base}/${path}`),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: mockDbUpdate,
   },
@@ -257,11 +257,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactInboxModel: {
     id: "contactInboxId",
     firstInteractionAt: "firstInteractionAt",
@@ -271,21 +271,21 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   integrationWebchatModel: { id: "integrationWebchatId" },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: mockEmit,
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: mockEmitContactCreated,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploadMultipleFiles: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/flow-config")>()
+    await importOriginal<typeof import("@inboxos.io/flow-config")>()
   return {
     ...actual,
     messageEventTypeSchema: {
@@ -294,20 +294,20 @@ vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageCreated: "messageCreated" },
   routeForConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "generated-id") }
 })
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
   // The real job builder: the tests assert what producers actually enqueue.
   buildResolveStepInputJob: (
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   ).buildResolveStepInputJob,
   chatQueue: { add: mockChatQueueAdd },
   IntegrationJobAction: {
@@ -771,7 +771,7 @@ describe("handleCreateWebchatMessage", () => {
       authorizedDomains: ["example.com"],
     })
     mockHeaders.mockResolvedValue(
-      new Headers({ "x-domain": "app.chatbotx.test" }),
+      new Headers({ "x-domain": "app.inboxos.test" }),
     )
 
     await handleCreateWebchatMessage({
@@ -780,7 +780,7 @@ describe("handleCreateWebchatMessage", () => {
         workspaceId: "ws-1",
         webchatId: "webchat-1",
         guestConversationId: "guest-1",
-        parentOrigin: "https://app.chatbotx.test",
+        parentOrigin: "https://app.inboxos.test",
       },
     }).catch(() => undefined)
 
@@ -793,7 +793,7 @@ describe("handleCreateWebchatMessage", () => {
       authorizedDomains: ["example.com"],
     })
     mockHeaders.mockResolvedValue(
-      new Headers({ "x-domain": "app.chatbotx.test" }),
+      new Headers({ "x-domain": "app.inboxos.test" }),
     )
 
     await expect(

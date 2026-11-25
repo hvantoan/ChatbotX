@@ -1,6 +1,6 @@
 "use client"
 
-import { CommentAutomationAnalytics } from "@chatbotx.io/analytics-nextjs/components/comment-automation-analytics"
+import { CommentAutomationAnalytics } from "@inboxos.io/analytics-nextjs/components/comment-automation-analytics"
 import { ModerationLogCard } from "./moderation-log-card"
 
 /**

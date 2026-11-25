@@ -8,7 +8,7 @@ const findManyCustomFields = vi.fn()
 const updateSet = vi.fn()
 const updateWhere = vi.fn()
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactRepository: {
     listForExportPage: (...args: unknown[]) => findManyContacts(...args),
   },
@@ -20,16 +20,16 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () =>
-  vi.importActual("@chatbotx.io/database/partials"),
+vi.mock("@inboxos.io/database/partials", async () =>
+  vi.importActual("@inboxos.io/database/partials"),
 )
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   applyContactFilter: (criteria: unknown) => ({ __filter: criteria }),
   pruneEmailPhoneFilterConditions: (criteria: unknown) => criteria,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { find: vi.fn(async () => ({ timezone: "UTC" })) },
   tagService: {
     findManyByIds: (...args: unknown[]) => findManyTags(...args),
@@ -39,11 +39,11 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   loopableItemsCount: 2,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     createUpload: () => {
       const { PassThrough } = require("node:stream")

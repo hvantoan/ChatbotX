@@ -1,7 +1,8 @@
 "use client"
 
-import type { PipelineSettings } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { useDraggable } from "@dnd-kit/core"
+import type { PipelineSettings } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +12,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { useDraggable } from "@dnd-kit/core"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   ArrowRightLeftIcon,
   CalendarIcon,

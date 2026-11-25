@@ -1,11 +1,11 @@
 "use client"
 
-import { isResendableMessage } from "@chatbotx.io/database/partials"
+import { isResendableMessage } from "@inboxos.io/database/partials"
 import type {
   MessageButtonTemplate,
   MessageStoryReplyEntity,
   MessageTemplateEntity,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   getInboundOrder,
   getReferredProduct,
@@ -15,27 +15,27 @@ import {
   getWhatsappFlowResponse,
   getWhatsappPaymentMethod,
   isMessageProductEntity,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@chatbotx.io/ui/components/ui/carousel"
+} from "@inboxos.io/ui/components/ui/carousel"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { format } from "date-fns"
 import {
   BotIcon,

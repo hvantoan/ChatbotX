@@ -7,14 +7,14 @@ const { repositoryMock } = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: repositoryMock,
   whatsappSignupSessionRepository: {},
   metaCapiEventRepository: {},
   LIVE_RUN_STATUSES: [],
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   db: {
     query: {

@@ -4,7 +4,7 @@ import type { SQL } from "drizzle-orm"
 import { PgDialect } from "drizzle-orm/pg-core"
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
 
 const {
   TemplateLockSetGrownError,

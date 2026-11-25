@@ -1,7 +1,7 @@
 "use client"
 
-import type { ThreadControlStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { ThreadControlStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { ArrowRightLeftIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { THREAD_CONTROL_ROLE_LABEL_KEYS } from "@/features/conversations/utils/thread-control"

@@ -1,18 +1,18 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   appointmentCalendarRepository,
   appointmentReminderDispatchRepository,
   appointmentRepository,
-} from "@chatbotx.io/database/repositories"
-import type { AppointmentReminderDispatchModel } from "@chatbotx.io/database/types"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { AppointmentReminderDispatchModel } from "@inboxos.io/database/types"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   DefaultJobAction,
   defaultQueue,
   IntegrationJobAction,
   integrationQueue,
   sendAppointmentReminderJobId,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { subDays } from "date-fns"
 import { fromZonedTime, toZonedTime } from "date-fns-tz"
 import { normalizeError } from "universal-error-normalizer"

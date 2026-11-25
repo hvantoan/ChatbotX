@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 
@@ -13,14 +13,14 @@ export async function requireWorkspaceTokenSuperAdmin(
   const currentUserAndTargetWorkspace =
     await getCurrentUserAndTargetWorkspace(workspaceId)
   if (!currentUserAndTargetWorkspace) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "You are not authorized to manage this workspace's API tokens",
     )
   }
 
   const { permissions } = currentUserAndTargetWorkspace.targetWorkspaceMember
   if (!hasWorkspacePermission(permissions, "superAdmin")) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "You need to be a super admin to manage workspace API tokens",
     )
   }

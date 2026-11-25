@@ -4,7 +4,7 @@ import {
   type PipelineStepSchema,
   pipelineActionCanSkip,
   stateTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { useNodeConnections } from "@xyflow/react"
 import { SquareKanbanIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
-import { isWhatsappLocationUnset } from "@chatbotx.io/flow-config"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { isWhatsappLocationUnset } from "@inboxos.io/flow-config"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { MapPinIcon } from "lucide-react"
 import type { ReactNode } from "react"
 

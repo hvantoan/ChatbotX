@@ -1,7 +1,7 @@
 "use client"
 
-import type { BroadcastEventType } from "@chatbotx.io/analytics/schemas"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { BroadcastEventType } from "@inboxos.io/analytics/schemas"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useFormatter, useTranslations } from "next-intl"
 
 /** The recipient lists a run can open, in the order of the stats elsewhere. */

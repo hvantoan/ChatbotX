@@ -11,20 +11,20 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userService: {
     listDueDeletedUserIds: mocks.listDueDeletedUserIds,
     purgeDeletedUser: mocks.purgeDeletedUser,
   },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     error: mocks.error,
     info: mocks.info,
     warn: mocks.warn,
   }),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
   distributedStore: { exists: vi.fn() },
   isLockAcquisitionError: () => false,

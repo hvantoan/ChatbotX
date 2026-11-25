@@ -2,9 +2,9 @@ import {
   integrationWebchatService,
   isWorkspaceScheduledForDeletion,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ensureBrandingMenuEntry } from "@chatbotx.io/business/branding"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { ensureBrandingMenuEntry } from "@inboxos.io/business/branding"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type { SearchParams } from "next/dist/server/request/search-params"
 import { headers } from "next/headers"
 import { notFound } from "next/navigation"

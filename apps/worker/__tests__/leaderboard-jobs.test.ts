@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   changeFromFlow: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardScoringService: {
     award: mocks.award,
     reverse: mocks.reverse,

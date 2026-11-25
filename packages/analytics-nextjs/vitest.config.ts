@@ -1,1 +1,1 @@
-export { default } from "@chatbotx.io/vitest-config/react"
+export { default } from "@inboxos.io/vitest-config/react"

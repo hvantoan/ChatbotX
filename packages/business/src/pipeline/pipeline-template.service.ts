@@ -1,16 +1,16 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   PIPELINE_LIMITS,
   pipelineReferenceNameSchema,
   pipelineSettingsSchema,
   pipelineTypeDefaults,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplatePipelineManifestEntry } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplatePipelineManifestEntry } from "@inboxos.io/flow-config"
 import { nextFieldPosition } from "./naming"
 import { PipelineBaseService } from "./pipeline-base.service"
 import { stageColumns } from "./pipeline-structure.service"

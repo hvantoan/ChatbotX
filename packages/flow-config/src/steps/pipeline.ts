@@ -2,7 +2,7 @@ import {
   createId,
   zodBigintAsString,
   zodBigintIdAsString,
-} from "@chatbotx.io/utils"
+} from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   errorStateDefaultFn,

@@ -1,9 +1,9 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   isWithinPipelineDateRange,
   type PipelineItemStatus,
   roundToMoneyScale,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   pipelineActivityRepository,
@@ -12,11 +12,11 @@ import {
   pipelineReferenceRepository,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PipelineItemModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   conflictException,
   notFoundException,

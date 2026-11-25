@@ -5,11 +5,11 @@ import {
   contactProfileRefreshService,
   hasEmptyProfileName,
   resolveInboundProfileNameSource,
-} from "@chatbotx.io/business"
-import { isInboundConversationMessage } from "@chatbotx.io/business/contact-profile-rules"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { ContactInboxModel, InboxModel } from "@chatbotx.io/database/types"
-import type { IncomingContact, IncomingMessage } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business"
+import { isInboundConversationMessage } from "@inboxos.io/business/contact-profile-rules"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { ContactInboxModel, InboxModel } from "@inboxos.io/database/types"
+import type { IncomingContact, IncomingMessage } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import { resolveIntegrationContextFromContactInbox } from "../../services/integrations"
 

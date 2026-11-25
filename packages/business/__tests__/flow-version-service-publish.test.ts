@@ -3,7 +3,7 @@
 import {
   sendMessageNodeDefaultFn,
   sendVideoStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -52,7 +52,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: { flowModel: { findFirst: mockFlowFindFirst } },
     transaction: mockDbTransaction,
@@ -63,8 +63,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
   desc: (...args: unknown[]) => ({ desc: args }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   flowModel: { id: "flowModel.id" },
   flowVersionModel: {
     id: "flowVersionModel.id",
@@ -73,15 +73,15 @@ vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>): Promise<unknown> =>
     fn(),
   invalidateCacheByTags: mockInvalidateCacheTags,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: mockCreateId,
 }))
 

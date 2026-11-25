@@ -5,7 +5,7 @@
 ```typescript
 // app/space/[workspaceId]/(has-folder)/<feature>/page.tsx
 import { Suspense } from "react"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { listItems } from "@/features/<feature>/queries"
 import { ItemsTable } from "@/features/<feature>/items-table"
 
@@ -63,7 +63,7 @@ export const ItemsTable = ({ promises, workspaceId }: Props) => {
   const [items] = use(promises)
 
   return (
-    // Table UI using @chatbotx.io/ui components
+    // Table UI using @inboxos.io/ui components
   )
 }
 ```

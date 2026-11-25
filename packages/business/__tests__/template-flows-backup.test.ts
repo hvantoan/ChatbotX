@@ -5,19 +5,19 @@ import { describe, expect, test, vi } from "vitest"
 vi.mock("../src/decision/profile-service", () => ({
   decisionProfileService: { assertFlowReferencesPublishable: vi.fn() },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: {} },
   eq: vi.fn(),
   and: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({
   flowModel: { table: "Flow" },
   flowVersionModel: { table: "FlowVersion" },
 }))
 vi.mock("../src/flow", () => ({ flowService: {} }))
 vi.mock("../src/flow-version", () => ({ flowVersionService: {} }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowVersionRepository: {},
   referenceExistenceRepository: {},
   isVerifiableReferenceKind: () => false,

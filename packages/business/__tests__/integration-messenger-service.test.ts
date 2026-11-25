@@ -11,7 +11,7 @@ const {
   mockUpdateReturning: vi.fn(async () => [{ pageId: "page-1" }]),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: vi.fn(() => ({
       set: vi.fn(() => ({
@@ -26,7 +26,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationMessengerModel: {
     id: "id",
     workspaceId: "workspaceId",
@@ -35,7 +35,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   tagChannelModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: {},
 }))
 

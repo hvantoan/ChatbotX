@@ -9,7 +9,7 @@ vi.mock("../src/webhook/cache", () => ({
   hasActiveWebhooks: mocks.hasActiveWebhooks,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   webhookQueue: { add: mocks.queueAdd },
 }))
 

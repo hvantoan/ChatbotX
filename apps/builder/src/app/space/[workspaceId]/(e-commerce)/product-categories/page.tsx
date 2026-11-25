@@ -1,4 +1,4 @@
-import { productCategoryService } from "@chatbotx.io/business"
+import { productCategoryService } from "@inboxos.io/business"
 import { ProductCategoriesTable } from "@/features/product-categories/product-categories-table"
 import { listProductCategoriesSearchParams } from "@/features/product-categories/schema/query"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"

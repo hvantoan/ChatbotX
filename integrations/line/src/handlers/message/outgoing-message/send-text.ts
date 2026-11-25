@@ -1,4 +1,4 @@
-import type { SendTextStepSchema } from "@chatbotx.io/flow-config"
+import type { SendTextStepSchema } from "@inboxos.io/flow-config"
 import { flowButtons } from "./actions"
 import type { LineMessage } from "./dispatch"
 import { buttonLabels, flexBubbles, flexMessages } from "./flex"

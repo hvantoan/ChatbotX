@@ -1,4 +1,4 @@
-import type { TemplateResourceCategory } from "@chatbotx.io/database/partials"
+import type { TemplateResourceCategory } from "@inboxos.io/database/partials"
 import type { collectPipelineManifest } from "./adapters/manifests/collect-pipelines"
 import { countDroppedResourceReferences } from "./dropped-references"
 import { allEntries, type CollectedByCategory } from "./snapshot-collect"

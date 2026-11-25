@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   takeSnapshot: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   applyRouteUpdatesInNodes: (nodes: unknown[]) => nodes,
   nodeTypeSchema: {
     enum: {

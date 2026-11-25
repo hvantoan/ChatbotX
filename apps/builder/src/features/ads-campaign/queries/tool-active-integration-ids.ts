@@ -1,6 +1,6 @@
-import { messagingAdsConnectionService } from "@chatbotx.io/business"
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
-import type { MessagingAdsConnectionModel } from "@chatbotx.io/database/types"
+import { messagingAdsConnectionService } from "@inboxos.io/business"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
+import type { MessagingAdsConnectionModel } from "@inboxos.io/database/types"
 import { logger } from "@/lib/log"
 
 /**

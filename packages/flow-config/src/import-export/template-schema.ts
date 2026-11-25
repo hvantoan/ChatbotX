@@ -1,4 +1,4 @@
-import { customFieldTypes } from "@chatbotx.io/utils/custom-field"
+import { customFieldTypes } from "@inboxos.io/utils/custom-field"
 import { z } from "zod"
 import { type FlowVersionSchema, flowVersionSchema } from "../nodes/index"
 import { flowExportedFlowSchema } from "./schema"

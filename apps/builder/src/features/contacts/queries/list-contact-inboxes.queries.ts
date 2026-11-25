@@ -1,5 +1,5 @@
-import { broadcastService, type CountOutcome } from "@chatbotx.io/business"
-import { resolveBroadcastAudienceRange } from "@chatbotx.io/database/partials"
+import { broadcastService, type CountOutcome } from "@inboxos.io/business"
+import { resolveBroadcastAudienceRange } from "@inboxos.io/database/partials"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ContactPermissionScope } from "../permissions"
 import type {

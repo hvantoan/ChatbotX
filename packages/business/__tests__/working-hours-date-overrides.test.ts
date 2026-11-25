@@ -12,8 +12,8 @@ const mocks = vi.hoisted(() => ({
   withCache: vi.fn(async (_key: string, fn: () => Promise<unknown>) => fn()),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   workingHoursRepository: {
     addDateOverride: mocks.addDateOverride,
     updateDateOverride: mocks.updateDateOverride,
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     listDateOverridesInRange: mocks.listDateOverridesInRange,
   },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: mocks.withCache,
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))

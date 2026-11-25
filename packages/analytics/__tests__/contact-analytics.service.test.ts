@@ -1,4 +1,4 @@
-import type { MessageFailedPayload } from "@chatbotx.io/flow-config"
+import type { MessageFailedPayload } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const transitionResult: { current: { id: string }[] } = { current: [] }
@@ -10,20 +10,20 @@ vi.mock("../src/repositories/postgres", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactRepository: {
     blockManyIfNotBlocked: vi.fn(async () => transitionResult.current),
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(async () => undefined),
   withCache: vi.fn(async (_key: string, fn: () => Promise<unknown>) => fn()),
 }))
 
 const { contactStatsRepository } = await import("../src/repositories/postgres")
-const { contactRepository } = await import("@chatbotx.io/database/repositories")
-const { invalidateCacheByTags, withCache } = await import("@chatbotx.io/redis")
+const { contactRepository } = await import("@inboxos.io/database/repositories")
+const { invalidateCacheByTags, withCache } = await import("@inboxos.io/redis")
 const { contactAnalyticsService } = await import(
   "../src/services/contact-analytics.service"
 )

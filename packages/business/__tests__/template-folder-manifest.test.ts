@@ -18,15 +18,15 @@ const { mockCreateId, mockInsert, mockFindFirst } = vi.hoisted(() => {
 
 const folderModel = { table: "folder" }
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "0",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   folderModel,
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
 }))
 

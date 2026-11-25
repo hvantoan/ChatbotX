@@ -1,11 +1,11 @@
 import {
   facebookMarketingMessageRecipientRepository,
   facebookMarketingMessageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   FacebookMarketingMessageModel,
   FacebookMarketingMessageRecipientModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { z } from "zod"
 import { logger } from "../logger"
 

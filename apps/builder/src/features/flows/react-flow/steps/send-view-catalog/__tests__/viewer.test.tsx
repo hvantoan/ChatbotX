@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { sendViewCatalogStepDefaultFn } from "@chatbotx.io/flow-config"
+import { sendViewCatalogStepDefaultFn } from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"

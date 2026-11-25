@@ -11,7 +11,7 @@ const {
   mockUpdateReturning: vi.fn(async () => [{ igId: "ig-1", type: "instagram" }]),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: vi.fn(() => ({
       set: vi.fn(() => ({
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationInstagramModel: {
     id: "id",
     workspaceId: "workspaceId",

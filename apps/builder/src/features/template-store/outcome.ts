@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type { TemplateStoreOutcome, TemplateStoreRejection } from "./schema"
 
 /**
@@ -25,7 +25,7 @@ export const runTemplateStoreMutation = async (
     return { status: "done" }
   } catch (error) {
     const reason =
-      error instanceof ChatbotXException
+      error instanceof InboxOSException
         ? REJECTION_BY_CODE[error.code]
         : undefined
     if (!reason) {

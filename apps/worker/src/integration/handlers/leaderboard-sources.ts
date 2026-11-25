@@ -1,14 +1,14 @@
 import {
   enqueueLeaderboardAward,
   inboxHasLeaderboardRule,
-} from "@chatbotx.io/business/leaderboard"
-import { channelPostRepository } from "@chatbotx.io/database/repositories"
-import type { InboxModel, MessageModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/leaderboard"
+import { channelPostRepository } from "@inboxos.io/database/repositories"
+import type { InboxModel, MessageModel } from "@inboxos.io/database/types"
 import {
   getStoryReply,
   isStoryMention,
   type MessageReferral,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { normalizePostId } from "./comment-automation/automation-matching"
 
 type LeaderboardInbox = Pick<InboxModel, "id" | "workspaceId" | "channel">

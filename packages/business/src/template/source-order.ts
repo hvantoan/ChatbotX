@@ -1,4 +1,4 @@
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 
 const NUMERIC_ID_PATTERN = /^\d+$/
 

@@ -1,5 +1,5 @@
-import { type CasStore, casStore } from "@chatbotx.io/redis"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { type CasStore, casStore } from "@inboxos.io/redis"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { logger } from "@/lib/log"
 import {
   IDEMPOTENCY_RETENTION_HOURS,

@@ -1,6 +1,6 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import { ExternalLink } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

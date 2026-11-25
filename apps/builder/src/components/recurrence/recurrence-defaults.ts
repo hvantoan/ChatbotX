@@ -2,7 +2,7 @@ import {
   RECURRENCE_MAX_INTERVAL,
   type RecurrenceFrequency,
   type RecurrenceRule,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import { formatInTimeZone } from "date-fns-tz"
 
 const LOCAL_DATE_PATTERN = "yyyy-MM-dd"

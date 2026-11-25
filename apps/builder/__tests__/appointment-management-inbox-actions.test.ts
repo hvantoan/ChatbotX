@@ -26,7 +26,7 @@ const mocks = vi.hoisted(() => {
 
 vi.mock("@/lib/safe-action", () => ({ workspaceActionClient: mocks.chain }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentService: { bookAppointment: mocks.bookAppointment },
   conversationService: {
     resolveContactInboxForConversation:

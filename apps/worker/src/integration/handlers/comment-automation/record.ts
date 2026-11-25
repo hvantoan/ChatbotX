@@ -1,12 +1,12 @@
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
-import { logProviderError } from "@chatbotx.io/business"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
+import { logProviderError } from "@inboxos.io/business"
 import type {
   CommentAutomationReplyChannel,
   CommentReply,
   CommentReplyType,
-} from "@chatbotx.io/database/partials"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
-import type { ErrorLogProvider } from "@chatbotx.io/utils/error-log"
+} from "@inboxos.io/database/partials"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
+import type { ErrorLogProvider } from "@inboxos.io/utils/error-log"
 import { logger } from "../../../lib/logger"
 import { willSendReply } from "./automation-matching"
 import type { CommentAutomationChannelType } from "./channel-type"

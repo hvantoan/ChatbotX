@@ -1,4 +1,4 @@
-import type { ContactHandlers } from "@chatbotx.io/sdk"
+import type { ContactHandlers } from "@inboxos.io/sdk"
 import { getUserProfile } from "../api"
 import type { ZaloAuthValue } from "../schema"
 

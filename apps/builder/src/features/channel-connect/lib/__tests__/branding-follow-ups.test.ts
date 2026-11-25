@@ -10,7 +10,7 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business: `buildContext` (used by the un-mocked
+// Mock @inboxos.io/business: `buildContext` (used by the un-mocked
 // `runBrandingFollowUps` this file exercises for real), plus the
 // workspace/tenant-settings lookups `seedReconnectBranding` itself owns.
 // ---------------------------------------------------------------------------
@@ -18,7 +18,7 @@ const buildContext = vi.fn()
 const findWorkspaceById = vi.fn()
 const resolveTenantSettingsMock = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext,
   workspaceService: { findById: findWorkspaceById },
   resolveTenantSettings: resolveTenantSettingsMock,
@@ -29,7 +29,7 @@ const getBrandingUrl = vi.fn(
 )
 vi.mock("@/features/integration-webchat/lib", () => ({
   getBrandingUrl,
-  BRANDING_TITLE: "Built with ChatbotX",
+  BRANDING_TITLE: "Built with InboxOS",
 }))
 
 const updateWorkspaceLogo = vi.fn()
@@ -100,7 +100,7 @@ describe("seedReconnectBranding", () => {
       "addBranding",
       {
         ctx: MOCK_CTX,
-        title: "Built with ChatbotX",
+        title: "Built with InboxOS",
         url: "https://app.example/branding/instagram",
       },
     )
@@ -117,7 +117,7 @@ describe("seedReconnectBranding", () => {
     await seedReconnectBranding(baseInput({ persistBrandingMenu }))
 
     expect(persistBrandingMenu).toHaveBeenCalledWith({
-      label: "Built with ChatbotX",
+      label: "Built with InboxOS",
       type: "url",
       url: "https://app.example/branding/messenger",
     })

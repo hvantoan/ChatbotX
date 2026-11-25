@@ -10,30 +10,30 @@ import {
   isNull,
   isUniqueViolationError,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type QuestionnaireQuestionImage,
   type SupportedQuestionnaireQuestionType,
   supportedQuestionnaireQuestionTypes,
-} from "@chatbotx.io/database/partials"
-import { questionnaireRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { questionnaireRepository } from "@inboxos.io/database/repositories"
 import {
   questionnaireAnswerModel,
   questionnaireModel,
   questionnaireQuestionModel,
   questionnaireSubmissionModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { createId, isNumericId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId, isNumericId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
   isRichSystemContactField,
   type RichSystemContactField,
 } from "../contact/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { copyNamePrefix, insertWithFreeCopyName } from "../lib/copy-name"
 import {
   assertContentCopyable,
@@ -60,7 +60,7 @@ export const QUESTIONNAIRE_COPY_NAME = {
 } as const
 
 const questionnaireNameExistsException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Questionnaire name already exists",
     "nameAlreadyExists",
     409,
@@ -509,13 +509,13 @@ class QuestionnaireService extends BaseService {
 
   private async validateEditInput(input: UpdateQuestionnaireInput) {
     if (input.questions.length > 100) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Questionnaire can have at most 100 questions",
         "tooManyQuestions",
       )
     }
     if (!input.questions.some((question) => question.active)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Questionnaire requires at least one active question",
         "noActiveQuestions",
       )
@@ -542,7 +542,7 @@ class QuestionnaireService extends BaseService {
       if (
         !supportedQuestionnaireQuestionTypes.safeParse(question.type).success
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Unsupported question type",
           "unsupportedQuestionType",
         )
@@ -552,13 +552,13 @@ class QuestionnaireService extends BaseService {
           option.label.trim(),
         )
         if (labels.length < 2) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Multiple choice questions require at least two options",
             "invalidOptions",
           )
         }
         if (new Set(labels).size !== labels.length) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Multiple choice option labels must be unique",
             "invalidOptions",
           )
@@ -571,7 +571,7 @@ class QuestionnaireService extends BaseService {
           (field) => field.id === fieldMapping.customFieldId,
         )
         if (!customField) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Custom field does not exist in the workspace",
             "invalidCustomField",
           )
@@ -581,7 +581,7 @@ class QuestionnaireService extends BaseService {
         const allowedSystemFields =
           SYSTEM_FIELDS_BY_QUESTION_TYPE[question.type]
         if (!allowedSystemFields.includes(fieldMapping.systemFieldKey)) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "System field does not match question type",
             "invalidSystemField",
           )

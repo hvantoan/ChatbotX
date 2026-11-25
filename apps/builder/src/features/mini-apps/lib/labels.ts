@@ -4,7 +4,7 @@ import type {
   MiniAppComponentType,
   MiniAppDefaultTextKey,
   MiniAppIssueCode,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 
 // Exhaustive literal maps so every translation key stays greppable and an
 // unmapped enum member is a type error.

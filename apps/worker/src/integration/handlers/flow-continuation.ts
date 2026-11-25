@@ -3,7 +3,7 @@ import {
   IntegrationJobAction,
   type IntegrationJobRunFlowNode,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 export type SendFlowJobData = IntegrationJobRunFlowNode["data"]
 

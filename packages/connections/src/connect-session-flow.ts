@@ -1,7 +1,7 @@
 import {
   type ConnectSessionActor,
   connectSessionService,
-} from "@chatbotx.io/business/connect-session"
+} from "@inboxos.io/business/connect-session"
 import {
   authExpiresAtOf,
   type ConnectionQuotaConsumption,
@@ -11,7 +11,7 @@ import {
   resolveOwnerId,
   saveOrInsertSatellite,
   withQuotaCompensation,
-} from "@chatbotx.io/business/connection"
+} from "@inboxos.io/business/connection"
 import {
   connectionAlreadyConnectedException,
   connectionCredentialsRejectedException,
@@ -24,35 +24,35 @@ import {
   connectSessionExpiredException,
   notFoundException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { dispatchStagedInstalls } from "@chatbotx.io/business/template-install-dispatch"
+} from "@inboxos.io/business/errors"
+import { dispatchStagedInstalls } from "@inboxos.io/business/template-install-dispatch"
 import {
   compensateWorkspaceQuotaConsumption,
   type WorkspaceQuotaConsumption,
-} from "@chatbotx.io/business/workspace"
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business/workspace"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import type {
   ConnectSessionPurpose,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   connectionRepository,
   integrationInstagramRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ConnectionModel,
   ConnectSessionModel,
-} from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
+} from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
 import type {
   AuthValue,
   ConnectionCandidate,
   ConnectionCredential,
   ConnectionDescriptor,
   ConnectSessionNextAction,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { connectFailureCauseOf } from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { connectFailureCauseOf } from "@inboxos.io/utils/connection"
 import { failSession } from "./connect-targets"
 import {
   encryptedAuthorizationSchema,

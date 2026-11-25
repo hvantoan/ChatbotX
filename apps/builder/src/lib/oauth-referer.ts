@@ -1,4 +1,4 @@
-import { customDomainService } from "@chatbotx.io/business"
+import { customDomainService } from "@inboxos.io/business"
 import { env } from "@/env"
 import { getBrokerOrigin } from "./oauth-broker"
 

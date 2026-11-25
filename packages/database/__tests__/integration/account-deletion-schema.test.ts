@@ -2,7 +2,7 @@
 
 /**
  * Requires the account_deletion migration. Run with
- * `pnpm --filter @chatbotx.io/database test:db` against a migrated database.
+ * `pnpm --filter @inboxos.io/database test:db` against a migrated database.
  * The fixture transaction always rolls back.
  */
 import { eq, sql } from "drizzle-orm"

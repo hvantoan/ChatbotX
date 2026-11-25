@@ -1,13 +1,14 @@
 "use client"
 
-import { openAITTSVoiceTypes } from "@chatbotx.io/ai"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { openAITTSVoiceTypes } from "@inboxos.io/ai"
 import {
   AI_TEXT_TO_SPEECH_MESSAGE_MAX_LENGTH,
   aiTextToSpeechSchema,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -17,9 +18,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo, useState } from "react"
 import { useForm, useFormContext } from "react-hook-form"

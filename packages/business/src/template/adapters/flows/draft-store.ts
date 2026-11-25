@@ -1,10 +1,10 @@
-import { and, type DatabaseClient, eq } from "@chatbotx.io/database/client"
-import { flowModel, flowVersionModel } from "@chatbotx.io/database/schema"
+import { and, type DatabaseClient, eq } from "@inboxos.io/database/client"
+import { flowModel, flowVersionModel } from "@inboxos.io/database/schema"
 import type {
   FlowExportedFlow,
   TemplateFlowEntry,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import type { TemplateInstallContext } from "../types"
 import { checkPublishable, warnFlowNotPublished } from "./prepare-graph"
 

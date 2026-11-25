@@ -2,7 +2,7 @@ import {
   AuthException,
   ConnectionProviderRejectedError,
   type Oauth2AuthValue,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, test, vi } from "vitest"
 import { GoogleAdsException } from "../src/exception"
 import type { GoogleAdsAuthValue } from "../src/schemas"

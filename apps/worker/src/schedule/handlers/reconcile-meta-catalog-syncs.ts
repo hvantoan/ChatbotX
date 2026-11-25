@@ -1,6 +1,6 @@
-import { metaCatalogSyncRunService } from "@chatbotx.io/business"
-import { distributedLock } from "@chatbotx.io/redis"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { metaCatalogSyncRunService } from "@inboxos.io/business"
+import { distributedLock } from "@inboxos.io/redis"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 
 const LOCK_KEY = "schedule:reconcile-meta-catalog-syncs"
 const LOCK_TTL_SECONDS = 55

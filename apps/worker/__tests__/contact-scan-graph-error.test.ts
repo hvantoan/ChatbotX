@@ -3,7 +3,7 @@ import {
   ChannelErrorCategory,
   ChannelErrorReason,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, it } from "vitest"
 import { classifyChannelErrorForScan } from "../src/integration/handlers/contact-scan/graph-error"
 

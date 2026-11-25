@@ -1,5 +1,5 @@
-import type { SendViewCatalogStepSchema } from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+import type { SendViewCatalogStepSchema } from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import { ActionCatalog, Interactive, Product } from "whatsapp-api-js/messages"
 import type { WhatsappAuthValue } from "../../../schema"
 import { generateBody, generateFooter } from "../interactive"

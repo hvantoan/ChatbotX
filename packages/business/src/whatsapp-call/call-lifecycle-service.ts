@@ -1,4 +1,4 @@
-import { whatsappCallRepository } from "@chatbotx.io/database/repositories"
+import { whatsappCallRepository } from "@inboxos.io/database/repositories"
 
 type RepositoryInput<
   TMethod extends

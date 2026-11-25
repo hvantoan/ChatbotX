@@ -1,9 +1,9 @@
 "use server"
 
-import { buildContext } from "@chatbotx.io/business"
-import { findOrFail } from "@chatbotx.io/database/client"
-import { integrationWhatsappModel } from "@chatbotx.io/database/schema"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+import { buildContext } from "@inboxos.io/business"
+import { findOrFail } from "@inboxos.io/database/client"
+import { integrationWhatsappModel } from "@inboxos.io/database/schema"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

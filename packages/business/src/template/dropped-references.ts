@@ -1,6 +1,6 @@
-import type { TemplateResourceCategory } from "@chatbotx.io/database/partials"
-import { collectReferencesByKind } from "@chatbotx.io/flow-config"
-import { isNumericId } from "@chatbotx.io/utils/id"
+import type { TemplateResourceCategory } from "@inboxos.io/database/partials"
+import { collectReferencesByKind } from "@inboxos.io/flow-config"
+import { isNumericId } from "@inboxos.io/utils/id"
 import { collectBotFieldTokenIds } from "./manifest-references"
 
 /**

@@ -1,7 +1,7 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ImageIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"

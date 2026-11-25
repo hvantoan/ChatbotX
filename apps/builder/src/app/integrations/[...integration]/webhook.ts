@@ -6,24 +6,24 @@ import {
   platformCredentialService,
   tenantService,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { IntegrationNotFoundError } from "@chatbotx.io/channel-registry/errors"
-import { integrationService } from "@chatbotx.io/channel-registry/registry"
+} from "@inboxos.io/business"
+import { IntegrationNotFoundError } from "@inboxos.io/channel-registry/errors"
+import { integrationService } from "@inboxos.io/channel-registry/registry"
 import type {
   IntegrationType,
   ProviderAccountRouteScope,
-} from "@chatbotx.io/database/partials"
-import { getSafeErrorDetails } from "@chatbotx.io/integration-threads"
+} from "@inboxos.io/database/partials"
+import { getSafeErrorDetails } from "@inboxos.io/integration-threads"
 import type {
   TiktokAuthValue,
   TiktokConfig,
-} from "@chatbotx.io/integration-tiktok"
-import type { ZaloPersonalConfig } from "@chatbotx.io/integration-zalo-personal"
-import { type ContextQueue, SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-tiktok"
+import type { ZaloPersonalConfig } from "@inboxos.io/integration-zalo-personal"
+import { type ContextQueue, SdkException } from "@inboxos.io/sdk"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { NextRequest } from "next/server"
 import { isCloud } from "@/env"
 import { findIntegrationTelegramByBotId } from "@/features/integration-telegram/queries"

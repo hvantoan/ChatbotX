@@ -1,10 +1,10 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
+import { platformCredentialService } from "@inboxos.io/business"
 import {
   type GiphyCredential,
   giphyCredentialUpdateSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import ky from "ky"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"

@@ -1,5 +1,5 @@
-import { zaloIntegrationService } from "@chatbotx.io/business"
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { zaloIntegrationService } from "@inboxos.io/business"
+import { channelTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import type { Channel } from "../types"
 

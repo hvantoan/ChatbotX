@@ -14,7 +14,7 @@ vi.mock("@/lib/safe-action", () => {
   return { workspaceActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business/sequence", () => ({
+vi.mock("@inboxos.io/business/sequence", () => ({
   sequenceService: { delete: mockDelete },
 }))
 

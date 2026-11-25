@@ -14,12 +14,12 @@ const mocks = vi.hoisted(() => ({
   transaction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
   },
 }))
-vi.mock("@chatbotx.io/database/repositories/workspace", () => ({
+vi.mock("@inboxos.io/database/repositories/workspace", () => ({
   workspaceRepository: {
     findActiveByOwner: mocks.findActiveByOwner,
     findEmptyActiveByOwner: mocks.findEmptyActiveByOwner,

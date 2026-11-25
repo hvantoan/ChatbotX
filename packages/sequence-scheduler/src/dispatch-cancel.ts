@@ -5,11 +5,11 @@ import {
   eq,
   inArray,
   type Transaction,
-} from "@chatbotx.io/database/client"
-import { sequenceDispatchRepository } from "@chatbotx.io/database/repositories/sequence-dispatch"
-import { sequenceDispatchModel } from "@chatbotx.io/database/schema"
-import { sequenceConnections } from "@chatbotx.io/redis"
-import { SchedulerClient } from "@chatbotx.io/scheduler"
+} from "@inboxos.io/database/client"
+import { sequenceDispatchRepository } from "@inboxos.io/database/repositories/sequence-dispatch"
+import { sequenceDispatchModel } from "@inboxos.io/database/schema"
+import { sequenceConnections } from "@inboxos.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
 
 /**
  * Cancellation lives apart from `dispatch-manager` by responsibility: creating a

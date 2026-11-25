@@ -1,6 +1,6 @@
 "use client"
 
-import type { ResolvedInboundProductReference } from "@chatbotx.io/sdk"
+import type { ResolvedInboundProductReference } from "@inboxos.io/sdk"
 import { useTranslations } from "next-intl"
 import { ProductRow } from "./product-row"
 

@@ -1,7 +1,7 @@
 "use client"
 
-import type { FlowNodeStatsResponse } from "@chatbotx.io/analytics/schemas"
-import type { FlowNode } from "@chatbotx.io/flow-config"
+import type { FlowNodeStatsResponse } from "@inboxos.io/analytics/schemas"
+import type { FlowNode } from "@inboxos.io/flow-config"
 import {
   Background,
   Controls,

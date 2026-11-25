@@ -1,6 +1,6 @@
 import "server-only"
 
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type {
   ChatStoreInitialState,
   ChatStoreMessagesSeed,

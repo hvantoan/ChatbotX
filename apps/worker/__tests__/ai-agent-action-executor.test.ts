@@ -42,7 +42,7 @@ const {
   updateAssignment: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: { findByUncached: findContactInbox },
   contactCustomFieldService: {
     deleteByKey: clearCustomField,
@@ -72,15 +72,15 @@ vi.mock("@chatbotx.io/business", () => ({
 
 const isWorkspaceAdminMember = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/business/workspace-member/predicates", () => ({
+vi.mock("@inboxos.io/business/workspace-member/predicates", () => ({
   isWorkspaceAdminMember,
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: queueAdd },
 }))

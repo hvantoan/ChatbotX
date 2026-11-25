@@ -6,7 +6,7 @@
  * names search and order by the database, and pages never repeat or skip.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   automatedResponseModel,
   botFieldModel,
@@ -14,8 +14,8 @@ import {
   tagModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {

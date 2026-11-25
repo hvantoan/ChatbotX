@@ -1,6 +1,6 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"

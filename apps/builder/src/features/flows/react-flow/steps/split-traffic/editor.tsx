@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Separator } from "@chatbotx.io/ui/components/ui/separator"
-import { Slider } from "@chatbotx.io/ui/components/ui/slider"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Separator } from "@inboxos.io/ui/components/ui/separator"
+import { Slider } from "@inboxos.io/ui/components/ui/slider"
 import { PlusIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {

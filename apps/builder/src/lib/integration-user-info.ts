@@ -1,6 +1,6 @@
-import type { IntegrationUserInfo } from "@chatbotx.io/database/partials"
-import { uploadFileFromUrl } from "@chatbotx.io/filesystem"
-import { createId } from "@chatbotx.io/utils"
+import type { IntegrationUserInfo } from "@inboxos.io/database/partials"
+import { uploadFileFromUrl } from "@inboxos.io/filesystem"
+import { createId } from "@inboxos.io/utils"
 import { logger } from "@/lib/log"
 
 /**

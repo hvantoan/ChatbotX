@@ -2,8 +2,8 @@ import type { WebSocketBehavior } from "uWebSockets.js"
 import {
   REALTIME_CLOSE_CODE,
   verifyGuestConnectToken,
-} from "@chatbotx.io/realtime-protocol"
-import type { Redis } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import type { Redis } from "@inboxos.io/redis"
 import type { GuestSocketData, RealtimeDelivery } from "./delivery"
 import {
   acquireSlot,

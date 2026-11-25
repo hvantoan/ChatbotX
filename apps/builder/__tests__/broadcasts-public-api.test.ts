@@ -1,13 +1,13 @@
 // @vitest-environment node
 
-import { broadcastPlanLimitException } from "@chatbotx.io/business/errors"
-import { TRIAL_BROADCAST_PLAN_POLICY } from "@chatbotx.io/database/partials"
+import { broadcastPlanLimitException } from "@inboxos.io/business/errors"
+import { TRIAL_BROADCAST_PLAN_POLICY } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // Mirrors analytics-public-api.test.ts: stub the real db client so the
 // feature's transitive imports (queries -> broadcastService -> db) don't
 // open a real pg.Pool at module load.
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
@@ -85,7 +85,7 @@ const broadcastService = {
 }
 
 const resolveTemplateParams = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService,
   resolveTemplateParams,
 }))

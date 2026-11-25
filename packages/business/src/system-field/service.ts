@@ -1,24 +1,24 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   type MeSystemFieldPayload,
   meSystemFieldPayload,
   type SystemFieldPayload,
   type SystemFieldRowType,
-} from "@chatbotx.io/database/partials"
-import { systemFieldModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import { systemFieldModel } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ContactModel,
   ConversationModel,
   SystemFieldModel,
   TagModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   type MeLinkParams,
   verifyMeLink,
-} from "@chatbotx.io/encryption/link-signature"
-import { uploader } from "@chatbotx.io/filesystem"
-import { normalizeGender } from "@chatbotx.io/sdk"
+} from "@inboxos.io/encryption/link-signature"
+import { uploader } from "@inboxos.io/filesystem"
+import { normalizeGender } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import { contactService } from "../contact/service"
 import { contactCustomFieldService } from "../contact-custom-field/service"

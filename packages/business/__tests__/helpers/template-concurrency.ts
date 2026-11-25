@@ -4,7 +4,7 @@
  * session now waits on an advisory lock" (a condition, never a sleep the
  * outcome depends on).
  */
-import { db, sql } from "@chatbotx.io/database/client"
+import { db, sql } from "@inboxos.io/database/client"
 
 const WAIT_ATTEMPTS = 400
 const WAIT_STEP_MS = 25

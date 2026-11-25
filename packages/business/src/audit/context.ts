@@ -4,14 +4,14 @@ import type { AuditActor } from "./actor"
 export { type AuditActor, SYSTEM_ACTOR } from "./actor"
 
 const globalForAudit = globalThis as typeof globalThis & {
-  __chatbotxAuditStorage?: AsyncLocalStorage<AuditActor>
+  __inboxosAuditStorage?: AsyncLocalStorage<AuditActor>
 }
 
-if (!globalForAudit.__chatbotxAuditStorage) {
-  globalForAudit.__chatbotxAuditStorage = new AsyncLocalStorage<AuditActor>()
+if (!globalForAudit.__inboxosAuditStorage) {
+  globalForAudit.__inboxosAuditStorage = new AsyncLocalStorage<AuditActor>()
 }
 
-const auditStorage = globalForAudit.__chatbotxAuditStorage
+const auditStorage = globalForAudit.__inboxosAuditStorage
 
 export function withAuditContext<T>(actor: AuditActor, fn: () => T): T {
   return auditStorage.run(actor, fn)

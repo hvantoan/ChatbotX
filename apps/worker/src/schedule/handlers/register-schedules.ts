@@ -1,11 +1,11 @@
 import { randomInt } from "node:crypto"
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { channelTypes } from "@inboxos.io/database/partials"
 import {
   PURGE_BROADCASTS_INTERVAL_MINUTES,
   PURGE_WORKSPACES_INTERVAL_MINUTES,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { Queue } from "bullmq"
 import { env } from "../../env"
 

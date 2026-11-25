@@ -1,6 +1,6 @@
 import uWS from "uWebSockets.js"
-import { getRealtimeStreamShard } from "@chatbotx.io/realtime-protocol"
-import type { Redis } from "@chatbotx.io/redis"
+import { getRealtimeStreamShard } from "@inboxos.io/realtime-protocol"
+import type { Redis } from "@inboxos.io/redis"
 import {
   createRealtimeDelivery,
   type GuestSocketData,

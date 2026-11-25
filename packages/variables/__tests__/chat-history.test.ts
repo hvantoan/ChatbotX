@@ -1,11 +1,11 @@
-import { senderTypes } from "@chatbotx.io/database/partials"
+import { senderTypes } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { mockListLastMessages } = vi.hoisted(() => ({
   mockListLastMessages: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messageService: { listLastMessages: mockListLastMessages },
 }))
 

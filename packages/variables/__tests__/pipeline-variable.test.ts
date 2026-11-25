@@ -1,9 +1,9 @@
-import { PIPELINE_VARIABLE_ATTRIBUTES } from "@chatbotx.io/database/partials"
+import { PIPELINE_VARIABLE_ATTRIBUTES } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { mockLoadTargets, mockLoadLastItemId, mockContactFindFirst } =
@@ -13,12 +13,12 @@ const { mockLoadTargets, mockLoadLastItemId, mockContactFindFirst } =
     mockContactFindFirst: vi.fn(),
   }))
 
-vi.mock("@chatbotx.io/business/pipeline/variable-targets", () => ({
+vi.mock("@inboxos.io/business/pipeline/variable-targets", () => ({
   loadPipelineVariableTargets: mockLoadTargets,
   loadLastPipelineItemId: mockLoadLastItemId,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   botFieldWorkspaceCacheTags: (workspaceId: string) => [
     "bot-fields",
     `bot-fields:${workspaceId}`,
@@ -32,35 +32,35 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceService: { find: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/contact-locale", () => ({
+vi.mock("@inboxos.io/business/contact-locale", () => ({
   languageFromLocale: () => null,
   normalizeStoredTimezone: (value: string | null) => value,
   offsetFromStoredTimezone: () => null,
 }))
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   resolveGenderLabel: () => null,
 }))
 
-vi.mock("@chatbotx.io/business/workspace-lifecycle/predicates", () => ({
+vi.mock("@inboxos.io/business/workspace-lifecycle/predicates", () => ({
   isWorkspaceScheduledForDeletion: () => false,
 }))
 
-vi.mock("@chatbotx.io/business/coupon", () => ({
+vi.mock("@inboxos.io/business/coupon", () => ({
   couponService: { resolveCouponVariable: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, baseUrl: string) =>
     new URL(path, baseUrl).toString(),
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: async (_key: string, fn: () => Promise<unknown>) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       contactModel: { findFirst: mockContactFindFirst },

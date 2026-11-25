@@ -19,23 +19,23 @@ const lockError = Object.assign(new Error("lock"), {
 })
 
 vi.mock("date-fns", () => ({ startOfMinute: () => FIXED_START }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastRecurrenceService: {
     listDue: (...a: unknown[]) => listDue(...a),
     findOldestDueAgeMs: (...a: unknown[]) => findOldestDueAgeMs(...a),
   },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ info, warn, error: vi.fn() }),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive },
   isLockAcquisitionError: (error: unknown, key?: string) =>
     (error as { name?: string; key?: string })?.name ===
       "LockAcquisitionError" &&
     (key === undefined || (error as { key?: string }).key === key),
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {
     materializeRecurringBroadcasts: "materializeRecurringBroadcasts",
   },

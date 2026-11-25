@@ -1,17 +1,17 @@
 import "server-only"
 
-import { facebookMarketingMessagesService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import { facebookMarketingMessagesService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   getMarketingMessagesAdAccounts,
   getMarketingMessagesAdInsights,
   getMarketingMessagesAggregateInsights,
   type MarketingMessagesInsightMetrics,
-} from "@chatbotx.io/integration-facebook-ads"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { withCache } from "@chatbotx.io/redis"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/integration-facebook-ads"
+import { getChildLogger } from "@inboxos.io/logger"
+import { withCache } from "@inboxos.io/redis"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { getTranslations } from "next-intl/server"
 import type { StatisticsInput, StatisticsOutput } from "../schema/statistics"
 import { requireValidGrant } from "./grant"
@@ -68,7 +68,7 @@ export async function getMarketingMessagesStatistics(
 ): Promise<StatisticsOutput> {
   const t = await getTranslations()
   const invalidRange = () =>
-    new ChatbotXException(
+    new InboxOSException(
       t("facebookMarketingMessages.errors.statisticsInvalidRange"),
       "mmStatisticsInvalidRange",
       400,
@@ -93,7 +93,7 @@ export async function getMarketingMessagesStatistics(
     ? workspaceAccounts.find((a) => a.adAccountId === input.adAccountId)
     : workspaceAccounts[0]
   if (input.adAccountId && !selected) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("facebookMarketingMessages.errors.statisticsUnknownAdAccount"),
       "mmStatisticsUnknownAdAccount",
       400,

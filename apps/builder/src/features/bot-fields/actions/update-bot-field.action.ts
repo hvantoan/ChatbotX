@@ -1,6 +1,6 @@
 "use server"
 
-import { botFieldService } from "@chatbotx.io/business"
+import { botFieldService } from "@inboxos.io/business"
 import { returnValidationErrors } from "next-safe-action"
 import {
   type WorkspaceIdAndIdRequestParams,

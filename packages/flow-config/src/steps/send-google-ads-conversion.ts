@@ -1,12 +1,12 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
 import {
   googleAdsCustomerTypes,
   googleAdsCustomerValueBuckets,
   hasRfc3339Shape,
   isGoogleAdsMatchTemplate,
   isRfc3339WithZone,
-} from "@chatbotx.io/utils/google-click"
-import { containsVariablePlaceholder } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/utils/google-click"
+import { containsVariablePlaceholder } from "@inboxos.io/utils/variables"
 import { z } from "zod"
 import {
   errorStateDefaultFn,
@@ -18,7 +18,7 @@ import { optionalTemplateOrStatic } from "./send-meta-capi-event"
 import { stepTypes } from "./step-action"
 
 // Google Ads conversion action ids are numeric. Defined locally: flow-config
-// cannot depend on `@chatbotx.io/business` or the Google Ads integration, whose
+// cannot depend on `@inboxos.io/business` or the Google Ads integration, whose
 // Data Manager client validates the same pattern.
 const conversionActionIdPattern = /^\d+$/
 

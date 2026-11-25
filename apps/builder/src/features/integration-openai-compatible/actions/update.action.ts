@@ -1,12 +1,12 @@
 "use server"
 
-import type { OpenaiCompatibleProviderPreset } from "@chatbotx.io/ai"
+import type { OpenaiCompatibleProviderPreset } from "@inboxos.io/ai"
 import {
   integrationOpenaiCompatibleService,
   isOpenaiCompatiblePresetAlreadyConnectedError,
   isOpenaiCompatibleProviderUnreachableError,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import {
@@ -88,7 +88,7 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           })
         }
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "connectionCredentialsRejected"
         ) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
@@ -98,7 +98,7 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           })
         }
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "validation" &&
           error.field === "apiKey"
         ) {
@@ -109,7 +109,7 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
           })
         }
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "connectionAlreadyConnected"
         ) {
           return returnValidationErrors(updateOpenaiCompatibleSchema, {
@@ -120,8 +120,8 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
             },
           })
         }
-        if (error instanceof ChatbotXException && error.code === "conflict") {
-          throw new ChatbotXException(
+        if (error instanceof InboxOSException && error.code === "conflict") {
+          throw new InboxOSException(
             t("openaiCompatible.errors.updateConflict"),
             "conflict",
             409,
@@ -141,14 +141,14 @@ export const updateOpenaiCompatibleAction = workspaceActionClient
     },
   )
 
-const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
-  error instanceof ChatbotXException &&
+const isBaseUrlValidationError = (error: unknown): error is InboxOSException =>
+  error instanceof InboxOSException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
 
 const rethrowTranslatedConflictError = async (error: unknown) => {
-  if (error instanceof ChatbotXException && error.code === "conflict") {
+  if (error instanceof InboxOSException && error.code === "conflict") {
     const t = await getTranslations()
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("openaiCompatible.errors.updateConflict"),
       "conflict",
       409,

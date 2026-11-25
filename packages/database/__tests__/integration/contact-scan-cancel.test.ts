@@ -5,10 +5,10 @@
  * integration is ended as `partial` + the caller's sentinel, while settled
  * scans, other integrations, other workspaces and `coexist` rows are untouched.
  * Skipped unless `DATABASE_URL` is reachable; run with
- * `pnpm --filter @chatbotx.io/database test:db`.
+ * `pnpm --filter @inboxos.io/database test:db`.
  */
 
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { eq } from "drizzle-orm"
 import { afterAll, describe, expect, test } from "vitest"
 import { realDatabaseUrl } from "./database-url"

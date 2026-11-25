@@ -4,7 +4,7 @@ import {
   shopifyConnectionStatuses,
   shopifySyncScopes,
   shopifySyncStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 const secret = (description: string) =>

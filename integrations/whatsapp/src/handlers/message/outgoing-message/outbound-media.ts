@@ -1,4 +1,4 @@
-import { resolveOutboundMediaUrl } from "@chatbotx.io/business/outbound-media"
+import { resolveOutboundMediaUrl } from "@inboxos.io/business/outbound-media"
 
 type MediaKind = "image" | "video" | "audio"
 

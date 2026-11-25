@@ -2,7 +2,7 @@ import { describe, expect, test, vi } from "vitest"
 
 const resolveBotFieldVariableTextMock = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveBotFieldVariableText: resolveBotFieldVariableTextMock,
 }))
 

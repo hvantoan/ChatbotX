@@ -5,9 +5,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { formatDate } from "@inboxos.io/ui/lib/format"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2Icon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"

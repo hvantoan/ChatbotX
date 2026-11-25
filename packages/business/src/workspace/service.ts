@@ -1,4 +1,4 @@
-import { anchoredPeriod, macRepository } from "@chatbotx.io/analytics"
+import { anchoredPeriod, macRepository } from "@inboxos.io/analytics"
 import {
   and,
   type DatabaseClient,
@@ -8,23 +8,23 @@ import {
   inArray,
   isNull,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type WorkspaceMemberPermissions,
   workspaceMemberRoles,
-} from "@chatbotx.io/database/partials"
-import { templateUninstallStateRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { templateUninstallStateRepository } from "@inboxos.io/database/repositories"
 import {
   type WorkspaceDeletionRequestState,
   workspaceRepository,
-} from "@chatbotx.io/database/repositories/workspace"
+} from "@inboxos.io/database/repositories/workspace"
 import {
   ROOT_TENANT_ID,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { distributedLock, withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/schema"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { distributedLock, withCache } from "@inboxos.io/redis"
 import { formatInTimeZone } from "date-fns-tz"
 import {
   dispatchAuditRecord,

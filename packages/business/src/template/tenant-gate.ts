@@ -1,4 +1,4 @@
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
 
 type CopyTenants = {
   /** The tenant of the template. */

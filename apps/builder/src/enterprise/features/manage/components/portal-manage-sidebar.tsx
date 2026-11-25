@@ -1,13 +1,13 @@
 "use client"
 
-import type { PortalNavItem } from "@chatbotx.io/ui/components/portal/nav-main"
-import { PortalSideNav } from "@chatbotx.io/ui/components/portal/portal-side-nav"
-import type { PortalPricingState } from "@chatbotx.io/ui/components/portal/pricing-nav-item"
+import type { PortalNavItem } from "@inboxos.io/ui/components/portal/nav-main"
+import { PortalSideNav } from "@inboxos.io/ui/components/portal/portal-side-nav"
+import type { PortalPricingState } from "@inboxos.io/ui/components/portal/pricing-nav-item"
 import {
   type PortalSaasFlags,
   type PortalSaasNavKey,
   portalSaasNavConfigs,
-} from "@chatbotx.io/ui/config/portal-nav"
+} from "@inboxos.io/ui/config/portal-nav"
 import {
   CircleHelpIcon,
   Grid2x2PlusIcon,

@@ -8,17 +8,17 @@ const mocks = vi.hoisted(() => ({
   selectLabelsByIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {}, eq: vi.fn() }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {}, eq: vi.fn() }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {
     findCurrentVersionNodes: mocks.findCurrentVersionNodes,
     listCurrentVersionNodesByFlowIds: mocks.listCurrentVersionNodesByFlowIds,
   },
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({ flowModel: { tag: "flow" } }))
-vi.mock("@chatbotx.io/utils", () => ({ createId: vi.fn() }))
-vi.mock("@chatbotx.io/flow-config", () => ({ stepTypes: { enum: {} } }))
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({ flowModel: { tag: "flow" } }))
+vi.mock("@inboxos.io/utils", () => ({ createId: vi.fn() }))
+vi.mock("@inboxos.io/flow-config", () => ({ stepTypes: { enum: {} } }))
 vi.mock("../src/select-labels-by-ids", () => ({
   selectLabelsByIds: mocks.selectLabelsByIds,
 }))

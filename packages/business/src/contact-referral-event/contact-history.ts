@@ -1,9 +1,9 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type ContactAdTouch,
   type ContactAdTouchCursor,
   contactReferralEventRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { type ContactAccessScope, contactService } from "../contact/service"
 
 // Kept apart from `contactReferralEventService`: this is the one read that needs

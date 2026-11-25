@@ -1,7 +1,7 @@
 "use server"
 
-import { workspaceService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { workspaceService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { getOriginUrlFromHeader } from "@/lib/domain"

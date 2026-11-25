@@ -7,9 +7,9 @@ import {
   inboundWebhookStructuralIssueCodes,
   inboxStatuses,
   listInboundWebhookStructuralIssues,
-} from "@chatbotx.io/database/partials"
-import type { InboxModel } from "@chatbotx.io/database/types"
-import { getInboxIdentifierStrategy } from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/database/partials"
+import type { InboxModel } from "@inboxos.io/database/types"
+import { getInboxIdentifierStrategy } from "@inboxos.io/utils/inbound-webhook-channel"
 import { inboxService } from "../inbox/service"
 
 export type EffectiveChannel = {

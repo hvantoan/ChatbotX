@@ -5,10 +5,10 @@ const mocks = vi.hoisted(() => ({
   loggerInfo: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: { listConnectedForWebhookSubscription: vi.fn() },
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   subscribePageToAppWebhook: vi.fn(),
   getPageSubscribedFields: vi.fn(),
   PAGE_SUBSCRIBE_SCOPES: ["messages", "standby", "messaging_handovers"],

@@ -2,18 +2,18 @@ import {
   type CoexistJobStrategy,
   coexistJobStrategies,
   coexistService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   CoexistChannel,
   PickedCoexistRun,
-} from "@chatbotx.io/database/repositories"
-import { getChildLogger } from "@chatbotx.io/logger"
+} from "@inboxos.io/database/repositories"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   buildCoexistRunJobId,
   IntegrationJobAction,
   type IntegrationJobData,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   type CoexistRunEnqueuer,
   coexistRecoveryPasses,

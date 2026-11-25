@@ -1,4 +1,4 @@
-import type { WoocommerceSyncScope } from "@chatbotx.io/database/partials"
+import type { WoocommerceSyncScope } from "@inboxos.io/database/partials"
 import {
   externalStoreRepository,
   type OrderItemInsertValues,
@@ -6,8 +6,8 @@ import {
   productCategoryRepository,
   vendorRepository,
   woocommerceRepository,
-} from "@chatbotx.io/database/repositories"
-import type { IntegrationWoocommerceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { IntegrationWoocommerceModel } from "@inboxos.io/database/types"
 import {
   getWooCommerceCoupon,
   getWooCommerceOrder,
@@ -22,8 +22,8 @@ import {
   type WooCommerceCredentials,
   type WooCommerceOrder,
   type WooCommerceProduct,
-} from "@chatbotx.io/integration-woocommerce"
-import { roundMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/integration-woocommerce"
+import { roundMoney } from "@inboxos.io/utils/money"
 import { BaseService } from "../base.service"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
 import {

@@ -23,7 +23,7 @@ const mocks = vi.hoisted(() => ({
   withinTransaction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
   connectionStateService: {
     markUnhealthy: vi.fn(),
@@ -37,13 +37,13 @@ vi.mock("@chatbotx.io/business/connection", () => ({
   resolveOwnerId: mocks.resolveOwnerId,
 }))
 
-vi.mock("@chatbotx.io/business/errors", async (importOriginal) => {
+vi.mock("@inboxos.io/business/errors", async (importOriginal) => {
   // `toPublicErrorMessage` is pulled from the real module (not stubbed) so
   // these tests exercise its actual sanitization/fallback behavior instead
   // of a fixed literal — see the "sanitizes a provider-side teardown
   // failure" tests below.
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/business/errors")>()
+    await importOriginal<typeof import("@inboxos.io/business/errors")>()
   return {
     connectionInactiveException: vi.fn(() => new Error("inactive")),
     connectionNotConfiguredException: vi.fn(() => new Error("not configured")),
@@ -55,7 +55,7 @@ vi.mock("@chatbotx.io/business/errors", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: vi.fn((callback: (tx: unknown) => Promise<unknown>) =>
       callback(mocks.tx),
@@ -63,11 +63,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findById: mocks.findById, update: mocks.update },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 
@@ -190,8 +190,8 @@ describe("disconnect", () => {
 
     expect(result).toBe(connection)
     // `toPublicErrorMessage` is the real implementation here (see the
-    // `@chatbotx.io/business/errors` mock above): a plain `Error` is not a
-    // `ChatbotXException`, so it always collapses to the call site's
+    // `@inboxos.io/business/errors` mock above): a plain `Error` is not a
+    // `InboxOSException`, so it always collapses to the call site's
     // fallback string rather than leaking the thrown message verbatim.
     expect(mocks.update).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -222,7 +222,7 @@ describe("disconnect", () => {
     expect(updateArgs.values.lastError).not.toContain(sensitiveMessage)
     expect(updateArgs.values.lastError).not.toContain("user:pass")
     // … it is replaced by the real `toPublicErrorMessage` fallback for a
-    // plain (non-`ChatbotXException`) `Error`.
+    // plain (non-`InboxOSException`) `Error`.
     expect(updateArgs.values.lastError).toBe("Provider-side teardown failed")
   })
 

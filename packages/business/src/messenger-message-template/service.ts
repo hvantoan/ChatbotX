@@ -5,14 +5,14 @@ import {
   eq,
   ilike,
   inArray,
-} from "@chatbotx.io/database/client"
-import type { MessengerTemplateStatus } from "@chatbotx.io/database/partials"
-import { messengerMessageTemplateModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/client"
+import type { MessengerTemplateStatus } from "@inboxos.io/database/partials"
+import { messengerMessageTemplateModel } from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 type MessengerMessageTemplateListWhere = {

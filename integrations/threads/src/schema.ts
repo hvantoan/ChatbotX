@@ -3,7 +3,7 @@ import type {
   Handler,
   Oauth2AuthValue,
   Oauth2Config,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { ThreadsReplyAttachment } from "./apis/comment"
 import type { ThreadsPostDetails } from "./apis/post"
 

@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { listIntegrationZaloPersonals } from "@/features/integration-zalo-personal/queries"
 import { ZaloPersonalManage } from "@/features/integration-zalo-personal/zalo-personal-manage"

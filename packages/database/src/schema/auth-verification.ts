@@ -1,4 +1,4 @@
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { index, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { sharedColumns, timestampConfig } from "../partials/shared"
 

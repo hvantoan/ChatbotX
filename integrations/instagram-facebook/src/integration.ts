@@ -5,7 +5,7 @@ import {
   type IntegrationDefinition,
   oauth2Auth,
   verifyGraphToken,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   debugToken,
   exchangeCodeForToken,

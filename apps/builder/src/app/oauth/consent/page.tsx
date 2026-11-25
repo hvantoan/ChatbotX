@@ -1,5 +1,5 @@
-import { verifyMcpOAuthQuery } from "@chatbotx.io/auth/mcp-resource"
-import { mcpOAuthService } from "@chatbotx.io/business"
+import { verifyMcpOAuthQuery } from "@inboxos.io/auth/mcp-resource"
+import { mcpOAuthService } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { OAuthConsentForm } from "@/features/oauth-consent/consent-form"
 import { getCurrentUser } from "@/lib/auth/utils"

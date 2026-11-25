@@ -1,4 +1,4 @@
-import { aiSegmentImageDefaultFn, stepTypes } from "@chatbotx.io/flow-config"
+import { aiSegmentImageDefaultFn, stepTypes } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const INLINE_KEY_PATTERN = /^flow-inline-/

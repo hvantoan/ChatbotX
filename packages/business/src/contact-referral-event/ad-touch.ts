@@ -1,7 +1,7 @@
-import { isPositiveBigint } from "@chatbotx.io/database/partials"
-import type { ContactReferralEventCreateValues } from "@chatbotx.io/database/repositories"
-import type { ContactInboxReferral } from "@chatbotx.io/database/schema"
-import { readGoogleClick } from "@chatbotx.io/utils/google-click"
+import { isPositiveBigint } from "@inboxos.io/database/partials"
+import type { ContactReferralEventCreateValues } from "@inboxos.io/database/repositories"
+import type { ContactInboxReferral } from "@inboxos.io/database/schema"
+import { readGoogleClick } from "@inboxos.io/utils/google-click"
 import { resolveAdReferral } from "../ads-conversion/channel-fields"
 import type { ContactActivityEntry } from "../contact-activity/service"
 

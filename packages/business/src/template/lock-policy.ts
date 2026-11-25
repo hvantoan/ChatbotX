@@ -1,4 +1,4 @@
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 
 /**
  * The content fields a template-installed copy locks against editing when its

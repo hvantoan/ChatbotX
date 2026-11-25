@@ -2668,7 +2668,7 @@
     },
     "fromName": {
       "label": "From Name",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "Message Template"
@@ -3239,7 +3239,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Action source",
@@ -3734,8 +3734,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -4286,7 +4286,7 @@
     "title": "General"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "This deletes the Meta message campaign and removes the campaign from ChatbotX. If Meta refuses the deletion, the campaign is kept.",
+    "deleteWarning": "This deletes the Meta message campaign and removes the campaign from InboxOS. If Meta refuses the deletion, the campaign is kept.",
     "title": "Facebook Marketing Messages",
     "description": "Drive engagement and sales with personalized promotional messages on Messenger.",
     "create": "Create New",
@@ -4327,7 +4327,7 @@
       "tosNotAccepted": "To use this feature, please accept the custom object terms at {url}",
       "notFound": "Marketing message not found.",
       "audienceNotTargetable": "The selected custom audience is not ready or does not belong to this Page and ad account.",
-      "connectFirst": "Connect Marketing Messages in the ChatbotX app first.",
+      "connectFirst": "Connect Marketing Messages in the InboxOS app first.",
       "mmInvalidState": "This action is not available in the campaign's current state.",
       "mmCampaignEnded": "The Meta message campaign has ended, so it cannot be sent or resumed.",
       "mmPageNotConnected": "The Page for this campaign is not connected to this workspace.",
@@ -4347,7 +4347,7 @@
       "uploadMore": "Upload more rows",
       "empty": "No custom audiences yet.",
       "deleteTitle": "Delete custom audience",
-      "deleteWarning": "This deletes the custom audience \"{name}\" on Meta and in ChatbotX. This cannot be undone.",
+      "deleteWarning": "This deletes the custom audience \"{name}\" on Meta and in InboxOS. This cannot be undone.",
       "deleted": "Custom audience deleted.",
       "pageDisconnected": "Page disconnected",
       "status": {
@@ -6233,7 +6233,7 @@
         "title": "Calling eligibility",
         "appSubscriptionMissing": "Configure the WhatsApp webhook for this app in the Meta App Dashboard first, then try again.",
         "appSubscriptionFailed": "Could not verify the app's 'calls' webhook subscription. Try again shortly.",
-        "callsNotSubscribed": "This app is not subscribed to the 'calls' webhook field, so call events cannot reach ChatbotX (Meta error 138018: technical pre-requisites are not met — ensure at least one app subscribed to the WABA also has the calls webhook field).",
+        "callsNotSubscribed": "This app is not subscribed to the 'calls' webhook field, so call events cannot reach InboxOS (Meta error 138018: technical pre-requisites are not met — ensure at least one app subscribed to the WABA also has the calls webhook field).",
         "fixButton": "Fix",
         "fixSuccess": "The app is now subscribed to WhatsApp call webhooks.",
         "manualIntegrationNotice": "This number was connected manually and has no app credentials here. Subscribe the 'calls' webhook field for your app in the Meta App Dashboard.",
@@ -8569,7 +8569,7 @@
     "portalPricingPage": "Pricing"
   },
   "deleteAccountPage": {
-    "title": "Delete your ChatbotX account",
+    "title": "Delete your InboxOS account",
     "intro": "You can delete your account and its data in any of these ways.",
     "waysTitle": "How to delete your account",
     "wayMobile": "In the mobile app: Settings → Delete account.",
@@ -10849,7 +10849,7 @@
         "label": "Store Source",
         "description": "Select the store source used to manage your products, inventory, and orders. When set to Shopify / WooCommerce, all products and orders are managed directly from your Shopify / WooCommerce store.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11018,7 +11018,7 @@
       },
       "authKind": {
         "label": "Authentication",
-        "description": "How ChatbotX signs in to your store: with a custom app's Admin API access token, or with the Client ID and secret of an app made in the Shopify Dev Dashboard.",
+        "description": "How InboxOS signs in to your store: with a custom app's Admin API access token, or with the Client ID and secret of an app made in the Shopify Dev Dashboard.",
         "options": {
           "token": "Admin API access token",
           "clientCredentials": "Client ID and secret (Dev Dashboard app)"
@@ -11929,8 +11929,8 @@
     "workspaceHint": "{clientName} can only act on this workspace. To switch later, disconnect and connect again.",
     "noWorkspaces": "You are not an admin of any workspace, so you cannot authorize this application."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12104,7 +12104,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",

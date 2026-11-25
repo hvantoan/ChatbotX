@@ -1,6 +1,6 @@
 "use client"
 
-import type { ConnectErrorQueryCode } from "@chatbotx.io/utils/connection"
+import type { ConnectErrorQueryCode } from "@inboxos.io/utils/connection"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useState } from "react"

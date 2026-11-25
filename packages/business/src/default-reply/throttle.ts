@@ -1,4 +1,4 @@
-import type { DefaultReplyFrequency } from "@chatbotx.io/database/partials"
+import type { DefaultReplyFrequency } from "@inboxos.io/database/partials"
 import {
   type AutomationThrottleClaim,
   automationThrottleService,

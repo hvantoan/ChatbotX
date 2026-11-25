@@ -2,7 +2,7 @@ import type {
   PipelineActivityKind,
   PipelineItemPriority,
   PipelineItemStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 /** The before/after columns an activity row carries (all null for kinds without one). */
 export type ActivityChangeFields = {

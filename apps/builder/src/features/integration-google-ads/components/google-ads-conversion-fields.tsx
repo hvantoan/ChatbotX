@@ -1,12 +1,12 @@
 "use client"
 
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   isLeadLikeCategory,
   isOnePerClickAction,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { useQuery } from "@tanstack/react-query"
 import { AlertTriangleIcon } from "lucide-react"
 import Link from "next/link"

@@ -6,16 +6,16 @@
  * transaction that rolls back takes the row with it.
  */
 
-import { asc, db, eq, sql } from "@chatbotx.io/database/client"
-import { inboxRepository } from "@chatbotx.io/database/repositories"
+import { asc, db, eq, sql } from "@inboxos.io/database/client"
+import { inboxRepository } from "@inboxos.io/database/repositories"
 import {
   connectionModel,
   inboxModel,
   resourceDeletionLogModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, describe, expect, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */

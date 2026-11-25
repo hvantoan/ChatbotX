@@ -6,14 +6,14 @@ const identify = vi.fn()
 const smartDelayFindById = vi.fn()
 const findWorkspaceId = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: { findBy },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createAiWorkspaceScopeRepository: () => ({ findWorkspaceId }),
   importRepository: { findWorkspaceId: importFindWorkspaceId },
 }))
-vi.mock("@chatbotx.io/business/smart-delay", () => ({
+vi.mock("@inboxos.io/business/smart-delay", () => ({
   smartDelayService: { findById: smartDelayFindById },
 }))
 vi.mock("../src/services/integrations", () => ({

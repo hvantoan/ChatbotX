@@ -1,7 +1,7 @@
 "use server"
 
-import { INVITATION_COOKIE_NAME } from "@chatbotx.io/auth/server"
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
+import { INVITATION_COOKIE_NAME } from "@inboxos.io/auth/server"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
 import {
   hasWorkspacePermission,
   invitationService,
@@ -9,10 +9,10 @@ import {
   quotaEnforcementService,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { invalidateCacheByTags } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { invalidateCacheByTags } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { cookies } from "next/headers"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
@@ -42,7 +42,7 @@ export const acceptInvitationAction = authActionClient
         userId: ctx.user.id,
       })
     if (existingMember) {
-      throw new ChatbotXException("You are already a member of this workspace")
+      throw new InboxOSException("You are already a member of this workspace")
     }
 
     const workspace = await workspaceService.find({
@@ -50,7 +50,7 @@ export const acceptInvitationAction = authActionClient
     })
     if (workspace && isWorkspaceScheduledForDeletion(workspace)) {
       const t = await getTranslations("invitation")
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("workspaceUnavailable"),
         "workspaceScheduledDeletion",
         403,
@@ -62,7 +62,7 @@ export const acceptInvitationAction = authActionClient
         metric: "teamMembers",
       })
       if (atLimit) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Team member limit reached for this workspace plan",
         )
       }

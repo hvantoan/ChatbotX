@@ -1,4 +1,4 @@
-import type { Context } from "@chatbotx.io/sdk"
+import type { Context } from "@inboxos.io/sdk"
 import { isHTTPError } from "ky"
 import { DEFAULT_API_VERSION } from "../constants"
 import { MessengerException, rescue } from "../exception"

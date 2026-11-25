@@ -1,6 +1,6 @@
-import { db, sql } from "@chatbotx.io/database/client"
-import { aiMCPServerModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { db, sql } from "@inboxos.io/database/client"
+import { aiMCPServerModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { freeCopyNames } from "../../lib/copy-name"
 import {
   makeCollector,

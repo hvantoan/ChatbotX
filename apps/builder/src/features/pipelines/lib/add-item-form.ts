@@ -1,7 +1,7 @@
 import {
   pipelineItemPriorities,
   pipelineItemStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 /** The value column holds money: four decimals, never negative. */

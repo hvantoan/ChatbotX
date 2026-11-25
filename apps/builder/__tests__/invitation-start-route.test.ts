@@ -15,18 +15,18 @@ const {
   resolveTenantByDomain: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/auth/server", () => ({
+vi.mock("@inboxos.io/auth/server", () => ({
   INVITATION_COOKIE_MAX_AGE_SECONDS: 600,
-  INVITATION_COOKIE_NAME: "chatbotx_invitation",
+  INVITATION_COOKIE_NAME: "inboxos_invitation",
 }))
 
-vi.mock("@chatbotx.io/auth/tenant", () => ({ resolveTenantByDomain }))
+vi.mock("@inboxos.io/auth/tenant", () => ({ resolveTenantByDomain }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   invitationService: { findActiveByCode },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   getPublicUrlFromRequest: (request: Request) => new URL(request.url),
 }))
 
@@ -70,7 +70,7 @@ test("sets a short-lived, httpOnly, same-site cookie carrying the code on succes
   const response = await GET(request(), params())
 
   const setCookie = response.headers.get("set-cookie") ?? ""
-  expect(setCookie).toContain("chatbotx_invitation=invite-code")
+  expect(setCookie).toContain("inboxos_invitation=invite-code")
   expect(setCookie).toContain("HttpOnly")
   expect(setCookie).toContain("SameSite=lax")
   expect(setCookie).toContain("Max-Age=600")

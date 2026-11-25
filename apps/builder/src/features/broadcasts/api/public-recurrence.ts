@@ -1,4 +1,4 @@
-import { broadcastRecurrenceService } from "@chatbotx.io/business"
+import { broadcastRecurrenceService } from "@inboxos.io/business"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
   possibleErrorsOnFindingResource,

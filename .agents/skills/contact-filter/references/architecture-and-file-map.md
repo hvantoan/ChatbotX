@@ -6,7 +6,7 @@ Lives in two packages:
 - **Frontend feature** — `apps/builder/src/features/contact-filter/` (Zod schemas,
   UI config, React components). Barrel: `index.ts`.
 - **Backend query builder** — `packages/database/src/queries/contact-filter/`
-  (`@chatbotx.io/database/queries`). Shared by the builder app **and** the worker
+  (`@inboxos.io/database/queries`). Shared by the builder app **and** the worker
   so both resolve the same contacts. **`queries/contact-filter.ts` is now a one-line
   re-export barrel** (`export * from "./contact-filter/index"`) — the real code is the
   14-file directory beside it:

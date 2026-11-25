@@ -1,9 +1,9 @@
-import { broadcastAnalyticsService } from "@chatbotx.io/analytics"
+import { broadcastAnalyticsService } from "@inboxos.io/analytics"
 import {
   getBroadcastStatsRequest,
   getBroadcastStatsResponse,
-} from "@chatbotx.io/analytics/schemas"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/analytics/schemas"
+import { withCache } from "@inboxos.io/redis"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

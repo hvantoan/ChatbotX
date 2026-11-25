@@ -1,9 +1,9 @@
-import { sequenceAnalyticsService } from "@chatbotx.io/analytics"
+import { sequenceAnalyticsService } from "@inboxos.io/analytics"
 import {
   getSequenceStepStatsRequest,
   getSequenceStepStatsResponse,
-} from "@chatbotx.io/analytics/schemas"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/analytics/schemas"
+import { withCache } from "@inboxos.io/redis"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

@@ -42,7 +42,7 @@ const discountCodeService = {
 }
 const orderService = { quote: vi.fn() }
 const contactService = { resolveIdByIdentifier: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   discountCodeService,
   orderService,
   contactService,

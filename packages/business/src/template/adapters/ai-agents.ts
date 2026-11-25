@@ -1,15 +1,15 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   type AIAgentSalesProfile,
   aiAgentSalesProfileSchema,
   type TemplateResourceCategory,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   aiAgentModel,
   aiAgentSalesProfileVersionModel,
-} from "@chatbotx.io/database/schema"
-import { remapReferences } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { remapReferences } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { omitKeys } from "../fingerprint"
 import { templateBackupNotRestorableException } from "../template-errors"

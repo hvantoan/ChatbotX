@@ -1,5 +1,5 @@
-import { placeCategoryRepository } from "@chatbotx.io/database/repositories/place-category"
-import type { TemplatePlaceCategoryManifestEntry } from "@chatbotx.io/flow-config"
+import { placeCategoryRepository } from "@inboxos.io/database/repositories/place-category"
+import type { TemplatePlaceCategoryManifestEntry } from "@inboxos.io/flow-config"
 import type { TemplateInstallContext } from "../types"
 
 /**

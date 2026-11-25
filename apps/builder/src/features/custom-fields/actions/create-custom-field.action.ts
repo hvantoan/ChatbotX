@@ -1,7 +1,7 @@
 "use server"
-import { customFieldService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { customFieldService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { createCustomFieldRequest } from "../schema/action"
@@ -12,7 +12,7 @@ export const createCustomFieldAction = workspaceActionClient
     try {
       await customFieldService.create({ workspaceId, data: parsedInput })
     } catch (error) {
-      if (error instanceof ChatbotXException && error.code === "validation") {
+      if (error instanceof InboxOSException && error.code === "validation") {
         returnValidationErrors(createCustomFieldRequest, {
           _errors: ["Validation Exception"],
           name: { _errors: [error.message] },

@@ -1,9 +1,9 @@
-import "@chatbotx.io/vitest-config/setup-msw"
+import "@inboxos.io/vitest-config/setup-msw"
 import {
   HttpResponse,
   http,
   server as mswServer,
-} from "@chatbotx.io/vitest-config/msw"
+} from "@inboxos.io/vitest-config/msw"
 import { exportSPKI, generateKeyPair, SignJWT } from "jose"
 import { afterEach, beforeAll, describe, expect, test, vi } from "vitest"
 import { LICENSE_ISSUER } from "../src/enterprise/license/public-keys"
@@ -98,7 +98,7 @@ describe("license refresh", () => {
     delete process.env.NEXT_PUBLIC_EDITION
     mswServer.resetHandlers()
     vi.resetModules()
-    vi.doUnmock("@chatbotx.io/database/repositories")
+    vi.doUnmock("@inboxos.io/database/repositories")
     vi.doUnmock("../src/enterprise/license/public-keys")
     vi.unstubAllGlobals()
   })

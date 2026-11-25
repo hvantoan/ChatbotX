@@ -1,4 +1,4 @@
-import { type CountOutcome, contactService } from "@chatbotx.io/business"
+import { type CountOutcome, contactService } from "@inboxos.io/business"
 import type { ContactPermissionScope } from "../permissions"
 import type {
   CountContactsRequest,

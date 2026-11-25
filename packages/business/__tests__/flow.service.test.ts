@@ -76,7 +76,7 @@ const transaction = {
   insert: mockInsert,
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mockDbTransaction,
     insert: mockInsert,
@@ -95,7 +95,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
 // The repositories barrel transitively pulls in the contact-filter query
 // builders, which read schema models this file does not mock. flowService only
 // uses `listIdsByIds` (covered elsewhere), so a stub keeps that chain out.
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {
     listIdsByIds: vi.fn(async () => []),
     listPublishedOptions: mockListPublishedOptions,
@@ -104,21 +104,21 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   whatsappMessageTemplateRepository: { listIdsByIntegration: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "0",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowAnalyticsSessionModel,
   flowModel,
   flowVersionModel,
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   remapFlowGraphReferences: vi.fn(),
   sendMessageNodeDefaultFn: vi.fn(() => ({ id: "default-node-1" })),
   // Mirror the REAL runtime values (O01–O05) — a made-up shape would silently
@@ -179,7 +179,7 @@ const mockLockOptions = vi.hoisted(() => vi.fn())
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,

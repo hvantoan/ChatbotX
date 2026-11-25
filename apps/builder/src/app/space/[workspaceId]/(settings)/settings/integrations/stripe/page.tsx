@@ -1,5 +1,5 @@
-import { workspaceService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { workspaceService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageStripe } from "@/features/payment-providers/components/manage-stripe"
 import { getPaymentProviders } from "@/features/payment-providers/lib/get-payment-providers"

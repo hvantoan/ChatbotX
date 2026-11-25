@@ -48,7 +48,7 @@ vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 const resolveContactId = vi.fn()
 const listContactAdTouches = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactService: { resolveIdByIdentifier: resolveContactId },
   listContactAdTouches,
 }))

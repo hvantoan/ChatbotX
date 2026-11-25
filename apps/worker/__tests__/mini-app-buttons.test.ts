@@ -1,5 +1,5 @@
-import type { ButtonStepProps } from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+import type { ButtonStepProps } from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { signMiniAppToken, signMiniAppResumeToken, findUnscoped } = vi.hoisted(
@@ -10,12 +10,12 @@ const { signMiniAppToken, signMiniAppResumeToken, findUnscoped } = vi.hoisted(
   }),
 )
 
-vi.mock("@chatbotx.io/encryption/mini-app-token", () => ({
+vi.mock("@inboxos.io/encryption/mini-app-token", () => ({
   signMiniAppToken,
   signMiniAppResumeToken,
 }))
 
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findUnscoped },
 }))
 

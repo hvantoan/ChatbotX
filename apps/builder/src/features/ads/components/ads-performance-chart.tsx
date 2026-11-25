@@ -1,7 +1,7 @@
 "use client"
 
-import type { AdsAnalyticsTimeseriesRow } from "@chatbotx.io/business"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { AdsAnalyticsTimeseriesRow } from "@inboxos.io/business"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   type ChartConfig,
   ChartContainer,
@@ -9,7 +9,7 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import { useTranslations } from "next-intl"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 

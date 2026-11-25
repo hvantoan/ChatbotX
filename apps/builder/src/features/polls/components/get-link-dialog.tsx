@@ -1,15 +1,15 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import { useQuery } from "@tanstack/react-query"
 import { CopyIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

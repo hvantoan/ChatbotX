@@ -1,6 +1,6 @@
-import { botFieldWorkspaceCacheTags } from "@chatbotx.io/business"
-import { db } from "@chatbotx.io/database/client"
-import { withCache } from "@chatbotx.io/redis"
+import { botFieldWorkspaceCacheTags } from "@inboxos.io/business"
+import { db } from "@inboxos.io/database/client"
+import { withCache } from "@inboxos.io/redis"
 import { parseBotFieldVariableText } from "./bot-field-variable"
 import type { BotFieldValue } from "./schema"
 

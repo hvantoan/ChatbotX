@@ -32,11 +32,11 @@ vi.mock(
   }),
 )
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 
 vi.mock("../../inbox/service", () => ({
   inboxService: { resolveBroadcastInboxIds: mocks.resolveBroadcastInboxIds },
@@ -58,7 +58,7 @@ vi.mock("../plan-policy.service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: "Broadcast.id",
     workspaceId: "Broadcast.workspaceId",
@@ -96,7 +96,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const tx = {
     insert: () => ({
       // Awaitable on its own (a plain insert) and chainable to `.returning()`.
@@ -175,13 +175,13 @@ vi.mock("@chatbotx.io/database/client", () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: (contactFilter: unknown) => contactFilter,
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   likeContains: vi.fn(),
 }))

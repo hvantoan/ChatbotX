@@ -9,14 +9,14 @@
  * else's row, while a same-tenant call still disconnects it.
  */
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { db, eq } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   inboxModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { describe, expect, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */

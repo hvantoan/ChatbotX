@@ -3,11 +3,11 @@ import "server-only"
 import {
   messengerIntegrationService,
   tagSyncService,
-} from "@chatbotx.io/business"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
-import { integration as integrationMessenger } from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/business"
+import { channelTypes } from "@inboxos.io/database/partials"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
+import { integration as integrationMessenger } from "@inboxos.io/integration-messenger"
 import { runBrandingFollowUps } from "@/features/channel-connect/lib/branding-follow-ups"
 import { connectSessionCandidate } from "@/features/channel-connect/lib/connect-session-candidate"
 import type { ResolvedConnectSession } from "@/features/channel-connect/lib/resolve-connect-session"

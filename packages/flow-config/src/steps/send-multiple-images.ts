@@ -1,4 +1,4 @@
-import { createId, zodUrlWithVariables } from "@chatbotx.io/utils"
+import { createId, zodUrlWithVariables } from "@inboxos.io/utils"
 import { z } from "zod"
 import { uploadModes } from "../types"
 import { baseStepSchema } from "./base"

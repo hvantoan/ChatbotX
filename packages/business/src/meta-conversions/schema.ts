@@ -2,14 +2,14 @@ import {
   metaCapiEventChannelSchema,
   metaCapiEventSourceSchema,
   metaCapiStatusSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   IntegrationInstagramModel,
   IntegrationMessengerModel,
   IntegrationWhatsappModel,
   MetaCapiEventModel,
-} from "@chatbotx.io/database/types"
-import { withMetaCapiEventRefinements } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import { withMetaCapiEventRefinements } from "@inboxos.io/flow-config"
 import {
   defaultMetaCapiActionSource,
   metaCapiActionSourceSchema,
@@ -17,7 +17,7 @@ import {
   metaCapiCurrencySchema,
   metaCapiEventNameSchema,
   metaCapiValueSchema,
-} from "@chatbotx.io/utils/meta-capi"
+} from "@inboxos.io/utils/meta-capi"
 import { z } from "zod"
 import type { ChannelIdentity } from "./channel-identity"
 import { splitContentIds } from "./event-input"

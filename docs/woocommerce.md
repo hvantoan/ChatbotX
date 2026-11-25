@@ -50,7 +50,7 @@ Permalinks must not be set to Plain: the REST API lives under `/wp-json/`.
 
 Disconnect and workspace removal delete our webhooks best effort
 (`disconnectWorkspaceIntegrations` lists `woocommerce`). Disconnecting switches
-a store selling from WooCommerce back to `chatbotx`.
+a store selling from WooCommerce back to `inboxos`.
 
 ## Currency
 

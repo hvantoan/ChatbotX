@@ -1,6 +1,6 @@
 "use client"
 
-import { RealtimeSocket } from "@chatbotx.io/realtime-protocol"
+import { RealtimeSocket } from "@inboxos.io/realtime-protocol"
 import { useEffect, useRef } from "react"
 
 type RealtimeSocketOptions = ConstructorParameters<typeof RealtimeSocket>[0]

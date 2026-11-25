@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { MiniAppEditor } from "@/features/mini-apps/editor/mini-app-editor"
 import { buildMiniAppPublicUrl } from "@/features/mini-apps/lib/public-url"

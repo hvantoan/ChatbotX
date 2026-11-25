@@ -50,7 +50,7 @@ vi.mock("@/orpc", () => ({ authorizedAPI }))
 
 vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   placeCategoryService: { list: mocks.listCategories },
 }))
 

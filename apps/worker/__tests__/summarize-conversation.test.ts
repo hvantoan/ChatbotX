@@ -11,8 +11,8 @@ const mocks = vi.hoisted(() => ({
   update: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai/server", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/ai/server")>()
+vi.mock("@inboxos.io/ai/server", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/ai/server")>()
   return {
     ...actual,
     aiContextStore: {
@@ -23,7 +23,7 @@ vi.mock("@chatbotx.io/ai/server", async (importOriginal) => {
     summarizeConversation: mocks.summarizeConversation,
   }
 })
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       conversationModel: {
@@ -32,9 +32,9 @@ vi.mock("@chatbotx.io/database/client", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     AIJobAction: { summarizeConversation: "summarizeConversation" },

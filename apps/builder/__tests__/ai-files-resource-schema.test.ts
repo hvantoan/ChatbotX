@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   AI_FILE_MAX_UPLOAD_BYTES: 100 * 1000 * 1000,
 }))
 

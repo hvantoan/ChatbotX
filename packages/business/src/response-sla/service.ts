@@ -1,11 +1,11 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type ResponseSlaPolicyInput,
   type ResponseSlaWindowState,
   responseSlaRepository,
-} from "@chatbotx.io/database/repositories"
-import type { ResponseSlaPolicyModel } from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { ResponseSlaPolicyModel } from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
 import { validationException } from "../errors"
 import { logger } from "../logger"

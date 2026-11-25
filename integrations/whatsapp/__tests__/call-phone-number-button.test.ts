@@ -1,7 +1,7 @@
 import {
   type ButtonStepProps,
   getChannelFlowPolicy,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { buildWhatsappButtonMessages } from "../src/handlers/message/outgoing-message/shared"
 

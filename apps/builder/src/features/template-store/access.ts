@@ -1,6 +1,6 @@
 import "server-only"
 
-import { isSuperAdmin, type TenantAdminScope } from "@chatbotx.io/business"
+import { isSuperAdmin, type TenantAdminScope } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { getManageAccess } from "@/app/manage/reseller-guard"
 import { getCurrentUser } from "@/lib/auth/utils"

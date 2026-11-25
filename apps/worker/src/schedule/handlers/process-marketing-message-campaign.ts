@@ -1,9 +1,9 @@
 import {
   facebookMarketingMessageDeliveryService as service,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import { facebookMarketingMessageRepository } from "@chatbotx.io/database/repositories"
-import type { MarketingMessageJobData } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import { facebookMarketingMessageRepository } from "@inboxos.io/database/repositories"
+import type { MarketingMessageJobData } from "@inboxos.io/worker-config"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"
 import { getBotMessageQuotaRemaining } from "../../lib/is-bot-message-quota-reached"
 

@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   vectorSearch: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createConversationEmbeddingRepository: () => ({
     findManyBySource: mocks.findManyBySource,
     vectorSearch: mocks.vectorSearch,
@@ -15,7 +15,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   createConversationSourceRepository: () => ({}),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: { processConversationSource: "processConversationSource" },
   aiAgentQueue: { add: vi.fn() },
 }))

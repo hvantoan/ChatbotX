@@ -1,5 +1,5 @@
-import { MAX_SEQUENCES_PER_TRIGGER_ACTION } from "@chatbotx.io/database/partials"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
+import { MAX_SEQUENCES_PER_TRIGGER_ACTION } from "@inboxos.io/database/partials"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
 import z from "zod"
 
 /** The `sequenceIds` of the add/remove sequence trigger actions. */

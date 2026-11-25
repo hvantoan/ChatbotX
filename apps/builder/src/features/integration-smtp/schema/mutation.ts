@@ -1,4 +1,4 @@
-import { smtpProviders } from "@chatbotx.io/integration-smtp/schema"
+import { smtpProviders } from "@inboxos.io/integration-smtp/schema"
 import { z } from "zod"
 
 const fromAddressRegex = /<([^>]+)>$/

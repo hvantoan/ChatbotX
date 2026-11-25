@@ -3,8 +3,8 @@ import {
   KlaviyoApiError,
   integration as klaviyoIntegration,
   klaviyoListPageSchema,
-} from "@chatbotx.io/integration-klaviyo"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-klaviyo"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

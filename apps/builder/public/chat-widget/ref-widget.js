@@ -17,11 +17,11 @@
   }
 
   const reflinkId = script.getAttribute("data-reflink-id")
-  if (!reflinkId || window.__chatbotxRefWidgets?.[reflinkId]) {
+  if (!reflinkId || window.__inboxosRefWidgets?.[reflinkId]) {
     return
   }
-  window.__chatbotxRefWidgets = window.__chatbotxRefWidgets || {}
-  window.__chatbotxRefWidgets[reflinkId] = true
+  window.__inboxosRefWidgets = window.__inboxosRefWidgets || {}
+  window.__inboxosRefWidgets[reflinkId] = true
 
   const baseUrl = new URL(script.src).origin
   const ICON_CHANNELS = [
@@ -170,7 +170,7 @@
 
   const render = ({ channels, brand }) => {
     const host = createElement("div", "", {
-      "data-chatbotx-ref-widget": reflinkId,
+      "data-inboxos-ref-widget": reflinkId,
     })
     const root = host.attachShadow({ mode: "open" })
     const style = document.createElement("style")

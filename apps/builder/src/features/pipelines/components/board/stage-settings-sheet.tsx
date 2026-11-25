@@ -1,11 +1,11 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@chatbotx.io/ui/components/ui/collapsible"
+} from "@inboxos.io/ui/components/ui/collapsible"
 import {
   Sheet,
   SheetContent,
@@ -13,9 +13,9 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import InputColor from "@chatbotx.io/ui/components/ui/vatsalpipalava/input-color"
+} from "@inboxos.io/ui/components/ui/sheet"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import InputColor from "@inboxos.io/ui/components/ui/vatsalpipalava/input-color"
 import { ChevronDownIcon, Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

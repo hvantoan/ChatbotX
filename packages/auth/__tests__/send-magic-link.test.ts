@@ -26,10 +26,10 @@ vi.mock("better-auth/plugins", () => ({
   oneTimeToken: () => ({ id: "one-time-token" }),
 }))
 vi.mock("@better-auth/mcp", () => ({ mcp: () => ({ id: "mcp" }) }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { userModel: { findFirst: mocks.findFirst } } },
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   ROOT_TENANT_ID: "1",
   accountModel: {},
   jwkModel: {},
@@ -44,7 +44,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   userModel: {},
   verificationModel: {},
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { listActiveDomains: vi.fn().mockResolvedValue([]) },
   invitationService: { findActiveByCode: vi.fn().mockResolvedValue(null) },
   platformCredentialService: {
@@ -57,13 +57,13 @@ vi.mock("@chatbotx.io/business", () => ({
   tenantService: { findById: mocks.tenantFindById },
   toSmtpTransport: (config: unknown) => ({ config }),
 }))
-vi.mock("@chatbotx.io/utils", async () => ({
-  ...(await vi.importActual<typeof import("@chatbotx.io/utils")>(
-    "@chatbotx.io/utils",
+vi.mock("@inboxos.io/utils", async () => ({
+  ...(await vi.importActual<typeof import("@inboxos.io/utils")>(
+    "@inboxos.io/utils",
   )),
   getPublicOriginFromRequest: mocks.getPublicOriginFromRequest,
 }))
-vi.mock("@chatbotx.io/mail", () => ({
+vi.mock("@inboxos.io/mail", () => ({
   DEFAULT_FORGOT_PASSWORD_SUBJECT: "reset",
   DEFAULT_MAGIC_LINK_SUBJECT: "magic",
   DEFAULT_SIGNUP_SUBJECT: "signup",

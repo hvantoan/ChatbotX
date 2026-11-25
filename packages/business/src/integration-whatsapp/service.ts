@@ -3,7 +3,7 @@ import {
   type DatabaseClient,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type ProviderAccountRouteScope,
   type ProviderAccountTarget,
@@ -11,25 +11,25 @@ import {
   routingRolesSnapshotSchema,
   type WhatsappCallHoursSnapshot,
   type WhatsappRegistrationStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   integrationWhatsappRepository,
   LIVE_RUN_STATUSES,
   metaCapiEventRepository,
   whatsappSignupSessionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   coexistSyncRunModel,
   type IntegrationWhatsappRegistrationError,
   integrationWhatsappModel,
   whatsappCoexistStagingModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   IntegrationWhatsappModel,
   WhatsappSignupSessionModel,
-} from "@chatbotx.io/database/types"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import type { AuthValue, ChannelError } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/types"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import type { AuthValue, ChannelError } from "@inboxos.io/sdk"
 import { z } from "zod"
 import { BaseService } from "../base.service"
 import { recordRefreshedAuth } from "../connection/record-refreshed-auth"
@@ -115,7 +115,7 @@ type FindWorkspaceIntegrationInput = {
 /** What the channel reports about this app's routing roles, before it is stamped. */
 export type RoutingRolesProviderAnswer = Omit<RoutingRolesSnapshot, "checkedAt">
 
-/** Primitives-only provider call — business does not depend on `@chatbotx.io/integration-whatsapp`. */
+/** Primitives-only provider call — business does not depend on `@inboxos.io/integration-whatsapp`. */
 export type FetchRoutingRoles = (input: {
   accessToken: string
   version?: string

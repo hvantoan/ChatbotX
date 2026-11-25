@@ -2,18 +2,18 @@ import type {
   DiscountType,
   EcommerceSettings,
   OrderShippingAddress,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   externalStoreRepository,
   woocommerceRepository,
-} from "@chatbotx.io/database/repositories"
-import type { IntegrationWoocommerceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { IntegrationWoocommerceModel } from "@inboxos.io/database/types"
 import {
   createWooCommerceOrder,
   WooCommerceApiError,
   type WooCommerceOrder,
   type WooCommerceOrderCreateInput,
-} from "@chatbotx.io/integration-woocommerce"
+} from "@inboxos.io/integration-woocommerce"
 import {
   EXTERNAL_CONTACT_ATTRIBUTE,
   type ExternalCheckoutShopper,

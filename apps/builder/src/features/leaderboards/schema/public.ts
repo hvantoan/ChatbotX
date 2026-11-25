@@ -1,4 +1,4 @@
-import { leaderboardPlatforms } from "@chatbotx.io/database/partials"
+import { leaderboardPlatforms } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { publicListRequest, publicListResponse } from "@/lib/public-api/list"
 import {

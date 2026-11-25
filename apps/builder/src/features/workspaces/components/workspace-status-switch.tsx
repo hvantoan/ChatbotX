@@ -1,12 +1,12 @@
 "use client"
 
-import { isWorkspaceScheduledForDeletion } from "@chatbotx.io/business/workspace-lifecycle/predicates"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import { isWorkspaceScheduledForDeletion } from "@inboxos.io/business/workspace-lifecycle/predicates"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"

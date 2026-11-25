@@ -1,4 +1,4 @@
-import { formatDateRange } from "@chatbotx.io/utils/form-answer-format"
+import { formatDateRange } from "@inboxos.io/utils/form-answer-format"
 import { isFileAnswer } from "./answers"
 import { MINI_APP_COMPONENTS } from "./components"
 import { inputName, setNodeCustomField, walkNodes } from "./tree"

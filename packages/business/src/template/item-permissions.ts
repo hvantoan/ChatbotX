@@ -1,9 +1,9 @@
 import type {
   TemplateCategory,
   TemplateSelection,
-} from "@chatbotx.io/database/partials"
-import type { TemplateItemPermissions } from "@chatbotx.io/flow-config"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/partials"
+import type { TemplateItemPermissions } from "@inboxos.io/flow-config"
+import { InboxOSException } from "../errors"
 
 /**
  * The per-item View-only choices a selection carries, as the payload's
@@ -46,7 +46,7 @@ const lockedIdsOf = (
   }
   const lockedIds = selection.lockedIds ?? []
   if (lockedIds.some((id) => !selection.ids.includes(id))) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "A locked item must be one of the selected items",
       "templateSaveInvalidSelection",
     )

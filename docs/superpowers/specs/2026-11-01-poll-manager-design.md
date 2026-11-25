@@ -222,7 +222,7 @@ covered by a test. Run the `security-review` skill on this part.
 
 ### Layers
 
-`features/polls/api/public.ts` → `@chatbotx.io/business` `poll` service →
+`features/polls/api/public.ts` → `@inboxos.io/business` `poll` service →
 repositories → DB. Worker ref/postback handling calls the same service.
 Mirror minigames layout (`packages/business/src/minigame/`,
 `apps/builder/src/features/minigames/`). Keep Node-only code out of the

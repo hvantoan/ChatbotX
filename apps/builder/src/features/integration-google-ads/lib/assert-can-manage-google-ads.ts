@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 
@@ -15,7 +15,7 @@ export async function assertCanManageGoogleAds(input: {
   await assertWorkspaceSuperAdmin(input.workspaceId)
   if (input.isSupportSession) {
     const t = await getTranslations()
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("googleAds.errors.supportSession"),
       "googleAdsSupportSession",
       403,
@@ -33,9 +33,9 @@ export async function googleAdsException(
     | "notRetryable"
     | "authorizationUnavailable",
   httpStatusCode = 400,
-): Promise<ChatbotXException> {
+): Promise<InboxOSException> {
   const t = await getTranslations()
-  return new ChatbotXException(
+  return new InboxOSException(
     t(`googleAds.errors.${key}`),
     `googleAds.${key}`,
     httpStatusCode,

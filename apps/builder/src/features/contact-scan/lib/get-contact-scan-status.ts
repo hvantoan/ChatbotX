@@ -1,4 +1,4 @@
-import { contactScanService } from "@chatbotx.io/business"
+import { contactScanService } from "@inboxos.io/business"
 import type {
   GetContactScanStatusRequest,
   GetContactScanStatusResponse,

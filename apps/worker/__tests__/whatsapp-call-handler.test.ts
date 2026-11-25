@@ -1,4 +1,4 @@
-import { CALL_CANCELED_BY_BUSINESS_LAST_ERROR } from "@chatbotx.io/sdk"
+import { CALL_CANCELED_BY_BUSINESS_LAST_ERROR } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const STATUS_ROW_NOT_READY_PATTERN = /whatsapp-call-status-row-not-ready/
@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messageService: {
     updateContentBySourceId: (input: {
       patch: unknown
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/business", () => ({
     mocks.publishWorkspaceMemberRealtimeEvent,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findByWacid: mocks.findByWacid,
     findByAttemptId: mocks.findByAttemptId,
@@ -60,7 +60,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   setWebhookExecutionContext: vi.fn(),
   emitIncomingCall: mocks.emitIncomingCall,
 }))

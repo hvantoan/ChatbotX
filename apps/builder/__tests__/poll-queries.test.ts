@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { get } = vi.hoisted(() => ({ get: vi.fn() }))
@@ -28,7 +28,7 @@ describe("findPoll", () => {
 
   test("returns undefined when the poll does not exist", async () => {
     get.mockRejectedValue(
-      new ChatbotXException("Poll not found", "notFound", 404),
+      new InboxOSException("Poll not found", "notFound", 404),
     )
     await expect(
       findPoll({ workspaceId: "w1", id: "p1" }),

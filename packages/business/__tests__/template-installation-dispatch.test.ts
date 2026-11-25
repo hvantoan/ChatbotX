@@ -8,12 +8,12 @@ const mocks = vi.hoisted(() => ({
   error: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateInstallationRepository: {
     listPendingIds: mocks.listPendingIds,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueInstallTemplate: mocks.enqueue,
 }))
 vi.mock("../src/logger", () => ({ logger: { error: mocks.error } }))

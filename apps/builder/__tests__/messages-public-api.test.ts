@@ -56,7 +56,7 @@ const messageService = {
   resendOutgoing: vi.fn(),
 }
 const resolveTemplateParams = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationMemberScope: {
     resolve: vi.fn(),
     allows: () => true,
@@ -67,8 +67,8 @@ vi.mock("@chatbotx.io/business", () => ({
   resolveTemplateParams,
 }))
 
-vi.mock("@chatbotx.io/business/errors", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/business/errors")>()),
+vi.mock("@inboxos.io/business/errors", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/business/errors")>()),
   notFoundException: (message: string) => new Error(message),
 }))
 

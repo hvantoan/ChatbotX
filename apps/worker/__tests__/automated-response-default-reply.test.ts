@@ -2,8 +2,8 @@ import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { contactVariableService } from "@inboxos.io/variables"
 import { type ModelMessage, streamText } from "ai"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { triggerDefaultReplyFlow } from "../src/integration/handlers/automated-response/default-reply"
@@ -40,7 +40,7 @@ const tryAcquireMock = vi.hoisted(() =>
 )
 const releaseMock = vi.hoisted(() => vi.fn(async () => undefined))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowService: { findBy: findByFlowMock },
   integrationOpenaiCompatibleService: {
     findByWorkspaceIdAndId: vi.fn(),
@@ -51,9 +51,9 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     integrationQueue: { add: integrationQueueAddMock },
@@ -61,7 +61,7 @@ vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "webhook",
 }))
 
@@ -69,7 +69,7 @@ vi.mock("../src/lib/logger", () => ({
   logger: { warn: warnMock, error: errorMock, info: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiProviders: { openai: "openai" },
   aiTimeouts: {
     aiTotal: 30_000,
@@ -100,7 +100,7 @@ vi.mock("@chatbotx.io/ai", () => ({
   appendUnavailableWebSearchPolicy: (p: string) => p,
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiContextService: { appendHistory: appendHistoryMock },
   appendAIAgentActionToolProtocol: (p: string) => p,
   appendFabricationGuard: (p: string) => p,
@@ -163,7 +163,7 @@ vi.mock("../../utils/message", () => ({
   sendMessageWithRender: sendMessageWithRenderMock,
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn(async () => []),
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),
@@ -174,7 +174,7 @@ vi.mock("../src/trigger/services/handoff-executor.service", () => ({
   handoffExecutorService: { execute: vi.fn(async () => undefined) },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn(async () => undefined),
 }))
 

@@ -5,9 +5,9 @@ import {
   tagService,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { isWorkspaceAdminMember } from "@chatbotx.io/business/workspace-member/predicates"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { isWorkspaceAdminMember } from "@inboxos.io/business/workspace-member/predicates"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import type { SearchParams } from "nuqs/server"
 import { Suspense } from "react"

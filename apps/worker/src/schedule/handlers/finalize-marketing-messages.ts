@@ -1,6 +1,6 @@
-import { facebookMarketingMessageDeliveryService } from "@chatbotx.io/business"
-import { facebookMarketingMessageRepository } from "@chatbotx.io/database/repositories"
-import { distributedLock } from "@chatbotx.io/redis"
+import { facebookMarketingMessageDeliveryService } from "@inboxos.io/business"
+import { facebookMarketingMessageRepository } from "@inboxos.io/database/repositories"
+import { distributedLock } from "@inboxos.io/redis"
 import { logger } from "../../lib/logger"
 
 const LOCK_KEY = "schedule:finalize-marketing-messages"

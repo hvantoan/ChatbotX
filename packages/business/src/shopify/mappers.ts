@@ -7,16 +7,16 @@ import type {
   OrderStatus,
   PaymentStatus,
   ProductStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ExternalProductValues,
   ExternalVariantValues,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ShopifyCodeDiscount,
   ShopifyOrder,
   ShopifyProduct,
-} from "@chatbotx.io/integration-shopify"
+} from "@inboxos.io/integration-shopify"
 import { normalizePhoneToE164 } from "../contact/phone"
 
 export {

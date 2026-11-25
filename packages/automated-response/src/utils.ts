@@ -1,5 +1,5 @@
-import { db } from "@chatbotx.io/database/client"
-import { invalidateCacheKeys, withCache } from "@chatbotx.io/redis"
+import { db } from "@inboxos.io/database/client"
+import { invalidateCacheKeys, withCache } from "@inboxos.io/redis"
 
 const getAutomatedResponseCachedKey = (workspaceId: string) =>
   `workspaces:${workspaceId}:automated-responses:all`

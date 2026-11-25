@@ -9,13 +9,13 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business
+// Mock @inboxos.io/business
 // ---------------------------------------------------------------------------
 const findById = vi.fn()
 const updateAuth = vi.fn()
 const commitReconnect = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   zaloIntegrationService: {
     findById,
     updateAuth,
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
 }))
 

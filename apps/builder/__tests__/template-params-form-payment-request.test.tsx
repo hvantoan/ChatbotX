@@ -1,7 +1,7 @@
 import type {
   TemplateComponent,
   TemplateComponentButton,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, type UseFormReturn, useForm } from "react-hook-form"

@@ -6,13 +6,13 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {
     subscribeContactForTrigger: mocks.subscribeContactForTrigger,
     unsubscribeContactForTrigger: mocks.unsubscribeContactForTrigger,
   },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   default: { warn: mocks.warn, error: vi.fn(), info: vi.fn() },
 }))
 

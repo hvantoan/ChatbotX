@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   findFields: vi.fn().mockResolvedValue([]),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       pipelineModel: { findMany: mocks.findPipelines },
@@ -17,7 +17,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   collectReferencesByKind: () =>
     new Map([["pipeline", new Set(["p-1", "p-2"])]]),
 }))

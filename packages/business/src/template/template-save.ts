@@ -1,11 +1,11 @@
 import type {
   TemplatePermissions,
   TemplateSelection,
-} from "@chatbotx.io/database/partials"
-import { templateRepository } from "@chatbotx.io/database/repositories"
-import type { TemplateModel } from "@chatbotx.io/database/types"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { templateRepository } from "@inboxos.io/database/repositories"
+import type { TemplateModel } from "@inboxos.io/database/types"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { notFoundException, validationException } from "../errors"
 import { mediaLibraryFileService } from "../media-library-file/service"
 import { hashTemplatePayload } from "./payload-hash"

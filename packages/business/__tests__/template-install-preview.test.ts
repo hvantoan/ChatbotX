@@ -13,8 +13,8 @@ const mocks = vi.hoisted(() => ({
   findPriorCopies: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   inboxRepository: { listIdentitiesByIds: mocks.listInboxes },
   pipelineRepository: { findByReferenceNames: mocks.findPipeline },
   productCategoryRepository: { list: mocks.listCategories },

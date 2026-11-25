@@ -1,4 +1,4 @@
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { db, sql } from "../../client"
 import { webhookExecutionModel } from "../../schema"
 

@@ -2,7 +2,7 @@ import {
   googleAdsConversionService,
   integrationGoogleAdsService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import type { SearchParams } from "nuqs/server"
 import { AnalyticsNav } from "@/features/analytics/components/analytics-nav"

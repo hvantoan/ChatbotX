@@ -1,4 +1,4 @@
-import { customerIdSchema } from "@chatbotx.io/utils/google-click"
+import { customerIdSchema } from "@inboxos.io/utils/google-click"
 import { rescueGoogleAds } from "../exception"
 import {
   adsHeaders,

@@ -1,9 +1,9 @@
 "use client"
 
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { DataTablePagination } from "@chatbotx.io/ui/components/data-table/data-table-pagination"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { DataTablePagination } from "@inboxos.io/ui/components/data-table/data-table-pagination"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   TableBody,
   TableCell,
@@ -11,16 +11,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
-import { getCommonPinningStyles } from "@chatbotx.io/ui/lib/data-table"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
+import { getCommonPinningStyles } from "@inboxos.io/ui/lib/data-table"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { type Column, type ColumnDef, flexRender } from "@tanstack/react-table"
 import { InfoIcon } from "lucide-react"

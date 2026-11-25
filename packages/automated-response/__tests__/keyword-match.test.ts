@@ -1,4 +1,4 @@
-import type { KeywordCondition } from "@chatbotx.io/database/partials"
+import type { KeywordCondition } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   isKeywordMediaFileType,

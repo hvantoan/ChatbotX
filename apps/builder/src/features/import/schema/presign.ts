@@ -1,5 +1,5 @@
-import { importTypes, uploadTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { importTypes, uploadTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /** Percent-encoded path separators (`%2F`/`%5C`) S3 may decode into a real `/`. */

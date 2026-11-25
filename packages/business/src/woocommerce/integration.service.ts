@@ -4,9 +4,9 @@ import {
   type WoocommerceAuthSecret,
   type WoocommerceSyncScope,
   woocommerceSiteUrlSchema,
-} from "@chatbotx.io/database/partials"
-import { woocommerceRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationWoocommerceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { woocommerceRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationWoocommerceModel } from "@inboxos.io/database/types"
 import {
   activateWooCommerceWebhook,
   createWooCommerceWebhook,
@@ -17,13 +17,13 @@ import {
   type WooCommerceCredentials,
   type WooCommerceStoreInfo,
   woocommerceAdminUrl,
-} from "@chatbotx.io/integration-woocommerce"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/integration-woocommerce"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import {
   getWoocommerceSyncJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import {
   adoptExternalStoreCurrency,
@@ -244,7 +244,7 @@ class WooCommerceIntegrationService extends BaseService {
       for (const topic of WOOCOMMERCE_WEBHOOK_TOPICS) {
         webhookIds.push(
           await createWooCommerceWebhook(credentials, {
-            name: `ChatbotX ${topic}`,
+            name: `InboxOS ${topic}`,
             topic,
             deliveryUrl: webhookUrl,
             secret: secret.webhookSecret,

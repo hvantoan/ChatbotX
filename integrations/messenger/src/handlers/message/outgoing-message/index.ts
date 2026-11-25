@@ -11,7 +11,7 @@ import {
   type SendVideoStepSchema,
   type StepType,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   assertCommentPrivateReplyFollowUpDeliverable,
   ChannelError,
@@ -27,7 +27,7 @@ import {
   type OutgoingContact,
   type OutgoingMessage,
   type SendFlowStepProps,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { sendPrivateReplyMessage } from "../../../apis/comment"
 import { sendMessage as sendMessageApi } from "../../../apis/message"
 import { ensureMessengerWhitelistedDomain } from "../../../apis/page"

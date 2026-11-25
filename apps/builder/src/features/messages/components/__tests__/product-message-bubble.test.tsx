@@ -2,7 +2,7 @@
 import type {
   ProductMessageItem,
   ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { ComponentProps, ReactNode } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
@@ -22,7 +22,7 @@ vi.mock("next/image", () => ({
 }))
 
 // Embla needs layout APIs jsdom does not have; the slides are all we assert on.
-vi.mock("@chatbotx.io/ui/components/ui/carousel", () => ({
+vi.mock("@inboxos.io/ui/components/ui/carousel", () => ({
   Carousel: ({ children }: { children: ReactNode }) => (
     <div data-testid="carousel">{children}</div>
   ),

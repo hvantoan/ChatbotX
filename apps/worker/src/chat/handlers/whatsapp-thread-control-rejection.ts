@@ -1,10 +1,10 @@
-import { threadControlService } from "@chatbotx.io/business"
-import { toThreadControlTimestamp } from "@chatbotx.io/database/partials"
+import { threadControlService } from "@inboxos.io/business"
+import { toThreadControlTimestamp } from "@inboxos.io/database/partials"
 import {
   readWhatsappOriginErrorDetail,
   THREAD_CONTROL_REJECTION_CODES,
-} from "@chatbotx.io/integration-whatsapp"
-import { ChannelError } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-whatsapp"
+import { ChannelError } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import type { ChannelSendErrorContext } from "./channel-send-error-types"
 

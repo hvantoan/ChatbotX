@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { testExternalRequestAction } from "../src/features/flows/actions/test-external-request-action"
 
@@ -21,11 +21,11 @@ vi.mock("@/lib/safe-action", () => {
   return { workspaceActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   externalRequestService: { execute: executeMock },
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   externalRequestFieldsSchema: {},
 }))
 
@@ -68,7 +68,7 @@ describe("testExternalRequestAction", () => {
   })
 
   test("preserves expected client-safe external request errors", async () => {
-    const error = new ChatbotXException("This URL is not allowed")
+    const error = new InboxOSException("This URL is not allowed")
     executeMock.mockRejectedValue(error)
 
     await expect(runAction()).rejects.toBe(error)

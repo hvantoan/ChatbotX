@@ -1,5 +1,5 @@
-import { aiFileService } from "@chatbotx.io/business"
-import { capText, logDiagnostic } from "@chatbotx.io/logger"
+import { aiFileService } from "@inboxos.io/business"
+import { capText, logDiagnostic } from "@inboxos.io/logger"
 import { type ToolSet, tool } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"

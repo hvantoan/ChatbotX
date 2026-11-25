@@ -2,18 +2,18 @@ import {
   assertPublicUrl,
   buildContext,
   messengerMessageTemplateService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { miniAppService } from "@chatbotx.io/business/mini-app"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
-import { createPageMessageTemplate } from "@chatbotx.io/integration-messenger/apis/message-templates"
-import { resumableUploadImage } from "@chatbotx.io/integration-messenger/apis/upload"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import { invalidateCacheByTags } from "@chatbotx.io/redis"
-import { SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business/errors"
+import { miniAppService } from "@inboxos.io/business/mini-app"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
+import { createPageMessageTemplate } from "@inboxos.io/integration-messenger/apis/message-templates"
+import { resumableUploadImage } from "@inboxos.io/integration-messenger/apis/upload"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import { invalidateCacheByTags } from "@inboxos.io/redis"
+import { SdkException } from "@inboxos.io/sdk"
 import { chunk } from "remeda"
 import { integrations } from "@/integration"
 import type { CreateMessengerMessageTemplateRequest } from "../schema/mutation"
@@ -122,7 +122,7 @@ async function uploadHeaderImage(
     if (error instanceof SdkException || !(error instanceof Error)) {
       throw error
     }
-    throw new ChatbotXException(error.message)
+    throw new InboxOSException(error.message)
   }
 }
 

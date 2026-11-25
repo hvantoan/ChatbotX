@@ -3,34 +3,34 @@ import {
   customFieldService,
   tagService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { normalizeStoredTimezone } from "@chatbotx.io/business/contact-locale"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { normalizeStoredTimezone } from "@inboxos.io/business/contact-locale"
 import {
   type CustomFieldType,
   fileStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   applyContactFilter,
   pruneEmailPhoneFilterConditions,
-} from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/queries"
 import {
   type ContactExportRelations,
   type ContactExportRow,
   contactRepository,
   fileRepository,
-} from "@chatbotx.io/database/repositories"
-import { chunkById } from "@chatbotx.io/database/utils"
-import { createUpload } from "@chatbotx.io/filesystem/node-upload"
-import { toUploadWriter } from "@chatbotx.io/filesystem/upload-writer"
-import { SOURCE_USER_ID_EXPORT_HEADER } from "@chatbotx.io/imports/modules/contacts"
-import { type CsvCell, toCsvRow, UTF8_BOM } from "@chatbotx.io/utils/csv"
-import { formatCustomFieldValueInTimeZone } from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/database/repositories"
+import { chunkById } from "@inboxos.io/database/utils"
+import { createUpload } from "@inboxos.io/filesystem/node-upload"
+import { toUploadWriter } from "@inboxos.io/filesystem/upload-writer"
+import { SOURCE_USER_ID_EXPORT_HEADER } from "@inboxos.io/imports/modules/contacts"
+import { type CsvCell, toCsvRow, UTF8_BOM } from "@inboxos.io/utils/csv"
+import { formatCustomFieldValueInTimeZone } from "@inboxos.io/utils/datetime"
 import {
   type JobExportContacts,
   loopableItemsCount,
-} from "@chatbotx.io/worker-config"
-import { stripContactPIIFields } from "@chatbotx.io/worker-config/contact-pii"
+} from "@inboxos.io/worker-config"
+import { stripContactPIIFields } from "@inboxos.io/worker-config/contact-pii"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"
 
 type ExportData = JobExportContacts["data"]

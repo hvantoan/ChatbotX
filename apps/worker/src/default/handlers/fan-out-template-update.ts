@@ -1,8 +1,8 @@
-import { templateSyncRequestService } from "@chatbotx.io/business"
+import { templateSyncRequestService } from "@inboxos.io/business"
 import {
   enqueueFanOutTemplateUpdate,
   enqueueSyncTemplateInstallation,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { settleAndLog } from "../../lib/settle-and-log"
 

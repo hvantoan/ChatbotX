@@ -2423,7 +2423,7 @@
     },
     "fromName": {
       "label": "Lähettäjän nimi",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "Viestimalli"
@@ -3446,7 +3446,7 @@
     "title": "Yleiset"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Tämä poistaa Metan viestikampanjan ja poistaa kampanjan ChatbotX:stä. Jos Meta hylkää poiston, kampanja säilyy.",
+    "deleteWarning": "Tämä poistaa Metan viestikampanjan ja poistaa kampanjan InboxOS:stä. Jos Meta hylkää poiston, kampanja säilyy.",
     "title": "Facebook Marketing Messages",
     "description": "Kasvata sitoutumista ja myyntiä personoiduilla mainosviesteillä Messengerissä.",
     "create": "Luo uusi",
@@ -3487,7 +3487,7 @@
       "tosNotAccepted": "Jos haluat käyttää tätä toimintoa, hyväksy mukautettujen objektien ehdot osoitteessa {url}",
       "notFound": "Markkinointiviestiä ei löytynyt.",
       "audienceNotTargetable": "Valittu mukautettu kohderyhmä ei ole valmis tai ei kuulu tälle sivulle ja mainostilille.",
-      "connectFirst": "Yhdistä Marketing Messages ensin ChatbotX-sovelluksessa.",
+      "connectFirst": "Yhdistä Marketing Messages ensin InboxOS-sovelluksessa.",
       "mmInvalidState": "Tämä toiminto ei ole käytettävissä kampanjan nykyisessä tilassa.",
       "mmCampaignEnded": "Metan viestikampanja on päättynyt, joten sitä ei voi lähettää tai jatkaa.",
       "mmPageNotConnected": "Tämän kampanjan sivua ei ole yhdistetty tähän työtilaan.",
@@ -3507,7 +3507,7 @@
       "uploadMore": "Lähetä lisää rivejä",
       "empty": "Ei vielä mukautettuja kohderyhmiä.",
       "deleteTitle": "Poista mukautettu kohderyhmä",
-      "deleteWarning": "Tämä poistaa mukautetun kohderyhmän \"{name}\" Metasta ja ChatbotX:stä. Toimintoa ei voi peruuttaa.",
+      "deleteWarning": "Tämä poistaa mukautetun kohderyhmän \"{name}\" Metasta ja InboxOS:stä. Toimintoa ei voi peruuttaa.",
       "deleted": "Mukautettu kohderyhmä poistettu.",
       "pageDisconnected": "Sivun yhteys katkaistu",
       "status": {
@@ -5521,7 +5521,7 @@
         "title": "Puheluoikeus",
         "appSubscriptionMissing": "Määritä ensin WhatsApp-webhook tälle sovellukselle Meta-sovelluspaneelissa ja yritä sitten uudelleen.",
         "appSubscriptionFailed": "Sovelluksen 'calls'-webhook-tilausta ei voitu vahvistaa. Yritä pian uudelleen.",
-        "callsNotSubscribed": "Tämä sovellus ei ole tilannut 'calls'-webhook-kenttää, joten puhelutapahtumat eivät voi tavoittaa ChatbotX:ää (Meta-virhe 138018: tekniset edellytykset eivät täyty — varmista, että ainakin yhdellä WABA:an tilatulla sovelluksella on myös puhelujen webhook-kenttä).",
+        "callsNotSubscribed": "Tämä sovellus ei ole tilannut 'calls'-webhook-kenttää, joten puhelutapahtumat eivät voi tavoittaa InboxOS:ää (Meta-virhe 138018: tekniset edellytykset eivät täyty — varmista, että ainakin yhdellä WABA:an tilatulla sovelluksella on myös puhelujen webhook-kenttä).",
         "fixButton": "Korjaa",
         "fixSuccess": "Sovellus on nyt tilannut WhatsApp-puheluwebhookit.",
         "manualIntegrationNotice": "Tämä numero yhdistettiin manuaalisesti, ja sillä ei ole sovellustunnuksia tässä. Tilaa 'calls'-webhook-kenttä sovellukselle Meta-sovelluspaneelissa.",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Toiminnon lähde",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "Kaupan lähde",
         "description": "Valitse kaupan lähde, jonka kautta hallitset tuotteita, varastoa ja tilauksia. Kun valittuna on Shopify / WooCommerce, kaikkia tuotteita ja tilauksia hallitaan suoraan Shopify / WooCommerce-kaupastasi.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "Todennus",
-        "description": "Miten ChatbotX kirjautuu kauppaasi: mukautetun sovelluksen Admin API -käyttöoikeustunnuksella tai Shopify Dev Dashboardissa luodun sovelluksen Client ID:llä ja secretillä.",
+        "description": "Miten InboxOS kirjautuu kauppaasi: mukautetun sovelluksen Admin API -käyttöoikeustunnuksella tai Shopify Dev Dashboardissa luodun sovelluksen Client ID:llä ja secretillä.",
         "options": {
           "token": "Admin API -käyttöoikeustunnus",
           "clientCredentials": "Client ID ja secret (Dev Dashboard -sovellus)"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} voi toimia vain tässä työtilassa. Vaihda myöhemmin katkaisemalla yhteys ja yhdistämällä uudelleen.",
     "noWorkspaces": "Et ole minkään työtilan ylläpitäjä, joten et voi valtuuttaa tätä sovellusta."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "Poista ChatbotX-tilisi",
+    "title": "Poista InboxOS-tilisi",
     "intro": "Voit poistaa tilisi ja sen tiedot jollakin seuraavista tavoista.",
     "waysTitle": "Tilin poistaminen",
     "wayMobile": "Mobiilisovelluksessa: Asetukset → Poista tili.",

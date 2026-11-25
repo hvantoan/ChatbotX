@@ -2,7 +2,7 @@ import {
   getPublicHostFromRequest,
   getPublicOriginFromRequest,
   getPublicProtocolFromRequest,
-} from "@chatbotx.io/utils"
+} from "@inboxos.io/utils"
 import { getSessionCookie } from "better-auth/cookies"
 import { headers } from "next/headers"
 import { type NextRequest, NextResponse } from "next/server"

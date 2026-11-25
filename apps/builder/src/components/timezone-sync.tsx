@@ -1,6 +1,6 @@
 "use client"
 
-import { resolveFilterTimezone } from "@chatbotx.io/utils/datetime"
+import { resolveFilterTimezone } from "@inboxos.io/utils/datetime"
 import { useRouter } from "next/navigation"
 import { startTransition, useEffect, useRef } from "react"
 import { getBrowserTimezone } from "@/features/contact-filter/lib/timezone"

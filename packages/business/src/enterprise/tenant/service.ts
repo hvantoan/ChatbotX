@@ -1,15 +1,15 @@
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   type ChannelType,
   CREATABLE_CHANNELS,
   ROOT_TENANT_ID,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   connectionRepository,
   inboxRepository,
-} from "@chatbotx.io/database/repositories"
-import { tenantModel } from "@chatbotx.io/database/schema"
-import { invalidateCacheByTags, withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import { tenantModel } from "@inboxos.io/database/schema"
+import { invalidateCacheByTags, withCache } from "@inboxos.io/redis"
 import { connectionStateService } from "../../connection/state-service"
 import { inboxService } from "../../inbox/service"
 import { logger } from "../../logger"

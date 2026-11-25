@@ -6,13 +6,13 @@ const runExclusive = vi.fn(
 )
 const info = vi.fn()
 const error = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   mcpOAuthService: { purgeExpiredTokens },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive },
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ error, info }),
 }))
 

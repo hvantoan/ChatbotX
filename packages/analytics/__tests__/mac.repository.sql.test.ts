@@ -1,4 +1,4 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { describe, expect, test } from "vitest"
 import { MacRepository } from "../src/repositories/postgres/mac.repository"

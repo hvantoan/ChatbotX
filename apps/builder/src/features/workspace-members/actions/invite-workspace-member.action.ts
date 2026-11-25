@@ -4,9 +4,9 @@ import {
   invitationService,
   quotaEnforcementService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { isCommunity } from "@/env"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
@@ -28,7 +28,7 @@ export const inviteWorkspaceMemberAction = workspaceActionClient
     const currentUserAndTargetChatbot =
       await getCurrentUserAndTargetWorkspace(workspaceId)
     if (!currentUserAndTargetChatbot) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You are not authorized to invite a workspace member",
       )
     }
@@ -36,7 +36,7 @@ export const inviteWorkspaceMemberAction = workspaceActionClient
     const currentPermissions =
       currentUserAndTargetChatbot.targetWorkspaceMember.permissions
     if (!hasWorkspacePermission(currentPermissions, "superAdmin")) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You are not authorized to invite a workspace member. You need to be a super admin to do this.",
       )
     }
@@ -46,7 +46,7 @@ export const inviteWorkspaceMemberAction = workspaceActionClient
       metric: "teamMembers",
     })
     if (atLimit) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Team member limit reached for this workspace plan",
       )
     }

@@ -24,7 +24,7 @@ export const orderSources = z.enum([
 export type OrderSource = z.infer<typeof orderSources>
 
 /**
- * Where the store's catalog and orders live. `chatbotx` is our own tables;
+ * Where the store's catalog and orders live. `inboxos` is our own tables;
  * `shopify` and `woocommerce` mirror a connected external store, read-only
  * here. Each product, category, vendor and discount code carries the source
  * it came from, and every list shows only the rows of the store's current

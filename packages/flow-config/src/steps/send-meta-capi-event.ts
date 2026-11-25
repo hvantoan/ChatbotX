@@ -1,4 +1,4 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
 import {
   defaultMetaCapiActionSource,
   eventNamesByCatalog,
@@ -10,8 +10,8 @@ import {
   metaCapiCurrencySchema,
   metaCapiEventNameSchema,
   metaCapiValueSchema,
-} from "@chatbotx.io/utils/meta-capi"
-import { containsVariablePlaceholder } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/utils/meta-capi"
+import { containsVariablePlaceholder } from "@inboxos.io/utils/variables"
 import { z } from "zod"
 import {
   errorStateDefaultFn,

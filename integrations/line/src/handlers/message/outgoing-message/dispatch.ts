@@ -1,4 +1,4 @@
-import type { Context } from "@chatbotx.io/sdk"
+import type { Context } from "@inboxos.io/sdk"
 import { chunk } from "remeda"
 import { lineFetch } from "../../../apis/client"
 import { LineAPIException } from "../../../exception"

@@ -1,8 +1,8 @@
-import { couponService } from "@chatbotx.io/business"
+import { couponService } from "@inboxos.io/business"
 import type {
   MarkCouponUsedStepSchema,
   SetUpCouponStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import type { ExecuteStepProps } from "./flow-utils"

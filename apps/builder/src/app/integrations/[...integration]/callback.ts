@@ -7,35 +7,35 @@ import {
   platformCredentialService,
   templateInstallIntentService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService, withAuditContext } from "@chatbotx.io/business/audit"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { auditService, withAuditContext } from "@inboxos.io/business/audit"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   CONNECTION_REGISTRY,
   connectionService,
   failSession,
-} from "@chatbotx.io/connections"
+} from "@inboxos.io/connections"
 import {
   type IntegrationType,
   messagingAdChannelTypes,
-} from "@chatbotx.io/database/partials"
-import type { ConnectSessionModel } from "@chatbotx.io/database/types"
-import { exchangeCodeForToken as exchangeInstagramCode } from "@chatbotx.io/integration-instagram"
-import { exchangeCodeForToken as exchangeInstagramFacebookCode } from "@chatbotx.io/integration-instagram-facebook"
+} from "@inboxos.io/database/partials"
+import type { ConnectSessionModel } from "@inboxos.io/database/types"
+import { exchangeCodeForToken as exchangeInstagramCode } from "@inboxos.io/integration-instagram"
+import { exchangeCodeForToken as exchangeInstagramFacebookCode } from "@inboxos.io/integration-instagram-facebook"
 import {
   buildThreadsAuthValue,
   exchangeCodeForToken as exchangeThreadsCode,
   getThreadsProfile,
-} from "@chatbotx.io/integration-threads"
-import { TiktokMissingScopesError } from "@chatbotx.io/integration-tiktok"
-import type { AuthValue, Oauth2AuthValue } from "@chatbotx.io/sdk"
-import { getPublicUrlFromRequest, zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-threads"
+import { TiktokMissingScopesError } from "@inboxos.io/integration-tiktok"
+import type { AuthValue, Oauth2AuthValue } from "@inboxos.io/sdk"
+import { getPublicUrlFromRequest, zodBigintAsString } from "@inboxos.io/utils"
 import {
   appendConnectError,
   type ConnectErrorQueryCode,
   connectFailureCauseOf,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"
 import { notFound, redirect } from "next/navigation"
 import type { NextRequest } from "next/server"
 import { normalizeError } from "universal-error-normalizer"
@@ -241,7 +241,7 @@ const unexpectedConnectErrorCode = (
     return cause
   }
   if (
-    err instanceof ChatbotXException &&
+    err instanceof InboxOSException &&
     err.code === "connectionNoCandidates"
   ) {
     return "no_candidates"
@@ -250,7 +250,7 @@ const unexpectedConnectErrorCode = (
   // connections layer already stored the precise code (`exchange_failed` or
   // `provider_error`) on the session, which the page reads via `?session=`.
   if (
-    err instanceof ChatbotXException &&
+    err instanceof InboxOSException &&
     err.code === "connectionCredentialsRejected"
   ) {
     return
@@ -389,7 +389,7 @@ const runConnectSessionCallback = async ({
     // it must NOT call `fail()` and flip a still-active session to
     // `failed` out from under the request that's actually progressing it.
     const isBenignReplay =
-      err instanceof ChatbotXException &&
+      err instanceof InboxOSException &&
       (err.code === "connectionStateMismatch" ||
         err.code === "connectSessionExpired")
     // A transient upstream/provider failure (`exchangeCode` 502/503) is
@@ -401,7 +401,7 @@ const runConnectSessionCallback = async ({
     // that already-reopened session out from under the retry it was just
     // reopened for.
     const isRetryable =
-      err instanceof ChatbotXException &&
+      err instanceof InboxOSException &&
       err.code === "connectionProviderUnavailable"
     if (isBenignReplay) {
       logger.debug(
@@ -425,7 +425,7 @@ const runConnectSessionCallback = async ({
       // callback into a 500 — the person still needs to land back on
       // `returnUrl`, and the session just stays in its prior (non-terminal)
       // status until the nightly reconcile or a future webhook retry —
-      // `failSession` (`@chatbotx.io/connections`) swallows that for us.
+      // `failSession` (`@inboxos.io/connections`) swallows that for us.
       logger.error(
         { err, sessionId: session.id, provider: session.provider },
         "connect session completeAuthorization failed",
@@ -1000,7 +1000,7 @@ export const handleCallback = async (
         // duplicated-channel toast instead of a 500 page. `redirect()` throws
         // NEXT_REDIRECT, so it must stay out of the `try` above.
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "channelDuplicated"
         ) {
           return redirect(

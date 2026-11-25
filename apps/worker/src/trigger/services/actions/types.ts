@@ -1,5 +1,5 @@
-import type { ContactInboxWorkspaceRow } from "@chatbotx.io/database/repositories"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+import type { ContactInboxWorkspaceRow } from "@inboxos.io/database/repositories"
+import type { ConversationModel } from "@inboxos.io/database/types"
 import type {
   ActionExecutionContext,
   ActionExecutionOutcome,

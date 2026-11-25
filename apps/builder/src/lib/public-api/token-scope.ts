@@ -1,4 +1,4 @@
-import type { WorkspaceApiTokenScope } from "@chatbotx.io/database/partials"
+import type { WorkspaceApiTokenScope } from "@inboxos.io/database/partials"
 import { ORPCError } from "@orpc/server"
 
 /**

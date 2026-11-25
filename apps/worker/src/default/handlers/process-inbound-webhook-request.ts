@@ -2,25 +2,25 @@ import {
   applyInboundWebhookPayload,
   contactInboxService,
   inboundWebhookService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   sanitizePublicText,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { toLoggableDatabaseError } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business/errors"
+import { toLoggableDatabaseError } from "@inboxos.io/database/client"
 import {
   INBOUND_WEBHOOK_LIMITS,
   INBOUND_WEBHOOK_REQUEST_ERROR_CODE,
   type InboundWebhookActionResult,
   type InboundWebhookFieldError,
   inboundWebhookActionTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   InboundWebhookModel,
   InboundWebhookRequestModel,
-} from "@chatbotx.io/database/types"
-import type { JobProcessInboundWebhookRequest } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import type { JobProcessInboundWebhookRequest } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { isFinalAttempt } from "../../lib/job-attempts"
 import { logger } from "../../lib/logger"
@@ -42,7 +42,7 @@ type ClaimedRequest = {
 const SERVER_ERROR_STATUS = 500
 
 const isBusinessError = (error: unknown): boolean =>
-  error instanceof ChatbotXException &&
+  error instanceof InboxOSException &&
   error.httpStatusCode < SERVER_ERROR_STATUS
 
 const orNull = <T>(items: T[]): T[] | null => (items.length > 0 ? items : null)
@@ -358,7 +358,7 @@ const settleFailedAttempt = async (input: {
         completion: {
           status: "failed",
           errorCode:
-            error instanceof ChatbotXException
+            error instanceof InboxOSException
               ? error.code
               : INBOUND_WEBHOOK_REQUEST_ERROR_CODE.systemError,
           errorMessage: shortMessage(error, PROCESSING_FAILED_MESSAGE),

@@ -1,11 +1,11 @@
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
-import { userRepository } from "@chatbotx.io/database/repositories"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
+import { userRepository } from "@inboxos.io/database/repositories"
 import {
   DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT,
   sendAccountCredentials,
-} from "@chatbotx.io/mail"
-import { isPlaceholderEmail } from "@chatbotx.io/utils/placeholder-email"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/mail"
+import { isPlaceholderEmail } from "@inboxos.io/utils/placeholder-email"
+import { InboxOSException } from "../errors"
 import { resolvePlatformSettings } from "../platform/settings"
 import { resolvePlatformSmtpTransport } from "../platform/smtp"
 import { userQuotaService } from "../user-quota/service"
@@ -31,7 +31,7 @@ export async function findOrProvisionRootUser(
   }
 
   if (isPlaceholderEmail(email)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Email address is reserved and cannot be provisioned",
       "invalidEmail",
       400,

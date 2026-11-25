@@ -3,21 +3,21 @@ import {
   contactInboxService,
   conversationService,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type ReplyValidationResult,
   validateReplyInput,
-} from "@chatbotx.io/business/get-user-data"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
+} from "@inboxos.io/business/get-user-data"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
 import {
   ensureAttachmentStored,
   MediaNotReadyError,
-} from "@chatbotx.io/channel-registry/media-hydration"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
+} from "@inboxos.io/channel-registry/media-hydration"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
 import {
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   GET_USER_DATA_WEBVIEW_SELECTION_PAYLOAD_TYPE,
   type GetUserDataStepSchema,
@@ -27,9 +27,9 @@ import {
   ReplyFormat,
   type StepInputResolutionReason,
   stepInputResolutionReasons,
-} from "@chatbotx.io/flow-config"
-import { IntegrationException } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { IntegrationException } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { add, isBefore } from "date-fns"
 import { logger } from "../../../lib/logger"
 import type { ExecuteStepProps } from "../flow"

@@ -1,7 +1,7 @@
 "use server"
 
-import { listConnectedCallSummaryProviders } from "@chatbotx.io/ai/server"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { listConnectedCallSummaryProviders } from "@inboxos.io/ai/server"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 
 /**

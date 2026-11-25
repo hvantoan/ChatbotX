@@ -1,4 +1,4 @@
-import { magicLinkService, resolveTenantSettings } from "@chatbotx.io/business"
+import { magicLinkService, resolveTenantSettings } from "@inboxos.io/business"
 import {
   possibleErrorsOnCreatingResource,
   possibleErrorsOnDeletingResource,

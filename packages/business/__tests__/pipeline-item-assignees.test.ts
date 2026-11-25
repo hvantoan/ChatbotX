@@ -1,13 +1,13 @@
 // @vitest-environment node
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
   listWorkspaceMembers: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pipelineItemRepository: {},
   pipelineReferenceRepository: {
     listWorkspaceMembers: mocks.listWorkspaceMembers,

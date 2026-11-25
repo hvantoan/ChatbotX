@@ -3,13 +3,13 @@ import {
   type ProviderAccountEventRequest,
   providerAccountEventService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   PROVIDER_ACCOUNT_TARGET_BATCH_SIZE,
   type ProviderAccountRouteScope,
   type ProviderAccountTarget,
-} from "@chatbotx.io/database/partials"
-import type { IntegrationJobProviderAccountEvent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import type { IntegrationJobProviderAccountEvent } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"
 

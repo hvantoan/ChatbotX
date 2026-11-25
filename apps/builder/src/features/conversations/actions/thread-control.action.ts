@@ -3,14 +3,14 @@
 import {
   conversationService,
   type ThreadControlSnapshot,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import { requestConversationThreadControl } from "@chatbotx.io/channel-registry/thread-control"
-import { threadControlActions } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/errors"
+import { requestConversationThreadControl } from "@inboxos.io/channel-registry/thread-control"
+import { threadControlActions } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { requireContactAccessForMember } from "@/features/contacts/permissions"
@@ -77,7 +77,7 @@ export const threadControlAction = workspaceActionClient
         })
         return { status: "applied", snapshot }
       } catch (error) {
-        if (error instanceof ChatbotXException && error.code === "notFound") {
+        if (error instanceof InboxOSException && error.code === "notFound") {
           throw notFoundException(t("conversationRouting.errors.notFound"))
         }
         return mapThreadControlError(error, parsedInput.action, t)

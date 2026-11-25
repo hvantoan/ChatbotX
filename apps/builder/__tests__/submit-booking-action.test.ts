@@ -24,7 +24,7 @@ vi.mock("@/lib/safe-action", () => {
   return { actionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentCalendarService: {
     resolveAvailableSlotsForListing: mocks.resolveAvailableSlotsForListing,
   },
@@ -39,15 +39,15 @@ vi.mock("@chatbotx.io/business", () => ({
   SlotUnavailableException,
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   verifyAppointmentWebviewToken: mocks.verifyAppointmentWebviewToken,
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   APPOINTMENT_WEBVIEW_SELECTION_PAYLOAD_TYPE: "appointmentWebviewSelection",
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: mocks.integrationQueueAdd },
 }))

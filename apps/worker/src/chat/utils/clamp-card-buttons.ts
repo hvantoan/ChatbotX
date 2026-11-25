@@ -4,8 +4,8 @@ import {
   getChannelFlowPolicy,
   type StepType,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 
 /**
  * Steps that are, or hold, cards. Only card buttons are clamped: see

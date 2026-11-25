@@ -41,7 +41,7 @@ COPY apps/worker/docker/rootfs/ /
 COPY --from=deps /app/apps/worker/dist /app/apps/worker/dist
 # The bundle leaves the native `sharp` addon external (tsdown `neverBundle`);
 # install it where `dist/*.mjs` resolves it. Keep the version in step with
-# `@chatbotx.io/utils`.
+# `@inboxos.io/utils`.
 # `@ai-sdk/provider-utils` (AI SDK v7) loads `undici` for URL downloads through
 # `createRequire(<bundle path>)("undici")`, which the bundler cannot inline, so
 # it must sit next to `dist` too. Keep the version equal to the one

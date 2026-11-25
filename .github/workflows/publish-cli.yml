@@ -7,8 +7,8 @@ name: Publish CLI to npm
 # placeholder `0.0.0-dev` and this workflow stamps the tag's version into it
 # before building, so nothing has to commit a version bump back to `main`
 # (which branch protection forbids) and the repo can never drift from npm.
-# `apps/cli/src/index.ts` reads that stamped value for `chatbotx --version`
-# (the bin command stays `chatbotx`; only the npm package name changed).
+# `apps/cli/src/index.ts` reads that stamped value for `inboxos --version`
+# (the bin command stays `inboxos`; only the npm package name changed).
 #
 # Quality gate: ci.yml (PR/push-to-main) and release.yml's `check` job already
 # run the repo-wide lint/types/test. This workflow cannot `needs:` a job in
@@ -52,7 +52,7 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish chatbotx
+    name: Publish inboxos
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -207,7 +207,7 @@ jobs:
       # Lets ChatbotXIO/chatbotx-agent's upstream-drift-check workflow run
       # immediately instead of waiting for its next scheduled run. Optional:
       # skipped entirely (via `continue-on-error` swallowing the failure)
-      # when CHATBOTX_AGENT_DISPATCH_TOKEN isn't configured, so this publish
+      # when INBOXOS_AGENT_DISPATCH_TOKEN isn't configured, so this publish
       # never fails just because that repo hasn't been wired up yet.
       #
       # One-time setup required before this does anything:
@@ -215,7 +215,7 @@ jobs:
       #      ChatbotXIO/chatbotx-agent repository, with "Contents: write"
       #      permission (needed to create a repository_dispatch event) and
       #      no other scopes.
-      #   2. Add it as a secret named CHATBOTX_AGENT_DISPATCH_TOKEN on this
+      #   2. Add it as a secret named INBOXOS_AGENT_DISPATCH_TOKEN on this
       #      repository (Settings → Secrets and variables → Actions).
       # The receiving workflow is .github/workflows/upstream-drift.yml in
       # chatbotx-agent, listening for event_type "upstream-published".
@@ -226,11 +226,11 @@ jobs:
           && steps.publish.outcome == 'success'
         continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.CHATBOTX_AGENT_DISPATCH_TOKEN }}
+          GH_TOKEN: ${{ secrets.INBOXOS_AGENT_DISPATCH_TOKEN }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           if [[ -z "${GH_TOKEN}" ]]; then
-            echo "CHATBOTX_AGENT_DISPATCH_TOKEN not set —" \
+            echo "INBOXOS_AGENT_DISPATCH_TOKEN not set —" \
               "skipping chatbotx-agent notification." \
               >> "$GITHUB_STEP_SUMMARY"
             exit 0

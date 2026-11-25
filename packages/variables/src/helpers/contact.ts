@@ -3,8 +3,8 @@ import {
   contactNoteService,
   contactReferralEventService,
   tagService,
-} from "@chatbotx.io/business"
-import { CONTACT_AD_IDS_LIMIT } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { CONTACT_AD_IDS_LIMIT } from "@inboxos.io/database/partials"
 
 export const listContactTagsString = async (
   contactId: string,

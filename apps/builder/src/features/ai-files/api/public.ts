@@ -1,10 +1,10 @@
-import { searchAIFiles } from "@chatbotx.io/ai/server"
-import { aiFileService } from "@chatbotx.io/business"
+import { searchAIFiles } from "@inboxos.io/ai/server"
+import { aiFileService } from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
@@ -108,7 +108,7 @@ export const aiFilesPublicRouter = {
         return await aiFileService.create(context.workspace.id, { name, file })
       }
       if (!url) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Provide either 'file' or 'url'.",
           "businessError",
           400,

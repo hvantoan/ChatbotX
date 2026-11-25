@@ -1,11 +1,11 @@
-import { buildContext } from "@chatbotx.io/business"
-import type { CommentHideComments } from "@chatbotx.io/database/partials"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
+import { buildContext } from "@inboxos.io/business"
+import type { CommentHideComments } from "@inboxos.io/database/partials"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
 import type {
   ThreadsAuthValue,
   ThreadsReplyAttachment,
-} from "@chatbotx.io/integration-threads"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-threads"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { allIntegrations } from "../../../services/integrations"
 import type { CommentAutomationChannelType } from "./channel-type"
 

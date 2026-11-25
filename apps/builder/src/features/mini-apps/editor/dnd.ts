@@ -1,12 +1,4 @@
 import {
-  canPlaceInSlot,
-  getSlotOwnerType,
-  isDescendantOf,
-  type MiniAppComponentType,
-  type MiniAppDefinition,
-  type MiniAppSlotAddress,
-} from "@chatbotx.io/mini-app"
-import {
   type ClientRect,
   type CollisionDetection,
   type DragEndEvent,
@@ -14,6 +6,14 @@ import {
   pointerWithin,
   rectIntersection,
 } from "@dnd-kit/core"
+import {
+  canPlaceInSlot,
+  getSlotOwnerType,
+  isDescendantOf,
+  type MiniAppComponentType,
+  type MiniAppDefinition,
+  type MiniAppSlotAddress,
+} from "@inboxos.io/mini-app"
 
 export type DragSource =
   | { kind: "palette"; type: MiniAppComponentType }

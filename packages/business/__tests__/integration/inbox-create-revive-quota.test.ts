@@ -16,17 +16,17 @@
  * against Postgres.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { db, eq } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   inboxModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { describe, expect, type MockInstance, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */

@@ -1,8 +1,8 @@
 "use server"
 
-import { aiMcpServerService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { aiMcpServerService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { workspaceActionClient } from "@/lib/safe-action"
 

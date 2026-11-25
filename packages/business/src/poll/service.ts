@@ -1,12 +1,12 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   flowRepository,
   type PollCandidateInput,
   type PollWithCandidates,
   pollRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { assertReferencable } from "../template/installed-resource.service"
 import { withTemplateLockedTransaction } from "../template/template-resource-locks"
 import { computePollAnalytics } from "./analytics"
@@ -51,7 +51,7 @@ export type PollUpdateData = Partial<PollFields> & {
 
 const assertDateRange = (startsAt: Date, endsAt: Date) => {
   if (endsAt.getTime() <= startsAt.getTime()) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Poll end must be after its start",
       "pollInvalidDateRange",
       400,
@@ -61,7 +61,7 @@ const assertDateRange = (startsAt: Date, endsAt: Date) => {
 
 const assertCandidateCount = (count: number) => {
   if (count < POLL_MIN_CANDIDATES || count > POLL_MAX_CANDIDATES) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `A poll needs between ${POLL_MIN_CANDIDATES} and ${POLL_MAX_CANDIDATES} candidates`,
       "pollCandidateCount",
       400,
@@ -144,7 +144,7 @@ class PollService extends BaseService {
       id: flowId,
     })
     if (!exists) {
-      throw new ChatbotXException("Flow not found", "pollFlowNotFound", 400)
+      throw new InboxOSException("Flow not found", "pollFlowNotFound", 400)
     }
   }
 
@@ -203,7 +203,7 @@ class PollService extends BaseService {
             continue
           }
           if (!existingIds.has(candidate.id) || keptIds.has(candidate.id)) {
-            throw new ChatbotXException(
+            throw new InboxOSException(
               "Candidate does not belong to this poll",
               "pollCandidateNotInPoll",
               400,

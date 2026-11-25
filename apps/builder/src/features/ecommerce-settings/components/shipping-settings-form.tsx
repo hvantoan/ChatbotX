@@ -3,12 +3,12 @@
 import {
   type EcommerceShippingSettings,
   shippingModes,
-} from "@chatbotx.io/database/partials"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/database/partials"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { PRICE_INPUT_PROPS } from "@/features/products/constants"

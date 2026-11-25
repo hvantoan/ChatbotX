@@ -1,6 +1,6 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 

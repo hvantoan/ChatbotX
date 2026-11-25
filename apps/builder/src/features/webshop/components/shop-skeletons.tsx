@@ -1,4 +1,4 @@
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import type { ReactNode } from "react"
 
 const GRID_PLACEHOLDERS = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]

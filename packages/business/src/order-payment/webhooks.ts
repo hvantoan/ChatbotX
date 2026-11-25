@@ -1,16 +1,16 @@
-import type { OnlinePaymentProvider } from "@chatbotx.io/database/partials"
+import type { OnlinePaymentProvider } from "@inboxos.io/database/partials"
 import {
   isPaymentProviderError,
   type PaymentWebhookEvent,
   parsePaypalWebhook,
   parseStripeAccountWebhook,
   parseStripeConnectWebhook,
-} from "@chatbotx.io/payments"
+} from "@inboxos.io/payments"
 import {
   getOrderPaymentEventJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { paymentProviderService } from "../payment-provider/service"
 

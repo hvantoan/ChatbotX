@@ -2,10 +2,10 @@ import {
   templateInstallIntentService,
   type WorkspaceQuotaConsumption,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { redirect } from "next/navigation"
 import type { MessageKey } from "@/features/channel-connect/lib/message-key"
 
@@ -15,7 +15,7 @@ const DEFAULT_WORKSPACE_NAME = "New Workspace"
 const CREATE_CHANNEL_ERROR_PARAM = "error"
 
 /**
- * Known failures keyed by `ChatbotXException.code` or connect-flow error code
+ * Known failures keyed by `InboxOSException.code` or connect-flow error code
  * → the copy `/channels/create` shows for them. Any other error keeps
  * propagating, so an unexpected failure is never dressed up as a known error.
  */
@@ -74,7 +74,7 @@ function createChannelErrorPath(code: CreateChannelErrorCode): string {
 /** The `/channels/create` path for a known plan-limit failure, or `null` when the error must keep propagating. */
 function createChannelErrorPathFor(error: unknown): string | null {
   if (
-    error instanceof ChatbotXException &&
+    error instanceof InboxOSException &&
     isCreateChannelErrorCode(error.code)
   ) {
     return createChannelErrorPath(error.code)

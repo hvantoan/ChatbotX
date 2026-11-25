@@ -30,29 +30,29 @@ vi.mock("@/lib/platform-credential-owner", () => ({
   resolveOwnerForWorkspace: resolveOwnerForWorkspaceMock,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: { resolveForOwner: resolveForOwnerMock },
   contactInboxService: { findBy: findContactInboxMock },
 }))
 
-vi.mock("@chatbotx.io/business/errors", async () => {
+vi.mock("@inboxos.io/business/errors", async () => {
   // The real redactor - the probe's whole job is relaying Meta's sentence
   // safely, so stubbing it would prove nothing.
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/business/errors")
-  >("@chatbotx.io/business/errors")
+    typeof import("@inboxos.io/business/errors")
+  >("@inboxos.io/business/errors")
   return { sanitizePublicText: actual.sanitizePublicText }
 })
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   channelTypes: { enum: { whatsapp: "whatsapp" } },
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/calling", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/calling", () => ({
   getCallPermissions: getCallPermissionsMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/app-subscriptions", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/app-subscriptions", () => ({
   getAppWebhookSubscriptions: getAppWebhookSubscriptionsMock,
   WHATSAPP_APP_SUBSCRIPTION_OBJECT: {
     WHATSAPP_BUSINESS_ACCOUNT: "whatsapp_business_account",
@@ -63,7 +63,7 @@ vi.mock("@chatbotx.io/integration-whatsapp/api/app-subscriptions", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/phone-number", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/phone-number", () => ({
   findPhoneNumberDetail: findPhoneNumberDetailMock,
 }))
 

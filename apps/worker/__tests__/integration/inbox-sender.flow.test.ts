@@ -1,11 +1,11 @@
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   contactInboxModel,
   flowModel,
   flowVersionModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
-import { chatQueue, integrationQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
+import { chatQueue, integrationQueue } from "@inboxos.io/worker-config"
 import {
   afterAll,
   beforeAll,
@@ -32,15 +32,12 @@ import {
 // Only the outbound Graph call is stubbed (and captured): createOutgoing, the
 // worker's sendFlowStep, variable resolution and message persistence are real.
 const graph = vi.hoisted(() => ({ sendMessage: vi.fn() }))
-vi.mock(
-  "@chatbotx.io/integration-messenger/apis/message",
-  async (original) => ({
-    ...(await original<
-      typeof import("@chatbotx.io/integration-messenger/apis/message")
-    >()),
-    sendMessage: graph.sendMessage,
-  }),
-)
+vi.mock("@inboxos.io/integration-messenger/apis/message", async (original) => ({
+  ...(await original<
+    typeof import("@inboxos.io/integration-messenger/apis/message")
+  >()),
+  sendMessage: graph.sendMessage,
+}))
 
 const TEXT = "[{{admin_name}}]/[{{admin_team_name}}]"
 

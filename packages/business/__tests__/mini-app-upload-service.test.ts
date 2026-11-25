@@ -7,17 +7,17 @@ const { putObject, insertValues, selectRows, updateWhere } = vi.hoisted(() => ({
   updateWhere: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ and: conditions })),
   db: { insert: vi.fn(() => ({ values: insertValues })) },
   eq: vi.fn((column: unknown, value: unknown) => ({ eq: [column, value] })),
   inArray: vi.fn(),
   isNull: vi.fn((column: unknown) => ({ isNull: column })),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   miniAppUploadModel: { contactId: "contactId", id: "id" },
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploader: { putObject } }))
+vi.mock("@inboxos.io/filesystem", () => ({ uploader: { putObject } }))
 vi.mock("../src/contact/service", () => ({
   contactService: {
     findById: vi.fn(async ({ id }: { id: string }) =>

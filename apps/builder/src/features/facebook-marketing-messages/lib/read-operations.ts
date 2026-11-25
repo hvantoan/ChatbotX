@@ -3,10 +3,10 @@ import "server-only"
 import {
   messengerIntegrationService,
   resolveMarketingMessagePageToken,
-} from "@chatbotx.io/business"
-import { facebookMarketingMessageAudienceService } from "@chatbotx.io/business/facebook-marketing-message-audience"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { getMarketingMessagesAdAccounts } from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/business"
+import { facebookMarketingMessageAudienceService } from "@inboxos.io/business/facebook-marketing-message-audience"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { getMarketingMessagesAdAccounts } from "@inboxos.io/integration-facebook-ads"
 import { toAdAccountOption } from "./ad-account-option"
 import { requireValidGrant } from "./grant"
 

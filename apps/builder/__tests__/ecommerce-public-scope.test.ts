@@ -21,7 +21,7 @@ const vendorService = { list: vi.fn() }
 const ecommerceSettingsService = { get: vi.fn() }
 const ecommerceOpenHoursService = { list: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },

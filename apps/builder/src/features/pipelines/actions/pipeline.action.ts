@@ -1,6 +1,6 @@
 "use server"
 
-import { pipelineService } from "@chatbotx.io/business/pipeline"
+import { pipelineService } from "@inboxos.io/business/pipeline"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import {
   workspaceActionClient,

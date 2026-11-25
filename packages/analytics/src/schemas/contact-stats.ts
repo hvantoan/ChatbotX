@@ -1,4 +1,4 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { agentResponseSlaStatsShape } from "./agent-response"
 import { analyticsFilterFields, timeRangeQuerySchema } from "./common"

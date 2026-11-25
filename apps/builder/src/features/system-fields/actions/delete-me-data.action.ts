@@ -1,7 +1,7 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { systemFieldService } from "@chatbotx.io/business/system-field"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { systemFieldService } from "@inboxos.io/business/system-field"
 import { actionClient } from "@/lib/safe-action"
 import { loadServableWorkspace } from "@/lib/workspace/load-servable-workspace"
 import {
@@ -21,7 +21,7 @@ export async function handleDeleteMeData({
 }) {
   const { servable } = await loadServableWorkspace(parsedInput.w)
   if (!servable) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "workspaceScheduledDeletion",
       "workspaceScheduledDeletion",
       403,

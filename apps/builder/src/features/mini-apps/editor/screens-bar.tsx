@@ -1,8 +1,8 @@
 "use client"
 
-import { isTerminalScreen, screenLabel } from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { isTerminalScreen, screenLabel } from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CheckCircle2Icon, PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useDefaultText } from "../lib/use-default-text"

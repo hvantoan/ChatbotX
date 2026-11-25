@@ -1,8 +1,8 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   isVerifiableReferenceKind,
   referenceExistenceRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   isWorkspaceBoundReferenceValue,
   REFERENCE_KIND_POLICY,
@@ -12,7 +12,7 @@ import {
   removeUnresolvedReferencesDetailed,
   STRIP_UNRESOLVED_ARRAY_REFERENCE_KINDS,
   type UnresolvedReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 /** Policies whose references can never be kept as the source wrote them. */
 const REMOVE_WHEN_UNRESOLVED: ReadonlySet<ReferencePolicy> = new Set([

@@ -6,13 +6,13 @@ const mocks = vi.hoisted(() => ({
   add: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   importService: {
     startProductImport: mocks.startProductImport,
     fail: mocks.fail,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: { runImport: "runImport" },
   defaultQueue: { add: mocks.add },
 }))

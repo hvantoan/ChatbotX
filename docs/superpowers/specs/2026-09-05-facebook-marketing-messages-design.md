@@ -217,7 +217,7 @@ workspaceActionClient.bindArgsSchemas(workspaceIdrequestParams)
        type: "messenger",
     })
   → if (!credential || !credential.config.marketingMessagesConfigId)
-       throw new ChatbotXException(t("facebookMarketingMessages.errors.notConfigured"))
+       throw new InboxOSException(t("facebookMarketingMessages.errors.notConfigured"))
   → redirectUrl = await buildProviderCallbackUrl(credential, "/integrations/messenger/callback")
   → referer    = `${baseUrl}/space/${ctx.workspace.id}/fb-marketing-messages`
   → redirect(generateMarketingMessagesAuthUrl({
@@ -401,7 +401,7 @@ a campaign row.
   `packages/business/src/index.ts` (currently line ~67 for
   `./messaging-ads-connection`).
 - Nothing in `apps/` imports `db` (invariant 9).
-- Migration via `pnpm --filter @chatbotx.io/database make:migration`. **Show the
+- Migration via `pnpm --filter @inboxos.io/database make:migration`. **Show the
   SQL; do not run `db:migrate`.** Trim the generated `migration.sql` to only
   these two tables — `make:migration` re-emits already-applied tables.
 

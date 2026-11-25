@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   addInstallationWarning: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateAiFileDispatchRepository: {
     listQueuedBefore: mocks.listQueuedBefore,
     listQueuedForInstallation: mocks.listQueuedForInstallation,

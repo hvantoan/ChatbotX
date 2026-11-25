@@ -1,14 +1,14 @@
-import { decisionRepository } from "@chatbotx.io/database/repositories"
+import { decisionRepository } from "@inboxos.io/database/repositories"
 import type {
   DecisionConnectionModel,
   DecisionProfileModel,
-} from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import { distributedStore } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
+import { distributedStore } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { normalizeDecisionProviderResponse } from "./adapters"
 import { normalizeCompatibleEndpoint } from "./compatible-url"
 import {
@@ -168,7 +168,7 @@ class DecisionConnectionService extends BaseService {
       CONNECTION_TEST_THROTTLE_SECONDS,
     )
     if (!acquired) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Decision connection test is already running or was run recently",
         "decisionConnectionTestThrottled",
         429,
@@ -176,7 +176,7 @@ class DecisionConnectionService extends BaseService {
     }
     const model = connection.defaultModel ?? connection.modelCatalog[0]
     if (!model) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Decision connection has no model",
         "invalidDecisionModel",
       )
@@ -291,7 +291,7 @@ class DecisionConnectionService extends BaseService {
       connection.status !== "enabled" ||
       !connection.modelCatalog.includes(profile.model)
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Decision revision has no enabled compatible connection",
         "invalidDecisionReference",
       )
@@ -303,7 +303,7 @@ class DecisionConnectionService extends BaseService {
     modelCatalog: string[]
   }): void {
     if (input.modelCatalog.length === 0) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Decision connection must have at least one model",
         "invalidDecisionModel",
       )
@@ -312,7 +312,7 @@ class DecisionConnectionService extends BaseService {
       input.defaultModel &&
       !input.modelCatalog.includes(input.defaultModel.trim())
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Default decision model must be in the connection catalog",
         "invalidDecisionModel",
       )
@@ -330,7 +330,7 @@ class DecisionConnectionService extends BaseService {
       return null
     }
     if (!input.endpoint) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "System One Compatible requires an endpoint",
         "invalidDecisionEndpoint",
       )

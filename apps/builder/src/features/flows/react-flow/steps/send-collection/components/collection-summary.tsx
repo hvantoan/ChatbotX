@@ -1,6 +1,6 @@
 "use client"
 
-import type { SendCollectionStepSchema } from "@chatbotx.io/flow-config"
+import type { SendCollectionStepSchema } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { useCollectionOptions } from "./use-collection-options"
 

@@ -1,7 +1,7 @@
 import {
   ChannelErrorCategory,
   ThreadControlTakeRefusedError,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import {
   envelope,
@@ -27,8 +27,8 @@ vi.mock("whatsapp-api-js/middleware/next", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils/crypto", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils/crypto")>()),
+vi.mock("@inboxos.io/utils/crypto", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils/crypto")>()),
   verifyHmacSha256Signature: vi.fn().mockResolvedValue(true),
 }))
 

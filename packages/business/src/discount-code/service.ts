@@ -1,7 +1,7 @@
 import {
   type DatabaseClient,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type DiscountAppliesTo,
   type DiscountCustomerFilter,
@@ -11,20 +11,20 @@ import {
   isExternalStoreSource,
   type ShippingType,
   type StoreSource,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type DiscountCodeListInput,
   type DiscountCodeWriteValues,
   discountCodeRepository,
   productCategoryRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
-import type { DiscountCodeModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { DiscountCodeModel } from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
 import { contactService } from "../contact/service"
 import { resolveStoreSource } from "../ecommerce-settings/store-source"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -229,7 +229,7 @@ class DiscountCodeService extends BaseService {
         return code
       }
     }
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Could not generate a free code.",
       "systemError",
       500,
@@ -417,7 +417,7 @@ class DiscountCodeService extends BaseService {
         { ...order, tx: undefined },
         now,
       ).catch((error: unknown) => {
-        if (error instanceof ChatbotXException) {
+        if (error instanceof InboxOSException) {
           return null
         }
         throw error
@@ -434,7 +434,7 @@ class DiscountCodeService extends BaseService {
       }
       const applied = await this.price(best.discountCode, order, now).catch(
         (error: unknown) => {
-          if (error instanceof ChatbotXException) {
+          if (error instanceof InboxOSException) {
             return null
           }
           throw error
@@ -474,7 +474,7 @@ class DiscountCodeService extends BaseService {
       }
       const applied = await this.price(candidate, order, now).catch(
         (error: unknown) => {
-          if (error instanceof ChatbotXException) {
+          if (error instanceof InboxOSException) {
             return UNAVAILABLE_STATUS_BY_ERROR[error.code] ?? null
           }
           throw error

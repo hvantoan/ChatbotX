@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ findExistingIds: vi.fn() }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   referenceExistenceRepository: { findExistingIds: mocks.findExistingIds },
   isVerifiableReferenceKind: (kind: string) =>
     ["inbox", "sequence", "tag"].includes(kind),

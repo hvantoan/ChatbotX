@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   sequencesCollect: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       tagModel: { findMany: mocks.tagFindMany },

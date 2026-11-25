@@ -1,25 +1,25 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   isAwaitingOnlinePayment,
   isOnlinePaymentMethod,
   type OnlinePaymentProvider,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   orderPaymentDueRepository,
   orderPaymentRepository,
   orderRepository,
-} from "@chatbotx.io/database/repositories"
-import type { OrderModel, OrderPaymentModel } from "@chatbotx.io/database/types"
-import { signShopToken } from "@chatbotx.io/encryption/shop-token"
+} from "@inboxos.io/database/repositories"
+import type { OrderModel, OrderPaymentModel } from "@inboxos.io/database/types"
+import { signShopToken } from "@inboxos.io/encryption/shop-token"
 import type {
   CheckoutStatus,
   PaymentGateway,
   PaymentMetadata,
-} from "@chatbotx.io/payments"
-import { createId } from "@chatbotx.io/utils"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/payments"
+import { createId } from "@inboxos.io/utils"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import {
   orderPaymentContactRequiredException,
@@ -369,7 +369,7 @@ class OrderPaymentService extends BaseService {
         return await this.settleLatePayment(input, now)
       }
       if (
-        error instanceof ChatbotXException &&
+        error instanceof InboxOSException &&
         error.code === "orderInvalidStatusTransition"
       ) {
         return "skipped"

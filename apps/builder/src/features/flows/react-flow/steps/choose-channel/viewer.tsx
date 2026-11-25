@@ -1,7 +1,7 @@
 "use client"
 
-import { channelTypes } from "@chatbotx.io/database/partials"
-import type { ChooseChannelStepSchema } from "@chatbotx.io/flow-config"
+import { channelTypes } from "@inboxos.io/database/partials"
+import type { ChooseChannelStepSchema } from "@inboxos.io/flow-config"
 import { InboxIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useConfiguredInboxTypeOptions } from "@/features/inboxes/provider/inbox-hook"

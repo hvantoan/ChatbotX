@@ -1,19 +1,19 @@
 "use client"
 
-import { DateRangePresetFilter } from "@chatbotx.io/analytics-nextjs/components/date-range-preset-filter"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { DateRangePresetFilter } from "@inboxos.io/analytics-nextjs/components/date-range-preset-filter"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import {
   Table,
   TableBody,
@@ -21,8 +21,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/table"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   ArrowDownIcon,
   ArrowUpIcon,

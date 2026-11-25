@@ -1,4 +1,4 @@
-import type { AgentResponseSeriesRow } from "@chatbotx.io/analytics"
+import type { AgentResponseSeriesRow } from "@inboxos.io/analytics"
 import { formatDateWithYear } from "./date-format"
 import { secondsToMinutes } from "./format-duration"
 

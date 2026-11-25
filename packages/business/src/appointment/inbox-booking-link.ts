@@ -2,16 +2,16 @@ import type {
   ContactInboxModel,
   ConversationModel,
   UserModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   APPOINTMENT_INBOX_LINK_TTL_MS,
   signAppointmentWebviewTokenWithExpiry,
-} from "@chatbotx.io/encryption"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/encryption"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { normalizeError } from "universal-error-normalizer"
 import { appointmentCalendarService } from "../appointment-calendar"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { logger } from "../logger"
 import { messageService } from "../message/service"
 import { getAppointmentSchedulingCopy } from "./copy"
@@ -36,7 +36,7 @@ export async function createInboxBookingLink(
     id: input.calendarId,
   })
   if (!calendar.active) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Appointment calendar is inactive",
       "appointmentCalendarInactive",
       409,

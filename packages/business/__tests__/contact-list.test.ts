@@ -16,8 +16,8 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 //    used otherwise.
 // ---------------------------------------------------------------------------
 
-const { db } = await import("@chatbotx.io/database/client")
-const { contactRepository } = await import("@chatbotx.io/database/repositories")
+const { db } = await import("@inboxos.io/database/client")
+const { contactRepository } = await import("@inboxos.io/database/repositories")
 const { inboxService } = await import("../src/inbox/service")
 const { count, list, UNSCOPED } = await import("../src/contact/list")
 

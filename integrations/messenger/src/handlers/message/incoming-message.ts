@@ -1,4 +1,4 @@
-import { normalizeMetaAdReferral } from "@chatbotx.io/business/referral"
+import { normalizeMetaAdReferral } from "@inboxos.io/business/referral"
 import {
   type Context,
   contentTypes,
@@ -14,13 +14,13 @@ import {
   type ThreadControlReceiveInfo,
   threadControlRoles,
   toPendingIncomingAttachment,
-} from "@chatbotx.io/sdk"
-import { consumeGoogleClickRef } from "@chatbotx.io/utils/google-click"
-import { isLiveMediaDeferrableUrl } from "@chatbotx.io/utils/live-media"
+} from "@inboxos.io/sdk"
+import { consumeGoogleClickRef } from "@inboxos.io/utils/google-click"
+import { isLiveMediaDeferrableUrl } from "@inboxos.io/utils/live-media"
 import {
   metaReferralTypes,
   PAID_AD_REFERRAL_SOURCE,
-} from "@chatbotx.io/utils/referral"
+} from "@inboxos.io/utils/referral"
 import { z } from "zod"
 import { getMessageAttachmentEntity } from "../../apis/attachment"
 import { MessengerException } from "../../exception"
@@ -380,7 +380,7 @@ const getMessageEntity = async (
     referral = normalizeMetaAdReferral(storedReferral)
 
     // A Google Click-to-Message ref (`gclid:<id>,...`) is attribution, not a
-    // ChatbotX reflink: consume it so the ref router never looks it up.
+    // InboxOS reflink: consume it so the ref router never looks it up.
     const captured = consumeGoogleClickRef(
       rawReferral.ref,
       messengerTimestampToOccurredAt(messaging.timestamp),

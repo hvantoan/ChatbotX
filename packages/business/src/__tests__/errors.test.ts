@@ -2,7 +2,6 @@ import { describe, expect, test } from "vitest"
 import {
   BROADCAST_PLAN_LIMIT_CODE,
   broadcastPlanLimitException,
-  ChatbotXException,
   channelDuplicatedException,
   channelHiddenException,
   channelLimitReachedException,
@@ -20,6 +19,7 @@ import {
   connectionWrongStrategyException,
   connectSessionExpiredException,
   credentialMissingException,
+  InboxOSException,
   notFoundException,
   notWorkspaceMemberException,
   summaryAlreadyGeneratingException,
@@ -36,7 +36,7 @@ import {
  */
 const SIMPLE_FACTORIES: {
   name: string
-  factory: (arg: string) => ChatbotXException
+  factory: (arg: string) => InboxOSException
   code: string
   httpStatusCode: number
 }[] = [
@@ -164,13 +164,13 @@ const SIMPLE_FACTORIES: {
 
 test.each(
   SIMPLE_FACTORIES,
-)("$name produces a ChatbotXException with code $code and httpStatusCode $httpStatusCode", ({
+)("$name produces a InboxOSException with code $code and httpStatusCode $httpStatusCode", ({
   factory,
   code,
   httpStatusCode,
 }) => {
   const error = factory("arg")
-  expect(error).toBeInstanceOf(ChatbotXException)
+  expect(error).toBeInstanceOf(InboxOSException)
   expect(error).toMatchObject({ code, httpStatusCode })
   expect(error.message.length).toBeGreaterThan(0)
 })

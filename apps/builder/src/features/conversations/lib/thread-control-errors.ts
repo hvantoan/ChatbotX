@@ -1,10 +1,10 @@
-import { ThreadControlUnsupportedError } from "@chatbotx.io/business"
+import { ThreadControlUnsupportedError } from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import type { ThreadControlAction } from "@chatbotx.io/database/partials"
-import { ChannelError, ThreadControlTakeRefusedError } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business/errors"
+import type { ThreadControlAction } from "@inboxos.io/database/partials"
+import { ChannelError, ThreadControlTakeRefusedError } from "@inboxos.io/sdk"
 import {
   THREAD_CONTROL_NOT_ESCALATION,
   type ThreadControlRefusal,
@@ -33,7 +33,7 @@ export function mapThreadControlError(
   t: Translate,
 ): ThreadControlRefusal {
   if (error instanceof ThreadControlUnsupportedError) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("conversationRouting.errors.unsupported"),
       "threadControlUnsupported",
       400,
@@ -45,7 +45,7 @@ export function mapThreadControlError(
   if (action === "take" && error instanceof ThreadControlTakeRefusedError) {
     return { status: THREAD_CONTROL_NOT_ESCALATION }
   }
-  throw new ChatbotXException(
+  throw new InboxOSException(
     toPublicErrorMessage(error, t("conversationRouting.errors.actionFailed")),
     "threadControlFailed",
     400,

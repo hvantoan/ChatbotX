@@ -7,14 +7,14 @@ const { mockAdd, mockListCurrentByFlow, mockWarn } = vi.hoisted(() => ({
   mockWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   defaultQueue: { add: mockAdd },
   DefaultJobAction: {
     syncWelcomeMessageFlows: "syncWelcomeMessageFlows",
     deleteWelcomeMessageFlows: "deleteWelcomeMessageFlows",
   },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   messengerWelcomeMessageFlowRepository: {
     listCurrentByFlow: mockListCurrentByFlow,
   },

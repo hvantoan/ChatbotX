@@ -1,13 +1,13 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   TemplateCategory,
   TemplateWarning,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type TemplateSyncOutcome,
   templateInstallationSyncRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import { isManifestKind } from "./adapters/manifests/kinds"
 import {
   TEMPLATE_INSTALL_ORDER,

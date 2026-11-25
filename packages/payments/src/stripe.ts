@@ -49,7 +49,7 @@ const createClient = (secretKey: string, options?: StripeClientOptions) =>
   new Stripe(secretKey, {
     maxNetworkRetries: 2,
     timeout: 20_000,
-    appInfo: { name: "ChatbotX" },
+    appInfo: { name: "InboxOS" },
     ...(options?.fetch
       ? { httpClient: Stripe.createFetchHttpClient(options.fetch) }
       : {}),

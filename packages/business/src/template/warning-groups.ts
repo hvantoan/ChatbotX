@@ -1,5 +1,5 @@
-import { TEMPLATE_INSTALLER_WARNING_CODES } from "@chatbotx.io/database/partials"
-import { loadResourceLabels } from "@chatbotx.io/database/repositories"
+import { TEMPLATE_INSTALLER_WARNING_CODES } from "@inboxos.io/database/partials"
+import { loadResourceLabels } from "@inboxos.io/database/repositories"
 
 type InstallWarning = {
   category: string

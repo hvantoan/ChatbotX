@@ -2,13 +2,13 @@ import type {
   PipelineActivityView,
   PipelineItemView,
   PipelineWithCurrency,
-} from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business/pipeline"
 import type {
   PipelineFieldModel,
   PipelineItemCommentModel,
   PipelineMemberModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type { z } from "zod"
 import type {
   publicPipelineActivityResource,

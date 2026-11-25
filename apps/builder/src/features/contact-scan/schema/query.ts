@@ -1,10 +1,10 @@
 import {
   contactScanRunStatuses,
   contactScanViewStatuses,
-} from "@chatbotx.io/database/partials"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import type { ContactScanChannel } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/database/partials"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import type { ContactScanChannel } from "@inboxos.io/utils/channel"
 import { createSearchParamsCache, parseAsInteger } from "nuqs/server"
 import { z } from "zod"
 import { basePaginationRequest } from "@/lib/pagination"
@@ -21,7 +21,7 @@ export type GetContactScanStatusRequest = z.infer<
 
 /**
  * Statuses a scan run is shown as: the stored scan statuses plus the derived
- * `cancelled` (`resolveContactScanRunStatus` in `@chatbotx.io/business`). The
+ * `cancelled` (`resolveContactScanRunStatus` in `@inboxos.io/business`). The
  * service already returns this type, so no narrowing cast is needed.
  */
 export const contactScanRunStatus = z.enum(contactScanRunStatuses)

@@ -8,11 +8,11 @@ const mocks = vi.hoisted(() => ({
   resolveOAuthCredential: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   channelHiddenException: (c: string) => new Error(`hidden ${c}`),
   connectionNotConfiguredException: (p: string) => new Error(`nc ${p}`),
 }))
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   CONNECTION_REGISTRY: {
     googleAds: {
       provider: { kind: "integration", strategy: "oauth_redirect" },

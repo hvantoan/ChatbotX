@@ -1,6 +1,6 @@
 "use server"
 
-import { mcpOAuthService } from "@chatbotx.io/business"
+import { mcpOAuthService } from "@inboxos.io/business"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceIdrequestParams } from "@/features/common/schema"
@@ -19,7 +19,7 @@ export const revokeMcpOAuthGrantAction = workspaceActionClientAllowExpired
     if (!revoked) {
       const t = await getTranslations()
       return returnValidationErrors(revokeMcpOAuthGrantRequest, {
-        _errors: [t("chatbotxMcp.grants.notFound")],
+        _errors: [t("inboxosMcp.grants.notFound")],
       })
     }
   })

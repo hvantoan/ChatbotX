@@ -1,8 +1,8 @@
 import {
   type ButtonStepProps,
   normalizeDialablePhoneNumber,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { describe, expect, test, vi } from "vitest"
 
 const { warn } = vi.hoisted(() => ({ warn: vi.fn() }))

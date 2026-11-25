@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -38,7 +38,7 @@ vi.mock("@/lib/orpc/query", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/ui/components/form/multi-select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/multi-select-field", () => ({
   MultiSelectField: (props: Record<string, unknown>) => {
     mocks.lastProps.current = props
     return null

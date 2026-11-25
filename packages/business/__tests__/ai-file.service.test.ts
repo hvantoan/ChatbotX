@@ -5,7 +5,7 @@ vi.mock("../src/broadcast/plan-policy.service", () => ({
   broadcastPlanPolicyService: {},
 }))
 
-import { ChatbotXException } from "../src/errors"
+import { InboxOSException } from "../src/errors"
 
 const {
   mockAssertPublicUrl,
@@ -65,7 +65,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createAiFileEmbeddingRepository: () => ({
     claimProcessingRun: mockClaimProcessingRun,
     finishProcessingRun: mockFinishProcessingRun,
@@ -76,9 +76,9 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
 }))
 
 // Bump one chunker past its stored version so "outdated" is reachable today.
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => {
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/partials")>()
+    await importOriginal<typeof import("@inboxos.io/database/partials")>()
   return {
     ...actual,
     AI_FILE_CHUNKER_VERSIONS: {
@@ -88,7 +88,7 @@ vi.mock("@chatbotx.io/database/partials", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       aiFileModel: {
@@ -109,13 +109,13 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiFileModel: { id: "id", workspaceId: "workspaceId", createdAt: "createdAt" },
   aiEmbeddingModel: { id: "id", aiFileId: "aiFileId" },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: mockCreateId,
 }))
 
@@ -128,7 +128,7 @@ class MockUploadValidationError extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     getPresignedDownload: mockGetPresignedDownload,
     deleteObject: mockDeleteObject,
@@ -139,7 +139,7 @@ vi.mock("@chatbotx.io/filesystem", () => ({
   UploadValidationError: MockUploadValidationError,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   HeavyJobAction: { processAIFile: "processAIFile" },
   buildAIFileReindexJobId: (id: string, runId: string) =>
     `heavy-ai-file-${id}-reindex-${runId}`,
@@ -147,7 +147,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   heavyQueue: { add: mockQueueAdd },
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     debug: vi.fn(),
     error: mockLoggerError,
@@ -368,16 +368,14 @@ describe("aiFileService.create", () => {
       .create(workspaceId, { url: "http://169.254.169.254/latest" })
       .catch((caught: unknown) => caught)
 
-    expect(error).toBeInstanceOf(ChatbotXException)
-    expect((error as ChatbotXException).code).toBe("businessError")
+    expect(error).toBeInstanceOf(InboxOSException)
+    expect((error as InboxOSException).code).toBe("businessError")
     // The guard's own message (which echoes the submitted URL) must never
     // reach the caller — it is replaced with a safe, generic message.
-    expect((error as ChatbotXException).message).toBe(
+    expect((error as InboxOSException).message).toBe(
       "The provided URL is not allowed",
     )
-    expect((error as ChatbotXException).message).not.toContain(
-      "169.254.169.254",
-    )
+    expect((error as InboxOSException).message).not.toContain("169.254.169.254")
   })
 
   test("url mode reports an infrastructure failure as a generic 5xx without leaking details", async () => {
@@ -389,11 +387,11 @@ describe("aiFileService.create", () => {
       .create(workspaceId, { url: "https://example.com/manual.pdf" })
       .catch((caught: unknown) => caught)
 
-    expect(error).toBeInstanceOf(ChatbotXException)
-    expect((error as ChatbotXException).code).toBe("systemError")
-    expect((error as ChatbotXException).httpStatusCode).toBe(502)
-    expect((error as ChatbotXException).message).not.toContain("ECONNREFUSED")
-    expect((error as ChatbotXException).message).not.toContain("10.0.4.12")
+    expect(error).toBeInstanceOf(InboxOSException)
+    expect((error as InboxOSException).code).toBe("systemError")
+    expect((error as InboxOSException).httpStatusCode).toBe(502)
+    expect((error as InboxOSException).message).not.toContain("ECONNREFUSED")
+    expect((error as InboxOSException).message).not.toContain("10.0.4.12")
   })
 
   test("rejects when neither OpenAI nor Gemini is configured", async () => {
@@ -409,9 +407,9 @@ describe("aiFileService.create", () => {
       })
       .catch((caught: unknown) => caught)
 
-    expect(error).toBeInstanceOf(ChatbotXException)
-    expect((error as ChatbotXException).code).toBe("noEmbeddingProvider")
-    expect((error as ChatbotXException).message).toContain(
+    expect(error).toBeInstanceOf(InboxOSException)
+    expect((error as InboxOSException).code).toBe("noEmbeddingProvider")
+    expect((error as InboxOSException).message).toContain(
       "No embedding provider configured",
     )
     expect(mockInsert).not.toHaveBeenCalled()
@@ -465,7 +463,7 @@ describe("aiFileService.create source checks", () => {
       .values.mock.calls[0]?.[0]
 
   const rejection = async (promise: Promise<unknown>) =>
-    (await promise.catch((caught: unknown) => caught)) as ChatbotXException & {
+    (await promise.catch((caught: unknown) => caught)) as InboxOSException & {
       reason?: string
       maxBytes?: number
     }
@@ -824,8 +822,8 @@ describe("aiFileService.reindex", () => {
       .reindex({ workspaceId, id: "file-1" })
       .catch((caught: unknown) => caught)
 
-    expect(error).toBeInstanceOf(ChatbotXException)
-    expect((error as ChatbotXException).httpStatusCode).toBe(502)
+    expect(error).toBeInstanceOf(InboxOSException)
+    expect((error as InboxOSException).httpStatusCode).toBe(502)
     expect(mockFinishProcessingRun).toHaveBeenCalledWith(
       expect.objectContaining({ status: "error", error: "enqueueFailed" }),
     )

@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   blocked: new Set<string>(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   webshopService: {
     claimAbandonedCarts: mocks.claimAbandonedCarts,
     remindAbandonedCart: mocks.remindAbandonedCart,
@@ -16,7 +16,7 @@ vi.mock("@chatbotx.io/business", () => ({
     mocks.blocked.has(workspaceId) ? undefined : await fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: async ({ fn }: { fn: () => unknown }) => await fn(),
   },

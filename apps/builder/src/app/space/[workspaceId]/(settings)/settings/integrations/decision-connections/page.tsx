@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { DecisionConnectionsSettings } from "@/features/decision-connections/components/decision-connections-settings"
 import { listDecisionConnections } from "@/features/decision-connections/queries/list-decision-connections.query"

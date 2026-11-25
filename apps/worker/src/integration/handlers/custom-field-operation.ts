@@ -1,11 +1,11 @@
-import { contactCustomFieldService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { contactCustomFieldService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import type { FieldOperationType } from "@chatbotx.io/flow-config"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import type { FieldOperationType } from "@inboxos.io/flow-config"
+import { contactVariableService } from "@inboxos.io/variables"
 
 const VARIABLE_TOKEN = "{{"
 
@@ -84,7 +84,7 @@ export async function applyCustomFieldOperation(
     })
   } catch (error: unknown) {
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       error.code === "invalidFieldOperation"
     ) {
       return {

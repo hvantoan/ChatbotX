@@ -42,7 +42,7 @@ const { refreshService, userService } = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   mobileRefreshTokenService: refreshService,
   userService,
 }))
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/business", () => ({
 vi.mock("../src/keys", () => ({
   getBuilderOrigin: () => ISSUER,
   getMobileApiAudience: () => AUDIENCE,
-  getMobileAppSchemes: () => ["chatbotxmobileapp"],
+  getMobileAppSchemes: () => ["inboxosmobileapp"],
 }))
 
 vi.mock("../src/logger", () => ({

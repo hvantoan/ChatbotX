@@ -4,7 +4,7 @@ const findFirst = vi.fn()
 const updateSet = vi.fn()
 const updateWhere = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       importModel: { findFirst: (...args: unknown[]) => findFirst(...args) },
@@ -19,17 +19,17 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: (a: unknown, b: unknown) => ({ eq: [a, b] }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   importModel: { id: "Import.id" },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowService: { importFlowExport: vi.fn() },
   customFieldService: { invalidate: vi.fn() },
   botFieldService: { invalidate: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   importService: {
     findForWorker: (...args: unknown[]) => findFirst(...args),
     fail: (_importId: string, errorMessage: string) => {

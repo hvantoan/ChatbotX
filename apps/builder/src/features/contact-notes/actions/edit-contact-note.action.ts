@@ -1,6 +1,6 @@
 "use server"
-import { contactNoteService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { contactNoteService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { requireContactPermissionScope } from "@/features/contacts/permissions"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { updateContactNoteRequest } from "../schema/action"

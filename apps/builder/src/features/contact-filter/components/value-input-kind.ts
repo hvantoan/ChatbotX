@@ -1,7 +1,7 @@
 import {
   type FormFieldType,
   formFieldTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   CustomFieldValueInputConfig,
   CustomFieldValueInputKind,

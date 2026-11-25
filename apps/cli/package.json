@@ -1,7 +1,7 @@
 {
   "name": "@hvantoan/inboxos",
   "version": "0.0.0-dev",
-  "description": "ChatbotX CLI - Command line interface for the ChatbotX API",
+  "description": "InboxOS CLI - Command line interface for the InboxOS API",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChatbotXIO/ChatbotX.git",
@@ -15,7 +15,7 @@
     "LICENSE"
   ],
   "bin": {
-    "chatbotx": "./dist/index.cjs"
+    "inboxos": "./dist/index.cjs"
   },
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "test:watch": "vitest"
   },
   "keywords": [
-    "chatbotX",
+    "inboxos",
     "cli",
     "scheduling",
     "automation",
@@ -43,7 +43,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/yargs": "^17.0.35",
     "tsdown": "catalog:",

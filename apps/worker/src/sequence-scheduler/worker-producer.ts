@@ -1,11 +1,11 @@
-import { sequenceDispatchRepository } from "@chatbotx.io/database/repositories"
-import { sequenceConnections } from "@chatbotx.io/redis"
-import { SchedulerClient } from "@chatbotx.io/scheduler"
+import { sequenceDispatchRepository } from "@inboxos.io/database/repositories"
+import { sequenceConnections } from "@inboxos.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
 import {
   getSequenceSchedulerQueue,
   type SequenceSchedulerJobData,
   type SequenceSchedulerQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   DEFAULT_SCHEDULER_TICK_INTERVAL_MS,
   env,

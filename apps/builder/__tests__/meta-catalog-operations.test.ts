@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   getCatalog: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationMetaCatalogService: {
     findByWorkspaceId: mocks.findByWorkspaceId,
     findByWorkspaceIdOrFail: mocks.findByWorkspaceIdOrFail,
@@ -27,12 +27,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
   metaCatalogSyncRunService: { list: mocks.runList, fail: mocks.runFail },
 }))
-vi.mock("@chatbotx.io/integration-meta-catalog/apis/catalogs", () => ({
+vi.mock("@inboxos.io/integration-meta-catalog/apis/catalogs", () => ({
   createCatalog: vi.fn(),
   getCatalog: mocks.getCatalog,
   listBusinesses: vi.fn(),
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: {
     importMetaCatalogProducts: "importMetaCatalogProducts",
     submitMetaCatalogSync: "submitMetaCatalogSync",
@@ -40,7 +40,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   defaultQueue: { add: mocks.queueAdd },
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const {
   ENGLISH_META_CATALOG_REASONS,
   getMetaCatalogState,
@@ -88,7 +88,7 @@ describe("meta catalog state", () => {
 describe("selectMetaCatalog", () => {
   test("a run of the other direction is a 409 with the caller's sentence", async () => {
     mocks.startImport.mockRejectedValue(
-      new ChatbotXException("x", "metaCatalogSyncAlreadyRunning"),
+      new InboxOSException("x", "metaCatalogSyncAlreadyRunning"),
     )
 
     await expect(

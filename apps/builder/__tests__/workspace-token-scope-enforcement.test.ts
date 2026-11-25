@@ -18,7 +18,7 @@ const {
   resolvePrincipal: vi.fn().mockResolvedValue({ kind: "invalidToken" }),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   mcpOAuthService: { resolvePrincipal },
   isWorkspaceScheduledForDeletion,

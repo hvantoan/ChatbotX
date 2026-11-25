@@ -3,17 +3,17 @@ import {
   isAllowedRecordingContentType,
   isWorkspaceScheduledForDeletion,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   integrationWhatsappRepository,
   whatsappCallRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   IntegrationJobAction,
   integrationQueue,
   whatsappCallRecordingReadyJobId,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type NextRequest, NextResponse } from "next/server"
 import {
   assertCurrentUserCanAccessChatbot,
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Membership check, mirroring api/presigned-upload — thrown as a
-    // ChatbotXException and mapped to a 4xx by serverErrorHandler below.
+    // InboxOSException and mapped to a 4xx by serverErrorHandler below.
     await assertCurrentUserCanAccessChatbot(call.workspaceId)
 
     // Apply the same owner-access gate workspaceActionClient uses, rather than
@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
       id: call.workspaceId,
     })
     if (isWorkspaceScheduledForDeletion(workspace)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Workspace deletion scheduled",
         "workspaceScheduledDeletion",
         403,
@@ -175,7 +175,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true })
   } catch (error) {
-    if (!(error instanceof ChatbotXException)) {
+    if (!(error instanceof InboxOSException)) {
       logger.error({ err: error }, "WhatsApp VoIP call recording upload failed")
     }
     return serverErrorHandler(error)

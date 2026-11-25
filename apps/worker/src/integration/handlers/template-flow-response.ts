@@ -1,9 +1,9 @@
 import {
   resolveTemplateFlowButton,
   whatsappFlowResponseService,
-} from "@chatbotx.io/business"
-import { decodeTemplateFlowToken } from "@chatbotx.io/flow-config"
-import type { IntegrationJobCaptureTemplateFlowResponse } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import { decodeTemplateFlowToken } from "@inboxos.io/flow-config"
+import type { IntegrationJobCaptureTemplateFlowResponse } from "@inboxos.io/worker-config"
 import { detectConversationAndContactInbox } from "../../lib/db"
 import { logger } from "../../lib/logger"
 import { awardWhatsappFlowSurvey } from "./whatsapp-flow-response"

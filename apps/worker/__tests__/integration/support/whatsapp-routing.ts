@@ -1,13 +1,13 @@
 import { createHmac } from "node:crypto"
-import { messageService, threadControlService } from "@chatbotx.io/business"
-import { db, eq } from "@chatbotx.io/database/client"
+import { messageService, threadControlService } from "@inboxos.io/business"
+import { db, eq } from "@inboxos.io/database/client"
 import type {
   ThreadControlAction,
   ThreadControlRole,
-} from "@chatbotx.io/database/partials"
-import { contactInboxModel, inboxModel } from "@chatbotx.io/database/schema"
-import { integration as whatsappIntegration } from "@chatbotx.io/integration-whatsapp"
-import { chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import { contactInboxModel, inboxModel } from "@inboxos.io/database/schema"
+import { integration as whatsappIntegration } from "@inboxos.io/integration-whatsapp"
+import { chatQueue } from "@inboxos.io/worker-config"
 import { vi } from "vitest"
 import {
   numericId,
@@ -481,7 +481,7 @@ export const threadAction = async (
   extra: { targetRole?: ThreadControlRole; metadata?: string } = {},
 ) => {
   const { requestThreadControlAction } = await import(
-    "@chatbotx.io/channel-registry/thread-control"
+    "@inboxos.io/channel-registry/thread-control"
   )
   tick()
   return await requestThreadControlAction({

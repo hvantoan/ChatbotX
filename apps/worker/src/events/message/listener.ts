@@ -1,7 +1,7 @@
 import type {
   MacMessageInPayload,
   MacMessageOutPayload,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   broadcastAnalyticsService,
   commentAutomationAnalyticsService,
@@ -9,20 +9,20 @@ import {
   flowAnalyticsService,
   macTrackingService,
   sequenceAnalyticsService,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   type AdsEligibleChannel,
   adsConversionService,
   contactActivityService,
   contactInboxService,
   workspaceUsageService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   integrationInstagramRepository,
   integrationMessengerRepository,
   integrationWhatsappRepository,
-} from "@chatbotx.io/database/repositories"
-import type { AdsConversionChannel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import type { AdsConversionChannel } from "@inboxos.io/database/schema"
 import type {
   EventBusMessageMetadata,
   MessageDeliveredPayload,
@@ -30,9 +30,9 @@ import type {
   MessageFailedPayload,
   MessagePayload,
   MessageReceivedPayload,
-} from "@chatbotx.io/event-bus"
-import { EVENT_BUS_MESSAGE_ID } from "@chatbotx.io/event-bus"
-import { messageEventTypeSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/event-bus"
+import { EVENT_BUS_MESSAGE_ID } from "@inboxos.io/event-bus"
+import { messageEventTypeSchema } from "@inboxos.io/flow-config"
 import { logger } from "../../lib/logger"
 import { recordProviderErrorLog } from "./handlers/record-provider-error-log"
 

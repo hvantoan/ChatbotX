@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
 
 class MockTerminalMediaError extends Error {}
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   AttachmentTooLargeError: class AttachmentTooLargeError extends Error {},
   downloadBearerUrlMedia: vi.fn(),
   downloadWhatsappMedia: vi.fn(),

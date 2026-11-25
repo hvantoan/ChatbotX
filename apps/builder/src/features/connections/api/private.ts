@@ -1,7 +1,7 @@
-import { connectionStateService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { connectionService } from "@chatbotx.io/connections"
+import { connectionStateService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { connectionService } from "@inboxos.io/connections"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"
 import {
   possibleErrorsOnCancelingConnectSession,

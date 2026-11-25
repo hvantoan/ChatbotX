@@ -4,9 +4,9 @@ import {
   pipelineItemQueryService,
   pipelineMemberService,
   pipelineService,
-} from "@chatbotx.io/business/pipeline"
-import { pipelineSettingsSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/pipeline"
+import { pipelineSettingsSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

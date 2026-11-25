@@ -1,4 +1,4 @@
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 
 const IDENTITY_HASH_LENGTH = 32
 

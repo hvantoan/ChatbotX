@@ -3,10 +3,10 @@
 import {
   integrationWhatsappService,
   metaConversionsService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getDataset } from "@chatbotx.io/integration-meta-conversions"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getDataset } from "@inboxos.io/integration-meta-conversions"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { surfaceCapiError } from "@/features/meta-conversions/lib/surface-capi-error"
@@ -39,7 +39,7 @@ export const connectWhatsappCustomCapiAction = workspaceActionClient
         },
       )
       if (!integration) {
-        throw new ChatbotXException(t("whatsappNotFound"))
+        throw new InboxOSException(t("whatsappNotFound"))
       }
 
       try {

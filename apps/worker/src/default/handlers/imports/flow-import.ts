@@ -2,20 +2,20 @@ import {
   botFieldService,
   customFieldService,
   flowService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { importService } from "@chatbotx.io/business/import"
-import { flowImportMetaSchema } from "@chatbotx.io/database/partials"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { importService } from "@inboxos.io/business/import"
+import { flowImportMetaSchema } from "@inboxos.io/database/partials"
+import { uploader } from "@inboxos.io/filesystem"
 import {
   collectFlowReferenceWarnings,
   type FlowAuthoringError,
   FlowAuthoringException,
   type FlowReferenceWarning,
   parseFlowExport,
-} from "@chatbotx.io/flow-config"
-import { getImportEntry } from "@chatbotx.io/imports/registry"
-import { createByteLimitedStream } from "@chatbotx.io/imports/stream-guard"
+} from "@inboxos.io/flow-config"
+import { getImportEntry } from "@inboxos.io/imports/registry"
+import { createByteLimitedStream } from "@inboxos.io/imports/stream-guard"
 import { logger } from "../../../lib/logger"
 import type { ImportRow } from "./base-import"
 
@@ -38,7 +38,7 @@ const readImportedJson = async (row: ImportRow): Promise<unknown> => {
     )
   }
   if (headSize != null && headSize > maxBytes) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `File exceeds ${FLOW_IMPORT_MAX_FILE_SIZE_MB}MB limit`,
       "flowImportFileTooLarge",
     )
@@ -48,7 +48,7 @@ const readImportedJson = async (row: ImportRow): Promise<unknown> => {
   // still byte-capped even after a passing headObject check.
   const object = await uploader.getObjectStream(row.file.path)
   if (object.contentLength != null && object.contentLength > maxBytes) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `File exceeds ${FLOW_IMPORT_MAX_FILE_SIZE_MB}MB limit`,
       "flowImportFileTooLarge",
     )
@@ -67,7 +67,7 @@ const readImportedJson = async (row: ImportRow): Promise<unknown> => {
   try {
     return JSON.parse(raw)
   } catch {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "The file is not valid JSON.",
       "flowImportInvalidJson",
     )
@@ -134,10 +134,7 @@ export const runFlowImport = async (row: ImportRow): Promise<void> => {
   if (!parsedMeta.success) {
     await importService.fail(
       row.id,
-      new ChatbotXException(
-        "Invalid flow import meta",
-        "flowImportInvalidMeta",
-      ),
+      new InboxOSException("Invalid flow import meta", "flowImportInvalidMeta"),
     )
     return
   }
@@ -160,7 +157,7 @@ export const runFlowImport = async (row: ImportRow): Promise<void> => {
       : "flowImportSchemaMismatch"
     await importService.fail(
       row.id,
-      new ChatbotXException(summarizeSchemaError(parsed.errors), errorCode),
+      new InboxOSException(summarizeSchemaError(parsed.errors), errorCode),
       { processed: 1, success: 0, failed: 1 },
       toImportErrorSamples(parsed.errors),
     )
@@ -216,7 +213,7 @@ export const runFlowImport = async (row: ImportRow): Promise<void> => {
     if (error instanceof FlowAuthoringException) {
       await importService.fail(
         row.id,
-        new ChatbotXException(
+        new InboxOSException(
           summarizeSchemaError(error.errors),
           "flowImportValidationFailed",
         ),

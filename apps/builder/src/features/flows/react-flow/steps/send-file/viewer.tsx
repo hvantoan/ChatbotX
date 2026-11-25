@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendFileStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendFileStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { PaperclipIcon } from "lucide-react"
 import { ButtonGroupViewer } from "../button/viewer"
 

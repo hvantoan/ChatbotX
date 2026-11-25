@@ -8,17 +8,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import {
   isEnabledConversionAction,
   isExternalAttributionAction,
   isOnePerClickAction,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { InfoIcon, TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { googleEnumLabel } from "../lib/google-enum-labels"

@@ -9,11 +9,11 @@ const lockExists = vi.fn()
 const info = vi.fn()
 const warn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { purgeDueScheduled },
   paymentProviderService: { teardownForPurge },
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/redis", async (importOriginal) => {
     distributedStore: { exists: lockExists },
   }
 })
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ info, warn }),
 }))
 vi.mock("../src/services/integrations", () => ({
@@ -29,7 +29,7 @@ vi.mock("../src/services/integrations", () => ({
 }))
 // Real AsyncLocalStorage context, isolated from the audit dispatcher's
 // Snowflake id generator — this handler only needs the wrapped call to run.
-vi.mock("@chatbotx.io/business/audit", async () => {
+vi.mock("@inboxos.io/business/audit", async () => {
   const { AsyncLocalStorage } = await import("node:async_hooks")
   const storage = new AsyncLocalStorage<Record<string, unknown>>()
   return {

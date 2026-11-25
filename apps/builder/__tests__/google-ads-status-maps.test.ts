@@ -4,13 +4,13 @@ import {
   googleAdsFailureStageValues,
   googleAdsProcessingStatusValues,
   googleAdsSetupErrorSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   connectErrorQueryCodes,
   connectionStatuses,
   connectSessionErrorCodes,
-} from "@chatbotx.io/utils/connection"
-import { GOOGLE_ADS_CHANNEL_VALUES } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/connection"
+import { GOOGLE_ADS_CHANNEL_VALUES } from "@inboxos.io/utils/google-click"
 import { describe, expect, test } from "vitest"
 import {
   channelLabel,

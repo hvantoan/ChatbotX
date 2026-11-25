@@ -41,8 +41,8 @@ that fits (fail closed):
 ## Queries (Server-Side)
 
 **Rule:** The chain is `action | API handler → service → repository → DB`.
-Queries must NOT import `db` or `@chatbotx.io/database/schema` directly — call
-a service from `@chatbotx.io/business`. Neither module is importable from
+Queries must NOT import `db` or `@inboxos.io/database/schema` directly — call
+a service from `@inboxos.io/business`. Neither module is importable from
 `apps/builder/src/features/*/queries/*.ts`. See `.agents/rules/data-access.md`
 for the full contract.
 
@@ -57,7 +57,7 @@ write the file — call the service directly from the caller:
 
 ```typescript
 // No query file needed — tagService.list needs nothing from the session.
-import { tagService } from "@chatbotx.io/business"
+import { tagService } from "@inboxos.io/business"
 
 const { data } = await tagService.list({ workspaceId })
 ```
@@ -66,7 +66,7 @@ const { data } = await tagService.list({ workspaceId })
 
 ```typescript
 // queries/get-contact.query.ts
-import { contactService } from "@chatbotx.io/business"
+import { contactService } from "@inboxos.io/business"
 import { requireContactPermissionScope } from "../permissions"
 
 export async function getContact(input: { workspaceId: string; id: string }) {

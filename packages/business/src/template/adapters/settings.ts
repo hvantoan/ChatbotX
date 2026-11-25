@@ -1,14 +1,14 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   mediaLibraryFileRepository,
   savedReplyImageRepository,
-} from "@chatbotx.io/database/repositories"
-import { savedReplyModel } from "@chatbotx.io/database/schema"
-import type { BotFieldModel } from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId, mapWithConcurrency } from "@chatbotx.io/utils"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
-import { customFieldResolutionKey } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/repositories"
+import { savedReplyModel } from "@inboxos.io/database/schema"
+import type { BotFieldModel } from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId, mapWithConcurrency } from "@inboxos.io/utils"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
+import { customFieldResolutionKey } from "@inboxos.io/utils/custom-field"
 import { z } from "zod"
 import { botFieldService } from "../../bot-field/service"
 import { logger } from "../../logger"

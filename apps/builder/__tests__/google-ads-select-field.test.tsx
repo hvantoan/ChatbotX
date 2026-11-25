@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { act } from "react"
 import { useForm } from "react-hook-form"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"

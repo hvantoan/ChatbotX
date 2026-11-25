@@ -1,11 +1,11 @@
-import { db, eq, isDatabaseError } from "@chatbotx.io/database/client"
+import { db, eq, isDatabaseError } from "@inboxos.io/database/client"
 import {
   integrationMailerLiteModel,
   integrationModel,
-} from "@chatbotx.io/database/schema"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import type { AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { encryptUtils } from "@inboxos.io/encryption"
+import type { AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 const WORKSPACE_UNIQUE_CONSTRAINT = "IntegrationMailerLite_workspaceId_key"

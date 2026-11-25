@@ -44,26 +44,26 @@ const transaction = {
   insert: mockInsert,
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mockDbTransaction },
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "0",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: { listIdsByIds: vi.fn() },
   whatsappMessageTemplateRepository: { listIdsByIntegration: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowAnalyticsSessionModel,
   flowModel,
   flowVersionModel,
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   remapFlowGraphReferences: mockRemapFlowGraphReferences,
   referenceKindsWithPolicy: () => [],
   STRIP_UNRESOLVED_ARRAY_REFERENCE_KINDS: new Set([
@@ -77,7 +77,7 @@ vi.mock("@chatbotx.io/flow-config", () => ({
   stepTypes: { enum: { sendWaTemplateMessage: "sendWaTemplateMessage" } },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
 }))
 

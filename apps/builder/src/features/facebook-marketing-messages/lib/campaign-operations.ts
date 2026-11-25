@@ -3,15 +3,15 @@ import "server-only"
 import {
   facebookMarketingMessageDeliveryService,
   facebookMarketingMessagesService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   createMessageCampaign,
   deleteMessageCampaign,
   FacebookAdsException,
   updateMessageCampaign,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 import { getTranslations } from "next-intl/server"
 import type { MmContent } from "../schema/content"
 import type {
@@ -65,7 +65,7 @@ export async function createMarketingMessage({
         })
       : null
     if (!audience) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("facebookMarketingMessages.errors.audienceNotTargetable"),
       )
     }
@@ -137,7 +137,7 @@ export async function updateMarketingMessage({
   })
   if (!existing) {
     const t = await getTranslations()
-    throw new ChatbotXException(
+    throw new InboxOSException(
       t("facebookMarketingMessages.errors.notFound"),
       "mmNotFound",
     )
@@ -227,7 +227,7 @@ export async function deleteMarketingMessages({
       )
     if (!grant) {
       const t = await getTranslations()
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("facebookMarketingMessages.errors.connectFirst"),
         "mmGrantInvalid",
       )
@@ -241,7 +241,7 @@ export async function deleteMarketingMessages({
     } catch (error) {
       if (!isMetaObjectMissing(error)) {
         const t = await getTranslations()
-        throw new ChatbotXException(
+        throw new InboxOSException(
           t("facebookMarketingMessages.errors.metaDeleteFailed", {
             message: error instanceof Error ? error.message : String(error),
           }),

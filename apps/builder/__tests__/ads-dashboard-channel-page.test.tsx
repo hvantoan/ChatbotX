@@ -81,7 +81,7 @@ vi.mock("@/features/ads/queries/switcher", () => ({
   getAdsSwitcherData: mockGetAdsSwitcherData,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsAnalyticsService: {
     getOverview: mockGetAdsAnalyticsData,
     getCapiDelivery: mockGetCapiDeliveryData,

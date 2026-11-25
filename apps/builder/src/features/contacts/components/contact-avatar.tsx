@@ -4,9 +4,9 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { cn } from "@inboxos.io/ui/lib/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { useAvatarUrl } from "@/features/contacts/utils"
 import { InboxIcon } from "@/features/inboxes/components/inbox-icon"
 import { initials } from "../lib/initials"

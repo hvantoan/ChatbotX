@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto"
-import { decisionEvaluationService } from "@chatbotx.io/business"
-import type { EvaluateDecisionStepSchema } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+import { decisionEvaluationService } from "@inboxos.io/business"
+import type { EvaluateDecisionStepSchema } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import type { ExecuteStepProps } from "./flow-utils"
 import type { ExecuteStepResult } from "./step"
 

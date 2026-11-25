@@ -1,8 +1,8 @@
-import { triggerService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { folderTypes } from "@chatbotx.io/database/partials"
-import type { TriggerModel } from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { triggerService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { folderTypes } from "@inboxos.io/database/partials"
+import type { TriggerModel } from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnCreatingResource,

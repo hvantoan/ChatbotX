@@ -6,12 +6,12 @@ import {
   isRichSystemContactField,
   isUserOnShift,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+} from "@inboxos.io/business"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import { handoffExecutorService } from "../../../trigger/services/handoff-executor.service"

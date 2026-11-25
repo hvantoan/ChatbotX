@@ -5,7 +5,7 @@ import {
   type IntegrationDefinition,
   oauth2Auth,
   probeVerify,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   exchangeCodeForToken,
   getThreadsProfile,

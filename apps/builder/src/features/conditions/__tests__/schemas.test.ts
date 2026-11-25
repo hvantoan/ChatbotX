@@ -2,7 +2,7 @@ import {
   dateTimeTriggerTypes,
   operatorTypes,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { updateTriggerSchema } from "../../triggers/schema/mutation"
 import { updateWebhookRequest } from "../../webhooks/schema/update-webhook-schema"

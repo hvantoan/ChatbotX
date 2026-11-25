@@ -1,9 +1,9 @@
-import { generateSalesProfileProposalPatch } from "@chatbotx.io/ai/sales-profile-proposer"
+import { generateSalesProfileProposalPatch } from "@inboxos.io/ai/sales-profile-proposer"
 import {
   aiAgentSalesProfileProposalService,
   aiAgentSalesProfileService,
-} from "@chatbotx.io/business"
-import { hasWorkspacePermission } from "@chatbotx.io/business/workspace-member/permissions"
+} from "@inboxos.io/business"
+import { hasWorkspacePermission } from "@inboxos.io/business/workspace-member/permissions"
 import { ORPCError } from "@orpc/server"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"
 import { possibleErrorsOnProposingSalesProfile } from "@/lib/orpc/orpc-error-helper"

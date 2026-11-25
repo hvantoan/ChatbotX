@@ -1,4 +1,4 @@
-import type { StoredFlowResponseFile } from "@chatbotx.io/sdk"
+import type { StoredFlowResponseFile } from "@inboxos.io/sdk"
 
 /**
  * A kept file of a form (Flow) answer with its public URL, as the jobs that

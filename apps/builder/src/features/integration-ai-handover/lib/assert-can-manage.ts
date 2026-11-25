@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
 
@@ -12,10 +12,10 @@ export async function assertCanManageAiHandover(ctx: {
 }): Promise<void> {
   const t = await getTranslations()
   if (!hasWorkspacePermission(ctx.workspaceMemberPermissions, "superAdmin")) {
-    throw new ChatbotXException(t("errors.superAdminRequired"))
+    throw new InboxOSException(t("errors.superAdminRequired"))
   }
   if (ctx.isSupportSession) {
-    throw new ChatbotXException(t("aiHandover.errors.supportSession"))
+    throw new InboxOSException(t("aiHandover.errors.supportSession"))
   }
 }
 
@@ -24,11 +24,11 @@ export async function rethrowTranslated(
   error: unknown,
   copyKeys: Record<string, string>,
 ): Promise<never> {
-  if (error instanceof ChatbotXException) {
+  if (error instanceof InboxOSException) {
     const copyKey = copyKeys[error.code]
     if (copyKey) {
       const t = await getTranslations()
-      throw new ChatbotXException(t(copyKey), error.code, 422)
+      throw new InboxOSException(t(copyKey), error.code, 422)
     }
   }
   throw error

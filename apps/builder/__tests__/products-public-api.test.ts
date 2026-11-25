@@ -59,12 +59,12 @@ const integrationMetaCatalogService = {
   searchProductsForSend: vi.fn(),
 }
 const productMessageService = { listSendable: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   productService,
   integrationMetaCatalogService,
   productMessageService,
 }))
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   createImportUpload: vi.fn(),
   importService: { list: vi.fn(), find: vi.fn() },
 }))

@@ -30,9 +30,9 @@ vi.mock("better-auth/plugins", () => ({
   oneTimeToken: () => ({ id: "one-time-token" }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   accountModel: {},
   jwkModel: {},
   oauthAccessTokenModel: {},
@@ -47,7 +47,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   verificationModel: {},
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { listActiveDomains: vi.fn().mockResolvedValue([]) },
   invitationService: { findActiveByCode: findActiveByCodeMock },
   platformCredentialService: {
@@ -62,13 +62,13 @@ vi.mock("../src/tenant-context", () => ({
   resolveTenantOwnerId: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "test-id",
   getPublicOriginFromRequest: vi.fn(),
   parseEnvBool: (value: unknown) => value === true || value === "true",
 }))
 
-vi.mock("@chatbotx.io/mail", () => ({
+vi.mock("@inboxos.io/mail", () => ({
   DEFAULT_FORGOT_PASSWORD_SUBJECT: "reset",
   DEFAULT_MAGIC_LINK_SUBJECT: "magic",
   DEFAULT_SIGNUP_SUBJECT: "signup",
@@ -266,7 +266,7 @@ describe("signup lockdown", () => {
         path: "/sign-up/email",
         body: { email: "new@example.com" },
         getCookie: () => undefined,
-        headers: new Headers({ cookie: "chatbotx_invitation=invite-code" }),
+        headers: new Headers({ cookie: "inboxos_invitation=invite-code" }),
       }),
     ).resolves.toBeUndefined()
     expect(findActiveByCodeMock).toHaveBeenLastCalledWith("invite-code", {

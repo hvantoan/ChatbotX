@@ -1,7 +1,7 @@
 import type {
   BroadcastSubaction,
   ChannelType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { createStore } from "zustand/vanilla"
 import { getClientErrorMessage } from "@/lib/orpc/client-error"
 import { client } from "@/lib/orpc/orpc"

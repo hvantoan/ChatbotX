@@ -7,13 +7,13 @@ import {
   inArray,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   ACTIVE_CONNECTION_STATUSES,
   planStatuses,
-} from "@chatbotx.io/database/partials"
-import { tenantRepository } from "@chatbotx.io/database/repositories/tenant"
-import { workspaceMacRepository } from "@chatbotx.io/database/repositories/workspace-mac"
+} from "@inboxos.io/database/partials"
+import { tenantRepository } from "@inboxos.io/database/repositories/tenant"
+import { workspaceMacRepository } from "@inboxos.io/database/repositories/workspace-mac"
 import {
   connectionModel,
   contactModel,
@@ -21,10 +21,10 @@ import {
   userQuotaModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import type { UserQuotaModel } from "@chatbotx.io/database/types"
-import { cacheConnections, distributedStore } from "@chatbotx.io/redis"
-import { USER_QUOTA_LABEL } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { UserQuotaModel } from "@inboxos.io/database/types"
+import { cacheConnections, distributedStore } from "@inboxos.io/redis"
+import { USER_QUOTA_LABEL } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { isCloud } from "../keys"
 import { logger } from "../logger"

@@ -1,4 +1,4 @@
-import { dashboardEventBus } from "@chatbotx.io/event-bus"
+import { dashboardEventBus } from "@inboxos.io/event-bus"
 import { analyticsDashboardListeners } from "./listener"
 
 export const analyticsDashboardEvents = {

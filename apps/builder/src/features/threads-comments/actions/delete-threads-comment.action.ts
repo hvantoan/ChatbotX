@@ -1,6 +1,6 @@
 "use server"
 
-import { commentAutomationService } from "@chatbotx.io/business"
+import { commentAutomationService } from "@inboxos.io/business"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

@@ -1,7 +1,7 @@
-import { broadcastService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { isRecurringTemplate } from "@chatbotx.io/database/partials"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { broadcastService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { isRecurringTemplate } from "@inboxos.io/database/partials"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { BroadcastRunsView } from "@/features/broadcasts/components/broadcast-runs-view"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
@@ -25,7 +25,7 @@ export default async function BroadcastRunsPage({
   const broadcast = await broadcastService
     .findByIdOrName({ workspaceId, idOrName: broadcastId })
     .catch((error: unknown) => {
-      if (error instanceof ChatbotXException && error.code === "notFound") {
+      if (error instanceof InboxOSException && error.code === "notFound") {
         return null
       }
       throw error

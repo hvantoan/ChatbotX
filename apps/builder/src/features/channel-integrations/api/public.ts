@@ -6,14 +6,14 @@ import {
   coexistService,
   integrationWhatsappService,
   messengerIntegrationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import { routingRolesSnapshotSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { CAPI_TEST_MESSAGING_ID_MAX_LENGTH } from "@chatbotx.io/utils/meta-capi"
+} from "@inboxos.io/business/errors"
+import { routingRolesSnapshotSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { CAPI_TEST_MESSAGING_ID_MAX_LENGTH } from "@inboxos.io/utils/meta-capi"
 import { z } from "zod"
 import { triggerSync as triggerWhatsappCoexistSync } from "@/features/integration-whatsapp/lib/coexist-trigger-sync"
 import { syncWhatsappRoutingRoles } from "@/features/integration-whatsapp/lib/routing-roles"
@@ -365,7 +365,7 @@ export const createCoexistRoute = (channel: CoexistChannel) => {
           const cause = "cause" in result ? result.cause : "notFound"
           const reason = "reason" in result ? result.reason : undefined
           if (cause === "invalidAuth") {
-            throw new ChatbotXException(
+            throw new InboxOSException(
               "The channel's credentials are invalid: reconnect the channel.",
               "coexistInvalidAuth",
               409,
@@ -374,7 +374,7 @@ export const createCoexistRoute = (channel: CoexistChannel) => {
           if (cause === "triggerRejected" || cause === "triggerThrew") {
             // Coexist is already switched on and its run exists; Meta refused
             // the sync request, which the caller can retry.
-            throw new ChatbotXException(
+            throw new InboxOSException(
               `Coexist is on, but Meta did not start the sync (${typeof reason === "string" ? reason : cause}). Try again.`,
               "coexistSyncNotStarted",
               502,
@@ -544,7 +544,7 @@ export const createCapiRoutes = (channel: CapiChannel) => {
           })
         } catch (error) {
           if (error instanceof CapiTestEventError) {
-            throw new ChatbotXException(
+            throw new InboxOSException(
               capiTestEventErrorMessages[error.reason] ?? error.reason,
               "capiTestEventRefused",
               422,

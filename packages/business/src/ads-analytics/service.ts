@@ -1,5 +1,5 @@
-import type { AdsConversionChannel } from "@chatbotx.io/database/schema"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+import type { AdsConversionChannel } from "@inboxos.io/database/schema"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import {
   type AdsEligibleChannel,
   adsConversionService,

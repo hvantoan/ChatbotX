@@ -1,7 +1,7 @@
 "use client"
 
-import type { PipelineValueOperator } from "@chatbotx.io/database/partials"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import type { PipelineValueOperator } from "@inboxos.io/database/partials"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import { FilterRadioList } from "./filter-radio-list"

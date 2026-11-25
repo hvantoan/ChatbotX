@@ -5,14 +5,14 @@ import {
   eq,
   isNotNull,
   isNull,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   isActiveInstallation,
   type TemplateActorKind,
   type TemplateSyncStatus,
   type TemplateSyncTrigger,
   type TemplateVersionChange,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   loadResourceLabels,
   templateInstallationRepository,
@@ -21,14 +21,14 @@ import {
   templateResourceBackupRepository,
   templateUninstallStateRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   type TemplateSyncCounts,
   templateInstallationModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
+import { InboxOSException, notFoundException } from "../errors"
 import {
   assertCanUseTemplateCategories,
   assertCanWriteTemplateInstalls,
@@ -121,7 +121,7 @@ export const TEMPLATE_FAN_OUT_BATCH_SIZE = 500
 const SYNC_HISTORY_LIMIT = 50
 
 const templateInstallationNotSyncableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template installation can not be synced",
     "templateInstallationNotSyncable",
     409,
@@ -163,7 +163,7 @@ export const assertCanManagePair = async (
     options.rejectInFlightInstall &&
     (await templateInstallationRepository.findActiveBySourceTemplate(pair, tx))
   ) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "An install of this template is in progress",
       "templateInstallationInProgress",
       409,
@@ -203,7 +203,7 @@ export type RequestSyncInput = {
 }
 
 const templateIdempotencyKeyReusedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This idempotency key was already used for a different request",
     "idempotencyKeyReused",
     422,
@@ -232,7 +232,7 @@ const requestFingerprint = (input: RequestSyncInput): Promise<string> =>
 /**
  * Edge-safe half of template sync: it only writes `TemplateInstallationSync`
  * rows (the outbox). Execution lives in the Node-only
- * `@chatbotx.io/business/template-sync/execute`.
+ * `@inboxos.io/business/template-sync/execute`.
  */
 /**
  * A copy that crosses tenants never gives its publisher access to the
@@ -578,7 +578,7 @@ export const templateSyncRequestService = {
     // A copy still installing has no installed rows to authorize against, so
     // its auto-update can be changed only once it finished.
     if (!isActiveInstallation(installation.status)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Wait for the installation to finish before changing auto-update",
         "templateInstallationNotReady",
         409,

@@ -9,11 +9,11 @@ const mocks = vi.hoisted(() => ({
   verifyMcpOAuthQuery: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/auth/mcp-resource", () => ({
+vi.mock("@inboxos.io/auth/mcp-resource", () => ({
   verifyMcpOAuthQuery: mocks.verifyMcpOAuthQuery,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   mcpOAuthService: {
     assertAuthorizableWorkspace: mocks.assertAuthorizableWorkspace,
     bindConsentWorkspace: mocks.bindConsentWorkspace,

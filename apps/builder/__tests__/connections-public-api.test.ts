@@ -78,7 +78,7 @@ const mocks = vi.hoisted(() => ({
   cancelSession: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     list: mocks.list,
     getForWorkspace: mocks.getForWorkspace,
@@ -87,7 +87,7 @@ vi.mock("@chatbotx.io/business", () => ({
   platformCredentialService: { resolveForOwner: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByIdForWorkspace: mocks.findSessionByIdForWorkspace,
     cancel: mocks.cancelSession,
@@ -105,7 +105,7 @@ const connectionServiceMocks = vi.hoisted(() => ({
   connectTargets: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: connectionServiceMocks,
   isCredentialStrategy: (strategy: string) =>
     strategy === "token" || strategy === "api_key" || strategy === "self_serve",
@@ -126,7 +126,7 @@ vi.mock("@chatbotx.io/connections", () => ({
   },
 }))
 
-class MockChatbotXException extends Error {
+class MockInboxOSException extends Error {
   code: string
   constructor(message: string, code: string) {
     super(message)
@@ -134,20 +134,20 @@ class MockChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
-  ChatbotXException: MockChatbotXException,
+  InboxOSException: MockInboxOSException,
   notFoundException: (message: string) =>
-    new MockChatbotXException(message, "notFound"),
+    new MockInboxOSException(message, "notFound"),
   channelHiddenException: (channel: string) =>
-    new MockChatbotXException(`${channel} hidden`, "channelHidden"),
+    new MockInboxOSException(`${channel} hidden`, "channelHidden"),
   connectionProviderDedicatedOnlyException: (provider: string) =>
-    new MockChatbotXException(
+    new MockInboxOSException(
       `${provider} is dedicated-only`,
       "connectionProviderDedicatedOnly",
     ),
   connectionNotConfiguredException: (provider: string) =>
-    new MockChatbotXException(
+    new MockInboxOSException(
       `${provider} not configured`,
       "connectionNotConfigured",
     ),
@@ -371,7 +371,7 @@ describe("POST /v1/connections/{id}/refresh — provider error propagation", () 
       provider: "messenger",
     })
     connectionServiceMocks.refresh.mockRejectedValueOnce(
-      new MockChatbotXException(
+      new MockInboxOSException(
         "This connection is not active.",
         "connectionInactive",
       ),

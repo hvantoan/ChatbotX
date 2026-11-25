@@ -1,7 +1,7 @@
 "use client"
 
-import type { TemplateInstallationDetail as Detail } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateInstallationDetail as Detail } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { Loader2Icon, Trash2Icon, Undo2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

@@ -1,9 +1,9 @@
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
 import {
   gatewayClient,
   ZaloPersonalAPIException,
-} from "@chatbotx.io/integration-zalo-personal"
-import { ChatJobAction, type ChatJobData } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/integration-zalo-personal"
+import { ChatJobAction, type ChatJobData } from "@inboxos.io/worker-config"
 import { DelayedError, type Job } from "bullmq"
 import { deferralsSoFar } from "../../lib/lock-contention-deferral"
 import { logger } from "../../lib/logger"

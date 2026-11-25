@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { PIPELINE_FIELD_OPERATORS_BY_TYPE } from "@chatbotx.io/database/partials"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import { PIPELINE_FIELD_OPERATORS_BY_TYPE } from "@inboxos.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"

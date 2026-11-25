@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   tiktokFindMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => ({ and: args }),
   db: {
     query: {
@@ -34,31 +34,31 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: (...args: unknown[]) => ({ sql: args }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   commentAutomationTypes: { enum: { messenger: "messenger" } },
   igCommentAutomationTypes: { options: ["instagram", "instagramFacebook"] },
   igStoryAutomationTypes: { options: ["instagram", "instagramFacebook"] },
   normalizeReplyTexts: (reply: unknown) => reply,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   commentAutomationModel: {},
   commentAutomationReplyModel: {},
   contactInboxModel: {},
   igStoryAutomationModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: () => ({ limit: 10, offset: 0 }),
   likeContains: (value: string) => `%${value}%`,
   parseOrderByAsObject: () => ({}),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => "id-1" }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => "id-1" }))
 vi.mock("date-fns-tz", () => ({ formatInTimeZone: () => "00:00" }))
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(db),
   }

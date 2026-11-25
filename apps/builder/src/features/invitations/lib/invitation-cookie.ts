@@ -1,5 +1,5 @@
-import { INVITATION_COOKIE_NAME } from "@chatbotx.io/auth/server"
-import { invitationService } from "@chatbotx.io/business"
+import { INVITATION_COOKIE_NAME } from "@inboxos.io/auth/server"
+import { invitationService } from "@inboxos.io/business"
 import { cookies } from "next/headers"
 
 /** The active invitation carried by the short-lived browser cookie. */

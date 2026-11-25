@@ -58,9 +58,9 @@ const automatedResponseService = {
   setStatus: vi.fn(),
   deleteMany: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ automatedResponseService }))
+vi.mock("@inboxos.io/business", () => ({ automatedResponseService }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

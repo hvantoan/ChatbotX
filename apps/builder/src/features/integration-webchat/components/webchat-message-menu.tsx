@@ -3,16 +3,16 @@
 import {
   type WebchatPersistentMenu,
   webchatPersistentMenuType,
-} from "@chatbotx.io/database/partials"
-import { messageTypes } from "@chatbotx.io/sdk"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { messageTypes } from "@inboxos.io/sdk"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { createId } from "@inboxos.io/utils"
 import { MenuIcon } from "lucide-react"
 import Link from "next/link"
 import { useAction } from "next-safe-action/hooks"

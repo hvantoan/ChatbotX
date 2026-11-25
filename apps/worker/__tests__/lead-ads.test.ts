@@ -47,7 +47,7 @@ const RICH_FIELDS = [
   "last_name",
 ]
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isRichSystemContactField: (name: string) => RICH_FIELDS.includes(name),
   contactService: {
     setRichSystemFieldByKey: mockSetRichSystemFieldByKey,
@@ -67,7 +67,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/leadgen", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/leadgen", () => ({
   getLead: mockGetLead,
   getLeadAdAttribution: mockGetLeadAdAttribution,
   getLeadgenFormName: mockGetLeadgenFormName,
@@ -88,7 +88,7 @@ vi.mock("../src/lib/logger", () => ({
 }))
 
 const mockLogProviderError = vi.fn()
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: (...args: unknown[]) => mockLogProviderError(...args),
 }))
 

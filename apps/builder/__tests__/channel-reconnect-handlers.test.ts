@@ -67,7 +67,7 @@ const {
   mockSeedInstagramPersistentMenu: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: {
     findByIdForWorkspace: mockFindMessengerIntegration,
     updateAuth: mockUpdateMessengerIntegrationAuth,
@@ -91,11 +91,11 @@ vi.mock("@/features/channel-connect/lib/branding-follow-ups", () => ({
   seedReconnectBranding: mockSeedReconnectBranding,
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: mockAuthExpiresAtOf,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   debugToken: mockDebugMessengerToken,
   exchangeCodeForToken: mockExchangeMessengerCode,
   getFacebookUser: mockGetMessengerFacebookUser,
@@ -104,27 +104,27 @@ vi.mock("@chatbotx.io/integration-messenger", () => ({
   integration: {},
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   ensureMessengerWhitelistedDomain: mockEnsureMessengerWhitelistedDomain,
   exchangeLongLivedToken: mockExchangeMessengerLongLivedToken,
   scopesToPageSubscribeFields: mockScopesToPageSubscribeFields,
   subscribePageToAppWebhook: mockSubscribePageToAppWebhook,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   getInstagramAccount: mockGetInstagramAccount,
   subscribePageToInstagramWebhook: mockSubscribeInstagramWebhook,
   integration: {},
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   getFacebookUser: mockGetInstagramFacebookUser,
   getUserInstagramAccounts: mockGetUserInstagramAccounts,
   subscribePageToInstagramWebhook: mockSubscribeInstagramFacebookWebhook,
   integration: {},
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   AuthType: { oauth2: "oauth2" },
 }))
 

@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   updateRoutingRolesIfNewer: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     findByInboxIdForWorkspace: mocks.findByInboxIdForWorkspace,

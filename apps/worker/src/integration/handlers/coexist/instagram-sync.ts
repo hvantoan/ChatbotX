@@ -1,15 +1,15 @@
-import { coexistService } from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
+import { coexistService } from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import type {
   InboxModel,
   IntegrationInstagramModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   buildCoexistPageJobId,
   IntegrationJobAction,
   type IntegrationJobCoexistInstagramSync,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import pLimit from "p-limit"
 import { logger } from "../../../lib/logger"
 import { enqueueProfileSnapshotJobs } from "../profile-snapshot/queue"

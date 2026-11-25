@@ -1,4 +1,4 @@
-import type { CustomAuthValue } from "@chatbotx.io/sdk"
+import type { CustomAuthValue } from "@inboxos.io/sdk"
 
 export type WebchatAuthValue = CustomAuthValue & {}
 

@@ -1,17 +1,17 @@
 import {
   automatedResponseService,
   isKeywordMediaFileType,
-} from "@chatbotx.io/automated-response"
+} from "@inboxos.io/automated-response"
 import {
   conversationService,
   getContactInputAttachments,
-} from "@chatbotx.io/business"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/business"
+import { emit } from "@inboxos.io/event-bus"
 import {
   IntegrationJobAction,
   type IntegrationJobReceiveMessage,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { resolveIncomingTextRouting } from "../routing"
 import { dispatchStoryAutomation } from "../story-automation-dispatch"
 import { receiveMessage } from "./received-message"

@@ -1,12 +1,12 @@
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
-import type { ContactScanChannel } from "@chatbotx.io/utils/channel"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
+import type { ContactScanChannel } from "@inboxos.io/utils/channel"
 
 export type ContactScanIntegrationRef = { integrationId: string }
 
 /**
  * The ONLY place in `packages/business` that names a contact-scan channel.
  * `satisfies Record<ContactScanChannel, …>` makes adding a value to
- * `contactScanChannels` (`@chatbotx.io/utils/channel`) without adding its
+ * `contactScanChannels` (`@inboxos.io/utils/channel`) without adding its
  * lookup here a compile error, instead of an `if (channel === "messenger")`
  * that silently does nothing for the new channel.
  *

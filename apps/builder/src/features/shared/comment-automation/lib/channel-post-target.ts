@@ -1,4 +1,4 @@
-import type { CommentPost } from "@chatbotx.io/database/partials"
+import type { CommentPost } from "@inboxos.io/database/partials"
 
 /**
  * Narrows a stored post target to what Threads and TikTok support: specific

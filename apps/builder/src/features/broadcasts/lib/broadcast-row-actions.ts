@@ -1,7 +1,7 @@
 import {
   type BroadcastStatus,
   isRecurringTemplate,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   CalendarClockIcon,
   CircleStopIcon,

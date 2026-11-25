@@ -1,7 +1,7 @@
 import type {
   PipelineItemPriority,
   PipelineItemStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { PipelineAccessScope } from "./access"
 import type { PipelineActor } from "./types"
 

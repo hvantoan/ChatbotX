@@ -1,18 +1,18 @@
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
 import {
   type ChannelType,
   contactSources,
   type InboundWebhookSkipReason,
-} from "@chatbotx.io/database/partials"
-import { contactInboxRepository } from "@chatbotx.io/database/repositories"
-import { CONTACT_INBOX_SOURCE_ID_KEY } from "@chatbotx.io/database/schema"
-import type { InboxModel } from "@chatbotx.io/database/types"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/partials"
+import { contactInboxRepository } from "@inboxos.io/database/repositories"
+import { CONTACT_INBOX_SOURCE_ID_KEY } from "@inboxos.io/database/schema"
+import type { InboxModel } from "@inboxos.io/database/types"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   CONTACT_LOOKUP_ORDER,
   type ContactIdentityKind,
   INBOUND_WEBHOOK_CHANNEL_SPECS,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import {
   type ContactInboxIdentities,
   type ContactLookupKey,
@@ -26,7 +26,7 @@ import {
   createContactWithInbox,
 } from "../contact/create-with-inbox"
 import { contactInboxService } from "../contact-inbox/service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 const CREATE_LOCK_TIMEOUT_SECONDS = 15
 
@@ -169,7 +169,7 @@ const findCreationOwner = (
 /** Another creator (an incoming message, the API) won the race for this identity. */
 const isIdentityRace = (error: unknown): boolean =>
   isUniqueViolationError(error, CONTACT_INBOX_SOURCE_ID_KEY) ||
-  (error instanceof ChatbotXException &&
+  (error instanceof InboxOSException &&
     error.message === CONTACT_ALREADY_ON_INBOX_MESSAGE)
 
 const createContact = async (input: {

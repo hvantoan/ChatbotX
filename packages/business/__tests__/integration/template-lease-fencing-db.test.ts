@@ -9,19 +9,19 @@
  * from it) afterwards. Needs the template migrations applied locally.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   templateInstallationRepository,
   templateInstallationSyncRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   templateInstallationModel,
   templateInstalledResourceModel,
   templateModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */

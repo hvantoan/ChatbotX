@@ -1,7 +1,7 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -9,14 +9,14 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@chatbotx.io/ui/components/ui/command"
+} from "@inboxos.io/ui/components/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/popover"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 import { Check, ChevronsUpDown, X } from "lucide-react"
 import Link from "next/link"

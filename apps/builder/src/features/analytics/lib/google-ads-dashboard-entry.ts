@@ -1,7 +1,7 @@
 import {
   googleAdsConversionService,
   integrationGoogleAdsService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 
 /**
  * Whether the Analytics nav shows the Google Ads entry: super admins only, and

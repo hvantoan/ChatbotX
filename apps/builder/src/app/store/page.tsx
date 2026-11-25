@@ -1,4 +1,4 @@
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { StoreCatalog } from "@/features/template-store/components/store-catalog"

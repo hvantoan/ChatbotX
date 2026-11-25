@@ -80,7 +80,7 @@ describe("OpenAI-compatible model options", () => {
   })
 
   test("uses dedicated NIM vision models for analyze image", async () => {
-    const { openaiCompatiblePresetConfigs } = await import("@chatbotx.io/ai")
+    const { openaiCompatiblePresetConfigs } = await import("@inboxos.io/ai")
     const nimConfig = openaiCompatiblePresetConfigs.nim
 
     expect(
@@ -104,7 +104,7 @@ describe("OpenAI-compatible model options", () => {
   })
 
   test("uses dedicated provider vision models for analyze image", async () => {
-    const { openaiCompatiblePresetConfigs } = await import("@chatbotx.io/ai")
+    const { openaiCompatiblePresetConfigs } = await import("@inboxos.io/ai")
 
     expect(
       buildOpenaiCompatibleModelOptions(

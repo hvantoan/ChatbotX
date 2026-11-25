@@ -4,21 +4,21 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import { inboxTeamMemberRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/client"
+import { inboxTeamMemberRepository } from "@inboxos.io/database/repositories"
 import {
   inboxTeamMemberModel,
   inboxTeamModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   InboxTeamMemberModel,
   InboxTeamModel,
   UserModel,
-} from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../../base.service"
-import { ChatbotXException, notFoundException } from "../../errors"
+import { InboxOSException, notFoundException } from "../../errors"
 import { enqueueWorkspaceMemberRealtimeConnectionRevocationRetry } from "../../platform/realtime-broadcast"
 import { type IdLabel, selectLabelsByIds } from "../../select-labels-by-ids"
 import { workspaceMemberService } from "../../workspace-member/service"
@@ -121,7 +121,7 @@ class InboxTeamService extends BaseService {
     // through alongside them.
     const existingUserIds = new Set(existing.map((member) => member.userId))
     if (existingUserIds.size !== new Set(userIds).size) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "One or more userIds are not members of this workspace",
         "invalidTeamMember",
         400,
@@ -164,7 +164,7 @@ class InboxTeamService extends BaseService {
         })
         .returning()
       if (!created) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Failed to create inbox team",
           "createFailed",
           500,

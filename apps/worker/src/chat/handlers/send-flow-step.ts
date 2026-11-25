@@ -3,7 +3,7 @@ import {
   botMessageResults,
   botMessageRouteTypes,
   trackingResponseTypes,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   appointmentCalendarService,
   contactInboxService,
@@ -16,27 +16,27 @@ import {
   resolveCollectionStep,
   resolveMediaUrl,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
-import { logProviderErrorForChannel } from "@chatbotx.io/business/error-log"
-import { wrapOpenLinkUrl } from "@chatbotx.io/business/open-link"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
+} from "@inboxos.io/business"
+import { logProviderErrorForChannel } from "@inboxos.io/business/error-log"
+import { wrapOpenLinkUrl } from "@inboxos.io/business/open-link"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
 import {
   channelTypes,
   messageTypes,
   senderTypes,
-} from "@chatbotx.io/database/partials"
-import type { MessageWithAttachments } from "@chatbotx.io/database/repositories"
-import type { messageModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import type { MessageWithAttachments } from "@inboxos.io/database/repositories"
+import type { messageModel } from "@inboxos.io/database/schema"
 import type {
   AttachmentModel,
   ContactInboxModel,
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import { signAppointmentWebviewToken } from "@chatbotx.io/encryption"
-import { emit } from "@chatbotx.io/event-bus"
-import { uploadFileFromUrl } from "@chatbotx.io/filesystem"
-import type { MetadataPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import { signAppointmentWebviewToken } from "@inboxos.io/encryption"
+import { emit } from "@inboxos.io/event-bus"
+import { uploadFileFromUrl } from "@inboxos.io/filesystem"
+import type { MetadataPayload } from "@inboxos.io/flow-config"
 import {
   appendCodeToMagicLink,
   type ButtonStepProps,
@@ -53,23 +53,23 @@ import {
   sendsAsNativeCopyButton,
   stepSupport,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { logDiagnostic } from "@chatbotx.io/logger"
-import { RealtimeEventType } from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/flow-config"
+import { logDiagnostic } from "@inboxos.io/logger"
+import { RealtimeEventType } from "@inboxos.io/realtime-protocol"
 import {
   IntegrationException,
   type MessageButtonTemplate,
   type MessageCardTemplate,
   parseSdkError,
   type SendFlowStepData,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { resolveStackFrames } from "@chatbotx.io/utils/error-log"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { resolveStackFrames } from "@inboxos.io/utils/error-log"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import type {
   ChatJobSendChatMessage,
   ChatJobSendFlowStep,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { isBulkSendOrigin } from "../../lib/bulk-send-origin"
 import {

@@ -2,7 +2,7 @@ import {
   ChannelErrorCategory,
   type ProductMessageItem,
   type ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { mockApiFetch, mockSendMessage, mockGetWhatsappClient } = vi.hoisted(

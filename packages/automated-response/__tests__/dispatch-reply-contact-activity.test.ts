@@ -1,4 +1,4 @@
-import { createdAtFromId, createId } from "@chatbotx.io/utils"
+import { createdAtFromId, createId } from "@inboxos.io/utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -8,11 +8,11 @@ const mocks = vi.hoisted(() => ({
   recordKeywordMatch: vi.fn().mockResolvedValue(true),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward: vi.fn().mockResolvedValue(true),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsConversionService: {
     enqueueKeywordMatchedEvaluation: vi.fn().mockResolvedValue(undefined),
     isEligibleChannel: () => false,
@@ -20,22 +20,22 @@ vi.mock("@chatbotx.io/business", () => ({
   contactActivityService: { recordKeywordMatch: mocks.recordKeywordMatch },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { flowModel: { findFirst: mocks.findFlow } } },
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn().mockResolvedValue({}),
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendChatMessage: "sendChatMessage" },
   IntegrationJobAction: { sendFlow: "sendFlow" },
   chatQueue: { add: mocks.chatAdd },

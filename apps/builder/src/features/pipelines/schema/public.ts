@@ -11,9 +11,9 @@ import {
   pipelineSettingsPatchSchema,
   pipelineTypes,
   pipelineValueOperators,
-} from "@chatbotx.io/database/partials"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
-import { customFieldTypes } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/partials"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
+import { customFieldTypes } from "@inboxos.io/utils/custom-field"
 import { z } from "zod"
 import { publicContactIdentifier } from "@/lib/public-api/contact-identifier"
 import { ianaTimezoneSchema } from "@/lib/public-api/iana-timezone"

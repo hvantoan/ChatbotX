@@ -7,8 +7,8 @@ import { z } from "zod"
 // docstring) — and with them, the only tests that proved a tampered
 // ciphertext is rejected rather than silently decrypted
 // (`facebook-pending-auth.test.ts`, deleted in 6c05ed880). This exercises
-// the REAL `@chatbotx.io/encryption` primitives (ENCRYPTION_KEY is seeded by
-// `@chatbotx.io/vitest-config`'s node preset) against `connectTargets`,
+// the REAL `@inboxos.io/encryption` primitives (ENCRYPTION_KEY is seeded by
+// `@inboxos.io/vitest-config`'s node preset) against `connectTargets`,
 // which is the one place `ConnectSession.encryptedAuth` is read back and
 // decrypted, so the tamper-detection case is a genuine AES-GCM auth-tag
 // failure, not a mocked one.
@@ -23,11 +23,11 @@ const mocks = vi.hoisted(() => ({
   resolveOwnerId: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: { create: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     claimTarget: mocks.claimTarget,
@@ -36,13 +36,13 @@ vi.mock("@chatbotx.io/business/connect-session", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   connectionStateService: {},
   isActiveConnectionStatus: () => false,
   resolveOwnerId: mocks.resolveOwnerId,
 }))
 
-class MockChatbotXException extends Error {
+class MockInboxOSException extends Error {
   code: string
   constructor(message: string, code: string) {
     super(message)
@@ -50,38 +50,32 @@ class MockChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: MockChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: MockInboxOSException,
   connectionAlreadyConnectedException: () =>
-    new MockChatbotXException(
-      "already connected",
-      "connectionAlreadyConnected",
-    ),
+    new MockInboxOSException("already connected", "connectionAlreadyConnected"),
   connectionCredentialsRejectedException: (message: string) =>
-    new MockChatbotXException(message, "connectionCredentialsRejected"),
+    new MockInboxOSException(message, "connectionCredentialsRejected"),
   connectionIdentityMismatchException: () =>
-    new MockChatbotXException(
-      "identity mismatch",
-      "connectionIdentityMismatch",
-    ),
+    new MockInboxOSException("identity mismatch", "connectionIdentityMismatch"),
   connectionNoCandidatesException: () =>
-    new MockChatbotXException("no candidates", "connectionNoCandidates"),
+    new MockInboxOSException("no candidates", "connectionNoCandidates"),
   connectionNotConfiguredException: (provider: string) =>
-    new MockChatbotXException(`${provider} not configured`, "notConfigured"),
+    new MockInboxOSException(`${provider} not configured`, "notConfigured"),
   connectionNotOAuthException: () =>
-    new MockChatbotXException("not oauth", "connectionNotOAuth"),
+    new MockInboxOSException("not oauth", "connectionNotOAuth"),
   connectionStateMismatchException: () =>
-    new MockChatbotXException("state mismatch", "connectionStateMismatch"),
+    new MockInboxOSException("state mismatch", "connectionStateMismatch"),
   connectSessionExpiredException: (message: string) =>
-    new MockChatbotXException(message, "connectSessionExpired"),
+    new MockInboxOSException(message, "connectSessionExpired"),
   notFoundException: (message: string) =>
-    new MockChatbotXException(message, "notFound"),
+    new MockInboxOSException(message, "notFound"),
   toPublicErrorMessage: (error: unknown, fallback: string) =>
     error instanceof Error ? error.message : fallback,
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByProviderSourceId: vi.fn() },
 }))
 
@@ -113,7 +107,7 @@ vi.mock("../src/logger", () => ({
 }))
 
 const { connectTargets } = await import("../src/connect-targets")
-const { encryptUtils } = await import("@chatbotx.io/encryption")
+const { encryptUtils } = await import("@inboxos.io/encryption")
 
 const baseSession = {
   id: "session-1",

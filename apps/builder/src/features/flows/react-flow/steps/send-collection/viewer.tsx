@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendCollectionStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendCollectionStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { GalleryHorizontalIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { CollectionSummary } from "./components/collection-summary"

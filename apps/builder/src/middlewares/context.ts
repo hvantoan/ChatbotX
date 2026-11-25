@@ -1,9 +1,9 @@
-import type { ConversationMemberScope } from "@chatbotx.io/business"
+import type { ConversationMemberScope } from "@inboxos.io/business"
 import type {
   WorkspaceApiTokenModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { os } from "@orpc/server"
 import type { ResponseHeadersPluginContext } from "@orpc/server/plugins"
 import type { SessionUser } from "@/lib/auth/utils"

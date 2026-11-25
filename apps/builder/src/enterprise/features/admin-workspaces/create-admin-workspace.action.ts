@@ -3,7 +3,7 @@
 import {
   adminWorkspaceService,
   assertEnterpriseFeatures,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { superAdminActionClient } from "@/lib/safe-action"
 import { createAdminWorkspaceSchema } from "./schema"
 

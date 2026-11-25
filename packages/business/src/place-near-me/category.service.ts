@@ -1,18 +1,18 @@
-import { db, isUniqueViolationError } from "@chatbotx.io/database/client"
-import { placeCategoryRepository } from "@chatbotx.io/database/repositories"
+import { db, isUniqueViolationError } from "@inboxos.io/database/client"
+import { placeCategoryRepository } from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 
 const normalizeName = (name: string): string => name.trim()
 
 const nameRequired = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Place category name is required",
     "placeCategoryNameRequired",
   )
 
 const duplicated = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Place category already exists",
     "placeCategoryDuplicated",
     409,

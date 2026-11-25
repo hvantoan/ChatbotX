@@ -1,5 +1,5 @@
-import type { Oauth2AuthValue } from "@chatbotx.io/sdk"
-import { ConnectionProviderRejectedError } from "@chatbotx.io/sdk"
+import type { Oauth2AuthValue } from "@inboxos.io/sdk"
+import { ConnectionProviderRejectedError } from "@inboxos.io/sdk"
 import { getClient } from "./client"
 import {
   type GoogleAdsUploadMethod,

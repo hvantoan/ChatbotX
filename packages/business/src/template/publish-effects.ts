@@ -1,5 +1,5 @@
-import { templateInstallationRepository } from "@chatbotx.io/database/repositories"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+import { templateInstallationRepository } from "@inboxos.io/database/repositories"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import { flowVersionService } from "../flow-version"
 import { logger } from "../logger"
 

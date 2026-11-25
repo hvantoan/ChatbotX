@@ -9,9 +9,9 @@ import {
   type MessengerTemplateComponent,
   mergeMessengerFlowButtonsWithExisting,
   type ParameterInfo,
-} from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { AppWindowIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"

@@ -65,21 +65,21 @@ const aiAgentSalesProfileService = {
 const aiAgentSalesProfileProposalService = {
   propose: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService,
   aiAgentSalesProfileService,
   aiAgentSalesProfileProposalService,
 }))
-vi.mock("@chatbotx.io/ai/sales-profile-proposer", () => ({
+vi.mock("@inboxos.io/ai/sales-profile-proposer", () => ({
   generateSalesProfileProposalPatch: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
   notFoundException: (message: string) => new Error(message),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

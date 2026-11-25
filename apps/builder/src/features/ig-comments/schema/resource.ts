@@ -6,11 +6,11 @@ import {
   commentPostSchema,
   commentReplyAfterSchema,
   commentReplySchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   commentAutomationModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import z from "zod"
 import { automationInboxIdResourceSchema } from "@/features/shared/comment-automation/schema/account"
 

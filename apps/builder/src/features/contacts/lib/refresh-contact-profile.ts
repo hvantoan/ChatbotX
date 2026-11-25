@@ -5,9 +5,9 @@ import {
   contactProfileRefreshService,
   contactService,
   type OnDemandProfileChannel,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import type { ChannelType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import type { RefreshContactProfileResult } from "../schema/action"
 import type { ContactResource } from "../schema/resource"
 import { profileFetcherFactories } from "./profile-fetcher-factories"

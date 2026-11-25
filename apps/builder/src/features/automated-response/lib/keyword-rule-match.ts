@@ -1,4 +1,4 @@
-import type { KeywordCondition } from "@chatbotx.io/database/partials"
+import type { KeywordCondition } from "@inboxos.io/database/partials"
 
 /**
  * Contact (inbound) forms send `conditions`; Page (outbound) forms send exact

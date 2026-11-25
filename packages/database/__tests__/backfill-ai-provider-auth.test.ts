@@ -1,5 +1,5 @@
-import { encryptUtils } from "@chatbotx.io/encryption"
-import { AuthType, secretTextAuthSchema } from "@chatbotx.io/sdk"
+import { encryptUtils } from "@inboxos.io/encryption"
+import { AuthType, secretTextAuthSchema } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import {
   aiProviderAuthAad,

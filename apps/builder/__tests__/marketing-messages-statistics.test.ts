@@ -9,19 +9,19 @@ const getMarketingMessagesAdInsights = vi.fn()
 const getMarketingMessagesAggregateInsights = vi.fn()
 const cacheCalls: { key: string; ttl?: number }[] = []
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessagesService: {
     listAdAccountsByWorkspaceId,
     listForStatistics,
   },
 }))
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   FacebookAdsException: FakeFacebookAdsException,
   getMarketingMessagesAdAccounts,
   getMarketingMessagesAdInsights,
   getMarketingMessagesAggregateInsights,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (key: string, fn: () => unknown, options?: { ttl?: number }) => {
     cacheCalls.push({ key, ttl: options?.ttl })
     return fn()

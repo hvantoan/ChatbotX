@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto"
-import { aiTimeouts } from "@chatbotx.io/ai"
+import { aiTimeouts } from "@inboxos.io/ai"
 import {
   aiAgentService,
   conversationService,
@@ -10,20 +10,20 @@ import {
   isUserOnShift,
   logProviderErrorForChannel,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import type { DefaultReplyFrequency } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import type { DefaultReplyFrequency } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import { handoffExecutorService } from "../../../trigger/services/handoff-executor.service"

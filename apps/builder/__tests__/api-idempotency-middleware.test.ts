@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type * as RedisModule from "@chatbotx.io/redis"
+import type * as RedisModule from "@inboxos.io/redis"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type * as IdempotencyModule from "@/lib/idempotency/api-idempotency"
 import type { BaseContext } from "@/middlewares/context"
@@ -18,7 +18,7 @@ const mocks = vi.hoisted(() => ({
   useActualStore: false,
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal<typeof RedisModule>()
 
   return {

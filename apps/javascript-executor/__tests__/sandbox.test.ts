@@ -1,4 +1,4 @@
-import { MAX_CODE_LENGTH } from "@chatbotx.io/javascript-sandbox"
+import { MAX_CODE_LENGTH } from "@inboxos.io/javascript-sandbox"
 import { describe, expect, test } from "vitest"
 import { executeJavascript } from "../src/sandbox"
 

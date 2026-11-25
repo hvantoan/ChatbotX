@@ -3,7 +3,7 @@ import {
   Integration,
   type IntegrationDefinition,
   probeVerify,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { ZaloPersonalAPIException } from "./exception"
 import { contactHandlers } from "./handlers/contact"
 import { conversationHandlers } from "./handlers/conversation"

@@ -1,5 +1,5 @@
-import { type FlowResponseFile, getFlowResponseFiles } from "@chatbotx.io/sdk"
-import { formatDateRange } from "@chatbotx.io/utils/form-answer-format"
+import { type FlowResponseFile, getFlowResponseFiles } from "@inboxos.io/sdk"
+import { formatDateRange } from "@inboxos.io/utils/form-answer-format"
 import type {
   WhatsappFlowResponse,
   WhatsappFlowResponseField,

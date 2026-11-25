@@ -104,7 +104,7 @@ const botFieldUpdateByKey = vi.fn()
 const claimNewActiveContact = vi.fn()
 const claimNewActiveContacts = vi.fn()
 
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   importService: {
     markProcessing: () => {
       updateSet({ status: "processing" })
@@ -157,7 +157,7 @@ vi.mock("@chatbotx.io/business/import", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: {
     find: (...args: unknown[]) => workspaceFind(...args),
   },
@@ -202,11 +202,11 @@ vi.mock("@chatbotx.io/business", () => ({
 }))
 
 const recordAuditLog = vi.fn()
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: (...args: unknown[]) => recordAuditLog(...args) },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   macTrackingService: {
     claimNewActiveContact: (...args: unknown[]) =>
       claimNewActiveContact(...args),
@@ -217,7 +217,7 @@ vi.mock("@chatbotx.io/analytics", () => ({
 
 const getObjectStream = vi.fn()
 const headObject = vi.fn()
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     getObjectStream: (path: string) => getObjectStream(path),
     // M-4: size check reads HeadObject's ContentLength before streaming.
@@ -225,8 +225,8 @@ vi.mock("@chatbotx.io/filesystem", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   // Unique per call: each imported contact/inbox needs a distinct id so the
   // survivor filter can tell rows apart when a conflict drops one.
   let seq = 0
@@ -236,10 +236,10 @@ vi.mock("@chatbotx.io/utils", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/database/partials")
-  >("@chatbotx.io/database/partials")
+    typeof import("@inboxos.io/database/partials")
+  >("@inboxos.io/database/partials")
   return actual
 })
 

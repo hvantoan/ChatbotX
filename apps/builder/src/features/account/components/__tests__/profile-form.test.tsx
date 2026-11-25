@@ -37,7 +37,7 @@ vi.mock("@/components/avatar-upload-field", () => ({
   AvatarUploadField: () => <button type="button">Upload avatar</button>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({
     children,
     ...props

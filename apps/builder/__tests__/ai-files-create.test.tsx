@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import messages from "../messages/en.json"
 
 vi.mock("@/hooks/routing", () => ({ useWorkspaceId: () => "workspace-1" }))
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   getAllowableKnowledgeExtensions: () => ".pdf,.txt",
 }))
 vi.mock("../src/features/ai-files/actions/create-ai-file.action", () => ({
@@ -18,7 +18,7 @@ vi.mock(
 )
 
 const upload = vi.hoisted(() => ({ props: undefined as unknown }))
-vi.mock("@chatbotx.io/ui/components/uploader/direct-upload-button", () => ({
+vi.mock("@inboxos.io/ui/components/uploader/direct-upload-button", () => ({
   DirectUploadButton: (props: { label: string; maxSize: number }) => {
     upload.props = props
     return (

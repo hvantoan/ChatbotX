@@ -26,7 +26,7 @@ apps/builder/src/features/integration-<channel>/
 **`schema/mutation.ts`** — Zod schemas for create/update:
 
 ```typescript
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const create<Channel>Request = z.object({
@@ -43,7 +43,7 @@ export type Update<Channel>Request = z.infer<typeof update<Channel>Request>
 **`schema/resource.ts`** — Select schema for responses:
 
 ```typescript
-import { createSelectSchema, integration<Channel>Model } from "@chatbotx.io/database/schema"
+import { createSelectSchema, integration<Channel>Model } from "@inboxos.io/database/schema"
 import type { z } from "zod"
 
 export const integration<Channel>Resource = createSelectSchema(integration<Channel>Model).pick({
@@ -70,11 +70,11 @@ export type Integration<Channel>Resource = z.infer<typeof integration<Channel>Re
 
 **`queries/index.ts`** — A thin adapter over the service, per
 `.agents/rules/data-access.md`: resolve session context → plain params → call the service →
-shape the response. **No `db` / `@chatbotx.io/database/schema` import, and no `"use server"`**
+shape the response. **No `db` / `@inboxos.io/database/schema` import, and no `"use server"`**
 (a query file is not a server-action module).
 
 ```typescript
-import { integration<Channel>Service } from "@chatbotx.io/business"
+import { integration<Channel>Service } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 
 export const listIntegration<Channel>s = async (input: { workspaceId: string }) => {
@@ -85,7 +85,7 @@ export const listIntegration<Channel>s = async (input: { workspaceId: string }) 
 
 > **Do not copy a sibling channel's `queries/index.ts` verbatim.** Every existing channel
 > feature (e.g. `apps/builder/src/features/integration-telegram/queries/index.ts`) still opens
-> with `import { db } from "@chatbotx.io/database/client"` — those are legacy exceptions that
+> with `import { db } from "@inboxos.io/database/client"` — those are legacy exceptions that
 > predate the rule, not the pattern. New code calls a service.
 
 **`components/create-<channel>-form.tsx`** — Form pattern:
@@ -116,7 +116,7 @@ with `requireVisibleChannel` — it 404s for hidden channels and returns the
 request-scoped `ChannelPolicy`:
 
 ```typescript
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { <Channel>Manage } from "@/features/integration-<channel>/<channel>-manage"
 import { listIntegration<Channel>s } from "@/features/integration-<channel>/queries"

@@ -3,11 +3,11 @@
 import {
   isMinigameProbabilityTotalValid,
   type MinigamePrizeSettings,
-} from "@chatbotx.io/database/partials"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/database/partials"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"

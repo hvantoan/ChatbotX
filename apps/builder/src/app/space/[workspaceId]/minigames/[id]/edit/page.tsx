@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { buildMinigamePlayUrl } from "@/features/minigames/lib/play-url"
 import { MinigameForm } from "@/features/minigames/minigame-form"

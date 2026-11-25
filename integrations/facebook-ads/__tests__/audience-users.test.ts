@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { describe, expect, test } from "vitest"
 import {
   buildHashedPayload,

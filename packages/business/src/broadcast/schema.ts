@@ -2,8 +2,8 @@ import type {
   BroadcastAudienceRange,
   BroadcastSubaction,
   ChannelType,
-} from "@chatbotx.io/database/partials"
-import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/partials"
+import type { ContactFilterCriteriaInput } from "@inboxos.io/database/queries"
 
 export type BroadcastAudienceInput = {
   workspaceId: string

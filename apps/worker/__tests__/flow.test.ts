@@ -1,14 +1,14 @@
-import type { FlowVersionModel } from "@chatbotx.io/database/types"
+import type { FlowVersionModel } from "@inboxos.io/database/types"
 import type {
   BaseStepSchema,
   ButtonStepProps,
   EdgeSchema,
   FlowNode,
   StepType,
-} from "@chatbotx.io/flow-config"
-import { encodeButtonPayload, stepTypes } from "@chatbotx.io/flow-config"
-import { SdkException } from "@chatbotx.io/sdk"
-import type { IntegrationJobRunFlowNode } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/flow-config"
+import { encodeButtonPayload, stepTypes } from "@inboxos.io/flow-config"
+import { SdkException } from "@inboxos.io/sdk"
+import type { IntegrationJobRunFlowNode } from "@inboxos.io/worker-config"
 import { beforeEach, describe, expect, type Mock, test, vi } from "vitest"
 
 // --- mocks ---
@@ -24,7 +24,7 @@ const applyWhatsappFlowResponseSideEffects = vi.fn(async () => undefined)
 
 const recordContactActivity = vi.fn(async (..._args: unknown[]) => true)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactActivityService: {
     record: (...args: unknown[]) => recordContactActivity(...args),
   },
@@ -36,9 +36,9 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     IntegrationJobAction: {
@@ -53,7 +53,7 @@ vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: {}, update: vi.fn(), insert: vi.fn() },
   eq: vi.fn(),
 }))
@@ -72,19 +72,19 @@ vi.mock("../src/integration/handlers/poll", async (importOriginal) => {
     handlePollTap: (...args: unknown[]) => handlePollTap(...args),
   }
 })
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: async () => ({ findRichResponseByButton }),
 }))
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   automatedResponseService: { enqueue: vi.fn(async () => undefined) },
 }))
 
 // Passthrough the real schema: a transitive dependency imports `createSelectSchema`
 // from this barrel at module load, so an empty mock breaks the import graph. The
 // schema is pure table/zod definitions (no DB connection), safe to load for real.
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => {
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/schema")>()
+    await importOriginal<typeof import("@inboxos.io/database/schema")>()
   return { ...actual }
 })
 const armQuickReplySettings = vi.fn(async (..._args: unknown[]) => undefined)
@@ -113,12 +113,12 @@ vi.mock("../src/lib/db", () => ({
   detectConversationAndContactInbox,
   detectFlowVersion,
 }))
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn(async () => undefined),
 }))
-vi.mock("@chatbotx.io/events", () => ({}))
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/events", () => ({}))
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     initVariables: vi.fn(() => ({ conversation: {} })),

@@ -4,24 +4,24 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // `crud.ts`'s schemas transitively import many real cross-feature resource
 // schemas (`schema/query.ts` → `inboxResource`, `userResource`, ...) which
-// are only reachable through the real `@chatbotx.io/business` barrel — so,
+// are only reachable through the real `@inboxos.io/business` barrel — so,
 // unlike the other contacts-public-api test files, this one leaves
-// `@chatbotx.io/business` un-mocked (mirrors public-spec-operations.test.ts)
-// and only proxy-mocks `@chatbotx.io/database/client` to keep a real `pg.Pool`
+// `@inboxos.io/business` un-mocked (mirrors public-spec-operations.test.ts)
+// and only proxy-mocks `@inboxos.io/database/client` to keep a real `pg.Pool`
 // from being constructed at import time. `contactService.upsertByIdentifier`
 // is stubbed via `vi.spyOn` after the real import instead.
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
 
-// The real `@chatbotx.io/business` barrel (kept for `inboxResource`, see
+// The real `@inboxos.io/business` barrel (kept for `inboxResource`, see
 // below) pulls in `contactRepository`, which transitively needs the real
 // contact-filter query graph (`applyContactFilter` → `contactInboxExists` →
 // real `contactInboxModel`). This test never exercises real repository
 // behavior — `contactService` is fully stubbed below — so proxy-mock the
 // repositories module the same way as `database/client` above.
-vi.mock("@chatbotx.io/database/repositories", () => {
+vi.mock("@inboxos.io/database/repositories", () => {
   const nestedProxy: unknown = new Proxy(
     {},
     { get: (_obj, prop) => (prop === "then" ? undefined : nestedProxy) },
@@ -111,12 +111,12 @@ vi.mock("@/features/contacts/queries/resolve-contact-avatars", () => ({
   resolveContactAvatars: resolveAvatars,
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: () => ({ ipAddress: "203.0.113.9", userAgent: "curl/8" }),
 }))
 
-vi.mock("@chatbotx.io/business", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/business")>()
+vi.mock("@inboxos.io/business", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/business")>()
   return {
     buildContactPermissionScope: actual.buildContactPermissionScope,
     conversationMemberScope: {
@@ -156,7 +156,7 @@ vi.mock("@/lib/auth/utils", () => ({
   getCurrentUserAndTargetWorkspace: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   importService: { startContactImport: contactImportService.startImport },
 }))
 

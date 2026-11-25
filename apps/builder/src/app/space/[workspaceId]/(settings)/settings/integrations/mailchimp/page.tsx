@@ -1,5 +1,5 @@
-import { integrationMailchimpService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationMailchimpService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageMailchimp } from "@/features/integration-mailchimp/components/manage-mailchimp"
 

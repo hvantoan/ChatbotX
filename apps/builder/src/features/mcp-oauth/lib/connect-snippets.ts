@@ -24,7 +24,7 @@ export const buildMcpConnectSnippets = ({
   const httpConfig = JSON.stringify(
     {
       mcpServers: {
-        chatbotx: {
+        inboxos: {
           type: "http",
           url: streamableUrl,
         },
@@ -37,10 +37,10 @@ export const buildMcpConnectSnippets = ({
   return {
     streamableUrl,
     sseUrl,
-    claudeCode: `claude mcp add chatbotx -t http -s user "${streamableUrl}"`,
+    claudeCode: `claude mcp add inboxos -t http -s user "${streamableUrl}"`,
     claudeDesktop: httpConfig,
     cursor: httpConfig,
     chatgpt: sseUrl,
-    stdio: `CHATBOTX_API_URL=${builderUrl}/api CHATBOTX_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp`,
+    stdio: `INBOXOS_API_URL=${builderUrl}/api INBOXOS_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp`,
   }
 }

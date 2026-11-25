@@ -16,19 +16,28 @@ export type CliConfig = {
   allowSelfSignedCert?: boolean
 }
 
-const CONFIG_DIR = ".chatbotX"
+const CONFIG_DIR = ".inboxos"
+const LEGACY_CONFIG_DIR = ".chatbotX"
 const CONFIG_FILE = "config.json"
 
 const getConfigFilePath = (): string => join(homedir(), CONFIG_DIR, CONFIG_FILE)
+const getLegacyConfigFilePath = (): string =>
+  join(homedir(), LEGACY_CONFIG_DIR, CONFIG_FILE)
 
+/**
+ * v2.0.0 moved the config file to `~/.inboxos/config.json`. An install that
+ * saved its API key under the old directory keeps working: the legacy location
+ * is read, never written, so the next `config set` moves it forward.
+ */
 const readStoredConfig = (): ConfigOptions => {
-  try {
-    const raw = readFileSync(getConfigFilePath(), "utf8")
-    const parsed = JSON.parse(raw) as ConfigOptions
-    return parsed
-  } catch {
-    return {}
+  for (const path of [getConfigFilePath(), getLegacyConfigFilePath()]) {
+    try {
+      return JSON.parse(readFileSync(path, "utf8")) as ConfigOptions
+    } catch {
+      // missing or unreadable: try the next location
+    }
   }
+  return {}
 }
 
 const writeStoredConfig = (config: ConfigOptions): void => {
@@ -76,24 +85,24 @@ export const setAllowSelfSignedCert = (allowSelfSignedCert: boolean): void => {
 export const getConfig = (overrides?: ConfigOptions): CliConfig => {
   const stored = readStoredConfig()
 
-  const apiKey = overrides?.apiKey ?? env.CHATBOTX_API_KEY ?? stored.apiKey
+  const apiKey = overrides?.apiKey ?? env.INBOXOS_API_KEY ?? stored.apiKey
 
-  const apiUrl = overrides?.apiUrl ?? env.CHATBOTX_API_URL ?? stored.apiUrl
+  const apiUrl = overrides?.apiUrl ?? env.INBOXOS_API_URL ?? stored.apiUrl
 
   const allowSelfSignedCert =
     overrides?.allowSelfSignedCert ??
-    parseBooleanEnv(env.CHATBOTX_ALLOW_SELF_SIGNED_CERT) ??
+    parseBooleanEnv(env.INBOXOS_ALLOW_SELF_SIGNED_CERT) ??
     stored.allowSelfSignedCert
 
   if (!apiKey) {
     throw new Error(
-      "Missing API key. Run: chatbotx config set --apiKey your_api_key",
+      "Missing API key. Run: inboxos config set --apiKey your_api_key",
     )
   }
 
   if (!apiUrl) {
     throw new Error(
-      "Missing API URL. Run: chatbotx config set --apiUrl your_api_url",
+      "Missing API URL. Run: inboxos config set --apiUrl your_api_url",
     )
   }
 

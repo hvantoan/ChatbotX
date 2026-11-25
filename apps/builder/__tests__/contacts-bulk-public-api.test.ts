@@ -57,7 +57,7 @@ const findBroadcast = vi.fn()
 const assertSequenceOwned = vi.fn()
 const enqueueBulkTagStats = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: { findByIdOrName: findBroadcast },
   contactService: { deleteAndRecord: deleteContact },
   tagService: {
@@ -65,13 +65,13 @@ vi.mock("@chatbotx.io/business", () => ({
     detachByNamesFromContacts: removeContactTags,
   },
 }))
-vi.mock("@chatbotx.io/business/sequence", () => ({
+vi.mock("@inboxos.io/business/sequence", () => ({
   sequenceService: { assertOwned: assertSequenceOwned },
 }))
 vi.mock("@/features/contacts/lib/enqueue-bulk-tag-stats", () => ({
   enqueueBulkTagStatsContacts: enqueueBulkTagStats,
 }))
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {
     subscribeContacts: subscribeContactsToSequences,
     unsubscribeContacts: unsubscribeContactsFromSequences,

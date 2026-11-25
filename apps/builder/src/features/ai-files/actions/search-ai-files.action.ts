@@ -1,7 +1,7 @@
 "use server"
 
-import { searchAIFiles } from "@chatbotx.io/ai/server"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { searchAIFiles } from "@inboxos.io/ai/server"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { assertAIFileActionNotRateLimited } from "../lib/rate-limit"
 import { searchAIFilesRequest } from "../schema/public"

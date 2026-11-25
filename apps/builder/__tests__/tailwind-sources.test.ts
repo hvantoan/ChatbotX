@@ -17,14 +17,14 @@ const REPO_ROOT = join(import.meta.dirname, "../../..")
 /**
  * A workspace package, reached either directly (`packages/<pkg>`,
  * `integrations/<pkg>`) or through its pnpm link
- * (`node_modules/@chatbotx.io/<pkg>`). Captures the path inside the package.
+ * (`node_modules/@inboxos.io/<pkg>`). Captures the path inside the package.
  */
 const WORKSPACE_PACKAGE_PATH =
-  /^(?:packages|integrations)\/[^/]+(\/.*)?$|(?:^|\/)node_modules\/@chatbotx\.io\/[^/]+(\/.*)?$/
+  /^(?:packages|integrations)\/[^/]+(\/.*)?$|(?:^|\/)node_modules\/@inboxos\.io\/[^/]+(\/.*)?$/
 const REQUIRED_SOURCES = [
-  "../../node_modules/@chatbotx.io/ui/src",
-  "../../node_modules/@chatbotx.io/analytics-nextjs/src",
-  "../../node_modules/@chatbotx.io/minigame-ui/src",
+  "../../node_modules/@inboxos.io/ui/src",
+  "../../node_modules/@inboxos.io/analytics-nextjs/src",
+  "../../node_modules/@inboxos.io/minigame-ui/src",
 ]
 
 /**
@@ -69,17 +69,17 @@ describe("globals.css Tailwind sources", () => {
   })
 
   test.each([
-    ["../../node_modules/@chatbotx.io/ui", true],
-    ["../../node_modules/@chatbotx.io/ui/", true],
-    ["../../node_modules/@chatbotx.io/ui/node_modules", true],
-    ["../../node_modules/@chatbotx.io/ui/src/..", true],
+    ["../../node_modules/@inboxos.io/ui", true],
+    ["../../node_modules/@inboxos.io/ui/", true],
+    ["../../node_modules/@inboxos.io/ui/node_modules", true],
+    ["../../node_modules/@inboxos.io/ui/src/..", true],
     ["../../../../packages/ui", true],
     ["../../../../packages/ui/node_modules", true],
     ["../../../../integrations/messenger", true],
     ["../../../../packages/ui/src", false],
     ["../../../../packages/ui/src/components", false],
-    ["../../node_modules/@chatbotx.io/ui/src", false],
-    ["../../node_modules/@chatbotx.io/ui/src/components", false],
+    ["../../node_modules/@inboxos.io/ui/src", false],
+    ["../../node_modules/@inboxos.io/ui/src/components", false],
     ["../../node_modules/some-lib", false],
     ["../components", false],
   ])("%s is outside the package src: %s", (source, expected) => {

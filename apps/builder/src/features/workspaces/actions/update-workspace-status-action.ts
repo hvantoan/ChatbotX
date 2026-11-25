@@ -1,7 +1,7 @@
 "use server"
 
-import { workspaceService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { workspaceService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,
@@ -28,7 +28,7 @@ export const updateWorkspaceStatusAction = workspaceActionClient
       const currentUserAndTargetWorkspace =
         await getCurrentUserAndTargetWorkspace(workspaceId)
       if (!currentUserAndTargetWorkspace) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "You are not authorized to update this workspace",
         )
       }
@@ -36,7 +36,7 @@ export const updateWorkspaceStatusAction = workspaceActionClient
       const { permissions } =
         currentUserAndTargetWorkspace.targetWorkspaceMember
       if (!hasWorkspacePermission(permissions, "superAdmin")) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "You need to be a super admin to change workspace active hours",
         )
       }

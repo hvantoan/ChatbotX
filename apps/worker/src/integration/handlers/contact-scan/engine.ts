@@ -3,23 +3,23 @@ import {
   contactScanService,
   quotaEnforcementService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   CONTACT_SCAN_ERRORS,
   CONTACT_SCAN_MAX_PAGES,
-} from "@chatbotx.io/business/contact-scan"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { sanitizePublicText } from "@chatbotx.io/business/errors"
-import { supportsProfileSnapshot } from "@chatbotx.io/database/partials"
-import type { CoexistRunWriteGuard } from "@chatbotx.io/database/repositories"
-import type { CoexistSyncRunModel } from "@chatbotx.io/database/types"
-import { isContactScanChannel } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/business/contact-scan"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { sanitizePublicText } from "@inboxos.io/business/errors"
+import { supportsProfileSnapshot } from "@inboxos.io/database/partials"
+import type { CoexistRunWriteGuard } from "@inboxos.io/database/repositories"
+import type { CoexistSyncRunModel } from "@inboxos.io/database/types"
+import { isContactScanChannel } from "@inboxos.io/utils/channel"
 import {
   buildContactScanPageJobId,
   IntegrationJobAction,
   type IntegrationJobContactScan,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { filterConversationWindow } from "../coexist/conversation-window"
 import { enqueueProfileSnapshotJobs } from "../profile-snapshot/queue"

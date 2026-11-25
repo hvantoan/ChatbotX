@@ -3,9 +3,9 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import { sequenceModel, sequenceStepModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { sequenceModel, sequenceStepModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { omitKeys } from "../fingerprint"
 import { templateBackupNotRestorableException } from "../template-errors"

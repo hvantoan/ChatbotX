@@ -1,4 +1,4 @@
-import type { PipelineMemberModel } from "@chatbotx.io/database/types"
+import type { PipelineMemberModel } from "@inboxos.io/database/types"
 
 /**
  * Who is asking, as plain data. The app layer resolves it from the session or

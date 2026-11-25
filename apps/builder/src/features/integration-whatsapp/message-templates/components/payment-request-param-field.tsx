@@ -4,8 +4,8 @@ import {
   type ParameterInfo,
   type PaymentRequestMethod,
   paymentRequestFieldNames,
-} from "@chatbotx.io/flow-config"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/flow-config"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { InfoIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

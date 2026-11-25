@@ -1,9 +1,9 @@
 ---
 name: diagnosing-bugs
-description: Use when fixing a bug, a failing or flaky test, or a performance regression in ChatbotX, or when the user says "debug"/"diagnose" or reports something broken, throwing, or slow. A gated loop — build a command that goes red on the bug, minimise, rank hypotheses, instrument, fix with a regression test, clean up. For production triage without a local repro, dispatch the incident-responder agent first.
+description: Use when fixing a bug, a failing or flaky test, or a performance regression in InboxOS, or when the user says "debug"/"diagnose" or reports something broken, throwing, or slow. A gated loop — build a command that goes red on the bug, minimise, rank hypotheses, instrument, fix with a regression test, clean up. For production triage without a local repro, dispatch the incident-responder agent first.
 ---
 
-# Diagnosing Bugs (ChatbotX)
+# Diagnosing Bugs (InboxOS)
 
 A gated loop for hard bugs. Each phase ends on a completion criterion; finish it before starting the next. Skip a phase only when you say why.
 
@@ -18,7 +18,7 @@ This phase is the skill. A **red loop** is one command that drives the real bug 
 Reach for the cheapest that reaches the bug, in this order:
 
 1. **Failing Vitest test** at the seam that reaches the bug: `pnpm --filter <workspace> exec vitest run <path> -t "<name>"`. Placement follows `testing-workflow` (`<workspace>/__tests__/`).
-2. **curl against the public API** on a running builder (`http://localhost:3123/api/...`, `Authorization: Bearer $CHATBOTX_TOKEN`). Specs: `/api/public-spec.json`.
+2. **curl against the public API** on a running builder (`http://localhost:3123/api/...`, `Authorization: Bearer $INBOXOS_TOKEN`). Specs: `/api/public-spec.json`.
 3. **CLI call** (`pnpm --filter @hvantoan/inboxos dev:cli -- <command>`), diffing output against a known-good snapshot.
 4. **Replay a captured payload** — a webhook body, a BullMQ job's `data`, a flow version JSON — saved to a fixture and fed straight into the handler (`integrations/<channel>/` parser, `apps/worker/src/**/handlers/`).
 5. **Throwaway harness** — a `tsx` script calling one service method with mocked repositories.
@@ -51,7 +51,7 @@ Write 3–5 hypotheses, ranked, before testing any. Each states a prediction:
 
 A hypothesis without a prediction is discarded or sharpened. Show the ranked list to the user — they may know the area was just changed, or that one is already ruled out — then continue with your ranking if they are away.
 
-Usual ChatbotX suspects worth a slot on the list: a missing `workspaceId` filter or tenant scope; a stale `withCache` entry or missing TanStack Query invalidation; a retried or concurrent BullMQ job (see `reliability-concurrency`); a drizzle `.default()` with no database default; a channel payload shape that differs from the fixture.
+Usual InboxOS suspects worth a slot on the list: a missing `workspaceId` filter or tenant scope; a stale `withCache` entry or missing TanStack Query invalidation; a retried or concurrent BullMQ job (see `reliability-concurrency`); a drizzle `.default()` with no database default; a channel payload shape that differs from the fixture.
 
 ## Phase 4 — Instrument
 

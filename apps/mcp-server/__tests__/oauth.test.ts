@@ -11,11 +11,11 @@ beforeEach(() => {
   vi.resetModules()
   process.env = {
     ...originalEnv,
-    CHATBOTX_API_URL: "https://builder.example.com/api",
-    CHATBOTX_MCP_OAUTH_ENABLED: "true",
+    INBOXOS_API_URL: "https://builder.example.com/api",
+    INBOXOS_MCP_OAUTH_ENABLED: "true",
   }
-  delete process.env.CHATBOTX_MCP_OAUTH_ISSUER
-  delete process.env.CHATBOTX_MCP_PUBLIC_URL
+  delete process.env.INBOXOS_MCP_OAUTH_ISSUER
+  delete process.env.INBOXOS_MCP_PUBLIC_URL
 })
 
 afterEach(() => {
@@ -26,8 +26,8 @@ afterEach(() => {
 const loadOAuth = async () => await import("../src/oauth")
 
 describe("OAuth protected-resource metadata", () => {
-  test("uses CHATBOTX_MCP_PUBLIC_URL for the advertised resource", async () => {
-    process.env.CHATBOTX_MCP_PUBLIC_URL = "https://mcp.public.example.com/base"
+  test("uses INBOXOS_MCP_PUBLIC_URL for the advertised resource", async () => {
+    process.env.INBOXOS_MCP_PUBLIC_URL = "https://mcp.public.example.com/base"
     const { buildProtectedResourceMetadata } = await loadOAuth()
 
     expect(buildProtectedResourceMetadata(request())).toMatchObject({
@@ -78,7 +78,7 @@ describe("OAuth protected-resource metadata", () => {
   })
 
   test("derives the issuer without the API path", async () => {
-    process.env.CHATBOTX_API_URL = "https://builder.example.com/api/"
+    process.env.INBOXOS_API_URL = "https://builder.example.com/api/"
     const { buildProtectedResourceMetadata } = await loadOAuth()
 
     expect(

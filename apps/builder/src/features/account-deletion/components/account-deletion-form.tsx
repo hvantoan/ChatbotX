@@ -1,9 +1,9 @@
 "use client"
 
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { Loader2Icon } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"

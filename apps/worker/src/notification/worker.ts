@@ -1,8 +1,5 @@
-import { withBlockedOwnerGuard } from "@chatbotx.io/business"
-import {
-  type NotificationJobData,
-  queueNames,
-} from "@chatbotx.io/worker-config"
+import { withBlockedOwnerGuard } from "@inboxos.io/business"
+import { type NotificationJobData, queueNames } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { env } from "../env"
 import { createQueueWorker } from "../lib/create-queue-worker"

@@ -1,7 +1,7 @@
 "use client"
 
-import type { WebshopProductView } from "@chatbotx.io/database/partials"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { WebshopProductView } from "@inboxos.io/database/partials"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { PackageSearchIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"

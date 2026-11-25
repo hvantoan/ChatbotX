@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   searchCandidates: vi.fn(),
 }))
 
-class FakeChatbotXException extends Error {
+class FakeInboxOSException extends Error {
   code: string
 
   constructor(message: string, code: string) {
@@ -19,7 +19,7 @@ class FakeChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isSuperAdmin: mocks.isSuperAdmin,
   isPlatformAdmin: mocks.isPlatformAdmin,
   templateStoreService: {
@@ -28,8 +28,8 @@ vi.mock("@chatbotx.io/business", () => ({
     searchCandidates: mocks.searchCandidates,
   },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: FakeChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: FakeInboxOSException,
 }))
 // The client is reduced to the handler it wraps, so the tests call the exact
 // function the server action runs.
@@ -139,7 +139,7 @@ describe("expected refusals become outcomes", () => {
   test("a business error code is returned as a typed rejection", async () => {
     mocks.isSuperAdmin.mockResolvedValue(true)
     mocks.addListing.mockRejectedValue(
-      new FakeChatbotXException("exists", "templateStoreListingExists"),
+      new FakeInboxOSException("exists", "templateStoreListingExists"),
     )
 
     await expect(

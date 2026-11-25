@@ -5,8 +5,8 @@ const mocks = vi.hoisted(() => ({
   createWithToken: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/business")>()),
+vi.mock("@inboxos.io/business", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/business")>()),
   integrationWebchatService: { createWithWorkspace: mocks.createWithWorkspace },
   integrationApiService: { createWithToken: mocks.createWithToken },
 }))

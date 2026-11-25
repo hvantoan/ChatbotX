@@ -5,8 +5,8 @@ import {
   type StoreSource,
   type TriggerEventType,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import { PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
@@ -51,7 +51,7 @@ const ECOMMERCE_EVENTS_WITH_OPTIONAL_SOURCE: ReadonlySet<TriggerEventType> =
     triggerEventTypes.enum.productOrdered,
   ])
 
-// Reference trigger-picker order; the events only ChatbotX has
+// Reference trigger-picker order; the events only InboxOS has
 // (phone/email update, call recorded/transcribed, order paid/refunded) close
 // the group they belong to.
 const ECOMMERCE_EVENTS = [

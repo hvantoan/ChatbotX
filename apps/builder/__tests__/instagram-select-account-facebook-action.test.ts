@@ -1,11 +1,11 @@
 // @vitest-environment node
 
 import {
-  ChatbotXException,
   channelDuplicatedException,
   credentialMissingException,
+  InboxOSException,
   notWorkspaceMemberException,
-} from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -35,7 +35,7 @@ vi.mock("@/features/channel-connect/lib/resolve-connect-session", () => ({
 }))
 
 vi.mock("@/features/integration-webchat/lib", () => ({
-  BRANDING_TITLE: "ChatbotX",
+  BRANDING_TITLE: "InboxOS",
 }))
 
 vi.mock("@/features/workspaces/actions/upload-logo", () => ({
@@ -46,7 +46,7 @@ vi.mock("@/lib/log", () => ({
   logger: { warn: loggerWarnMock, error: loggerErrorMock, info: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: buildContextMock,
   instagramIntegrationService: {
     findByInboxId: findByInboxIdMock,
@@ -54,11 +54,11 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { connectTargets: connectTargetsMock },
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: { runChannelHandler: runChannelHandlerMock },
 }))
 
@@ -81,7 +81,7 @@ const resolvedSession = {
   workspace: { id: "ws-1", ownerId: "owner-1" },
   platformOwnerId: "owner-1",
   brandingMenuEntry: {
-    label: "ChatbotX",
+    label: "InboxOS",
     type: "url" as const,
     url: "https://app.test/branding",
   },
@@ -109,7 +109,7 @@ describe("connectInstagramAccountViaFacebook", () => {
 
   test("returns sessionExpired and touches nothing else when the connect session is missing/invalid", async () => {
     resolveConnectSessionMock.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Your connect session expired. Please start again.",
         "connectSessionExpired",
       ),
@@ -140,7 +140,7 @@ describe("connectInstagramAccountViaFacebook", () => {
 
   test("returns trialExpired when the workspace owner is blocked", async () => {
     resolveConnectSessionMock.mockRejectedValue(
-      new ChatbotXException("Trial expired", "trialExpired", 403),
+      new InboxOSException("Trial expired", "trialExpired", 403),
     )
 
     const result = await call({
@@ -155,7 +155,7 @@ describe("connectInstagramAccountViaFacebook", () => {
 
   test("returns macLimitReached when the workspace owner is blocked on MAC", async () => {
     resolveConnectSessionMock.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Monthly active contact limit reached",
         "macLimitReached",
         403,

@@ -5,8 +5,8 @@ import {
   minigamePlayerSettingsSchema,
   minigamePrizeSettingsSchema,
   minigameWinningMessageSettingsSchema,
-} from "@chatbotx.io/database/partials"
-import { createSelectSchema, minigameModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import { createSelectSchema, minigameModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const minigameResource = createSelectSchema(minigameModel, {

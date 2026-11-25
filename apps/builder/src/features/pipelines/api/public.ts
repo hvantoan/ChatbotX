@@ -1,4 +1,4 @@
-import { contactService } from "@chatbotx.io/business"
+import { contactService } from "@inboxos.io/business"
 import {
   pipelineAnalyticsService,
   pipelineItemQueryService,
@@ -6,7 +6,7 @@ import {
   pipelineService,
   pipelineStageBulkService,
   pipelineStructureService,
-} from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business/pipeline"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

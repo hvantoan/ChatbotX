@@ -1,5 +1,3 @@
-import type { AIProvider } from "@chatbotx.io/ai"
-import { cn } from "@chatbotx.io/ui/lib/utils"
 import {
   SiClaude,
   SiClaudeHex,
@@ -8,6 +6,8 @@ import {
   SiMeta,
   SiMetaHex,
 } from "@icons-pack/react-simple-icons"
+import type { AIProvider } from "@inboxos.io/ai"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { BotIcon } from "lucide-react"
 import { OpenAIIcon, OpenAIIconHex } from "@/icons/openai"
 

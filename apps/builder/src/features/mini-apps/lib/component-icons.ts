@@ -1,4 +1,4 @@
-import type { MiniAppComponentType } from "@chatbotx.io/mini-app"
+import type { MiniAppComponentType } from "@inboxos.io/mini-app"
 import {
   AlignLeftIcon,
   CalendarDaysIcon,

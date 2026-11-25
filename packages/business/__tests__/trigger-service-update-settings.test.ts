@@ -35,7 +35,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -52,7 +52,7 @@ vi.mock("../src/automation-action/references", () => ({
   indexesOfNewActions: vi.fn(() => new Set<number>()),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: { triggerModel: { findFirst: mockTriggerFindFirst } },
     update: mockDbUpdate,
@@ -62,21 +62,21 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: (...args: unknown[]) => ({ inArray: args }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   conditionModel: {},
   triggerModel: { id: "triggerModel.id" },
 }))
 
 const mockFindWithConditions = vi.fn()
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   triggerRepository: {
     listPaginatedWithConditions: vi.fn(),
     findWithConditions: mockFindWithConditions,
   },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   removeTriggerCache: vi.fn(),
   updateTriggerCache: vi.fn(),
 }))
@@ -97,7 +97,7 @@ const { triggerService } = await import("../src/trigger/service")
 const { assertResourceEditable } = await import(
   "../src/template/installed-resource.service"
 )
-const { db: mockedDb } = await import("@chatbotx.io/database/client")
+const { db: mockedDb } = await import("@inboxos.io/database/client")
 
 const WS = "ws-1"
 const TRIGGER_ID = "trigger-1"

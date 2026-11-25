@@ -1,6 +1,6 @@
 "use client"
 
-import type { KeywordCondition } from "@chatbotx.io/database/partials"
+import type { KeywordCondition } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import { Fragment } from "react"
 

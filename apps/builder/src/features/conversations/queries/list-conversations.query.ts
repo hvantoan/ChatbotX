@@ -1,19 +1,19 @@
 import {
   conversationService,
   resolveContactAvatarUrl,
-} from "@chatbotx.io/business"
-import { resolveAdReferral } from "@chatbotx.io/business/ads-conversion/channel-fields"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { resolveGoogleAdsClick } from "@chatbotx.io/business/google-ads/click-fields"
+} from "@inboxos.io/business"
+import { resolveAdReferral } from "@inboxos.io/business/ads-conversion/channel-fields"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { resolveGoogleAdsClick } from "@inboxos.io/business/google-ads/click-fields"
 import {
   contactInboxOperationalColumns,
   createMessageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxOperationalModel,
   InboxModel,
-} from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { endOfHour } from "date-fns"
 import z from "zod"
 import type { ListConversationsRequest } from "@/features/conversations/schema/query"

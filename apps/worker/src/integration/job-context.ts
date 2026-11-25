@@ -1,5 +1,5 @@
-import { runWithWebhookExecutionContext } from "@chatbotx.io/events/context"
-import type { IntegrationJobData } from "@chatbotx.io/worker-config"
+import { runWithWebhookExecutionContext } from "@inboxos.io/events/context"
+import type { IntegrationJobData } from "@inboxos.io/worker-config"
 import { logger } from "../lib/logger"
 import {
   cleanupOrphanedIntegrationOnce,

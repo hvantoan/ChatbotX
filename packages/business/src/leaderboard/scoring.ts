@@ -1,21 +1,21 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   LEADERBOARD_FOLLOWER_CHECK_PLATFORMS,
   LEADERBOARD_MAX_SCORE,
   type LeaderboardRule,
   type LeaderboardRuleKey,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   LeaderboardChangeRejected,
   type LeaderboardScoreChangeInput,
   type LeaderboardScoreChangeResult,
   leaderboardParticipantRepository,
   leaderboardRepository,
-} from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
-import type { LeaderboardAwardContext } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
+import type { LeaderboardAwardContext } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { isWithinLeaderboardWindow } from "./config"
 import { leaderboardDayKey } from "./day"

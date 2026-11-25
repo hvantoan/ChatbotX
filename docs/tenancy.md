@@ -1,6 +1,6 @@
 # White-label tenancy
 
-ChatbotX supports white-label resellers: a reseller runs a branded instance on
+InboxOS supports white-label resellers: a reseller runs a branded instance on
 their own domain, with their own end-customers, fully isolated from the platform
 and from every other reseller. This is modeled by a first-class **`Tenant`** table
 (the Auth0-tenant / Vercel-team / Stripe-Connect shape).
@@ -16,7 +16,7 @@ and from every other reseller. This is modeled by a first-class **`Tenant`** tab
 
 `ROOT_TENANT_ID` is defined in `packages/database/src/partials/shared.ts` (not in
 `tenant.ts`) so the eager constant sits outside the `tenant.ts` ↔ `auth-user.ts`
-circular FK; it is re-exported from `@chatbotx.io/database/schema`.
+circular FK; it is re-exported from `@inboxos.io/database/schema`.
 
 ### Keys
 
@@ -280,7 +280,7 @@ sign-in link follow the host the visitor opened, so a white-label link stays whi
   skipped; an operational error aborts the creation so "every new workspace gets the
   default" is never silently broken.
 - **Dispatch.** The job is enqueued after the transaction commits
-  (`dispatchStagedInstalls`, subpath `@chatbotx.io/business/template-install-dispatch`): by
+  (`dispatchStagedInstalls`, subpath `@inboxos.io/business/template-install-dispatch`): by
   `workspaceService.create` for an owned transaction, and by the caller for a
   caller-owned one (`startSession`, webchat, Telegram, WhatsApp, API connects). It is
   idempotent; the installation sweep recovers a lost enqueue within minutes, so only
@@ -303,7 +303,7 @@ sign-in link follow the host the visitor opened, so a white-label link stays whi
 ## Platform templates and publisher rights
 
 - **Same tenant, plus the platform's.** A template installs into a workspace of its own
-  tenant, or (when it belongs to the root tenant, ChatbotX cloud) into a workspace of any
+  tenant, or (when it belongs to the root tenant, InboxOS cloud) into a workspace of any
   white-label tenant (`canInstallFromTenant`). A white-label tenant's template never leaves
   its tenant. A copy that crosses tenants never grants its publisher anything: the install forces it
   off and switching it on later (`templateInstallations.update`) is refused

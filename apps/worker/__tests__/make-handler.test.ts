@@ -23,7 +23,7 @@ const mocks = vi.hoisted(() => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   externalWebhookService: {
     listByWorkspaceAndEvents: mocks.listByWorkspaceAndEvents,
   },
@@ -33,7 +33,7 @@ vi.mock("@chatbotx.io/business", () => ({
   externalRequestService: { execute: mocks.execute },
 }))
 
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {
     listByContactId: mocks.listContactSequencesByContactId,
   },

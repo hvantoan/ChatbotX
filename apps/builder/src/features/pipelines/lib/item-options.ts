@@ -3,7 +3,7 @@ import {
   type PipelineItemStatus,
   pipelineItemPriorities,
   pipelineItemStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { priorityKeys, statusFilterKeys } from "./item-noun"
 
 /** Translates the `pipelines` keys these options use. */

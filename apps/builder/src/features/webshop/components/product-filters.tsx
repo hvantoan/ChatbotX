@@ -1,13 +1,13 @@
 "use client"
 
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { Loader2Icon, SearchIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

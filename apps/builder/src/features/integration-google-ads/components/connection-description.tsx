@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { formatCustomerId } from "@chatbotx.io/utils/google-click"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { formatCustomerId } from "@inboxos.io/utils/google-click"
 import { TriangleAlertIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"
 import { setupErrorKey } from "../lib/status"

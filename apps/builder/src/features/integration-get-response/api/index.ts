@@ -1,11 +1,11 @@
-import { buildContext } from "@chatbotx.io/business"
+import { buildContext } from "@inboxos.io/business"
 import {
   GetResponseApiError,
   getResponseCampaignPageSchema,
   integration as getResponseIntegration,
   getResponseTagPageSchema,
-} from "@chatbotx.io/integration-get-response"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-get-response"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

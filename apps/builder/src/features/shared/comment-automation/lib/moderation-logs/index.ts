@@ -1,13 +1,13 @@
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
 import {
   commentAutomationService,
   contactInboxService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   ChannelType,
   CommentModerationCategory,
   CommentModerationRule,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ListModerationLogsPrivateResponse,
   ListModerationLogsRequest,

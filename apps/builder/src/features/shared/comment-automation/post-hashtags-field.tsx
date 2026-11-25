@@ -5,9 +5,9 @@ import {
   COMMENT_POST_HASHTAGS_MAX,
   isValidCommentPostHashtag,
   normalizeCommentPostHashtag,
-} from "@chatbotx.io/database/partials"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
+} from "@inboxos.io/database/partials"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
 import { TriangleAlert } from "lucide-react"
 import { useTranslations } from "next-intl"
 

@@ -1,11 +1,11 @@
-import { pipelineRepository } from "@chatbotx.io/database/repositories"
-import type { FlowVersionModel } from "@chatbotx.io/database/types"
+import { pipelineRepository } from "@inboxos.io/database/repositories"
+import type { FlowVersionModel } from "@inboxos.io/database/types"
 import {
   findMissingRequiredPipelineFields,
   type PipelineStepFieldValue,
   pipelineStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 import { validationException } from "../errors"
 

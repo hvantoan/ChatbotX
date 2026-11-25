@@ -5,8 +5,8 @@ import {
   createInboxBookingLink,
   resolveTenantSettings,
   sendInboxBookingLink,
-} from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { assertConversationAccessForCaller } from "@/lib/public-api/member-scope"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { createInboxBookingLinkRequest } from "../schema/action"

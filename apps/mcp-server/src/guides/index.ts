@@ -37,7 +37,7 @@ export type Guide = {
   content: string
   description: string
   name: GuideName
-  uri: `chatbotx://guides/${GuideName}`
+  uri: `inboxos://guides/${GuideName}`
 }
 
 export const guideNames = Object.keys(guideDefinitions) as GuideName[]
@@ -50,7 +50,7 @@ const loadGuide = (name: GuideName): Guide => {
       content: readFileSync(path, "utf8"),
       description: definition.description,
       name,
-      uri: `chatbotx://guides/${name}`,
+      uri: `inboxos://guides/${name}`,
     }
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error)

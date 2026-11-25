@@ -1,6 +1,6 @@
 "use client"
 
-import type { ExternalStoreSource } from "@chatbotx.io/database/partials"
+import type { ExternalStoreSource } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import { ProductSyncButton } from "./product-sync-button"
 

@@ -1,5 +1,5 @@
-import { customFieldService } from "@chatbotx.io/business"
-import type { AIAgentActionRule } from "@chatbotx.io/database/partials"
+import { customFieldService } from "@inboxos.io/business"
+import type { AIAgentActionRule } from "@inboxos.io/database/partials"
 import { type Tool, tool } from "ai"
 import { z } from "zod"
 import { logger } from "../../../lib/logger"

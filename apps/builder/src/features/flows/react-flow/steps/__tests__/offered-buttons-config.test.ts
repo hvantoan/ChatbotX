@@ -1,4 +1,4 @@
-import { buttonTypes } from "@chatbotx.io/flow-config"
+import { buttonTypes } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import type { TranslationFn } from "../../nodes/types"
 import { offeredButtonsConfig } from "../button-config"

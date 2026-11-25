@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useFormatter, useTranslations } from "next-intl"
 import { useResponseSlaEnabled } from "@/features/response-sla/provider/response-sla-hook"
 import { useNow } from "@/hooks/use-now"

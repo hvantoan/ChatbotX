@@ -1,11 +1,11 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   FolderType,
   TemplateCategory,
   TemplateResourceCategory,
   TemplateResourceKind,
   TemplateUninstallEffect,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { ResourceFingerprint } from "../fingerprint"
 import type { StagingScope } from "../template-object-keys"
 

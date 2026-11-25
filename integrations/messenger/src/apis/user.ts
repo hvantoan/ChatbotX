@@ -4,11 +4,11 @@ import type {
   IncomingContact,
   PersistentMenu,
   UserCustomSettings,
-} from "@chatbotx.io/sdk"
-import { normalizeGender, normalizeUtcOffset } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { fetchMediaWithLimits } from "@chatbotx.io/utils/media-download"
-import { storeIncomingImage } from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/sdk"
+import { normalizeGender, normalizeUtcOffset } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { fetchMediaWithLimits } from "@inboxos.io/utils/media-download"
+import { storeIncomingImage } from "@inboxos.io/utils/store-incoming-image"
 import { API_URL, DEFAULT_API_VERSION } from "../constants"
 import { parseOriginError, rescue } from "../exception"
 import { facebookGraphClient } from "../lib/http-client"

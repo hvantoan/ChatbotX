@@ -1,5 +1,5 @@
-import type { SendCarouselStepSchema } from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+import type { SendCarouselStepSchema } from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import type {
   TelegramAuthValue,
   TelegramSendMessageRequest,

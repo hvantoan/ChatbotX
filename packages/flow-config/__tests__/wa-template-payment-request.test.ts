@@ -1,5 +1,5 @@
-import { zodUrlWithVariables } from "@chatbotx.io/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { zodUrlWithVariables } from "@inboxos.io/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { describe, expect, test } from "vitest"
 import {
   bindWaTemplateQuickReplyButtons,

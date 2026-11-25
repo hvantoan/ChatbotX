@@ -14,7 +14,7 @@ vi.mock("@/lib/safe-action", () => {
   chain.action = (handler: unknown) => handler
   return { authActionClient: chain }
 })
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   removePlatformStripe: removeSpy,
   savePlatformStripe: saveSpy,
   isSuperAdmin: isSuperAdminSpy,
@@ -31,7 +31,7 @@ vi.mock("@/lib/provider-origin", () => ({
       : "https://broker.example",
 }))
 const { stripeCredentialUpdateSchema } = await import(
-  "@chatbotx.io/database/partials"
+  "@inboxos.io/database/partials"
 )
 const { deleteStripeSettingsAction } = await import(
   "../src/features/platform-credentials/stripe/delete-stripe-settings.action"

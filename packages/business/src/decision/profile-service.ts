@@ -1,19 +1,19 @@
-import { type DatabaseClient, db, sql } from "@chatbotx.io/database/client"
-import { decisionRepository } from "@chatbotx.io/database/repositories"
+import { type DatabaseClient, db, sql } from "@inboxos.io/database/client"
+import { decisionRepository } from "@inboxos.io/database/repositories"
 import type {
   DecisionProfileModel,
   FlowVersionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   globalRouterConfigSchema,
   type DecisionProfileForm as SharedDecisionProfileForm,
   decisionProfileFormSchema as sharedDecisionProfileFormSchema,
-} from "@chatbotx.io/decision-config"
-import { evaluateDecisionStepSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/decision-config"
+import { evaluateDecisionStepSchema } from "@inboxos.io/flow-config"
 import { z } from "zod"
 import { aiAgentService } from "../ai-agent/service"
 import { inboxTeamService } from "../enterprise/inbox-team/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { flowService } from "../flow/service"
 import { workspaceMemberService } from "../workspace-member/service"
 import {
@@ -81,7 +81,7 @@ const compileContract = (
   }
   const instructions = compileNoulInstructions(decision)
   if (instructions.length > 1000) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Noul instructions exceed the 1,000-character provider limit",
       "invalidDecisionContract",
     )
@@ -106,7 +106,7 @@ class DecisionProfileService {
     profileStatus: "disabled" | "enabled"
   }): void {
     if (input.profileStatus !== "enabled") {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Global Router profile must be enabled",
         "invalidDecisionReference",
       )
@@ -121,7 +121,7 @@ class DecisionProfileService {
     const config = globalRouterConfigSchema.parse(input.config)
     const decision = input.decision
     if (config.routes.some((route) => route.type !== decision.type)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Global Router routes must match the Decision question type",
         "invalidDecisionReference",
       )
@@ -134,7 +134,7 @@ class DecisionProfileService {
           !decision.options.some((option) => option.value === route.value),
       )
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Global Router choice route is not in the Decision options",
         "invalidDecisionReference",
       )
@@ -145,7 +145,7 @@ class DecisionProfileService {
         (route) => route.type === "score" && route.to > decision.levels.length,
       )
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Global Router score route exceeds the configured levels",
         "invalidDecisionReference",
       )
@@ -159,7 +159,7 @@ class DecisionProfileService {
     })
     const fieldTypes = new Map(fields.map((field) => [field.id, field.type]))
     if (fieldTypes.size !== metadataIds.length) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Global Router metadata field is unavailable",
         "invalidDecisionReference",
       )
@@ -177,7 +177,7 @@ class DecisionProfileService {
         !validValue ||
         fieldTypes.get(mapping.customFieldId) !== mapping.customFieldType
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Global Router metadata mapping is incompatible",
           "invalidDecisionReference",
         )
@@ -194,7 +194,7 @@ class DecisionProfileService {
           workspaceId: input.workspaceId,
         })
         if (!flow?.currentVersionId) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Global Router Flow must be published",
             "invalidDecisionReference",
           )
@@ -206,7 +206,7 @@ class DecisionProfileService {
             workspaceId: input.workspaceId,
           }))
         ) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Global Router AI Agent is unavailable",
             "invalidDecisionReference",
           )
@@ -218,7 +218,7 @@ class DecisionProfileService {
             workspaceId: input.workspaceId,
           }))
         ) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Global Router user is unavailable",
             "invalidDecisionReference",
           )
@@ -229,7 +229,7 @@ class DecisionProfileService {
           workspaceId: input.workspaceId,
         }))
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Global Router team is unavailable",
           "invalidDecisionReference",
         )
@@ -496,7 +496,7 @@ class DecisionProfileService {
         }
         const parsed = evaluateDecisionStepSchema.safeParse(step)
         if (!parsed.success) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Evaluate Decision requires a profile",
             "invalidDecisionReference",
           )
@@ -531,7 +531,7 @@ class DecisionProfileService {
       fields.map((field) => [field.id, field.type] as const),
     )
     if (fields.length !== new Set(fieldIds).size) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Evaluate Decision context references an unavailable custom field",
         "invalidDecisionReference",
       )
@@ -540,7 +540,7 @@ class DecisionProfileService {
       new Set(input.step.fieldMappings.map((mapping) => mapping.customFieldId))
         .size !== input.step.fieldMappings.length
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Evaluate Decision cannot map a custom field more than once",
         "invalidDecisionReference",
       )
@@ -551,7 +551,7 @@ class DecisionProfileService {
       contextIds.length > 8 ||
       new Set(contextIds).size !== contextIds.length
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Evaluate Decision requires 1 to 8 unique context fields",
         "invalidDecisionReference",
       )
@@ -572,7 +572,7 @@ class DecisionProfileService {
           fieldTypes.get(mapping.customFieldId) === mapping.customFieldType
         )
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Evaluate Decision mapping is invalid for its Profile or custom field",
           "invalidDecisionReference",
         )
@@ -597,7 +597,7 @@ class DecisionProfileService {
       input.requireModelAvailability &&
       !connection.modelCatalog.includes(input.model.trim())
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Decision model is not available on this connection",
         "invalidDecisionModel",
       )

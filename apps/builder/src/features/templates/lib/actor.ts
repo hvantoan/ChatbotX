@@ -1,4 +1,4 @@
-import type { TemplateActor } from "@chatbotx.io/business"
+import type { TemplateActor } from "@inboxos.io/business"
 
 export type MemberPermissions = Extract<
   TemplateActor,

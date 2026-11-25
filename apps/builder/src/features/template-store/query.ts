@@ -1,7 +1,7 @@
 import {
   TEMPLATE_STORE_MAX_LISTINGS,
   templateStoreListingStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createSearchParamsCache,
   parseAsArrayOf,

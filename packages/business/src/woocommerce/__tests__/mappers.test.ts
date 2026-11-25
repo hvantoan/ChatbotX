@@ -3,7 +3,7 @@ import {
   wooCommerceOrderSchema,
   wooCommerceProductSchema,
   wooCommerceVariationSchema,
-} from "@chatbotx.io/integration-woocommerce"
+} from "@inboxos.io/integration-woocommerce"
 import { describe, expect, test } from "vitest"
 import {
   htmlToPlainText,

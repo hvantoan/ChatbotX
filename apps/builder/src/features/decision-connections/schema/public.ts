@@ -1,4 +1,4 @@
-import { decisionConnectionSafeSchema } from "@chatbotx.io/business"
+import { decisionConnectionSafeSchema } from "@inboxos.io/business"
 import { z } from "zod"
 import { decisionConnectionActionSchema } from "./action"
 

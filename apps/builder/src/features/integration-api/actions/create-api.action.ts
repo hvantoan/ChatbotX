@@ -4,8 +4,8 @@ import {
   hasWorkspaceAccess,
   integrationApiService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { authActionClient } from "@/lib/safe-action"
 import { createApiRequest } from "../schema/mutation"
 
@@ -17,7 +17,7 @@ export const createApiAction = authActionClient
 
     if (workspaceId) {
       if (!(await hasWorkspaceAccess({ workspaceId, user: ctx.user }))) {
-        throw new ChatbotXException("Workspace not found", "notFound", 404)
+        throw new InboxOSException("Workspace not found", "notFound", 404)
       }
       const workspace = await workspaceService.findOrFail({
         where: { id: workspaceId },

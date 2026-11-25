@@ -1,6 +1,6 @@
-import { db } from "@chatbotx.io/database/client"
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import { getRedisConnection } from "@chatbotx.io/worker-config"
+import { db } from "@inboxos.io/database/client"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import { getRedisConnection } from "@inboxos.io/worker-config"
 import { LRUCache } from "lru-cache"
 import { EVALUATOR_FILTERED_EVENT_TYPE_SET } from "./event-type-registry"
 

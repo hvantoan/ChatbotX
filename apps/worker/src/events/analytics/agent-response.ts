@@ -1,6 +1,6 @@
-import { agentResponseAnalyticsService } from "@chatbotx.io/analytics"
-import type { AgentRepliedEventPayload } from "@chatbotx.io/event-bus"
-import { agentRepliedEventSchema } from "@chatbotx.io/flow-config"
+import { agentResponseAnalyticsService } from "@inboxos.io/analytics"
+import type { AgentRepliedEventPayload } from "@inboxos.io/event-bus"
+import { agentRepliedEventSchema } from "@inboxos.io/flow-config"
 import { logger } from "../../lib/logger"
 
 const toMs = (value: Date | string | number): number =>

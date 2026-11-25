@@ -1,7 +1,7 @@
-import { contactService } from "@chatbotx.io/business"
-import { getAuditActor } from "@chatbotx.io/business/audit"
-import { importService } from "@chatbotx.io/business/import"
-import { contactSources, genderTypes } from "@chatbotx.io/database/partials"
+import { contactService } from "@inboxos.io/business"
+import { getAuditActor } from "@inboxos.io/business/audit"
+import { importService } from "@inboxos.io/business/import"
+import { contactSources, genderTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

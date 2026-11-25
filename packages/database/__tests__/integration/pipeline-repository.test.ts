@@ -5,7 +5,7 @@
  * concurrency, idempotent inserts, keyset paging for every sort key (NULLs
  * last, both directions), the board window query, stage reorder, cascades and
  * workspace scoping. Runs only against an explicitly configured database with
- * the pipelines migration applied (`pnpm --filter @chatbotx.io/database test:db`).
+ * the pipelines migration applied (`pnpm --filter @inboxos.io/database test:db`).
  */
 
 import { eq } from "drizzle-orm"

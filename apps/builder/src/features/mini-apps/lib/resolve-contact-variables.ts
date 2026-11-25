@@ -1,7 +1,7 @@
 import "server-only"
 
-import { contactInboxService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { contactInboxService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   CONTACT_VARIABLE_PATTERN,
   type DisplayText,
@@ -11,8 +11,8 @@ import {
   hasContactVariable,
   type MiniAppDefinition,
   mapDisplayText,
-} from "@chatbotx.io/mini-app"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/mini-app"
+import { contactVariableService } from "@inboxos.io/variables"
 
 const logger = getChildLogger("mini-apps:resolve-contact-variables")
 

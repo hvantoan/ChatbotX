@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 // Dynamic per-test `import()` (not a static top-level import) matches this
 // repo's existing `openapi-loader.test.ts` convention: `sse-server.ts`
 // reads `env` from `@t3-oss/env-core` at module-eval time, so a test that
-// mutates `process.env.CHATBOTX_API_KEY` must pair `vi.resetModules()`
+// mutates `process.env.INBOXOS_API_KEY` must pair `vi.resetModules()`
 // with a fresh import to see it — a static import would read `env` once,
 // frozen at the first test's `process.env`, for the whole file.
 
@@ -129,14 +129,14 @@ describe("makeCredentialState / updateCredentialStateFromRequest", () => {
 
   beforeEach(() => {
     vi.resetModules()
-    process.env.CHATBOTX_API_KEY = "  env-default-token  "
+    process.env.INBOXOS_API_KEY = "  env-default-token  "
   })
 
   afterEach(() => {
     process.env = { ...originalEnv }
   })
 
-  test("falls back to CHATBOTX_API_KEY when the connect request carries no token", async () => {
+  test("falls back to INBOXOS_API_KEY when the connect request carries no token", async () => {
     const { makeCredentialState } = await import("../src/server/sse-server")
     const state = makeCredentialState(fakeRequest({}))
     expect(state.token).toBe("env-default-token")
@@ -237,7 +237,7 @@ describe("createRequestListener", () => {
 
   beforeEach(() => {
     vi.resetModules()
-    process.env.CHATBOTX_MCP_OAUTH_ENABLED = "false"
+    process.env.INBOXOS_MCP_OAUTH_ENABLED = "false"
   })
 
   afterEach(() => {
@@ -432,8 +432,8 @@ describe("createRequestListener OAuth gate", () => {
     vi.resetModules()
     process.env = {
       ...originalEnv,
-      CHATBOTX_API_KEY: "",
-      CHATBOTX_MCP_OAUTH_ENABLED: "true",
+      INBOXOS_API_KEY: "",
+      INBOXOS_MCP_OAUTH_ENABLED: "true",
     }
   })
 

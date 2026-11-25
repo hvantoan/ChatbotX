@@ -9,8 +9,8 @@
  *
  * Usage inside `vi.mock("../src/template/installed-resource.service", async () => ({ ..., ...(await import("./helpers/template-guard-mocks")).templateGuardMocks({ assertDeletable, assertResourceEditable }) }))`.
  */
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import type { TemplateLockKey } from "../../src/template/template-resource-locks"
 
 type GuardCall = (input: unknown) => unknown
@@ -64,7 +64,7 @@ export const templateGuardMocks = (hooks: {
     if (input.tx) {
       return await run(input.tx)
     }
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     return hooks.useTransaction
       ? await db.transaction((tx) => run(tx))
       : await run(db)

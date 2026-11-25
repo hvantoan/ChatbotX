@@ -4,7 +4,7 @@ const mocks = vi.hoisted(() => ({
   assertSafeMcpEndpoint: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertSafeMcpEndpoint: mocks.assertSafeMcpEndpoint,
 }))
 

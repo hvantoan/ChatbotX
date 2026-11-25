@@ -19,7 +19,7 @@ const mocks = vi.hoisted(() => ({
   cancelActiveContactScanRuns: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   coexistSyncRunRepository: {
     findLatestContactScanRun: mocks.findLatestContactScanRun,
     createContactScanRun: mocks.createContactScanRun,
@@ -45,7 +45,7 @@ vi.mock("../src/inbox/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 

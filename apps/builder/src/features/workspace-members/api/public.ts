@@ -1,4 +1,4 @@
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   possibleErrorsOnFindingResource,
   possibleErrorsOnListingResource,

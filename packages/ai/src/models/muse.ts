@@ -1,4 +1,4 @@
-import type { MUSE_TRANSCRIPTION_MODEL } from "@chatbotx.io/flow-config"
+import type { MUSE_TRANSCRIPTION_MODEL } from "@inboxos.io/flow-config"
 import { z } from "zod"
 
 export const museModels = z.enum([

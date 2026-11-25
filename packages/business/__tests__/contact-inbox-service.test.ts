@@ -94,7 +94,7 @@ const mockSql = Object.assign(
   },
 )
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   asc: vi.fn((field: unknown) => ({ asc: field })),
   db: {
     execute: mockDbExecute,
@@ -120,11 +120,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
 }))
 
 // This suite never exercises `listByContactIdUncached`, but vitest's SSR deps
-// optimizer bundles the whole `@chatbotx.io/database` package graph together
+// optimizer bundles the whole `@inboxos.io/database` package graph together
 // once any subpath is imported, which otherwise pulls in
 // `contactInboxRepository`'s real contact-filter query graph (needs the real
 // schema, conflicting with the narrow mock below).
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxOperationalColumns: { sourceIdentityHistory: false },
   contactInboxRepository: {
     findWithContact: mockFindWithContact,
@@ -135,7 +135,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   CONTACT_INBOX_IDENTITY_CHANGE_REASONS: {
     parentFallback: "parentFallback",
     phoneChanged: "phoneChanged",
@@ -180,7 +180,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mockInvalidateCacheByTags,
   withCache: vi.fn((_key: string, fn: () => unknown) => fn()),
 }))
@@ -892,7 +892,7 @@ describe("contactInboxService.completeProfileSnapshot", () => {
       callback({ update: mockDbUpdate }),
     )
     const { workspaceRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     vi.mocked(workspaceRepository.lockWorkspaceForChildWrite).mockResolvedValue(
       true,
@@ -934,10 +934,10 @@ describe("contactInboxService.completeProfileSnapshot", () => {
     expect(mockDbSet.mock.calls[0]?.[0].profileSnapshotState).toBe("captured")
     expect(mockDbReturning).toHaveBeenCalledOnce()
     expect(
-      (await import("@chatbotx.io/database/client")).eq,
+      (await import("@inboxos.io/database/client")).eq,
     ).toHaveBeenCalledWith("profileSnapshotState", "pending")
     expect(
-      (await import("@chatbotx.io/database/client")).eq,
+      (await import("@inboxos.io/database/client")).eq,
     ).toHaveBeenCalledWith("profileSnapshotAttempts", 2)
     const where = mockDbWhere.mock.calls[0]?.[0] as {
       conditions: Array<{ values?: unknown[] }>
@@ -1137,7 +1137,7 @@ describe("contactInboxService.completeProfileSnapshot", () => {
     })
 
     expect(
-      (await import("@chatbotx.io/database/client")).lte,
+      (await import("@inboxos.io/database/client")).lte,
     ).toHaveBeenCalledWith("profileSnapshotNextAttemptAt", expect.any(Date))
     expect(mockInvalidateCacheByTags).not.toHaveBeenCalled()
   })
@@ -1166,7 +1166,7 @@ describe("contactInboxService Instagram snapshot recovery queries", () => {
       contactInboxService.listDueProfileSnapshots({ limit: 100 }),
     ).resolves.toEqual([])
 
-    const { isNull } = await import("@chatbotx.io/database/client")
+    const { isNull } = await import("@inboxos.io/database/client")
     expect(isNull).toHaveBeenCalledWith("workspace.purgeStartedAt")
     expect(isNull).toHaveBeenCalledWith("workspace.scheduledDeletionAt")
   })
@@ -1258,7 +1258,7 @@ describe("contactInboxService Instagram snapshot recovery queries", () => {
       contactInboxService.listExhaustedProfileSnapshots({ limit: 100 }),
     ).resolves.toEqual([])
 
-    const { lte } = await import("@chatbotx.io/database/client")
+    const { lte } = await import("@inboxos.io/database/client")
     expect(lte).toHaveBeenCalledWith(
       "profileSnapshotNextAttemptAt",
       expect.any(Date),
@@ -1270,7 +1270,7 @@ describe("contactInboxService Instagram snapshot claim and retry", () => {
   beforeEach(async () => {
     vi.clearAllMocks()
     const { workspaceRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     vi.mocked(workspaceRepository.lockWorkspaceForChildWrite).mockResolvedValue(
       true,
@@ -1313,9 +1313,9 @@ describe("contactInboxService Instagram snapshot claim and retry", () => {
       }),
     )
     expect(
-      (await import("@chatbotx.io/database/client")).eq,
+      (await import("@inboxos.io/database/client")).eq,
     ).toHaveBeenCalledWith("profileSnapshotAttempts", 0)
-    const { eq, lte } = await import("@chatbotx.io/database/client")
+    const { eq, lte } = await import("@inboxos.io/database/client")
     expect(eq).toHaveBeenCalledWith("profileSnapshotState", "pending")
     expect(eq).toHaveBeenCalledWith("inboxId", "inbox-1")
     expect(eq).toHaveBeenCalledWith("workspaceId", "workspace-1")
@@ -1375,7 +1375,7 @@ describe("contactInboxService Instagram snapshot claim and retry", () => {
 
   test("does not write a claim or retry when the workspace fence rejects it", async () => {
     const { workspaceRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     vi.mocked(workspaceRepository.lockWorkspaceForChildWrite).mockResolvedValue(
       false,

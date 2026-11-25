@@ -5,23 +5,23 @@ import {
   resolveTenantSettings,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+} from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import {
   connectSessionCancelledException,
   connectSessionExpiredException,
   credentialMissingException,
   notWorkspaceMemberException,
-} from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business/errors"
 import type {
   ChannelType,
   CredentialType,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ConnectSessionModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   BRANDING_TITLE,
   getBrandingUrl,
@@ -217,7 +217,7 @@ export function resolveConnectSessionForSelect(props: {
  * (`connectSessionExpiredException`, `notWorkspaceMemberException`,
  * `workspaceAccessDenialException`, `credentialMissingException`) — callers
  * catch once and map through `toConnectSessionError`
- * (`@chatbotx.io/business/inbox/connect-outcome`), exactly like every other
+ * (`@inboxos.io/business/inbox/connect-outcome`), exactly like every other
  * step in the action.
  *
  * The channel is passed in as plain data (`credentialType`/`brandingChannel`)

@@ -30,16 +30,16 @@ vi.mock("@/features/workspace-members/queries", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/database/client — findOrFail is still reached by the
+// Mock @inboxos.io/database/client — findOrFail is still reached by the
 // workspaceActionClient auth chain.
 // ---------------------------------------------------------------------------
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: vi.fn(),
   isDatabaseError: vi.fn(() => false),
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business (isPlatformAdmin, messengerIntegrationService) and errors
+// Mock @inboxos.io/business (isPlatformAdmin, messengerIntegrationService) and errors
 //
 // This factory mock enumerates exports, so it must cover everything
 // `workspaceActionClient` reaches — not just what this action calls directly.
@@ -54,7 +54,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
 // ---------------------------------------------------------------------------
 const updateTagSync = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isPlatformAdmin: vi.fn(async () => false),
   isWorkspaceScheduledForDeletion: vi.fn(() => false),
   resolveWorkspaceAccess: vi.fn(({ realMember, workspaceId }) => {
@@ -70,21 +70,21 @@ vi.mock("@chatbotx.io/business", () => ({
   messengerIntegrationService: { updateTagSync },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: vi.fn(() => undefined),
   withAuditContext: vi.fn(
     async (_ctx: unknown, fn: () => Promise<unknown>) => await fn(),
   ),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/sdk (SdkException referenced in safe-action error handler)
+// Mock @inboxos.io/sdk (SdkException referenced in safe-action error handler)
 // ---------------------------------------------------------------------------
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   SdkException: class SdkException extends Error {},
 }))
 
@@ -101,8 +101,8 @@ vi.mock("@/lib/log", () => ({
 const { toggleMessengerTagSyncAction } = await import(
   "../toggle-tag-sync.action"
 )
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
-const { findOrFail } = await import("@chatbotx.io/database/client")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
+const { findOrFail } = await import("@inboxos.io/database/client")
 const { getCurrentUserId } = await import("@/lib/auth/utils")
 const { getAllWorkspaceMembers } = await import(
   "@/features/workspace-members/queries"
@@ -188,7 +188,7 @@ describe("toggleMessengerTagSyncAction", () => {
   describe("unknown integration id", () => {
     test("surfaces the service's notFound error as serverError", async () => {
       updateTagSync.mockRejectedValue(
-        new ChatbotXException("Messenger channel not found"),
+        new InboxOSException("Messenger channel not found"),
       )
 
       const result = await invokeAction(true)

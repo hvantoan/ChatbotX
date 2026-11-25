@@ -1,6 +1,6 @@
 "use server"
 
-import { appointmentExternalCalendarService } from "@chatbotx.io/business"
+import { appointmentExternalCalendarService } from "@inboxos.io/business"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 

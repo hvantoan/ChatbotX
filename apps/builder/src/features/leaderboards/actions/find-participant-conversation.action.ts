@@ -1,6 +1,6 @@
 "use server"
 
-import { conversationService } from "@chatbotx.io/business"
+import { conversationService } from "@inboxos.io/business"
 import { z } from "zod"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"

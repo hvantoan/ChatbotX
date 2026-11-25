@@ -1,5 +1,5 @@
-import { db } from "@chatbotx.io/database/client"
-import type { TemplatePipelineManifestEntry } from "@chatbotx.io/flow-config"
+import { db } from "@inboxos.io/database/client"
+import type { TemplatePipelineManifestEntry } from "@inboxos.io/flow-config"
 import { resolvePipelineEntry } from "./manifests/pipelines"
 import {
   idMapOf,

@@ -13,8 +13,8 @@ import {
   resolveTenantSettingsByDomain,
   toSmtpTransport,
   userService,
-} from "@chatbotx.io/business"
-import { db } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business"
+import { db } from "@inboxos.io/database/client"
 import {
   accountModel,
   jwkModel,
@@ -29,7 +29,7 @@ import {
   sessionModel,
   userModel,
   verificationModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   DEFAULT_FORGOT_PASSWORD_SUBJECT,
   DEFAULT_MAGIC_LINK_SUBJECT,
@@ -37,12 +37,12 @@ import {
   sendMagicLink,
   sendResetPassword,
   sendSignUpVerification,
-} from "@chatbotx.io/mail"
-import { createId, getPublicOriginFromRequest } from "@chatbotx.io/utils"
+} from "@inboxos.io/mail"
+import { createId, getPublicOriginFromRequest } from "@inboxos.io/utils"
 import {
   isPlaceholderEmail,
   mapFacebookProfileToUser,
-} from "@chatbotx.io/utils/placeholder-email"
+} from "@inboxos.io/utils/placeholder-email"
 import { APIError, betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { createAuthMiddleware } from "better-auth/api"
@@ -1007,11 +1007,11 @@ export function createAuth(config: AuthConfig) {
       const staticOrigins = [
         getBrokerUrl(),
         env.NEXT_PUBLIC_BUILDER_URL,
-        // Mobile app deep-link schemes (chatbotx-mobile-app) — social sign-in relays back into the
+        // Mobile app deep-link schemes (inboxos-mobile-app) — social sign-in relays back into the
         // app via these custom schemes instead of an https:// origin. Keep in sync with
         // DEFAULT_MOBILE_APP_SCHEMES in ./keys.
         "chatconnectxapp://",
-        "chatbotxmobileapp://",
+        "inboxosmobileapp://",
       ]
       if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
         return Array.from(new Set(staticOrigins))

@@ -1,12 +1,12 @@
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Separator } from "@chatbotx.io/ui/components/ui/separator"
+} from "@inboxos.io/ui/components/ui/card"
+import { Separator } from "@inboxos.io/ui/components/ui/separator"
 import { CircleCheckIcon, TriangleAlertIcon } from "lucide-react"
 import Link from "next/link"
 import { redirect } from "next/navigation"

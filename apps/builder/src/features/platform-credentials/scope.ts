@@ -1,6 +1,6 @@
-import { canUseOwnCredentials, isSuperAdmin } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { canUseOwnCredentials, isSuperAdmin } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel } from "@inboxos.io/database/types"
 import { z } from "zod"
 import { isCloud } from "@/env"
 
@@ -22,7 +22,7 @@ export const resolveCredentialScopedUserId = async (
 ): Promise<string | undefined> => {
   if (scope === "platform") {
     if (!(await isSuperAdmin(user))) {
-      throw new ChatbotXException("Unauthorized", "unauthorized", 403)
+      throw new InboxOSException("Unauthorized", "unauthorized", 403)
     }
     return
   }
@@ -31,7 +31,7 @@ export const resolveCredentialScopedUserId = async (
     !options?.allowWithoutEntitlement &&
     !(await canUseOwnCredentials(user.id))
   ) {
-    throw new ChatbotXException("Unauthorized", "unauthorized", 403)
+    throw new InboxOSException("Unauthorized", "unauthorized", 403)
   }
   return isCloud() ? user.id : undefined
 }

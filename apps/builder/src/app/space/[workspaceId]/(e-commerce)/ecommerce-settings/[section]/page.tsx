@@ -4,7 +4,7 @@ import {
   paymentProviderService,
   shopifyIntegrationService,
   wooCommerceIntegrationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { notFound, redirect } from "next/navigation"
 import { CheckoutSettingsForm } from "@/features/ecommerce-settings/components/checkout-settings-form"
 import { EcommerceSettingsSidebar } from "@/features/ecommerce-settings/components/ecommerce-settings-sidebar"

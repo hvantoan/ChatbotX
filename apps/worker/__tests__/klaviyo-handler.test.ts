@@ -1,5 +1,5 @@
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
-import { klaviyoSyncProfileDefaultFn } from "@chatbotx.io/flow-config"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
+import { klaviyoSyncProfileDefaultFn } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { buildKlaviyoProfileProps } from "../src/integration/handlers/klaviyo-handler"
 
@@ -24,7 +24,7 @@ const mocks = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async ({ integration }: { integration: unknown }) => ({
     auth: mocks.state.auth,
     integration,
@@ -34,19 +34,17 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptedDataSchema: { parse: vi.fn((value: unknown) => value) },
   encryptUtils: { decryptObject: vi.fn(async () => mocks.state.auth) },
 }))
 
-vi.mock("@chatbotx.io/integration-klaviyo", async (importOriginal) => ({
-  ...(await importOriginal<
-    typeof import("@chatbotx.io/integration-klaviyo")
-  >()),
+vi.mock("@inboxos.io/integration-klaviyo", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/integration-klaviyo")>()),
   integration: { runAction: mocks.runAction },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 

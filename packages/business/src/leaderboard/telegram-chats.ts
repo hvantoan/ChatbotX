@@ -2,8 +2,8 @@ import {
   type TelegramBotChatStatus,
   telegramBotChatStatuses,
   telegramChatTypes,
-} from "@chatbotx.io/database/partials"
-import { telegramChatRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { telegramChatRepository } from "@inboxos.io/database/repositories"
 import { logger } from "../logger"
 
 /** Bot statuses that let it see members joining/leaving and group messages. */

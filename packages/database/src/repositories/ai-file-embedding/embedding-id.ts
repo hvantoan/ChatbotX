@@ -3,7 +3,7 @@ import { createHash } from "node:crypto"
 /**
  * Kept out of the `repositories` barrel on purpose: `node:crypto` is not
  * available in the Edge bundles (proxy, instrumentation) that import the
- * barrel, so callers use `@chatbotx.io/database/repositories/ai-file-embedding-id`.
+ * barrel, so callers use `@inboxos.io/database/repositories/ai-file-embedding-id`.
  *
  * Deterministic chunk id: the same file, position and text always hash to the
  * same id, so a reprocess keeps already-embedded chunks. The key order inside

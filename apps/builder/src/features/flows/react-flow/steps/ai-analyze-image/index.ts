@@ -1,8 +1,8 @@
-import type { AIAnalyzeImageSchema } from "@chatbotx.io/flow-config"
+import type { AIAnalyzeImageSchema } from "@inboxos.io/flow-config"
 import {
   AIAnalyzeImageDefaultFn,
   aiAnalyzeImageSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import { AIAnalyzeImageEditor } from "./editor"
 import { AIAnalyzeImageViewer } from "./viewer"

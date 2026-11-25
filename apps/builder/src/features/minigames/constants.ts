@@ -7,8 +7,8 @@ import type {
   MinigamePrizeSettings,
   MinigameType,
   MinigameWinningMessageSettings,
-} from "@chatbotx.io/database/partials"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { createId } from "@inboxos.io/utils"
 import {
   CoinsIcon,
   DicesIcon,

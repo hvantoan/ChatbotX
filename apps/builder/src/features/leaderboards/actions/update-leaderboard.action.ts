@@ -1,6 +1,6 @@
 "use server"
 
-import { leaderboardService } from "@chatbotx.io/business/leaderboard"
+import { leaderboardService } from "@inboxos.io/business/leaderboard"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { isValidationException } from "@/lib/errors/validation-exception"

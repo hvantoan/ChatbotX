@@ -1,5 +1,5 @@
-import type { ButtonStepProps } from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+import type { ButtonStepProps } from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { mapStepButtons, readStepButtons } from "../src/chat/utils/step-buttons"
 

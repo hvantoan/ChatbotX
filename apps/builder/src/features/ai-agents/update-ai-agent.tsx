@@ -1,17 +1,18 @@
 "use client"
 
-import { aiChatProviders, openaiCompatiblePresetConfigs } from "@chatbotx.io/ai"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { aiChatProviders, openaiCompatiblePresetConfigs } from "@inboxos.io/ai"
 import {
   type AIAgentProviderModels,
   aiAgentActionRulesSchema,
   aiMessageRoles,
-} from "@chatbotx.io/database/partials"
-import type { AIAgentModel } from "@chatbotx.io/database/types"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { SliderField } from "@chatbotx.io/ui/components/form/slider-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import type { AIAgentModel } from "@inboxos.io/database/types"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { SliderField } from "@inboxos.io/ui/components/form/slider-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -19,21 +20,20 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@chatbotx.io/ui/components/ui/tabs"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/tabs"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
   Loader2Icon,

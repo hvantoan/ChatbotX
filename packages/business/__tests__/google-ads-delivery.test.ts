@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
   loadMatchingIdentifiers: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsConversionEventRepository: {
     claimForSending: mocks.claimForSending,
     finishSending: mocks.finishSending,
@@ -24,9 +24,9 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     markSendAttempted: mocks.markSendAttempted,
   },
 }))
-vi.mock("@chatbotx.io/integration-google-ads", async (importOriginal) => {
+vi.mock("@inboxos.io/integration-google-ads", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/integration-google-ads")>()
+    await importOriginal<typeof import("@inboxos.io/integration-google-ads")>()
   return { ...actual, integration: { runAction: mocks.runAction } }
 })
 vi.mock("../src/error-log/service", () => ({
@@ -50,9 +50,9 @@ vi.mock("../src/google-ads/customer-matching", () => ({
 }))
 
 const { GoogleAdsException } = await import(
-  "@chatbotx.io/integration-google-ads"
+  "@inboxos.io/integration-google-ads"
 )
-const { AuthException, AuthRefreshException } = await import("@chatbotx.io/sdk")
+const { AuthException, AuthRefreshException } = await import("@inboxos.io/sdk")
 const { deliverGoogleAdsConversion, evaluateDeliveryGuards } = await import(
   "../src/google-ads/delivery"
 )

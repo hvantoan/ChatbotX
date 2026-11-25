@@ -1,13 +1,13 @@
 import {
   inboxService,
   messengerMessageTemplateService,
-} from "@chatbotx.io/business"
-import type { MessengerMessageTemplateModel } from "@chatbotx.io/database/types"
-import type { MessengerTemplateParams } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/business"
+import type { MessengerMessageTemplateModel } from "@inboxos.io/database/types"
+import type { MessengerTemplateParams } from "@inboxos.io/flow-config"
 import {
   contactVariableService,
   type ReplaceVariableProps,
-} from "@chatbotx.io/variables"
+} from "@inboxos.io/variables"
 
 export async function replaceMessengerTemplateVariables(props: {
   templateParams: MessengerTemplateParams

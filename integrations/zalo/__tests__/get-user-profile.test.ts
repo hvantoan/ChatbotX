@@ -1,5 +1,5 @@
-import type { Context } from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import type { Context } from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { describe, expect, test } from "vitest"
 import { getUserDetail } from "../src/api/tag"
 import { getUserProfile } from "../src/api/user"

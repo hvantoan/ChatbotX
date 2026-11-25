@@ -1,5 +1,5 @@
-import type { WhatsappPhoneNumber as AuthWhatsappPhoneNumber } from "@chatbotx.io/business/integration-whatsapp/auth-schema"
-import type { Context } from "@chatbotx.io/sdk"
+import type { WhatsappPhoneNumber as AuthWhatsappPhoneNumber } from "@inboxos.io/business/integration-whatsapp/auth-schema"
+import type { Context } from "@inboxos.io/sdk"
 import ky from "ky"
 import { parsePhoneNumberFromString } from "libphonenumber-js"
 import { API_URL, DEFAULT_API_VERSION } from "../constants"

@@ -1,4 +1,4 @@
-import { receivePaypalWebhook } from "@chatbotx.io/business"
+import { receivePaypalWebhook } from "@inboxos.io/business"
 import { type NextRequest, NextResponse } from "next/server"
 import { logger } from "@/lib/log"
 

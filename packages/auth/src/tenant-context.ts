@@ -1,7 +1,7 @@
 import { AsyncLocalStorage } from "node:async_hooks"
-import { customDomainService, tenantService } from "@chatbotx.io/business"
-import { db, eq } from "@chatbotx.io/database/client"
-import { ROOT_TENANT_ID, verificationModel } from "@chatbotx.io/database/schema"
+import { customDomainService, tenantService } from "@inboxos.io/business"
+import { db, eq } from "@inboxos.io/database/client"
+import { ROOT_TENANT_ID, verificationModel } from "@inboxos.io/database/schema"
 
 /**
  * Tenant scoping for white-label isolation.
@@ -21,7 +21,7 @@ type TenantStore = { tenantId: string }
 
 /**
  * The tenant ALS instance MUST be a process-wide singleton. `withTenant` (called
- * from the route handler via `@chatbotx.io/auth/tenant`) and `getTenantId` (called
+ * from the route handler via `@inboxos.io/auth/tenant`) and `getTenantId` (called
  * from the adapter in `server.ts` via `./tenant-context`) must read and write the
  * same store. If this module is evaluated more than once — e.g. duplicated across
  * Next.js bundles/layers because it is reached through two different import
@@ -31,14 +31,14 @@ type TenantStore = { tenantId: string }
  * collapses any duplicate evaluations onto one shared store.
  */
 const globalForTenant = globalThis as typeof globalThis & {
-  __chatbotxTenantStorage?: AsyncLocalStorage<TenantStore>
+  __inboxosTenantStorage?: AsyncLocalStorage<TenantStore>
 }
 
-if (!globalForTenant.__chatbotxTenantStorage) {
-  globalForTenant.__chatbotxTenantStorage = new AsyncLocalStorage<TenantStore>()
+if (!globalForTenant.__inboxosTenantStorage) {
+  globalForTenant.__inboxosTenantStorage = new AsyncLocalStorage<TenantStore>()
 }
 
-const tenantStorage = globalForTenant.__chatbotxTenantStorage
+const tenantStorage = globalForTenant.__inboxosTenantStorage
 
 /** Run `fn` with the given tenant bound for the duration of the async call. */
 export function withTenant<T>(tenantId: string, fn: () => T): T {

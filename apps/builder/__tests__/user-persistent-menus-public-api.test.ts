@@ -55,9 +55,9 @@ const userPersistentMenuService = {
   update: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ userPersistentMenuService }))
+vi.mock("@inboxos.io/business", () => ({ userPersistentMenuService }))
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const { z } = await import("zod")
   return {
     broadcastPlanLimitDataSchema: z.object({}),
@@ -69,7 +69,7 @@ vi.mock("@chatbotx.io/database/partials", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

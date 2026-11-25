@@ -13,14 +13,14 @@ const findContactById = vi.hoisted(() => vi.fn())
 const optimizeImageForStorage = vi.hoisted(() => vi.fn())
 const readImageDimensions = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/filesystem", () => ({ uploader }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({ uploader }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: async () => repository,
 }))
 vi.mock("../../contact/service", () => ({
   contactService: { findById: findContactById },
 }))
-vi.mock("@chatbotx.io/utils/image-optimize", () => ({
+vi.mock("@inboxos.io/utils/image-optimize", () => ({
   optimizeImageForStorage,
   readImageDimensions,
 }))

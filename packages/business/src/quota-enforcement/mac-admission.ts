@@ -1,11 +1,11 @@
-import { macTrackingService } from "@chatbotx.io/analytics"
+import { macTrackingService } from "@inboxos.io/analytics"
 import {
   db,
   type StatementTimeout,
   setLocalStatementTimeout,
   type Transaction,
-} from "@chatbotx.io/database/client"
-import type { UserQuotaModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import type { UserQuotaModel } from "@inboxos.io/database/types"
 import type { MacAdmissionStrategy } from "./keys"
 
 /**

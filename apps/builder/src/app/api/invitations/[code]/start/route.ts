@@ -1,10 +1,10 @@
 import {
   INVITATION_COOKIE_MAX_AGE_SECONDS,
   INVITATION_COOKIE_NAME,
-} from "@chatbotx.io/auth/server"
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
-import { invitationService } from "@chatbotx.io/business"
-import { getPublicUrlFromRequest } from "@chatbotx.io/utils"
+} from "@inboxos.io/auth/server"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
+import { invitationService } from "@inboxos.io/business"
+import { getPublicUrlFromRequest } from "@inboxos.io/utils"
 import { NextResponse } from "next/server"
 import { getDomainFromHeader } from "@/lib/domain"
 import { checkApiRateLimit } from "@/lib/rate-limit/api-rate-limit"

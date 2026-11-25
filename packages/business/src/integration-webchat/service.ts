@@ -1,4 +1,4 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   and,
   db,
@@ -6,27 +6,27 @@ import {
   findOrFail,
   inArray,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactSources,
   type WebchatPersistentMenu,
-} from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   contactInboxModel,
   contactModel,
   conversationModel,
   integrationWebchatModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ConnectionModel,
   IntegrationWebchatModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { parsePagination } from "@chatbotx.io/database/utils"
-import { emitContactCreated } from "@chatbotx.io/events"
-import type { AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { parsePagination } from "@inboxos.io/database/utils"
+import { emitContactCreated } from "@inboxos.io/events"
+import type { AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { randomString } from "remeda"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import { BaseService } from "../base.service"

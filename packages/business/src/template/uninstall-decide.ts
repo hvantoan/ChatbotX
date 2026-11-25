@@ -1,16 +1,16 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   isTemplateUninstallTombstone,
   type TemplateResourceCategory,
   type TemplateResourceKind,
   type TemplateUninstallCounts,
   type TemplateUninstallOutcome,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateInstallationSyncRepository,
   templateUninstallRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { SHARED_KINDS } from "./adapters/manifests/kinds"
 import { getTemplateAdapter } from "./adapters/registry"
 import { UNINSTALL_HANDLER_BY_KIND } from "./adapters/uninstall-handlers"

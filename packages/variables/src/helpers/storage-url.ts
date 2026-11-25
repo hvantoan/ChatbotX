@@ -1,5 +1,5 @@
-import { resolveTenantSettings } from "@chatbotx.io/business"
-import { toPublicStorageUrl as resolvePublicStorageUrl } from "@chatbotx.io/business/utils"
+import { resolveTenantSettings } from "@inboxos.io/business"
+import { toPublicStorageUrl as resolvePublicStorageUrl } from "@inboxos.io/business/utils"
 
 export function toPublicStorageUrl(
   path: string,

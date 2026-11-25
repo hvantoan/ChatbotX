@@ -1,9 +1,9 @@
 import {
   type SmartDelayRow,
   smartDelayService,
-} from "@chatbotx.io/business/smart-delay"
-import { buildJobId, ENQUEUE_DELAY_MS } from "@chatbotx.io/flow-config"
-import { integrationQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business/smart-delay"
+import { buildJobId, ENQUEUE_DELAY_MS } from "@inboxos.io/flow-config"
+import { integrationQueue } from "@inboxos.io/worker-config"
 import { endOfMinute, subMilliseconds } from "date-fns"
 import { smartDelayResumeJobFactories } from "../../integration/handlers/smart-delay"
 import { logger } from "../../lib/logger"

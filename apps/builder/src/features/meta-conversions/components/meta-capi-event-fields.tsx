@@ -1,20 +1,20 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@chatbotx.io/ui/components/ui/collapsible"
+} from "@inboxos.io/ui/components/ui/collapsible"
 import {
   defaultEventNameByCatalog,
   eventNamesByCatalog,
   metaCapiActionSourcePolicy,
   metaCapiActionSourceValues,
   metaCapiContentTypeValues,
-} from "@chatbotx.io/utils/meta-capi"
+} from "@inboxos.io/utils/meta-capi"
 import { ChevronDownIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo } from "react"

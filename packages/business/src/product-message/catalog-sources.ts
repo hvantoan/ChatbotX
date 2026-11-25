@@ -1,11 +1,11 @@
-import { metaCatalogItemRepository } from "@chatbotx.io/database/repositories"
+import { metaCatalogItemRepository } from "@inboxos.io/database/repositories"
 import type {
   InboundCatalogProductReference,
   ProductCatalogSource,
   ProductMessageItem,
   ResolvedInboundProductReference,
-} from "@chatbotx.io/sdk"
-import { type ChannelType, channelTypes } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/sdk"
+import { type ChannelType, channelTypes } from "@inboxos.io/utils/channel"
 import { integrationMetaCatalogService } from "../meta-catalog/integration.service"
 
 /** A product a channel can show, with the catalog identity the channel needs. */

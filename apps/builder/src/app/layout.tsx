@@ -1,4 +1,4 @@
-import { UiProvider } from "@chatbotx.io/ui"
+import { UiProvider } from "@inboxos.io/ui"
 import type { Metadata, Viewport } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale } from "next-intl/server"
@@ -18,7 +18,7 @@ import { QueryProvider } from "@/lib/query/query-provider"
 import { getUserTimezone } from "@/lib/timezone"
 import "./globals.css"
 import "./themes.css"
-import { DirectionProvider } from "@chatbotx.io/ui/components/ui/direction"
+import { DirectionProvider } from "@inboxos.io/ui/components/ui/direction"
 
 export const viewport: Viewport = {
   width: "device-width",

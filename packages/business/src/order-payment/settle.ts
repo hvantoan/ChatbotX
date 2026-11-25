@@ -1,11 +1,11 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   isOnlinePaymentMethod,
   type OrderStatus,
-} from "@chatbotx.io/database/partials"
-import { orderPaymentRepository } from "@chatbotx.io/database/repositories"
-import type { OrderModel, OrderPaymentModel } from "@chatbotx.io/database/types"
-import type { PaymentGateway } from "@chatbotx.io/payments"
+} from "@inboxos.io/database/partials"
+import { orderPaymentRepository } from "@inboxos.io/database/repositories"
+import type { OrderModel, OrderPaymentModel } from "@inboxos.io/database/types"
+import type { PaymentGateway } from "@inboxos.io/payments"
 import { logger } from "../logger"
 import {
   orderPaidOnlineException,

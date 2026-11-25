@@ -1,15 +1,15 @@
 import {
   type CallPermissionStatus,
   callPermissionStatuses,
-} from "@chatbotx.io/business"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/business"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   canPerformCallAction,
   getCallPermissions,
   type WhatsappCallPermissionsResponse,
   type WhatsappCallPermissionsTarget,
-} from "@chatbotx.io/integration-whatsapp/api/calling"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-whatsapp/api/calling"
+import { withCache } from "@inboxos.io/redis"
 import { logger } from "@/lib/log"
 
 /**

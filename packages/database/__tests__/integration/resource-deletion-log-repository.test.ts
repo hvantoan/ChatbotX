@@ -1,7 +1,7 @@
 // @vitest-environment node
 
 /** Real-SQL tests for the primary-key-only ResourceDeletionLog repository. */
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { Client } from "pg"
 import { afterAll, beforeAll, describe, expect, test } from "vitest"

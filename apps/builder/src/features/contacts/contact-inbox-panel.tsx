@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@chatbotx.io/ui/components/ui/accordion"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/accordion"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { Loader2Icon, PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

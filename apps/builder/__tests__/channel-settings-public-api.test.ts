@@ -44,7 +44,7 @@ const tiktokIntegrationService = {
   setCommentToMessage: vi.fn(),
   refreshCommentToMessage: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   tiktokIntegrationService,
   messengerIntegrationService: { updateTagSync: vi.fn() },
 }))

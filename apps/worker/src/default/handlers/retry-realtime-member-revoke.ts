@@ -1,5 +1,5 @@
-import { revokeWorkspaceMemberRealtimeConnections } from "@chatbotx.io/business"
-import type { JobRetryRealtimeMemberRevoke } from "@chatbotx.io/worker-config"
+import { revokeWorkspaceMemberRealtimeConnections } from "@inboxos.io/business"
+import type { JobRetryRealtimeMemberRevoke } from "@inboxos.io/worker-config"
 
 export const retryRealtimeMemberRevoke = async (
   data: JobRetryRealtimeMemberRevoke["data"],

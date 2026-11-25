@@ -1,14 +1,14 @@
 import {
   commentAutomationService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type LeaderboardJobData,
   LowJobAction,
   type LowJobData,
   type ProfileSnapshotJobData,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { env } from "../env"
 import { captureContactProfileSnapshot } from "../integration/handlers/capture-contact-profile-snapshot"

@@ -1,4 +1,4 @@
-import type { AudienceUploadResult } from "@chatbotx.io/business/facebook-marketing-message-audience"
+import type { AudienceUploadResult } from "@inboxos.io/business/facebook-marketing-message-audience"
 
 /**
  * What the upload actions return. Anything that THROWS (transport failure,

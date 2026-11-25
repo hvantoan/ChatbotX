@@ -10,9 +10,9 @@ import {
   isLiveCommentAutomation,
   liveCommentCapabilities,
   resolveReplyTexts,
-} from "@chatbotx.io/database/partials"
-import type { CommentAutomationModel } from "@chatbotx.io/database/types"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+} from "@inboxos.io/database/partials"
+import type { CommentAutomationModel } from "@inboxos.io/database/types"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 
 const RANDOM_DELAY_MINUTES: Record<string, number> = {
   randomWithin3Minutes: 3,

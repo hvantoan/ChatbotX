@@ -1,8 +1,8 @@
 import {
   createSelectSchema,
   integrationMessengerModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type { z } from "zod"
 
 export const integrationMessengerResource = createSelectSchema(

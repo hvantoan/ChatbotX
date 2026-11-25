@@ -1,4 +1,4 @@
-import type { BaseConfig, CustomAuthValue } from "@chatbotx.io/sdk"
+import type { BaseConfig, CustomAuthValue } from "@inboxos.io/sdk"
 import { z } from "zod"
 
 export const zaloPersonalGroupReplyConfigSchema = z.object({

@@ -1,7 +1,7 @@
 "use client"
 
-import type { WhatsappCallButtonStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { WhatsappCallButtonStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { PhoneIcon } from "lucide-react"
 
 type WhatsappCallButtonStepViewerProps = {

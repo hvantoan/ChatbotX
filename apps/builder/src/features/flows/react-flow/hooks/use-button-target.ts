@@ -21,7 +21,7 @@ import {
   startAnotherNodeStepDefaultFn,
   startExternalFlowStepDefaultFn,
   startExternalNodeStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { useReactFlow } from "@xyflow/react"
 import { useTranslations } from "next-intl"
 import { useCallback } from "react"

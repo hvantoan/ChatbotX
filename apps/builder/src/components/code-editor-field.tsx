@@ -1,9 +1,9 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
 import { css } from "@codemirror/lang-css"
 import { html } from "@codemirror/lang-html"
 import { javascript } from "@codemirror/lang-javascript"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
 import CodeMirror from "@uiw/react-codemirror"
 import { useTheme } from "next-themes"
 import type { FieldPath, FieldValues } from "react-hook-form"

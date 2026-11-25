@@ -8,14 +8,14 @@ const mocks = vi.hoisted(() => ({
 
 class LeaderboardChangeRejected extends Error {}
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (fn: (tx: unknown) => unknown) => await fn({}),
     query: { contactModel: { findFirst: mocks.contactFindFirst } },
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   LeaderboardChangeRejected,
   leaderboardRepository: { findByIdAndWorkspace: mocks.findByIdAndWorkspace },
   leaderboardParticipantRepository: {
@@ -29,7 +29,7 @@ vi.mock("../src/leaderboard/ranking", () => ({
   leaderboardRankingService: { applyCommitted: vi.fn() },
 }))
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 
 const { leaderboardParticipantService, maskParticipantPhone } = await import(
   "../src/leaderboard/participants"

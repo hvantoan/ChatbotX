@@ -1,5 +1,5 @@
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"

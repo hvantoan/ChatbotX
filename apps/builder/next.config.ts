@@ -14,16 +14,16 @@ const storageUrl = env.NEXT_PUBLIC_STORAGE_URL ?? `${appUrl}/storage`
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
-  // These `@chatbotx.io/*` workspace packages are consumed as SOURCE (their
+  // These `@inboxos.io/*` workspace packages are consumed as SOURCE (their
   // `exports` point at `./src/*.ts`). pnpm symlinks them under node_modules, so
   // without this Next/Turbopack treats them as vendored externals and does NOT
   // recompile them on edit during `next dev` — server-side changes to them
   // silently keep running the previously-compiled copy. Listing them here puts
   // them through the compile+watch pipeline so edits actually take effect.
   transpilePackages: [
-    "@chatbotx.io/integration-facebook-ads",
-    "@chatbotx.io/business",
-    "@chatbotx.io/analytics",
+    "@inboxos.io/integration-facebook-ads",
+    "@inboxos.io/business",
+    "@inboxos.io/analytics",
   ],
   images: {
     remotePatterns: [{ protocol: "https", hostname: "**" }],
@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
     },
     proxyClientMaxBodySize: "21mb",
     // Additive to Next's built-in default list, which already covers
-    // lucide-react. `@chatbotx.io/ui` doesn't belong here: it's imported via
+    // lucide-react. `@inboxos.io/ui` doesn't belong here: it's imported via
     // per-file subpaths and its root export is not a re-export barrel, so
     // there is nothing for this optimization to rewrite.
     optimizePackageImports: ["@icons-pack/react-simple-icons"],

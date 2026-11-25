@@ -1,6 +1,6 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { WorkspaceDeletionRequestState } from "@chatbotx.io/database/repositories/workspace"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { WorkspaceDeletionRequestState } from "@inboxos.io/database/repositories/workspace"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { logger } from "../logger"
 import {
   type ResourceDeletionTarget,

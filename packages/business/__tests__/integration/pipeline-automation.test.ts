@@ -7,8 +7,8 @@
  * against an explicitly configured local database.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
-import { pipelineItemRepository } from "@chatbotx.io/database/repositories"
+import { db, eq } from "@inboxos.io/database/client"
+import { pipelineItemRepository } from "@inboxos.io/database/repositories"
 import {
   contactCustomFieldModel,
   contactModel,
@@ -18,12 +18,12 @@ import {
   userModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   type PipelineStepAction,
   type PipelineStepSchema,
   pipelineStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {
@@ -44,7 +44,7 @@ const mocks = vi.hoisted(() => ({
   assignByContactIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitPipelineItemEvent: mocks.emitPipelineItemEvent,
 }))
 vi.mock("../../src/platform/realtime-broadcast", () => ({
@@ -59,8 +59,8 @@ vi.mock("../../src/conversation/service", () => ({
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))

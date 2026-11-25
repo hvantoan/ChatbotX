@@ -5,11 +5,11 @@ import {
   type SendProductsContent,
   type SendProductsDisplay,
   toProductMessageShape,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type {
   ProductMessageItem,
   ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 
 export type MissingProduct = { productId: string }
 

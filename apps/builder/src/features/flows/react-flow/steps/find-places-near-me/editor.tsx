@@ -1,7 +1,7 @@
 "use client"
 
-import { findUpstreamLocationFieldKeys } from "@chatbotx.io/flow-config"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+import { findUpstreamLocationFieldKeys } from "@inboxos.io/flow-config"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useEdges, useNodes } from "@xyflow/react"
 import { MapPinIcon, TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

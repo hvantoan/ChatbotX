@@ -1,20 +1,20 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Calendar } from "@chatbotx.io/ui/components/ui/calendar"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Calendar } from "@inboxos.io/ui/components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   findSlotOnDate,
   RECURRENCE_MAX_EXCLUDED_DATES,
   type RecurrenceRule,
   recurrenceRuleSchema,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import { CalendarPlusIcon, XIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

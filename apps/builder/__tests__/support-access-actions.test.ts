@@ -41,7 +41,7 @@ vi.mock("@/lib/safe-action", () => ({
   workspaceActionClientAllowScheduledDeletion:
     workspaceActionClientAllowScheduledDeletionChain,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceSupportAccessService: { enable, disable },
 }))
 

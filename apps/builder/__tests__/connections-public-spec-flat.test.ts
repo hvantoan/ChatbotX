@@ -11,7 +11,7 @@ vi.mock("@/middlewares/auth", () => ({
   workspaceAuthorizedMidddleware: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })

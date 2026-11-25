@@ -1,15 +1,12 @@
-import {
-  inboxService,
-  instagramIntegrationService,
-} from "@chatbotx.io/business"
+import { inboxService, instagramIntegrationService } from "@inboxos.io/business"
 import type {
   InboxModel,
   IntegrationInstagramModel,
-} from "@chatbotx.io/database/types"
-import { mapToChannelError as mapInstagramError } from "@chatbotx.io/integration-instagram"
-import { listInstagramConversations } from "@chatbotx.io/integration-instagram/apis/sync"
-import { mapToChannelError as mapInstagramFacebookError } from "@chatbotx.io/integration-instagram-facebook"
-import { listInstagramFacebookConversations } from "@chatbotx.io/integration-instagram-facebook/apis/sync"
+} from "@inboxos.io/database/types"
+import { mapToChannelError as mapInstagramError } from "@inboxos.io/integration-instagram"
+import { listInstagramConversations } from "@inboxos.io/integration-instagram/apis/sync"
+import { mapToChannelError as mapInstagramFacebookError } from "@inboxos.io/integration-instagram-facebook"
+import { listInstagramFacebookConversations } from "@inboxos.io/integration-instagram-facebook/apis/sync"
 import { z } from "zod"
 import {
   findCustomerParticipant,
@@ -92,9 +89,9 @@ const buildContextByProviderType: Record<
 /**
  * Lists one page of conversations from the correct underlying Graph API —
  * native Instagram Login reads from the IG user node
- * (`@chatbotx.io/integration-instagram`), Facebook-linked Instagram reads from
+ * (`@inboxos.io/integration-instagram`), Facebook-linked Instagram reads from
  * the Page node with `?platform=instagram`
- * (`@chatbotx.io/integration-instagram-facebook`) — mirroring the dispatch
+ * (`@inboxos.io/integration-instagram-facebook`) — mirroring the dispatch
  * `instagram-sync.ts`'s `instagramCoexistProvidersByType` does for coexist.
  * Takes the already-narrowed flat fields (not the union `context` object) so
  * no per-branch type narrowing/casting is needed.

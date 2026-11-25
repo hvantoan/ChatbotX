@@ -1,4 +1,4 @@
-import { emailTopicAnalyticsService } from "@chatbotx.io/analytics"
+import { emailTopicAnalyticsService } from "@inboxos.io/analytics"
 import {
   buildContext,
   buildUnsubscribeUrl,
@@ -9,25 +9,25 @@ import {
   resolveTenantSettings,
   signEmailClickUrl,
   workspaceService,
-} from "@chatbotx.io/business"
-import { awardLeaderboardEmailEngagement } from "@chatbotx.io/business/leaderboard"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { awardLeaderboardEmailEngagement } from "@inboxos.io/business/leaderboard"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 import type {
   EmailStepSchema,
   PageElementSchema,
-} from "@chatbotx.io/flow-config"
-import { UNSUBSCRIBE_PLACEHOLDER } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
+import { UNSUBSCRIBE_PLACEHOLDER } from "@inboxos.io/flow-config"
 import {
   integration as integrationSmtp,
   smtpAuthSchema,
-} from "@chatbotx.io/integration-smtp"
+} from "@inboxos.io/integration-smtp"
 import type {
   DynamicEmailProps,
   MailElementSchema,
-} from "@chatbotx.io/mail/dynamic"
-import { renderDynamicEmailHtml } from "@chatbotx.io/mail/dynamic"
-import { contactVariableService } from "@chatbotx.io/variables"
-import type { IntegrationJobRecordEmailTrackingTransition } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/mail/dynamic"
+import { renderDynamicEmailHtml } from "@inboxos.io/mail/dynamic"
+import { contactVariableService } from "@inboxos.io/variables"
+import type { IntegrationJobRecordEmailTrackingTransition } from "@inboxos.io/worker-config"
 import { resolveButtonUrl } from "../../lib/convert-button"
 import { logger } from "../../lib/logger"
 import type { ExecuteStepProps } from "./flow"

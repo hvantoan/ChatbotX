@@ -1,6 +1,6 @@
 "use server"
 
-import type { UserModel, WorkspaceModel } from "@chatbotx.io/database/types"
+import type { UserModel, WorkspaceModel } from "@inboxos.io/database/types"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { createMarketingMessage } from "../lib/campaign-operations"

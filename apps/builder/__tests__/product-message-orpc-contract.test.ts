@@ -3,11 +3,11 @@
 import {
   ProductMessageUnresolvableError,
   validationException,
-} from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business/errors"
 import {
   type ProductMessageUnresolvableReason,
   productMessageUnresolvableReasons,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { call, onError } from "@orpc/server"
 import { describe, expect, test, vi } from "vitest"
 

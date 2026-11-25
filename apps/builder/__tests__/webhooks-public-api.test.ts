@@ -55,9 +55,9 @@ const webhookService = {
   updateSettings: vi.fn(),
   deleteMany: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ webhookService }))
+vi.mock("@inboxos.io/business", () => ({ webhookService }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     parse: vi.fn((value: unknown) => value),
     pick: vi.fn(() => schema),

@@ -1,4 +1,4 @@
-import { createAiFileEmbeddingRepository } from "@chatbotx.io/database/repositories"
+import { createAiFileEmbeddingRepository } from "@inboxos.io/database/repositories"
 import { embed } from "ai"
 import { z } from "zod"
 import { logger } from "../logger"

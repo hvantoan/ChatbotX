@@ -4,7 +4,7 @@ export const mockLicenseRepository = (token?: string) => {
   const findTokenByLicenseId = vi.fn().mockResolvedValue(token)
   const upsert = vi.fn()
 
-  vi.doMock("@chatbotx.io/database/repositories", () => ({
+  vi.doMock("@inboxos.io/database/repositories", () => ({
     licenseRepository: { findTokenByLicenseId, upsert },
   }))
 

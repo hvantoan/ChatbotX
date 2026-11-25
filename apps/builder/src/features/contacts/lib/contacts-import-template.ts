@@ -1,4 +1,4 @@
-import { quoteCsvField, UTF8_BOM } from "@chatbotx.io/utils/csv"
+import { quoteCsvField, UTF8_BOM } from "@inboxos.io/utils/csv"
 import { resolveLocale } from "@/i18n/config"
 import { messagesByLocale } from "@/i18n/messages"
 

@@ -6,7 +6,7 @@
  * `afterAll` (workspace deletion cascades to contact and conversation).
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/database test:db`.
+ * `pnpm --filter @inboxos.io/database test:db`.
  */
 
 import { eq } from "drizzle-orm"

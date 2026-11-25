@@ -1,4 +1,4 @@
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import type { ButtonStyle, ButtonType } from "../../steps/button"
 import { type StepType, stepTypes } from "../../steps/step-action"
 import type { ProductMessageCapability } from "../product-message-rules"

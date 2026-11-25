@@ -2,7 +2,7 @@ import {
   activityKindsOf,
   PIPELINE_FIELD_COMPARISON_KIND,
   type PipelineActivityGroup,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   InvalidPipelineCursorError,
@@ -15,14 +15,14 @@ import {
   pipelineReferenceRepository,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PipelineFieldModel,
   PipelineItemActivityModel,
   PipelineItemModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/types"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import { BaseService } from "../base.service"
 import { maskContactEmailAndPhone } from "../contact/utils"
 import { conversationService } from "../conversation/service"

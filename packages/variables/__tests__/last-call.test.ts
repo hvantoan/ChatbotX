@@ -10,14 +10,14 @@ const {
   mockGetRecordingSignedUrl: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findLatestRecordedByContactId: mockFindLatestRecordedByContactId,
     findLatestTranscribedByContactId: mockFindLatestTranscribedByContactId,
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   callRecordingService: {
     getRecordingSignedUrl: mockGetRecordingSignedUrl,
   },

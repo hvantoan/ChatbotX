@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   updateProfileFields: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: mocks.buildContext,
   flowService: { assertAllExist: mocks.assertAllExist },
   inboxService: {
@@ -25,33 +25,33 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/branding", () => ({
+vi.mock("@inboxos.io/business/branding", () => ({
   moveBrandingMenuLast: vi.fn((menus: unknown[]) => menus),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
   findOrFail: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowVersionModel: {},
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   BUTTON_LABEL_MAX: 20,
   encodeButtonPayload: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
 
@@ -59,7 +59,7 @@ vi.mock("@/features/integration-webchat/lib", () => ({
   getBrandingUrl: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: ({ fn }: { fn: () => Promise<unknown> }) => fn(),
   },

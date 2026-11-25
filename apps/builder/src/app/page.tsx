@@ -1,12 +1,12 @@
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
 import {
   hasOwnCredentialAccess,
   isSuperAdmin,
   quotaEnforcementService,
   tenantService,
   userQuotaService,
-} from "@chatbotx.io/business"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/schema"
 import { notFound, redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import type { SearchParams } from "nuqs/server"

@@ -1,9 +1,9 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   type OpenHoursSchedule,
   openHoursScheduleSchema,
-} from "@chatbotx.io/database/partials"
-import { ecommerceOpenHoursRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { ecommerceOpenHoursRepository } from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
 import { notFoundException } from "../errors"
 

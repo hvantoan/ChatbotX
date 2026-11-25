@@ -1,10 +1,10 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type BroadcastPlanPolicy,
   type ChannelType,
   TRIAL_BROADCAST_PLAN_POLICY,
   UNRESTRICTED_BROADCAST_PLAN_POLICY,
-} from "@chatbotx.io/database/partials"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/database/partials"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, useForm } from "react-hook-form"

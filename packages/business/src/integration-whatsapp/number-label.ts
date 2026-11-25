@@ -1,4 +1,4 @@
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
 
 type StoredPhoneNumber = {
   verified_name?: string

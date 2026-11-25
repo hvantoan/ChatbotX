@@ -4,7 +4,7 @@ import {
   queueNames,
   TemplateJobAction,
   type TemplateJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { env } from "../env"
 import { createQueueWorker } from "../lib/create-queue-worker"

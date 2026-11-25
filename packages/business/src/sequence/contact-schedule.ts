@@ -6,14 +6,14 @@ import {
   isNull,
   lte,
   sql,
-} from "@chatbotx.io/database/client"
-import { contactsOnSequenceModel } from "@chatbotx.io/database/schema"
-import { sequenceConnections } from "@chatbotx.io/redis"
-import { SchedulerClient } from "@chatbotx.io/scheduler"
+} from "@inboxos.io/database/client"
+import { contactsOnSequenceModel } from "@inboxos.io/database/schema"
+import { sequenceConnections } from "@inboxos.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
 import {
   createDispatch,
   getContactInboxes,
-} from "@chatbotx.io/sequence-scheduler"
+} from "@inboxos.io/sequence-scheduler"
 
 type SequenceStepForDelay = {
   id: string

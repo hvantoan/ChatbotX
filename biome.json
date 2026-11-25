@@ -98,19 +98,19 @@
               "level": "error",
               "options": {
                 "paths": {
-                  "@chatbotx.io/database/client": {
+                  "@inboxos.io/database/client": {
                     "importNames": ["db"],
-                    "message": "App code calls a service from @chatbotx.io/business, never db directly. See .agents/rules/data-access.md."
+                    "message": "App code calls a service from @inboxos.io/business, never db directly. See .agents/rules/data-access.md."
                   }
                 },
                 "patterns": [
                   {
                     "group": ["@radix-ui/*", "radix-ui"],
-                    "message": "ChatbotX uses @base-ui/react via @chatbotx.io/ui, never Radix UI."
+                    "message": "InboxOS uses @base-ui/react via @inboxos.io/ui, never Radix UI."
                   },
                   {
                     "group": ["@base-ui/react", "@base-ui/react/*"],
-                    "message": "Import UI primitives from @chatbotx.io/ui/* instead of @base-ui/react directly."
+                    "message": "Import UI primitives from @inboxos.io/ui/* instead of @base-ui/react directly."
                   }
                 ]
               }

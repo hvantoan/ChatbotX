@@ -39,15 +39,15 @@ const mocks = vi.hoisted(() => ({
 
 // The trigger action registry imports the sequence actions, which reach
 // `contactSequenceService` through its (non-barrel) subpath.
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {},
 }))
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   runPipelineAction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   metaCapiEventChannelSchema: {
     safeParse: (value: unknown) =>
       value === "messenger" || value === "instagram" || value === "whatsapp"
@@ -56,7 +56,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findByIdForContact: (...args: unknown[]) =>
       mocks.findByIdForContact(...args),
@@ -65,7 +65,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", async () => ({
+vi.mock("@inboxos.io/business", async () => ({
   // Pure consent mapping stays real; only the settings read is stubbed.
   ...(await vi.importActual<
     typeof import("../../../packages/business/src/google-ads/consent")
@@ -125,21 +125,21 @@ vi.mock("@chatbotx.io/business", async () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
 
 // `capi-input-error.ts` (imported transitively for the sendMetaCapiEvent
 // branch) pulls `logProviderError` from this separate package subpath, which
-// is not covered by the `@chatbotx.io/business` mock above (subpath exports
+// is not covered by the `@inboxos.io/business` mock above (subpath exports
 // are independent module specifiers). Left unmocked, it loads the real
-// `@chatbotx.io/database/client` and relations graph against the partial
+// `@inboxos.io/database/client` and relations graph against the partial
 // schema mock below and crashes at import time.
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   default: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
   getChildLogger: () => ({
     warn: vi.fn(),
@@ -153,15 +153,15 @@ vi.mock("@chatbotx.io/logger", () => ({
 // actions only — no template resolution is under test here (see
 // send-meta-capi-event-step-handler.test.ts / trigger-action-executor-send-
 // meta-capi-event.test.ts for that). Mocked as a passthrough so importing
-// action-executor.ts does not pull in `@chatbotx.io/variables`'s real
+// action-executor.ts does not pull in `@inboxos.io/variables`'s real
 // dependency chain (contact/custom-field/business-subpath modules this file
 // does not otherwise mock).
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: async (_contactId: string, value: unknown) =>
     value,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: {
     add: (...args: unknown[]) => mocks.integrationQueueAdd(...args),
@@ -179,7 +179,7 @@ vi.mock("../src/integration/handlers/spreadsheet-handler", () => ({
 const { ActionExecutor } = await import(
   "../src/trigger/services/action-executor"
 )
-const baseLogger = (await import("@chatbotx.io/logger")).default
+const baseLogger = (await import("@inboxos.io/logger")).default
 
 const WHATSAPP_INBOX = {
   id: "ci-whatsapp",

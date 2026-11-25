@@ -12,12 +12,12 @@ import {
   or,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type ProfileSnapshotState,
   profileSnapshotChannels,
-} from "@chatbotx.io/database/partials"
-import { newestGoogleClickReferralMerge } from "@chatbotx.io/database/queries/google-click"
+} from "@inboxos.io/database/partials"
+import { newestGoogleClickReferralMerge } from "@inboxos.io/database/queries/google-click"
 import {
   type ContactInboxIdentityFields,
   type ContactInboxIdentityGuard,
@@ -25,11 +25,11 @@ import {
   contactInboxRepository,
   type GoogleClickInboxRow,
   workspaceRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxIdentityChangeReason,
   ContactInboxReferral,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   CONTACT_INBOX_IDENTITY_CHANGE_REASONS,
   CONTACT_INBOX_SOURCE_ID_KEY,
@@ -39,19 +39,19 @@ import {
   contactModel,
   inboxModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ContactModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
 import type {
   ContactProfileSnapshot,
   IncomingContact,
   SourceScopedIdentityMatchedBy,
-} from "@chatbotx.io/sdk"
-import { GOOGLE_CLICK_REFERRAL_KEYS } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/sdk"
+import { GOOGLE_CLICK_REFERRAL_KEYS } from "@inboxos.io/utils/google-click"
 import { BaseService } from "../base.service"
 import { PROFILE_NAME_BLANK_CHARACTERS } from "../contact/profile-refresh/rules"
 import type { ReferralOccurrence } from "../contact-referral-event/ad-touch"

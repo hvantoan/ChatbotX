@@ -1,24 +1,24 @@
-import { db, relationsFilterToSQL } from "@chatbotx.io/database/client"
-import { deleteErrorLogsByIds } from "@chatbotx.io/database/repositories"
-import { errorLogModel } from "@chatbotx.io/database/schema"
-import type { ContactModel, ErrorLogModel } from "@chatbotx.io/database/types"
+import { db, relationsFilterToSQL } from "@inboxos.io/database/client"
+import { deleteErrorLogsByIds } from "@inboxos.io/database/repositories"
+import { errorLogModel } from "@inboxos.io/database/schema"
+import type { ContactModel, ErrorLogModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import type { ErrorLogRecordedPayload } from "@chatbotx.io/event-bus"
-import { emit } from "@chatbotx.io/event-bus"
-import { scrubSecretsInString } from "@chatbotx.io/logger"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import type { ErrorLogRecordedPayload } from "@inboxos.io/event-bus"
+import { emit } from "@inboxos.io/event-bus"
+import { scrubSecretsInString } from "@inboxos.io/logger"
+import { createId } from "@inboxos.io/utils"
 import {
   type ErrorLogProvider,
   errorLogProviders,
   errorLogProvidersMatchingLabel,
   MAX_STACK_LENGTH,
   resolveStackFrames,
-} from "@chatbotx.io/utils/error-log"
-import { isNoRedisEnv } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/utils/error-log"
+import { isNoRedisEnv } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import {
   SORTABLE_COLUMNS,

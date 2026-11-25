@@ -1,4 +1,4 @@
-import type { DecisionProfileThresholdConfig } from "@chatbotx.io/decision-config"
+import type { DecisionProfileThresholdConfig } from "@inboxos.io/decision-config"
 import { z } from "zod"
 
 export {
@@ -7,7 +7,7 @@ export {
   type DecisionProfileThresholdConfig,
   decisionProfileFormSchema,
   decisionProfileThresholdConfigSchema,
-} from "@chatbotx.io/decision-config"
+} from "@inboxos.io/decision-config"
 
 const stableKeySchema = z
   .string()

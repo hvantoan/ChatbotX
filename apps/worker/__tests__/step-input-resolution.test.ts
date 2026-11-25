@@ -23,15 +23,15 @@ const mocks = vi.hoisted(() => ({
   SdkException: class SdkException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: mocks.conversationService,
   workspaceService: mocks.workspaceService,
 }))
-vi.mock("@chatbotx.io/business/smart-delay", () => ({
+vi.mock("@inboxos.io/business/smart-delay", () => ({
   smartDelayService: mocks.smartDelayService,
 }))
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mocks.emit }))
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mocks.emit }))
+vi.mock("@inboxos.io/sdk", () => ({
   initVariables: mocks.initVariables,
   SdkException: mocks.SdkException,
 }))

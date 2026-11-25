@@ -2,7 +2,7 @@ import {
   type SendCollectionStepSchema,
   sendCollectionStepDefaultFn,
   sendCollectionStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import SendCollectionStepEditor from "./editor"
 import SendCollectionStepViewer from "./viewer"

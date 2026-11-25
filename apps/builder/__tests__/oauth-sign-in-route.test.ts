@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const { getSession } = vi.hoisted(() => ({ getSession: vi.fn() }))
 
 vi.mock("@/lib/auth/auth", () => ({ auth: { api: { getSession } } }))
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   getPublicOriginFromRequest: () => "https://app.example.com",
 }))
 

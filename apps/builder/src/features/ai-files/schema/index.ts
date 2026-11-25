@@ -1,12 +1,12 @@
-import type { AIFileWithEmbeddingStatus } from "@chatbotx.io/business"
+import type { AIFileWithEmbeddingStatus } from "@inboxos.io/business"
 import {
   aiEmbeddingStatuses,
   aiFileChunking,
   aiFileChunkingConfig,
   aiFileProcessingRun,
-} from "@chatbotx.io/database/partials"
-import { aiFileModel, createSelectSchema } from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { aiFileModel, createSelectSchema } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const aiFileResource = createSelectSchema(aiFileModel, {

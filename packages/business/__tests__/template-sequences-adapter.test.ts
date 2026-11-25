@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   stepFindMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       sequenceModel: { findMany: mocks.sequenceFindMany },
@@ -19,12 +19,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: vi.fn(),
   isUniqueViolationError: () => false,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   sequenceModel: { table: "sequence" },
   sequenceStepModel: { table: "step" },
 }))
 let counter = 0
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => `new-${++counter}` }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => `new-${++counter}` }))
 
 const { sequencesAdapter } = await import("../src/template/adapters/sequences")
 

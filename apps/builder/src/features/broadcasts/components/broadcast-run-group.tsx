@@ -1,7 +1,7 @@
 "use client"
 
-import type { OccurrenceBucketGranularity } from "@chatbotx.io/database/partials"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { OccurrenceBucketGranularity } from "@inboxos.io/database/partials"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { ChevronDownIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"
 import { useId, useState } from "react"

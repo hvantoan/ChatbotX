@@ -4,17 +4,17 @@ import {
   instagramIntegrationService,
   messengerIntegrationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { connectionStateService } from "@chatbotx.io/business/connection"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { db } from "@chatbotx.io/database/client"
-import { metaCapiEventRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { connectionStateService } from "@inboxos.io/business/connection"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { db } from "@inboxos.io/database/client"
+import { metaCapiEventRepository } from "@inboxos.io/database/repositories"
 import {
   type InstagramAuthValue,
   isRevokedTokenError,
-} from "@chatbotx.io/integration-instagram"
-import { isRevokedTokenError as isRevokedTokenErrorFacebook } from "@chatbotx.io/integration-instagram-facebook"
+} from "@inboxos.io/integration-instagram"
+import { isRevokedTokenError as isRevokedTokenErrorFacebook } from "@inboxos.io/integration-instagram-facebook"
 import { integrations } from "@/integration"
 import { logger } from "@/lib/log"
 

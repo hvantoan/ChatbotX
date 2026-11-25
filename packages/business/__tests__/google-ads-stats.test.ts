@@ -8,7 +8,7 @@ const repository = vi.hoisted(() => ({
   existsForWorkspace: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsConversionEventRepository: repository,
 }))
 vi.mock("../src/google-ads/delivery", () => ({

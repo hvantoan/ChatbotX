@@ -1,5 +1,5 @@
-import { isFileAnswer } from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { isFileAnswer } from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CalendarIcon, FileTextIcon, ImageIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { readString } from "../../lib/props"

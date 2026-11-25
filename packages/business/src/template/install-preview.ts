@@ -3,21 +3,21 @@ import type {
   TemplateCategoryCounts,
   TemplateResourceCategory,
   TemplateSelection,
-} from "@chatbotx.io/database/partials"
-import { rootFolderId } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
+import { rootFolderId } from "@inboxos.io/database/partials"
 import {
   inboxRepository,
   pipelineRepository,
   productCategoryRepository,
   templateInstalledResourceRepository,
   templatePreviewRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import {
   customFieldResolutionKey,
   customFieldTypes,
   planCustomFieldResolution,
-} from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/utils/custom-field"
 import { isBindableInbox } from "./adapters/manifests/inboxes"
 import { pickPriorCopies } from "./adapters/manifests/prior-copies"
 import type { ManifestKey } from "./adapters/manifests/resolve"

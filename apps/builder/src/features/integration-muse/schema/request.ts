@@ -1,4 +1,4 @@
-import { museModels } from "@chatbotx.io/ai"
+import { museModels } from "@inboxos.io/ai"
 import { z } from "zod"
 
 export const connectMuseSchema = z.object({

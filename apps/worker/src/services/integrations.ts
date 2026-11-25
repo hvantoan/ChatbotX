@@ -1,1 +1,1 @@
-export * from "@chatbotx.io/channel-registry/registry"
+export * from "@inboxos.io/channel-registry/registry"

@@ -23,7 +23,7 @@ const mocks = vi.hoisted(() => ({
   startSession: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     connectFromCredentials: mocks.connectFromCredentials,
     connectSelfServeChannel: mocks.connectSelfServeChannel,
@@ -49,7 +49,7 @@ vi.mock("@chatbotx.io/connections", () => ({
   },
 }))
 
-class MockChatbotXException extends Error {
+class MockInboxOSException extends Error {
   code: string
   constructor(message: string, code: string) {
     super(message)
@@ -57,17 +57,17 @@ class MockChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: MockChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: MockInboxOSException,
   channelHiddenException: (channel: string) =>
-    new MockChatbotXException(`${channel} hidden`, "channelHidden"),
+    new MockInboxOSException(`${channel} hidden`, "channelHidden"),
   connectionNotConfiguredException: (provider: string) =>
-    new MockChatbotXException(
+    new MockInboxOSException(
       `${provider} not configured`,
       "connectionNotConfigured",
     ),
   connectionNotOAuthException: (provider: string) =>
-    new MockChatbotXException(
+    new MockInboxOSException(
       `Connection provider "${provider}" does not support an OAuth connect flow.`,
       "connectionNotOAuth",
     ),
@@ -87,7 +87,7 @@ vi.mock("@/features/connections/lib/resolve-connect-credential", () => ({
 
 // Dynamic `import()` is required here, not a static import: the mocks
 // above must be registered before `connect-flow.ts` (and its
-// `@chatbotx.io/connections`/`@/lib/oauth-referer` dependencies) are
+// `@inboxos.io/connections`/`@/lib/oauth-referer` dependencies) are
 // evaluated, which only a post-`vi.mock` dynamic import guarantees.
 const { startConnect } = await import("@/features/connections/lib/connect-flow")
 

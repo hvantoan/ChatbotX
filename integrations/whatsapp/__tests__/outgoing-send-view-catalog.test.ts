@@ -1,4 +1,4 @@
-import type { SendViewCatalogStepSchema } from "@chatbotx.io/flow-config"
+import type { SendViewCatalogStepSchema } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import {
   ActionCatalog,

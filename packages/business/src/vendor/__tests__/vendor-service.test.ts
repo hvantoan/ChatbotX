@@ -16,17 +16,17 @@ vi.mock("../../ecommerce-settings/store-source", () => ({
   ecommerceSettingsCacheTag: (workspaceId: string) =>
     `ecommerce-settings:${workspaceId}`,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { name: "db" },
   isUniqueViolationError: (error: unknown) =>
     (error as { code?: string } | undefined)?.code === "23505",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   vendorRepository: {
     createMissing: (...args: unknown[]) => mocks.createMissing(...args),
     findByNames: (...args: unknown[]) => mocks.findByNames(...args),

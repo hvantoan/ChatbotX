@@ -1,4 +1,4 @@
-import type { GoogleAdsConversionFieldsSchema } from "@chatbotx.io/flow-config"
+import type { GoogleAdsConversionFieldsSchema } from "@inboxos.io/flow-config"
 import type { useTranslations } from "next-intl"
 
 type Translator = ReturnType<typeof useTranslations>

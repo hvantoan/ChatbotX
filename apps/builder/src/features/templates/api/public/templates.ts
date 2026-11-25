@@ -4,8 +4,8 @@ import {
   resolveTemplateShareUrl,
   type TemplateDetail,
   templateService,
-} from "@chatbotx.io/business"
-import { templateUninstallService } from "@chatbotx.io/business/template-uninstall"
+} from "@inboxos.io/business"
+import { templateUninstallService } from "@inboxos.io/business/template-uninstall"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

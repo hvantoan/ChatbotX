@@ -4,8 +4,8 @@ import {
   type OperatorType,
   operatorTypes,
   parseContactActivityReferences,
-} from "@chatbotx.io/database/partials"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+} from "@inboxos.io/database/partials"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 import { z } from "zod"
 import { isChannelPostId } from "@/features/channel-posts/schema"
 import { sampleStringSchema } from "./shared"

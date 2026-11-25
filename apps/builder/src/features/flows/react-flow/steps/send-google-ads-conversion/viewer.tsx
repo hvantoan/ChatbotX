@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendGoogleAdsConversionSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendGoogleAdsConversionSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { MegaphoneIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { getGoogleAdsConversionSummaryLines } from "@/features/integration-google-ads/lib/conversion-summary"

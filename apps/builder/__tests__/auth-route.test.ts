@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { GET, POST } from "@/app/api/auth/[...all]/route"
 
@@ -35,7 +35,7 @@ const {
 
 // `isGenericOAuthPath`'s real logic is covered directly in
 // `packages/auth/__tests__/generic-oauth-path.test.ts` (importing from the
-// package avoids pulling the heavy `@chatbotx.io/auth/server` module graph —
+// package avoids pulling the heavy `@inboxos.io/auth/server` module graph —
 // better-auth, drizzle, business — into this route test). This mock mirrors
 // that real implementation's two branches (the `/callback/oidc` suffix, or a
 // shared social path selecting the `oidc` provider); a drift between the two
@@ -47,7 +47,7 @@ const { isSharedSocialPath } = vi.hoisted(() => ({
     ),
 }))
 
-vi.mock("@chatbotx.io/auth/server", () => ({
+vi.mock("@inboxos.io/auth/server", () => ({
   isGenericOAuthPath: (pathname: string, provider?: string) =>
     pathname.endsWith("/callback/oidc") ||
     (isSharedSocialPath(pathname) && provider === "oidc"),
@@ -56,7 +56,7 @@ vi.mock("@chatbotx.io/auth/server", () => ({
   warnIfGenericOAuthUnlicensed,
 }))
 
-vi.mock("@chatbotx.io/auth/tenant", () => ({
+vi.mock("@inboxos.io/auth/tenant", () => ({
   resolveOAuthStateCallbackURL: mockResolveOAuthStateCallbackURL,
   resolveTenantByDomain: mockResolveTenantByDomain,
   resolveTenantFromOAuthState: mockResolveTenantFromOAuthState,
@@ -64,13 +64,13 @@ vi.mock("@chatbotx.io/auth/tenant", () => ({
   withTenant: (_tenantId: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   // The route uses the public URL for host comparison; in tests the request
   // URL already carries the public host.
   getPublicUrlFromRequest: (request: Request) => new URL(request.url),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({ hasEnterpriseFeatures }))
+vi.mock("@inboxos.io/business", () => ({ hasEnterpriseFeatures }))
 
 vi.mock("@/lib/auth/auth", () => ({
   auth: { handler: defaultHandler },
@@ -261,7 +261,7 @@ describe("auth route — MCP browser responses", () => {
   test("adds CORS and Retry-After to a rate-limited client registration", async () => {
     mockResolveTenantByDomain.mockResolvedValue("1")
     assertApiNotRateLimited.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Too many requests. Retry after 7s.",
         "tooManyRequests",
         429,

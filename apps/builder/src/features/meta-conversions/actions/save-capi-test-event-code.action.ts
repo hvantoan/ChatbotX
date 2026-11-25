@@ -1,8 +1,8 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { metaCapiEventChannelSchema } from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { metaCapiEventChannelSchema } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
@@ -48,7 +48,7 @@ export const saveCapiTestEventCodeAction = workspaceActionClient
         })
       } catch (error) {
         if (isNotFound(error)) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             t(integrationNotFoundErrorKey[parsedInput.channel]),
           )
         }

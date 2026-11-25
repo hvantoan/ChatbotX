@@ -1,19 +1,19 @@
-import type { AIProvider } from "@chatbotx.io/ai"
+import type { AIProvider } from "@inboxos.io/ai"
 import {
   CallSummaryProviderNotConnectedError,
   generateCallSummary,
   listConnectedCallSummaryProviders,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import {
   whatsappCallSummaryService,
   whatsappCallTranscriptService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   summaryAlreadyGeneratingException,
-} from "@chatbotx.io/business/errors"
-import type { WhatsappCallAiSummary } from "@chatbotx.io/database/partials"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
+} from "@inboxos.io/business/errors"
+import type { WhatsappCallAiSummary } from "@inboxos.io/database/partials"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
 
 export const CALL_TRANSCRIPT_EMPTY_CODE = "callTranscriptEmpty"
 export const CALL_SUMMARY_PROVIDER_NOT_CONNECTED_CODE =
@@ -46,7 +46,7 @@ export const generateCallSummaryForCall = async (input: {
       workspaceId,
     })
   if (!transcriptText.trim()) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "This call has no transcript to summarize",
       CALL_TRANSCRIPT_EMPTY_CODE,
       UNPROCESSABLE_STATUS,
@@ -95,13 +95,13 @@ const resolveOnlyConnectedProvider = async (
     return only.provider
   }
   if (connected.length === 0) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "No AI integration is connected to this workspace",
       CALL_SUMMARY_PROVIDER_NOT_CONNECTED_CODE,
       UNPROCESSABLE_STATUS,
     )
   }
-  throw new ChatbotXException(
+  throw new InboxOSException(
     `Several AI providers are connected (${connected
       .map((item) => item.provider)
       .join(", ")}): pass \`provider\``,
@@ -119,7 +119,7 @@ const summarize = async (input: {
     return await generateCallSummary(input)
   } catch (error) {
     if (error instanceof CallSummaryProviderNotConnectedError) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `The ${input.provider} integration is not connected to this workspace`,
         CALL_SUMMARY_PROVIDER_NOT_CONNECTED_CODE,
         UNPROCESSABLE_STATUS,

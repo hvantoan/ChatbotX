@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   loggerDebug: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     updateReadStatus: mocks.updateReadStatus,
     disableBotState: mocks.disableBotState,
@@ -24,16 +24,16 @@ vi.mock("@chatbotx.io/business", () => ({
   inboxTeamService: {},
   workspaceMemberService: {},
 }))
-vi.mock("@chatbotx.io/database/client", () => ({ gte: vi.fn() }))
-vi.mock("@chatbotx.io/database/schema", () => ({ conversationModel: {} }))
+vi.mock("@inboxos.io/database/client", () => ({ gte: vi.fn() }))
+vi.mock("@inboxos.io/database/schema", () => ({ conversationModel: {} }))
 // step-handlers also hosts the thread-control step; its registry-aware action
 // is out of scope here and would otherwise load the real channel registry.
 // step-handlers also resolves `{{variables}}` for the thread-control step; the
 // real package would load database query modules this suite does not mock.
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: vi.fn(),
 }))
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   requestThreadControlAction: vi.fn(),
 }))
 vi.mock("../src/services/integrations", () => ({
@@ -44,7 +44,7 @@ vi.mock("../src/services/integrations", () => ({
 vi.mock("../src/chat/handlers/send-message", async () => {
   // `channelTypes` is a plain enum re-export (see packages/database/src/partials/channel.ts)
   // with no DB dependency, so importing it unmocked here is safe.
-  const { channelTypes } = await import("@chatbotx.io/database/partials")
+  const { channelTypes } = await import("@inboxos.io/database/partials")
   return {
     sendTypingToChannel: vi.fn(),
     // Mirrors the real function's gating (packages "worker" test-double for

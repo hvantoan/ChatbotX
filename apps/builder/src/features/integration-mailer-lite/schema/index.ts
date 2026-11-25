@@ -1,3 +1,3 @@
-import { mailerLiteCredentialSchema } from "@chatbotx.io/integration-mailer-lite"
+import { mailerLiteCredentialSchema } from "@inboxos.io/integration-mailer-lite"
 
 export const connectMailerLiteSchema = mailerLiteCredentialSchema

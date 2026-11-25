@@ -1,8 +1,8 @@
 "use client"
 
-import type { DecisionConnectionSafe } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import type { DecisionConnectionSafe } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { CheckCircle2Icon, Loader2Icon, XCircleIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

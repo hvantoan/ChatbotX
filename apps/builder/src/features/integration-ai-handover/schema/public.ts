@@ -1,5 +1,5 @@
-import { aiHandoverTimeRangesSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { aiHandoverTimeRangesSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { publicListRequest } from "@/lib/public-api/list"
 import { aiHandoverBulkRunResource, getApplyToAllStatusResponse } from "./bulk"

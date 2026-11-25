@@ -1,15 +1,15 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 /** The template an installation came from was deleted or never existed. */
 export const templateSourceMissingException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The source template for this installation is no longer available",
     "templateInstallationSourceMissing",
   )
 
 /** A sync of the installation is queued or running: the request has to wait for it. */
 export const templateSyncInProgressException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A sync of this installation is in progress",
     "templateSyncInProgress",
     409,
@@ -17,7 +17,7 @@ export const templateSyncInProgressException = () =>
 
 /** The installation (or one of its copies) is being uninstalled: edits, toggles, syncs and new references wait. */
 export const templateUninstallInProgressException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template is being uninstalled",
     "templateUninstallInProgress",
     409,
@@ -25,7 +25,7 @@ export const templateUninstallInProgressException = () =>
 
 /** The installer did not allow the publisher to uninstall this template. */
 export const templateUninstallNotGrantedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The installer did not allow this template to be uninstalled by its publisher",
     "templateUninstallNotGranted",
     403,
@@ -33,7 +33,7 @@ export const templateUninstallNotGrantedException = () =>
 
 /** A backup (or its target) can not be restored: wrong format, kind or an update-less handler. */
 export const templateBackupNotRestorableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This backup can not be restored",
     "templateBackupNotRestorable",
     409,
@@ -41,7 +41,7 @@ export const templateBackupNotRestorableException = () =>
 
 /** No uninstall handler is registered for a tracked kind; `data.resourceKind` names it. */
 export const templateUninstallNoHandlerException = (resourceKind: string) => {
-  const exception = new ChatbotXException(
+  const exception = new InboxOSException(
     `No uninstall handler for ${resourceKind}`,
     "templateUninstallNoHandler",
   )
@@ -60,7 +60,7 @@ export const TEMPLATE_LEASE_LOST_CODES: ReadonlySet<string> = new Set([
   "templateUninstallLeaseLost",
 ])
 
-export class TemplateUninstallClaimLostError extends ChatbotXException {
+export class TemplateUninstallClaimLostError extends InboxOSException {
   constructor() {
     super("The uninstall lease was lost", "templateUninstallLeaseLost")
     this.name = "TemplateUninstallClaimLostError"
@@ -68,8 +68,7 @@ export class TemplateUninstallClaimLostError extends ChatbotXException {
 }
 
 export const isTemplateLeaseLost = (error: unknown): boolean =>
-  error instanceof ChatbotXException &&
-  TEMPLATE_LEASE_LOST_CODES.has(error.code)
+  error instanceof InboxOSException && TEMPLATE_LEASE_LOST_CODES.has(error.code)
 
 /**
  * Failures a retry can never fix (install, sync and uninstall share one set):
@@ -95,11 +94,11 @@ const PERMANENT_ERROR_CODE_SET: ReadonlySet<string> = new Set(
 export const isPermanentTemplateError = (code: string): boolean =>
   PERMANENT_ERROR_CODE_SET.has(code)
 
-/** The machine code of a failure: a `ChatbotXException`'s own, else the caller's fallback. */
+/** The machine code of a failure: a `InboxOSException`'s own, else the caller's fallback. */
 export const templateErrorCodeOf = (
   error: unknown,
   fallback: string,
-): string => (error instanceof ChatbotXException ? error.code : fallback)
+): string => (error instanceof InboxOSException ? error.code : fallback)
 
 /**
  * The white-label default template can not be set: the template or key is
@@ -107,7 +106,7 @@ export const templateErrorCodeOf = (
  * wrong key) so the endpoint is no oracle for template ids.
  */
 export const tenantDefaultTemplateUnavailableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The template ID or key is not valid",
     "tenantDefaultTemplateUnavailable",
     404,
@@ -115,7 +114,7 @@ export const tenantDefaultTemplateUnavailableException = () =>
 
 /** The key matched, but the template's share link is off or expired. */
 export const tenantDefaultTemplateShareDisabledException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Turn the template's share link on before using it as a default",
     "tenantDefaultTemplateShareDisabled",
     409,
@@ -123,7 +122,7 @@ export const tenantDefaultTemplateShareDisabledException = () =>
 
 /** A copy that crosses tenants can not give its publisher access to the workspace. */
 export const templatePublisherGrantCrossTenantException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A template from another tenant can not be given access to this workspace",
     "templatePublisherGrantCrossTenant",
     409,
@@ -131,49 +130,49 @@ export const templatePublisherGrantCrossTenantException = () =>
 
 /** The template to approve is missing, deleted or belongs to another tenant: one answer for all, so ids are no oracle. */
 export const templateStoreTemplateUnavailableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template is not available for your store",
     "templateStoreTemplateUnavailable",
     404,
   )
 
 export const templateStoreListingExistsException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template is already in your store",
     "templateStoreListingExists",
     409,
   )
 
 export const templateStoreListingUnavailableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This store listing no longer exists",
     "templateStoreListingUnavailable",
     404,
   )
 
 export const templateStoreListingLimitException = (limit: number) =>
-  new ChatbotXException(
+  new InboxOSException(
     `A store can hold at most ${limit} templates`,
     "templateStoreListingLimit",
     409,
   )
 
 export const templateStoreCategoryUnavailableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This store category no longer exists",
     "templateStoreCategoryUnavailable",
     404,
   )
 
 export const templateStoreCategoryNameTakenException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A category with this name already exists",
     "templateStoreCategoryNameTaken",
     409,
   )
 
 export const templateStoreCategoryLimitException = (limit: number) =>
-  new ChatbotXException(
+  new InboxOSException(
     `A store can have at most ${limit} categories`,
     "templateStoreCategoryLimit",
     409,

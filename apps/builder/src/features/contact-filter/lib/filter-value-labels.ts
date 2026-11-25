@@ -1,5 +1,5 @@
-import { NO_TOPIC_FIXED_VALUE } from "@chatbotx.io/database/partials"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+import { NO_TOPIC_FIXED_VALUE } from "@inboxos.io/database/partials"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import {
   CONTACT_FILTER_FIELD_DEFINITIONS,
   type ContactFilterOptionSource,

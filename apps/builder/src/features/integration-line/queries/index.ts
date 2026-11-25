@@ -1,5 +1,5 @@
-import { lineIntegrationService } from "@chatbotx.io/business"
-import type { IntegrationLineModel } from "@chatbotx.io/database/types"
+import { lineIntegrationService } from "@inboxos.io/business"
+import type { IntegrationLineModel } from "@inboxos.io/database/types"
 import { toLineChannelResource } from "../lib/to-line-channel-resource"
 import type { LineChannelResource } from "../schema/resource"
 

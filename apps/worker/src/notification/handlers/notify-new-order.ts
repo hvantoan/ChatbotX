@@ -4,10 +4,10 @@ import {
   orderService,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { formatMoney } from "@chatbotx.io/utils/money"
-import type { NotificationJobNotifyNewOrder } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { formatMoney } from "@inboxos.io/utils/money"
+import type { NotificationJobNotifyNewOrder } from "@inboxos.io/worker-config"
 import { deliverPushToUsers } from "../lib/deliver-push"
 import { getExpoClient } from "../lib/expo"
 import { t } from "../lib/strings"
@@ -35,7 +35,7 @@ const findOrder = async (input: { workspaceId: string; orderId: string }) => {
   try {
     return await orderService.getDetail(input)
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       return null
     }
     throw error

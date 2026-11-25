@@ -3,7 +3,7 @@ import {
   type PipelineSettingsPatch,
   pipelineReferenceNameSchema,
   pipelineSettingsPatchSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { SettingsPipeline } from "./use-save-settings"
 
 /** Everything the settings sheet edits before one Save. */

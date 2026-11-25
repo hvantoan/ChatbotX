@@ -5,11 +5,11 @@ const { findById, getObject } = vi.hoisted(() => ({
   getObject: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   mediaLibraryFileRepository: { findById },
   mediaLibraryFolderRepository: {},
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploader: { getObject } }))
+vi.mock("@inboxos.io/filesystem", () => ({ uploader: { getObject } }))
 
 const { mediaLibraryService } = await import("../src/media-library/service")
 

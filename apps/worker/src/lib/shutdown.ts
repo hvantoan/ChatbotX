@@ -1,5 +1,5 @@
-import { flushAllPendingWorkspaceRealtimeEvents } from "@chatbotx.io/business"
-import { closeAllQueueEvents } from "@chatbotx.io/worker-config"
+import { flushAllPendingWorkspaceRealtimeEvents } from "@inboxos.io/business"
+import { closeAllQueueEvents } from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { env } from "../env"
 import { ensureBootstrapped } from "./bootstrap"

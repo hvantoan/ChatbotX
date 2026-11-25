@@ -15,7 +15,7 @@ const { mockUpdate, mockReturning, mockInvalidateCacheByTags } = vi.hoisted(
   },
 )
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ conditions })),
   db: { update: mockUpdate },
   eq: vi.fn((field: unknown, value: unknown) => ({ field, value })),
@@ -24,8 +24,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   MESSENGER_PAGE_ID_UNIQUE_CONSTRAINT: "IntegrationMessenger_pageId_key",
   integrationMessengerModel: {
     id: "id",
@@ -43,12 +43,12 @@ vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/partials")>()),
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/partials")>()),
   channelTypes: { enum: { messenger: "messenger", zalo: "zalo" } },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: {},
   connectionRepository: { findByInboxId: vi.fn() },
 }))
@@ -74,12 +74,12 @@ vi.mock("../src/connection", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mockInvalidateCacheByTags,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: vi.fn(() => "generated-id"),
 }))
 

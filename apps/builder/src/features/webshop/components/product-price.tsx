@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { formatShopMoney } from "../lib/shop-money"
 import { discountedPrice } from "../lib/shop-product"
 import { useShop } from "./shop-provider"

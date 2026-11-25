@@ -1,4 +1,4 @@
-import { broadcastService } from "@chatbotx.io/business"
+import { broadcastService } from "@inboxos.io/business"
 import { logger } from "../../lib/logger"
 
 /**

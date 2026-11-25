@@ -7,18 +7,18 @@ const { mockBotFieldFindMany, mockWithCache } = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   botFieldWorkspaceCacheTags: (workspaceId: string) => [
     "bot-fields",
     `bot-fields:${workspaceId}`,
   ],
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { botFieldModel: { findMany: mockBotFieldFindMany } } },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({ withCache: mockWithCache }))
+vi.mock("@inboxos.io/redis", () => ({ withCache: mockWithCache }))
 
 const { parseBotFieldVariableText } = await import("../src/bot-field-variable")
 const { resolveBotFieldVariableText } = await import(

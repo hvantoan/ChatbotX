@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import type { WhatsappFlowFieldMapping } from "@chatbotx.io/flow-config"
+import type { WhatsappFlowFieldMapping } from "@inboxos.io/flow-config"
 import { act, type ReactNode } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import {
@@ -72,13 +72,13 @@ vi.mock("@/features/custom-fields/provider/custom-field-hook", () => ({
 vi.mock("@/components/tiptap/tiptap-editor-field", () => ({
   TiptapEditorField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: (props: { name: string }) => (
     <div data-name={props.name} data-testid="select-field" />
   ),
 }))
 // Renders only its form item, so a test can see whether it takes room.
-vi.mock("@chatbotx.io/ui/components/form/input-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/input-field", () => ({
   InputField: ({
     name,
     formItemClassName,
@@ -91,7 +91,7 @@ vi.mock("@chatbotx.io/ui/components/form/input-field", () => ({
 }))
 // The real dialog portals through Base UI; rendering its children inline keeps
 // the assertions on what the dialog shows, not how it mounts.
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({ open, children }: { open: boolean; children: ReactNode }) =>
     open ? <div role="dialog">{children}</div> : null,
   DialogContent: ({ children }: { children: ReactNode }) => children,

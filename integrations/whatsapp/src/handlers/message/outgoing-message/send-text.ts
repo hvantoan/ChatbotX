@@ -1,5 +1,5 @@
-import type { SendTextStepSchema } from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+import type { SendTextStepSchema } from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import { Text } from "whatsapp-api-js/messages"
 import type { WhatsappAuthValue } from "../../../schema"
 import { buildWhatsappButtonMessages } from "./shared"

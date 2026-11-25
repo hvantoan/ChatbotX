@@ -7,7 +7,7 @@ const updateMock = vi.fn()
 const executeMock = vi.fn()
 const completeActiveEnrollmentBatchMock = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...conditions: unknown[]) => ({ __and: conditions }),
   db: {
     execute: (...args: unknown[]) => executeMock(...args),
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   broadcastStatuses: {
     enum: {
       cancelled: "cancelled",
@@ -42,7 +42,7 @@ vi.mock("../src/broadcast/recurrence-ledger", () => ({
     disarmAllForWorkspaceMock(...args),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: { __column: "broadcast.id" },
     status: { __column: "broadcast.status" },
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories/sequence", () => ({
+vi.mock("@inboxos.io/database/repositories/sequence", () => ({
   sequenceRepository: {
     completeActiveEnrollmentBatch: completeActiveEnrollmentBatchMock,
   },

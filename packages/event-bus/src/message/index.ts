@@ -8,7 +8,7 @@ export type {
   MessageReceivedPayload,
   MessageSeenPayload,
   MessageSentPayload,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 export {
   deliveredPayloadSchema,
   failedPayloadSchema,
@@ -16,5 +16,5 @@ export {
   receivedPayloadSchema,
   seenPayloadSchema,
   sentPayloadSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 export * from "./event-bus"

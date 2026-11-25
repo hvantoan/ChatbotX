@@ -2,15 +2,15 @@ import {
   type ChannelType,
   type CountMode,
   requiresRecentInteractionWindow,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactFilterCriteriaInput,
   ContactInboxScope,
-} from "@chatbotx.io/database/queries"
-import { contactRepository } from "@chatbotx.io/database/repositories"
-import type { ContactModel } from "@chatbotx.io/database/types"
-import { getPaginationWithDefaults } from "@chatbotx.io/database/utils"
-import type { BroadcastSubaction } from "@chatbotx.io/utils/broadcast"
+} from "@inboxos.io/database/queries"
+import { contactRepository } from "@inboxos.io/database/repositories"
+import type { ContactModel } from "@inboxos.io/database/types"
+import { getPaginationWithDefaults } from "@inboxos.io/database/utils"
+import type { BroadcastSubaction } from "@inboxos.io/utils/broadcast"
 import { type CountOutcome, countByMode } from "../count-mode"
 import { inboxService } from "../inbox/service"
 import { logger } from "../logger"

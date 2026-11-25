@@ -3,12 +3,12 @@ import {
   type LeaderboardParticipantFilter,
   leaderboardParticipantService,
   leaderboardService,
-} from "@chatbotx.io/business/leaderboard"
-import { minigameService } from "@chatbotx.io/business/minigame"
+} from "@inboxos.io/business/leaderboard"
+import { minigameService } from "@inboxos.io/business/minigame"
 import type {
   LeaderboardPlatform,
   LeaderboardStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import { isNotFoundException } from "@/lib/errors/validation-exception"
 import { toLeaderboardResource } from "../lib/to-resource"

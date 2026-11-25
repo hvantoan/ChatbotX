@@ -3,11 +3,11 @@ import {
   commentReplySchema,
   igStoryAutomationTriggers,
   igStoryTargetSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createSelectSchema,
   igStoryAutomationModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import z from "zod"
 import { automationInboxIdResourceSchema } from "@/features/shared/comment-automation/schema/account"
 

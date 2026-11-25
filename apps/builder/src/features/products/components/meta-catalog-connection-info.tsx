@@ -1,6 +1,6 @@
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { cn } from "@chatbotx.io/ui/lib/utils"
 import { SiFacebook } from "@icons-pack/react-simple-icons"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { META_BLUE_SURFACE, META_BLUE_TEXT } from "../lib/meta-catalog-brand"
 import type { MetaCatalogConnection } from "./meta-catalog-types"

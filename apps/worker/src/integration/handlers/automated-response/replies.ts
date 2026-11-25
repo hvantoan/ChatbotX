@@ -7,7 +7,7 @@ import {
   toFinalStepTextStream,
   toolPrefixes,
   toStepSeparatedTextStream,
-} from "@chatbotx.io/ai"
+} from "@inboxos.io/ai"
 import {
   type AIProviderInstance,
   aiContextService,
@@ -20,13 +20,13 @@ import {
   McpClient,
   normalizeAuthorizedWebSearchDomains,
   normalizeMcpContent,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import {
   compileSalesPrompt,
   productService,
   resolveConversationSalesState,
   type SalesPromptProduct,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   AIAgentActionRule,
   AIAgentModelConfig,
@@ -34,24 +34,24 @@ import type {
   AIAgentSalesProfile,
   ConversationAttributes,
   DefaultReplyFrequency,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   aiAgentActionRulesSchema,
   aiAgentSalesProfileSchema,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { contactVariableService } from "@inboxos.io/variables"
 import {
   type BotResponseTrackingContext,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   isStepCount,
   type LanguageModel,

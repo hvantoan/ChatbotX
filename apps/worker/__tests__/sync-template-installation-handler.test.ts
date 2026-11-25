@@ -15,7 +15,7 @@ const mocks = vi.hoisted(() => ({
   enqueueProcessAIFile: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateAiFileDispatchService: {
     listQueuedForInstallation: mocks.listQueuedForInstallation,
   },
@@ -24,7 +24,7 @@ vi.mock("@chatbotx.io/business", () => ({
     fanOutAutoUpdate: mocks.fanOutAutoUpdate,
   },
 }))
-vi.mock("@chatbotx.io/business/template-sync/execute", () => ({
+vi.mock("@inboxos.io/business/template-sync/execute", () => ({
   templateSyncExecuteService: {
     claim: mocks.claim,
     run: mocks.run,
@@ -32,13 +32,13 @@ vi.mock("@chatbotx.io/business/template-sync/execute", () => ({
     fail: mocks.fail,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueSyncTemplateInstallation: mocks.enqueueSync,
   enqueueFanOutTemplateUpdate: mocks.enqueueFanOut,
   enqueueProcessAIFile: mocks.enqueueProcessAIFile,
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code = "systemError") {
       super(message)
@@ -56,7 +56,7 @@ const { syncTemplateInstallation, skipBlockedTemplateSync } = await import(
 const { fanOutTemplateUpdate } = await import(
   "../src/default/handlers/fan-out-template-update"
 )
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 
 const data = { syncId: "sync-1", workspaceId: "ws-1" }
 const jobOn = (attemptsMade: number, attempts = 2) =>
@@ -140,7 +140,7 @@ describe("syncTemplateInstallation handler", () => {
 
   test("a permanent error fails the sync and stops retries", async () => {
     mocks.run.mockRejectedValue(
-      new ChatbotXException("bad", "templatePayloadIncompatible"),
+      new InboxOSException("bad", "templatePayloadIncompatible"),
     )
     await expect(
       syncTemplateInstallation(data, jobOn(0)),

@@ -278,7 +278,7 @@ describe("transcribeWithMuse", () => {
 
   test("sends languageBias and keywords only when given", async () => {
     const { forms, result } = run(jsonResponse(okBody), {
-      keywords: ["ChatbotX"],
+      keywords: ["InboxOS"],
       languageBias: ["Vietnamese"],
     })
     await result
@@ -287,7 +287,7 @@ describe("transcribeWithMuse", () => {
       throw new Error("Expected request part")
     }
     expect(JSON.parse(await requestPart.text())).toMatchObject({
-      keywords: ["ChatbotX"],
+      keywords: ["InboxOS"],
       languageBias: ["Vietnamese"],
     })
   })

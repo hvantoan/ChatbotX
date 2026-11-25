@@ -1,4 +1,4 @@
-import { createRedisConnection } from "@chatbotx.io/redis"
+import { createRedisConnection } from "@inboxos.io/redis"
 import { createRealtimeGateway } from "./gateway"
 import { resolveRealtimeGatewayConfig } from "./gateway-config"
 import { logger } from "./logger"

@@ -1,15 +1,15 @@
 "use client"
 
-import type { WorkspaceCurrencyDefault } from "@chatbotx.io/business/pipeline"
-import type { PipelineSettings } from "@chatbotx.io/database/partials"
+import type { WorkspaceCurrencyDefault } from "@inboxos.io/business/pipeline"
+import type { PipelineSettings } from "@inboxos.io/database/partials"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@chatbotx.io/ui/components/ui/accordion"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/ui/components/ui/accordion"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Sheet,
   SheetContent,
@@ -17,7 +17,7 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
+} from "@inboxos.io/ui/components/ui/sheet"
 import { useQuery } from "@tanstack/react-query"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

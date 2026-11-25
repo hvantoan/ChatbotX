@@ -70,7 +70,7 @@ vi.mock("../src/contact-custom-field/value-service", () => ({
 
 vi.mock("../src/contact-custom-field/normalize.ts", async () => {
   const { canonicalNumberLiteral } = await import(
-    "@chatbotx.io/utils/custom-field"
+    "@inboxos.io/utils/custom-field"
   )
   return {
     normalizeCustomFieldValueForStorage: async ({
@@ -86,7 +86,7 @@ vi.mock("../src/contact-custom-field/normalize.ts", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => args,
   eq: (...args: unknown[]) => args,
   db: {
@@ -99,11 +99,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
 }))
 
 // This suite never exercises `listWithDefinitionByContact`/`findWithDefinition`,
-// but vitest's SSR deps optimizer bundles the whole `@chatbotx.io/database`
+// but vitest's SSR deps optimizer bundles the whole `@inboxos.io/database`
 // package graph together once any subpath is imported, which otherwise pulls
 // in `contactCustomFieldRepository`'s real contact-filter query graph (needs
 // the real schema, conflicting with the narrow mock below).
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactCustomFieldRepository: {
     lockPairs: (...args: unknown[]) => {
       callLog.push("lock")
@@ -118,7 +118,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactCustomFieldModel: {
     value: "value",
     contactId: "contactId",
@@ -128,26 +128,25 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   customFieldModel: {},
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCustomFieldChanged: (...args: unknown[]) => {
     callLog.push("emit")
     return mocks.emitCustomFieldChanged(...args)
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) =>
     mocks.invalidateCacheByTags(...args),
 }))
 
-vi.mock("@chatbotx.io/flow-config", async () => ({
-  FieldOperationType: (
-    await import("@chatbotx.io/utils/custom-field-operation")
-  ).FieldOperationType,
+vi.mock("@inboxos.io/flow-config", async () => ({
+  FieldOperationType: (await import("@inboxos.io/utils/custom-field-operation"))
+    .FieldOperationType,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => "generated-id" }
 })
 
@@ -181,7 +180,7 @@ mocks.updateSet.mockImplementation(() => {
 })
 
 const { FieldOperationType } = await import(
-  "@chatbotx.io/utils/custom-field-operation"
+  "@inboxos.io/utils/custom-field-operation"
 )
 
 const field = (type: string) => ({ id: "cf-1", name: "plan", type })

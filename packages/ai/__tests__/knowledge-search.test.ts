@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   searchKnowledgeChunks: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService: { findByIdForWorkspace: mocks.findByIdForWorkspace },
   aiFileService: {
     assertEmbeddingProviderConfigured: mocks.assertEmbeddingProviderConfigured,
@@ -433,7 +433,7 @@ describe("searchAIFiles", () => {
     expect(mocks.searchKnowledgeChunks).not.toHaveBeenCalled()
   })
 
-  test("keeps @chatbotx.io/business free of an @chatbotx.io/ai dependency", () => {
+  test("keeps @inboxos.io/business free of an @inboxos.io/ai dependency", () => {
     const manifest = JSON.parse(
       readFileSync(
         new URL("../../business/package.json", import.meta.url),
@@ -444,6 +444,6 @@ describe("searchAIFiles", () => {
     expect({
       ...manifest.dependencies,
       ...manifest.devDependencies,
-    }).not.toHaveProperty("@chatbotx.io/ai")
+    }).not.toHaveProperty("@inboxos.io/ai")
   })
 })

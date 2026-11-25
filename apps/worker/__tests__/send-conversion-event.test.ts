@@ -27,13 +27,13 @@ const mocks = vi.hoisted(() => ({
   logProviderError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: (...args: unknown[]) => mocks.logProviderError(...args),
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
-  const actual = await vi.importActual<typeof import("@chatbotx.io/business")>(
-    "@chatbotx.io/business",
+vi.mock("@inboxos.io/business", async () => {
+  const actual = await vi.importActual<typeof import("@inboxos.io/business")>(
+    "@inboxos.io/business",
   )
   return {
     ...actual,
@@ -70,38 +70,38 @@ vi.mock("@chatbotx.io/business", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/integration-meta-conversions", () => ({
+vi.mock("@inboxos.io/integration-meta-conversions", () => ({
   buildDatasetName: (name: string) =>
     name.trim() ? `${name.trim()} Event Data` : "Event Data",
   ensureDataset: mocks.metaEnsureDataset,
   sendConversionEvent: mocks.metaSendConversionEvent,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/conversions", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/conversions", () => ({
   ensureDataset: mocks.ensureDataset,
   sendConversionEvent: mocks.sendConversionEvent,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   debugToken: vi.fn(),
   hasPageEventsScope: vi.fn(),
   toAppAccessToken: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   debugToken: vi.fn(),
   hasInstagramManageEventsScope: vi.fn(),
   toAppAccessToken: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/auth", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/auth", () => ({
   debugTokenOrThrow: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async () => {
+vi.mock("@inboxos.io/worker-config", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/worker-config")
-  >("@chatbotx.io/worker-config")
+    typeof import("@inboxos.io/worker-config")
+  >("@inboxos.io/worker-config")
   return {
     ...actual,
     defaultQueue: { add: mocks.defaultQueueAdd },

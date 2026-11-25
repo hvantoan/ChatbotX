@@ -34,7 +34,7 @@ const mocks = vi.hoisted(() => ({
   findByIdempotencyKey: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const tx = {
     update: () => ({
       set: (values: unknown) => ({
@@ -59,10 +59,10 @@ vi.mock("@chatbotx.io/database/client", () => {
     isNotNull: (column: unknown) => ({ isNotNull: column }),
   }
 })
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   templateInstallationModel: {},
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateRepository: { findSyncSource: mocks.templateFindFirst },
   templateInstallationRepository: {
     findByIdAndWorkspace: mocks.findInstallation,
@@ -93,7 +93,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   templateResourceBackupRepository: {},
 }))
 let counter = 0
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   createId: () => `sync-${++counter}`,
 }))

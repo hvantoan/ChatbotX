@@ -1,5 +1,5 @@
-import { templateUninstallStateRepository } from "@chatbotx.io/database/repositories"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { templateUninstallStateRepository } from "@inboxos.io/database/repositories"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { SYSTEM_ACTOR } from "../audit/actor"
 import { logger } from "../logger"
 

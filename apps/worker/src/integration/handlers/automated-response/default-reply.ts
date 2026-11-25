@@ -1,15 +1,15 @@
-import { defaultReplyThrottleService, flowService } from "@chatbotx.io/business"
-import type { DefaultReplyFrequency } from "@chatbotx.io/database/partials"
+import { defaultReplyThrottleService, flowService } from "@inboxos.io/business"
+import type { DefaultReplyFrequency } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   type BotResponseTrackingContext,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 
 /**

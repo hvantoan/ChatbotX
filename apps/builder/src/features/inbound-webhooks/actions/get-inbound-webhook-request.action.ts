@@ -1,7 +1,7 @@
 "use server"
 
-import { inboundWebhookService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { inboundWebhookService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 import { assertCanManageInboundWebhooks } from "../lib/assert-super-admin"
 import { toInboundWebhookRequestDetail } from "../schema/public"

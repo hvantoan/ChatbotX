@@ -4,15 +4,15 @@ import {
   findScreen,
   type MiniAppValidationIssue,
   screenLabel,
-} from "@chatbotx.io/mini-app"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/mini-app"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/popover"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { AlertTriangleIcon, CheckCircle2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useIssueMessage } from "../lib/use-issue-message"

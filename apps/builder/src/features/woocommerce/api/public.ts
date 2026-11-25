@@ -1,4 +1,4 @@
-import { wooCommerceIntegrationService } from "@chatbotx.io/business"
+import { wooCommerceIntegrationService } from "@inboxos.io/business"
 import {
   possibleErrorsOnFindingResource,
   possibleErrorsOnWooCommerce,

@@ -1,6 +1,6 @@
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
-import type { AIFileProcessingRunErrorCode } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
+import type { AIFileProcessingRunErrorCode } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useFormatter, useTranslations } from "next-intl"
 
 const statusKey = {

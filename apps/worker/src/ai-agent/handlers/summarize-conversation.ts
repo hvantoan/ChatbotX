@@ -4,14 +4,14 @@ import {
   aiContextStore,
   isSameContextMessage,
   summarizeConversation,
-} from "@chatbotx.io/ai/server"
-import { conversationService } from "@chatbotx.io/business"
+} from "@inboxos.io/ai/server"
+import { conversationService } from "@inboxos.io/business"
 import {
   AIJobAction,
   type AIJobSummarizeConversation,
   aiAgentQueue,
   aiJobSummarizeConversationDataSchema,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 
 const HISTORY_LIMIT = 20

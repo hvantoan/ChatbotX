@@ -1,16 +1,16 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   type AdEligibleInboxChannel,
   adsConversionEventRepository,
   integrationInstagramRepository,
   integrationMessengerRepository,
   integrationWhatsappRepository,
-} from "@chatbotx.io/database/repositories"
-import type { AdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { AdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { contactReferralEventService } from "../contact-referral-event/service"
 
 /**

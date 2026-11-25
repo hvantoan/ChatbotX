@@ -1,17 +1,17 @@
 import {
   conversationMemberScope,
   conversationService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   requestConversationThreadControl,
   syncConversationThreadOwner,
-} from "@chatbotx.io/channel-registry/thread-control"
+} from "@inboxos.io/channel-registry/thread-control"
 import {
   channelTypes,
   conversationBotCategories,
   conversationStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import z from "zod"
 import { successResponse } from "@/features/common/schema"
 import { contactFilterCriteriaSchema } from "@/features/contact-filter"
@@ -523,7 +523,7 @@ export const conversationsPublicRouter = {
               })
         return { status: "applied" as const, snapshot }
       } catch (error) {
-        if (error instanceof ChatbotXException && error.code === "notFound") {
+        if (error instanceof InboxOSException && error.code === "notFound") {
           throw error
         }
         const refusal = mapThreadControlError(

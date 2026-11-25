@@ -1,5 +1,5 @@
-import { findOrFail } from "@chatbotx.io/database/client"
-import { chatQueue } from "@chatbotx.io/worker-config"
+import { findOrFail } from "@inboxos.io/database/client"
+import { chatQueue } from "@inboxos.io/worker-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -8,16 +8,16 @@ const mocks = vi.hoisted(() => ({
   getQueueEvents: vi.fn(() => ({ close: vi.fn() })),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   isImageUrl: vi.fn(() => false),
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   conversationModel: {},
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendChatMessage: "sendChatMessage" },
   chatQueue: { add: vi.fn() },
   getQueueEvents: mocks.getQueueEvents,

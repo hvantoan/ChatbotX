@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import type { GoogleAdsStatsResponse } from "@chatbotx.io/business"
+import type { GoogleAdsStatsResponse } from "@inboxos.io/business"
 import type { ComponentProps, ReactElement, ReactNode } from "react"
 import { act, cloneElement } from "react"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -27,7 +27,7 @@ vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: mocks.push, replace: mocks.replace }),
   useSearchParams: () => mocks.search,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/select", () => ({
+vi.mock("@inboxos.io/ui/components/ui/select", () => ({
   Select: ({
     value,
     onValueChange,
@@ -55,7 +55,7 @@ vi.mock("@chatbotx.io/ui/components/ui/select", () => ({
   ),
 }))
 // Tooltip content is always rendered so tests can read it.
-vi.mock("@chatbotx.io/ui/components/ui/tooltip", () => ({
+vi.mock("@inboxos.io/ui/components/ui/tooltip", () => ({
   Tooltip: ({ children }: { children: ReactNode }) => <>{children}</>,
   TooltipTrigger: ({
     render,
@@ -69,7 +69,7 @@ vi.mock("@chatbotx.io/ui/components/ui/tooltip", () => ({
   ),
 }))
 vi.mock(
-  "@chatbotx.io/analytics-nextjs/components/date-range-preset-filter",
+  "@inboxos.io/analytics-nextjs/components/date-range-preset-filter",
   () => ({
     resolvePresetOption: () => "custom",
     DateRangePresetFilter: ({
@@ -87,7 +87,7 @@ vi.mock(
     ),
   }),
 )
-vi.mock("@chatbotx.io/ui/components/ui/chart", () => ({
+vi.mock("@inboxos.io/ui/components/ui/chart", () => ({
   ChartContainer: ({ children }: { children: ReactNode }) => (
     <div data-testid="chart">{children}</div>
   ),

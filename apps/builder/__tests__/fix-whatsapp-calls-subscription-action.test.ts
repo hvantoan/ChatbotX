@@ -44,7 +44,7 @@ vi.mock(
   }),
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { findById: findWorkspaceByIdMock },
   integrationWhatsappService: {
     findByIdForWorkspace: findByIdForWorkspaceMock,
@@ -52,8 +52,8 @@ vi.mock("@chatbotx.io/business", () => ({
   platformCredentialService: { resolveForOwner: resolveForOwnerMock },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     httpStatusCode: number
     constructor(message: string, code = "systemError", httpStatusCode = 400) {

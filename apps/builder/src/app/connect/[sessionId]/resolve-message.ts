@@ -1,4 +1,4 @@
-import type { ConnectSessionStatus } from "@chatbotx.io/database/partials"
+import type { ConnectSessionStatus } from "@inboxos.io/database/partials"
 
 /**
  * Which message block `/connect/{sessionId}` shows for a given

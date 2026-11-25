@@ -3,13 +3,13 @@ import {
   getCachedAdAccounts,
   getCachedAdInsights,
   getCachedCustomAudiences,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   facebookAdAccountSchema,
   facebookAdInsightSchema,
   facebookCustomAudienceSchema,
-} from "@chatbotx.io/integration-facebook-ads"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-facebook-ads"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

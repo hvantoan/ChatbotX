@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pipelineRepository: {
     listIdsPage: mocks.listIdsPage,
   },

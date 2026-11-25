@@ -2,8 +2,8 @@ import {
   type AIAgentSalesProfile,
   type ConversationSalesState,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
-import { percentOf, roundMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/partials"
+import { percentOf, roundMoney } from "@inboxos.io/utils/money"
 
 export type SalesPromptProductVariant = {
   id?: string

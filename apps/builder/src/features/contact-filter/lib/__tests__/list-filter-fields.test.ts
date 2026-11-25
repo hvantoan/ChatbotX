@@ -15,24 +15,24 @@ const {
   activityFilters: { enabled: true },
 }))
 
-vi.mock("@chatbotx.io/database/queries/contact-filter", () => ({
+vi.mock("@inboxos.io/database/queries/contact-filter", () => ({
   isContactActivityFiltersEnabled: () => activityFilters.enabled,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customFieldService: { list: customFieldList },
   botFieldService: { list: botFieldList },
   tagService: { listActive: tagListActive },
 }))
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   pipelineService: { listWithStages: pipelineListWithStages },
 }))
 
 // Dynamic import (not a runtime-selected specifier): `vi.mock` above must
 // register before the module under test is evaluated, so the import is
 // deferred past the mock-setup statements — a static top-level import would
-// load the real `@chatbotx.io/business` before the mock replaces it.
+// load the real `@inboxos.io/business` before the mock replaces it.
 const { listContactFilterFieldsForAPI } = await import(
   "../list-contact-filter-fields"
 )

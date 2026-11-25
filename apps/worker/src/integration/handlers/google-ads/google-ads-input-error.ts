@@ -1,8 +1,8 @@
-import { logProviderError } from "@chatbotx.io/business/error-log"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import {
   type GoogleAdsConversionErrorCode,
   googleAdsConversionErrorCodes,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import type { z } from "zod"
 
 /** What the step templates resolved to; the only values an Error Log line may print. */

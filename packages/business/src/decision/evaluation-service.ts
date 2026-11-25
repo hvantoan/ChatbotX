@@ -1,11 +1,11 @@
-import { db } from "@chatbotx.io/database/client"
-import { decisionRepository } from "@chatbotx.io/database/repositories"
+import { db } from "@inboxos.io/database/client"
+import { decisionRepository } from "@inboxos.io/database/repositories"
 import type {
   DecisionConnectionModel,
   DecisionProfileModel,
-} from "@chatbotx.io/database/types"
-import type { EvaluateDecisionStepSchema } from "@chatbotx.io/flow-config"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import type { EvaluateDecisionStepSchema } from "@inboxos.io/flow-config"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
 import { contactCustomFieldService } from "../contact-custom-field/service"

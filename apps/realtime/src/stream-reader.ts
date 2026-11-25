@@ -6,8 +6,8 @@ import {
   type RealtimeStreamRecord,
   realtimeStreamRecordSchema,
   realtimeWorkspaceEventEnvelopeSchema,
-} from "@chatbotx.io/realtime-protocol"
-import type { Redis } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import type { Redis } from "@inboxos.io/redis"
 import { z } from "zod"
 import type { StreamRecordEntry } from "./delivery"
 import { logger } from "./logger"

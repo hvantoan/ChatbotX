@@ -1,11 +1,11 @@
 import {
   tiktokIntegrationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { TiktokCredential } from "@chatbotx.io/database/partials"
-import type { TiktokAuthValue } from "@chatbotx.io/integration-tiktok"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { TiktokCredential } from "@inboxos.io/database/partials"
+import type { TiktokAuthValue } from "@inboxos.io/integration-tiktok"
 import { redirect } from "next/navigation"
 import { integrations } from "@/integration"
 import { getGuestClientIp } from "@/lib/rate-limit/guest-rate-limit"
@@ -72,7 +72,7 @@ export async function connectTiktokHandler({
     }
   } catch (error) {
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       error.code === "channelDuplicated"
     ) {
       redirect(

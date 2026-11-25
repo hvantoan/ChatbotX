@@ -1,4 +1,4 @@
-import { normalizeMessengerTokenUrl } from "@chatbotx.io/flow-config"
+import { normalizeMessengerTokenUrl } from "@inboxos.io/flow-config"
 import { buildMiniAppPublicUrl } from "@/features/mini-apps/lib/public-url"
 import {
   type CreateMessengerMessageTemplateRequest,

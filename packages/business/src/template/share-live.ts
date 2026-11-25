@@ -1,4 +1,4 @@
-import type { TemplateModel } from "@chatbotx.io/database/types"
+import type { TemplateModel } from "@inboxos.io/database/types"
 
 /** Whether a template's share link currently resolves: switched on and not past its expiry. */
 export const isShareLive = (

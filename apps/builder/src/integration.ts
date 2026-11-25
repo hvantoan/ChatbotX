@@ -1,4 +1,4 @@
 export {
   type IntegrationKey,
   integrations,
-} from "@chatbotx.io/channel-registry/registry"
+} from "@inboxos.io/channel-registry/registry"

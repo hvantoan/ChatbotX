@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   select: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: mocks.and,
   asc: mocks.asc,
   count: mocks.count,
@@ -35,7 +35,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationMetaCatalogModel: {
     id: "connection.id",
     workspaceId: "connection.workspaceId",
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(
     (input: { page?: number; perPage?: number }) => ({
       limit: input.perPage ?? 20,

@@ -1,9 +1,9 @@
-import { integrationThreadsService } from "@chatbotx.io/business"
-import type { ThreadsAuthValue } from "@chatbotx.io/integration-threads"
+import { integrationThreadsService } from "@inboxos.io/business"
+import type { ThreadsAuthValue } from "@inboxos.io/integration-threads"
 import {
   listPostConversation,
   type ThreadsConversationReply,
-} from "@chatbotx.io/integration-threads/apis/comment"
+} from "@inboxos.io/integration-threads/apis/comment"
 import { filterIntegrationsByAccount } from "../account-filter"
 import { collectCommentsSince, parseGraphTime, toEpochSeconds } from "./paging"
 import {

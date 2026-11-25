@@ -1,7 +1,7 @@
 import type {
   TemplateInstallationStatus,
   TemplateUninstallState,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { isUninstallInProgress } from "./uninstall-state"
 
 const isInstallInFlight = (status: TemplateInstallationStatus): boolean =>

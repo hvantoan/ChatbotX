@@ -1,7 +1,7 @@
 // @vitest-environment node
 
-import { db, eq } from "@chatbotx.io/database/client"
-import { broadcastRepository } from "@chatbotx.io/database/repositories"
+import { db, eq } from "@inboxos.io/database/client"
+import { broadcastRepository } from "@inboxos.io/database/repositories"
 import {
   broadcastModel,
   broadcastRecurrenceModel,
@@ -10,9 +10,9 @@ import {
   integrationMessengerModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { ChannelErrorReason } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { ChannelErrorReason } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   afterAll,
   beforeAll,

@@ -1,8 +1,8 @@
 import {
   type ContactFilterField,
   contactFilterFields,
-} from "@chatbotx.io/database/partials"
-import { EMAIL_PHONE_FILTER_FIELDS } from "@chatbotx.io/database/queries/contact-filter/permission"
+} from "@inboxos.io/database/partials"
+import { EMAIL_PHONE_FILTER_FIELDS } from "@inboxos.io/database/queries/contact-filter/permission"
 
 export const EMAIL_PHONE_RESTRICTED_FILTER_FIELDS = [
   ...EMAIL_PHONE_FILTER_FIELDS,

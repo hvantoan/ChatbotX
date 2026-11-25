@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { DateTimePicker } from "@chatbotx.io/ui/components/ui/date-picker"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { DateTimePicker } from "@inboxos.io/ui/components/ui/date-picker"
 import { XIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { toDateFnsLocale } from "@/lib/date-fns-locale"

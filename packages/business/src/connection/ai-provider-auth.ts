@@ -1,6 +1,6 @@
-import type { EncryptedData } from "@chatbotx.io/encryption"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import { type AuthValue, authValueSchema, SdkException } from "@chatbotx.io/sdk"
+import type { EncryptedData } from "@inboxos.io/encryption"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import { type AuthValue, authValueSchema, SdkException } from "@inboxos.io/sdk"
 
 export const aiProviderAuthAad = (provider: string, workspaceId: string) =>
   `ai-provider:${provider}:${workspaceId}`

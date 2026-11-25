@@ -1,10 +1,10 @@
-import { userQuotaService } from "@chatbotx.io/business"
-import { distributedLock } from "@chatbotx.io/redis"
+import { userQuotaService } from "@inboxos.io/business"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   ScheduleJobData,
   scheduleQueue,
   teardownExpiredTrialJobId,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { env } from "../../env"
 
 const SCAN_PAGE_SIZE = 500

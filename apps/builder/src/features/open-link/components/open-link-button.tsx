@@ -1,6 +1,6 @@
-import type { DeepLinkAppId } from "@chatbotx.io/flow-config"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { DeepLinkAppId } from "@inboxos.io/flow-config"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { getTranslations } from "next-intl/server"
 
 /**

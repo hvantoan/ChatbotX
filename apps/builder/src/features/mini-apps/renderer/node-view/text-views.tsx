@@ -1,4 +1,4 @@
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { readString } from "../../lib/props"
 import { SimpleMarkdown } from "../simple-markdown"
 import type { NodeView } from "./context"

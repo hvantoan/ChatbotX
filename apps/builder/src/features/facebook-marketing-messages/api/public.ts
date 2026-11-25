@@ -1,9 +1,9 @@
 import {
   facebookMarketingMessageDeliveryService,
   facebookMarketingMessagesService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { FacebookMarketingMessageModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { FacebookMarketingMessageModel } from "@inboxos.io/database/types"
 import z from "zod"
 import {
   possibleErrorsOnCreatingResource,
@@ -163,7 +163,7 @@ export const facebookMarketingMessagesPublicRouter = {
           workspaceId: context.workspace.id,
         })
         if (!row) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Marketing message not found.",
             "mmNotFound",
             404,
@@ -223,7 +223,7 @@ export const facebookMarketingMessagesPublicRouter = {
           input: rest,
         })
         if (!row) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             "Marketing message not found.",
             "mmNotFound",
             404,

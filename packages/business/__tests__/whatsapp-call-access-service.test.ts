@@ -16,7 +16,7 @@ vi.mock("../src/workspace-member/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
   },

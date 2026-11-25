@@ -7,7 +7,7 @@ import {
   isGoogleRevokedError,
   probeVerify,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   dataManagerIngestEvent,
   retrieveRequestStatus,

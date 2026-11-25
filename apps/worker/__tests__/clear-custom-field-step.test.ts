@@ -9,28 +9,28 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const deleteByKey = vi.fn(async () => undefined)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: { deleteByKey },
   contactService: { delete: vi.fn() },
   tagSyncService: { enqueueAttach: vi.fn(), enqueueDetach: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn(async () => ({})),
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),
   },
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardScoringService: { changeFromFlow: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: { removeContactSequencesForContact: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
   and: (...args: unknown[]) => ({ and: args }),
   eq: (col: unknown, val: unknown) => ({ eq: [col, val] }),
@@ -38,28 +38,28 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isNull: (col: unknown) => ({ isNull: col }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactModel: {},
   contactNoteModel: {},
   contactsToTagsModel: {},
   tagModel: {},
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: vi.fn() }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit: vi.fn() }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactUnsubscribed: vi.fn(),
   emitSequenceSubscribed: vi.fn(),
   emitTagApplied: vi.fn(),
   emitTagRemoved: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/sequence-scheduler", () => ({
+vi.mock("@inboxos.io/sequence-scheduler", () => ({
   enrollContactInSequence: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "generated-id") }
 })
 

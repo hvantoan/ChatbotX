@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/ai", () => ({ aiTimeouts: { aiTotal: 120_000 } }))
+vi.mock("@inboxos.io/ai", () => ({ aiTimeouts: { aiTotal: 120_000 } }))
 vi.mock("../src/env", () => ({
   env: {
     HEAVY_JOB_WAIT_TIMEOUT_MS: 150_000,

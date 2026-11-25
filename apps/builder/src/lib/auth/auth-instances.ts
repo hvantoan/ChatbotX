@@ -4,17 +4,17 @@ import {
   createAuth,
   type SocialAuthCredential,
   type SocialProvider,
-} from "@chatbotx.io/auth/server"
+} from "@inboxos.io/auth/server"
 import {
   resolveTenantByDomain,
   resolveTenantOwnerId,
-} from "@chatbotx.io/auth/tenant"
+} from "@inboxos.io/auth/tenant"
 import {
   customDomainService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import type { CredentialType } from "@chatbotx.io/database/partials"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import type { CredentialType } from "@inboxos.io/database/partials"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/schema"
 import { isCommunity } from "@/env"
 import { getBrokerOrigin } from "@/lib/oauth-broker"
 import { onUserCreated } from "./on-user-created"

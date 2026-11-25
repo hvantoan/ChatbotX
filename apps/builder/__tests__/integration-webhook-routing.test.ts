@@ -19,7 +19,7 @@ const integrationQueueAdd = vi.fn()
 const messengerHandleRequest = vi.fn()
 const isCloud = vi.fn(() => false)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     markUnhealthyByIdentifier,
     markLegacyInboxUnhealthy,
@@ -34,11 +34,11 @@ vi.mock("@chatbotx.io/business", () => ({
   tenantService: { findById: findTenant },
 }))
 
-vi.mock("@chatbotx.io/channel-registry/registry", () => ({
+vi.mock("@inboxos.io/channel-registry/registry", () => ({
   integrationService: { identifyInboxAndIntegrationAuthFromIdentifier },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     providerAccountEvent: "providerAccountEvent",
     messageStatus: "messageStatus",

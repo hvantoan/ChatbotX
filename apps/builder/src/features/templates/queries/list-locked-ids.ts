@@ -1,5 +1,5 @@
-import { listLockedIds, listUndeletableIds } from "@chatbotx.io/business"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import { listLockedIds, listUndeletableIds } from "@inboxos.io/business"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 
 /**
  * The ids, among `resourceIds` (one list page), installed from a template

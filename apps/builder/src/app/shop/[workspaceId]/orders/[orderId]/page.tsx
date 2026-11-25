@@ -1,5 +1,5 @@
-import { webshopService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { webshopService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type { Metadata } from "next"
 import { OrderView } from "@/features/webshop/components/order-view"
 import {
@@ -43,7 +43,7 @@ async function findOrder(
       ? await webshopService.refreshCustomerOrderPayment(input)
       : await webshopService.getCustomerOrder(input)
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       return null
     }
     throw error

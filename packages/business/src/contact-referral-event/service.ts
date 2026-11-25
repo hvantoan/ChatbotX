@@ -2,18 +2,18 @@ import {
   type DatabaseClient,
   db,
   isStatementTimeoutError,
-} from "@chatbotx.io/database/client"
-import { CONTACT_AD_IDS_LIMIT } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { CONTACT_AD_IDS_LIMIT } from "@inboxos.io/database/partials"
 import {
   type AdStatsRange,
   contactReferralEventRepository,
   type RecentAd,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxReferral,
   ContactReferralEventProvider,
-} from "@chatbotx.io/database/schema"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
+} from "@inboxos.io/database/schema"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
 import {
   getDefaultAdsAnalyticsRange,
   parseAnalyticsDateRange,

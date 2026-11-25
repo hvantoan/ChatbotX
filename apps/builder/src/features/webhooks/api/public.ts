@@ -1,7 +1,7 @@
-import { webhookService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { createSelectSchema, webhookModel } from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { webhookService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { createSelectSchema, webhookModel } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { bulkUpdateIdsRequest } from "@/features/common/schema"
 import {

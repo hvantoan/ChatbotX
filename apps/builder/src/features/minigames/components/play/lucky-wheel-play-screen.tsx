@@ -1,16 +1,16 @@
 "use client"
 
-import type { MinigamePlayResult } from "@chatbotx.io/business/minigame"
+import type { MinigamePlayResult } from "@inboxos.io/business/minigame"
 import type {
   MinigameContactModel,
   MinigameModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   computeLuckyWheelTargetRotationDeg,
   JackpotStartButton,
   LuckyWheelArt,
   randomLuckyWheelJitterDeg,
-} from "@chatbotx.io/minigame-ui"
+} from "@inboxos.io/minigame-ui"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"

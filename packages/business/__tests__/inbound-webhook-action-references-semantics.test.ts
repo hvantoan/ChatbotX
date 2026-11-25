@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   findBotFields: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {
     listIdsByIds: mocks.listFlowIds,
     listCurrentVersionNodesByFlowIds: vi.fn(async () => []),

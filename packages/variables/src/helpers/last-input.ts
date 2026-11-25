@@ -2,11 +2,11 @@ import {
   contactInboxService,
   messageService,
   resolveMediaUrl,
-} from "@chatbotx.io/business"
-import { ensureAttachmentStored } from "@chatbotx.io/channel-registry/media-hydration"
-import { contentTypes } from "@chatbotx.io/database/partials"
-import type { MessageWithAttachments } from "@chatbotx.io/database/repositories"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { ensureAttachmentStored } from "@inboxos.io/channel-registry/media-hydration"
+import { contentTypes } from "@inboxos.io/database/partials"
+import type { MessageWithAttachments } from "@inboxos.io/database/repositories"
+import type { ConversationModel } from "@inboxos.io/database/types"
 import { logger } from "../logger"
 import { resolveContactMessageWindow } from "./message-window"
 import { toPublicStorageUrl } from "./storage-url"

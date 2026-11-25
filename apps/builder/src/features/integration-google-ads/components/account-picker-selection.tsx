@@ -1,8 +1,8 @@
 "use client"
 
-import type { ConnectSessionTarget } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { formatCustomerId } from "@chatbotx.io/utils/google-click"
+import type { ConnectSessionTarget } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { formatCustomerId } from "@inboxos.io/utils/google-click"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"

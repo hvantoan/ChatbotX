@@ -1,4 +1,4 @@
-import type { ExternalStoreSource } from "@chatbotx.io/database/partials"
+import type { ExternalStoreSource } from "@inboxos.io/database/partials"
 
 const TRAILING_DIGITS_PATTERN = /(\d+)$/
 

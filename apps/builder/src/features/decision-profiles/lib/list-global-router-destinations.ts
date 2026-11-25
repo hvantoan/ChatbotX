@@ -4,7 +4,7 @@ import {
   flowService,
   inboxTeamService,
   workspaceMemberService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { z } from "zod"
 import { loadAllActionOptions } from "@/features/ai-agents/lib/load-action-options"
 

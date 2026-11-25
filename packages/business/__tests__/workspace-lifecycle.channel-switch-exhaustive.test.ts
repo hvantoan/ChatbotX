@@ -1,8 +1,8 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { channelTypes } from "@inboxos.io/database/partials"
 // biome-ignore lint/performance/noNamespaceImport: the schema barrel is indexed by model name to derive the per-channel matrix
-import * as schema from "@chatbotx.io/database/schema"
+import * as schema from "@inboxos.io/database/schema"
 import { beforeEach, expect, test, vi } from "vitest"
-// Deep relative import on purpose: `@chatbotx.io/database` publishes no
+// Deep relative import on purpose: `@inboxos.io/database` publishes no
 // `./relations` subpath. See the same note in
 // `inbox-with-integrations-relations.test.ts`, which pins these relation names
 // to be exactly the set `InboxService.withIntegrations` eager-loads — so this
@@ -31,7 +31,7 @@ const disconnectInboxMock = vi.fn()
 const findByInboxIdMock = vi.fn()
 const connectionTransitionMock = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...args: unknown[]) => ({ and: args })),
   db: {},
   eq: vi.fn((column: unknown, value: unknown) => ({ eq: [column, value] })),
@@ -42,7 +42,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   coexistSyncRunRepository: { cancelActiveContactScanRuns: vi.fn() },
   connectionRepository: { findByInboxId: findByInboxIdMock },
   LIVE_RUN_STATUSES: [],
@@ -53,7 +53,7 @@ vi.mock("../src/connection/state-service", () => ({
   connectionStateService: { transition: connectionTransitionMock },
 }))
 
-vi.mock("@chatbotx.io/sequence-scheduler/dispatch-cancel", () => ({
+vi.mock("@inboxos.io/sequence-scheduler/dispatch-cancel", () => ({
   cancelPendingDispatchesForWorkspace: vi.fn().mockResolvedValue([]),
   removeDispatchesFromSchedule: vi.fn(),
 }))

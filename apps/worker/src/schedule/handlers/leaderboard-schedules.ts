@@ -1,7 +1,7 @@
 import {
   finishOverdueLeaderboards as finishOverdue,
   maintainLeaderboardRankings as maintainRankings,
-} from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business/leaderboard"
 import { logger } from "../../lib/logger"
 
 // Cross-workspace system crons (status sweep + Redis upkeep), like the MAC

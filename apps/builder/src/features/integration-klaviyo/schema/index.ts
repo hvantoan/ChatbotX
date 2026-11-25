@@ -1,3 +1,3 @@
-import { klaviyoCredentialSchema } from "@chatbotx.io/integration-klaviyo"
+import { klaviyoCredentialSchema } from "@inboxos.io/integration-klaviyo"
 
 export const connectKlaviyoSchema = klaviyoCredentialSchema

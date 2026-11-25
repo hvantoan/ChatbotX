@@ -1,4 +1,4 @@
-import { startWorker, stopWorker } from "@chatbotx.io/event-bus/worker"
+import { startWorker, stopWorker } from "@inboxos.io/event-bus/worker"
 import { isShutdownRequested, onShutdown, runWorker } from "../lib/shutdown"
 import { analyticsDashboardEvents } from "./analytics"
 import errorLogEventListener from "./error-log"

@@ -4,7 +4,7 @@ import {
   processStreamingText,
   toolPrefixes,
   toStepSeparatedTextStream,
-} from "@chatbotx.io/ai"
+} from "@inboxos.io/ai"
 import {
   aiContextService,
   aiIntegrationService,
@@ -16,21 +16,21 @@ import {
   getAIToolset,
   McpClient,
   normalizeMcpContent,
-} from "@chatbotx.io/ai/server"
-import { integrationOpenaiCompatibleService } from "@chatbotx.io/business"
+} from "@inboxos.io/ai/server"
+import { integrationOpenaiCompatibleService } from "@inboxos.io/business"
 import type {
   AIAgentModelConfig,
   AIAgentOpenaiCompatibleProviderModel,
   AIAgentProvider,
   AIAgentProviderModel,
   AIAgentProviderModels,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { contactVariableService } from "@inboxos.io/variables"
 import { isStepCount, type ModelMessage, streamText, type ToolSet } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"

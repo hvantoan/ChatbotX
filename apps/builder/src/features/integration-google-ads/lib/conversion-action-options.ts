@@ -1,7 +1,7 @@
 import {
   isExternalAttributionAction,
   isSendableConversionAction,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import type { GoogleAdsConversionActionResource } from "../schema/integration"
 
 type ConversionActionOption = {

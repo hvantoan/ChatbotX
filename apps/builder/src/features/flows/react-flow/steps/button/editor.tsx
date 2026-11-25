@@ -5,13 +5,13 @@ import {
   getButtonCountLimit,
   getChannelFlowPolicy,
   resolveSendTextLengthLimits,
-} from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Sortable,
   SortableItem,
   SortableItemHandle,
-} from "@chatbotx.io/ui/components/ui/sortable"
+} from "@inboxos.io/ui/components/ui/sortable"
 import { GripVerticalIcon, PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form"

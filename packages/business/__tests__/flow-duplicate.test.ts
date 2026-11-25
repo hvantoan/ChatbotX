@@ -43,7 +43,7 @@ const tx = {
   }),
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mockDbTransaction,
     query: { flowModel: { findFirst: mockFindFlow } },
@@ -51,18 +51,18 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: vi.fn(),
   inArray: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: { listNamesWithPrefix: mockListNamesWithPrefix },
   reflinkRepository: {},
   whatsappMessageTemplateRepository: {},
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({
   flowAnalyticsSessionModel,
   flowModel,
   flowVersionModel,
 }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   createId: mockCreateId,
 }))

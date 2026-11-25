@@ -1,6 +1,6 @@
-import { WHATSAPP_CAPI_SCOPE } from "@chatbotx.io/business/integration-whatsapp/auth-schema"
-import { debugTokenOrThrow } from "@chatbotx.io/integration-whatsapp/api/auth"
-import { grantedScopesForWaba } from "@chatbotx.io/integration-whatsapp/api/granted-scopes"
+import { WHATSAPP_CAPI_SCOPE } from "@inboxos.io/business/integration-whatsapp/auth-schema"
+import { debugTokenOrThrow } from "@inboxos.io/integration-whatsapp/api/auth"
+import { grantedScopesForWaba } from "@inboxos.io/integration-whatsapp/api/granted-scopes"
 
 export async function getWhatsappGrantedScopes(params: {
   accessToken: string

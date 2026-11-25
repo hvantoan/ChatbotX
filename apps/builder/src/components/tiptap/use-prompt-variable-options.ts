@@ -2,8 +2,8 @@ import {
   type ChannelType,
   PIPELINE_VARIABLE_ATTRIBUTES,
   type PipelineVariableAttribute,
-} from "@chatbotx.io/database/partials"
-import { formatBotFieldReference } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import { formatBotFieldReference } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useCouponTopicOptions } from "@/features/coupons/provider/use-coupon-topic-options"

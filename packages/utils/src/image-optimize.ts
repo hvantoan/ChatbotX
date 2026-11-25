@@ -1,4 +1,4 @@
-import { getChildLogger } from "@chatbotx.io/logger"
+import { getChildLogger } from "@inboxos.io/logger"
 import sharp, { type Sharp } from "sharp"
 import {
   getImageOptimizationSettings,

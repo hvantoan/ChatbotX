@@ -3,20 +3,20 @@
 import { describe, expect, test, vi } from "vitest"
 import { z } from "zod"
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: { listPersonasByWorkspaceId: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   selectRegisteredPersonas: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userPersistentMenuService: {},
   resolveTenantSettings: vi.fn(),
   integrationSmtpService: {},
@@ -48,7 +48,7 @@ vi.mock("@chatbotx.io/business", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { connectSelfServeChannel: vi.fn() },
 }))
 

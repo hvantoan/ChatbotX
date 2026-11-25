@@ -1,6 +1,6 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { contactInboxPostRepository } from "@chatbotx.io/database/repositories/contact-inbox-post"
-import { workspaceRepository } from "@chatbotx.io/database/repositories/workspace"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { contactInboxPostRepository } from "@inboxos.io/database/repositories/contact-inbox-post"
+import { workspaceRepository } from "@inboxos.io/database/repositories/workspace"
 import { workspaceDeletionStartedException } from "../errors"
 
 export const CONTACT_INBOX_POST_DELETE_CHUNK_SIZE = 500

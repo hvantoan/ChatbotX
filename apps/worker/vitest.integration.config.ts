@@ -1,4 +1,4 @@
-import preset from "@chatbotx.io/vitest-config/node"
+import preset from "@inboxos.io/vitest-config/node"
 import { mergeConfig } from "vitest/config"
 
 /**

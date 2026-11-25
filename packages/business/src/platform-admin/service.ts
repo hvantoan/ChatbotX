@@ -1,12 +1,12 @@
 import {
   type PlatformAdminRole,
   ROOT_TENANT_ID,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type PlatformAdminWithUser,
   platformAdminRepository,
-} from "@chatbotx.io/database/repositories"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import { InboxOSException } from "../errors"
 import { keys } from "../keys"
 import { logger } from "../logger"
 import { findOrProvisionRootUser } from "../user/provision-root-user"
@@ -52,7 +52,7 @@ class PlatformAdminService {
     const email = props.email.trim().toLowerCase()
     const provisioned = await findOrProvisionRootUser(email)
     if (props.actorId === provisioned.userId && props.role !== "super-admin") {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You cannot lower your own platform administrator role",
         "cannotRemoveSelf",
         400,
@@ -63,7 +63,7 @@ class PlatformAdminService {
       userId: provisioned.userId,
     })
     if (!admin) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `Platform admin ${provisioned.userId} was deleted during assignment`,
         "platformAdminAssignmentConflict",
         409,
@@ -84,7 +84,7 @@ class PlatformAdminService {
   async remove(props: { actorId: string; userId: string }): Promise<void> {
     await this.assertCanManageAdmins(props.actorId)
     if (props.actorId === props.userId) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You cannot remove yourself as a platform admin",
         "cannotRemoveSelf",
         400,
@@ -101,7 +101,7 @@ class PlatformAdminService {
   private async assertCanManageAdmins(actorId: string): Promise<void> {
     const actor = await platformAdminRepository.findForAuth(actorId)
     if (actor?.role !== "super-admin") {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Only super-admins can manage platform administrators",
         "forbidden",
         403,

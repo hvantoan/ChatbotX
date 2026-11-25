@@ -1,5 +1,5 @@
-import { conversationService } from "@chatbotx.io/business"
-import baseLogger from "@chatbotx.io/logger"
+import { conversationService } from "@inboxos.io/business"
+import baseLogger from "@inboxos.io/logger"
 import {
   succeeded,
   type TriggerActionHandler,

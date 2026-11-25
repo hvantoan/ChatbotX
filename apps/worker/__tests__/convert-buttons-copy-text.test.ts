@@ -1,4 +1,4 @@
-import type { ButtonStepProps } from "@chatbotx.io/flow-config"
+import type { ButtonStepProps } from "@inboxos.io/flow-config"
 import { describe, expect, test, vi } from "vitest"
 
 vi.mock("../src/lib/logger", () => ({

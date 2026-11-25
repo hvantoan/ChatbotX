@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -17,11 +17,11 @@ const mocks = vi.hoisted(() => ({
 
 const tx = { tx: true }
 
-vi.mock("@chatbotx.io/database/partials", () => ({ ROOT_TENANT_ID: "1" }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ ROOT_TENANT_ID: "1" }))
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateRepository: { findByIdForTenant: mocks.findByIdForTenant },
   tenantDefaultTemplateRepository: {
     findWithTemplate: mocks.findWithTemplate,
@@ -30,7 +30,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     recordEvent: mocks.recordEvent,
   },
 }))
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptUtils: {
     encryptText: mocks.encryptText,
     decryptText: mocks.decryptText,

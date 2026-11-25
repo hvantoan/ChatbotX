@@ -1,5 +1,5 @@
-import { aiFileService } from "@chatbotx.io/business"
-import { optimizeStoredImage } from "@chatbotx.io/business/media/optimize-stored-image"
+import { aiFileService } from "@inboxos.io/business"
+import { optimizeStoredImage } from "@inboxos.io/business/media/optimize-stored-image"
 import {
   flowContinuationJobOptions,
   type HeavyFlowContinuation,
@@ -11,7 +11,7 @@ import {
   IntegrationJobAction,
   integrationQueue,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type Job, UnrecoverableError } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { env } from "../env"

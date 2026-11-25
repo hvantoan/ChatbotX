@@ -9,10 +9,10 @@ export type {
   ContactDeletedEventPayload,
   HumanMessageSentEventPayload,
   MessageBotReceivedEventPayload,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 export {
   analyticsDashboardEventSchema,
   analyticsDashboardEventSchemas,
   analyticsDashboardEventTypeSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 export * from "./event-bus"

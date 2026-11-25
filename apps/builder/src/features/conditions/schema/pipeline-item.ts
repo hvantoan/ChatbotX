@@ -1,5 +1,5 @@
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
 import z from "zod"
 
 const pipelineSourceId = z

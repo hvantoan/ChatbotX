@@ -1,8 +1,8 @@
 "use client"
 
-import { fileTypes } from "@chatbotx.io/database/partials"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { fileTypes } from "@inboxos.io/database/partials"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { useEffect } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { DirectUploadOrInsertLink } from "@/components/direct-upload"

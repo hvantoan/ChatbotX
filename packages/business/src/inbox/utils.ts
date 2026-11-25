@@ -1,5 +1,5 @@
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 import { encodeRef, type RefConfig } from "../referral"
 
 type LinkConfig = {

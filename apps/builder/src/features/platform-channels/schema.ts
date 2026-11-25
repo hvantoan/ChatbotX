@@ -1,7 +1,4 @@
-import {
-  CREATABLE_CHANNELS,
-  channelTypes,
-} from "@chatbotx.io/database/partials"
+import { CREATABLE_CHANNELS, channelTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 /**

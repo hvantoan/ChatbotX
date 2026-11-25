@@ -1,5 +1,5 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 
 // messenger/instagram sends (comments, private replies) are non-idempotent —
 // a BullMQ retry after a transient failure re-dispatches the same send and

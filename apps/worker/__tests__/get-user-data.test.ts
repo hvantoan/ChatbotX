@@ -1,19 +1,19 @@
-import { MessageShardUnavailableError } from "@chatbotx.io/database/errors"
+import { MessageShardUnavailableError } from "@inboxos.io/database/errors"
 import type {
   ContentType,
   ConversationAttributes,
   ConversationStepChallenge,
   FileType,
-} from "@chatbotx.io/database/partials"
-import { getSafeSinceTime } from "@chatbotx.io/database/repositories"
-import { verifyUserDataWebviewToken } from "@chatbotx.io/encryption"
-import type { GetUserDataStepSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import { getSafeSinceTime } from "@inboxos.io/database/repositories"
+import { verifyUserDataWebviewToken } from "@inboxos.io/encryption"
+import type { GetUserDataStepSchema } from "@inboxos.io/flow-config"
 import {
   decodeStepInputSkipPostback,
   GET_USER_DATA_WEBVIEW_SELECTION_PAYLOAD_TYPE,
   ReplyFormat,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { ExecuteStepProps } from "../src/integration/handlers/flow"
 import { logger } from "../src/lib/logger"
@@ -68,12 +68,12 @@ const resolveTenantSettings = vi.fn(async () => ({
 
 class MediaNotReadyErrorStub extends Error {}
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureAttachmentStored,
   MediaNotReadyError: MediaNotReadyErrorStub,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: {
     setValueByKey: contactCustomFieldSetValueByKey,
   },
@@ -99,7 +99,7 @@ vi.mock("../src/integration/handlers/smart-delay", () => ({
   scheduleSmartDelayResume,
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, base: string) => {
     let key = path
     if (key.startsWith("/")) {
@@ -112,7 +112,7 @@ vi.mock("@chatbotx.io/business/utils", () => ({
 // validateUserData reads the last message via the shard-aware repository, not
 // db.query. Return the test-configured `lastMessage.current` as a 1-element
 // array (findLastByConversation's contract).
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn(async () => ({
     findTriggerMessage: (options: unknown) => {
       findTriggerMessage(options)
@@ -128,18 +128,18 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   getSafeSinceTime: vi.fn(() => new Date(0)),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => {
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/partials")>()
+    await importOriginal<typeof import("@inboxos.io/database/partials")>()
   return { ...actual }
 })
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCustomFieldChanged: vi.fn(),
 }))
 
 const chatQueueAdd = vi.fn(async () => ({ id: "job-1" }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   BROADCAST_SEND_PRIORITY: 5,
   ChatJobAction: {
     sendChatMessage: "sendChatMessage",
@@ -151,7 +151,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   getRedisConnection: vi.fn(() => ({})),
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => undefined),
 }))
 
@@ -160,8 +160,8 @@ vi.mock("../src/integration/utils/message", () => ({
   waitForChatJobCompletion,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: vi.fn(() => "test-id"),

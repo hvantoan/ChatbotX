@@ -1,12 +1,12 @@
 "use server"
 
-import { workspaceService, zaloIntegrationService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+import { workspaceService, zaloIntegrationService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
   isRevokedTokenError,
   type ZaloAuthValue,
-} from "@chatbotx.io/integration-zalo"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-zalo"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { integrations } from "@/integration"
 import { logger } from "@/lib/log"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"

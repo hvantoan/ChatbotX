@@ -1,9 +1,9 @@
-import { buildProductSearchReply } from "@chatbotx.io/business"
+import { buildProductSearchReply } from "@inboxos.io/business"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 

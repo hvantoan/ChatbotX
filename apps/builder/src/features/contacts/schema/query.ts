@@ -4,8 +4,8 @@ import {
   broadcastSubactions,
   channelTypes,
   countModes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { inboxTeamResource } from "@/enterprise/features/inbox-teams/schema/resource"
 import { contactFilterCriteriaSchema } from "@/features/contact-filter/schema"

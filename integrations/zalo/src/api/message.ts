@@ -3,12 +3,12 @@ import {
   getMediaStoragePrefix,
   guessFileTypeFromMimeType,
   type IncomingAttachment,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   storeIncomingImage,
   toStoredMediaFields,
-} from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/utils/store-incoming-image"
 import { fetch } from "cross-fetch"
 import imageSize from "image-size"
 import { ZALO_API_ENDPOINTS } from "../constants"
@@ -54,7 +54,7 @@ export const getMessageAttachmentEntity = ({
     const response = await fetch(attachment.payload.url, {
       headers: {
         Authorization: `Bearer ${ctx.auth.tokens.accessToken}`,
-        "User-Agent": "Mozilla/5.0 (compatible; ChatbotX/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; InboxOS/1.0)",
       },
     })
 

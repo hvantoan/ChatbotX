@@ -1,7 +1,7 @@
 import {
   defaultReplyFrequencies,
   isSmartResponseDelayOption,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { allCountryCodes, allLanguageCodes, allTimezoneCodes } from "./types"
 

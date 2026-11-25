@@ -1,7 +1,7 @@
 import {
   createStarterDefinition,
   defaultMiniAppText,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { describe, expect, it } from "vitest"
 import {
   createMiniAppEditorStore,

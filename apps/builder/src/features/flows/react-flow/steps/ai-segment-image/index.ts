@@ -1,10 +1,10 @@
 "use client"
 
-import type { AISegmentImageSchema } from "@chatbotx.io/flow-config"
+import type { AISegmentImageSchema } from "@inboxos.io/flow-config"
 import {
   aiSegmentImageDefaultFn,
   aiSegmentImageSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import { AISegmentImageEditor } from "./editor"
 import { AISegmentImageViewer } from "./viewer"

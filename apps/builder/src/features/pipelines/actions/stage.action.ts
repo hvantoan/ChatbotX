@@ -3,8 +3,8 @@
 import {
   pipelineStageBulkService,
   pipelineStructureService,
-} from "@chatbotx.io/business/pipeline"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/pipeline"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import {
   workspaceActionClient,

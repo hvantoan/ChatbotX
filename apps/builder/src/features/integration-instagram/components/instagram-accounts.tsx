@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import { Loader2Icon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"

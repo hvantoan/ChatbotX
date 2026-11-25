@@ -5,7 +5,7 @@ import {
   commentAutomationTimeseriesRow,
   listCommentAutomationErrorsResponse,
   listCommentAutomationTextTotalsResponse,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import { os } from "@orpc/server"
 import { z } from "zod"
 import { logger } from "../lib/log"

@@ -1,4 +1,4 @@
-import { ecommerceSettingsService, orderService } from "@chatbotx.io/business"
+import { ecommerceSettingsService, orderService } from "@inboxos.io/business"
 import { resolveExternalStoreLinks } from "@/features/external-store/lib/resolve-store-links"
 import { OrdersTable } from "@/features/orders/orders-table"
 import { listOrdersSearchParams } from "@/features/orders/schema/query"

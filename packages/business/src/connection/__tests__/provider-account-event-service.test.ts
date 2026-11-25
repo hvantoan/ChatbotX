@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const LEGACY_TX = { marker: "legacy-tx" }
@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   disableCoexist: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: vi.fn(async (fn: (tx: unknown) => unknown) => fn(LEGACY_TX)),
   },

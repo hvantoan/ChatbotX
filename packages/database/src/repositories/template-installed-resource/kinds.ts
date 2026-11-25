@@ -14,7 +14,7 @@ import {
  * sync or uninstall on one unknown kind.
  *
  * Preflight before shipping a rename or removal of a kind: run
- * `pnpm --filter @chatbotx.io/database template:kinds-preflight`, which lists
+ * `pnpm --filter @inboxos.io/database template:kinds-preflight`, which lists
  * every unknown `resourceKind` value in the database with its row count.
  */
 export const keepKnownResourceKinds = <

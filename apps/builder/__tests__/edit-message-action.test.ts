@@ -16,7 +16,7 @@ const {
   mockFindById: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   queueWorkspaceRealtimeEvent: mockQueueWorkspaceRealtimeEvent,
   contactInboxService: {
     findByIdForWorkspace: mockContactInboxFindByIdForWorkspace,
@@ -28,16 +28,16 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   getImageDimensions: vi.fn(),
   uploader: { getObject: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageUpdated: "messageUpdated" },
   // The mocked conversation below carries no assignedUserId/assignedInboxTeamId,
   // so the real routeForConversation would resolve to this same empty route —
@@ -46,7 +46,7 @@ vi.mock("@chatbotx.io/realtime-protocol", () => ({
   routeForConversation: () => ({ assignedTeamIds: [], assignedUserIds: [] }),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { editChannelMessage: "editChannelMessage" },
   chatQueue: { add: mockChatQueueAdd },
 }))

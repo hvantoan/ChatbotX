@@ -1,6 +1,6 @@
 "use server"
 
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { uploadMoreAudience } from "../lib/audience-operations"

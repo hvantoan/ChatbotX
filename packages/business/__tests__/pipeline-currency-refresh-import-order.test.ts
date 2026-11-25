@@ -1,20 +1,20 @@
 // @vitest-environment node
 
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import { describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
   listIdsPage: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => {
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/repositories")>()
+    await importOriginal<typeof import("@inboxos.io/database/repositories")>()
   return {
     ...actual,
     pipelineRepository: {

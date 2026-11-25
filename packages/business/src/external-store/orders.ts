@@ -1,13 +1,13 @@
-import { db } from "@chatbotx.io/database/client"
-import type { OrderStatus } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import type { OrderStatus } from "@inboxos.io/database/partials"
 import {
   cartRepository,
   type OrderItemInsertValues,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   signShopToken,
   verifyShopToken,
-} from "@chatbotx.io/encryption/shop-token"
+} from "@inboxos.io/encryption/shop-token"
 import { contactService } from "../contact/service"
 import { logger } from "../logger"
 

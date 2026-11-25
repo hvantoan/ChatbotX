@@ -2,15 +2,15 @@ import {
   integrationMetaCatalogService,
   productMessageService,
   productService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   createImportUpload,
   importService,
   resolveProductImportColumnMap,
   suggestProductImportColumnMap,
-} from "@chatbotx.io/business/import"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/import"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { bulkUpdateIdsRequest } from "@/features/common/schema"
 import { peekImportHeadersForApi } from "@/features/import/lib/peek-import-headers-for-api"

@@ -7,7 +7,7 @@ import { describe, expect, test } from "vitest"
 /**
  * `src/instrumentation.ts` imports the oRPC server, and Next.js compiles it for
  * the Edge runtime too: it traces the whole router graph — lazy `import()`
- * routes, `@/` modules, every `@chatbotx.io/*` package and subpath they reach —
+ * routes, `@/` modules, every `@inboxos.io/*` package and subpath they reach —
  * into the Edge instrumentation bundle. A runtime `node:` import anywhere in that
  * graph is "A Node.js module is loaded … not supported in the Edge Runtime".
  *
@@ -101,7 +101,7 @@ const workspacePackages = (): Map<string, PackageEntry> => {
         continue
       }
       const manifest = JSON.parse(readFileSync(manifestPath, "utf8"))
-      if (manifest.name?.startsWith("@chatbotx.io/") && manifest.exports) {
+      if (manifest.name?.startsWith("@inboxos.io/") && manifest.exports) {
         const exports =
           typeof manifest.exports === "string"
             ? { ".": manifest.exports }
@@ -172,7 +172,7 @@ type Violation = { builtin: string; chain: string[] }
 
 const auditEdgeGraph = (entry: string): Violation[] => {
   const packages = workspacePackages()
-  // Longest name first, so `@chatbotx.io/ai-x` never matches `@chatbotx.io/ai`.
+  // Longest name first, so `@inboxos.io/ai-x` never matches `@inboxos.io/ai`.
   const packageNames = [...packages.keys()].sort((a, b) => b.length - a.length)
 
   const resolveSpecifier = (specifier: string, importer: string) => {

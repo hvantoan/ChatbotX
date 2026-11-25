@@ -2,8 +2,8 @@ import {
   appointmentCalendarAvailabilityModel,
   appointmentCalendarReminderModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { publicListRequest } from "@/lib/public-api/list"
 import { appointmentCalendarResource } from "./resource"

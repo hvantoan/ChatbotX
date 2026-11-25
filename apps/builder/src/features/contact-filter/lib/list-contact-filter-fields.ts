@@ -2,16 +2,16 @@ import {
   botFieldService,
   customFieldService,
   tagService,
-} from "@chatbotx.io/business"
-import { pipelineService } from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business"
+import { pipelineService } from "@inboxos.io/business/pipeline"
 import {
   CONTACT_ACTIVITY_FILTERS,
   CONTACT_ACTIVITY_TRACKED_FIELDS,
   CONTACT_ACTIVITY_TRACKING_STARTED_AT,
   getContactActivityTrackingStartedAt,
   isContactActivityFilterField,
-} from "@chatbotx.io/database/partials"
-import { isContactActivityFiltersEnabled } from "@chatbotx.io/database/queries/contact-filter"
+} from "@inboxos.io/database/partials"
+import { isContactActivityFiltersEnabled } from "@inboxos.io/database/queries/contact-filter"
 import {
   CONTACT_FILTER_FIELD_DEFINITIONS,
   type ContactFilterSurface,

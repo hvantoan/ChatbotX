@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/events",
+  "name": "@inboxos.io/events",
   "version": "0.1.0",
   "type": "module",
   "exports": {
@@ -7,16 +7,16 @@
     "./context": "./src/context.ts"
   },
   "dependencies": {
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
-    "@chatbotx.io/worker-config": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
+    "@inboxos.io/worker-config": "workspace:*",
     "lru-cache": "^11.3.5",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

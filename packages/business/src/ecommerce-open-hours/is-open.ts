@@ -1,4 +1,4 @@
-import type { OpenHoursRange } from "@chatbotx.io/database/partials"
+import type { OpenHoursRange } from "@inboxos.io/database/partials"
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 

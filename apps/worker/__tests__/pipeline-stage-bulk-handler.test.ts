@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const releaseClaim = vi.fn()
 const processQueued = vi.fn()
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   pipelineStageBulkService: { releaseClaim, processQueued },
 }))
 

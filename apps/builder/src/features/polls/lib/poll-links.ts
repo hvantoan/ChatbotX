@@ -1,8 +1,8 @@
 import "server-only"
 
-import { inboxService, resolveTenantSettings } from "@chatbotx.io/business"
-import { buildPollLinks, pollService } from "@chatbotx.io/business/poll"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+import { inboxService, resolveTenantSettings } from "@inboxos.io/business"
+import { buildPollLinks, pollService } from "@inboxos.io/business/poll"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 
 /**
  * Share links for a poll: one omnichannel landing URL plus a deep link for each

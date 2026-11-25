@@ -1,5 +1,5 @@
-import { db } from "@chatbotx.io/database/client"
-import { templateUninstallStateRepository } from "@chatbotx.io/database/repositories"
+import { db } from "@inboxos.io/database/client"
+import { templateUninstallStateRepository } from "@inboxos.io/database/repositories"
 import { UNINSTALL_ABANDON_AFTER_MS } from "./template-leases"
 
 /** What the periodic sweep re-dispatches: unfinished uninstalls and unflushed effects. */

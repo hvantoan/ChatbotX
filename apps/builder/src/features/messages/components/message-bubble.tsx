@@ -1,4 +1,4 @@
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
 const messageBubbleVariant = cva("flex gap-2", {

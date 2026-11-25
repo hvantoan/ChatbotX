@@ -13,11 +13,11 @@ type InstallColumn = {
 
 vi.mock("next-intl", () => ({ useTranslations: () => (key: string) => key }))
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }))
-vi.mock("@chatbotx.io/ui/hooks/use-data-table", () => ({
+vi.mock("@inboxos.io/ui/hooks/use-data-table", () => ({
   useDataTable: (table: unknown) => ({ table }),
 }))
 // Renders only the column under test, for every row.
-vi.mock("@chatbotx.io/ui/components/data-table/data-table", () => ({
+vi.mock("@inboxos.io/ui/components/data-table/data-table", () => ({
   DataTable: ({
     table,
   }: {

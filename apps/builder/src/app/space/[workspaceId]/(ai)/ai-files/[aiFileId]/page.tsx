@@ -1,4 +1,4 @@
-import { getIdFromParams, isNumericId } from "@chatbotx.io/utils"
+import { getIdFromParams, isNumericId } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { AIFileDetail } from "@/features/ai-files/components/ai-file-detail"
 import { getAIFile } from "@/features/ai-files/queries"

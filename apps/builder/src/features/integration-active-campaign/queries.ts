@@ -1,9 +1,9 @@
 import {
   buildContext,
   integrationActiveCampaignService,
-} from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import { activeCampaignAuthSchema } from "@chatbotx.io/integration-active-campaign"
+} from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import { activeCampaignAuthSchema } from "@inboxos.io/integration-active-campaign"
 
 const getActiveCampaignAuth = async (workspaceId: string) => {
   const row =

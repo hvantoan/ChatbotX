@@ -1,8 +1,8 @@
 import {
   type TriggerEventType,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import type { ConditionEvaluationContext } from "../src/trigger/types"
 
@@ -11,7 +11,7 @@ const { contactCustomFieldFindValue, customFieldFindBy } = vi.hoisted(() => ({
   customFieldFindBy: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: { findValue: contactCustomFieldFindValue },
   customFieldService: { findBy: customFieldFindBy },
 }))

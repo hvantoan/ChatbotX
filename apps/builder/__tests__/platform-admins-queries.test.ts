@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@/lib/auth/utils", () => ({
   getCurrentUser: mocks.getCurrentUser,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isSuperAdmin: mocks.isSuperAdmin,
   platformAdminService: { list: mocks.list },
 }))

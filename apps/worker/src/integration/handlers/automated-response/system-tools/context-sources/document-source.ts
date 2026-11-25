@@ -1,19 +1,19 @@
 import {
   aiConversationSourceStatuses,
   aiConversationSourceTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createConversationEmbeddingRepository,
   createConversationSourceRepository,
-} from "@chatbotx.io/database/repositories"
-import type { AttachmentModel } from "@chatbotx.io/database/types"
-import { DOCX_MIME_TYPES, PDF_MIME_TYPES } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import type { AttachmentModel } from "@inboxos.io/database/types"
+import { DOCX_MIME_TYPES, PDF_MIME_TYPES } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   AIJobAction,
   type AIJobData,
   aiAgentQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { embed } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { resolveEmbeddingModel } from "../../../../../ai-agent/lib/embedding-model"

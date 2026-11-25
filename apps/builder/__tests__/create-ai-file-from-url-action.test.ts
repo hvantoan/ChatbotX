@@ -17,14 +17,14 @@ vi.mock("@/features/common/schema", () => ({
   workspaceIdrequestParams: [],
 }))
 
-const { ChatbotXException, AIFileCreateException } = vi.hoisted(() => {
-  class ChatbotXException extends Error {
+const { InboxOSException, AIFileCreateException } = vi.hoisted(() => {
+  class InboxOSException extends Error {
     code = "systemError"
     httpStatusCode = 400
 
     constructor(message: string, code?: string, httpStatusCode?: number) {
       super(message)
-      this.name = "ChatbotXException"
+      this.name = "InboxOSException"
       if (code) {
         this.code = code
       }
@@ -33,7 +33,7 @@ const { ChatbotXException, AIFileCreateException } = vi.hoisted(() => {
       }
     }
   }
-  class AIFileCreateException extends ChatbotXException {
+  class AIFileCreateException extends InboxOSException {
     readonly reason: string
     readonly maxBytes?: number
     constructor(message: string, reason: string) {
@@ -44,15 +44,15 @@ const { ChatbotXException, AIFileCreateException } = vi.hoisted(() => {
       }
     }
   }
-  return { ChatbotXException, AIFileCreateException }
+  return { InboxOSException, AIFileCreateException }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: { create: mocks.create },
   AIFileCreateException,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({ ChatbotXException }))
+vi.mock("@inboxos.io/business/errors", () => ({ InboxOSException }))
 
 vi.mock("next-intl/server", () => ({
   getTranslations: vi.fn(
@@ -112,7 +112,7 @@ describe("createAIFileFromUrlAction", () => {
 
   test("a rate-limited call never reaches the service", async () => {
     mocks.assertNotRateLimited.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "aiFiles.create.rateLimited",
         "tooManyRequests",
         429,
@@ -160,7 +160,7 @@ describe("createAIFileFromUrlAction", () => {
 
   test("translates noEmbeddingProvider", async () => {
     mocks.create.mockRejectedValue(
-      new ChatbotXException("No embedding provider", "noEmbeddingProvider"),
+      new InboxOSException("No embedding provider", "noEmbeddingProvider"),
     )
 
     await expect(callAction()).rejects.toMatchObject({

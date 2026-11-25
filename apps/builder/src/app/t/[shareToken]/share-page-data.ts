@@ -1,5 +1,5 @@
-import { templateService } from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+import { templateService } from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import { cache } from "react"
 import { getTenantSettings } from "@/features/tenant/utils"
 import { getCurrentUser } from "@/lib/auth/utils"

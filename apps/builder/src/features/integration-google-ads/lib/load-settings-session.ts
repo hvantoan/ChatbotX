@@ -1,8 +1,8 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import {
   type ConnectErrorQueryCode,
   connectErrorQueryCodes,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"
 import { GOOGLE_ADS_PROVIDER } from "./constants"
 
 export type SettingsSession = { id: string; status: string } | null

@@ -1,4 +1,4 @@
-import type { GoogleAdsConsent } from "@chatbotx.io/database/partials"
+import type { GoogleAdsConsent } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   consentForTransport,

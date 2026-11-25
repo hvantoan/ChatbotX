@@ -29,7 +29,7 @@ const mocks = vi.hoisted(() => ({
   loadExtractionContext: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   checkpointInboundWebhookRequest: mocks.checkpointInboundWebhookRequest,
   claimInboundWebhookRequest: mocks.claimInboundWebhookRequest,
   completeInboundWebhookRequest: mocks.completeInboundWebhookRequest,
@@ -50,8 +50,8 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   releaseInboundWebhookRequest: mocks.releaseInboundWebhookRequest,
   updateInboundWebhook: mocks.updateInboundWebhook,
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/redis")>()
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/redis")>()
   return {
     ...actual,
     distributedLock: { runExclusive: mocks.runExclusive },

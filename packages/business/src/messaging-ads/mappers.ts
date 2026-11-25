@@ -3,7 +3,7 @@ import {
   type MessagingAdCreativeMediaInput,
   type MessagingAdTargetingInput,
   type MessagingAdWelcomeMessageInput,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type CreativeMedia,
   enforceSpecialAdCategoryTargeting,
@@ -11,7 +11,7 @@ import {
   type MessagingAdTargeting,
   type PageWelcomeMessage,
   type SpecialAdCategory,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 
 /** Domain (camelCase) targeting input -> the exact Graph `targeting` shape, with special-ad-category enforcement applied. */
 export function mapTargeting(

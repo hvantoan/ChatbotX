@@ -3,8 +3,8 @@
 import {
   templateUninstallCancelService,
   templateUninstallService,
-} from "@chatbotx.io/business/template-uninstall"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/template-uninstall"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { installerActionClientAllowExpired } from "./installer-action-client"
 
 /**

@@ -4,12 +4,12 @@ Date: 2026-11-08 · Branch: `feat/line-channel-integration`
 
 ## Intent
 
-LINE becomes one more messaging channel in ChatbotX, so a workspace can run its bot on LINE the same way it runs on Telegram, Zalo or Messenger. The bar is **parity with the existing channels**: everything our other channels already do, LINE does too, as far as the LINE Messaging API allows. Nothing LINE-only is added in this release.
+LINE becomes one more messaging channel in InboxOS, so a workspace can run its bot on LINE the same way it runs on Telegram, Zalo or Messenger. The bar is **parity with the existing channels**: everything our other channels already do, LINE does too, as far as the LINE Messaging API allows. Nothing LINE-only is added in this release.
 
 ## Goals
 
 - A workspace owner connects a LINE Official Account by entering two fields from the LINE Developers console: **Channel ID** and **Channel secret**. Nothing else is required.
-- On connect: validate the credentials live, create a LINE inbox, and register ChatbotX's webhook URL with LINE.
+- On connect: validate the credentials live, create a LINE inbox, and register InboxOS's webhook URL with LINE.
 - Inbound 1:1 messages land in the inbox and drive flows, keywords, default replies and AI agents. Supported content: text, image, video, audio, file, location, sticker. Stickers are stored as a readable placeholder/text, not rendered.
 - Button taps (postback) and quick-reply taps route like they do on Telegram.
 - Flows can send everything Telegram supports today: `sendText`, `sendImage`, `sendMultipleImages`, `sendVideo`, `sendAudio`, `sendFile`, `sendGif`, `sendQuickReply`, `sendCard`, `sendCarousel`. Buttons and carousels use LINE-native formats (template messages / quick reply).

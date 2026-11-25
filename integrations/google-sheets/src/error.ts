@@ -1,4 +1,4 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import type { GaxiosError } from "googleapis-common"
 import { googleSheetsLogger } from "./logger"
 

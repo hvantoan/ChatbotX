@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { connectErrorQueryCodes } from "@chatbotx.io/utils/connection"
+import { connectErrorQueryCodes } from "@inboxos.io/utils/connection"
 import { act } from "react"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 

@@ -1,7 +1,7 @@
 import type {
   SendCardStepSchema,
   SendCarouselStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { flowButtons } from "./actions"
 import type { LineMessage } from "./dispatch"
 import {

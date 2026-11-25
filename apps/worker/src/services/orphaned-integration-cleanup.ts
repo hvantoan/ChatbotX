@@ -2,15 +2,15 @@ import {
   instagramIntegrationService,
   type MetaAppCredentialType,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import type { IntegrationNotFoundError } from "@chatbotx.io/channel-registry/errors"
+} from "@inboxos.io/business"
+import type { IntegrationNotFoundError } from "@inboxos.io/channel-registry/errors"
 import {
   type IntegrationType,
   integrationTypes,
-} from "@chatbotx.io/database/partials"
-import { unsubscribePageFromInstagramWebhook } from "@chatbotx.io/integration-instagram"
-import { unsubscribePageFromAppWebhook } from "@chatbotx.io/integration-messenger/apis/page"
-import { getRedisConnection } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import { unsubscribePageFromInstagramWebhook } from "@inboxos.io/integration-instagram"
+import { unsubscribePageFromAppWebhook } from "@inboxos.io/integration-messenger/apis/page"
+import { getRedisConnection } from "@inboxos.io/worker-config"
 import { logger } from "../lib/logger"
 
 /**
@@ -19,7 +19,7 @@ import { logger } from "../lib/logger"
  * subscription can be cleaned up (see `handleOrphanedIntegration`). Both fields
  * are public ids — safe to log.
  */
-export { IntegrationNotFoundError } from "@chatbotx.io/channel-registry/errors"
+export { IntegrationNotFoundError } from "@inboxos.io/channel-registry/errors"
 
 type OrphanUnsubscribe = (props: {
   identifier: string

@@ -8,7 +8,7 @@ const recipientRepo = {
   countOutcomes: vi.fn(),
   errorBreakdown: vi.fn(),
 }
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessageRepository: campaignRepo,
   facebookMarketingMessageRecipientRepository: recipientRepo,
   facebookMarketingMessageAudienceRepository: { findForWorkspace: vi.fn() },
@@ -23,7 +23,7 @@ vi.mock("../src/integration-messenger", () => ({
 vi.mock("../src/facebook-marketing-message-delivery/usage", () => ({
   recordMarketingMessageUsage: vi.fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({ casStore: { setIfAbsent: vi.fn() } }))
+vi.mock("@inboxos.io/redis", () => ({ casStore: { setIfAbsent: vi.fn() } }))
 
 const { facebookMarketingMessageDeliveryService: service } = await import(
   "../src/facebook-marketing-message-delivery/service"

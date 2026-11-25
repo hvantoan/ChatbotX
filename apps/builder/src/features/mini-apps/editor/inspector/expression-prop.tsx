@@ -1,8 +1,8 @@
 // biome-ignore-all lint/suspicious/noTemplateCurlyInString: Flow JSON bindings are literally written as ${...}
 "use client"
 
-import { collectInputNames } from "@chatbotx.io/mini-app"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+import { collectInputNames } from "@inboxos.io/mini-app"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { useTranslations } from "next-intl"
 import { readString } from "../../lib/props"
 import { useMiniAppEditor } from "../editor-context"

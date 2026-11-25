@@ -37,12 +37,12 @@ vi.mock("@/lib/domain", () => ({
   getDomainFromHeader: mockGetDomainFromHeader,
 }))
 
-vi.mock("@chatbotx.io/auth/tenant", () => ({
+vi.mock("@inboxos.io/auth/tenant", () => ({
   resolveTenantByDomain: mockResolveTenantByDomain,
   resolveTenantOwnerId: mockResolveTenantOwnerId,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   resolveCredentialOwnerIdForWorkspace:
     mockResolveCredentialOwnerIdForWorkspace,
   workspaceService: {
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   ROOT_TENANT_ID: "1",
 }))
 

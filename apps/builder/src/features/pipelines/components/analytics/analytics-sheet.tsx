@@ -1,20 +1,20 @@
 "use client"
 
-import { DateRangePresetFilter } from "@chatbotx.io/analytics-nextjs/components/date-range-preset-filter"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { DateRangePresetFilter } from "@inboxos.io/analytics-nextjs/components/date-range-preset-filter"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
-import { formatCompactNumber } from "@chatbotx.io/ui/lib/number-format"
+} from "@inboxos.io/ui/components/ui/sheet"
+import { formatCompactNumber } from "@inboxos.io/ui/lib/number-format"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowDownIcon, ArrowLeftIcon, ArrowUpIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
-import type { TemplateModel } from "@chatbotx.io/database/types"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+import type { TemplateModel } from "@inboxos.io/database/types"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 
 /**
  * Per-category counts of what a parsed payload would install, the shape

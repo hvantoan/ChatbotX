@@ -1,8 +1,8 @@
-import { sql } from "@chatbotx.io/database/client"
+import { sql } from "@inboxos.io/database/client"
 import {
   type ConversationStatus,
   channelTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   applyContactFilter,
   buildSmartKeywordWhere,
@@ -10,7 +10,7 @@ import {
   parseConversationAssigneeValues,
   pruneEmailPhoneFilterConditions,
   UNASSIGNED_ASSIGNEE_VALUE,
-} from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/queries"
 import type { ListConversationsRequest } from "@/features/conversations/schema/query"
 
 type ConversationCursor = {

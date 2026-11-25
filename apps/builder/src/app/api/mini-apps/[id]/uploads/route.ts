@@ -1,8 +1,8 @@
 import {
   MiniAppUploadError,
   miniAppUploadService,
-} from "@chatbotx.io/business/mini-app"
-import { MINI_APP_MAX_UPLOAD_BYTES } from "@chatbotx.io/mini-app"
+} from "@inboxos.io/business/mini-app"
+import { MINI_APP_MAX_UPLOAD_BYTES } from "@inboxos.io/mini-app"
 import { type NextRequest, NextResponse } from "next/server"
 import { loadServableMiniApp } from "@/features/mini-apps/lib/public-mini-app"
 import { resolveVisitorContactId } from "@/features/mini-apps/lib/resolve-visitor-contact"

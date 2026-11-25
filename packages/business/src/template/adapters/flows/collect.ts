@@ -1,8 +1,8 @@
-import { db } from "@chatbotx.io/database/client"
-import { flowVersionRepository } from "@chatbotx.io/database/repositories"
-import type { FlowExportedFlow } from "@chatbotx.io/flow-config"
-import { collectReferencesByKind } from "@chatbotx.io/flow-config"
-import { isNumericId } from "@chatbotx.io/utils/id"
+import { db } from "@inboxos.io/database/client"
+import { flowVersionRepository } from "@inboxos.io/database/repositories"
+import type { FlowExportedFlow } from "@inboxos.io/flow-config"
+import { collectReferencesByKind } from "@inboxos.io/flow-config"
+import { isNumericId } from "@inboxos.io/utils/id"
 import { collectResourceDependencies } from "../../manifest-references"
 import { makeCollector, scopedWhere } from "../shared"
 

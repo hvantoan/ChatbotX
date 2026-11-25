@@ -1,4 +1,4 @@
-import { createWebshopShareLinks } from "@chatbotx.io/business"
+import { createWebshopShareLinks } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { type ReactNode, Suspense } from "react"
 import { EcommerceFooterLayout } from "@/features/products/components/ecommerce-footer"

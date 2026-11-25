@@ -1,4 +1,4 @@
-import { adsEligibleChannelTypes } from "@chatbotx.io/utils/channel"
+import { adsEligibleChannelTypes } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 
 const dateKey = z

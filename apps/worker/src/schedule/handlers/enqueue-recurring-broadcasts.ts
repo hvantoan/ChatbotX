@@ -1,6 +1,6 @@
-import { broadcastRecurrenceService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
+import { broadcastRecurrenceService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
 import {
   MATERIALIZE_BATCH_SIZE,
   MATERIALIZE_RECURRING_BROADCASTS_PRIORITY,
@@ -8,7 +8,7 @@ import {
   materializeBatchJobId,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { startOfMinute } from "date-fns"
 
 const LOCK_KEY = "schedule:enqueue-recurring-broadcasts"

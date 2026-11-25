@@ -10,7 +10,7 @@ Code map:
 |---|---|
 | Schema, partials | `packages/database/src/schema/leaderboard*.ts`, `src/partials/leaderboard.ts` |
 | Repositories | `packages/database/src/repositories/leaderboard/`, `repositories/leaderboard-partitions.ts` |
-| Services | `packages/business/src/leaderboard/` (`@chatbotx.io/business/leaderboard`) |
+| Services | `packages/business/src/leaderboard/` (`@inboxos.io/business/leaderboard`) |
 | Redis ranking | `packages/redis/src/leaderboard-store.ts` |
 | Queue + consumer | `packages/worker-config/src/queues/leaderboard`, `apps/worker/src/leaderboard/` (hosted by the `low` worker process) |
 | Crons | `apps/worker/src/schedule/handlers/{maintain-leaderboard-partitions,leaderboard-schedules}.ts` |

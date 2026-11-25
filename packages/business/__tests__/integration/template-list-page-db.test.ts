@@ -6,14 +6,14 @@
  * rows that share a `createdAt`. Commits its fixtures and removes them after.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
-import { templateRepository } from "@chatbotx.io/database/repositories"
+import { db, eq } from "@inboxos.io/database/client"
+import { templateRepository } from "@inboxos.io/database/repositories"
 import {
   templateModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, describe, expect, test } from "vitest"
 
 const realDatabaseUrl = (): string | null => {

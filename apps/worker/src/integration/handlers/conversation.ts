@@ -1,11 +1,11 @@
-import { contactInboxService, conversationService } from "@chatbotx.io/business"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { emit } from "@chatbotx.io/event-bus"
-import { messageEventTypeSchema } from "@chatbotx.io/flow-config"
+import { contactInboxService, conversationService } from "@inboxos.io/business"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { emit } from "@inboxos.io/event-bus"
+import { messageEventTypeSchema } from "@inboxos.io/flow-config"
 import type {
   IntegrationJobAgentMarkAsRead,
   IntegrationJobContactMarkAsRead,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 import { normalizeEpochTimestamp } from "../utils/message"

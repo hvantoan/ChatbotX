@@ -1,7 +1,7 @@
 import type {
   RealtimeTargetedEventData as RealtimeEventData,
   RealtimeEventType,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 
 /**
  * Channel-agnostic realtime platform. This module (and everything else under

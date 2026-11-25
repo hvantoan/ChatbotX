@@ -2,7 +2,7 @@ import {
   MarketingMessageJobAction,
   type MarketingMessageJobData,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job, Worker } from "bullmq"
 import { env } from "../env"
 import { createQueueWorker } from "../lib/create-queue-worker"

@@ -1,6 +1,6 @@
 "use client"
 
-import type { TemplateVersionChange } from "@chatbotx.io/database/partials"
+import type { TemplateVersionChange } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import { useOptionalLabel } from "../lib/use-optional-label"
 

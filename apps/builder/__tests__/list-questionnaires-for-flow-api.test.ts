@@ -68,7 +68,7 @@ vi.mock("@/middlewares/auth", () => ({
   workspaceAuthorizedMidddleware,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   questionnaireService: {
     listForFlow: mocks.listForFlow,
   },

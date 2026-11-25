@@ -5,18 +5,18 @@ import {
   eq,
   findOrFail,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   mediaLibraryFileRepository,
   type SavedReplyImageWithFile,
   savedReplyImageRepository,
-} from "@chatbotx.io/database/repositories"
-import { savedReplyModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { savedReplyModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import {
   isImageMimeType,
   SAVED_REPLY_MAX_IMAGES,
-} from "@chatbotx.io/utils/inbox-image-support"
+} from "@inboxos.io/utils/inbox-image-support"
 import { notFoundException, validationException } from "../errors"
 import { resolveTenantSettings } from "../platform/settings"
 import {

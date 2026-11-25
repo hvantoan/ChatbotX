@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { ContactSearchCombobox } from "@/features/contacts/components/contact-search-combobox"

@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const deleteMeData = vi.fn()
 const loadServableWorkspace = vi.fn()
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   systemFieldService: {
     deleteMeData,
   },

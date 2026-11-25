@@ -24,11 +24,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   verifyMediaToken: mocks.verifyMediaToken,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: { findByUncached: mocks.findContactInbox },
   contactService: { findById: mocks.findContact },
   isFailedOriginPath: (originPath: string) => originPath.startsWith("failed:"),
@@ -49,26 +49,26 @@ vi.mock("@chatbotx.io/business", () => ({
   resolveTenantSettings: mocks.resolveTenantSettings,
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: mocks.getPublicFileUrl,
 }))
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   resolveFreshContactAvatarUrl: mocks.resolveFreshContactAvatarUrl,
   resolveFreshMediaUrl: mocks.resolveFreshMediaUrl,
   resolveIntegrationForAttachment: mocks.resolveIntegrationForAttachment,
   TerminalMediaError: mocks.TerminalMediaError,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mocks.createMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { getPresignedDownload: mocks.getPresignedDownload },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   LOW_BULK_PRIORITY: 10,
   LowJobAction: {
     coexistAttachmentDownload: "coexistAttachmentDownload",

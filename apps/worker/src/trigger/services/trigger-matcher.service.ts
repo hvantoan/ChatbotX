@@ -1,10 +1,10 @@
-import { triggerService, workspaceService } from "@chatbotx.io/business"
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import { triggerService, workspaceService } from "@inboxos.io/business"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   conditionListensToSource,
   matchableConditionTypesFor,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import type { TriggerEventData, TriggerWithConditions } from "../types"
 import { ConditionEvaluator } from "./condition-evaluator"
 

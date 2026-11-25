@@ -1,6 +1,6 @@
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationJobTiktokHighIntentComment } from "@chatbotx.io/worker-config"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationJobTiktokHighIntentComment } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 

@@ -1,13 +1,13 @@
 "use client"
 
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowLeftIcon, DownloadIcon, EyeIcon, SearchIcon } from "lucide-react"
 import Link from "next/link"

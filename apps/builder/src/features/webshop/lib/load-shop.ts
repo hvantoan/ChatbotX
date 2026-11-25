@@ -1,10 +1,10 @@
 import "server-only"
 
-import { webshopService } from "@chatbotx.io/business"
+import { webshopService } from "@inboxos.io/business"
 import {
   isExternalStoreSource,
   type PaymentMethod,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { cache } from "react"
 import { resolveLocale } from "@/i18n/config"
 import { toSafeWebUrl } from "./safe-url"

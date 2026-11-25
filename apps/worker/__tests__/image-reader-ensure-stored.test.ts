@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
 
 class MediaNotReadyErrorStub extends Error {}
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureAttachmentStored: mocks.ensureAttachmentStored,
   MediaNotReadyError: MediaNotReadyErrorStub,
 }))
@@ -17,7 +17,7 @@ vi.mock(
   "../src/integration/handlers/automated-response/system-tools/context-sources/image-source",
   () => ({ resolveImageAttachment: mocks.resolveImageAttachment }),
 )
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   HeavyJobAction: { analyzeImage: "analyzeImage" },
   getHeavyJobOptions: () => ({}),
   getHeavyJobCompletionWaitTimeoutMs: () => 1000,

@@ -1,5 +1,5 @@
-import { decodeBase64UrlText, encodeBase64UrlText } from "@chatbotx.io/utils"
-import { ChatbotXException } from "../errors"
+import { decodeBase64UrlText, encodeBase64UrlText } from "@inboxos.io/utils"
+import { InboxOSException } from "../errors"
 
 /** The row a selectable-resource page ended on: its sort key and id. */
 export type SelectableCursor = { key: string; id: string }
@@ -31,7 +31,7 @@ const isTimestampKey = (key: string): boolean => {
 }
 
 const invalidCursorException = () =>
-  new ChatbotXException("Invalid cursor", "invalidCursor", 400)
+  new InboxOSException("Invalid cursor", "invalidCursor", 400)
 
 /** How the sort key a category pages by is compared: as text (names) or as a timestamp. */
 export type SelectableCursorKeyKind = "text" | "timestamp"

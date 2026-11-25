@@ -1,5 +1,5 @@
-import type { DecisionProfileModel } from "@chatbotx.io/database/types"
-import { globalRouterConfigSchema } from "@chatbotx.io/decision-config"
+import type { DecisionProfileModel } from "@inboxos.io/database/types"
+import { globalRouterConfigSchema } from "@inboxos.io/decision-config"
 import { decisionProfileStoredContractSchema } from "../schema/form"
 import { publicDecisionProfileSchema } from "../schema/public"
 

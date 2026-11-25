@@ -8,28 +8,28 @@ import {
   type RelationsFieldFilter,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CustomFieldType,
   rootFolderId,
-} from "@chatbotx.io/database/partials"
-import { customFieldModel } from "@chatbotx.io/database/schema"
-import type { CustomFieldModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { customFieldModel } from "@inboxos.io/database/schema"
+import type { CustomFieldModel } from "@inboxos.io/database/types"
 import {
   isBigintId,
   likeContains,
   parseOrderByAsObject,
   parsePagination,
   withIdTieBreak,
-} from "@chatbotx.io/database/utils"
-import { withCache } from "@chatbotx.io/redis"
-import { createId, isNumericId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { withCache } from "@inboxos.io/redis"
+import { createId, isNumericId } from "@inboxos.io/utils"
 import {
   customFieldResolutionKey,
   normalizeCustomFieldName,
   pickCustomFieldRow,
   planCustomFieldResolution,
-} from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/utils/custom-field"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { folderService, toStoredFolderId } from "../folder/service"

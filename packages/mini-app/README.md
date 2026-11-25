@@ -1,4 +1,4 @@
-# @chatbotx.io/mini-app
+# @inboxos.io/mini-app
 
 Rules for Mini Apps — multi-screen forms that follow the WhatsApp Flows
 standard (Flow JSON `7.3`). The builder editor, the public web runner and the

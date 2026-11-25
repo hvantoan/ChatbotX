@@ -1,7 +1,7 @@
 "use server"
 
-import { integrationSmtpService, workspaceService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { integrationSmtpService, workspaceService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 
 export const deleteSmtpAction = workspaceActionClientAllowExpired

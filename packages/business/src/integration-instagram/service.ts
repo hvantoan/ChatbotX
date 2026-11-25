@@ -5,13 +5,13 @@ import {
   eq,
   findOrFail,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   InstagramPersistentMenu,
   IntegrationUserInfo,
-} from "@chatbotx.io/database/partials"
-import { integrationInstagramModel } from "@chatbotx.io/database/schema"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/partials"
+import { integrationInstagramModel } from "@inboxos.io/database/schema"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import { recordRefreshedAuth } from "../connection/record-refreshed-auth"
 import { connectionStateService } from "../connection/state-service"

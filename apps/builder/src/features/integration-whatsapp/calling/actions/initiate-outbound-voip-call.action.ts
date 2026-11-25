@@ -7,26 +7,26 @@ import {
   WhatsappCallInProgressError,
   whatsappVoipCallService,
   whatsappVoipSignalingService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   channelTypes,
   resolveWhatsappCallOutcome,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   integrationWhatsappRepository,
   WhatsappCallPendingOutboundExistsError,
-} from "@chatbotx.io/database/repositories"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/database/repositories"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   canPerformCallAction,
   connectCall,
   getCallPermissions,
   terminateCall,
   type WhatsappConnectCallInput,
-} from "@chatbotx.io/integration-whatsapp/api/calling"
-import { WhatsappException } from "@chatbotx.io/integration-whatsapp/exception"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-whatsapp/api/calling"
+import { WhatsappException } from "@inboxos.io/integration-whatsapp/exception"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { logger } from "@/lib/log"
@@ -242,7 +242,7 @@ export const initiateOutboundVoipCallAction = callingActionClient
         where: { id: conversationId, workspaceId },
       })
       if (!conversation) {
-        throw new ChatbotXException(t("whatsapp.calls.errors.callNotFound"))
+        throw new InboxOSException(t("whatsapp.calls.errors.callNotFound"))
       }
 
       // Dialing is gated exactly like picking up an inbound call — an assigned-
@@ -267,7 +267,7 @@ export const initiateOutboundVoipCallAction = callingActionClient
         !resolvedContactInbox ||
         resolvedContactInbox.channel !== channelTypes.enum.whatsapp
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           t("whatsapp.calls.errors.notWhatsappConversation"),
         )
       }
@@ -278,7 +278,7 @@ export const initiateOutboundVoipCallAction = callingActionClient
           inboxId: resolvedContactInbox.inboxId,
         })
       if (!integration) {
-        throw new ChatbotXException(t("whatsapp.calls.errors.notFound"))
+        throw new InboxOSException(t("whatsapp.calls.errors.notFound"))
       }
 
       // Business-number country block. Fails open on an unparsable number —

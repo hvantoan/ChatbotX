@@ -8,7 +8,7 @@ import {
   RealtimeFatalError,
   type RealtimeFrameReader,
   realtimeMemberBatchEnvelopeSchema,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { useQueryClient } from "@tanstack/react-query"
 import {
   createContext,

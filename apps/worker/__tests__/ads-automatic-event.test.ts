@@ -10,23 +10,23 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsConversionService: {
     ingestAutomaticEvent: mocks.ingestAutomaticEvent,
   },
   withBlockedOwnerGuard: mocks.withBlockedOwnerGuard,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     findByPhoneNumberId: mocks.findByPhoneNumberId,
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", async () => {
+vi.mock("@inboxos.io/worker-config", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/worker-config")
-  >("@chatbotx.io/worker-config")
+    typeof import("@inboxos.io/worker-config")
+  >("@inboxos.io/worker-config")
   return {
     ...actual,
     enqueueIntegrationJob: mocks.enqueueIntegrationJob,

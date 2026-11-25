@@ -1,4 +1,4 @@
-import { AuthException, ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { AuthException, ChannelErrorCategory } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { LineAPIException } from "../src/exception"
 import { mapToChannelError } from "../src/lib/error-mapper"

@@ -1,10 +1,10 @@
 import {
   type FileContextType,
   fileStatuses,
-} from "@chatbotx.io/database/partials"
-import { fileRepository } from "@chatbotx.io/database/repositories"
-import type { FileModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { fileRepository } from "@inboxos.io/database/repositories"
+import type { FileModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 type CreatePendingInput = {

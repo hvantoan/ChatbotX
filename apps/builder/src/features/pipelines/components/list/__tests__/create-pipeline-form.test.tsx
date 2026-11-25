@@ -17,7 +17,7 @@ vi.mock("../../../actions/pipeline.action", () => ({
 vi.mock("../../../lib/use-invalidate-pipelines", () => ({
   useInvalidatePipelines: () => vi.fn(),
 }))
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   DialogFooter: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),

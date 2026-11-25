@@ -1,7 +1,7 @@
 "use server"
 
-import { orderService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { orderService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   workspaceActionClient,
   workspaceActionClientAllowExpired,

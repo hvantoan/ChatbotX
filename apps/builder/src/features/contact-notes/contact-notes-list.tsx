@@ -1,11 +1,11 @@
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import { CircleUserRound, PencilIcon, TrashIcon } from "lucide-react"
 import { useLocale } from "next-intl"
 import type { ContactNoteResource } from "./schema/resource"

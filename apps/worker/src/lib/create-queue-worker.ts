@@ -2,7 +2,7 @@ import {
   defaultWorkerOptions,
   getQueueConnection,
   type QueueName,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type Job, type Processor, Worker, type WorkerOptions } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "./logger"

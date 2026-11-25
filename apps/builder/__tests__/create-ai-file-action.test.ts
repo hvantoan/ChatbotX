@@ -16,14 +16,14 @@ vi.mock("@/features/common/schema", () => ({
   workspaceIdrequestParams: [],
 }))
 
-const { MockChatbotXException, MockAIFileCreateException } = vi.hoisted(() => {
-  class MockChatbotXException extends Error {
+const { MockInboxOSException, MockAIFileCreateException } = vi.hoisted(() => {
+  class MockInboxOSException extends Error {
     code = "systemError"
     httpStatusCode = 400
 
     constructor(message: string, code?: string, httpStatusCode?: number) {
       super(message)
-      this.name = "ChatbotXException"
+      this.name = "InboxOSException"
       if (code) {
         this.code = code
       }
@@ -32,25 +32,25 @@ const { MockChatbotXException, MockAIFileCreateException } = vi.hoisted(() => {
       }
     }
   }
-  class MockAIFileCreateException extends MockChatbotXException {
+  class MockAIFileCreateException extends MockInboxOSException {
     readonly reason: string
     constructor(message: string, reason: string) {
       super(message, "businessError", 400)
       this.reason = reason
     }
   }
-  return { MockChatbotXException, MockAIFileCreateException }
+  return { MockInboxOSException, MockAIFileCreateException }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: {
     create: mocks.create,
   },
   AIFileCreateException: MockAIFileCreateException,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: MockChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: MockInboxOSException,
 }))
 
 vi.mock("next-intl/server", () => ({
@@ -61,7 +61,7 @@ vi.mock("../src/features/ai-files/schema", () => ({
   createAIFileRequest: {},
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { createAIFileAction } = await import(
   "@/features/ai-files/actions/create-ai-file.action"
 )
@@ -93,7 +93,7 @@ beforeEach(() => {
 describe("createAIFileAction", () => {
   test("translates a noEmbeddingProvider service error via next-intl", async () => {
     mocks.create.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "AI file requires an embedding provider",
         "noEmbeddingProvider",
         400,

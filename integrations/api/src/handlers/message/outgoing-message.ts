@@ -1,10 +1,10 @@
-import { type StepType, stepTypes } from "@chatbotx.io/flow-config"
+import { type StepType, stepTypes } from "@inboxos.io/flow-config"
 import {
   contentTypes,
   type MessageHandlers,
   type ReceivedMessageResult,
   type SendFlowStepData,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import { postSignedEnvelope } from "../../lib/delivery"
 import type { ApiAuthValue } from "../../schema"

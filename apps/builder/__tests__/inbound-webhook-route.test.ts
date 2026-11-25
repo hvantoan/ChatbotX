@@ -13,14 +13,14 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   resolveWorkspaceFreezeReasonById: mocks.resolveFreezeReason,
   inboundWebhookService: {
     findByToken: mocks.findByToken,
     recordRequest: mocks.recordRequest,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueProcessInboundWebhookRequest: mocks.enqueue,
 }))
 vi.mock("@/lib/rate-limit/api-rate-limit", () => ({
@@ -34,7 +34,7 @@ vi.mock("@/lib/log", () => ({
   logger: { warn: mocks.loggerWarn, error: mocks.loggerError },
 }))
 
-const { DrizzleQueryError } = await import("@chatbotx.io/database/client")
+const { DrizzleQueryError } = await import("@inboxos.io/database/client")
 const route = await import("../src/app/api/hooks/[token]/route")
 
 const UPPER_SNAKE_CASE = /^[A-Z]+(_[A-Z]+)*$/

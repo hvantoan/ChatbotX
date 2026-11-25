@@ -39,22 +39,22 @@ type InputSchema = {
 }
 
 const NO_CREDENTIAL_MESSAGE =
-  "No credential. Authorize this MCP server with OAuth, or set CHATBOTX_API_KEY / pass ?workspace_token=."
+  "No credential. Authorize this MCP server with OAuth, or set INBOXOS_API_KEY / pass ?workspace_token=."
 
 export const createMcpServer = (
   options?: CreateMcpServerOptions,
 ): McpServer => {
   const mcpServer = new McpServer(
     {
-      name: env.CHATBOTX_MCP_SERVER_NAME ?? packageName,
+      name: env.INBOXOS_MCP_SERVER_NAME ?? packageName,
       version: packageVersion,
     },
-    { instructions: env.CHATBOTX_MCP_SERVER_INSTRUCTIONS },
+    { instructions: env.INBOXOS_MCP_SERVER_INSTRUCTIONS },
   )
 
   const getCredentials = (): RequestCredentials | undefined =>
     options?.getCredentials?.() ??
-    (env.CHATBOTX_API_KEY ? { token: env.CHATBOTX_API_KEY } : undefined)
+    (env.INBOXOS_API_KEY ? { token: env.INBOXOS_API_KEY } : undefined)
 
   for (const name of guideNames) {
     const guide = getGuide(name)

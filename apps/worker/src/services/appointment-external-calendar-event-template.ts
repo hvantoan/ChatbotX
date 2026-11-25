@@ -1,4 +1,4 @@
-import { contactVariableService } from "@chatbotx.io/variables"
+import { contactVariableService } from "@inboxos.io/variables"
 import { z } from "zod"
 import { logger } from "../lib/logger"
 

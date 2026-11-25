@@ -16,7 +16,7 @@ vi.mock("@/lib/safe-action", () => {
   return { authActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const { z } = await import("zod")
   return {
     apiConnectConfigSchema: z.object({

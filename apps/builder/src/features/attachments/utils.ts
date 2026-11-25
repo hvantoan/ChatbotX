@@ -3,7 +3,7 @@ import { useTenantSettings } from "@/features/tenant"
 import type { AttachmentResource } from "./schema/resource"
 
 // Same grammar as the server's pending/failed originPath markers
-// (`@chatbotx.io/business` media/resolve-media-url). Repeated here because the
+// (`@inboxos.io/business` media/resolve-media-url). Repeated here because the
 // server module is not importable from client code.
 const UNSERVED_ORIGIN_PATH = /^(https?:\/\/|wa-media:|failed:)/i
 

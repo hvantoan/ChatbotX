@@ -4,12 +4,12 @@ import { z } from "zod"
  * The channels a workspace can talk to a contact through.
  *
  * See this package's README ("Exception: cross-cutting product enums") for why
- * a product enum lives in a generic-utils package: `@chatbotx.io/flow-config`
- * needs it without depending on `@chatbotx.io/database`. Before this move those
+ * a product enum lives in a generic-utils package: `@inboxos.io/flow-config`
+ * needs it without depending on `@inboxos.io/database`. Before this move those
  * tables had to fall back to `Record<string, ...>`, so a typo'd or renamed
  * channel silently missed its entry instead of failing to compile.
  *
- * `@chatbotx.io/database/partials` re-exports this, so the many existing
+ * `@inboxos.io/database/partials` re-exports this, so the many existing
  * importers there keep working unchanged.
  *
  * Adding a value here cascades: grep for `Record<ChannelType` and fix every
@@ -37,15 +37,15 @@ export type ChannelType = z.infer<typeof channelTypes>
  * Channels Meta ads attribution (CTWA/CTM/CTID) exists for — the subset of
  * `channelTypes` with an ads conversion pipeline (referral capture →
  * conversion rules → CAPI). Lives here for the same reason as `channelTypes`
- * (see the comment above): `@chatbotx.io/database` (contact-filter queries),
- * `@chatbotx.io/business` (ads-conversion channel maps), and the builder
+ * (see the comment above): `@inboxos.io/database` (contact-filter queries),
+ * `@inboxos.io/business` (ads-conversion channel maps), and the builder
  * (analytics/filter schemas) all need the identical list, and the database
  * layer cannot import from business. Each layer derives its own stricter
  * type from this (e.g. business `AdsEligibleChannel` re-checks it against
  * the DB `AdsConversionChannel` enum via `satisfies`).
  *
  * Adding a channel here cascades: every `satisfies Record<AdsEligibleChannel,
- * ...>` map in `@chatbotx.io/business/ads-conversion/channel-fields` (and its
+ * ...>` map in `@inboxos.io/business/ads-conversion/channel-fields` (and its
  * consumers) fails to compile until the new channel is threaded through.
  */
 export const adsEligibleChannelTypes = z.enum([
@@ -254,7 +254,7 @@ export const CALL_CAPABLE_CHANNELS: ChannelType[] = channelTypes.options
  * Lives here for the same reason as `channelTypes` (see the comment above):
  * `packages/database/src/schema/coexist-sync-run.ts` derives its
  * `coexistChannel` pgEnum from these exact values so the database type and
- * this list can never drift, and `@chatbotx.io/business` needs the same list
+ * this list can never drift, and `@inboxos.io/business` needs the same list
  * without adding a database dependency.
  */
 export const coexistChannels = z.enum(["whatsapp", "messenger", "instagram"])
@@ -279,7 +279,7 @@ export const isCoexistChannel = (
  * messaged first). Subset of `channelTypes`.
  *
  * Lives here for the same reason as `channelTypes`/`coexistChannels` (see the
- * comments above): `@chatbotx.io/business`'s scan channel registry and
+ * comments above): `@inboxos.io/business`'s scan channel registry and
  * `packages/database`'s scan queries need the same list without adding a
  * database dependency.
  */

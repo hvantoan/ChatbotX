@@ -1,5 +1,5 @@
-import type { MatchingTemplateResolver } from "@chatbotx.io/business"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+import type { MatchingTemplateResolver } from "@inboxos.io/business"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 
 const UNRESOLVED_PLACEHOLDER = "{{"
 

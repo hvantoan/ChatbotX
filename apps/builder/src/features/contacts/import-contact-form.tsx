@@ -1,24 +1,24 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   channelTypes,
   contactImportFields,
   importTypes,
   uploadTypes,
-} from "@chatbotx.io/database/partials"
-import { matchContactImportHeaders } from "@chatbotx.io/imports"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import { matchContactImportHeaders } from "@inboxos.io/imports"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@chatbotx.io/ui/components/ui/accordion"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/accordion"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
   ArrowRightIcon,

@@ -1,14 +1,14 @@
 "use client"
 
-import type { FolderType } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { FolderType } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   FolderIcon,
   MoreHorizontalIcon,

@@ -1,4 +1,4 @@
-import type { WorkspaceApiTokenModel } from "@chatbotx.io/database/types"
+import type { WorkspaceApiTokenModel } from "@inboxos.io/database/types"
 
 /**
  * Client-safe projection of WorkspaceApiTokenModel — must never include

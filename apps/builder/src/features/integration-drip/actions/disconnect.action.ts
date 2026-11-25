@@ -1,6 +1,6 @@
 "use server"
 
-import { integrationDripService } from "@chatbotx.io/business"
+import { integrationDripService } from "@inboxos.io/business"
 import { createDisconnectAction } from "@/lib/integration-actions"
 
 export const disconnectDripAction = createDisconnectAction(

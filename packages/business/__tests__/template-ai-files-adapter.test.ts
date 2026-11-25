@@ -9,10 +9,10 @@ const mocks = vi.hoisted(() => ({
   findMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { aiFileModel: { findMany: mocks.findMany } } },
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { copyObject: mocks.copyObject },
 }))
 vi.mock("../src/ai-file/service", () => ({
@@ -28,7 +28,7 @@ vi.mock("../src/logger", () => ({
 const { aiFilesAdapter, TEMPLATE_AI_FILES_MAX_BYTES } = await import(
   "../src/template/adapters/ai-files"
 )
-const { ChatbotXException } = await import("../src/errors")
+const { InboxOSException } = await import("../src/errors")
 
 const TARGET_PATH = /^workspaces\/ws-2\/ai-files\/tpl-inst-1\/g0\/[0-9a-f]{64}$/
 
@@ -115,7 +115,7 @@ describe("ai files adapter: install", () => {
 
   test("without an embedding provider nothing is copied and each file is reported once", async () => {
     mocks.assertProvider.mockRejectedValue(
-      new ChatbotXException("none", "noEmbeddingProvider", 400),
+      new InboxOSException("none", "noEmbeddingProvider", 400),
     )
 
     const { warnings } = await install([entry(), entry({ sourceId: "src-2" })])

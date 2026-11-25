@@ -7,11 +7,11 @@ const mocks = vi.hoisted(() => ({
   markEmbeddingFailed: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: { markEmbeddingFailed: mocks.markEmbeddingFailed },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: {
     processPendingEmbedding: "processPendingEmbedding",
     summarizeConversation: "summarizeConversation",

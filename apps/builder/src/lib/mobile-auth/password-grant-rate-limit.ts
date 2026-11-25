@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { assertApiNotRateLimited } from "@/lib/rate-limit/api-rate-limit"
 
 const MOBILE_TOKEN_PATH_SUFFIX = "/mobile/token"
@@ -97,10 +97,7 @@ export const rateLimitMobilePasswordGrant = async (
       })
     }
   } catch (error) {
-    if (
-      error instanceof ChatbotXException &&
-      error.code === "tooManyRequests"
-    ) {
+    if (error instanceof InboxOSException && error.code === "tooManyRequests") {
       const retryAfter = error.message.match(RETRY_AFTER_PATTERN)?.[1]
       return Response.json(
         {

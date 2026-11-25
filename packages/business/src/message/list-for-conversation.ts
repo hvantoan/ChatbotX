@@ -3,9 +3,9 @@ import {
   getSafeSinceTime,
   type MessageWithAttachments,
   type PaginationCursor,
-} from "@chatbotx.io/database/repositories"
-import type { ConversationModel } from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/repositories"
+import type { ConversationModel } from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
 import { endOfHour } from "date-fns"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"

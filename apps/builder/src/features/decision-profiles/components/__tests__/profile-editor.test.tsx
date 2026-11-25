@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import type { DecisionProfileModel } from "@chatbotx.io/database/types"
+import type { DecisionProfileModel } from "@inboxos.io/database/types"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -34,7 +34,7 @@ vi.mock("@tanstack/react-query", () => ({
         { id: "102", name: "General support" },
       ],
       teams: [{ id: "104", name: "Support Team" }],
-      users: [{ id: "103", name: "Demo ChatbotX" }],
+      users: [{ id: "103", name: "Demo InboxOS" }],
     },
   }),
 }))
@@ -427,7 +427,7 @@ describe("ProfileEditor", () => {
     expect(container.textContent).toContain("decision.modelUnavailable")
     expect(container.textContent).toContain("assignConversation")
     expect(container.textContent).toContain("fields.assignedId.label")
-    expect(container.textContent).toContain("Demo ChatbotX")
+    expect(container.textContent).toContain("Demo InboxOS")
     expect(container.textContent).toContain("Support Team")
 
     act(() => {

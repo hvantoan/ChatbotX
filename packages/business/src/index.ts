@@ -30,7 +30,7 @@ export * from "./contact"
 // and conversation/service imports the ./contact barrel — re-exporting it there
 // would widen conversation/service's module graph into those heavy deps. The
 // worker consumers (contact-scan engine, coexist shim) import it from the
-// top-level "@chatbotx.io/business" barrel, so this placement serves them fine.
+// top-level "@inboxos.io/business" barrel, so this placement serves them fine.
 export * from "./contact/bulk-import-channel-contacts"
 // Same placement reason: it pulls in the broadcast/inbox/sequence/reflink/tag/
 // member/inbox-team services, which the ./contact barrel (imported by
@@ -66,10 +66,10 @@ export * from "./external-webhook"
 export * from "./facebook-lead-ads-automation/service"
 // Not barrel-exported: the audience service hashes customer files with Node's
 // `crypto` (customer-file/build-payload) and parses uploads via
-// `@chatbotx.io/imports` (node:stream, csv-parse, exceljs). This barrel is
+// `@inboxos.io/imports` (node:stream, csv-parse, exceljs). This barrel is
 // traced into the builder's Edge Runtime bundle, where a Node built-in is a
 // hard compile error — same pattern as `sequence`. Import from
-// `@chatbotx.io/business/facebook-marketing-message-audience` instead.
+// `@inboxos.io/business/facebook-marketing-message-audience` instead.
 export * from "./facebook-marketing-message-delivery"
 export * from "./facebook-marketing-messages"
 export * from "./file"
@@ -81,10 +81,10 @@ export * from "./google-ads-settings"
 export * from "./ig-story-automation/service"
 export * from "./inbound-webhook"
 // Not barrel-exported: `peekImportHeaders` reaches `createByteLimitedStream`
-// (`@chatbotx.io/imports/stream-guard`), which imports Node's `stream`. This
+// (`@inboxos.io/imports/stream-guard`), which imports Node's `stream`. This
 // barrel is traced into the builder's Edge Runtime bundle, where a Node
 // built-in is a hard compile error — same pattern as `smart-delay` above.
-// Import from `@chatbotx.io/business/import` instead.
+// Import from `@inboxos.io/business/import` instead.
 export * from "./inbox"
 export * from "./integration"
 export * from "./integration-active-campaign"
@@ -120,7 +120,7 @@ export * from "./integration-zalo"
 export * from "./integration-zalo-personal"
 export * from "./invitation"
 // Only the edition predicate: callers outside this package (e.g. the MCP
-// endpoint policy in `@chatbotx.io/ai`) branch on it, but `keys()` itself
+// endpoint policy in `@inboxos.io/ai`) branch on it, but `keys()` itself
 // stays private.
 export { isCloud } from "./keys"
 export * from "./magic-link"
@@ -154,7 +154,7 @@ export * from "./qr-code"
 export * from "./questionnaire"
 export * from "./quota-enforcement"
 // The fail-closed live-counter parser, so the reconcile workers read the same
-// way the services do. The key builders themselves live in `@chatbotx.io/utils`
+// way the services do. The key builders themselves live in `@inboxos.io/utils`
 // (single source of truth shared with `packages/analytics`).
 export { parseLiveCount } from "./quota-shared/live-counter-store"
 export * from "./referral"
@@ -167,7 +167,7 @@ export * from "./saved-reply"
 // This barrel is traced into the builder's Edge Runtime bundle, where a Node
 // built-in is a hard compile error — see edge-safe-import-graph.test.ts and
 // the same pattern for `contact-sequence`. Import from
-// `@chatbotx.io/business/sequence` instead.
+// `@inboxos.io/business/sequence` instead.
 export * from "./shopify"
 export * from "./smart-delay"
 export * from "./spreadsheet"

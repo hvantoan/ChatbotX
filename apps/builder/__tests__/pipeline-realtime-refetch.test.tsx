@@ -18,7 +18,7 @@ vi.mock("@/features/realtime/use-workspace-realtime-events", () => ({
   },
 }))
 // Run the debounced refetch at once, so each event flushes immediately.
-vi.mock("@chatbotx.io/ui/hooks/use-debounced-callback", () => ({
+vi.mock("@inboxos.io/ui/hooks/use-debounced-callback", () => ({
   useDebouncedCallback: (callback: () => void) => callback,
 }))
 

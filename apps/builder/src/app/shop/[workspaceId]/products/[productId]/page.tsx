@@ -1,5 +1,5 @@
-import { webshopService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { webshopService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type { Metadata } from "next"
 import { ProductDetail } from "@/features/webshop/components/product-detail"
 import { RelatedProducts } from "@/features/webshop/components/related-products"
@@ -30,7 +30,7 @@ async function findProduct(workspaceId: string, productId: string | null) {
   try {
     return await webshopService.getProduct({ workspaceId, productId })
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       return null
     }
     throw error

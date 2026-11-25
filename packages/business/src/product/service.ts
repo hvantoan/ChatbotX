@@ -1,26 +1,26 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   isExternalStoreSource,
   type ProductStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   discountCodeRepository,
   type ProductImportInsert,
   productCategoryRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   productAddonModel,
   productVariantModel,
   productVariantOptionModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ProductAddonModel,
   ProductModel,
   ProductVariantModel,
   ProductVariantOptionModel,
-} from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { resolveStoreSource } from "../ecommerce-settings/store-source"
 import { notFoundException } from "../errors"

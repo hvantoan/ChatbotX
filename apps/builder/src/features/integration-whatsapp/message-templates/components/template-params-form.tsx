@@ -10,17 +10,17 @@ import {
   type ParameterInfo,
   type TemplateComponent,
   type WhatsappFlowFieldMapping,
-} from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { DateTimePicker } from "@chatbotx.io/ui/components/ui/date-picker"
+} from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { DateTimePicker } from "@inboxos.io/ui/components/ui/date-picker"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { Pencil } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {

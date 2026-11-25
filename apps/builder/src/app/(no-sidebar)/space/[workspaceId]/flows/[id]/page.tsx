@@ -1,4 +1,4 @@
-import { flowService, listLockedIds } from "@chatbotx.io/business"
+import { flowService, listLockedIds } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { FlowDetail } from "@/features/flows/flow-detail"
 import { isSameContent } from "@/features/flows/flow-version-content"

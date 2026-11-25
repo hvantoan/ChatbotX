@@ -4,9 +4,9 @@ import {
   THREAD_CONTROL_STEP_METADATA_MAX_LENGTH,
   threadControlStepActions,
   threadControlStepTargetRoles,
-} from "@chatbotx.io/flow-config"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/flow-config"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { ArrowRightLeftIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useWatch } from "react-hook-form"

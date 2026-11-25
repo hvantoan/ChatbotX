@@ -1,26 +1,26 @@
 import {
   type SmartDelayRow,
   smartDelayService,
-} from "@chatbotx.io/business/smart-delay"
+} from "@inboxos.io/business/smart-delay"
 import {
   type SmartDelayType,
   smartDelayStatuses,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   buildJobId,
   ENQUEUE_DELAY_MS,
   type MetadataPayload,
   metadataSchema,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import {
   type FlowJobPriorityOptions,
   flowContinuationJobOptions,
   IntegrationJobAction,
   type IntegrationJobData,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 

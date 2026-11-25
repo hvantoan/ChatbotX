@@ -1,6 +1,6 @@
-import { googleAdsClickIdTypeSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { CLICK_ID_PATTERN } from "@chatbotx.io/utils/google-click"
+import { googleAdsClickIdTypeSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { CLICK_ID_PATTERN } from "@inboxos.io/utils/google-click"
 import { z } from "zod"
 
 /** A Google Ads customer id is exactly ten digits (dashes are display-only). */

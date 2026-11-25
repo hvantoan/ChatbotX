@@ -1,5 +1,5 @@
-import { webchatConnectConfigSchema } from "@chatbotx.io/business/integration-webchat/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { webchatConnectConfigSchema } from "@inboxos.io/business/integration-webchat/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const createWebchatRequest = webchatConnectConfigSchema

@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   resolveTenantSettings: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn(() =>
     Promise.resolve({
       findById: mocks.findById,
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendChannelMessage: "sendChannelMessage" },
   chatQueue: { add: mocks.chatQueueAdd },
 }))

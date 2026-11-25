@@ -1,4 +1,4 @@
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import type { ButtonType } from "../../steps/button"
 import { apiFlowPolicy } from "./api"
 import type { ChannelFlowPolicy, ChannelFlowPolicyMap } from "./define"

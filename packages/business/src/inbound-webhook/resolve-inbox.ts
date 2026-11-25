@@ -4,16 +4,16 @@ import {
   type InboundWebhookSkipReason,
   type IntegrationType,
   inboxStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   connectionRepository,
   integrationWhatsappRepository,
-} from "@chatbotx.io/database/repositories"
-import type { InboxModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { InboxModel } from "@inboxos.io/database/types"
 import {
   getInboxIdentifierStrategy,
   type InboxLookupStrategy,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import { inboxService } from "../inbox/service"
 
 type InboxLookupInput = {

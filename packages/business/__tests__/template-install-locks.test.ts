@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
 }))
 
 vi.mock(
-  "@chatbotx.io/database/repositories/template-installed-resource",
+  "@inboxos.io/database/repositories/template-installed-resource",
   () => ({ spreadCreatedAt: vi.fn() }),
 )
 vi.mock("../src/template/sync-hash", () => ({
@@ -22,7 +22,7 @@ vi.mock("../src/template/sync-hash", () => ({
 vi.mock("../src/coupon/service", () => ({
   couponService: { invalidate: vi.fn() },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (callback: (tx: unknown) => Promise<unknown>) =>
       callback({
@@ -33,11 +33,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: { raw: (text: string) => text },
 }))
 
-vi.mock("@chatbotx.io/database/statement-timeout", () => ({
+vi.mock("@inboxos.io/database/statement-timeout", () => ({
   setLocalStatementTimeout: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateInstallationRepository: {
     claim: mocks.claim,
     complete: mocks.complete,
@@ -48,13 +48,13 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   templateInstalledResourceModel: {},
 }))
 
-vi.mock("@chatbotx.io/events", () => ({ updateTriggerCache: vi.fn() }))
+vi.mock("@inboxos.io/events", () => ({ updateTriggerCache: vi.fn() }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { deleteObject: mocks.deleteObject },
 }))
 

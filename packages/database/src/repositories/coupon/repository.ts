@@ -13,7 +13,7 @@ import {
   ne,
   or,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CouponImportMeta,
   type CouponIssueStatus,
@@ -27,18 +27,18 @@ import {
   importFormats,
   importStatuses,
   importTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   couponModel,
   couponTopicModel,
   fileModel,
   importModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 export type CouponTopicListInput = {
   workspaceId: string

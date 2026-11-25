@@ -2,8 +2,8 @@ import {
   assertEnterpriseFeatures,
   workspaceService,
   workspaceSupportAccessService,
-} from "@chatbotx.io/business"
-import { listPlatformAuditLogs as listPlatformAuditLogsService } from "@chatbotx.io/business/audit"
+} from "@inboxos.io/business"
+import { listPlatformAuditLogs as listPlatformAuditLogsService } from "@inboxos.io/business/audit"
 import { parseAuditLogsDateRange } from "@/enterprise/features/audit-logs/schema/query"
 import type { PaginatedResponse } from "@/features/common/schema/pagination"
 import { assertPlatformSuperAdmin } from "@/lib/auth/assert-platform-super-admin"

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { RealtimeEventType } from "@chatbotx.io/realtime-protocol"
+import { RealtimeEventType } from "@inboxos.io/realtime-protocol"
 import { describe, expect, test } from "vitest"
 import { REALTIME_EVENT_SCHEMAS } from "../src/features/realtime/realtime-event-validation"
 

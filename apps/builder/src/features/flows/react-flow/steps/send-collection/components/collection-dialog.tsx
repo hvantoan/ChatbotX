@@ -3,36 +3,36 @@
 import type {
   CollectionType,
   SendCollectionStepSchema,
-} from "@chatbotx.io/flow-config"
-import { COLLECTION_MAX_PRODUCTS } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { COLLECTION_MAX_PRODUCTS } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
+} from "@inboxos.io/ui/components/ui/radio-group"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { MultiSelect } from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
+} from "@inboxos.io/ui/components/ui/select"
+import { MultiSelect } from "@inboxos.io/ui/components/ui/sersavan/multi-select"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useId, useState } from "react"
 import { useCollectionOptions } from "./use-collection-options"

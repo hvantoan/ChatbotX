@@ -1,4 +1,4 @@
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import {
   and,
   type DatabaseClient,

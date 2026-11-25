@@ -1,5 +1,5 @@
-import { contactExportService } from "@chatbotx.io/business"
-import { CONTACT_EXPORT_RETENTION_DAYS } from "@chatbotx.io/database/partials"
+import { contactExportService } from "@inboxos.io/business"
+import { CONTACT_EXPORT_RETENTION_DAYS } from "@inboxos.io/database/partials"
 import {
   possibleErrorsOnCreatingResource,
   possibleErrorsOnFindingResource,

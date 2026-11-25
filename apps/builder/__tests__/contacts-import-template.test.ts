@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { UTF8_BOM } from "@chatbotx.io/utils/csv"
+import { UTF8_BOM } from "@inboxos.io/utils/csv"
 import { describe, expect, test } from "vitest"
 import {
   buildContactsImportTemplateCsv,

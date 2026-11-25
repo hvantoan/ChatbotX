@@ -7,7 +7,7 @@ import {
   isNull,
   ne,
   or,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   integrationGoogleSheetsModel,
   integrationInstagramModel,
@@ -18,9 +18,9 @@ import {
   integrationTiktokModel,
   integrationWhatsappModel,
   integrationZaloModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { IntegrationModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 export type TokenRefreshErrorChannel =
@@ -243,7 +243,7 @@ class IntegrationService extends BaseService {
   /**
    * Boolean gate for whether a workspace has any integration whose type is
    * in `integrationTypes` (e.g. an AI provider). The caller supplies the
-   * type list — business does not depend on `@chatbotx.io/ai`.
+   * type list — business does not depend on `@inboxos.io/ai`.
    */
   async hasIntegrationOfTypes(props: {
     workspaceId: string

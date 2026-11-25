@@ -4,9 +4,9 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { isCoexistChannel } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/alert"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { isCoexistChannel } from "@inboxos.io/utils/channel"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

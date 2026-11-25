@@ -40,16 +40,16 @@ pnpm turbo run check-types           # every workspace
 
 - Use `pnpm add <pkg> --filter <workspace>` to add dependencies to specific workspace
 - Shared versions live in the `catalog:` block of `pnpm-workspace.yaml`; a `package.json` references them as `"<pkg>": "catalog:"`. Bump a shared dependency by editing that one line, never per-workspace. Move a dependency into the catalog once 3+ workspaces use it, or when it must stay in lockstep with one already there (`better-auth` + `@better-auth/*`, `drizzle-orm` + `drizzle-kit`, `react` + `react-dom` + types). `catalogMode: strict` makes `pnpm add` write `catalog:` for catalogued packages.
-- Workspace packages use `@chatbotx.io/*` scope
-- Cross-workspace imports must go through a package's `exports` map: `@chatbotx.io/database/client`, `@chatbotx.io/ui/components/ui/button` (the UI package exports `./components/*`, `./lib/*`, `./hooks/*`, … — there is no bare `@chatbotx.io/ui/button`).
+- Workspace packages use `@inboxos.io/*` scope
+- Cross-workspace imports must go through a package's `exports` map: `@inboxos.io/database/client`, `@inboxos.io/ui/components/ui/button` (the UI package exports `./components/*`, `./lib/*`, `./hooks/*`, … — there is no bare `@inboxos.io/ui/button`).
 - Package exports are defined in each `package.json` `exports` field
 
 ### Adding a New Workspace Package
 
 When creating a new package (e.g. `integrations/<channel>/`):
 
-1. Create `package.json` with `"name": "@chatbotx.io/<name>"`
-2. Add `"@chatbotx.io/<name>": "workspace:*"` to consumer `package.json` dependencies
+1. Create `package.json` with `"name": "@inboxos.io/<name>"`
+2. Add `"@inboxos.io/<name>": "workspace:*"` to consumer `package.json` dependencies
 3. Run `CI=true pnpm install --no-frozen-lockfile` to link the package
    - **MUST** use `CI=true` to avoid TTY confirmation prompt in non-interactive shells
    - Without this step, imports of the new package will fail with `Cannot find module`

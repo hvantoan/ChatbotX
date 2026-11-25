@@ -2,11 +2,11 @@ import {
   instagramIntegrationService,
   messengerIntegrationService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { generateCapiAuthUrl as generateInstagramCapiAuthUrl } from "@chatbotx.io/integration-instagram-facebook"
-import { generateCapiAuthUrl as generateMessengerCapiAuthUrl } from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { generateCapiAuthUrl as generateInstagramCapiAuthUrl } from "@inboxos.io/integration-instagram-facebook"
+import { generateCapiAuthUrl as generateMessengerCapiAuthUrl } from "@inboxos.io/integration-messenger"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
@@ -84,10 +84,10 @@ export async function startMetaCapiOAuth(input: {
     workspaceId: workspace.id,
   })
   if (!integration) {
-    throw new ChatbotXException(t(strategy.notFoundMessage))
+    throw new InboxOSException(t(strategy.notFoundMessage))
   }
   if (!integration.supported) {
-    throw new ChatbotXException(t("instagramRequiresFacebook"))
+    throw new InboxOSException(t("instagramRequiresFacebook"))
   }
 
   const credential = await platformCredentialService.resolveForOwner({
@@ -95,7 +95,7 @@ export async function startMetaCapiOAuth(input: {
     type: strategy.credentialType,
   })
   if (!credential) {
-    throw new ChatbotXException(t("appNotConfigured"))
+    throw new InboxOSException(t("appNotConfigured"))
   }
 
   const redirectUrl = await buildProviderCallbackUrl(

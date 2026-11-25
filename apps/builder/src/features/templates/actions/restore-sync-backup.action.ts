@@ -1,7 +1,7 @@
 "use server"
 
-import { templateSyncRestoreService } from "@chatbotx.io/business/template-sync/restore"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { templateSyncRestoreService } from "@inboxos.io/business/template-sync/restore"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { installerActionClient } from "./installer-action-client"
 

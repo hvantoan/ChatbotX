@@ -1,6 +1,6 @@
-import { db } from "@chatbotx.io/database/client"
-import { integrationTypes } from "@chatbotx.io/database/partials"
-import type { IntegrationModel } from "@chatbotx.io/database/types"
+import { db } from "@inboxos.io/database/client"
+import { integrationTypes } from "@inboxos.io/database/partials"
+import type { IntegrationModel } from "@inboxos.io/database/types"
 import { type AIProvider, aiProviders } from "./schemas"
 
 export async function getAllWorkspaceAIIntegrations(

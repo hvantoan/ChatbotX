@@ -3,7 +3,7 @@ import {
   CONTACT_ACTIVITY_TRACKED_FIELDS,
   type ContactActivityFilterField,
   NO_TOPIC_FIXED_VALUE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { getFieldConfigs } from "@/features/contact-filter/components/contact-filter-config"
 import { staticFieldRules } from "@/features/contact-filter/components/static-field-filter-config"

@@ -97,7 +97,7 @@ const {
   mockConnectionTransition: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mockAuditRecord },
   withAuditContext: mockWithAuditContext,
 }))
@@ -106,7 +106,7 @@ vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
   assertWorkspaceSuperAdmin: mockAssertSuperAdmin,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateInstallIntentService: { clear: vi.fn(async () => undefined) },
   messengerIntegrationService: {
     findByIdForWorkspace: mockFindMessengerIntegration,
@@ -138,15 +138,15 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: vi.fn((fn: (tx: unknown) => unknown) => fn({})) },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mockFindConnectionByProviderSourceId,
     insert: mockConnectionInsert,
@@ -154,14 +154,14 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByNonce: vi.fn(),
     fail: vi.fn(),
   },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     completeAuthorization: vi.fn(),
     connectTargets: vi.fn(),
@@ -228,37 +228,37 @@ vi.mock("@chatbotx.io/connections", () => ({
   CONNECTION_REGISTRY: {},
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationGoogleSheetsModel: {},
   integrationModel: {},
   ROOT_TENANT_ID: "1",
 }))
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   exchangeCodeForToken: mockExchangeFacebookAdsCode,
   exchangeLongLivedToken: mockExchangeFacebookAdsLongLivedToken,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   exchangeCodeForToken: mockExchangeInstagramCode,
   getInstagramAccount: mockGetInstagramAccount,
   subscribePageToInstagramWebhook: mockSubscribeInstagramWebhook,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   exchangeCodeForToken: mockExchangeInstagramFacebookCode,
   getFacebookUser: mockGetInstagramFacebookUser,
   getUserInstagramAccounts: mockGetUserInstagramAccounts,
   subscribePageToInstagramWebhook: mockSubscribeInstagramFacebookWebhook,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   exchangeCodeForToken: mockExchangeMessengerCode,
   getFacebookUser: mockGetMessengerFacebookUser,
   getUserPages: mockGetUserPages,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   exchangeLongLivedToken: mockExchangeMessengerLongLivedToken,
   subscribePageToAppWebhook: mockSubscribePageToAppWebhook,
 }))
@@ -266,8 +266,8 @@ vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
 // Spread the real module: the Threads integration reaches this test through
 // the reconnect route's import graph and needs `Integration` (and any other
 // transitive export) to survive the mock.
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     AuthType: { ...actual.AuthType, oauth2: "oauth2", custom: "custom" },
@@ -275,8 +275,8 @@ vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     getPublicUrlFromRequest: (request: { url: string }) => request.url,

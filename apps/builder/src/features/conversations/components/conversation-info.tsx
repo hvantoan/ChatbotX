@@ -1,8 +1,8 @@
 "use client"
 
-import { buildPostLink } from "@chatbotx.io/business/utils"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+import { buildPostLink } from "@inboxos.io/business/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import Image from "next/image"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"

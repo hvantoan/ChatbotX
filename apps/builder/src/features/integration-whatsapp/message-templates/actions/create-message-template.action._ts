@@ -1,10 +1,10 @@
 "use server"
 
-import { uploader } from "@chatbotx.io/filesystem"
+import { uploader } from "@inboxos.io/filesystem"
 import type {
   CreateMessageTemplateProps,
   WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/integration-whatsapp"
 import slugify from "@sindresorhus/slugify"
 import {
   type WorkspaceIdRequestParams,

@@ -7,16 +7,16 @@ import {
   type InboundWebhookInboxResolution,
   type InboundWebhookStructuralIssueCode,
   listInboundWebhookStructuralIssues,
-} from "@chatbotx.io/database/partials"
-import type { InboundWebhookModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { InboundWebhookModel } from "@inboxos.io/database/types"
 import {
   CONTACT_LOOKUP_ORDER,
   type ContactIdentityKind,
   INBOUND_WEBHOOK_CHANNEL_SPECS,
   type InboxIdentifierKind,
   inboxIdentifierKinds,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
-import { canonicalizeJsonPath } from "@chatbotx.io/utils/json-path"
+} from "@inboxos.io/utils/inbound-webhook-channel"
+import { canonicalizeJsonPath } from "@inboxos.io/utils/json-path"
 import type { z } from "zod"
 import {
   type InboundWebhookConfigRequest,

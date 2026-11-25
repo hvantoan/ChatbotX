@@ -1,6 +1,6 @@
 "use client"
 
-import type { CallPhoneNumberStepSchema } from "@chatbotx.io/flow-config"
+import type { CallPhoneNumberStepSchema } from "@inboxos.io/flow-config"
 import { PhoneCallIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { BaseStepViewer } from "../base/viewer"

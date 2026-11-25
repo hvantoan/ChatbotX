@@ -3,7 +3,7 @@
 import {
   mergePipelineSettings,
   pipelineSettingsSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { toItemListQuery } from "../src/features/pipelines/lib/list-items-query"
 import { toPublicPipeline } from "../src/features/pipelines/lib/map-public"

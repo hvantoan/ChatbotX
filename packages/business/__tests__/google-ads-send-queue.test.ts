@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   getJob: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendGoogleAdsConversion: "sendGoogleAdsConversion" },
   enqueueIntegrationJob: mocks.enqueueIntegrationJob,
   integrationQueue: { getJob: mocks.getJob },

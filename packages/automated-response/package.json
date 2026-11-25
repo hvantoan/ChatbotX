@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/automated-response",
+  "name": "@inboxos.io/automated-response",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,22 +8,22 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@chatbotx.io/analytics": "workspace:*",
-    "@chatbotx.io/business": "workspace:*",
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/events": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/redis": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
-    "@chatbotx.io/variables": "workspace:*",
-    "@chatbotx.io/worker-config": "workspace:*",
+    "@inboxos.io/analytics": "workspace:*",
+    "@inboxos.io/business": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/events": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
+    "@inboxos.io/variables": "workspace:*",
+    "@inboxos.io/worker-config": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "universal-error-normalizer": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

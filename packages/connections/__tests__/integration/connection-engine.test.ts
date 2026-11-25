@@ -3,7 +3,7 @@
 /**
  * Phase 0 (plan: "Rà soát Connection (v1.11.0 → origin/main) + chuyển lưu
  * trữ sang bảng `Connection`"): real-Postgres coverage for every edge of
- * the `Connection` state machine (`@chatbotx.io/business/connection`'s
+ * the `Connection` state machine (`@inboxos.io/business/connection`'s
  * `state.ts`) driven through the actual engine entry points
  * (`upsertConnectionRow`, `connectionStateService.transition`,
  * `lifecycle.disconnect`) — not a mocked `connectionRepository`.
@@ -29,18 +29,18 @@
  * suites above plus `state.test.ts`'s pure FSM unit tests.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/connections test:db`.
+ * `pnpm --filter @inboxos.io/connections test:db`.
  */
 
-import { inboxService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { inboxService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import {
   connectionStateService,
   toChannelType,
   upsertConnectionRow,
-} from "@chatbotx.io/business/connection"
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { db, eq } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business/connection"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   connectionModel,
   inboxModel,
@@ -49,15 +49,15 @@ import {
   userQuotaModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
+} from "@inboxos.io/database/schema"
+import type { ConnectionModel } from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
 import {
   AuthType,
   type AuthValue,
   type SecretTextAuthValue,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { describe, expect, test, vi } from "vitest"
 import { connectTargets } from "../../src/connect-targets"
 import { disconnect } from "../../src/lifecycle"

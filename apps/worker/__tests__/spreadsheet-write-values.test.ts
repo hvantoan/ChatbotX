@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   findManyByIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: {
     listValues: mocks.listValues,
   },
@@ -16,7 +16,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: mocks.getAll,
     replaceAll: mocks.replaceAll,

@@ -5,8 +5,8 @@ const mocks = vi.hoisted(() => ({
   findByIdOrFail: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: { marker: "db" } }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: { marker: "db" } }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactReferralEventRepository: {
     listAdTouchesByContact: mocks.listAdTouchesByContact,
   },

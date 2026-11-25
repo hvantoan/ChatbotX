@@ -3,7 +3,7 @@
 import {
   type PipelineStepAction,
   pipelineActionDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { useFormContext } from "react-hook-form"
 import { PipelineActionSelectors } from "@/features/flows/react-flow/steps/pipeline/action-selectors"
 

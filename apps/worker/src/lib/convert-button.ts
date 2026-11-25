@@ -1,6 +1,6 @@
-import { buildInboxLink } from "@chatbotx.io/business/utils"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
-import type { PageElementSchema } from "@chatbotx.io/flow-config"
+import { buildInboxLink } from "@inboxos.io/business/utils"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
+import type { PageElementSchema } from "@inboxos.io/flow-config"
 
 type ConvertButtonParams = {
   appUrl: string

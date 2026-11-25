@@ -7,9 +7,9 @@ const mocks = vi.hoisted(() => ({
   markUnhealthyByIdentifier: vi.fn(async () => null),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<
-    typeof import("@chatbotx.io/database/repositories")
+    typeof import("@inboxos.io/database/repositories")
   >()),
   integrationWhatsappRepository: {
     markTokenRefreshError: mocks.markTokenRefreshError,

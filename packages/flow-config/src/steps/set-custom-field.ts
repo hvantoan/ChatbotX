@@ -1,13 +1,13 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
 import {
   FIELD_OPERATION_DEFINITIONS,
   FieldOperationType,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { z } from "zod"
 import { zodFieldReference } from "../field-reference"
 import { stepTypes } from "./step-action"
 
-export { FieldOperationType } from "@chatbotx.io/utils/custom-field-operation"
+export { FieldOperationType } from "@inboxos.io/utils/custom-field-operation"
 
 /** Operations whose stored flows and triggers may carry a blank operand. */
 const BLANK_OPERAND_LEGACY_OPERATIONS: readonly FieldOperationType[] = [

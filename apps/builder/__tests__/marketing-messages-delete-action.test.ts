@@ -12,7 +12,7 @@ const deleteMessageCampaign = vi.fn(() => {
   return Promise.resolve()
 })
 
-class ChatbotXException extends Error {
+class InboxOSException extends Error {
   code: string
   constructor(message: string, code = "systemError") {
     super(message)
@@ -24,12 +24,12 @@ class FacebookAdsException extends Error {
   subCode?: number
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessagesService: { find, remove },
   facebookMarketingMessageDeliveryService: { resolveGrantToken },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({ ChatbotXException }))
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({ InboxOSException }))
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   deleteMessageCampaign,
   FacebookAdsException,
 }))
@@ -76,7 +76,7 @@ describe("deleteMarketingMessages", () => {
       workspace,
       ids: ["1"],
     }).catch((e: unknown) => e)
-    expect(error).toBeInstanceOf(ChatbotXException)
+    expect(error).toBeInstanceOf(InboxOSException)
     expect(error).toMatchObject({
       code: "mmMetaDeleteFailed",
       message: "facebookMarketingMessages.errors.metaDeleteFailed",

@@ -1,13 +1,14 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   resolveSendViewCatalogLengthLimits,
   type SendViewCatalogDetailsFormInput,
   type SendViewCatalogDetailsFormValues,
   type SendViewCatalogLengthLimits,
   sendViewCatalogDetailsFormSchema,
-} from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -16,8 +17,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { StoreIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { memo, useState } from "react"

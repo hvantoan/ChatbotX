@@ -31,7 +31,7 @@ vi.mock(
 )
 vi.mock("@/components/app-breadcrumb", () => ({ AppBreadcrumb: () => null }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { default: AnalyticsPage } = await import(
   "../src/app/space/[workspaceId]/inbound-webhooks/[id]/analytics/page"
 )
@@ -78,7 +78,7 @@ describe("inbound webhook analytics page", () => {
 
   test("a missing or foreign webhook is a 404", async () => {
     mocks.findWebhook.mockRejectedValue(
-      new ChatbotXException("Inbound webhook not found", "notFound", 404),
+      new InboxOSException("Inbound webhook not found", "notFound", 404),
     )
 
     await expect(render({ workspaceId: "1", id: "5" })).rejects.toThrow(

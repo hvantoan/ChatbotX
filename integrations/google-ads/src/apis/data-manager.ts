@@ -2,7 +2,7 @@ import {
   customerIdSchema,
   googleAdsCustomerTypes,
   googleAdsCustomerValueBuckets,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { GOOGLE_ADS_ACCOUNT_TYPE, GOOGLE_ADS_EVENT_SOURCE } from "../constants"
 import { GoogleAdsException, rescueGoogleAds } from "../exception"
 import { bearerHeaders, dataManagerHttp } from "../lib/http-client"

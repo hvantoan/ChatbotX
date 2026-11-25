@@ -3,7 +3,7 @@
 import type {
   BroadcastSubaction,
   ChannelType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { useFormatter, useTranslations } from "next-intl"
 import { memo, useCallback } from "react"
 import {

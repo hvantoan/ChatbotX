@@ -1,13 +1,13 @@
-import { inboxService, resolveTenantSettings } from "@chatbotx.io/business"
+import { inboxService, resolveTenantSettings } from "@inboxos.io/business"
 import {
   buildInboxLink,
   buildInboxProfileLink,
   canReceiveRef,
   isLinkableChannel,
   isProfileLinkChannel,
-} from "@chatbotx.io/business/utils"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 
 export type ReflinkChannelLink = {
   inboxId: string

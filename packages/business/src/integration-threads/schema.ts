@@ -1,8 +1,8 @@
 import {
   createSelectSchema,
   integrationThreadsModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type { z } from "zod"
 
 // `auth` holds the OAuth tokens, so only the display fields leave the server.

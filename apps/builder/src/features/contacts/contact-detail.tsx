@@ -5,35 +5,35 @@ import {
   contactTimezoneOptions,
   normalizeStoredTimezone,
   offsetFromStoredTimezone,
-} from "@chatbotx.io/business/contact-locale"
+} from "@inboxos.io/business/contact-locale"
 import type {
   ChannelType,
   CustomFieldType,
   FillableContactKey,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   channelTypes,
   customFieldTypes,
   fillableContactKeys,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { CALL_CAPABLE_CHANNELS } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { CALL_CAPABLE_CHANNELS } from "@inboxos.io/utils/channel"
 import {
   formatCustomFieldValueInTimeZone,
   isTemporalCustomFieldType,
   resolveTemporalCustomFieldFormValue,
-} from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/utils/datetime"
 import {
   AtSignIcon,
   ClockIcon,

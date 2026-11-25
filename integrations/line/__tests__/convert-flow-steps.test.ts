@@ -5,11 +5,8 @@ import {
   encodeButtonPayload,
   type SendCardStepSchema,
   type SendCarouselStepSchema,
-} from "@chatbotx.io/flow-config"
-import type {
-  MessageButtonTemplate,
-  OutgoingAttachment,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageButtonTemplate, OutgoingAttachment } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { LINE_NOOP_POSTBACK_DATA } from "../src/handlers/message/incoming-message"
 import { toLineAction } from "../src/handlers/message/outgoing-message/actions"

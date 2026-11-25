@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { PollForm } from "@/features/polls/components/poll-form"
 import { findPoll } from "@/features/polls/queries"

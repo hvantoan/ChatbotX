@@ -2,16 +2,16 @@ import {
   flowService,
   flowVersionService,
   messengerWelcomeMessageFlowService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import { importService } from "@chatbotx.io/business/import"
-import { stepTypes } from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business/errors"
+import { importService } from "@inboxos.io/business/import"
+import { stepTypes } from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { z } from "zod"
 import { flowVersionResource } from "@/features/flow-versions/schema/resource"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
@@ -57,19 +57,19 @@ const exportFailure = (
     return notFoundException("Flow not found")
   }
   if (reason === "viewOnly") {
-    return new ChatbotXException(
+    return new InboxOSException(
       "This flow was installed from a view-only template and can not be exported",
       "templateAllowEditViolation",
       403,
     )
   }
   return reason === "noDraft"
-    ? new ChatbotXException(
+    ? new InboxOSException(
         "The flow has no draft to export",
         "flowNoDraft",
         409,
       )
-    : new ChatbotXException(
+    : new InboxOSException(
         "The flow has no published version to export",
         "flowNotPublished",
         409,

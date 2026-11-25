@@ -12,16 +12,16 @@ import {
   isTargetsFlowSendWithoutFlow,
   isTargetsTemplateSendWithoutTemplate,
   isTemplateSendWithoutPage,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   messengerTemplateParamsSchema,
   validateWaTemplateSendParams,
   type WaTemplateParams,
   waTemplateParamsSchema,
-} from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { isRealCalendarDate } from "@chatbotx.io/utils/datetime"
-import { recurrenceRuleSchema } from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { isRealCalendarDate } from "@inboxos.io/utils/datetime"
+import { recurrenceRuleSchema } from "@inboxos.io/utils/recurrence"
 import { startOfMinute } from "date-fns"
 import { z } from "zod"
 import { contactFilterRequest } from "@/features/contact-filter/schema"

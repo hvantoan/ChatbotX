@@ -1,5 +1,5 @@
-import { templateInstallationRepository } from "@chatbotx.io/database/repositories"
-import { enqueueInstallTemplate } from "@chatbotx.io/worker-config"
+import { templateInstallationRepository } from "@inboxos.io/database/repositories"
+import { enqueueInstallTemplate } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 
 /**

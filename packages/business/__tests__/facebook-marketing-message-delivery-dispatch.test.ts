@@ -17,13 +17,13 @@ const recipientRepo = {
   claimForSend: vi.fn(),
   failStaleUnconfirmed: vi.fn(),
 }
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessageRepository: campaignRepo,
   facebookMarketingMessageRecipientRepository: recipientRepo,
   facebookMarketingMessageAudienceRepository: { findForWorkspace: vi.fn() },
 }))
 const tx = { tx: true }
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (fn: (t: typeof tx) => unknown) => fn(tx) },
 }))
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
@@ -45,7 +45,7 @@ vi.mock("../src/facebook-marketing-message-delivery/usage", () => ({
   recordMarketingMessageUsage: usage,
 }))
 const setIfAbsent = vi.fn()
-vi.mock("@chatbotx.io/redis", () => ({ casStore: { setIfAbsent } }))
+vi.mock("@inboxos.io/redis", () => ({ casStore: { setIfAbsent } }))
 
 const ads = {
   getMessageCampaignSchedule: vi.fn(),
@@ -54,10 +54,10 @@ const ads = {
   getMessageDeliveryEstimate: vi.fn(),
   sendMarketingMessage: vi.fn(),
 }
-vi.mock("@chatbotx.io/integration-facebook-ads", async () => {
+vi.mock("@inboxos.io/integration-facebook-ads", async () => {
   const real = await vi.importActual<
-    typeof import("@chatbotx.io/integration-facebook-ads")
-  >("@chatbotx.io/integration-facebook-ads")
+    typeof import("@inboxos.io/integration-facebook-ads")
+  >("@inboxos.io/integration-facebook-ads")
   return {
     ...ads,
     classifyMarketingMessageError: real.classifyMarketingMessageError,

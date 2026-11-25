@@ -1,5 +1,5 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { externalRequestStepDefaultFn } from "@chatbotx.io/flow-config"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { externalRequestStepDefaultFn } from "@inboxos.io/flow-config"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   setValues: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   externalRequestService: {
     execute: mocks.execute,
     executeAndMap: mocks.executeAndMap,
@@ -23,7 +23,7 @@ vi.mock("../src/integration/handlers/flow-utils", () => ({
   logStepProviderError: mocks.logStepProviderError,
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: vi.fn(
     async (_contactId: string, value: unknown, _source: unknown) => value,
   ),
@@ -53,11 +53,11 @@ vi.mock("@chatbotx.io/variables", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCustomFieldChanged: vi.fn(),
 }))
 
@@ -65,7 +65,7 @@ const { externalRequest } = await import(
   "../src/integration/handlers/tool-handler"
 )
 const { contactVariableService, resolveContactVariablesDeep } = await import(
-  "@chatbotx.io/variables"
+  "@inboxos.io/variables"
 )
 
 const createProps = () =>
@@ -165,7 +165,7 @@ describe("externalRequest step handler", () => {
   })
 
   test("logs an SSRF rejection without an endpoint HTTP status", async () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "This URL is not allowed for external requests",
       "ssrfBlocked",
       400,
@@ -221,7 +221,7 @@ describe("externalRequest step handler", () => {
   test("substitutes a system field that resolves to an empty string in the JSON body", async () => {
     // `{{empty}}` always resolves to "". A blank value must replace the
     // placeholder; leaving it makes the request send the literal `{{empty}}`.
-    const { getSystemFieldValue } = await import("@chatbotx.io/variables")
+    const { getSystemFieldValue } = await import("@inboxos.io/variables")
     vi.mocked(getSystemFieldValue).mockResolvedValueOnce("")
     mocks.executeAndMap.mockResolvedValue({
       statusCode: 200,

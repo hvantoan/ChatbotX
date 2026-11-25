@@ -1,10 +1,10 @@
-import type { SmartDelayStepCountRow } from "@chatbotx.io/business/smart-delay"
-import type { SmartDelayStatus } from "@chatbotx.io/database/partials"
+import type { SmartDelayStepCountRow } from "@inboxos.io/business/smart-delay"
+import type { SmartDelayStatus } from "@inboxos.io/database/partials"
 import {
   type FlowNode,
   type NodeType,
   nodeTypeSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 export type SmartDelayNodeStats = {
   waiting: number

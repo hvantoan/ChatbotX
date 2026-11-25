@@ -1,7 +1,7 @@
 import { createHmac } from "node:crypto"
-import { db } from "@chatbotx.io/database/client"
-import { integration as instagramIntegration } from "@chatbotx.io/integration-instagram"
-import type { IntegrationJobReceiveMessage } from "@chatbotx.io/worker-config"
+import { db } from "@inboxos.io/database/client"
+import { integration as instagramIntegration } from "@inboxos.io/integration-instagram"
+import type { IntegrationJobReceiveMessage } from "@inboxos.io/worker-config"
 import { afterAll, beforeAll, describe, expect, test } from "vitest"
 import {
   assertThrowawayDatabase,

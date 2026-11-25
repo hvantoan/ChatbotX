@@ -1,4 +1,4 @@
-import { db, eq, isNotNull } from "@chatbotx.io/database/client"
+import { db, eq, isNotNull } from "@inboxos.io/database/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 const tenantService = { findByOwner: vi.fn() }
@@ -7,7 +7,7 @@ vi.mock("../src/enterprise/tenant/service", () => ({ tenantService }))
 const userQuotaService = { getForUser: vi.fn() }
 vi.mock("../src/user-quota/service", () => ({ userQuotaService }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   asc: vi.fn((value) => value),
   db: {},
   and: vi.fn(),
@@ -15,7 +15,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isNotNull: vi.fn(),
   sql: vi.fn((_strings: TemplateStringsArray, ...values: unknown[]) => values),
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   credentialEncryptedSchema: { parse: vi.fn((value) => value) },
   credentialPublicSchemas: {
     messenger: {
@@ -36,7 +36,7 @@ vi.mock("@chatbotx.io/database/partials", () => ({
   }) =>
     userId === null ? `platform:${type}:false` : `user:${userId}:${type}:false`,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   platformCredentialModel: {
     id: "id",
     publicConfig: "publicConfig",
@@ -45,10 +45,10 @@ vi.mock("@chatbotx.io/database/schema", () => ({
     userId: "userId",
   },
 }))
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptUtils: { decryptObject: vi.fn(), encryptObject: vi.fn() },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(async () => undefined),
   withCache: vi.fn(async (_key: string, fn: () => unknown) => fn()),
 }))
@@ -57,7 +57,7 @@ vi.mock("../src/logger", () => ({ logger: { error: vi.fn(), warn: vi.fn() } }))
 const { platformCredentialService } = await import(
   "../src/platform-credential/service"
 )
-const { encryptUtils } = await import("@chatbotx.io/encryption")
+const { encryptUtils } = await import("@inboxos.io/encryption")
 
 const OWN = { id: "own", type: "messenger", publicConfig: { clientId: "own" } }
 const PLATFORM = {

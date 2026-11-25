@@ -10,7 +10,7 @@ const loggerInfo = vi.fn()
 const loggerDebug = vi.fn()
 const loggerError = vi.fn()
 const loggerWarn = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { findActiveByDomain: vi.fn() },
   platformCredentialService: {
     findDecryptedThreadsByClientId: threadsFindDecryptedByClientId,
@@ -21,24 +21,24 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceMemberService: { findOwnerUserIdByWorkspaceId },
 }))
 
-vi.mock("@chatbotx.io/channel-registry/registry", () => ({
+vi.mock("@inboxos.io/channel-registry/registry", () => ({
   integrationService: { identifyInboxAndIntegrationAuthFromIdentifier },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { update: vi.fn() },
   eq: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   inboxStatuses: { enum: { disconnected: "disconnected" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   inboxModel: {},
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     providerAccountEvent: "providerAccountEvent",
     messageStatus: "messageStatus",

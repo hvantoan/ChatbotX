@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { isValidElement } from "react"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -181,7 +181,7 @@ describe("MessengerSelectPage", () => {
 
   test("redirects to channel creation with the mapped error code when resolveConnectSessionForSelect throws a known session exception (regression: an expired/invalid session previously 500'd this page instead of redirecting)", async () => {
     mockResolveConnectSessionForSelect.mockRejectedValue(
-      new ChatbotXException("expired", "connectSessionExpired"),
+      new InboxOSException("expired", "connectSessionExpired"),
     )
 
     await expect(MessengerSelectPage(pageArgs)).rejects.toThrow(
@@ -190,7 +190,7 @@ describe("MessengerSelectPage", () => {
   })
 
   test("keeps the workspace the connect started in, so a retry never tries to create a new workspace", async () => {
-    const error = new ChatbotXException("expired", "connectSessionExpired")
+    const error = new InboxOSException("expired", "connectSessionExpired")
     error.data = { workspaceId: "ws-9", failureCode: "no_candidates" }
     mockResolveConnectSessionForSelect.mockRejectedValue(error)
 
@@ -206,7 +206,7 @@ describe("MessengerSelectPage", () => {
   })
 
   test("never redirects back to the session's stored returnUrl when the user cancelled the OAuth dialog — falls back to the request's referer instead (regression: the stored returnUrl is always this select page's own URL, set by start-channel-connect.ts so a SUCCESSFUL connect's callback knows where to send the user; following it on cancellation instead bounced the request right back into this same cancelled-session check, an infinite redirect loop on the ordinary 'user clicked Cancel' path)", async () => {
-    const cancelled = new ChatbotXException(
+    const cancelled = new InboxOSException(
       "cancelled",
       "connectSessionCancelled",
     )
@@ -226,7 +226,7 @@ describe("MessengerSelectPage", () => {
 
   test("falls back to the request's (sanitized) referer when a cancelled session has no stored returnUrl", async () => {
     mockResolveConnectSessionForSelect.mockRejectedValue(
-      new ChatbotXException("cancelled", "connectSessionCancelled"),
+      new InboxOSException("cancelled", "connectSessionCancelled"),
     )
     const referer = "https://app.test/channels/create?workspaceId=ws-1"
     mockHeaders.mockResolvedValue(new Headers({ referer }))
@@ -240,7 +240,7 @@ describe("MessengerSelectPage", () => {
 
   test("falls back to channel creation when a cancelled session has no stored returnUrl and the request carries no referer", async () => {
     mockResolveConnectSessionForSelect.mockRejectedValue(
-      new ChatbotXException("cancelled", "connectSessionCancelled"),
+      new InboxOSException("cancelled", "connectSessionCancelled"),
     )
     mockHeaders.mockResolvedValue(new Headers())
 

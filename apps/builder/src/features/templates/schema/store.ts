@@ -1,4 +1,4 @@
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 const STORE_KEYWORD_MAX_LENGTH = 100

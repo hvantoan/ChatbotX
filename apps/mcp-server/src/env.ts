@@ -1,8 +1,9 @@
 import { createEnv } from "@t3-oss/env-core"
 import { z } from "zod"
+import { applyLegacyEnvAliases } from "./env-alias"
 
 const defaultMcpInstructions = [
-  "Use tools for ChatbotX workspace data and actions; users do not need API names.",
+  "Use tools for InboxOS workspace data and actions; users do not need API names.",
   "Call a suitable listed tool directly. Search hidden or unlisted capabilities with search_tools using one action plus one resource in English or supported Vietnamese, Spanish, French, or Chinese; inspect the returned inputSchema before call_tool.",
   "Split workflows into goals. Resolve names through filtered lists, pagination, and counts; use a user-provided stable ID, email, or phone when the schema accepts it. Ask for an observed disambiguator when names match more than once; do not select the first row or fabricate an empty result.",
   "For each requested create, modify, send, schedule, publish, or book action, wait for the result. A plan, schema lookup, validation, or natural-language answer is not completion.",
@@ -16,35 +17,32 @@ const defaultMcpInstructions = [
   "Answer in the user's language. Distinguish created, queued, accepted, and delivered; state actions not performed.",
 ].join(" ")
 
+// Copy CHATBOTX_* onto INBOXOS_* before the schema reads process.env.
+applyLegacyEnvAliases()
+
 export const env = createEnv({
   server: {
-    CHATBOTX_API_KEY: z.string().trim().default(""),
-    CHATBOTX_API_URL: z.url().default("https://app.chatbotx.io/api"),
-    CHATBOTX_ALLOW_SELF_SIGNED_CERT: z.enum(["true", "false"]).optional(),
-    CHATBOTX_MCP_TRANSPORT: z.enum(["stdio", "sse", "both"]).default("both"),
-    CHATBOTX_MCP_HOST: z.string().default("0.0.0.0"),
-    CHATBOTX_MCP_PORT: z.coerce.number().int().positive().default(3333),
-    CHATBOTX_MCP_SSE_PATH: z.string().default("/sse"),
-    CHATBOTX_MCP_MESSAGES_PATH: z.string().default("/messages"),
-    CHATBOTX_MCP_CORS_ORIGIN: z.string().default("*"),
-    CHATBOTX_MCP_OAUTH_ENABLED: z.enum(["true", "false"]).default("true"),
-    CHATBOTX_MCP_OAUTH_ISSUER: z.url().optional(),
-    CHATBOTX_MCP_PUBLIC_URL: z.url().optional(),
-    CHATBOTX_MCP_SERVER_NAME: z.string().optional(),
-    CHATBOTX_MCP_SERVER_INSTRUCTIONS: z
-      .string()
-      .default(defaultMcpInstructions),
+    INBOXOS_API_KEY: z.string().trim().default(""),
+    INBOXOS_API_URL: z.url().default("https://app.chatbotx.io/api"),
+    INBOXOS_ALLOW_SELF_SIGNED_CERT: z.enum(["true", "false"]).optional(),
+    INBOXOS_MCP_TRANSPORT: z.enum(["stdio", "sse", "both"]).default("both"),
+    INBOXOS_MCP_HOST: z.string().default("0.0.0.0"),
+    INBOXOS_MCP_PORT: z.coerce.number().int().positive().default(3333),
+    INBOXOS_MCP_SSE_PATH: z.string().default("/sse"),
+    INBOXOS_MCP_MESSAGES_PATH: z.string().default("/messages"),
+    INBOXOS_MCP_CORS_ORIGIN: z.string().default("*"),
+    INBOXOS_MCP_OAUTH_ENABLED: z.enum(["true", "false"]).default("true"),
+    INBOXOS_MCP_OAUTH_ISSUER: z.url().optional(),
+    INBOXOS_MCP_PUBLIC_URL: z.url().optional(),
+    INBOXOS_MCP_SERVER_NAME: z.string().optional(),
+    INBOXOS_MCP_SERVER_INSTRUCTIONS: z.string().default(defaultMcpInstructions),
     // How long the fetched OpenAPI spec (and the tool list derived from it) is
     // trusted before the next `tools/list` call triggers a background
     // re-fetch. Previously loaded once at process boot and never refreshed —
     // a new/changed public endpoint never appeared without restarting the
     // server.
-    CHATBOTX_SPEC_TTL_MS: z.coerce.number().int().positive().default(300_000),
-    CHATBOTX_HTTP_TIMEOUT_MS: z.coerce
-      .number()
-      .int()
-      .positive()
-      .default(30_000),
+    INBOXOS_SPEC_TTL_MS: z.coerce.number().int().positive().default(300_000),
+    INBOXOS_HTTP_TIMEOUT_MS: z.coerce.number().int().positive().default(30_000),
   },
   runtimeEnv: process.env,
 })

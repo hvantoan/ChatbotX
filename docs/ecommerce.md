@@ -1,6 +1,6 @@
 # Ecommerce: orders, vendors and store settings
 
-The store side of ChatbotX after the catalog: orders, the vendors products are
+The store side of InboxOS after the catalog: orders, the vendors products are
 sold by, and the per-workspace store settings. Products, categories, Meta
 Catalog sync and product messages are covered in
 [`product-messages.md`](./product-messages.md). A store can instead mirror a
@@ -36,7 +36,7 @@ through the same resolution.
 
 - Amounts are in major units (`12.5` USD), the unit `Product.price`, WhatsApp
   carts and Meta Catalog already use.
-- Every calculation goes through `@chatbotx.io/utils/money`
+- Every calculation goes through `@inboxos.io/utils/money`
   (`computeLinePrice`, `percentOf`, `sumMoney`, `roundMoney`). Each part of a
   line is rounded once to the currency's own decimals (0 for VND/JPY, 3 for
   KWD), so totals are plain sums of rounded lines.
@@ -126,7 +126,7 @@ The store takes card payments through Stripe and PayPal payments, with its
 **own** accounts: the money goes straight to the store. Connected in
 **Settings → Integrations** (rows after Make), offered per store in the
 payment settings (`payments.paymentMethods`: `cod`, `stripe`, `paypal`).
-Provider calls live in `packages/payments` (`@chatbotx.io/payments`, no DB);
+Provider calls live in `packages/payments` (`@inboxos.io/payments`, no DB);
 the rules in `packages/business/src/payment-provider` and `order-payment`.
 
 ### Connecting

@@ -1,4 +1,4 @@
-import { distributedStore } from "@chatbotx.io/redis"
+import { distributedStore } from "@inboxos.io/redis"
 import { logger } from "../logger"
 
 /**

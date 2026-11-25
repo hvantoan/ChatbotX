@@ -11,7 +11,7 @@ vi.mock("@/lib/auth/utils", () => ({
   assertCurrentUserCanAccessChatbot: mocks.assertCurrentUserCanAccessChatbot,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: {
     countAudience: mocks.countAudience,
     listAudiencePreview: mocks.listAudiencePreview,

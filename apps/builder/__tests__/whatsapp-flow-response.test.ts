@@ -10,7 +10,7 @@ const findIntegrationByInbox = vi.fn()
 const runAction = vi.fn()
 const loggerWarn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messageService: { findByIdWithUrls },
   contactInboxService: { findBy: findContactInbox },
   resolveSentWhatsappFlow,
@@ -19,7 +19,7 @@ vi.mock("@chatbotx.io/business", () => ({
     findByInboxIdForWorkspace: findIntegrationByInbox,
   },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   notFoundException: (message: string) =>
     Object.assign(new Error(message), { code: "NOT_FOUND" }),
 }))

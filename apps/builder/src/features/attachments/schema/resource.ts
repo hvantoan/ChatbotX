@@ -1,7 +1,7 @@
 import {
   attachmentModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const attachmentResource = createSelectSchema(attachmentModel, {

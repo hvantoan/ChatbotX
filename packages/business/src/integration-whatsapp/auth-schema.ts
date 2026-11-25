@@ -1,4 +1,4 @@
-import type { Oauth2AuthValue } from "@chatbotx.io/sdk"
+import type { Oauth2AuthValue } from "@inboxos.io/sdk"
 import { z } from "zod"
 
 /**

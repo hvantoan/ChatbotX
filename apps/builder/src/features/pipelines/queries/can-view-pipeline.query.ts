@@ -1,5 +1,5 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { pipelineService } from "@chatbotx.io/business/pipeline"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { pipelineService } from "@inboxos.io/business/pipeline"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 import { pipelineScopeFromMember } from "../lib/access"
 
@@ -28,7 +28,7 @@ export async function canViewPipeline(input: {
     })
     return true
   } catch (error) {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       return false
     }
     throw error

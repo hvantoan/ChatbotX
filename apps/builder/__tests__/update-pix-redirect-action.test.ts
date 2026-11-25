@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   assertWorkspaceSuperAdmin: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: {
     updatePixRedirectEnabled: mocks.updatePixRedirectEnabled,
   },
@@ -63,7 +63,7 @@ describe("updatePixRedirectAction", () => {
 
   test("refuses a non super admin before any write", async () => {
     mocks.assertWorkspaceSuperAdmin.mockRejectedValue(
-      new ChatbotXException("errors.superAdminRequired"),
+      new InboxOSException("errors.superAdminRequired"),
     )
 
     await expect(run(true)).rejects.toThrow("errors.superAdminRequired")
@@ -72,7 +72,7 @@ describe("updatePixRedirectAction", () => {
 
   test("a number outside the workspace surfaces the not-found error", async () => {
     mocks.updatePixRedirectEnabled.mockRejectedValue(
-      new ChatbotXException("WhatsApp integration not found", "notFound", 404),
+      new InboxOSException("WhatsApp integration not found", "notFound", 404),
     )
 
     await expect(run(true)).rejects.toThrow("WhatsApp integration not found")

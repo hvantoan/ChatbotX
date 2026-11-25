@@ -1,5 +1,5 @@
-import { type ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import { type ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import {
   createReplyContainer,

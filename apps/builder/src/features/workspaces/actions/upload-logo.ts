@@ -1,8 +1,8 @@
-import { workspaceService } from "@chatbotx.io/business"
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { uploadFileFromUrl } from "@chatbotx.io/filesystem"
-import type { AuthValue, Context } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+import { workspaceService } from "@inboxos.io/business"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { uploadFileFromUrl } from "@inboxos.io/filesystem"
+import type { AuthValue, Context } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 
 type ProfilePicProvider<A extends AuthValue> = {
   runChannelHandler(

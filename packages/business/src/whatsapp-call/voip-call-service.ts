@@ -1,11 +1,11 @@
-import type { WhatsappCallTerminalStatusOutcomePair } from "@chatbotx.io/database/partials"
+import type { WhatsappCallTerminalStatusOutcomePair } from "@inboxos.io/database/partials"
 import {
   FIND_RINGING_BY_WORKSPACE_LIMIT,
   WHATSAPP_CALL_TERMINAL_STATUSES,
   whatsappCallRepository,
-} from "@chatbotx.io/database/repositories"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
-import { casStore } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
+import { casStore } from "@inboxos.io/redis"
 import { contactService } from "../contact/service"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"

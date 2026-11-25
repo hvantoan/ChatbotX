@@ -3,8 +3,8 @@ import {
   googleAdsConsentSchema,
   googleAdsSettingsDocumentSchema,
   NOT_PROVIDED_CONSENT,
-} from "@chatbotx.io/database/partials"
-import { googleAdsSettingsRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { googleAdsSettingsRepository } from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
 import { validationException } from "../errors"
 

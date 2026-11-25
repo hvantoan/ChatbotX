@@ -1,7 +1,7 @@
 "use server"
 
-import { placeCategoryService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { placeCategoryService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { throwCategoryFormError } from "../lib/category-form-error"
 import { placeCategoryFormSchema } from "../schema/action"
