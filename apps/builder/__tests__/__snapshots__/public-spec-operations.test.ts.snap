@@ -198,6 +198,46 @@ exports[`public API spec — operation naming guard > operation list (operationI
     "path": "/v1/ai-agents",
   },
   {
+    "method": "POST",
+    "operationId": "aiAgents.salesProfile.apply",
+    "path": "/v1/ai-agents/{id}/sales-profile/apply",
+  },
+  {
+    "method": "DELETE",
+    "operationId": "aiAgents.salesProfile.clearTrainingMessages",
+    "path": "/v1/ai-agents/{id}/training-messages",
+  },
+  {
+    "method": "GET",
+    "operationId": "aiAgents.salesProfile.get",
+    "path": "/v1/ai-agents/{id}/sales-profile",
+  },
+  {
+    "method": "GET",
+    "operationId": "aiAgents.salesProfile.listTrainingMessages",
+    "path": "/v1/ai-agents/{id}/training-messages",
+  },
+  {
+    "method": "POST",
+    "operationId": "aiAgents.salesProfile.propose",
+    "path": "/v1/ai-agents/{id}/sales-profile/propose",
+  },
+  {
+    "method": "POST",
+    "operationId": "aiAgents.salesProfile.revert",
+    "path": "/v1/ai-agents/{id}/sales-profile/revert",
+  },
+  {
+    "method": "PUT",
+    "operationId": "aiAgents.salesProfile.update",
+    "path": "/v1/ai-agents/{id}/sales-profile",
+  },
+  {
+    "method": "GET",
+    "operationId": "aiAgents.salesProfile.versions",
+    "path": "/v1/ai-agents/{id}/sales-profile/versions",
+  },
+  {
     "method": "PATCH",
     "operationId": "aiAgents.update",
     "path": "/v1/ai-agents/{id}",

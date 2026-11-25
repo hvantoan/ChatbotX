@@ -1,6 +1,7 @@
 "use client"
 
 import type { TagModel } from "@chatbotx.io/database/types"
+import { InputField } from "@chatbotx.io/ui/components/form/input-field"
 import { Button } from "@chatbotx.io/ui/components/ui/button"
 import {
   Dialog,
@@ -9,15 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@chatbotx.io/ui/components/ui/dialog"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Form } from "@chatbotx.io/ui/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon } from "lucide-react"
@@ -103,21 +96,10 @@ export function UpdateTagDialog({
               onSubmit={handleSubmitWithAction}
             >
               <LockedDialogFieldset resourceId={tag?.id}>
-                <FormField
-                  control={form.control}
+                <InputField
+                  label={t("fields.name.label")}
                   name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("fields.name.label")}</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder={t("fields.name.label")}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  placeholder={t("fields.name.label")}
                 />
               </LockedDialogFieldset>
               <div className="flex justify-end gap-4">

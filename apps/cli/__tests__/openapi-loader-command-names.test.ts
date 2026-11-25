@@ -598,3 +598,44 @@ describe("pathAndMethodToCommandName — WhatsApp routing roles", () => {
     expect(new Set(names)).toHaveLength(names.length)
   })
 })
+
+describe("pathAndMethodToCommandName — AI agent sales profile & training", () => {
+  test("every ai-agents and sales-profile operation derives a distinct command name", () => {
+    const routes: [string, string][] = [
+      ["GET", "/v1/ai-agents"],
+      ["POST", "/v1/ai-agents"],
+      ["GET", "/v1/ai-agents/{id}"],
+      ["PATCH", "/v1/ai-agents/{id}"],
+      ["DELETE", "/v1/ai-agents/{id}"],
+      ["GET", "/v1/ai-agents/{id}/sales-profile"],
+      ["PUT", "/v1/ai-agents/{id}/sales-profile"],
+      ["POST", "/v1/ai-agents/{id}/sales-profile/propose"],
+      ["POST", "/v1/ai-agents/{id}/sales-profile/apply"],
+      ["GET", "/v1/ai-agents/{id}/sales-profile/versions"],
+      ["POST", "/v1/ai-agents/{id}/sales-profile/revert"],
+      ["GET", "/v1/ai-agents/{id}/training-messages"],
+      ["DELETE", "/v1/ai-agents/{id}/training-messages"],
+    ]
+
+    const names = routes.map(([method, path]) =>
+      pathAndMethodToCommandName(path, method),
+    )
+
+    expect(names).toEqual([
+      "ai-agents:list",
+      "ai-agents:create",
+      "ai-agents:get",
+      "ai-agents:update",
+      "ai-agents:delete",
+      "ai-agents:sales-profile:get",
+      "ai-agents:sales-profile:update",
+      "ai-agents:sales-profile:propose",
+      "ai-agents:sales-profile:apply",
+      "ai-agents:versions:list",
+      "ai-agents:sales-profile:revert",
+      "ai-agents:training-messages:list",
+      "ai-agents:training-messages:clear",
+    ])
+    expect(new Set(names)).toHaveLength(names.length)
+  })
+})

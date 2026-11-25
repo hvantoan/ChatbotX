@@ -22,6 +22,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@chatbotx.io/ui/components/ui/select"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@chatbotx.io/ui/components/ui/table"
 import { Loader2Icon, PlusIcon, Trash2Icon } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -96,26 +104,26 @@ export function PlatformAdminsTable({
       </div>
 
       <div className="overflow-hidden rounded-md border">
-        <table className="w-full text-sm">
-          <thead className="bg-muted/50 text-muted-foreground">
-            <tr>
-              <th className="px-4 py-3 text-start font-medium">
+        <Table>
+          <TableHeader className="bg-muted/50 text-muted-foreground">
+            <TableRow className="hover:bg-transparent">
+              <TableHead className="h-auto px-4 py-3 text-muted-foreground">
                 {t("fields.email.label")}
-              </th>
-              <th className="px-4 py-3 text-start font-medium">
+              </TableHead>
+              <TableHead className="h-auto px-4 py-3 text-muted-foreground">
                 {t("platformAdmin.admins.role")}
-              </th>
-              <th className="w-12 px-4 py-3" />
-            </tr>
-          </thead>
-          <tbody>
+              </TableHead>
+              <TableHead className="h-auto w-12 px-4 py-3" />
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {data.map((admin) => (
-              <tr className="border-t" key={admin.id}>
-                <td className="px-4 py-3">{admin.userEmail}</td>
-                <td className="px-4 py-3 text-muted-foreground">
+              <TableRow key={admin.id}>
+                <TableCell className="px-4 py-3">{admin.userEmail}</TableCell>
+                <TableCell className="px-4 py-3 text-muted-foreground">
                   {t(platformAdminRoleTranslationKeys[admin.role])}
-                </td>
-                <td className="px-4 py-3 text-end">
+                </TableCell>
+                <TableCell className="px-4 py-3 text-end">
                   <Button
                     aria-label={t("platformAdmin.admins.remove")}
                     disabled={removeAdmin.isPending}
@@ -134,21 +142,21 @@ export function PlatformAdminsTable({
                       <Trash2Icon aria-hidden="true" />
                     )}
                   </Button>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
             {!hasAdmins && (
-              <tr className="border-t">
-                <td
+              <TableRow>
+                <TableCell
                   className="px-4 py-6 text-center text-muted-foreground"
                   colSpan={3}
                 >
                   {t("platformAdmin.admins.empty")}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             )}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
       {pageCount > 1 && (

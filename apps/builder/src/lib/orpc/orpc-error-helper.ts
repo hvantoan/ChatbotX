@@ -1537,3 +1537,21 @@ export const possibleErrorsOnUpdatingAiProvider = {
     status: 409,
   },
 } satisfies ErrorMap
+
+/** Proposing a sales profile change from a natural-language instruction. */
+export const possibleErrorsOnProposingSalesProfile = {
+  ...possibleErrorsOnMutatingResource,
+  aiProviderNotConfigured: {
+    message: "No active AI provider is configured for this AI agent.",
+    status: 422,
+  },
+  aiProviderFailed: {
+    message:
+      "AI provider failed to generate a sales profile proposal. Please try again or check your AI provider settings.",
+    status: 502,
+  },
+  quotaExceeded: {
+    message: "Bot message quota reached for this plan.",
+    status: 403,
+  },
+} satisfies ErrorMap

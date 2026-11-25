@@ -27,6 +27,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@chatbotx.io/ui/components/ui/popover"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@chatbotx.io/ui/components/ui/tabs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
@@ -35,6 +41,7 @@ import {
   SlidersHorizontalIcon,
   XIcon,
 } from "lucide-react"
+import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo } from "react"
 import { useFieldArray } from "react-hook-form"
@@ -59,6 +66,13 @@ import {
   getOpenaiCompatibleIntegrationLabel,
   shouldUseCustomOpenaiCompatibleModelInput,
 } from "./openai-compatible-models"
+
+const TrainingChat = dynamic(
+  () => import("./components/sales-training/training-chat"),
+  {
+    ssr: false,
+  },
+)
 
 export function UpdateAIAgentDialog({
   workspaceId,
@@ -197,203 +211,239 @@ export function UpdateAIAgentDialog({
           <DialogDescription />
         </DialogHeader>
 
-        <Form {...form}>
-          <form
-            className="flex flex-1 flex-col space-y-6"
-            onSubmit={handleSubmitWithAction}
-          >
-            <InputField label={t("fields.name.label")} name="name" required />
+        <Tabs defaultValue="general">
+          <TabsList className="mb-2 px-4">
+            <TabsTrigger className="py-2.5" value="general">
+              {t("aiAgentSalesTraining.tabs.general")}
+            </TabsTrigger>
+            <TabsTrigger className="py-2.5" value="training">
+              {t("aiAgentSalesTraining.tabs.training")}
+            </TabsTrigger>
+          </TabsList>
 
-            <div>
-              <div className="flex items-center gap-4">
-                <div className="min-w-0 flex-1 font-medium text-sm">
-                  {t("fields.instructions.label")}
+          <TabsContent value="general">
+            <Form {...form}>
+              <form
+                className="flex flex-1 flex-col space-y-6"
+                onSubmit={handleSubmitWithAction}
+              >
+                <InputField
+                  label={t("fields.name.label")}
+                  name="name"
+                  required
+                />
+
+                <div>
+                  <div className="flex items-center gap-4">
+                    <div className="min-w-0 flex-1 font-medium text-sm">
+                      {t("fields.instructions.label")}
+                    </div>
+                    <Popover>
+                      <PopoverTrigger
+                        render={
+                          <Button
+                            aria-label={t("actions.moreSettings")}
+                            className="shrink-0"
+                            size="icon"
+                            type="button"
+                            variant="ghost"
+                          >
+                            <SlidersHorizontalIcon
+                              aria-hidden
+                              className="size-4"
+                            />
+                          </Button>
+                        }
+                      />
+                      <PopoverContent
+                        align="start"
+                        className="flex w-[340px] flex-col gap-6 overflow-y-auto overscroll-contain p-4"
+                        side="right"
+                        style={{
+                          maxHeight:
+                            "min(calc(var(--available-height) - 1rem), calc(100vh - 2rem))",
+                        }}
+                      >
+                        {modelFields.map((field, index) => {
+                          if ("kind" in field) {
+                            const integration =
+                              openaiCompatibleIntegrations.find(
+                                (item) => item.id === field.integrationId,
+                              )
+                            const presetConfig = integration
+                              ? openaiCompatiblePresetConfigs[
+                                  integration.preset as keyof typeof openaiCompatiblePresetConfigs
+                                ]
+                              : undefined
+                            const providerLabel = integration
+                              ? getOpenaiCompatibleIntegrationLabel(integration)
+                              : t("openaiCompatible.provider")
+                            const label = `${providerLabel} ${t("fields.model.label")}`
+                            if (
+                              shouldUseCustomOpenaiCompatibleModelInput(
+                                presetConfig,
+                              )
+                            ) {
+                              return (
+                                <InputField
+                                  key={field.id}
+                                  label={label}
+                                  name={`models.${index}.model`}
+                                  required
+                                />
+                              )
+                            }
+                            return (
+                              <SelectField
+                                key={field.id}
+                                label={label}
+                                name={`models.${index}.model`}
+                                options={presetConfig?.modelOptions ?? []}
+                                required
+                              />
+                            )
+                          }
+
+                          const provider = aiChatProviders.find(
+                            (item) => item.provider === field.provider,
+                          )
+                          if (!provider) {
+                            return null
+                          }
+                          return (
+                            <SelectField
+                              key={field.id}
+                              label={`${t(getAiProviderLabelKey(provider.provider))} ${t("fields.model.label")}`}
+                              name={`models.${index}.model`}
+                              options={provider.modelOptions}
+                              required
+                            />
+                          )
+                        })}
+
+                        <SliderField
+                          label={t("fields.temperature.label")}
+                          max={2}
+                          min={0}
+                          name="temperature"
+                          step={0.1}
+                        />
+
+                        <SliderField
+                          label={t("fields.maxOutputTokens.label")}
+                          max={32_768}
+                          min={1}
+                          name="maxOutputTokens"
+                          step={1}
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+
+                  <PlainTextEditorField
+                    includeBotFieldVariables
+                    name="prompt"
+                  />
                 </div>
-                <Popover>
-                  <PopoverTrigger
-                    render={
+
+                <div className="flex flex-col gap-3">
+                  <div className="font-medium text-sm">
+                    {t("fields.messages.label")}
+                  </div>
+
+                  {messageFields.map((item, index) => (
+                    <div
+                      className="relative rounded-md border border-input"
+                      key={item.id}
+                    >
+                      <div className="absolute start-3 top-3">
+                        <SelectField
+                          name={`messages.${index}.role`}
+                          options={messageRoleOptions}
+                        />
+                      </div>
+                      <div className="ps-3 pe-12 pt-14 pb-3">
+                        {/* No bot-field variables here: the runner interpolates
+                            only `prompt` — configured messages reach the model
+                            verbatim, so a token would never resolve. */}
+                        <PlainTextEditorField
+                          name={`messages.${index}.content`}
+                        />
+                      </div>
                       <Button
-                        aria-label={t("actions.moreSettings")}
-                        className="shrink-0"
+                        aria-label={t("actions.delete")}
+                        className="absolute end-1 top-1"
+                        onClick={() => removeMessage(index)}
                         size="icon"
                         type="button"
                         variant="ghost"
                       >
-                        <SlidersHorizontalIcon aria-hidden className="size-4" />
+                        <XIcon aria-hidden size={20} />
                       </Button>
-                    }
-                  />
-                  <PopoverContent
-                    align="start"
-                    className="flex w-[340px] flex-col gap-6 overflow-y-auto overscroll-contain p-4"
-                    side="right"
-                    style={{
-                      maxHeight:
-                        "min(calc(var(--available-height) - 1rem), calc(100vh - 2rem))",
-                    }}
-                  >
-                    {modelFields.map((field, index) => {
-                      if ("kind" in field) {
-                        const integration = openaiCompatibleIntegrations.find(
-                          (item) => item.id === field.integrationId,
-                        )
-                        const presetConfig = integration
-                          ? openaiCompatiblePresetConfigs[
-                              integration.preset as keyof typeof openaiCompatiblePresetConfigs
-                            ]
-                          : undefined
-                        const providerLabel = integration
-                          ? getOpenaiCompatibleIntegrationLabel(integration)
-                          : t("openaiCompatible.provider")
-                        const label = `${providerLabel} ${t("fields.model.label")}`
-                        if (
-                          shouldUseCustomOpenaiCompatibleModelInput(
-                            presetConfig,
-                          )
-                        ) {
-                          return (
-                            <InputField
-                              key={field.id}
-                              label={label}
-                              name={`models.${index}.model`}
-                              required
-                            />
-                          )
-                        }
-                        return (
-                          <SelectField
-                            key={field.id}
-                            label={label}
-                            name={`models.${index}.model`}
-                            options={presetConfig?.modelOptions ?? []}
-                            required
-                          />
-                        )
-                      }
+                    </div>
+                  ))}
 
-                      const provider = aiChatProviders.find(
-                        (item) => item.provider === field.provider,
-                      )
-                      if (!provider) {
-                        return null
-                      }
-                      return (
-                        <SelectField
-                          key={field.id}
-                          label={`${t(getAiProviderLabelKey(provider.provider))} ${t("fields.model.label")}`}
-                          name={`models.${index}.model`}
-                          options={provider.modelOptions}
-                          required
-                        />
-                      )
-                    })}
-
-                    <SliderField
-                      label={t("fields.temperature.label")}
-                      max={2}
-                      min={0}
-                      name="temperature"
-                      step={0.1}
-                    />
-
-                    <SliderField
-                      label={t("fields.maxOutputTokens.label")}
-                      max={32_768}
-                      min={1}
-                      name="maxOutputTokens"
-                      step={1}
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-
-              <PlainTextEditorField includeBotFieldVariables name="prompt" />
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <div className="font-medium text-sm">
-                {t("fields.messages.label")}
-              </div>
-
-              {messageFields.map((item, index) => (
-                <div
-                  className="relative rounded-md border border-input"
-                  key={item.id}
-                >
-                  <div className="absolute start-3 top-3">
-                    <SelectField
-                      name={`messages.${index}.role`}
-                      options={messageRoleOptions}
-                    />
-                  </div>
-                  <div className="ps-3 pe-12 pt-14 pb-3">
-                    {/* No bot-field variables here: the runner interpolates
-                        only `prompt` — configured messages reach the model
-                        verbatim, so a token would never resolve. */}
-                    <PlainTextEditorField name={`messages.${index}.content`} />
-                  </div>
                   <Button
-                    aria-label={t("actions.delete")}
-                    className="absolute end-1 top-1"
-                    onClick={() => removeMessage(index)}
-                    size="icon"
+                    className="w-28"
+                    onClick={addOptions}
+                    size="sm"
+                    type="button"
+                    variant="outline"
+                  >
+                    <PlusIcon aria-hidden />
+                    {t("actions.addMore")}
+                  </Button>
+                </div>
+
+                <AIToolMultiSelect name="tools" />
+                <WebSearchAuthorizedDomainsField />
+                <AIActionsField options={actionOptions} />
+                <div>
+                  <div className="flex items-center gap-3">
+                    <Label>{t("fields.isRichResponse.label")}</Label>
+                    <SwitchField
+                      formItemClassName="w-auto"
+                      name="isRichResponse"
+                    />
+                  </div>
+                  <p className="wrap-break-words mt-1.5 text-muted-foreground text-sm">
+                    {t("fields.isRichResponse.description")}
+                  </p>
+                </div>
+
+                <DialogFooter className="justify-end gap-2 sm:gap-2">
+                  <Button
+                    onClick={() => onOpenChange(false)}
                     type="button"
                     variant="ghost"
                   >
-                    <XIcon aria-hidden size={20} />
+                    {t("actions.cancel")}
                   </Button>
-                </div>
-              ))}
+                  <Button
+                    disabled={
+                      (!form.formState.isValid &&
+                        (form.formState.isDirty ||
+                          form.formState.isSubmitted)) ||
+                      form.formState.isSubmitting
+                    }
+                    type="submit"
+                  >
+                    {form.formState.isSubmitting && (
+                      <Loader2Icon aria-hidden className="animate-spin" />
+                    )}
+                    {t("actions.confirm")}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          </TabsContent>
 
-              <Button
-                className="w-28"
-                onClick={addOptions}
-                size="sm"
-                type="button"
-                variant="outline"
-              >
-                <PlusIcon aria-hidden />
-                {t("actions.addMore")}
-              </Button>
-            </div>
-
-            <AIToolMultiSelect name="tools" />
-            <WebSearchAuthorizedDomainsField />
-            <AIActionsField options={actionOptions} />
-            <div>
-              <div className="flex items-center gap-3">
-                <Label>{t("fields.isRichResponse.label")}</Label>
-                <SwitchField formItemClassName="w-auto" name="isRichResponse" />
-              </div>
-              <p className="wrap-break-words mt-1.5 text-muted-foreground text-sm">
-                {t("fields.isRichResponse.description")}
-              </p>
-            </div>
-
-            <DialogFooter className="justify-end gap-2 sm:gap-2">
-              <Button
-                onClick={() => onOpenChange(false)}
-                type="button"
-                variant="ghost"
-              >
-                {t("actions.cancel")}
-              </Button>
-              <Button
-                disabled={
-                  (!form.formState.isValid &&
-                    (form.formState.isDirty || form.formState.isSubmitted)) ||
-                  form.formState.isSubmitting
-                }
-                type="submit"
-              >
-                {form.formState.isSubmitting && (
-                  <Loader2Icon aria-hidden className="animate-spin" />
-                )}
-                {t("actions.confirm")}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+          <TabsContent value="training">
+            {agent ? (
+              <TrainingChat aiAgentId={agent.id} workspaceId={workspaceId} />
+            ) : null}
+          </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   )

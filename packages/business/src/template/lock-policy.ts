@@ -23,6 +23,7 @@ export const TEMPLATE_LOCKED_CONTENT_KEYS: Readonly<
     "tools",
     "isRichResponse",
     "webSearchAuthorizedDomains",
+    "salesProfile",
   ],
   aiFunction: [
     "name",

@@ -54,7 +54,7 @@ function AlertDialogContent({
       <AlertDialogPrimitive.Popup
         data-slot="alert-dialog-content"
         className={cn(
-          "bg-background data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:scale-95 data-ending-style:scale-95 transition-[transform,opacity] fixed top-[50%] start-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] ltr:translate-x-[-50%] rtl:translate-x-[50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+          "bg-background data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:scale-95 data-ending-style:scale-95 transition-[transform,opacity] fixed top-[50%] start-[50%] z-50 grid w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] ltr:translate-x-[-50%] rtl:translate-x-[50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-150 sm:max-w-lg",
           className,
         )}
         {...props}
@@ -124,6 +124,7 @@ function AlertDialogAction({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Close>) {
   return (
     <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-action"
       className={cn(buttonVariants(), className)}
       {...props}
     />
@@ -136,6 +137,7 @@ function AlertDialogCancel({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Close>) {
   return (
     <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-cancel"
       className={cn(buttonVariants({ variant: "outline" }), className)}
       {...props}
     />

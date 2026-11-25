@@ -6,40 +6,22 @@ import { TooltipProvider } from "./components/ui/tooltip"
 import { DEFAULT_TOAST_DURATION_MS } from "./config/toast"
 import { ThemeProvider } from "./providers/theme"
 
-type UiProviderProperties = ThemeProviderProps & {
-  privacyUrl?: string
-  termsUrl?: string
-  helpUrl?: string
-}
+type UiProviderProperties = ThemeProviderProps
 
 export const UiProvider = ({
   children,
-  privacyUrl,
-  termsUrl,
-  helpUrl,
   ...properties
-}: UiProviderProperties) => {
-  return (
-    <NuqsAdapter
-      defaultOptions={{
-        shallow: false,
-        scroll: true,
-        limitUrlUpdates: throttle(250),
-      }}
-    >
-      <ThemeProvider {...properties}>
-        {/* <AuthProvider privacyUrl={privacyUrl} termsUrl={termsUrl} helpUrl={helpUrl}>
-      <AnalyticsProvider> */}
-        <TooltipProvider>{children}</TooltipProvider>
-        <Toaster
-          closeButton
-          duration={DEFAULT_TOAST_DURATION_MS}
-          position="top-right"
-          richColors
-        />
-        {/* </AnalyticsProvider>
-    </AuthProvider> */}
-      </ThemeProvider>
-    </NuqsAdapter>
-  )
-}
+}: UiProviderProperties) => (
+  <NuqsAdapter
+    defaultOptions={{
+      shallow: false,
+      scroll: true,
+      limitUrlUpdates: throttle(250),
+    }}
+  >
+    <ThemeProvider {...properties}>
+      <TooltipProvider>{children}</TooltipProvider>
+      <Toaster closeButton duration={DEFAULT_TOAST_DURATION_MS} richColors />
+    </ThemeProvider>
+  </NuqsAdapter>
+)

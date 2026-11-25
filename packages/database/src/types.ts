@@ -9,6 +9,10 @@ export type UserDeviceTokenModel =
 export type MobileRefreshTokenModel =
   typeof schema.mobileRefreshTokenModel.$inferSelect
 export type AIAgentModel = typeof schema.aiAgentModel.$inferSelect
+export type AIAgentSalesProfileVersionModel =
+  typeof schema.aiAgentSalesProfileVersionModel.$inferSelect
+export type AIAgentTrainingMessageModel =
+  typeof schema.aiAgentTrainingMessageModel.$inferSelect
 export type AIFunctionModel = typeof schema.aiFunctionModel.$inferSelect
 export type AIMCPServerModel = typeof schema.aiMCPServerModel.$inferSelect
 export type AdsConversionRuleModel =

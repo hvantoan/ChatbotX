@@ -54,7 +54,25 @@ const aiAgentService = {
   updateAIAgent: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ aiAgentService }))
+const aiAgentSalesProfileService = {
+  get: vi.fn(),
+  update: vi.fn(),
+  listVersions: vi.fn(),
+  revert: vi.fn(),
+  listMessages: vi.fn(),
+  clear: vi.fn(),
+}
+const aiAgentSalesProfileProposalService = {
+  propose: vi.fn(),
+}
+vi.mock("@chatbotx.io/business", () => ({
+  aiAgentService,
+  aiAgentSalesProfileService,
+  aiAgentSalesProfileProposalService,
+}))
+vi.mock("@chatbotx.io/ai/sales-profile-proposer", () => ({
+  generateSalesProfileProposalPatch: vi.fn(),
+}))
 
 vi.mock("@chatbotx.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",

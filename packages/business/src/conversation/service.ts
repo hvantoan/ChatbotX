@@ -14,6 +14,7 @@ import {
 import type {
   ConversationAttributes,
   ConversationQuickReplyChallenge,
+  ConversationSalesState,
 } from "@chatbotx.io/database/partials"
 import {
   assignTargetIfUnassigned,
@@ -176,6 +177,12 @@ const setChallenge = (
   challenge: NonNullable<ConversationAttributes["challenge"]>,
 ) =>
   sql`jsonb_set(COALESCE(${conversationModel.additionalAttributes}, '{}'::jsonb), '{challenge}', ${JSON.stringify(challenge)}::jsonb, true)`
+
+const setSalesState = (salesState: ConversationSalesState) =>
+  sql`jsonb_set(COALESCE(${conversationModel.additionalAttributes}, '{}'::jsonb), '{salesState}', ${JSON.stringify(salesState)}::jsonb, true)`
+
+const dropSalesState = () =>
+  sql`COALESCE(${conversationModel.additionalAttributes}, '{}'::jsonb) - 'salesState'`
 
 export const sqlDropQuickReplyChallenge = () =>
   sql`CASE WHEN ${isQuickReplyChallenge()} THEN ${dropChallenge()} ELSE ${conversationModel.additionalAttributes} END`
@@ -361,6 +368,37 @@ class ConversationService extends BaseService {
     if (!row) {
       throw notFoundException("Conversation not found")
     }
+  }
+
+  async updateSalesState(props: {
+    workspaceId: string
+    conversationId: string
+    salesState: ConversationSalesState | undefined
+  }): Promise<void> {
+    const additionalAttributes =
+      props.salesState === undefined
+        ? dropSalesState()
+        : setSalesState(props.salesState)
+
+    const [row] = await db
+      .update(conversationModel)
+      .set({
+        additionalAttributes,
+      })
+      .where(
+        and(
+          eq(conversationModel.id, props.conversationId),
+          eq(conversationModel.workspaceId, props.workspaceId),
+        ),
+      )
+      .returning({ id: conversationModel.id })
+    if (!row) {
+      throw notFoundException("Conversation not found")
+    }
+    await this.invalidate({
+      workspaceId: props.workspaceId,
+      ids: [props.conversationId],
+    })
   }
 
   /**

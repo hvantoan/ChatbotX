@@ -5032,7 +5032,8 @@
       "signUpDisabled": "Esta conta ainda não existe e o cadastro está desativado. Peça a um administrador para criá-la para você.",
       "invalidInvitation": "Este convite é inválido ou expirou.",
       "generic": "Falha no login. Tente novamente."
-    }
+    },
+    "signedInSuccess": "Login realizado com sucesso"
   },
   "emailTopics": {
     "title": "Tópicos de e-mail"
@@ -12114,5 +12115,86 @@
     "sharedWorkspace": "Se outras pessoas são membros de um workspace que você possui, ele também é excluído para elas.",
     "retainedTitle": "Dados que mantemos",
     "retained": "As anotações que você escreveu em workspaces de outras pessoas permanecem, sem o seu nome. Mantemos um registro de que a exclusão ocorreu. Dados de cobrança e faturas podem ser mantidos pelo tempo exigido por lei."
+  },
+  "aiAgentSalesTraining": {
+    "tabs": {
+      "general": "General Settings",
+      "training": "Sales Training"
+    },
+    "fields": {
+      "enabled": "Enable sales persona",
+      "role": "Sales role",
+      "tone": "Tone & pronouns",
+      "objective": "Sales objective",
+      "targetProducts": "Target products",
+      "forbiddenTopics": "Forbidden topics",
+      "offTopicLimit": "Off-topic turn limit",
+      "handoverOnHumanRequest": "Hand over when customer asks for a human",
+      "handoffMessage": "Handoff waiting message",
+      "handoffTriggers": "Handoff triggers"
+    },
+    "chat": {
+      "title": "Teach by Chat",
+      "description": "Type natural-language instructions to propose updates to the sales persona, tone, objective and product priority.",
+      "inputPlaceholder": "Example: Call yourself em and the customer anh/chị, prioritize Course 1, never invent prices...",
+      "sendButton": "Propose",
+      "clearButton": "Clear chat",
+      "clearConfirmTitle": "Clear training chat history?",
+      "clearConfirmDescription": "This removes all training chat messages for this agent. Your active sales profile and version history will be kept.",
+      "clearedSuccess": "Training chat history cleared.",
+      "clearError": "Could not clear training chat history.",
+      "proposeError": "Could not generate a sales profile proposal.",
+      "loadOlder": "Load older messages",
+      "emptyHint": "No training instructions yet. Describe how you want this agent to sell and speak."
+    },
+    "proposal": {
+      "title": "Proposed Sales Profile Update",
+      "appliedBadge": "Applied · v{version}",
+      "unmatchedProducts": "Unmatched products",
+      "field": "Field",
+      "before": "Current",
+      "after": "Proposed",
+      "noChanges": "No profile changes proposed.",
+      "apply": "Apply",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "appliedSuccess": "Applied sales profile (v{version}).",
+      "applyError": "Could not apply sales profile proposal."
+    },
+    "profile": {
+      "title": "Current Sales Profile",
+      "versionBadge": "v{version}",
+      "unconfiguredBadge": "Not configured",
+      "editingProposalBadge": "Editing proposal draft",
+      "rolePlaceholder": "e.g. Course admissions advisor",
+      "tonePlaceholder": "e.g. Friendly, polite, use em and anh/chị",
+      "objectivePlaceholder": "e.g. Recommend and close IELTS Foundation course",
+      "addProduct": "Add product",
+      "noTargetProducts": "No target products configured yet.",
+      "selectProduct": "Select product",
+      "priorityLabel": "Priority (1-10)",
+      "pitchNotePlaceholder": "Pitch note (when/how to recommend)",
+      "removeProduct": "Remove product",
+      "forbiddenTopicsPlaceholder": "Comma-separated topics (e.g. Politics, Competitors)",
+      "save": "Save profile",
+      "savedSuccess": "Sales profile saved.",
+      "saveError": "Could not save sales profile.",
+      "handoffMessagePlaceholder": "e.g. Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ",
+      "handoffTriggersPlaceholder": "e.g. Customer agrees to buy, asks to pay, requests extra discount, or asks for 1:1 VIP consultation"
+    },
+    "versions": {
+      "title": "Version History",
+      "empty": "No versions saved yet.",
+      "active": "Active",
+      "revert": "Revert",
+      "loadMore": "Load more versions",
+      "revertedSuccess": "Reverted sales profile (new v{version}).",
+      "revertError": "Could not revert sales profile.",
+      "sources": {
+        "manual": "Manual",
+        "proposal": "Chat Proposal",
+        "revert": "Revert"
+      }
+    }
   }
 }
