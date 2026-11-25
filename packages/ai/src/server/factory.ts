@@ -118,6 +118,19 @@ export async function getOpenaiCompatibleAutoReplyIntegrationInDB(props: {
   return row ? await withDecryptedAuth(row, "openaiCompatible") : row
 }
 
+export async function getOpenaiCompatibleEmbeddingIntegrationInDB(props: {
+  workspaceId: string
+}) {
+  const row = await db.query.integrationOpenaiCompatibleModel.findFirst({
+    where: {
+      enabled: true,
+      workspaceId: props.workspaceId,
+    },
+    orderBy: (table, { asc }) => [asc(table.createdAt)],
+  })
+  return row ? await withDecryptedAuth(row, "openaiCompatible") : row
+}
+
 export async function getOpenaiCompatibleIntegrationInDB(props: {
   workspaceId: string
   id: string

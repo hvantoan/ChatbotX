@@ -43,6 +43,8 @@ export type FileSearchConfig = {
 export const embeddingSimilarityThresholds = {
   openai: 0.7,
   gemini: 0.55,
+  // OpenAI-compatible embeddings default to text-embedding-3-small.
+  openaiCompatible: 0.7,
 } as const satisfies Record<EmbeddingProvider, number>
 
 async function createQueryEmbedding(query: string, workspaceId: string) {

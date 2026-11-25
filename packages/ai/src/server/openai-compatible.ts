@@ -96,11 +96,9 @@ export function createOpenaiCompatibleFetch(
   }
 }
 
-export function createOpenaiCompatibleModelInstance(props: {
-  integration: IntegrationOpenaiCompatibleModel
-  modelId: string
-}) {
-  const { integration, modelId } = props
+function createOpenaiCompatibleProvider(
+  integration: IntegrationOpenaiCompatibleModel,
+) {
   const authParsed = secretTextAuthSchema.safeParse(integration.auth)
   if (integration.auth !== null && !authParsed.success) {
     throw new InvalidOpenaiCompatibleAuthError()
@@ -122,5 +120,21 @@ export function createOpenaiCompatibleModelInstance(props: {
     ...(transformRequestBody ? { transformRequestBody } : {}),
   })
 
-  return provider(modelId)
+  return provider
+}
+
+export function createOpenaiCompatibleModelInstance(props: {
+  integration: IntegrationOpenaiCompatibleModel
+  modelId: string
+}) {
+  const { integration, modelId } = props
+  return createOpenaiCompatibleProvider(integration)(modelId)
+}
+
+export function createOpenaiCompatibleEmbeddingModelInstance(props: {
+  integration: IntegrationOpenaiCompatibleModel
+  modelId: string
+}) {
+  const { integration, modelId } = props
+  return createOpenaiCompatibleProvider(integration).embeddingModel(modelId)
 }
