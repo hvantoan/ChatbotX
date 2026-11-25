@@ -1,4 +1,4 @@
-import { HttpResponse, http } from "msw"
+import { HttpResponse, http } from "msw/http"
 
 /**
  * MSW handlers for the WhatsApp Cloud API (Meta Graph). Import in a test and

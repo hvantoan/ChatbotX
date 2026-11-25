@@ -19,4 +19,7 @@ import { setupServer } from "msw/node"
  */
 export const server = setupServer()
 
-export { bypass, delay, HttpResponse, http, passthrough } from "msw"
+export { HttpResponse, http } from "msw/http"
+export { bypass } from "msw/utils/bypass"
+export { delay } from "msw/utils/delay"
+export { passthrough } from "msw/utils/passthrough"
