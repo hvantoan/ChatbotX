@@ -193,7 +193,10 @@ const containerSource = (
 const holderText = (columns: readonly string[]) =>
   sql.join(
     columns.map(
-      (column) => sql`replace(t.${sql.identifier(column)}::text, E'\\\\', '')`,
+      // Nullable columns (e.g. salesProfile) would NULL the whole
+      // concatenation and hide every other reference on the row.
+      (column) =>
+        sql`coalesce(replace(t.${sql.identifier(column)}::text, E'\\\\', ''), '')`,
     ),
     sql` || ' ' || `,
   )

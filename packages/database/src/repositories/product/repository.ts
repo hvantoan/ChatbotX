@@ -41,6 +41,7 @@ export type ProductListInput = {
   categoryId?: string | null
   /** Only these products — how a picker names the ones already chosen. */
   ids?: string[] | null
+  status?: ProductStatus
   page?: number
   perPage?: number
   sort?: { id: string; desc: boolean }[] | null
@@ -124,6 +125,7 @@ export const productRepository = {
       source: input.source ?? "chatbotx",
       name: input.name ? { ilike: likeContains(input.name) } : undefined,
       id: input.ids?.length ? { in: input.ids } : undefined,
+      status: input.status ?? undefined,
       ...inCategory(input.categoryId),
     }
     const pagination = parsePagination(input)

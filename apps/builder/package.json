@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@ai-sdk/mcp": "^2.0.88",
-    "@base-ui/react": "^1.6.0",
     "@better-auth/oauth-provider": "catalog:",
     "@bull-board/api": "^9.10.1",
     "@bull-board/hono": "^9.10.1",

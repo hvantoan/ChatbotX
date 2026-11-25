@@ -10,9 +10,8 @@ vi.mock("@ai-sdk/openai-compatible", () => ({
   createOpenAICompatible: createOpenAICompatibleMock,
 }))
 
-const { createOpenaiCompatibleModelInstance } = await import(
-  "../src/server/openai-compatible"
-)
+const { createOpenaiCompatibleFetch, createOpenaiCompatibleModelInstance } =
+  await import("../src/server/openai-compatible")
 
 function createIntegration(
   overrides: Partial<IntegrationOpenaiCompatibleModel> = {},
@@ -46,6 +45,7 @@ describe("OpenAI-compatible model helper", () => {
       name: "lmstudio",
       baseURL: "http://localhost:1234/v1",
       apiKey: undefined,
+      fetch: expect.any(Function),
     })
     expect(providerModelMock).toHaveBeenCalledWith("local-model")
   })
@@ -64,6 +64,7 @@ describe("OpenAI-compatible model helper", () => {
       name: "nim",
       baseURL: "https://example.com/v1",
       apiKey: "provider-key",
+      fetch: expect.any(Function),
     })
   })
 
@@ -81,6 +82,7 @@ describe("OpenAI-compatible model helper", () => {
       name: "custom",
       baseURL: "https://llm.wokushop.com/v1",
       apiKey: "woku-key",
+      fetch: expect.any(Function),
     })
     expect(providerModelMock).toHaveBeenLastCalledWith("gpt-4o-mini")
   })
@@ -117,5 +119,42 @@ describe("OpenAI-compatible model helper", () => {
     ).toEqual({
       prompt: "x",
     })
+  })
+
+  test("strips trailing data: [DONE] on non-stream text/event-stream JSON responses", async () => {
+    const mockFetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response('{"id":"gen-1","choices":[]}data: [DONE]\n\n', {
+        status: 200,
+        headers: { "content-type": "text/event-stream" },
+      }),
+    )
+    const wrapped = createOpenaiCompatibleFetch(mockFetch)
+
+    const res = await wrapped("https://example.com/v1/chat/completions", {
+      method: "POST",
+      body: JSON.stringify({ model: "m", stream: false }),
+    })
+
+    expect(res.headers.get("content-type")).toContain("application/json")
+    expect(await res.json()).toEqual({ id: "gen-1", choices: [] })
+  })
+
+  test("leaves streaming requests untouched", async () => {
+    const rawSse = 'data: {"id":"1"}\n\ndata: [DONE]\n\n'
+    const mockFetch = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(rawSse, {
+        status: 200,
+        headers: { "content-type": "text/event-stream" },
+      }),
+    )
+    const wrapped = createOpenaiCompatibleFetch(mockFetch)
+
+    const res = await wrapped("https://example.com/v1/chat/completions", {
+      method: "POST",
+      body: JSON.stringify({ model: "m", stream: true }),
+    })
+
+    expect(res.headers.get("content-type")).toBe("text/event-stream")
+    expect(await res.text()).toBe(rawSse)
   })
 })

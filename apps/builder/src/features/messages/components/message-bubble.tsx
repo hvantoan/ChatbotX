@@ -1,5 +1,3 @@
-import { mergeProps } from "@base-ui/react/merge-props"
-import { useRender } from "@base-ui/react/use-render"
 import { cn } from "@chatbotx.io/ui/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -16,25 +14,15 @@ const messageBubbleVariant = cva("flex gap-2", {
   },
 })
 
-export type MessageProps = useRender.ComponentProps<"div"> &
+export type MessageProps = React.ComponentProps<"div"> &
   VariantProps<typeof messageBubbleVariant>
 
-const MessageBubble = ({
-  className,
-  variant,
-  render,
-  ...props
-}: MessageProps) =>
-  useRender({
-    defaultTagName: "div",
-    render,
-    props: mergeProps<"div">(
-      {
-        className: cn(messageBubbleVariant({ variant, className })),
-      } as React.ComponentProps<"div">,
-      props,
-    ),
-  })
+const MessageBubble = ({ className, variant, ...props }: MessageProps) => (
+  <div
+    className={cn(messageBubbleVariant({ variant, className }))}
+    {...props}
+  />
+)
 MessageBubble.displayName = "MessageBubble"
 
 export { MessageBubble, messageBubbleVariant }

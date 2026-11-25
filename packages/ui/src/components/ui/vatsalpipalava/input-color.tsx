@@ -150,14 +150,11 @@ export default function InputColor({
           // Already updated above
           setHexInputError(null);
         } else {
-          // Not full length, so log
-          console.log("Enter a valid color");
           setHexInputError("Enter a valid color");
         }
       } catch (validationError) {
         if (validationError instanceof z.ZodError) {
           // Do not update color, just keep the input value
-          console.log("Enter a valid color");
           setHexInputError("Enter a valid color");
         }
       }
@@ -284,7 +281,7 @@ export default function InputColor({
       updateColorValues(pickedColor);
       onChange(pickedColor);
     } catch {
-      console.log("User canceled the eyedropper");
+      // User canceled the eyedropper
     }
   };
 

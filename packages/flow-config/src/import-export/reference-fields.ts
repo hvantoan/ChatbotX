@@ -66,6 +66,8 @@ export const REFERENCE_FIELD_ENTITY_KIND: Record<string, string> = {
   // Find places near me step (steps/find-places-near-me.ts). The template's
   // `placeCategories` manifest finds or creates the category by name.
   placeCategoryId: "placeCategory",
+  // AI Agent salesProfile.targetProducts[].productId references a workspace Product.
+  productId: "product",
 }
 
 // `flowId` shows up both as a cross-flow jump target (steps/start-external-flow.ts,

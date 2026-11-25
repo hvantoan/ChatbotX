@@ -102,7 +102,17 @@
                     "importNames": ["db"],
                     "message": "App code calls a service from @chatbotx.io/business, never db directly. See .agents/rules/data-access.md."
                   }
-                }
+                },
+                "patterns": [
+                  {
+                    "group": ["@radix-ui/*", "radix-ui"],
+                    "message": "ChatbotX uses @base-ui/react via @chatbotx.io/ui, never Radix UI."
+                  },
+                  {
+                    "group": ["@base-ui/react", "@base-ui/react/*"],
+                    "message": "Import UI primitives from @chatbotx.io/ui/* instead of @base-ui/react directly."
+                  }
+                ]
               }
             }
           }

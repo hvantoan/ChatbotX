@@ -1,5 +1,7 @@
 export * from "./ads-conversion-event"
 export * from "./ads-conversion-rule"
+export * from "./ai-agent-sales-profile-version"
+export * from "./ai-agent-training-message"
 export * from "./ai-conversation-embedding"
 export * from "./ai-conversation-source"
 export * from "./ai-file-embedding"

@@ -1,7 +1,13 @@
 import { processStreamingText } from "@chatbotx.io/ai"
 import { aiContextService } from "@chatbotx.io/ai/server"
+import type { SalesPromptProduct } from "@chatbotx.io/business"
+import type {
+  AIAgentSalesProfile,
+  ConversationSalesState,
+} from "@chatbotx.io/database/partials"
 import { emit } from "@chatbotx.io/event-bus"
 import { createId } from "@chatbotx.io/utils"
+import type { LanguageModel } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import { sendMessageAndWait } from "../../utils/message"
@@ -13,11 +19,25 @@ import type {
   ReplyByAIExecutionResult,
   ReplyByAIProps,
 } from "./replies"
+import {
+  evaluateSalesGuard,
+  extractRichResponseTexts,
+  resolveSalesHandoffMessage,
+} from "./sales-guard"
 import { buildTrackingContext } from "./tracking-context"
 
 type DirectSendTracker = {
   sent: boolean
   sentText: string
+}
+
+export type RichReplySalesGuardContext = {
+  profile: AIAgentSalesProfile
+  products: SalesPromptProduct[]
+  salesState: ConversationSalesState
+  model: LanguageModel
+  systemPrompt: string
+  handoffTracker?: { executed: boolean }
 }
 
 type HandleRichAIReplyOptions = {
@@ -28,6 +48,7 @@ type HandleRichAIReplyOptions = {
   provider: ReplyAIProvider
   startTime: number
   textStream: AsyncIterable<string>
+  salesGuardContext?: RichReplySalesGuardContext
 }
 
 export async function handleRichAIReply({
@@ -38,6 +59,7 @@ export async function handleRichAIReply({
   provider,
   startTime,
   textStream,
+  salesGuardContext,
 }: HandleRichAIReplyOptions): Promise<null | ReplyByAIExecutionResult> {
   const { conversation } = props
   const { fullText } = await processStreamingText(
@@ -89,6 +111,22 @@ export async function handleRichAIReply({
   })
 
   const parseResult = parseRichResponse(fullText)
+
+  // The `connectUserToHuman` tool already handed off but the model left no
+  // text the guard could check: send the waiting message here, otherwise the
+  // caller would treat this as a failure and let the next provider reply.
+  const sendToolHandoffWaitingMessage = async () => {
+    if (!salesGuardContext) {
+      return null
+    }
+    const text = resolveSalesHandoffMessage(salesGuardContext.profile)
+    await sendMessageAndWait(conversation.id, text, trackingContext)
+    await appendAssistantHistory(conversation.id, text)
+    return buildSuccessResult({ buildToolStats, modelId, provider })
+  }
+  const toolHandoffExecuted = Boolean(
+    salesGuardContext?.handoffTracker?.executed,
+  )
   if (!parseResult.ok) {
     logger.warn(
       {
@@ -101,15 +139,93 @@ export async function handleRichAIReply({
 
     if (parseResult.reason === "plain_text" && parseResult.text.trim()) {
       const trimmedText = parseResult.text.trim()
+      if (salesGuardContext) {
+        const sendRichGuardReply = async (text: string) => {
+          // evaluateSalesGuard emits the single `message:bot_received` analytics event.
+          await sendMessageAndWait(conversation.id, text)
+          await appendAssistantHistory(conversation.id, text)
+        }
+        const guardResult = await evaluateSalesGuard({
+          conversation,
+          contactInbox: props.contactInbox,
+          aiAgent: props.aiAgent,
+          profile: salesGuardContext.profile,
+          products: salesGuardContext.products,
+          salesState: salesGuardContext.salesState,
+          model: salesGuardContext.model,
+          modelId,
+          provider,
+          systemPrompt: salesGuardContext.systemPrompt,
+          messages: props.messages,
+          candidateText: trimmedText,
+          triggerMessageId: props.triggerMessageId,
+          channel: props.channel,
+          startTime,
+          handoffTracker: salesGuardContext.handoffTracker,
+          sendHandoffMessage: sendRichGuardReply,
+        })
+        if (guardResult.outcome !== "handoff" && guardResult.finalText) {
+          await sendRichGuardReply(guardResult.finalText)
+        }
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
       await sendMessageAndWait(conversation.id, trimmedText, trackingContext)
       await appendAssistantHistory(conversation.id, trimmedText)
       return buildSuccessResult({ buildToolStats, modelId, provider })
     }
 
+    if (toolHandoffExecuted) {
+      return sendToolHandoffWaitingMessage()
+    }
     return null
   }
 
   const richResponse = parseResult.data
+  let salesGuardEmittedAnalytics = false
+  if (salesGuardContext) {
+    const extractedText = extractRichResponseTexts(richResponse).trim()
+    if (!extractedText && toolHandoffExecuted) {
+      return sendToolHandoffWaitingMessage()
+    }
+    if (extractedText) {
+      const sendRichGuardReply = async (text: string) => {
+        // evaluateSalesGuard emits the single `message:bot_received` analytics event.
+        await sendMessageAndWait(conversation.id, text)
+        await appendAssistantHistory(conversation.id, text)
+      }
+      const guardResult = await evaluateSalesGuard({
+        conversation,
+        contactInbox: props.contactInbox,
+        aiAgent: props.aiAgent,
+        profile: salesGuardContext.profile,
+        products: salesGuardContext.products,
+        salesState: salesGuardContext.salesState,
+        model: salesGuardContext.model,
+        modelId,
+        provider,
+        systemPrompt: salesGuardContext.systemPrompt,
+        messages: props.messages,
+        candidateText: extractedText,
+        triggerMessageId: props.triggerMessageId,
+        channel: props.channel,
+        startTime,
+        handoffTracker: salesGuardContext.handoffTracker,
+        sendHandoffMessage: sendRichGuardReply,
+      })
+      salesGuardEmittedAnalytics = true
+      if (guardResult.outcome === "handoff") {
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
+      if (
+        (guardResult.outcome === "rewritten" ||
+          guardResult.outcome === "fallback") &&
+        guardResult.finalText
+      ) {
+        await sendRichGuardReply(guardResult.finalText)
+        return buildSuccessResult({ buildToolStats, modelId, provider })
+      }
+    }
+  }
   const flowContextId = createId()
   const context = {
     workspaceId: conversation.workspaceId,
@@ -124,7 +240,13 @@ export async function handleRichAIReply({
 
   const messageResult =
     richResponse.messages.length > 0
-      ? await sendRichMessages(richResponse.messages, context, trackingContext)
+      ? await sendRichMessages(
+          richResponse.messages,
+          context,
+          // The guard already emitted the single bot_received event for this
+          // trigger message; sending with tracking would emit a second one.
+          salesGuardEmittedAnalytics ? undefined : trackingContext,
+        )
       : { enqueued: 0, skipped: 0 }
   const actionResult = await executeRichActions(richResponse.actions, context)
   const hasSentMessages = messageResult.enqueued > 0

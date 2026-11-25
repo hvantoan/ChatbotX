@@ -28,7 +28,7 @@ import {
 } from "react";
 import { type FieldValues, type Path, useFormContext } from "react-hook-form";
 import { ChevronDown, X, Tag } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 
 interface TagsInputFieldProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
@@ -157,7 +157,7 @@ const TagsInputFieldBase = <TFieldValues extends FieldValues>({
       case "enterprise":
         return {
           container:
-            "dark:border-gray-600 border-2 border-muted hover:border-primary/30 transition-all duration-300 backdrop-blur-sm",
+            "dark:border-input border-2 border-muted hover:border-primary/30 transition-all duration-300 backdrop-blur-sm",
           input:
             "h-8 bg-transparent border-0 focus:ring-0 placeholder:text-muted-foreground/60",
           suggestions:
@@ -199,7 +199,7 @@ const TagsInputFieldBase = <TFieldValues extends FieldValues>({
               {maxTags && (
                 <Badge
                   variant="outline"
-                  className="text-xs dark:border-gray-500"
+                  className="text-xs dark:border-border"
                 >
                   {tags.length}/{maxTags}
                 </Badge>

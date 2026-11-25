@@ -724,6 +724,21 @@ class ProductService extends BaseService {
   ) {
     return await productRepository.listForCatalogSync(input)
   }
+
+  async findForSalesProfile(input: {
+    workspaceId: string
+    productIds: string[]
+  }) {
+    const uniqueIds = [...new Set(input.productIds)]
+    if (uniqueIds.length === 0) {
+      return []
+    }
+    const rows = await productRepository.findForOrder({
+      workspaceId: input.workspaceId,
+      productIds: uniqueIds,
+    })
+    return rows.filter((row) => row.status === "active")
+  }
 }
 
 class ProductVariantOptionService extends BaseService {

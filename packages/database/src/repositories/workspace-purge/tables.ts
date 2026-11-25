@@ -18,6 +18,8 @@ export const HEAVY_WORKSPACE_TABLES = [
   "LeaderboardParticipant",
   "AIConversationEmbedding",
   "AIEmbedding",
+  "AIAgentSalesProfileVersion",
+  "AIAgentTrainingMessage",
   "TriggerExecution",
   "FlowRun",
   "FlowVersion",

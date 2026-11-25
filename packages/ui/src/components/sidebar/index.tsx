@@ -48,7 +48,7 @@ export function NavMain({ title, items }: NavMainProps) {
                       <SidebarMenuButton tooltip={item.title}>
                         {item.icon ? <item.icon /> : null}
                         <span>{item.title}</span>
-                        <ChevronRight className="ms-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-[state=open]/collapsible:rotate-90" />
+                        <ChevronRight className="ms-auto transition-transform duration-200 group-data-open/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-open/collapsible:rotate-90" />
                       </SidebarMenuButton>
                     }
                   />

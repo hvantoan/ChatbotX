@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
+  "style": "base-vega",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -18,7 +18,6 @@
     "hooks": "@chatbotx.io/ui/hooks"
   },
   "registries": {
-    "@billingsdk": "https://billingsdk.com/r/{name}.json",
-    "@diceui": "https://diceui.com/r/{name}.json"
+    "@billingsdk": "https://billingsdk.com/r/{name}.json"
   }
 }

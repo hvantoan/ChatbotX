@@ -1,3 +1,5 @@
+"use client"
+
 import type { LucideIcon } from "lucide-react"
 import { useMemo } from "react"
 import type { FieldPath, FieldValues } from "react-hook-form"

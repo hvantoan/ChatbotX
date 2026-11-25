@@ -298,27 +298,27 @@ export function PricingTableFour({
                   setIsAnnually(value === "annually")
                 }}
               >
-                <div className='h-full rounded-md transition-all has-[button[data-state="checked"]]:bg-background'>
+                <div className="h-full rounded-md transition-all has-[[data-checked]]:bg-background">
                   <RadioGroupItem
                     className="peer sr-only"
                     id={`${uniqueId}-monthly`}
                     value="monthly"
                   />
                   <Label
-                    className="flex h-full cursor-pointer items-center justify-center px-2 font-semibold text-muted-foreground transition-all hover:text-foreground peer-data-[state=checked]:text-primary md:px-7"
+                    className="flex h-full cursor-pointer items-center justify-center px-2 font-semibold text-muted-foreground transition-all hover:text-foreground peer-data-checked:text-primary md:px-7"
                     htmlFor={`${uniqueId}-monthly`}
                   >
                     {billingToggleLabels.monthly}
                   </Label>
                 </div>
-                <div className='h-full rounded-md transition-all has-[button[data-state="checked"]]:bg-background'>
+                <div className="h-full rounded-md transition-all has-[[data-checked]]:bg-background">
                   <RadioGroupItem
                     className="peer sr-only"
                     id={`${uniqueId}-annually`}
                     value="annually"
                   />
                   <Label
-                    className="flex h-full cursor-pointer items-center justify-center gap-1 px-2 font-semibold text-muted-foreground transition-all hover:text-foreground peer-data-[state=checked]:text-primary md:px-7"
+                    className="flex h-full cursor-pointer items-center justify-center gap-1 px-2 font-semibold text-muted-foreground transition-all hover:text-foreground peer-data-checked:text-primary md:px-7"
                     htmlFor={`${uniqueId}-annually`}
                   >
                     {billingToggleLabels.yearly}
