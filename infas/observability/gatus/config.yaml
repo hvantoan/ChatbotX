@@ -1,0 +1,68 @@
+# Gatus: health check + alert Telegram. Env var được expand từ .env.
+# `alerting.telegram` bắt buộc có token/id; nếu để trống, check vẫn chạy
+# nhưng gửi alert sẽ lỗi trong log.
+storage:
+  type: sqlite
+  path: /data/gatus.db
+  maximum-number-of-results: 200
+  maximum-number-of-events: 50
+
+alerting:
+  telegram:
+    token: ${TELEGRAM_BOT_TOKEN}
+    id: ${TELEGRAM_CHAT_ID}
+    default-alert:
+      enabled: true
+      failure-threshold: 3 # 3 lần fail liên tiếp (x60s) mới báo
+      success-threshold: 2
+      send-on-resolved: true
+      description: "ChatbotX health check failing"
+
+endpoints:
+  - name: builder
+    group: chatbotx
+    url: "http://builder:3000/api/health"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].status == healthy"
+      - "[RESPONSE_TIME] < 3000"
+    alerts:
+      - type: telegram
+
+  - name: realtime
+    group: chatbotx
+    url: "http://realtime:1999/health"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+
+  # Chỉ dùng khi stack ChatbotX bật profile zalo-personal — bỏ comment nếu có.
+  # - name: zalo-gateway
+  #   group: chatbotx
+  #   url: "http://zalo-personal-gateway:3220/health"
+  #   interval: 60s
+  #   conditions:
+  #     - "[STATUS] == 200"
+  #   alerts:
+  #     - type: telegram
+
+  - name: postgres
+    group: chatbotx
+    url: "tcp://postgres:5432"
+    interval: 60s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: telegram
+
+  - name: redis
+    group: chatbotx
+    url: "tcp://redis:6379"
+    interval: 60s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: telegram

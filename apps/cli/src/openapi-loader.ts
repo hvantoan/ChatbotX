@@ -271,6 +271,16 @@ const COMMAND_NAME_OVERRIDES: Readonly<Record<string, string>> = {
   "POST /v1/marketing-messages/audiences": "marketing-messages:create-audience",
   "DELETE /v1/marketing-messages/audiences/{id}":
     "marketing-messages:delete-audience",
+  // AI agent sales profile singleton & training actions
+  "GET /v1/ai-agents/{id}/sales-profile": "ai-agents:sales-profile:get",
+  "POST /v1/ai-agents/{id}/sales-profile/propose":
+    "ai-agents:sales-profile:propose",
+  "POST /v1/ai-agents/{id}/sales-profile/apply":
+    "ai-agents:sales-profile:apply",
+  "POST /v1/ai-agents/{id}/sales-profile/revert":
+    "ai-agents:sales-profile:revert",
+  "DELETE /v1/ai-agents/{id}/training-messages":
+    "ai-agents:training-messages:clear",
 }
 
 export function pathAndMethodToCommandName(

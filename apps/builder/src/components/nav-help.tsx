@@ -36,7 +36,7 @@ export const NavHelp = () => {
             render={
               <SidebarMenuButton
                 aria-label={t("helpMenu.ariaLabel")}
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                className="data-popup-open:bg-sidebar-accent data-popup-open:text-sidebar-accent-foreground"
               >
                 <CircleHelpIcon className="size-4" />
                 <span>{t("helpMenu.title")}</span>

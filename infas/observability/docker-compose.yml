@@ -1,0 +1,124 @@
+name: chatbotx-observability
+
+# Stack monitoring nhẹ nhất cho host 4 vCPU / 4 GB:
+#   Beszel (metric + alert) + Gatus (uptime + alert) + Dozzle (log live)
+# RAM thực tế đo được ~35 MB; trần cứng đặt ở dưới (tổng 320 MB).
+#
+# Chạy:  cd infas/observability && cp .env.example .env && docker compose up -d
+# Agent Beszel bật sau khi lấy KEY/TOKEN trong UI: docker compose --profile agent up -d
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "2"
+
+x-app: &app
+  restart: always
+  stop_grace_period: 10s
+  logging: *logging
+
+services:
+  beszel:
+    <<: *app
+    image: henrygd/beszel:0.21
+    container_name: obs-beszel
+    environment:
+      APP_URL: ${BESZEL_URL:-http://127.0.0.1:8090}
+    ports:
+      - "127.0.0.1:${BESZEL_PORT:-8090}:8090"
+    volumes:
+      - beszel-data:/beszel_data
+      - beszel-socket:/beszel_socket
+    networks: [obs]
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.50"
+          pids: 128
+
+  # Chỉ bật sau khi tạo system trong UI (copy KEY/TOKEN vào .env)
+  beszel-agent:
+    <<: *app
+    profiles: ["agent"]
+    image: henrygd/beszel-agent:0.21
+    container_name: obs-beszel-agent
+    network_mode: host
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      HUB_URL: http://127.0.0.1:8090
+      KEY: ${BESZEL_KEY:-}
+      TOKEN: ${BESZEL_TOKEN:-}
+    volumes:
+      - beszel-socket:/beszel_socket
+      - beszel-agent-data:/var/lib/beszel-agent
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: "0.25"
+          pids: 64
+
+  dozzle:
+    <<: *app
+    image: amir20/dozzle:v11.5.0
+    container_name: obs-dozzle
+    environment:
+      DOZZLE_NO_ANALYTICS: "true"
+      DOZZLE_ENABLE_ACTIONS: "false"
+      DOZZLE_AUTH_PROVIDER: simple
+    ports:
+      - "127.0.0.1:${DOZZLE_PORT:-8088}:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Tạo trước khi `up` — xem README §2 (dozzle generate ... > dozzle/users.yml)
+      - type: bind
+        source: ./dozzle/users.yml
+        target: /data/users.yml
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [obs]
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: "0.25"
+          pids: 128
+
+  gatus:
+    <<: *app
+    image: ghcr.io/twin/gatus:v5.38.0
+    container_name: obs-gatus
+    environment:
+      GATUS_LOG_LEVEL: ${GATUS_LOG_LEVEL:-WARN}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+    ports:
+      - "127.0.0.1:${GATUS_PORT:-8081}:8080"
+    volumes:
+      - ./gatus/config.yaml:/config/config.yaml:ro
+      - gatus-data:/data
+    networks: [obs, chatbotx]
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: "0.25"
+          pids: 128
+
+networks:
+  obs: {}
+  # Network do stack ChatbotX tạo (prod: chatbotx-prod, dev: chatbotx).
+  # Đổi bằng CHATBOTX_NETWORK nếu compose project của bạn tên khác.
+  chatbotx:
+    external: true
+    name: ${CHATBOTX_NETWORK:-chatbotx-prod_chatbotx-network}
+
+volumes:
+  beszel-data:
+  beszel-agent-data:
+  beszel-socket:
+  gatus-data:

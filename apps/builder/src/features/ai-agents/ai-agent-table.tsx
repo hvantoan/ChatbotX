@@ -103,53 +103,53 @@ export function AIAgentsTable({ workspaceId, promises }: AIAgentsTableProps) {
               />
             </DataTableToolbar>
           </DataTable>
+
+          <DeleteAIAgentsDialog
+            agents={rowAction?.row.original ? [rowAction?.row.original] : []}
+            onOpenChange={() => setRowAction(null)}
+            onSuccess={() => {
+              rowAction?.row.toggleSelected(false)
+              router.refresh()
+              invalidateAIAgents()
+            }}
+            open={rowAction?.variant === "delete"}
+            showTrigger={false}
+            workspaceId={workspaceId}
+          />
+
+          <UpdateAIAgentDialog
+            actionOptions={actionOptions}
+            agent={rowAction?.row.original || null}
+            onOpenChange={() => setRowAction(null)}
+            onSuccess={() => {
+              router.refresh()
+              invalidateAIAgents()
+            }}
+            open={rowAction?.variant === "update"}
+            openaiCompatibleIntegrations={openaiCompatibleIntegrations}
+            workspaceId={workspaceId}
+          />
+
+          <ChangeDefault
+            aiAgent={rowAction?.row.original || null}
+            onOpenChange={() => setRowAction(null)}
+            onSuccess={() => {
+              router.refresh()
+              invalidateAIAgents()
+            }}
+            open={rowAction?.variant === "toggleDefault"}
+          />
+
+          <BotReplyDelayDialog
+            onOpenChange={() => setRowAction(null)}
+            onSuccess={() => {
+              router.refresh()
+            }}
+            open={rowAction?.variant === "botReplyDelay"}
+            smartResponseDelaySeconds={workspace.smartResponseDelaySeconds}
+            workspaceId={workspaceId}
+          />
         </TemplateLockedList>
-
-        <DeleteAIAgentsDialog
-          agents={rowAction?.row.original ? [rowAction?.row.original] : []}
-          onOpenChange={() => setRowAction(null)}
-          onSuccess={() => {
-            rowAction?.row.toggleSelected(false)
-            router.refresh()
-            invalidateAIAgents()
-          }}
-          open={rowAction?.variant === "delete"}
-          showTrigger={false}
-          workspaceId={workspaceId}
-        />
-
-        <UpdateAIAgentDialog
-          actionOptions={actionOptions}
-          agent={rowAction?.row.original || null}
-          onOpenChange={() => setRowAction(null)}
-          onSuccess={() => {
-            router.refresh()
-            invalidateAIAgents()
-          }}
-          open={rowAction?.variant === "update"}
-          openaiCompatibleIntegrations={openaiCompatibleIntegrations}
-          workspaceId={workspaceId}
-        />
-
-        <ChangeDefault
-          aiAgent={rowAction?.row.original || null}
-          onOpenChange={() => setRowAction(null)}
-          onSuccess={() => {
-            router.refresh()
-            invalidateAIAgents()
-          }}
-          open={rowAction?.variant === "toggleDefault"}
-        />
-
-        <BotReplyDelayDialog
-          onOpenChange={() => setRowAction(null)}
-          onSuccess={() => {
-            router.refresh()
-          }}
-          open={rowAction?.variant === "botReplyDelay"}
-          smartResponseDelaySeconds={workspace.smartResponseDelaySeconds}
-          workspaceId={workspaceId}
-        />
       </CardContent>
     </Card>
   )

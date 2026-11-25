@@ -12,6 +12,7 @@ const SHIPPED_KIND_CATEGORY = {
   flow: "flows",
   trigger: "triggers",
   sequence: "sequences",
+  product: "products",
   aiAgent: "aiAgents",
   aiFunction: "aiFunctions",
   aiFile: "aiFiles",

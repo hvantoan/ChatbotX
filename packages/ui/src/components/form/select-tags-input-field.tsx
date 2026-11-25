@@ -23,8 +23,8 @@ import {
   PopoverTrigger,
 } from "@chatbotx.io/ui/components/ui/popover"
 import { cn } from "@chatbotx.io/ui/lib/utils"
-import { AnimatePresence, motion } from "framer-motion"
 import { Check, ChevronDown, X } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
 import { memo, type ReactNode, useRef, useState } from "react"
 import { type FieldValues, type Path, useFormContext } from "react-hook-form"
 

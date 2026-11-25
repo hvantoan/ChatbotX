@@ -383,7 +383,7 @@ export function MessengerMessageTemplatesTable({
               render={
                 <Button
                   aria-label={t("actions.openMenu")}
-                  className="flex size-8 p-0 data-[state=open]:bg-muted"
+                  className="flex size-8 p-0 data-popup-open:bg-muted"
                   variant="ghost"
                 >
                   <EllipsisVerticalIcon aria-hidden="true" className="size-4" />

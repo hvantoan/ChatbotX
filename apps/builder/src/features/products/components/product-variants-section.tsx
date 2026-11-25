@@ -13,6 +13,14 @@ import {
 } from "@chatbotx.io/ui/components/ui/card"
 import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
 import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@chatbotx.io/ui/components/ui/table"
 import { PlusIcon, TrashIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"
@@ -158,25 +166,22 @@ export function ProductVariantsSection() {
 
         {variants.length > 0 && (
           <div className="mt-4 overflow-hidden rounded-md border">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b bg-muted/50">
-                  <th className="w-8 p-2 text-start" />
-                  <th className="p-2 text-start font-medium">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/50 hover:bg-muted/50">
+                  <TableHead className="w-8 p-2" />
+                  <TableHead className="p-2">
                     {t("fields.variant.label")}
-                  </th>
-                  <th className="p-2 text-start font-medium">
+                  </TableHead>
+                  <TableHead className="p-2">
                     {t("fields.price.label")}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {variants.map((variant, index) => (
-                  <tr
-                    className="border-b last:border-0"
-                    key={buildVariantLabel(variant.combination)}
-                  >
-                    <td className="p-2">
+                  <TableRow key={buildVariantLabel(variant.combination)}>
+                    <TableCell className="p-2">
                       <Controller
                         control={control}
                         name={`variants.${index}.isEnabled`}
@@ -187,22 +192,22 @@ export function ProductVariantsSection() {
                           />
                         )}
                       />
-                    </td>
-                    <td className="p-2">
+                    </TableCell>
+                    <TableCell className="whitespace-normal p-2">
                       {buildVariantLabel(variant.combination)}
-                    </td>
-                    <td className="p-2">
+                    </TableCell>
+                    <TableCell className="p-2">
                       <InputNumberField
                         {...PRICE_INPUT_PROPS}
                         min={0}
                         name={`variants.${index}.price`}
                         placeholder="0"
                       />
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         )}
       </CardContent>

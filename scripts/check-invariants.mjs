@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process"
+import { existsSync } from "node:fs"
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
@@ -37,6 +38,13 @@ const RUNTIME_DYNAMIC_IMPORT =
 const LOGGER_ERROR_KEY =
   /\.(fatal|error|warn|info|debug|trace)\(\s*\{\s*error\s*[,}]/
 const PRISMA_IMPORT = /from\s+["']@prisma\//
+const RADIX_IMPORT = /from\s+["'](@radix-ui\/|radix-ui["'])/
+const DIRECT_BASE_UI_IMPORT = /from\s+["']@base-ui\/react/
+const DEAD_RADIX_STATE =
+  /data-\[state=(open|closed|checked|delayed-open)\]|--radix-/
+const INVALID_HSL_TOKEN = /hsl\(var\(--/
+const UI_CLIENT_COMPONENT = /^packages\/ui\/src\/components\/.*\.tsx$/
+const USE_CLIENT_DIRECTIVE = /^\s*["']use client["'];?\s*$/
 const RELATIONS_IMPORT = /import\s*\{([^}]*)\}\s*from\s*["']\.\/[^"']+["']/g
 
 const violations = []
@@ -50,7 +58,12 @@ const listTrackedSources = () =>
     maxBuffer: 64 * 1024 * 1024,
   })
     .split("\0")
-    .filter((file) => SOURCE_FILE.test(file) && !TEST_PATH.test(file))
+    .filter(
+      (file) =>
+        SOURCE_FILE.test(file) &&
+        !TEST_PATH.test(file) &&
+        existsSync(path.join(root, file)),
+    )
 
 const startsWithAny = (file, prefixes) =>
   prefixes.some((prefix) => file.startsWith(prefix))
@@ -58,6 +71,9 @@ const startsWithAny = (file, prefixes) =>
 const checkLines = (file, lines) => {
   const isTsdown = startsWithAny(file, TSDOWN_ROOTS)
   const isServer = startsWithAny(file, SERVER_ROOTS)
+  const isApp = file.startsWith("apps/")
+  const isUiLayer =
+    file.startsWith("packages/ui/src/") || file.startsWith("apps/builder/src/")
 
   lines.forEach((text, index) => {
     if (COMMENT_LINE.test(text)) {
@@ -93,7 +109,63 @@ const checkLines = (file, lines) => {
         "this project uses Drizzle only, never Prisma (AGENTS.md invariant 8)",
       )
     }
+
+    if (RADIX_IMPORT.test(text)) {
+      report(
+        file,
+        line,
+        "ChatbotX uses @base-ui/react via @chatbotx.io/ui, never Radix UI",
+      )
+    }
+
+    if (isApp && DIRECT_BASE_UI_IMPORT.test(text)) {
+      report(
+        file,
+        line,
+        "import UI primitives from @chatbotx.io/ui/* instead of @base-ui/react directly",
+      )
+    }
+
+    if (isUiLayer && DEAD_RADIX_STATE.test(text)) {
+      report(
+        file,
+        line,
+        "use Base UI data attributes (data-open, data-popup-open, data-panel-open, data-checked) instead of Radix data-[state=*] / --radix-*",
+      )
+    }
+
+    if (isUiLayer && INVALID_HSL_TOKEN.test(text)) {
+      report(
+        file,
+        line,
+        "theme tokens use oklch(), not HSL triplets — use var(--...) directly instead of hsl(var(--...))",
+      )
+    }
   })
+}
+
+const checkUiClientDirective = (file, lines) => {
+  if (!UI_CLIENT_COMPONENT.test(file)) {
+    return
+  }
+
+  const importsBaseUi = lines.some((text) => DIRECT_BASE_UI_IMPORT.test(text))
+  if (!importsBaseUi) {
+    return
+  }
+
+  const firstNonEmpty = lines
+    .map((text) => text.trim())
+    .filter((text) => text.length > 0 && !COMMENT_LINE.test(text))
+    .slice(0, 5)
+
+  if (!firstNonEmpty.some((text) => USE_CLIENT_DIRECTIVE.test(text))) {
+    report(
+      file,
+      1,
+      'packages/ui components importing @base-ui/react must declare "use client"',
+    )
+  }
 }
 
 // A relations file that is imported but never spread into the `relations`
@@ -126,7 +198,9 @@ const main = async () => {
 
   for (const file of files) {
     const content = await readFile(path.join(root, file), "utf8")
-    checkLines(file, content.split("\n"))
+    const lines = content.split("\n")
+    checkLines(file, lines)
+    checkUiClientDirective(file, lines)
   }
 
   await checkRelationsIndex()

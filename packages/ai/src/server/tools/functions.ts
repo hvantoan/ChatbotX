@@ -101,8 +101,12 @@ export async function getAIFunctionTools(
                   await context.triggerFlow(triggerFlowId)
                   if (context.sendMessage) {
                     await context.sendMessage(outputMessage)
+                    return ""
                   }
-                  return ""
+                  // No direct sender (sales guard mode): hand the output
+                  // message back to the model so it reaches the customer
+                  // through the guarded reply instead of being dropped.
+                  return outputMessage
                 }
 
                 if (outputMessage && context.sendMessage) {

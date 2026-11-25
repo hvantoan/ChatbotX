@@ -78,6 +78,20 @@ export type ConversationQuickReplyChallenge = {
   }
 }
 
+export type ConversationSalesStage =
+  | "discover"
+  | "pitch"
+  | "objection"
+  | "alternative"
+  | "close"
+
+export type ConversationSalesState = {
+  stage: ConversationSalesStage
+  pitchedProductIds: string[]
+  offTopicStreak: number
+  profileVersion: number
+}
+
 export type ConversationAttributes = {
   phoneNumber?: string
   challenge?: ConversationStepChallenge | ConversationQuickReplyChallenge
@@ -88,4 +102,5 @@ export type ConversationAttributes = {
    * listing; this persisted bound lets the readers include them.
    */
   earliestMessageAt?: string
+  salesState?: ConversationSalesState
 }

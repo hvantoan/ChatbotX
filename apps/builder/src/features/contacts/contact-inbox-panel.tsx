@@ -294,7 +294,7 @@ export const ContactInboxPanel = ({
       >
         {accordionModules.map((module, index) => (
           <AccordionItem
-            className="transition-all hover:data-[state=open]:rounded-none"
+            className="transition-all hover:data-open:rounded-none"
             key={module.keyName}
             value={module.keyName}
           >

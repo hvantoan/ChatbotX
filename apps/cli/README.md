@@ -504,6 +504,20 @@ chatbotx ai-agents create --name <name> --prompt <prompt> --temperature <tempera
                                                      # [--webSearchAuthorizedDomains --isRichResponse]
 chatbotx ai-agents update <id>                       # Same fields as create, all optional (partial update)
 chatbotx ai-agents delete <id>
+
+# Sales persona, goal & chat-based training (scope `automation`)
+chatbotx ai-agents sales-profile get <id>            # Active sales profile + version counter
+chatbotx ai-agents sales-profile update <id> --profile <json>
+                                                     # Save a full sales profile (source: manual) and bump version
+chatbotx ai-agents sales-profile propose <id> --instruction <text>
+                                                     # Propose a sales profile change from natural language (no profile write; appends training chat messages)
+chatbotx ai-agents sales-profile apply <id> --profile <json>
+                                                     # [--instruction <text> --messageId <id>]  validate & save a proposed profile (source: proposal)
+chatbotx ai-agents versions list <id>                # [--cursor --limit]  immutable sales profile version history, newest first
+chatbotx ai-agents sales-profile revert <id> --version <n>
+                                                     # Restore version <n> as a new revert version entry
+chatbotx ai-agents training-messages list <id>       # [--cursor --limit]  training chat messages and proposal cards, newest first
+chatbotx ai-agents training-messages clear <id>      # Delete all training chat messages (profile & versions stay)
 ```
 
 ---

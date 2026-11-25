@@ -20,7 +20,7 @@ catalog:
   "@t3-oss/env-core": "^0.13.11"
   "@t3-oss/env-nextjs": "^0.13.11"
   "@types/mime-types": "^3.0.1"
-  "@types/node": "^24.12.2"
+  "@types/node": "^26.6.6"
   "@types/pg": "^8.20.0"
   "@types/react": 19.2.14
   "@types/react-dom": 19.2.3
@@ -31,10 +31,10 @@ catalog:
   date-fns: "^4.4.0"
   date-fns-tz: "^3.2.0"
   dot-prop: "^10.1.0"
-  dotenv-cli: "^11.0.0"
+  dotenv-cli: "^11.1.0"
   drizzle-kit: 1.0.0-beta.22
   drizzle-orm: 1.0.0-beta.22
-  google-auth-library: "^10.6.2"
+  google-auth-library: "^11.3.4"
   image-size: "^2.0.3"
   ioredis: 5.10.1
   jose: "^6.2.3"

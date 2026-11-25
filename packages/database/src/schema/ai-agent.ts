@@ -8,6 +8,7 @@ import {
   pgTable,
   text,
 } from "drizzle-orm/pg-core"
+import type { AIAgentSalesProfile } from "../partials/ai"
 import { bigintAsString, sharedColumns } from "../partials/shared"
 import { workspaceModel } from "./workspace"
 
@@ -33,6 +34,8 @@ export const aiAgentModel = pgTable(
     models: jsonb().array().notNull().default(sql`[]`),
     temperature: doublePrecision().notNull(),
     maxOutputTokens: integer().notNull(),
+    salesProfile: jsonb().$type<AIAgentSalesProfile>(),
+    salesProfileVersion: integer().notNull().default(0),
   },
   (table) => [index("AIAgent_workspaceId_idx").on(table.workspaceId)],
 )
