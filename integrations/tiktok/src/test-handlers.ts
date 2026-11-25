@@ -1,4 +1,4 @@
-import { HttpResponse, http } from "msw"
+import { HttpResponse, http } from "msw/http"
 import { BUSINESS_API_URL } from "./constants"
 
 export const testHandlers = [

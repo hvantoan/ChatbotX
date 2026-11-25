@@ -1,3 +1,3 @@
-import type { RequestHandler } from "msw"
+import type { HttpRequestHandler } from "msw/http"
 
-export const testHandlers: RequestHandler[] = []
+export const testHandlers: HttpRequestHandler[] = []

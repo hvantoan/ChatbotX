@@ -1,5 +1,5 @@
 import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
-import { HttpResponse, http } from "msw"
+import { HttpResponse, http } from "msw/http"
 import { setupServer } from "msw/node"
 import {
   afterAll,

@@ -39,8 +39,10 @@ const TEST_DEFAULTS: Readonly<Record<string, string>> = {
   // Realtime
   REALTIME_BROADCAST_SECRET: "test-broadcast-secret-32-bytes-ok",
 
-  // JavaScript executor
-  JAVASCRIPT_EXECUTOR_URL: "http://127.0.0.1:1",
+  // JavaScript executor — intercepted by MSW, so the port is never dialled,
+  // but it must be a fetch-legal one: MSW 3 builds a real `Request` for each
+  // mocked call and WHATWG blocks port 1 ("bad port").
+  JAVASCRIPT_EXECUTOR_URL: "http://127.0.0.1:4299",
   JAVASCRIPT_EXECUTOR_TOKEN: "test-executor-secret-at-least-32-bytes",
 
   // SMTP
