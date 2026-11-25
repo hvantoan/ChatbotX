@@ -522,7 +522,7 @@ describe("integrationWebchatService.create — quota gate", () => {
         extraConfig: expect.objectContaining({
           persistentMenus: [
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://app.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -545,7 +545,7 @@ describe("integrationWebchatService.create — quota gate", () => {
           ...baseData,
           persistentMenus: [
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://old.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -562,7 +562,7 @@ describe("integrationWebchatService.create — quota gate", () => {
           persistentMenus: [
             { label: "Docs", type: "url", url: "https://docs.example.com" },
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://app.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -799,7 +799,7 @@ describe("integrationWebchatService.update", () => {
       expect.objectContaining({
         persistentMenus: [
           {
-            label: "⚡ Built with chatbotx.io",
+            label: "⚡ Built with InboxOS",
             type: "url",
             url: "https://app.example.com/?ref=selfhosted&channel=webchat",
           },
