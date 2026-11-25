@@ -15,6 +15,24 @@ Workspace integrations with OpenAI-compatible endpoints (LM Studio, Ollama, NVID
    - Both the builder UI (`updateOpenaiCompatibleAction`) and the public API call `integrationOpenaiCompatibleService.updateWithVerification`.
 4. **Disconnect:** `DELETE /v1/connections/{id}` (`connections.disconnect`).
 
+## Embeddings (AI Files)
+
+AI File embeddings resolve through `resolveEmbeddingModel()`, which tries `openai` → `gemini` → the first **enabled** `openaiCompatible` integration (`orderBy createdAt asc`). The `autoReply` flag does not apply here: any enabled OpenAI-compatible connection is usable for embeddings.
+
+Choose the embedding model id with:
+
+```env
+OPENAI_COMPATIBLE_EMBEDDING_MODEL=text-embedding-3-small
+```
+
+- Unset → defaults to `text-embedding-3-small`. The model id is never hardcoded to a gateway-specific value.
+- Set it in the root `.env` (the worker scripts load it via `dotenv -e ../../.env`) and in `apps/builder/.env` when the builder dev server needs it. `scripts/dev-up.sh` only ensures a handful of keys, so add this one manually.
+
+Constraints:
+
+- **1536 dimensions.** `AIEmbedding.embedding` (`packages/database/src/schema/ai-embedding.ts`) and `AIConversationEmbedding.embedding` (`packages/database/src/schema/ai-conversation-embedding.ts`) are fixed `vector(1536)`. The gateway model must return 1536 values (`text-embedding-3-small`, `text-embedding-ada-002`); any other width fails on insert and leaves the file unindexed.
+- **The endpoint must relay `POST /v1/embeddings`.** Some gateways serve chat completions but not embeddings (OpenRouter and the `opencode-go` preset do not relay embeddings), so the connection resolves and then every embed call fails. Use a gateway with an embeddings-capable provider credential (e.g. 9router configured with the right upstream provider).
+
 ## SSRF Guard & Self-Hosted Opt-Out
 
 - SSRF validation (`validateOpenaiCompatibleBaseUrlForEnvironment`) is **enabled by default on every edition** (cloud, enterprise, and community). Private, loopback (`127.0.0.1`, `::1`), and link-local (`169.254.169.254`) endpoints are rejected with HTTP `400 ssrfBlocked` on both `POST /v1/connections` (`connections.create`) and `PATCH /v1/integrations/ai/openaiCompatible`; the public message never carries the internal `(code …)` suffix.
