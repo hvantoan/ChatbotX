@@ -96,6 +96,8 @@ export function buildSalesProfileDiff(
   return diff
 }
 
+const MAX_ASSISTANT_SUMMARY_LENGTH = 4000
+
 function buildAssistantSummaryText(proposal: AIAgentTrainingProposal): string {
   const parts: string[] = []
   if (proposal.unmatchedProducts?.length) {
@@ -112,7 +114,13 @@ function buildAssistantSummaryText(proposal: AIAgentTrainingProposal): string {
   } else if (parts.length === 0) {
     parts.push("Không có thay đổi nào được đề xuất.")
   }
-  return parts.join(" ")
+  const text = parts.join(" ")
+  // Training messages are capped at 4000 characters; a long unmatched list
+  // plus a long clarifying question must not fail the save after the
+  // provider call was already paid for.
+  return text.length > MAX_ASSISTANT_SUMMARY_LENGTH
+    ? `${text.slice(0, MAX_ASSISTANT_SUMMARY_LENGTH - 1)}…`
+    : text
 }
 
 class AiAgentSalesProfileProposalService extends BaseService {

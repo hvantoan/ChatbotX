@@ -118,16 +118,17 @@ type ConversationSalesState = {
 - Any unmatched money or percentage token fails Tier 1 with `invented_price`.
 
 ### Tier 2: Structured Model Judge
-- Uses the agent's own configured model with `maxOutputTokens: 150`, `temperature: 0`, and a dedicated 4-second deadline (`TIER2_JUDGE_TIMEOUT_MS`).
+- Uses the agent's own configured model with `maxOutputTokens: 1024` (room for the JSON plus reasoning-model tokens), `temperature: 0`, and a dedicated 4-second deadline (`TIER2_JUDGE_TIMEOUT_MS`).
 - Returns `{ onTopic, inRole, customerAskedForHuman, matchedHandoffTrigger, stage, mentionedProductIds }`.
 - **Fail-open resilience:** If Tier 2 times out or errors, it logs a warning (`{ err }`) and fails open to Tier 1 so the customer still receives a reply.
 
 ### Decision, Single Rewrite, Fallback, and Handover
-1. **Immediate Human Handover:** If the customer asked for a human (including `"bot à?"` / `"có phải người thật không?"`) and `profile.handoverOnHumanRequest` is on, or the customer's message matches `profile.handoffTriggers` (which hands off regardless of that toggle), sends `profile.handoffMessage` (default `"Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"`) **before** calling `handoffExecutorService.execute` with reason `"sales_profile_human_request"`. The Tier 2 judge reports these separately (`customerAskedForHuman` and `matchedHandoffTrigger`).
+0. **Tool Handoff Short-Circuit:** If the `connectUserToHuman` tool already handed off during this run, the guard skips the judge and rewrite, sends only `profile.handoffMessage`, and records outcome `"handoff"` with reason `"sales_profile_tool_handoff"`. This also covers a run with no reply text (plain and rich mode).
+1. **Immediate Human Handover:** If the customer asked for a human (including `"bot à?"` / `"có phải người thật không?"`; the lowercase word `ai`, Vietnamese for "who", is not treated as "AI") and `profile.handoverOnHumanRequest` is on, or the customer's message matches `profile.handoffTriggers` (which hands off regardless of that toggle), or the candidate reply is exactly the waiting message (so a missed or failed judge still hands off), sends `profile.handoffMessage` (default `"Anh/chị đợi em một chút, em làm thủ tục đăng ký ạ"`) **before** calling `handoffExecutorService.execute` with reason `"sales_profile_human_request"`. The Tier 2 judge reports these separately (`customerAskedForHuman` and `matchedHandoffTrigger`).
 2. **At Most One Rewrite:** If Tier 1 fails (`invented_price`), the reply self-identifies as AI/bot (`containsBotSelfDisclosure`), or Tier 2 reports `!inRole` or `!onTopic`, makes **one** rewrite call with the violation feedback and re-checks Tier 1 and bot self-disclosure on the rewritten text.
 3. **Fixed Fallback:** If the rewritten text still fails Tier 1 or contains bot self-disclosure (or rewrite fails), sends a deterministic fallback line built from the profile and priority-1 product (`buildSalesFallbackReply`) in the `"em"` voice with zero bot-revealing terms.
 4. **State Update & Off-Topic Streak Handover:** Updates `offTopicStreak = onTopic ? 0 : offTopicStreak + 1`, `stage`, and `pitchedProductIds`. When `offTopicStreak >= profile.offTopicLimit`, sends `profile.handoffMessage` **before** calling `handoffExecutorService.execute` with reason `"sales_profile_off_topic"`.
-5. **Analytics:** Emits `analytics:dashboard` (`message:bot_received`) with `metadata.salesGuardOutcome` (`"passed" | "rewritten" | "fallback" | "handoff"`).
+5. **Analytics:** Emits `analytics:dashboard` (`message:bot_received`) with `hasResponse: true` (every outcome sends a message) and `metadata.salesGuardOutcome` (`"passed" | "rewritten" | "fallback" | "handoff"`).
 
 ---
 

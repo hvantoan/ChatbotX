@@ -81,7 +81,7 @@ import { logProviderAttempt } from "../shared/provider-attempt-logger"
 import { createMcpTokenResolver } from "../shared/resolve-mcp-token"
 import { triggerDefaultReplyFlow } from "./default-reply"
 import { handleRichAIReply } from "./rich-reply"
-import { evaluateSalesGuard, resolveSalesHandoffMessage } from "./sales-guard"
+import { evaluateSalesGuard } from "./sales-guard"
 import { createDocumentReaderExecutor } from "./system-tools/document-reader"
 import { createImageReaderExecutor } from "./system-tools/image-reader"
 import { createUrlReaderExecutor } from "./system-tools/url-reader"
@@ -1106,19 +1106,8 @@ async function runAIReply(
         })
       }
 
-      if (!guardCandidateText) {
-        await sendSalesGuardReply(
-          resolveSalesHandoffMessage(activeSalesProfile),
-        )
-        return {
-          responded: true,
-          provider,
-          modelId: selectedModelId,
-          usedFallbackText: false,
-          toolStats: logActionToolSelection(),
-        }
-      }
-
+      // With no text but a tool handoff, the guard sends only the waiting
+      // message and emits the bot_received analytics event.
       const guardResult = await evaluateSalesGuard({
         conversation,
         contactInbox: props.contactInbox,

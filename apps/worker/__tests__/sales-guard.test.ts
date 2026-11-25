@@ -617,6 +617,71 @@ describe("evaluateSalesGuard decision pipeline", () => {
     expect(mockHandoffExecute).not.toHaveBeenCalled()
   })
 
+  test("does not read the Vietnamese word 'ai' (who) as a bot question", () => {
+    expect(isCustomerAskingBotOrHuman("Chào bạn, bạn là ai vậy?")).toBe(false)
+    expect(isCustomerAskingBotOrHuman("em là ai")).toBe(false)
+    expect(isCustomerAskingBotOrHuman("ai vậy?")).toBe(false)
+    expect(isCustomerAskingBotOrHuman("có ai không")).toBe(false)
+    expect(isCustomerAskingBotOrHuman("Đây là AI hả?")).toBe(true)
+    expect(isCustomerAskingBotOrHuman("bạn là AI à")).toBe(true)
+  })
+
+  test("after a tool handoff sends only the waiting message, without judging or rewriting", async () => {
+    const judgeRunner = vi.fn()
+    const rewriteRunner = vi.fn()
+
+    const result = await evaluateSalesGuard({
+      conversation: fakeConversation,
+      contactInbox: fakeContactInbox,
+      aiAgent: fakeAgent,
+      profile,
+      products,
+      salesState: initialState,
+      model: fakeModel,
+      modelId: "gpt-5.4-mini",
+      provider: "openai",
+      systemPrompt: "System",
+      messages: [{ role: "user", content: "Cho anh gặp tư vấn viên" }],
+      candidateText: "Thời tiết hôm nay đẹp quá ạ.",
+      triggerMessageId: "msg-tool-handoff",
+      startTime: Date.now(),
+      handoffTracker: { executed: true },
+      judgeRunner,
+      rewriteRunner,
+    })
+
+    expect(result.outcome).toBe("handoff")
+    expect(result.finalText).toBe(DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE)
+    expect(judgeRunner).not.toHaveBeenCalled()
+    expect(rewriteRunner).not.toHaveBeenCalled()
+    expect(mockHandoffExecute).not.toHaveBeenCalled()
+  })
+
+  test("hands off when the reply is the waiting message even if the judge fails", async () => {
+    const judgeRunner = vi.fn().mockRejectedValue(new Error("timeout"))
+
+    const result = await evaluateSalesGuard({
+      conversation: fakeConversation,
+      contactInbox: fakeContactInbox,
+      aiAgent: fakeAgent,
+      profile,
+      products,
+      salesState: initialState,
+      model: fakeModel,
+      modelId: "gpt-5.4-mini",
+      provider: "openai",
+      systemPrompt: "System",
+      messages: [{ role: "user", content: "ok chốt đơn" }],
+      candidateText: `${DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE}.`,
+      triggerMessageId: "msg-waiting-line",
+      startTime: Date.now(),
+      judgeRunner,
+    })
+
+    expect(result.outcome).toBe("handoff")
+    expect(mockHandoffExecute).toHaveBeenCalledTimes(1)
+  })
+
   test("treats 'bot à / người thật không' questions as customerAskedForHuman and hands off with handoffMessage", async () => {
     expect(isCustomerAskingBotOrHuman("Em là bot à?")).toBe(true)
     expect(isCustomerAskingBotOrHuman("Có phải người thật không vậy?")).toBe(

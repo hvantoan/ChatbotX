@@ -103,6 +103,7 @@ export function buildAllowedPriceAndPercentSets(
       addValueAndUnitVariants(priceSet, vPrice, currency)
       if (discountPercent > 0) {
         const vDiscountAmount = percentOf(vPrice, discountPercent, currency)
+        addValueAndUnitVariants(priceSet, vDiscountAmount, currency)
         addValueAndUnitVariants(
           priceSet,
           Math.max(0, roundMoney(vPrice - vDiscountAmount, currency)),
@@ -381,12 +382,26 @@ const BOT_DISCLOSURE_PATTERNS: readonly RegExp[] = [
   /human\s+agent/iu,
 ]
 
+// "ai" is the Vietnamese word for "who" ("bạn là ai?", "có ai không"), so the
+// case-insensitive patterns only match bot/chatbot; "AI" must be written in
+// uppercase to count. Ambiguous cases are left to the Tier-2 judge.
 const CUSTOMER_ASKED_BOT_OR_HUMAN_PATTERNS: readonly RegExp[] = [
-  /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot|ai)\s*(?:à|hả|vậy|không|phải\s*không|đúng\s*không|hở|chứ)(?=$|[^\p{L}\p{N}_])/iu,
-  /(?:có\s*phải|phải\s*là|đây\s*là|em\s*là|bạn\s*là)\s*(?:bot|chatbot|ai|trợ\s*lý\s*ảo)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:^|[^\p{L}\p{N}_])(?:bot|chatbot)\s*(?:à|hả|vậy|không|phải\s*không|đúng\s*không|hở|chứ)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:^|[^\p{L}\p{N}_])AI\s*(?:à|hả|vậy|không|phải\s*không|đúng\s*không|hở|chứ)(?=$|[^\p{L}\p{N}_])/u,
+  /(?:có\s*phải|phải\s*là|đây\s*là|em\s*là|bạn\s*là)\s*(?:bot|chatbot|trợ\s*lý\s*ảo)(?=$|[^\p{L}\p{N}_])/iu,
+  /(?:[Cc]ó\s*phải|[Pp]hải\s*là|[Đđ]ây\s*là|[Ee]m\s*là|[Bb]ạn\s*là)\s*AI(?=$|[^\p{L}\p{N}_])/u,
   /người\s*thật\s*(?:không|à|hả|hay\s*bot|hay\s*ai)/iu,
   /có\s*phải\s*người\s*thật/iu,
 ]
+
+const COMPARE_PUNCTUATION_RE = /[\s.!?…,"'“”]+/gu
+
+function normalizeForCompare(text: string): string {
+  return text
+    .replace(COMPARE_PUNCTUATION_RE, " ")
+    .trim()
+    .toLocaleLowerCase("vi")
+}
 
 export function containsBotSelfDisclosure(text: string): boolean {
   return BOT_DISCLOSURE_PATTERNS.some((pattern) => pattern.test(text))
@@ -526,7 +541,9 @@ export async function runTier2Judge(input: {
       output: Output.object({ schema: tier2JudgeOutputSchema }),
       system,
       prompt,
-      maxOutputTokens: 150,
+      // Room for the JSON object (incl. up to ten 19-digit product IDs) plus the
+      // hidden reasoning tokens that reasoning models count against this limit.
+      maxOutputTokens: 1024,
       temperature: 0,
       abortSignal: controller.signal,
     })
@@ -724,6 +741,24 @@ export async function evaluateSalesGuard(
 
   const handoffAlreadyExecuted =
     input.handoffTracker?.executed ?? Boolean(input.handoffAlreadyExecuted)
+
+  // A system tool (`connectUserToHuman`) already handed the conversation off:
+  // only the waiting message may go out. Judging or rewriting the candidate
+  // here could replace it with a sales pitch to a handed-off customer.
+  if (handoffAlreadyExecuted) {
+    await sendHandoff(handoffMessage)
+    await emitGuardAnalytics({
+      input,
+      outcome: "handoff",
+      reason: "sales_profile_tool_handoff",
+    })
+    return {
+      outcome: "handoff",
+      finalText: handoffMessage,
+      updatedState: salesState,
+    }
+  }
+
   const lastCustomerMessage = extractLastCustomerText(messages)
   const tier1Initial = checkTier1Prices({
     replyText: candidateText,
@@ -758,24 +793,28 @@ export async function evaluateSalesGuard(
       isCustomerAskingBotOrHuman(lastCustomerMessage),
   )
   const matchedHandoffTrigger = Boolean(tier2?.matchedHandoffTrigger)
+  // The sales prompt tells the model to answer a handoff case with exactly the
+  // waiting message. If it does, hand off even when the judge missed the
+  // trigger or failed, so the customer is never told to wait for nobody.
+  const replyIsHandoffMessage =
+    normalizeForCompare(candidateText) === normalizeForCompare(handoffMessage)
 
   if (
     (customerAskedForHuman && profile.handoverOnHumanRequest) ||
-    matchedHandoffTrigger
+    matchedHandoffTrigger ||
+    replyIsHandoffMessage
   ) {
     await sendHandoff(handoffMessage)
-    if (!handoffAlreadyExecuted) {
-      await handoffExecutorService.execute({
-        workspaceId: conversation.workspaceId,
-        conversationId: conversation.id,
-        contactId: conversation.contactId,
-        reason: "sales_profile_human_request",
-        reopenUnansweredHumanReplyWindow: true,
-        source: "automated_response",
-        channel: input.channel ?? contactInbox.channel,
-        inboxId: contactInbox.inboxId,
-      })
-    }
+    await handoffExecutorService.execute({
+      workspaceId: conversation.workspaceId,
+      conversationId: conversation.id,
+      contactId: conversation.contactId,
+      reason: "sales_profile_human_request",
+      reopenUnansweredHumanReplyWindow: true,
+      source: "automated_response",
+      channel: input.channel ?? contactInbox.channel,
+      inboxId: contactInbox.inboxId,
+    })
     await emitGuardAnalytics({
       input,
       outcome: "handoff",
@@ -832,22 +871,20 @@ export async function evaluateSalesGuard(
   // 2. Off-topic streak limit handoff (skip rewrite to avoid wasted LLM latency/cost)
   if (updatedState.offTopicStreak >= profile.offTopicLimit) {
     await sendHandoff(handoffMessage)
-    if (!handoffAlreadyExecuted) {
-      await handoffExecutorService.execute({
-        workspaceId: conversation.workspaceId,
-        conversationId: conversation.id,
-        contactId: conversation.contactId,
-        reason: "sales_profile_off_topic",
-        reopenUnansweredHumanReplyWindow: true,
-        source: "automated_response",
-        channel: input.channel ?? contactInbox.channel,
-        inboxId: contactInbox.inboxId,
-        metadata: {
-          offTopicStreak: updatedState.offTopicStreak,
-          offTopicLimit: profile.offTopicLimit,
-        },
-      })
-    }
+    await handoffExecutorService.execute({
+      workspaceId: conversation.workspaceId,
+      conversationId: conversation.id,
+      contactId: conversation.contactId,
+      reason: "sales_profile_off_topic",
+      reopenUnansweredHumanReplyWindow: true,
+      source: "automated_response",
+      channel: input.channel ?? contactInbox.channel,
+      inboxId: contactInbox.inboxId,
+      metadata: {
+        offTopicStreak: updatedState.offTopicStreak,
+        offTopicLimit: profile.offTopicLimit,
+      },
+    })
     await emitGuardAnalytics({
       input,
       outcome: "handoff",
@@ -968,7 +1005,8 @@ async function emitGuardAnalytics(params: {
       inboxId: input.contactInbox.inboxId,
       messageId: input.triggerMessageId,
       occurredAt: new Date(),
-      hasResponse: outcome !== "handoff",
+      // Every outcome, handoff included, sends a message to the customer.
+      hasResponse: true,
       responseType: "ai_agent",
       routeType: "agent",
       result: outcome === "fallback" ? "fallback" : "success",

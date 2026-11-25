@@ -19,7 +19,11 @@ import type {
   ReplyByAIExecutionResult,
   ReplyByAIProps,
 } from "./replies"
-import { evaluateSalesGuard, extractRichResponseTexts } from "./sales-guard"
+import {
+  evaluateSalesGuard,
+  extractRichResponseTexts,
+  resolveSalesHandoffMessage,
+} from "./sales-guard"
 import { buildTrackingContext } from "./tracking-context"
 
 type DirectSendTracker = {
@@ -107,6 +111,22 @@ export async function handleRichAIReply({
   })
 
   const parseResult = parseRichResponse(fullText)
+
+  // The `connectUserToHuman` tool already handed off but the model left no
+  // text the guard could check: send the waiting message here, otherwise the
+  // caller would treat this as a failure and let the next provider reply.
+  const sendToolHandoffWaitingMessage = async () => {
+    if (!salesGuardContext) {
+      return null
+    }
+    const text = resolveSalesHandoffMessage(salesGuardContext.profile)
+    await sendMessageAndWait(conversation.id, text, trackingContext)
+    await appendAssistantHistory(conversation.id, text)
+    return buildSuccessResult({ buildToolStats, modelId, provider })
+  }
+  const toolHandoffExecuted = Boolean(
+    salesGuardContext?.handoffTracker?.executed,
+  )
   if (!parseResult.ok) {
     logger.warn(
       {
@@ -154,6 +174,9 @@ export async function handleRichAIReply({
       return buildSuccessResult({ buildToolStats, modelId, provider })
     }
 
+    if (toolHandoffExecuted) {
+      return sendToolHandoffWaitingMessage()
+    }
     return null
   }
 
@@ -161,6 +184,9 @@ export async function handleRichAIReply({
   let salesGuardEmittedAnalytics = false
   if (salesGuardContext) {
     const extractedText = extractRichResponseTexts(richResponse).trim()
+    if (!extractedText && toolHandoffExecuted) {
+      return sendToolHandoffWaitingMessage()
+    }
     if (extractedText) {
       const sendRichGuardReply = async (text: string) => {
         // evaluateSalesGuard emits the single `message:bot_received` analytics event.
