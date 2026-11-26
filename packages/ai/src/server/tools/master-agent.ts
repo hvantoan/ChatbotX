@@ -1,5 +1,4 @@
-import { masterAgentService } from "@inboxos.io/business"
-import { MASTER_AGENT_TIMEZONE } from "@inboxos.io/database/partials"
+import { MASTER_AGENT_TIMEZONE, masterAgentService } from "@inboxos.io/business"
 import { type ToolSet, tool } from "ai"
 import { z } from "zod"
 
@@ -27,13 +26,6 @@ export type MasterAgentToolContext = {
   messageId: string
 }
 
-const scheduledAtSchema = z
-  .string()
-  .min(1)
-  .describe(
-    `Send time as the user wrote it, in ${MASTER_AGENT_TIMEZONE}: "YYYY-MM-DD HH:mm".`,
-  )
-
 const reminderShape = {
   broadcastId: z
     .string()
@@ -48,6 +40,15 @@ const reminderShape = {
  */
 export function getMasterAgentTools(context: MasterAgentToolContext): ToolSet {
   const { workspaceId, messageId } = context
+  // Built per call, not at module scope: the timezone comes from the business
+  // package, which tests mock partially, and a module-scope read of a mocked
+  // module throws on import.
+  const scheduledAtSchema = z
+    .string()
+    .min(1)
+    .describe(
+      `Send time as the user wrote it, in ${MASTER_AGENT_TIMEZONE}: "YYYY-MM-DD HH:mm".`,
+    )
 
   return {
     listGroups: tool({

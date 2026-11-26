@@ -6,7 +6,6 @@ import {
   broadcastScheduleTypes,
   broadcastStatuses,
   type ChannelType,
-  MASTER_AGENT_TIMEZONE,
   type MasterAgentMessageRole,
   type MasterAgentMessageStatus,
   masterAgentMessageRoles,
@@ -25,7 +24,11 @@ import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import { broadcastService } from "../broadcast"
 import { notFoundException, validationException } from "../errors"
 
-export { MASTER_AGENT_TIMEZONE } from "@inboxos.io/database/partials"
+/**
+ * The one timezone every reminder is written and read in. Vietnam has no DST,
+ * so the offset is a constant and no tz database lookup is needed.
+ */
+export const MASTER_AGENT_TIMEZONE = "Asia/Saigon"
 
 const ASIA_SAIGON_OFFSET = "+07:00"
 /** A bare wall-clock time: `YYYY-MM-DD HH:mm[:ss]` with a space or `T`. */
