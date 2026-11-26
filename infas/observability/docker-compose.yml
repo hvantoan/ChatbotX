@@ -115,7 +115,7 @@ networks:
   # Đổi bằng CHATBOTX_NETWORK nếu compose project của bạn tên khác.
   chatbotx:
     external: true
-    name: ${CHATBOTX_NETWORK:-chatbotx-prod_chatbotx-network}
+    name: ${INBOXOS_NETWORK:-${CHATBOTX_NETWORK:-chatbotx-prod_chatbotx-network}}
 
 volumes:
   beszel-data:

@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ImageIcon, ImagePlusIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { MediaLibraryTrigger } from "@/features/media-library/components"

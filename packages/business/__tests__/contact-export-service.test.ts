@@ -17,14 +17,14 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   CONTACT_EXPORT_RETENTION_DAYS: 7,
   exportSubTypes: { enum: { contacts: "contacts" } },
   fileContextTypes: { enum: { export: "export" } },
   fileStatuses: { enum: { pending: "pending" } },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   fileRepository: {
     create: (...args: unknown[]) => mocks.fileRepositoryCreate(...args),
     findByIdForWorkspace: (...args: unknown[]) =>
@@ -41,7 +41,7 @@ vi.mock("../src/logger", () => ({
   logger: { warn: (...args: unknown[]) => mocks.warn(...args) },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     getPresignedDownload: (...args: unknown[]) =>
       mocks.getPresignedDownload(...args),
@@ -49,16 +49,16 @@ vi.mock("@chatbotx.io/filesystem", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "export-id-1",
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: { exportContacts: "exportContacts" },
   defaultQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },
 }))
 
-vi.mock("@chatbotx.io/worker-config/contact-pii", () => ({
+vi.mock("@inboxos.io/worker-config/contact-pii", () => ({
   stripContactPIIFields: (fields: string[], canViewPII: boolean) =>
     canViewPII
       ? [...fields]

@@ -1,15 +1,12 @@
 import {
   publishWorkspaceRealtimeEvent,
   whatsappCallPermissionService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import {
-  ChannelError,
-  getWhatsappCallPermissionRequest,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/realtime-protocol"
+import { ChannelError, getWhatsappCallPermissionRequest } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import type { ChannelSendErrorContext } from "./channel-send-error-types"
 

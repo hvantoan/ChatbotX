@@ -1,5 +1,5 @@
-import type { ProductModel } from "@chatbotx.io/database/types"
-import { stackDiscountPercents } from "@chatbotx.io/utils/money"
+import type { ProductModel } from "@inboxos.io/database/types"
+import { stackDiscountPercents } from "@inboxos.io/utils/money"
 import { toSafeWebUrl } from "./safe-url"
 
 /** A product as the shop shows it — nothing a customer should not see. */

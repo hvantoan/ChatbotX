@@ -2,12 +2,12 @@ import {
   integrationMetaCatalogService,
   metaCatalogOperationService,
   metaCatalogSyncRunService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import type { MetaCatalogSyncScope } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/errors"
+import type { MetaCatalogSyncScope } from "@inboxos.io/database/partials"
 // The subpath, not the package index: the index re-exports `fingerprint`
 // (`node:crypto`), and this module is in the instrumentation import chain that
 // Next also compiles for the Edge runtime.
@@ -15,8 +15,8 @@ import {
   createCatalog,
   getCatalog,
   listBusinesses,
-} from "@chatbotx.io/integration-meta-catalog/apis/catalogs"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/integration-meta-catalog/apis/catalogs"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { toSafeMetaCatalogConnection } from "./meta-catalog-connection"
 
 // The Meta Catalog operations behind both the builder actions and the public
@@ -51,10 +51,10 @@ const translateSyncCollision = async <Result>(
     return await operation()
   } catch (error) {
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       error.code === "metaCatalogSyncAlreadyRunning"
     ) {
-      throw new ChatbotXException(reasons.alreadyRunning, error.code, 409)
+      throw new InboxOSException(reasons.alreadyRunning, error.code, 409)
     }
     throw error
   }

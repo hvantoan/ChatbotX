@@ -2,32 +2,32 @@ import {
   AI_MESSAGE_HISTORY_LOOKBACK_MS,
   MAX_CONVERSATION_HISTORY,
   systemFunctionNames,
-} from "@chatbotx.io/ai"
-import { aiContextService } from "@chatbotx.io/ai/server"
-import { automatedResponseService } from "@chatbotx.io/automated-response"
+} from "@inboxos.io/ai"
+import { aiContextService } from "@inboxos.io/ai/server"
+import { automatedResponseService } from "@inboxos.io/automated-response"
 import {
   aiAgentService,
   getContactInputAttachments,
   workspaceService,
-} from "@chatbotx.io/business"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
+} from "@inboxos.io/business"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
 import {
   aiAgentProviderModels,
   aiMessageRoles,
   defaultReplyFrequencies,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   findConversationAIContextState,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/repositories"
+import { emit } from "@inboxos.io/event-bus"
 import {
   DOCX_MIME_TYPES,
   IMAGE_MIME_TYPES,
   PDF_MIME_TYPES,
-} from "@chatbotx.io/sdk"
-import type { AIJobProcessAutomatedResponse } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import type { AIJobProcessAutomatedResponse } from "@inboxos.io/worker-config"
 import type { ModelMessage } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { sendTypingToChannel } from "../../../chat/handlers/send-message"

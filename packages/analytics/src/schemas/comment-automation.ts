@@ -1,11 +1,11 @@
 import {
   channelTypes,
   commentAutomationMissReasons,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   flowEventTypeSchema,
   messageEventTypeSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 
 /**

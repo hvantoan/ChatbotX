@@ -1,5 +1,5 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
-import { containsVariablePlaceholder } from "@chatbotx.io/utils/variables"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
+import { containsVariablePlaceholder } from "@inboxos.io/utils/variables"
 import { parsePhoneNumberFromString } from "libphonenumber-js"
 import { z } from "zod"
 import { flowValidationCodes } from "../validation-codes"

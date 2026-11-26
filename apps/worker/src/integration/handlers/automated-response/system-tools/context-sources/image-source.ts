@@ -1,6 +1,6 @@
-import { createConversationSourceRepository } from "@chatbotx.io/database/repositories"
-import type { AttachmentModel } from "@chatbotx.io/database/types"
-import { IMAGE_MIME_TYPES } from "@chatbotx.io/sdk"
+import { createConversationSourceRepository } from "@inboxos.io/database/repositories"
+import type { AttachmentModel } from "@inboxos.io/database/types"
+import { IMAGE_MIME_TYPES } from "@inboxos.io/sdk"
 import type { ResolveConversationSourceInput } from "./types"
 
 const SUPPORTED_IMAGE_MIME_TYPES = new Set<string>(IMAGE_MIME_TYPES)

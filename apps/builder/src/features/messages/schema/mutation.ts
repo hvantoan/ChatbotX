@@ -1,6 +1,6 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { sendProductsContentSchema } from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { sendProductsContentSchema } from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { zodGuestConversationId } from "@/features/integration-webchat/lib/guest-conversation-id"
 

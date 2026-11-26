@@ -1,8 +1,8 @@
 "use server"
 
-import { commentAutomationService } from "@chatbotx.io/business"
-import { igCommentAutomationTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { commentAutomationService } from "@inboxos.io/business"
+import { igCommentAutomationTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   type WorkspaceIdRequestParams,

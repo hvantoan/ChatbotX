@@ -3,27 +3,27 @@ import {
   flowService,
   inboxService,
   instagramIntegrationService,
-} from "@chatbotx.io/business"
-import { moveBrandingMenuLast } from "@chatbotx.io/business/branding"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { db, findOrFail } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business"
+import { moveBrandingMenuLast } from "@inboxos.io/business/branding"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { db, findOrFail } from "@inboxos.io/database/client"
 import {
   type InstagramConversationStarter,
   type InstagramPersistentMenu,
   instagramPersistentMenuTypes,
-} from "@chatbotx.io/database/partials"
-import { flowVersionModel } from "@chatbotx.io/database/schema"
-import type { IntegrationInstagramModel } from "@chatbotx.io/database/types"
-import { encodeButtonPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import { flowVersionModel } from "@inboxos.io/database/schema"
+import type { IntegrationInstagramModel } from "@inboxos.io/database/types"
+import { encodeButtonPayload } from "@inboxos.io/flow-config"
 import {
   type IceBreaker,
   type InstagramAuthValue,
   type InstagramButton,
   type InstagramProfileRequest,
   integration as integrationInstagram,
-} from "@chatbotx.io/integration-instagram"
-import { integration as integrationInstagramFacebook } from "@chatbotx.io/integration-instagram-facebook"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-instagram"
+import { integration as integrationInstagramFacebook } from "@inboxos.io/integration-instagram-facebook"
+import { distributedLock } from "@inboxos.io/redis"
 import { getBrandingUrl } from "@/features/integration-webchat/lib"
 import { logger } from "@/lib/log"
 import { findIntegrationInstagram } from "../queries"
@@ -182,7 +182,7 @@ const writeInstagramSettings = async (
     }
   } catch (error) {
     logger.error({ err: error }, "Failed to update Instagram integration")
-    throw new ChatbotXException("Failed to update Instagram integration")
+    throw new InboxOSException("Failed to update Instagram integration")
   }
 }
 

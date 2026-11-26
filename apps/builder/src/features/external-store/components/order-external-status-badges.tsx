@@ -3,9 +3,9 @@
 import type {
   FulfillmentStatus,
   PaymentStatus,
-} from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 
 const PAYMENT_LABEL_KEYS = {

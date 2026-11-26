@@ -1,4 +1,4 @@
-import type { ContactHandlers } from "@chatbotx.io/sdk"
+import type { ContactHandlers } from "@inboxos.io/sdk"
 import { lineFetch } from "../apis/client"
 import { toChannelErrorUnlessAuth } from "../lib/error-mapper"
 import type { LineAuthValue } from "../schema"

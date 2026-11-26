@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/analytics-nextjs",
+  "name": "@inboxos.io/analytics-nextjs",
   "version": "0.1.0",
   "type": "module",
   "exports": {
@@ -12,11 +12,11 @@
     "./provider/analytics-api-context": "./src/provider/analytics-api-context.tsx"
   },
   "dependencies": {
-    "@chatbotx.io/analytics": "workspace:*",
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/redis": "workspace:*",
-    "@chatbotx.io/ui": "workspace:*",
+    "@inboxos.io/analytics": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
+    "@inboxos.io/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@orpc/client": "^1.15.4",
     "@orpc/server": "^1.15.4",
@@ -30,8 +30,8 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

@@ -1,8 +1,8 @@
 import {
   MINI_APP_NAME_MAX_LENGTH,
   miniAppDefinitionSchema,
-} from "@chatbotx.io/mini-app"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/mini-app"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /** Shared by the builder actions and the public API. */

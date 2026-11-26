@@ -1,5 +1,5 @@
-import { triggerService } from "@chatbotx.io/business"
-import { setTriggerExecutionContext } from "@chatbotx.io/events"
+import { triggerService } from "@inboxos.io/business"
+import { setTriggerExecutionContext } from "@inboxos.io/events"
 import { logger } from "../../lib/logger"
 import type { TriggerExecutionInput, TriggerWithConditions } from "../types"
 import { ActionExecutor } from "./action-executor"

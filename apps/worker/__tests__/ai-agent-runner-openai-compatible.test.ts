@@ -1,7 +1,7 @@
 import type {
   AIAgentModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { type ModelMessage, streamText } from "ai"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -27,7 +27,7 @@ const workerLoggerMock = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: {
     aiTotal: 30_000,
     aiStep: 10_000,
@@ -46,7 +46,7 @@ vi.mock("@chatbotx.io/ai", () => ({
   toStepSeparatedTextStream: vi.fn((stream: unknown) => stream),
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiContextService: { appendHistory: appendHistoryMock },
   aiIntegrationService: { findBy: findAIIntegrationMock },
   appendFabricationGuard: (prompt: string) => prompt,
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/ai/server", () => ({
   normalizeMcpContent: vi.fn((content: unknown) => content),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationOpenaiCompatibleService: {
     findByWorkspaceIdAndId: findOpenaiCompatibleMock,
   },
@@ -67,7 +67,7 @@ vi.mock("@chatbotx.io/business", () => ({
 
 vi.mock("../src/lib/logger", () => ({ logger: workerLoggerMock }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: getAllVariablesMock,
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),

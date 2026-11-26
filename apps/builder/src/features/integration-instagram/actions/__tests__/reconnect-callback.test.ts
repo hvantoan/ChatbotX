@@ -9,14 +9,14 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business
+// Mock @inboxos.io/business
 // ---------------------------------------------------------------------------
 const findByIdForWorkspace = vi.fn()
 const updateAuth = vi.fn()
 const seedPersistentMenu = vi.fn()
 const commitReconnect = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   instagramIntegrationService: {
     findByIdForWorkspace,
     updateAuth,
@@ -27,7 +27,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
 }))
 
@@ -40,34 +40,34 @@ vi.mock("@chatbotx.io/business/connection", () => ({
 const SENTINEL_TX = { __tx: true }
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/integration-instagram (direct Instagram Business Login)
+// Mock @inboxos.io/integration-instagram (direct Instagram Business Login)
 // ---------------------------------------------------------------------------
 const getInstagramAccount = vi.fn()
 const subscribePageToInstagramWebhook = vi.fn()
 const instagramChannelIntegration = { runChannelHandler: vi.fn() }
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   getInstagramAccount,
   subscribePageToInstagramWebhook,
   integration: instagramChannelIntegration,
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/integration-instagram-facebook (via-Facebook variant)
+// Mock @inboxos.io/integration-instagram-facebook (via-Facebook variant)
 // ---------------------------------------------------------------------------
 const getFacebookUser = vi.fn()
 const getUserInstagramAccounts = vi.fn()
 const subscribeFacebookPageToInstagramWebhook = vi.fn()
 const instagramFacebookChannelIntegration = { runChannelHandler: vi.fn() }
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   getFacebookUser,
   getUserInstagramAccounts,
   subscribePageToInstagramWebhook: subscribeFacebookPageToInstagramWebhook,
   integration: instagramFacebookChannelIntegration,
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   AuthType: { oauth2: "oauth2" },
 }))
 

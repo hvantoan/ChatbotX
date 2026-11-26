@@ -1,4 +1,4 @@
-import type { FlowJson, MiniAppDefinition } from "@chatbotx.io/mini-app"
+import type { FlowJson, MiniAppDefinition } from "@inboxos.io/mini-app"
 import {
   boolean,
   index,

@@ -1,9 +1,9 @@
 "use client"
 
-import { threadTakePermissions } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import type { ThreadControlChannel } from "@chatbotx.io/utils/channel"
+import { threadTakePermissions } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
+import type { ThreadControlChannel } from "@inboxos.io/utils/channel"
 import {
   HandIcon,
   Loader2Icon,

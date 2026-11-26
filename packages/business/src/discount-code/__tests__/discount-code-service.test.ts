@@ -37,7 +37,7 @@ vi.mock(
 )
 
 vi.mock("../../template/template-resource-locks", async (importOriginal) => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     ...(await importOriginal<
       typeof import("../../template/template-resource-locks")
@@ -49,18 +49,18 @@ vi.mock("../../template/template-resource-locks", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
   isUniqueViolationError: (error: unknown) =>
     (error as { code?: string })?.code === "23505",
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   discountCodeRepository: {
     findByCode: (...args: unknown[]) => mocks.findByCode(...args),
     lock: (...args: unknown[]) => mocks.lock(...args),

@@ -1,12 +1,12 @@
-import { helpTexts, processStreamingText, toolPrefixes } from "@chatbotx.io/ai"
+import { helpTexts, processStreamingText, toolPrefixes } from "@inboxos.io/ai"
 import {
   getAIToolset,
   McpClient,
   normalizeMcpContent,
-} from "@chatbotx.io/ai/server"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
-import type { AIGenerateTextSchema } from "@chatbotx.io/flow-config"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/ai/server"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
+import type { AIGenerateTextSchema } from "@inboxos.io/flow-config"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import { APICallError, streamText } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"

@@ -5,8 +5,8 @@ import type {
   SendImageStepSchema,
   SendMultipleImagesStepSchema,
   SendVideoStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { OutgoingAttachment } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { OutgoingAttachment } from "@inboxos.io/sdk"
 import { flowButtons } from "./actions"
 import type { LineMessage } from "./dispatch"
 import { buttonsFollowUp } from "./flex"

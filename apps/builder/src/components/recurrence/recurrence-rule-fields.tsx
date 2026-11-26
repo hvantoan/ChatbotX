@@ -1,25 +1,25 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { TimeField } from "@chatbotx.io/ui/components/form/time-field"
-import { WeekdayToggleField } from "@chatbotx.io/ui/components/form/weekday-toggle-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { TimeField } from "@inboxos.io/ui/components/form/time-field"
+import { WeekdayToggleField } from "@inboxos.io/ui/components/form/weekday-toggle-field"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import {
   RECURRENCE_MAX_INTERVAL,
   RECURRENCE_MONTH_DAY_LAST,
   type RecurrenceFrequency,
   type RecurrenceRule,
   recurrenceFrequencies,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import { useLocale, useTranslations } from "next-intl"
 import { useMemo, useRef } from "react"
 import { useFormContext, useWatch } from "react-hook-form"

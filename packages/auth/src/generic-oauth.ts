@@ -92,7 +92,7 @@ let hasLoggedUnlicensed = false
  * 404 (the route gate) or a button that quietly never renders (the sign-in
  * page). Callers pass their own `hasEnterpriseFeatures()` result rather than
  * this module calling it directly, since that check lives in
- * `@chatbotx.io/business` and is request-scoped (host-dependent license).
+ * `@inboxos.io/business` and is request-scoped (host-dependent license).
  */
 export const warnIfGenericOAuthUnlicensed = (isLicensed: boolean): void => {
   if (isLicensed || hasLoggedUnlicensed || !resolveGenericOAuthConfig()) {

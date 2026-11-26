@@ -1,7 +1,7 @@
 "use client"
 
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useFormContext, useWatch } from "react-hook-form"
 import {

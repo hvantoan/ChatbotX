@@ -1,8 +1,8 @@
 import {
   TEMPLATE_STORE_CATEGORY_NAME_MAX_LENGTH,
   TEMPLATE_STORE_MAX_CATEGORIES,
-} from "@chatbotx.io/database/partials"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /** Whose store an admin screen manages. The server derives the tenant from it; it is never sent. */

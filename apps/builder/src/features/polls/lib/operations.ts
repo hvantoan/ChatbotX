@@ -1,4 +1,4 @@
-import { pollService } from "@chatbotx.io/business/poll"
+import { pollService } from "@inboxos.io/business/poll"
 import type { z } from "zod"
 import type { pollFormRequest, pollPatchRequest } from "../schema/action"
 import { loadPollLinks } from "./poll-links"

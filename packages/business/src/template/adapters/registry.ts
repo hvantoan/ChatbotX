@@ -3,7 +3,7 @@ import type {
   TemplateCategory,
   TemplateResourceCategory,
   TemplateResourceKind,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { aiAgentsAdapter } from "./ai-agents"
 import { aiFilesAdapter } from "./ai-files"
 import { aiFunctionsAdapter } from "./ai-functions"

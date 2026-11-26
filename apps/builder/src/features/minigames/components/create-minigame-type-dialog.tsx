@@ -1,13 +1,13 @@
 "use client"
 
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import type { KeyboardEvent } from "react"

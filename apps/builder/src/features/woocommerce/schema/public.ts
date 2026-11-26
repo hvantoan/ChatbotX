@@ -2,7 +2,7 @@ import {
   woocommerceConnectionStatuses,
   woocommerceSyncScopes,
   woocommerceSyncStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 const secret = (description: string) =>

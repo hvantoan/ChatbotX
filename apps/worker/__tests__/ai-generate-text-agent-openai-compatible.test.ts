@@ -2,8 +2,8 @@ import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import type { AIGenerateTextAgentSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import type { AIGenerateTextAgentSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const findAgentMock = vi.hoisted(() => vi.fn())
@@ -13,15 +13,15 @@ const saveResultToCustomFieldMock = vi.hoisted(() => vi.fn())
 const buildAIAgentMessagesMock = vi.hoisted(() => vi.fn())
 const resolveContactVariablesDeepMock = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 30_000 },
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiContextService: { getOrInitContext: getOrInitContextMock },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       aiAgentModel: {
@@ -31,7 +31,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/errors", () => ({
+vi.mock("@inboxos.io/database/errors", () => ({
   isMessageStorageError: vi.fn(() => false),
 }))
 
@@ -43,7 +43,7 @@ vi.mock("../src/integration/handlers/generate-text-agent/messages", () => ({
   buildAIAgentMessages: buildAIAgentMessagesMock,
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: resolveContactVariablesDeepMock,
 }))
 

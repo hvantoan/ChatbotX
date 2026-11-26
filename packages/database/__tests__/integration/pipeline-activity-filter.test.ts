@@ -6,7 +6,7 @@
  * (kinds, actor, time). Rows recorded under another pipeline never match.
  *
  * Runs only against an explicitly configured database
- * (`pnpm --filter @chatbotx.io/database test:db`).
+ * (`pnpm --filter @inboxos.io/database test:db`).
  */
 
 import { eq } from "drizzle-orm"

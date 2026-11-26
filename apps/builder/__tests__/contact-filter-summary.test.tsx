@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { formFieldTypes } from "@chatbotx.io/database/partials"
+import { formFieldTypes } from "@inboxos.io/database/partials"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"

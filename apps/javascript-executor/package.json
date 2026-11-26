@@ -12,16 +12,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chatbotx.io/javascript-sandbox": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
+    "@inboxos.io/javascript-sandbox": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "dotenv": "^17.4.2",
     "isolated-vm": "^7.0.0",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "dotenv-cli": "catalog:",
     "tsdown": "catalog:",

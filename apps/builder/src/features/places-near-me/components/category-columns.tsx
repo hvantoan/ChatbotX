@@ -1,13 +1,13 @@
 "use client"
 
-import type { PlaceCategoryListItem } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { PlaceCategoryListItem } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import type { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontalIcon, PencilIcon, Trash2Icon } from "lucide-react"
 import type { useTranslations } from "next-intl"

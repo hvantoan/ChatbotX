@@ -2,7 +2,7 @@ import {
   ChannelErrorCategory,
   ChannelErrorReason,
   isAccountSendBlocked,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { mapToChannelError } from "../src/lib/error-mapper"
 import { ZaloException } from "../src/lib/exception"

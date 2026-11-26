@@ -1,14 +1,14 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { invitationRepository } from "@chatbotx.io/database/repositories"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { invitationRepository } from "@inboxos.io/database/repositories"
 import type {
   InvitationModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import { addDays } from "date-fns"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { resolveServingHost } from "../platform/settings"
 import { userService } from "../user/service"
@@ -168,10 +168,10 @@ class InvitationService extends BaseService {
       return lookup.invitation
     }
     if (lookup.reason === "expired") {
-      throw new ChatbotXException("Invitation expired")
+      throw new InboxOSException("Invitation expired")
     }
     if (lookup.reason === "no_workspace" && !lookup.log.workspaceId) {
-      throw new ChatbotXException("Invalid invitation: no workspace associated")
+      throw new InboxOSException("Invalid invitation: no workspace associated")
     }
     throw notFoundException("Invitation not found")
   }

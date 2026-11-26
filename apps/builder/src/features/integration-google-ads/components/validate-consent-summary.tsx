@@ -1,6 +1,6 @@
 "use client"
 
-import type { ValidateConsentSummary } from "@chatbotx.io/business"
+import type { ValidateConsentSummary } from "@inboxos.io/business"
 import { useTranslations } from "next-intl"
 
 export type ValidateConsentResult = {

@@ -1,4 +1,4 @@
-import type { AIGenerateTextSchema } from "@chatbotx.io/flow-config"
+import type { AIGenerateTextSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -23,20 +23,20 @@ class FakeAPICallError extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   helpTexts: {},
   processStreamingText: mocks.processStreamingText,
   toolPrefixes: { enum: {} },
 }))
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   getAIToolset: mocks.getAIToolset,
   McpClient: vi.fn(),
   normalizeMcpContent: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/errors", () => ({
+vi.mock("@inboxos.io/database/errors", () => ({
   isMessageStorageError: () => false,
 }))
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: mocks.resolveContactVariablesDeep,
 }))
 vi.mock("ai", () => ({

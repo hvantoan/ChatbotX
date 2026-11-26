@@ -1,11 +1,11 @@
-import { sequenceAnalyticsService } from "@chatbotx.io/analytics"
+import { sequenceAnalyticsService } from "@inboxos.io/analytics"
 import {
   getSequenceStepStatsRequest,
   getSequenceStepStatsResponse,
   listSequenceStepContactsRequest,
   listSequenceStepContactsResponse,
-} from "@chatbotx.io/analytics/schemas"
-import { sequenceService } from "@chatbotx.io/business/sequence"
+} from "@inboxos.io/analytics/schemas"
+import { sequenceService } from "@inboxos.io/business/sequence"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"
 

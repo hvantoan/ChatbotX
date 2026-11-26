@@ -16,9 +16,9 @@ vi.mock("../src/template/adapters/naming", () => ({
   ) => await input.insert(ctx.tx, input.entry.name),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
 // Partial: the trigger service's import graph reads other models at load time.
-vi.mock(import("@chatbotx.io/database/schema"), async (importOriginal) => ({
+vi.mock(import("@inboxos.io/database/schema"), async (importOriginal) => ({
   ...(await importOriginal()),
   triggerModel: {} as never,
 }))

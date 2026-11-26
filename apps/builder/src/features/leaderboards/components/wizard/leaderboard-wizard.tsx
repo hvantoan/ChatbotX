@@ -1,9 +1,9 @@
 "use client"
 
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import {
   ArrowLeftIcon,
   ArrowRightIcon,

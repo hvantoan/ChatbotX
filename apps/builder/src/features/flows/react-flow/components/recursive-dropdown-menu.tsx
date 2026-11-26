@@ -4,7 +4,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import type { MenuItem } from "../nodes/types"
 
 function MenuRow({ menuItem }: { menuItem: MenuItem }) {

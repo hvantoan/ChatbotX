@@ -5,14 +5,14 @@ import {
   conversationService,
   messageService,
   queueWorkspaceRealtimeEvent,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/realtime-protocol"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {
   type DeleteMessageRequest,
@@ -39,7 +39,7 @@ export const deleteMessage = async (props: {
     workspaceId,
   })
   if (!message || message.conversationId !== conversationId) {
-    throw new ChatbotXException("Comment not found")
+    throw new InboxOSException("Comment not found")
   }
 
   // Soft-delete immediately in the DB and notify other tabs in realtime.

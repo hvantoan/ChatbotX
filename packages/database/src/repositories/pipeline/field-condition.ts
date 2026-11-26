@@ -1,7 +1,7 @@
-import type { SQL } from "@chatbotx.io/database/client"
-import { and, sql } from "@chatbotx.io/database/client"
-import { pipelineItemModel } from "@chatbotx.io/database/schema"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import type { SQL } from "@inboxos.io/database/client"
+import { and, sql } from "@inboxos.io/database/client"
+import { pipelineItemModel } from "@inboxos.io/database/schema"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import {
   isPipelineFilterDay,
   isPipelineFilterNumber,

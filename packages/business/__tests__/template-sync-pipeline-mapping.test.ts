@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   listFields: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pipelineStageRepository: { listByPipeline: mocks.listStages },
   pipelineRepository: { listFields: mocks.listFields },
 }))

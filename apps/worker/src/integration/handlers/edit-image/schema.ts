@@ -1,7 +1,7 @@
 import {
   aiEditImageProvider,
   aiEditImageQuality,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 
 export const editImageInputSchema = z.object({

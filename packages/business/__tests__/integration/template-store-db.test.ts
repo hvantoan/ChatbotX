@@ -7,19 +7,19 @@
  * tenants, workspace, templates and users afterwards.
  */
 
-import { db, eq, inArray } from "@chatbotx.io/database/client"
+import { db, eq, inArray } from "@inboxos.io/database/client"
 import {
   TEMPLATE_STORE_MAX_CATEGORIES,
   TEMPLATE_STORE_MAX_LISTINGS,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateModel,
   templateStoreListingModel,
   tenantModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, beforeAll, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {
@@ -36,8 +36,8 @@ const realDatabaseUrl = (): string | null => {
 
 const mocks = vi.hoisted(() => ({ resolveServingHost: vi.fn() }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))

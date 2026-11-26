@@ -8,8 +8,8 @@
  * so the module is safe in the builder's Edge instrumentation graph
  * (AGENTS.md invariant 25).
  */
-import type { MuseVoiceLanguage } from "@chatbotx.io/flow-config"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
+import type { MuseVoiceLanguage } from "@inboxos.io/flow-config"
+import { secretTextAuthSchema } from "@inboxos.io/sdk"
 import ky, { HTTPError } from "ky"
 import { z } from "zod"
 import { MUSE_BASE_URL } from "../core/muse"

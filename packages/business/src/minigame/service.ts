@@ -5,7 +5,7 @@ import {
   ilike,
   inArray,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   MinigameAppearance,
   MinigameGeneralSettings,
@@ -14,16 +14,16 @@ import type {
   MinigamePrizeSettings,
   MinigameType,
   MinigameWinningMessageSettings,
-} from "@chatbotx.io/database/partials"
-import { minigameModel } from "@chatbotx.io/database/schema"
-import type { MinigameModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { minigameModel } from "@inboxos.io/database/schema"
+import type { MinigameModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderBy,
-} from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/utils"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 
 type ListInput = {
   workspaceId: string
@@ -154,7 +154,7 @@ class MinigameService extends BaseService {
    */
   private rethrowNameConflict(error: unknown): never {
     if (isUniqueViolationError(error)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Minigame name already exists",
         "nameAlreadyExists",
         409,

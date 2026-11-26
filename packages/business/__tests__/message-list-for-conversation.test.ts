@@ -27,16 +27,16 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   signMediaToken: mocks.signMediaToken,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mocks.createMessageRepository,
   getSafeSinceTime: mocks.getSafeSinceTime,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: mocks.uploader,
 }))
 

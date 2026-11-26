@@ -1,17 +1,17 @@
-import { aiProviders, aiTimeouts } from "@chatbotx.io/ai"
-import { type SegmentationBox, segmentImage } from "@chatbotx.io/ai/sam"
-import { aiIntegrationService } from "@chatbotx.io/ai/server"
-import { resolveTenantSettings } from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
+import { aiProviders, aiTimeouts } from "@inboxos.io/ai"
+import { type SegmentationBox, segmentImage } from "@inboxos.io/ai/sam"
+import { aiIntegrationService } from "@inboxos.io/ai/server"
+import { resolveTenantSettings } from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
 import {
   type AISegmentImageSchema,
   getAIGeneratedImagePath,
-} from "@chatbotx.io/flow-config"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { secretTextAuthSchema } from "@inboxos.io/sdk"
 import type {
   HeavyStepOutputValue,
   HeavyStepResultData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import sharp from "sharp"
 import { z } from "zod"
 import { env } from "../../env"

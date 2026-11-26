@@ -1,5 +1,5 @@
-import { buildJobId } from "@chatbotx.io/flow-config"
-import { integrationQueue } from "@chatbotx.io/worker-config"
+import { buildJobId } from "@inboxos.io/flow-config"
+import { integrationQueue } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { type SmartDelayRow, smartDelayService } from "../smart-delay/service"
 import { drainInBatches } from "./purge-batch"

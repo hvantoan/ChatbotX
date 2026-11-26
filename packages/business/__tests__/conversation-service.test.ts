@@ -72,9 +72,9 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
+vi.mock("@inboxos.io/database/client", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("@chatbotx.io/database/client")>()
+    await importOriginal<typeof import("@inboxos.io/database/client")>()
   return {
     ...original,
     db: {
@@ -98,14 +98,14 @@ vi.mock("@chatbotx.io/database/client", async (importOriginal) => {
     },
   }
 })
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => {
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("@chatbotx.io/database/repositories")>()
+    await importOriginal<typeof import("@inboxos.io/database/repositories")>()
   return { ...original, createMessageRepository }
 })
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...original,
     chatQueue: { add: chatQueueAdd },
@@ -118,7 +118,7 @@ vi.mock("../src/response-sla/service", () => ({
     trackWindow: async (
       props: { tx?: unknown },
       run: (client: unknown) => Promise<unknown>,
-    ) => run(props.tx ?? (await import("@chatbotx.io/database/client")).db),
+    ) => run(props.tx ?? (await import("@inboxos.io/database/client")).db),
   },
 }))
 
@@ -129,7 +129,7 @@ vi.mock("../src/contact-inbox/service", () => ({
     updateTracking,
   },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags,
   withCache: vi.fn((_key: string, fn: () => unknown) => fn()),
   createRedisConnection: vi.fn(() => ({ on: vi.fn() })),
@@ -139,9 +139,9 @@ vi.mock("../src/platform/realtime-broadcast", () => ({
   queueWorkspaceRealtimeEvent,
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitConversationArchived: vi.fn(),
   emitConversationAssigned,
   emitConversationFollowUp: vi.fn(),
@@ -161,9 +161,9 @@ vi.mock("../src/workspace-member/service", () => ({
 // `conversationService` now imports `contactService` (for the location write
 // inside `recordInboundActivity`), which pulls the analytics package into the
 // import chain; its MAC tracking service reads `bloomFilter` off
-// `@chatbotx.io/redis` at module scope. Stub analytics rather than partially
+// `@inboxos.io/redis` at module scope. Stub analytics rather than partially
 // mocking redis — matches the contact-service tests' convention.
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   macAnalyticsService: {},
 }))
 

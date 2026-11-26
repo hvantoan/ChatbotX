@@ -1,11 +1,11 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { platformCredentialService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   type WhatsappCredential,
   whatsappCredentialUpdateSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 import { ensureWhatsappAppWebhookFields } from "@/features/integration-whatsapp/libs/ensure-app-webhook-fields"
 import { logger } from "@/lib/log"
@@ -72,7 +72,7 @@ export const updateWhatsappSettingsAction = authActionClient
       parsedInput.systemUserToken || stored?.systemUserToken
     if (!(clientSecret && systemUserToken)) {
       const t = await getTranslations()
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("whatsapp.credentialSecretsRequired"),
         "whatsapp.credentialSecretsRequired",
         422,

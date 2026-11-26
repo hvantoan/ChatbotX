@@ -1,14 +1,14 @@
-import { leaderboardRepository } from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+import { leaderboardRepository } from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import {
   IntegrationJobAction,
   integrationQueue,
   LeaderboardJobAction,
   leaderboardQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { leaderboardRankingService } from "./ranking"
 
@@ -88,7 +88,7 @@ export async function triggerLeaderboardRewards(input: {
     throw notFoundException("Leaderboard not found")
   }
   if (leaderboard.status !== "finished") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Rewards can only be sent after the leaderboard finishes",
       "leaderboardNotFinished",
       409,
@@ -96,7 +96,7 @@ export async function triggerLeaderboardRewards(input: {
   }
   const { flowId, topN } = leaderboard.rewardSettings
   if (!flowId) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Choose a reward flow first",
       "leaderboardRewardFlowMissing",
       422,
@@ -115,7 +115,7 @@ export async function triggerLeaderboardRewards(input: {
     (winner) => !(winner.contactId in claim.recipients),
   )
   if (claim.previouslyTriggered && unsent.length === 0) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Rewards were already sent",
       "leaderboardRewardsAlreadySent",
       409,

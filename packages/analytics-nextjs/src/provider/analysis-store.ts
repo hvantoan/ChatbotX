@@ -18,7 +18,7 @@ import type {
   NormalizedAnalyticsFilter,
   RefLinkTimeseriesRow,
   UniqueConversationsByAdminStats,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import { ORPCError } from "@orpc/client"
 import { endOfToday, startOfToday, subDays } from "date-fns"
 import { createStore } from "zustand/vanilla"

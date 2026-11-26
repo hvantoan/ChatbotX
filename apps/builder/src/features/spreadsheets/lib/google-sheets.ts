@@ -2,10 +2,10 @@ import {
   buildContext,
   integrationGoogleSheetService,
   spreadsheetService,
-} from "@chatbotx.io/business"
-import { validationException } from "@chatbotx.io/business/errors"
-import type { GoogleSheetsAuthValue } from "@chatbotx.io/integration-google-sheets"
-import { integration as googleSheetsIntegration } from "@chatbotx.io/integration-google-sheets"
+} from "@inboxos.io/business"
+import { validationException } from "@inboxos.io/business/errors"
+import type { GoogleSheetsAuthValue } from "@inboxos.io/integration-google-sheets"
+import { integration as googleSheetsIntegration } from "@inboxos.io/integration-google-sheets"
 import { integrations } from "@/integration"
 import { logger } from "@/lib/log"
 

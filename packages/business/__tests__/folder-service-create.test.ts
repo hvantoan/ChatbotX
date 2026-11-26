@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   insertReturning: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: { folderModel: { findFirst: mocks.findFirst } },
     insert: () => ({
@@ -19,7 +19,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(),
   or: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   automatedResponseModel: {},
   commentAutomationModel: {},
   customFieldModel: {},
@@ -32,7 +32,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   triggerModel: {},
   webhookModel: {},
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: async (_k: string, fn: () => unknown) => await fn(),
 }))

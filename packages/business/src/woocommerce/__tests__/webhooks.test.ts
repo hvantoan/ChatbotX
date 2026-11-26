@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   deleteCoupon: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   woocommerceRepository: {
     findIntegration: (...args: unknown[]) => mocks.findIntegration(...args),
   },
@@ -33,7 +33,7 @@ vi.mock("../sync.service", () => ({
     deleteCoupon: (...args: unknown[]) => mocks.deleteCoupon(...args),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { woocommerceWebhook: "woocommerceWebhook" },
   getWoocommerceWebhookJobId: (id: string) => `woocommerce-webhook-${id}`,
   integrationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },

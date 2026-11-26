@@ -68,7 +68,7 @@ vi.mock("@/lib/auth/auth", () => ({
 vi.mock("@/features/realtime/lib/mint-member-connect-token", () => ({
   mintMemberConnectToken: mocks.mintMemberConnectToken,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   logger: { error: vi.fn() },
   resolveTenantSettings: mocks.resolveTenantSettings,
   userService: mocks.userService,
@@ -275,9 +275,9 @@ describe("DELETE /v1/me", () => {
   })
 
   test("preserves the reseller support refusal and its 403 status", async () => {
-    const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+    const { InboxOSException } = await import("@inboxos.io/business/errors")
     mocks.userService.requestAccountDeletion.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Reseller accounts must contact support to delete their account",
         "accountDeletionSupportRequired",
         403,

@@ -1,4 +1,4 @@
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 
 /**
  * A flow execution key is the BullMQ job id (plus its creation time) of the run

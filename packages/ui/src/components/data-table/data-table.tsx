@@ -8,8 +8,8 @@ import type * as React from "react"
 import {
   type DataTableLabels,
   useDataTableLabels,
-} from "@chatbotx.io/ui/components/data-table/data-table-labels"
-import { DataTablePagination } from "@chatbotx.io/ui/components/data-table/data-table-pagination"
+} from "@inboxos.io/ui/components/data-table/data-table-labels"
+import { DataTablePagination } from "@inboxos.io/ui/components/data-table/data-table-pagination"
 import {
   Table,
   TableBody,
@@ -17,9 +17,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
-import { getCommonPinningStyles } from "@chatbotx.io/ui/lib/data-table"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/table"
+import { getCommonPinningStyles } from "@inboxos.io/ui/lib/data-table"
+import { cn } from "@inboxos.io/ui/lib/utils"
 
 /**
  * Pinned cells need an opaque surface so scrolled columns do not show through,

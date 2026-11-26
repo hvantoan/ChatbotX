@@ -1,5 +1,5 @@
-import type { MiniAppImageItem } from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { MiniAppImageItem } from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { toImageSrc } from "../../lib/image-src"
 import { readArray, readString } from "../../lib/props"
 import { ImageCarouselView } from "../image-carousel-view"

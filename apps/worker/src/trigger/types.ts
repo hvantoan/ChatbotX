@@ -1,10 +1,10 @@
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
 import type {
   ConditionModel,
   TriggerModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import type { DecisionFlowOrigin } from "@chatbotx.io/events"
+} from "@inboxos.io/database/types"
+import type { DecisionFlowOrigin } from "@inboxos.io/events"
 
 export type TriggerWithConditions = TriggerModel & {
   conditions: ConditionModel[]

@@ -1,4 +1,4 @@
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
 import { tenantService } from "./service"
 
 /** Whose tenant an admin screen manages: a reseller's own, or the platform's root. */

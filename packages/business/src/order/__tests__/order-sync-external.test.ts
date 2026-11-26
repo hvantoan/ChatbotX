@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -24,22 +24,22 @@ const mocks = vi.hoisted(() => ({
   listOrders: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitOrderStatus: (...args: unknown[]) => mocks.emitOrderStatus(...args),
   emitProductOrdered: (...args: unknown[]) => mocks.emitProductOrdered(...args),
 }))
 vi.mock("../../discount-code/service", () => ({ discountCodeService: {} }))
 vi.mock("../../order-payment/settle", () => ({}))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (...args: unknown[]) => mocks.transaction(...args) },
   isUniqueViolationError: (error: unknown, constraint?: string) =>
     (error as { constraint?: string } | null)?.constraint === constraint,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   ecommerceSettingsRepository: {
     nextOrderNumber: (...args: unknown[]) => mocks.nextOrderNumber(...args),
   },
@@ -64,7 +64,7 @@ vi.mock("../../ecommerce-settings/service", () => ({
     storeSource: async () => "chatbotx",
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   NotificationJobAction: { notifyNewOrder: "notifyNewOrder" },
   getNewOrderNotificationJobId: (orderId: string) => `new-order-${orderId}`,
   notificationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },

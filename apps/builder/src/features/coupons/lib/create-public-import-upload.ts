@@ -1,11 +1,11 @@
-import { fileService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { fileService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   fileContextTypes,
   importTypes,
   uploadTypes,
-} from "@chatbotx.io/database/partials"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/partials"
+import { uploader } from "@inboxos.io/filesystem"
 import { getUploadHandler } from "@/lib/upload/handlers"
 
 export async function createPublicCouponImportUpload(input: {
@@ -24,7 +24,7 @@ export async function createPublicCouponImportUpload(input: {
   })
 
   if (!result.ok) {
-    throw new ChatbotXException(result.error, "couponImportUnsupportedFile")
+    throw new InboxOSException(result.error, "couponImportUnsupportedFile")
   }
 
   const uploadUrl = await uploader.getPresignedUpload(result.path)

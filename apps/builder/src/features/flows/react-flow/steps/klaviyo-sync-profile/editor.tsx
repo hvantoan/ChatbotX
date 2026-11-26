@@ -1,12 +1,13 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type KlaviyoSyncProfileSchema,
   klaviyoSyncProfileSchema,
-} from "@chatbotx.io/flow-config"
-import { KLAVIYO_LIST_PAGE_SIZE } from "@chatbotx.io/integration-klaviyo"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { KLAVIYO_LIST_PAGE_SIZE } from "@inboxos.io/integration-klaviyo"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -15,11 +16,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowRightIcon, MailIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   updateAssignment: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: {},
   contactService: {},
   conversationService: {

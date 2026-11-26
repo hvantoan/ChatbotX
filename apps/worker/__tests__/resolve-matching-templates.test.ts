@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ resolveContactVariablesDeep: vi.fn() }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: mocks.resolveContactVariablesDeep,
 }))
 

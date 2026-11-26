@@ -8,11 +8,11 @@ The chain is `action | API handler → service → repository → DB` (see
 It never holds where-builders, pagination, or count logic itself.
 
 ```typescript
-import { myFeatureService } from "@chatbotx.io/business"
+import { myFeatureService } from "@inboxos.io/business"
 import { authorizedAPI } from "@/orpc"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { z } from "zod"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 
 export const myFeatureAuthenticatedAPI = {
   listMyFeatureAPI: authorizedAPI

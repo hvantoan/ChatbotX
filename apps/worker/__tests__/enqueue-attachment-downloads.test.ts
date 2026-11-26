@@ -7,7 +7,7 @@ const { mockAddBulk } = vi.hoisted(() => ({
 // Coexist attachment downloads are light but high-volume and low-priority, so
 // they must be enqueued on the dedicated `low` queue — never the
 // latency-sensitive `integration` queue that drives customer replies.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   LOW_BULK_PRIORITY: 10,
   LowJobAction: {
     coexistAttachmentDownload: "coexistAttachmentDownload",

@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   setLocalStatementTimeout: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     marker: "db",
     transaction: (run: (tx: unknown) => unknown) => run({ marker: "tx" }),
@@ -19,10 +19,10 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isStatementTimeoutError: (error: unknown) =>
     error instanceof Error && error.message === "statement timeout",
 }))
-vi.mock("@chatbotx.io/database/statement-timeout", () => ({
+vi.mock("@inboxos.io/database/statement-timeout", () => ({
   setLocalStatementTimeout: mocks.setLocalStatementTimeout,
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactReferralEventRepository: {
     insertIgnoreDuplicate: mocks.insertIgnoreDuplicate,
     findLatestAdTouchId: mocks.findLatestAdTouchId,
@@ -37,7 +37,7 @@ vi.mock("../src/contact-activity", () => ({
   contactActivityService: { record: mocks.recordActivity },
 }))
 
-import { CONTACT_AD_IDS_LIMIT } from "@chatbotx.io/database/partials"
+import { CONTACT_AD_IDS_LIMIT } from "@inboxos.io/database/partials"
 import { contactReferralEventService } from "../src/contact-referral-event"
 
 const identity = {

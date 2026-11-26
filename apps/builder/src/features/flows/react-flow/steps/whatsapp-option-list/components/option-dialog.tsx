@@ -1,15 +1,16 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   WHATSAPP_OPTION_LIST_DESCRIPTION_MAX,
   WHATSAPP_OPTION_LIST_TITLE_MAX,
   type WhatsappOptionListItem,
   type WhatsappOptionListOptionFormValues,
   whatsappOptionListOptionFormSchema,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -18,8 +19,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useTranslations } from "next-intl"
 import { memo } from "react"
 import { FormProvider, useForm } from "react-hook-form"

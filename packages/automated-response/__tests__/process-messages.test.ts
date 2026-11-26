@@ -14,14 +14,14 @@ const {
   mockQueueGetAll: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn().mockResolvedValue({
     findManyByIds: mockFindManyByIds,
   }),
   getSafeSinceTime: vi.fn().mockReturnValue(new Date(0)),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   simpleQueue: {
     clear: mockQueueClear,
     getAll: mockQueueGetAll,

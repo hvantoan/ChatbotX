@@ -1,19 +1,19 @@
 "use client"
 
+import { SiMessenger } from "@icons-pack/react-simple-icons"
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { SiMessenger } from "@icons-pack/react-simple-icons"
+} from "@inboxos.io/ui/components/ui/select"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

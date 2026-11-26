@@ -1,5 +1,5 @@
-import { BUTTON_LABEL_MAX } from "@chatbotx.io/flow-config/button-limits"
-import { zodBigintAsString, zodUrlWithVariables } from "@chatbotx.io/utils"
+import { BUTTON_LABEL_MAX } from "@inboxos.io/flow-config/button-limits"
+import { zodBigintAsString, zodUrlWithVariables } from "@inboxos.io/utils"
 import { z } from "zod"
 import { uploadModes } from "./shared"
 

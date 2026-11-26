@@ -1,8 +1,8 @@
 import type {
   SendImageStepSchema,
   SendVideoStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepProps } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepProps } from "@inboxos.io/sdk"
 import { logger } from "../../../lib/logger"
 import type { InstagramAuthValue, InstagramSendMessage } from "../../../schema"
 import { withQuickReplies } from "./canonical-quick-replies"

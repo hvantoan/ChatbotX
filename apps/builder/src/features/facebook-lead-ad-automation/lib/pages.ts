@@ -1,20 +1,20 @@
 import "server-only"
 
-import { messengerIntegrationService } from "@chatbotx.io/business"
+import { messengerIntegrationService } from "@inboxos.io/business"
 import {
   debugToken,
   hasLeadsRetrieval,
   toAppAccessToken,
-} from "@chatbotx.io/integration-messenger/apis/auth"
+} from "@inboxos.io/integration-messenger/apis/auth"
 import {
   getLeadgenForms,
   type LeadgenForm,
-} from "@chatbotx.io/integration-messenger/apis/leadgen"
+} from "@inboxos.io/integration-messenger/apis/leadgen"
 import {
   LEAD_ADS_PAGE_SUBSCRIBE_FIELDS,
   subscribePageToAppWebhook,
-} from "@chatbotx.io/integration-messenger/apis/page"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
+} from "@inboxos.io/integration-messenger/apis/page"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
 
 export type LeadAdsPage = {
   pageId: string

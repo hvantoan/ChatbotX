@@ -1,7 +1,7 @@
 "use client"
 
-import type { FacebookMarketingMessageStatus } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import type { FacebookMarketingMessageStatus } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useTranslations } from "next-intl"
 import { statusLabelKey } from "../lib/campaign-status"
 

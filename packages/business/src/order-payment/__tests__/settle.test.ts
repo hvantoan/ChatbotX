@@ -18,9 +18,9 @@ const mocks = vi.hoisted(() => ({
 
 const db = { name: "db" }
 
-vi.mock("@chatbotx.io/database/client", () => ({ db }))
+vi.mock("@inboxos.io/database/client", () => ({ db }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   orderPaymentRepository: {
     listByOrder: (...args: unknown[]) => mocks.listAttempts(...args),
     updateStatus: (...args: unknown[]) => mocks.updateAttempt(...args),
@@ -40,7 +40,7 @@ vi.mock("../../logger", () => ({
   },
 }))
 
-const { ChatbotXException } = await import("../../errors")
+const { InboxOSException } = await import("../../errors")
 const {
   assertDeletableWithPayments,
   LatePaymentArrivedError,
@@ -192,7 +192,7 @@ describe("settlePaymentsForCancel", () => {
 
   test("a disconnected provider lets open pages go, but keeps a paid order", async () => {
     mocks.loadGateway.mockRejectedValue(
-      new ChatbotXException("not connected", "paymentProviderNotConnected"),
+      new InboxOSException("not connected", "paymentProviderNotConnected"),
     )
     mocks.listAttempts.mockResolvedValue([attempt()])
     await expect(settlePaymentsForCancel(order(), tx)).resolves.toEqual({

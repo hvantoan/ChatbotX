@@ -3,9 +3,9 @@ import {
   isWorkspaceScheduledForDeletion,
   userQuotaService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel } from "@inboxos.io/database/types"
 import { isCloud } from "@/env"
 import {
   checkWorkspaceOwnerAccess,
@@ -28,13 +28,13 @@ export async function resolveConnectOwnerId(props: {
   const { workspaceId, user } = props
   if (workspaceId) {
     if (!(await hasWorkspaceAccess({ workspaceId, user }))) {
-      throw new ChatbotXException("Workspace not found", "notFound", 404)
+      throw new InboxOSException("Workspace not found", "notFound", 404)
     }
     const workspace = await workspaceService.findOrFail({
       where: { id: workspaceId },
     })
     if (isWorkspaceScheduledForDeletion(workspace)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Workspace deletion scheduled",
         "workspaceScheduledDeletion",
         403,
@@ -53,12 +53,12 @@ export async function resolveConnectOwnerId(props: {
     const { blocked, reason } = await userQuotaService.getAccessState(user.id)
     if (blocked) {
       throw reason === "mac"
-        ? new ChatbotXException(
+        ? new InboxOSException(
             "Monthly active contact limit reached",
             "macLimitReached",
             403,
           )
-        : new ChatbotXException("Trial expired", "trialExpired", 403)
+        : new InboxOSException("Trial expired", "trialExpired", 403)
     }
   }
   return user.id

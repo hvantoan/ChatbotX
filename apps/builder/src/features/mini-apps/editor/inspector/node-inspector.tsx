@@ -6,8 +6,8 @@ import {
   MINI_APP_COMPONENTS,
   type MiniAppNode,
   type MiniAppValidationIssue,
-} from "@chatbotx.io/mini-app"
-import { Separator } from "@chatbotx.io/ui/components/ui/separator"
+} from "@inboxos.io/mini-app"
+import { Separator } from "@inboxos.io/ui/components/ui/separator"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useMemo } from "react"
 import { componentIcon } from "../../lib/component-icons"

@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendViewCatalogStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendViewCatalogStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { StoreIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"

@@ -1,8 +1,8 @@
 import {
   connectionStateService,
   messengerIntegrationService,
-} from "@chatbotx.io/business"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/business"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
 import {
   debugToken,
   exchangeCodeForToken,
@@ -10,14 +10,14 @@ import {
   getUserPages,
   integration as messengerChannelIntegration,
   toAppAccessToken,
-} from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/integration-messenger"
 import {
   ensureMessengerWhitelistedDomain,
   exchangeLongLivedToken,
   scopesToPageSubscribeFields,
   subscribePageToAppWebhook,
-} from "@chatbotx.io/integration-messenger/apis/page"
-import { AuthType } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-messenger/apis/page"
+import { AuthType } from "@inboxos.io/sdk"
 import { normalizeError } from "universal-error-normalizer"
 import { seedReconnectBranding } from "@/features/channel-connect/lib/branding-follow-ups"
 import type { ReconnectResult } from "@/lib/channel-reconnect"

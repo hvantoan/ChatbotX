@@ -1,4 +1,4 @@
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import type { ComponentProps } from "react"
 
 export function SignInPrompt({

@@ -1,16 +1,16 @@
-import { conversationService } from "@chatbotx.io/business"
+import { conversationService } from "@inboxos.io/business"
 import {
   type ConversationAttributes,
   type ConversationStepChallenge,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type GetUserDataStepSchema,
   inputFailureReasons,
   STEP_INPUT_RESOLUTION_PAYLOAD_TYPE,
-} from "@chatbotx.io/flow-config"
-import { IntegrationException } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { IntegrationException } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { add } from "date-fns"
 import { logger } from "../../../lib/logger"
 import type { ExecuteStepProps } from "../flow"

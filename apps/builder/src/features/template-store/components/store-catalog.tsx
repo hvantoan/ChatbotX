@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { SearchIcon, StoreIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
-import { SdkException, UNKNOWN_ERROR } from "@chatbotx.io/sdk"
-import { formatGraphError } from "@chatbotx.io/utils/graph-error"
+import { SdkException, UNKNOWN_ERROR } from "@inboxos.io/sdk"
+import { formatGraphError } from "@inboxos.io/utils/graph-error"
 import { isHTTPError, isTimeoutError } from "ky"
 import { facebookAdsLogger } from "./logger"
 

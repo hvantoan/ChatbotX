@@ -6,7 +6,7 @@ import {
   RealtimeFatalError,
   type RealtimeFrameReader,
   realtimeGuestBatchEnvelopeSchema,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { useCallback, useRef } from "react"
 import type { MessageResource } from "../messages/schema/resource"
 import { logRealtimeWarning } from "../realtime/realtime-warn-limiter"

@@ -1,8 +1,8 @@
 "use server"
 
-import { validateOpenaiCompatibleBaseUrlForEnvironment } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { connectionService } from "@chatbotx.io/connections"
+import { validateOpenaiCompatibleBaseUrlForEnvironment } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { connectionService } from "@inboxos.io/connections"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import {
@@ -93,7 +93,7 @@ export const connectOpenaiCompatibleAction = workspaceActionClient
         // (`IntegrationOpenaiCompatible_workspaceId_preset_key`, scoped to
         // non-custom presets) rejects a second connection under an
         // already-used preset — `saveOrInsertSatellite`
-        // (`@chatbotx.io/business`'s `connection/upsert.ts`) maps that
+        // (`@inboxos.io/business`'s `connection/upsert.ts`) maps that
         // violation to this same `connectionAlreadyConnected` exception via
         // the binding's `duplicateConstraint`. Mirrors the legacy
         // `integrationOpenaiCompatibleService.connect`'s
@@ -113,12 +113,12 @@ export const connectOpenaiCompatibleAction = workspaceActionClient
     },
   )
 
-const isBaseUrlValidationError = (error: unknown): error is ChatbotXException =>
-  error instanceof ChatbotXException &&
+const isBaseUrlValidationError = (error: unknown): error is InboxOSException =>
+  error instanceof InboxOSException &&
   (error.code === "invalidBaseUrl" || error.code === "ssrfBlocked")
 
 const isConnectionAlreadyConnectedError = (
   error: unknown,
-): error is ChatbotXException =>
-  error instanceof ChatbotXException &&
+): error is InboxOSException =>
+  error instanceof InboxOSException &&
   error.code === "connectionAlreadyConnected"

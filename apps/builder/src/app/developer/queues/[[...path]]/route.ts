@@ -1,7 +1,8 @@
 import { createBullBoard } from "@bull-board/api"
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter"
 import { HonoAdapter } from "@bull-board/hono"
-import { isSuperAdmin } from "@chatbotx.io/business"
+import { serveStatic } from "@hono/node-server/serve-static"
+import { isSuperAdmin } from "@inboxos.io/business"
 import {
   aiAgentQueue,
   chatQueue,
@@ -15,8 +16,7 @@ import {
   templateQueue,
   triggerQueue,
   webhookQueue,
-} from "@chatbotx.io/worker-config"
-import { serveStatic } from "@hono/node-server/serve-static"
+} from "@inboxos.io/worker-config"
 import { Hono } from "hono"
 import { handle } from "hono/vercel"
 import { getCurrentUser } from "@/lib/auth/utils"

@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   type FacebookMarketingMessageStatus,
   type FacebookMarketingMessageStatusReason,
@@ -13,16 +13,16 @@ import {
   MM_UNCONFIRMED_GRACE_MS,
   MM_UNKNOWN_ERROR_BREAKER,
   mmContentSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   facebookMarketingMessageAudienceRepository,
   facebookMarketingMessageRecipientRepository,
   facebookMarketingMessageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   FacebookMarketingMessageModel,
   NewFacebookMarketingMessageRecipient,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   classifyMarketingMessageError,
   GRAPH_ERROR_CODE_INVALID_TOKEN,
@@ -34,9 +34,9 @@ import {
   listNotificationMessageTokens,
   type NotificationMessageToken,
   sendMarketingMessage,
-} from "@chatbotx.io/integration-facebook-ads"
-import { casStore } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-facebook-ads"
+import { casStore } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { addDays, startOfDay } from "date-fns"
 import { fromZonedTime, toZonedTime } from "date-fns-tz"
 import { BaseService } from "../base.service"

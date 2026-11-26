@@ -7,12 +7,12 @@ import {
   eq,
   getTableColumns,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   placeCategoryModel,
   placeLocationModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 /** Every column a place category form or API writes. */
 export type PlaceCategoryWriteValues = Omit<

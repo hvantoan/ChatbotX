@@ -1,11 +1,11 @@
 # LINE channel
 
-ChatbotX connects a LINE Official Account (Messaging API channel) per workspace. 1:1 chats only. Code: `integrations/line`, builder UI `apps/builder/src/features/integration-line`, public API `lineChannels.*` (`/v1/line-channels`). The database migration `packages/database/drizzle/20261109020727_add_integration_line` must be applied before use.
+InboxOS connects a LINE Official Account (Messaging API channel) per workspace. 1:1 chats only. Code: `integrations/line`, builder UI `apps/builder/src/features/integration-line`, public API `lineChannels.*` (`/v1/line-channels`). The database migration `packages/database/drizzle/20261109020727_add_integration_line` must be applied before use.
 
 ## Setup
 
 1. In the LINE Developers console open the Messaging API channel, then Basic settings. Copy the **Channel ID** and **Channel secret**. These are the only two inputs.
-2. Connect in the builder (Channels, LINE) or with `POST /v1/line-channels` (CLI: `chatbotx line-channels create`).
+2. Connect in the builder (Channels, LINE) or with `POST /v1/line-channels` (CLI: `inboxos line-channels create`).
 3. In LINE Official Account Manager turn **Use webhook** ON and **Auto-reply messages** OFF.
 
 ## Webhook
@@ -59,7 +59,7 @@ ChatbotX connects a LINE Official Account (Messaging API channel) per workspace.
 
 ## Tokens
 
-A 30-day short-lived v2 token is minted from the client credentials. The daily `refresh-channel-tokens` job (02:00 UTC) refreshes tokens expiring within 3 days, and also rows whose `expiresAt` is missing. A 401 triggers a reactive refresh. A channel holds at most 30 short-lived tokens: issuing a 31st does **not** fail, it silently invalidates the oldest. Anything else minting tokens from the same Channel ID and secret (a staging environment, the customer's own scripts) can therefore kill ours; ChatbotX recovers on the next send (401 → new token → retry), verified live. The old token is not revoked on refresh (it expires on its own), so a concurrent send holding it is never cut off. A token-endpoint 400/401 marks the channel offline; the user must reconnect.
+A 30-day short-lived v2 token is minted from the client credentials. The daily `refresh-channel-tokens` job (02:00 UTC) refreshes tokens expiring within 3 days, and also rows whose `expiresAt` is missing. A 401 triggers a reactive refresh. A channel holds at most 30 short-lived tokens: issuing a 31st does **not** fail, it silently invalidates the oldest. Anything else minting tokens from the same Channel ID and secret (a staging environment, the customer's own scripts) can therefore kill ours; InboxOS recovers on the next send (401 → new token → retry), verified live. The old token is not revoked on refresh (it expires on its own), so a concurrent send holding it is never cut off. A token-endpoint 400/401 marks the channel offline; the user must reconnect.
 
 ## Ops runbook
 

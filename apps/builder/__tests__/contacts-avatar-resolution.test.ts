@@ -29,7 +29,7 @@ const mocks = vi.hoisted(() => ({
   resolveContactPermissionScope: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: {
     listByContactIds: mocks.listContactInboxes,
   },

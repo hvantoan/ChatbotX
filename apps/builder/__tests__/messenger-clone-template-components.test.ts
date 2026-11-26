@@ -14,16 +14,16 @@ const findIdBySourceId = vi.fn()
 // authorization can be exercised directly.
 let cloneHandler: ((props: unknown) => Promise<unknown>) | null = null
 
-vi.mock("@chatbotx.io/integration-messenger/apis/upload", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/upload", () => ({
   resumableUploadImage,
 }))
 
 // Clone never carries a MINI_APP button, so the Mini App ownership check is
 // never reached; mocked only to keep its DB-backed module out of the import.
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findOrFail: vi.fn() },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertPublicUrl: (...args: unknown[]) => assertPublicUrl(...args),
   buildContext: vi.fn(),
   messengerIntegrationService: {
@@ -39,12 +39,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/message-templates", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/message-templates", () => ({
   createPageMessageTemplate: (...args: unknown[]) =>
     createPageMessageTemplate(...args),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
@@ -99,7 +99,7 @@ describe("prepareComponentsForClone", () => {
     await expect(
       prepareComponentsForClone(components, {} as never),
     ).rejects.toMatchObject({
-      name: "ChatbotXException",
+      name: "InboxOSException",
       message: expect.stringContaining("ssrf-guard"),
     })
     expect(assertPublicUrl).toHaveBeenCalledWith(
@@ -370,7 +370,7 @@ describe("createMessengerMessageTemplate header image", () => {
         },
       }),
     ).rejects.toMatchObject({
-      name: "ChatbotXException",
+      name: "InboxOSException",
       message: expect.stringContaining("must be an image file"),
     })
     expect(createPageMessageTemplate).not.toHaveBeenCalled()

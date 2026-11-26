@@ -1,14 +1,14 @@
 "use client"
 
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { AIFileProcessingStatus } from "@/features/ai-files/ai-file-processing-status"

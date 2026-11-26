@@ -11,7 +11,7 @@ const queryModels = vi.hoisted(() => {
     integrationTiktokModel: make(),
   }
 })
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: queryModels },
 }))
 

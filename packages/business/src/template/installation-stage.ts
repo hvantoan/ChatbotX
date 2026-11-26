@@ -1,11 +1,11 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   templateInstallationRepository,
   templateRepository,
   templateVersionRepository,
   tenantDefaultTemplateRepository,
   tenantRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { logger } from "../logger"
 import { resolveDefaultTemplateStatus } from "./default-template-status"
 import {

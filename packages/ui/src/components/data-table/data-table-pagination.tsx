@@ -9,16 +9,16 @@ import {
 import {
   type DataTablePaginationLabels,
   useDataTableLabels,
-} from "@chatbotx.io/ui/components/data-table/data-table-labels"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/data-table/data-table-labels"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/select"
+import { cn } from "@inboxos.io/ui/lib/utils"
 
 interface DataTablePaginationProps<TData> extends React.ComponentProps<"div"> {
   table: Table<TData>

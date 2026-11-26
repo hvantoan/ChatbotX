@@ -1,9 +1,6 @@
-import {
-  quotaEnforcementService,
-  userQuotaService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserQuotaModel } from "@chatbotx.io/database/types"
+import { quotaEnforcementService, userQuotaService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserQuotaModel } from "@inboxos.io/database/types"
 import { cache } from "react"
 import { isCloud } from "@/env"
 import { resolveBlockReason, resolveTrialEndsAt } from "./quota-metrics"
@@ -65,7 +62,7 @@ export async function assertWorkspaceNotBlocked(
 ): Promise<void> {
   const { blocked, blockReason } = await resolveWorkspaceBlockState(ownerId)
   if (blocked) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       blockReason === "mac"
         ? "Contact limit reached for this plan"
         : "This workspace's plan/trial has expired",

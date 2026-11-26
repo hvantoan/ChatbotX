@@ -1,9 +1,9 @@
 import {
   connectionStateService,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
-import type { ZaloCredential } from "@chatbotx.io/database/partials"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo"
+} from "@inboxos.io/business"
+import type { ZaloCredential } from "@inboxos.io/database/partials"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo"
 import { integrations } from "@/integration"
 import type { ReconnectResult } from "@/lib/channel-reconnect"
 import { logger } from "@/lib/log"

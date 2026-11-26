@@ -1,6 +1,6 @@
 "use client"
 
-import type { SequenceModel } from "@chatbotx.io/database/types"
+import type { SequenceModel } from "@inboxos.io/database/types"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,14 +8,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@chatbotx.io/ui/components/ui/breadcrumb"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/breadcrumb"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/card"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { PlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

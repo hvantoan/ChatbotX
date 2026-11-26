@@ -15,18 +15,18 @@ const { mockFindOrFail, mockUpdate, mockUpdateSet, mockDispatchAuditRecord } =
   })
 
 // The service queues draft cleanups; these suites never reach that path.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {},
   broadcastDraftPurgeJobId: vi.fn(),
   scheduleQueue: { add: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
   sequenceAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { update: mockUpdate },
   and: (...args: unknown[]) => ({ __and: args }),
   asc: vi.fn(),
@@ -43,12 +43,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: Object.assign(vi.fn(), { raw: vi.fn() }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   broadcastStatuses: { enum: { draft: "draft", scheduled: "scheduled" } },
   findBroadcastChannelCapability: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: { id: "broadcast.id" },
   contactInboxModel: {},
   contactModel: {},
@@ -60,19 +60,19 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   likeContains: vi.fn(),
   getPaginationWithDefaults: vi.fn(() => ({ limit: 10, offset: 0 })),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRepository: {
     listWithRelations: vi.fn(),
     count: vi.fn(),
@@ -82,7 +82,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => "generated-id"),
 }))
 
@@ -92,7 +92,7 @@ vi.mock("../src/template/uninstall-references", () => ({
   contactFilterParentsOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   findTemplateStartStep: vi.fn(),
   stepTypes: {
     enum: {

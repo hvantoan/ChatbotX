@@ -1,9 +1,9 @@
-import { AI_FILE_MAX_UPLOAD_BYTES } from "@chatbotx.io/business"
+import { AI_FILE_MAX_UPLOAD_BYTES } from "@inboxos.io/business"
 import {
   aiEmbeddingStatuses,
   aiFileChunkingConfig,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { aiFileNameField, aiFileResource, aiFileUrlField } from "./index"
 

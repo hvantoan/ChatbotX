@@ -1,11 +1,11 @@
 "use client"
 
-import { systemFunctionNames } from "@chatbotx.io/ai"
+import { systemFunctionNames } from "@inboxos.io/ai"
 import type {
   AIFileModel,
   AIFunctionModel,
   AIMCPServerModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type { LucideIcon } from "lucide-react"
 import {
   FileIcon,

@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   updateInstagramProfileFields: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     // Serializes per key like the Redis lock, so interleaving tests see
     // the second writer wait for the first.
@@ -33,7 +33,7 @@ vi.mock("@chatbotx.io/redis", () => ({
   },
   distributedStore: {},
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async () => ({ platform: { appUrl: "" } })),
   flowService: { assertAllExist: mocks.assertAllExist },
   inboxService: {},
@@ -42,18 +42,18 @@ vi.mock("@chatbotx.io/business", () => ({
   },
   messengerIntegrationService: {},
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (fn: (tx: Record<string, never>) => Promise<unknown>) =>
       fn({}),
   },
   findOrFail: vi.fn(async () => ({ id: "fv-1" })),
 }))
-vi.mock("@chatbotx.io/integration-messenger", () => ({ integration: {} }))
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({ integration: {} }))
+vi.mock("@inboxos.io/integration-instagram", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: {},
 }))
 vi.mock("@/features/integration-messenger/queries", () => ({

@@ -2,14 +2,14 @@ import type {
   CommentHideComments,
   CommentModerationAction,
   CommentModerationRule,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { hasLink } from "@chatbotx.io/utils/has-link"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { hasLink } from "@inboxos.io/utils/has-link"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import type { CommentAutomationChannelType } from "./channel-type"
 import { withReplayPriority } from "./replay-priority"
 

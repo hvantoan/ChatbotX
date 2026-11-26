@@ -1,5 +1,5 @@
-import { EVENT_BUS_MESSAGE_ID } from "@chatbotx.io/event-bus"
-import { messageEventTypeSchema } from "@chatbotx.io/flow-config"
+import { EVENT_BUS_MESSAGE_ID } from "@inboxos.io/event-bus"
+import { messageEventTypeSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -23,7 +23,7 @@ const {
 const makeService = (methods: string[]) =>
   Object.fromEntries(methods.map((method) => [method, vi.fn()]))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: makeService([
     "onMessageSent",
     "onFailed",
@@ -51,7 +51,7 @@ vi.mock("@chatbotx.io/analytics", () => ({
   ]),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactActivityService: { recordDelivered: mockRecordDelivered },
   contactInboxService: {
     recordSendFailure: mockRecordSendFailure,
@@ -70,7 +70,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     findWorkspaceIntegrationByInboxId: mockFindWorkspaceIntegrationByInboxId,
   },

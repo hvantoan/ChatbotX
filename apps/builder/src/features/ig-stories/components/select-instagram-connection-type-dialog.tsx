@@ -1,12 +1,12 @@
 "use client"
 
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 

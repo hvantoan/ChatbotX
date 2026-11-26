@@ -6,26 +6,26 @@ import {
   inArray,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   AutomatedResponseType,
   KeywordCondition,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   automatedResponseFolderTypeByType,
   flattenKeywordConditionValues,
   rootFolderId,
-} from "@chatbotx.io/database/partials"
-import { keywordConditionsSchema } from "@chatbotx.io/database/partials/keyword-condition-schema"
-import { automatedResponseModel } from "@chatbotx.io/database/schema"
-import type { AutomatedResponseModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { keywordConditionsSchema } from "@inboxos.io/database/partials/keyword-condition-schema"
+import { automatedResponseModel } from "@inboxos.io/database/schema"
+import type { AutomatedResponseModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { invalidateCacheKeys } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { invalidateCacheKeys } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { flowService } from "../flow/service"

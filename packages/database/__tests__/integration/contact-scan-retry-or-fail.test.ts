@@ -6,7 +6,7 @@
  * it on the spot on the last one. Skipped unless `DATABASE_URL` is reachable.
  */
 
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { eq } from "drizzle-orm"
 import { afterAll, describe, expect, test } from "vitest"
 import { realDatabaseUrl } from "./database-url"

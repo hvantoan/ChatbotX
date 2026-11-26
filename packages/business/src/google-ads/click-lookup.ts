@@ -1,6 +1,6 @@
-import { distributedStore } from "@chatbotx.io/redis"
-import type { IncomingMessage } from "@chatbotx.io/sdk"
-import { resolveGoogleClickCaptureSource } from "@chatbotx.io/utils/google-click"
+import { distributedStore } from "@inboxos.io/redis"
+import type { IncomingMessage } from "@inboxos.io/sdk"
+import { resolveGoogleClickCaptureSource } from "@inboxos.io/utils/google-click"
 import { isInboundConversationMessage } from "../contact/profile-refresh/rules"
 import { logger } from "../logger"
 

@@ -1,11 +1,11 @@
 import type {
   FacebookMarketingMessageStatus,
   FacebookMarketingMessageStatusReason,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   facebookMarketingMessageRecipientRepository,
   facebookMarketingMessageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { mmDeliveryError } from "./errors"
 
 export type MarketingMessageCampaignStats = {

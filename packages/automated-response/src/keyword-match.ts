@@ -1,14 +1,14 @@
-import { extractContactInfo } from "@chatbotx.io/business/extract-contact"
+import { extractContactInfo } from "@inboxos.io/business/extract-contact"
 import type {
   AutomatedResponseType,
   FileType,
   KeywordCondition,
-} from "@chatbotx.io/database/partials"
-import { compileKeywordRegex } from "@chatbotx.io/database/partials/keyword-condition-schema"
-import type { AutomatedResponseModel } from "@chatbotx.io/database/types"
-import { hasLink } from "@chatbotx.io/utils/has-link"
-import { levenshteinDistance } from "@chatbotx.io/utils/levenshtein"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+} from "@inboxos.io/database/partials"
+import { compileKeywordRegex } from "@inboxos.io/database/partials/keyword-condition-schema"
+import type { AutomatedResponseModel } from "@inboxos.io/database/types"
+import { hasLink } from "@inboxos.io/utils/has-link"
+import { levenshteinDistance } from "@inboxos.io/utils/levenshtein"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 
 export type KeywordMatchMode = "contains" | "exact"
 

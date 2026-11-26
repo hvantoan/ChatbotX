@@ -1,7 +1,7 @@
 "use server"
 
-import { workspaceApiTokenService } from "@chatbotx.io/business"
-import { generateWorkspaceToken } from "@chatbotx.io/business/workspace-api-token/credentials"
+import { workspaceApiTokenService } from "@inboxos.io/business"
+import { generateWorkspaceToken } from "@inboxos.io/business/workspace-api-token/credentials"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

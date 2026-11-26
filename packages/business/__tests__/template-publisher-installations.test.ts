@@ -10,18 +10,18 @@ const mocks = vi.hoisted(() => ({
   loadLabels: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { templateModel: { findFirst: mocks.templateFindFirst } } },
   and: vi.fn(),
   eq: vi.fn(),
   isNull: vi.fn(),
   sql: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   templateInstallationModel: {},
   templateModel: {},
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   loadResourceLabels: mocks.loadLabels,
   templateInstallationRepository: {
     findLatestByPublisherRef: mocks.findLatestByPublisherRef,
@@ -35,13 +35,13 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   templateSelectableResourceRepository: {},
   templateVersionRepository: {},
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueFanOutTemplateUpdate: vi.fn(),
 }))
 vi.mock("../src/logger", () => ({
   logger: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
 }))
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   parseTemplateExport: (payload: unknown) => ({ ok: true, data: payload }),
 }))
 vi.mock("../src/workspace", () => ({ workspaceService: {} }))

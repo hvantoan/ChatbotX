@@ -1,4 +1,4 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 const discountError = (
   message: string,
@@ -6,7 +6,7 @@ const discountError = (
   data?: Record<string, string | number>,
   status?: number,
 ) => {
-  const error = new ChatbotXException(message, code, status)
+  const error = new InboxOSException(message, code, status)
   if (data) {
     error.data = data
   }

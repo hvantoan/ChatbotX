@@ -4,7 +4,7 @@ import {
   productMessageConditions,
   sendProductsDisplays,
   waTemplateParamsSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 
 const productMessageConditionSchema = z.enum(productMessageConditions)

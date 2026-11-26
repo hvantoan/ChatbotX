@@ -1,4 +1,4 @@
-import type { PublicTemplateProjection } from "@chatbotx.io/business"
+import type { PublicTemplateProjection } from "@inboxos.io/business"
 import { useTranslations } from "next-intl"
 
 export type PublicTemplateHeadingTag = "h1" | "h2"

@@ -7,17 +7,17 @@ import {
   inboundWebhookStoredFieldMappingSchema,
   inboundWebhookStoredIdentifierSchema,
   inboundWebhookStoredInboxResolutionSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   InboundWebhookListRow,
   InboundWebhookRequestListRow,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   InboundWebhookModel,
   InboundWebhookRequestModel,
-} from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import {
   type ChannelUserIdKind,
   channelUserIdKinds,
@@ -27,7 +27,7 @@ import {
   inboxIdentifierKinds,
   inboxLookupStrategies,
   PAYLOAD_RESOLVABLE_CHANNELS,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import z from "zod"
 import { publicListResponse } from "@/lib/public-api/list"
 import { inboundWebhookActionSchema } from "./action"

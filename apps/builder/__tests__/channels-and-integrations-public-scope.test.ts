@@ -24,7 +24,7 @@ const {
   integrationWebchatService: { list: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -40,7 +40,7 @@ vi.mock("@chatbotx.io/business", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { connectSelfServeChannel: vi.fn() },
 }))
 

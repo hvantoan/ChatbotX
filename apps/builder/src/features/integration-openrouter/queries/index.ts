@@ -1,4 +1,4 @@
-import { integrationOpenRouterService } from "@chatbotx.io/business"
+import { integrationOpenRouterService } from "@inboxos.io/business"
 import type { IntegrationOpenrouterResource } from "../schema/resource"
 
 export const findIntegrationOpenRouter = async ({

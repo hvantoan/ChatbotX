@@ -19,7 +19,7 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (fn: (tx: unknown) => Promise<unknown>) => {
       mocks.transactionOrder.push("begin")
@@ -30,7 +30,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   workingHoursRepository: {
     listByWorkspace: mocks.listByWorkspace,
     findById: mocks.findById,
@@ -44,7 +44,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: mocks.withCache,
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))

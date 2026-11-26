@@ -3,7 +3,7 @@
 import type {
   CheckoutMode,
   ProductButtonType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type CSSProperties,
   createContext,

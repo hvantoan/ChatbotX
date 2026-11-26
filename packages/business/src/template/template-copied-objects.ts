@@ -1,5 +1,5 @@
-import { uploader } from "@chatbotx.io/filesystem"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+import { uploader } from "@inboxos.io/filesystem"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import { logger } from "../logger"
 
 /**

@@ -6,12 +6,12 @@ const fakeDb = {
   query: { whatsappMessageTemplateModel: { findMany } },
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: fakeDb,
   eq: vi.fn(),
   inArray: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 

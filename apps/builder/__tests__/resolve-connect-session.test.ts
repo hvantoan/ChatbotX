@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // ---------------------------------------------------------------------------
@@ -29,21 +29,21 @@ const {
   resolveTenantSettingsMock: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { findById: findByIdMock },
 }))
 
 // Fully replaced (not `importOriginal`) — the real module's
 // `checkWorkspaceOwnerAccess` pulls in `@/env`, which requires real
 // deployment env vars this test suite never sets. `workspaceAccessDenialException`
-// still builds a genuine `ChatbotXException` so callers' (real, unmocked)
+// still builds a genuine `InboxOSException` so callers' (real, unmocked)
 // `toConnectSessionError` recognizes it exactly like production.
 vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
   checkWorkspaceOwnerAccess: checkWorkspaceOwnerAccessMock,
   workspaceAccessDenialException: (
     reason: "trialExpired" | "macLimitReached",
   ) =>
-    new ChatbotXException(
+    new InboxOSException(
       reason === "macLimitReached"
         ? "Monthly active contact limit reached"
         : "Trial expired",
@@ -53,12 +53,12 @@ vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
 }))
 
 vi.mock("@/features/integration-webchat/lib", () => ({
-  BRANDING_TITLE: "ChatbotX",
+  BRANDING_TITLE: "InboxOS",
   getBrandingUrl: (channel: string, appUrl: string) =>
     `${appUrl}/branding/${channel}`,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { find: findWorkspaceMock },
   workspaceMemberService: { isMember: isMemberMock },
   platformCredentialService: { resolveForOwner: platformCredentialResolveMock },
@@ -288,7 +288,7 @@ describe("resolveConnectSession", () => {
       session,
       workspace: { id: "ws-1", ownerId: "owner-1" },
       brandingMenuEntry: {
-        label: "ChatbotX",
+        label: "InboxOS",
         type: "url",
         url: "https://app.test/branding/instagram",
       },
@@ -410,7 +410,7 @@ describe("resolveConnectSessionForSelect", () => {
 
     expect(failure).toMatchObject({ code: "connectSessionExpired" })
     // The owner still gets their workspace back; only the reason is withheld.
-    expect((failure as ChatbotXException).data).toEqual({
+    expect((failure as InboxOSException).data).toEqual({
       workspaceId: "ws-1",
     })
   })
@@ -445,7 +445,7 @@ describe("resolveConnectSessionForSelect", () => {
     }).catch((error: unknown) => error)
 
     expect(failure).toMatchObject({ code: "connectSessionExpired" })
-    expect((failure as ChatbotXException).data).toBeUndefined()
+    expect((failure as InboxOSException).data).toBeUndefined()
   })
 
   test("resolves session + workspace without touching the credential or branding lookups", async () => {

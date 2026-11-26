@@ -19,7 +19,7 @@ import { connectSelfServeChannel } from "./self-serve"
  *   `connectAndPersist`, `subscribeWebhookBestEffort`) plus `parseConfig`/
  *   `encryptedCandidatesSchema`. `resolveOwnerId`/`resolveForeignKey`/
  *   `saveOrInsertSatellite`/`withQuotaCompensation`/`toChannelType`/
- *   `upsertConnectionRow` live in `@chatbotx.io/business/connection` and are
+ *   `upsertConnectionRow` live in `@inboxos.io/business/connection` and are
  *   imported directly from there by every sibling module below.
  * - `lifecycle.ts` — `disconnect`/`refresh`/`verify`.
  * - `credentials.ts` — `connectFromCredentials`/`reconnect`.

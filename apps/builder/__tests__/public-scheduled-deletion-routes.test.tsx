@@ -30,11 +30,11 @@ vi.mock("@/lib/workspace/load-servable-workspace", () => ({
   loadServableWorkspace: mockLoadServableWorkspace,
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: mockEmit,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactService: {
     unsubscribeEmail: mockContactUnsubscribeEmail,
   },
@@ -53,22 +53,22 @@ vi.mock("@chatbotx.io/business", () => ({
 
 const mockEnsureContactAvatarMirrored = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureContactAvatarMirrored: mockEnsureContactAvatarMirrored,
 }))
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   systemFieldService: {
     getMePrivacyData: mockSystemGetMePrivacyData,
   },
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getInboxLinks: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     getIdFromParams: (params: Record<string, string>, key: string) =>

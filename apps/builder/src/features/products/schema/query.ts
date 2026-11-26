@@ -1,4 +1,4 @@
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
 import {
   createSearchParamsCache,
   parseAsInteger,

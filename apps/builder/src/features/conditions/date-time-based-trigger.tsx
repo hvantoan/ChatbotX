@@ -1,9 +1,9 @@
 import {
   customFieldTypes,
   dateTimeTriggerTypes,
-} from "@chatbotx.io/database/partials"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"
 import { useFormContext } from "react-hook-form"

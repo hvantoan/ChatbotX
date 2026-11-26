@@ -2,11 +2,11 @@ import {
   processWooCommerceWebhook,
   withBlockedOwnerGuard,
   wooCommerceSyncService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   IntegrationJobWoocommerceSync,
   IntegrationJobWoocommerceWebhook,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 /**
  * Pulls the connected WooCommerce store's catalog, coupons and recent orders

@@ -2,9 +2,9 @@ import {
   broadcastService,
   contactService,
   tagService,
-} from "@chatbotx.io/business"
-import { contactSequenceService } from "@chatbotx.io/business/contact-sequence"
-import { sequenceService } from "@chatbotx.io/business/sequence"
+} from "@inboxos.io/business"
+import { contactSequenceService } from "@inboxos.io/business/contact-sequence"
+import { sequenceService } from "@inboxos.io/business/sequence"
 import {
   possibleErrorsOnCreatingResource,
   possibleErrorsOnMutatingResource,

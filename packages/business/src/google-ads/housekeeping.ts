@@ -1,15 +1,15 @@
-import type { GoogleAdsProcessingDetail } from "@chatbotx.io/database/partials"
+import type { GoogleAdsProcessingDetail } from "@inboxos.io/database/partials"
 import {
   googleAdsConversionEventRepository,
   integrationGoogleAdsRepository,
-} from "@chatbotx.io/database/repositories"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   type GoogleAdsRequestStatus,
   integration as integrationGoogleAds,
   LEGACY_REQUEST_ID_PREFIX,
   sanitizeGoogleAdsError,
-} from "@chatbotx.io/integration-google-ads"
+} from "@inboxos.io/integration-google-ads"
 import { isActiveConnectionStatus } from "../connection/state"
 import { logProviderError } from "../error-log/service"
 import {

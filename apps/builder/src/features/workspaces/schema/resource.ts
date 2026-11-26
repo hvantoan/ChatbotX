@@ -1,8 +1,5 @@
-import {
-  createSelectSchema,
-  workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { createSelectSchema, workspaceModel } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 
 // `.omit({ token: true })`: Workspace.token is the deprecated, read-only

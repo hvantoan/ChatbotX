@@ -33,15 +33,15 @@ const mocks = vi.hoisted(() => ({
   claimRow: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (callback: (client: unknown) => unknown) => callback({}),
   },
 }))
-vi.mock("@chatbotx.io/database/statement-timeout", () => ({
+vi.mock("@inboxos.io/database/statement-timeout", () => ({
   setLocalStatementTimeout: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateInstallationRepository: {
     findByIdAndWorkspace: mocks.findInstallation,
     lockInstallRequest: vi.fn(),

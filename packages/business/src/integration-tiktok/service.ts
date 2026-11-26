@@ -1,8 +1,8 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq, findOrFail, inArray } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import { integrationTiktokModel } from "@chatbotx.io/database/schema"
-import type { IntegrationTiktokModel } from "@chatbotx.io/database/types"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq, findOrFail, inArray } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import { integrationTiktokModel } from "@inboxos.io/database/schema"
+import type { IntegrationTiktokModel } from "@inboxos.io/database/types"
 import {
   buildTiktokVideoUrl,
   findTiktokVideo,
@@ -12,8 +12,8 @@ import {
   tiktokCanListVideos,
   tiktokCanMessage,
   updateTiktokDirectReplyStatus,
-} from "@chatbotx.io/integration-tiktok"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-tiktok"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import {
   CONNECTION_STORE_BINDINGS,
@@ -24,8 +24,8 @@ import {
 } from "../connection"
 import { connectionStateService } from "../connection/state-service"
 import {
-  ChatbotXException,
   channelDuplicatedException,
+  InboxOSException,
   notFoundException,
 } from "../errors"
 import { inboxService } from "../inbox/service"
@@ -147,7 +147,7 @@ class TiktokIntegrationService extends BaseService {
     const status: TiktokDirectReplyStatus = enabled ? "ENABLE" : "DISABLE"
 
     if (!tiktokCanMessage(auth)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "This TikTok connection has no messaging permission, so Comment-to-Message cannot be used. TikTok Business Messaging is not available to accounts registered in the EEA, Switzerland or the UK.",
       )
     }
@@ -163,7 +163,7 @@ class TiktokIntegrationService extends BaseService {
         { err: error, id, workspaceId },
         "Failed to update TikTok Comment-to-Message",
       )
-      throw new ChatbotXException(
+      throw new InboxOSException(
         error instanceof Error
           ? error.message
           : "Failed to update TikTok Comment-to-Message",
@@ -208,7 +208,7 @@ class TiktokIntegrationService extends BaseService {
         { err: error, id, workspaceId },
         "Failed to read the TikTok Comment-to-Message setting",
       )
-      throw new ChatbotXException(
+      throw new InboxOSException(
         error instanceof Error
           ? error.message
           : "Failed to read the TikTok Comment-to-Message setting",

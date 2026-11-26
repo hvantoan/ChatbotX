@@ -1,7 +1,7 @@
 import type {
   TemplateInstallationStatus,
   TemplateVersionChange,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type PublisherInstallationRow,
   type TemplateInstallationPageRow,
@@ -9,14 +9,14 @@ import {
   templateInstallationRepository,
   templateRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   TemplateInstallationModel,
   TemplateModel,
-} from "@chatbotx.io/database/types"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { enqueueFanOutTemplateUpdate } from "@chatbotx.io/worker-config"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/types"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { enqueueFanOutTemplateUpdate } from "@inboxos.io/worker-config"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { categoryCountsOfPayload } from "./category-counts"
 import {
@@ -148,7 +148,7 @@ class TemplateService {
   }): Promise<{ items: TemplateListItem[]; nextCursor: string | null }> {
     const decoded = decodeSelectableCursor(input.cursor, "timestamp")
     if (decoded.kind === "offset") {
-      throw new ChatbotXException("Invalid cursor", "invalidCursor", 400)
+      throw new InboxOSException("Invalid cursor", "invalidCursor", 400)
     }
     const limit = Math.min(
       Math.max(input.limit ?? TEMPLATE_LIST_MAX_LIMIT, 1),

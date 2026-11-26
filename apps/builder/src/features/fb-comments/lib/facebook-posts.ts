@@ -1,11 +1,11 @@
-import { messengerIntegrationService } from "@chatbotx.io/business"
+import { messengerIntegrationService } from "@inboxos.io/business"
 import {
   type FacebookPostListItem,
   listAdsPosts,
   listPublishedPosts,
   listReelsPosts,
-} from "@chatbotx.io/integration-messenger/apis/post"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
+} from "@inboxos.io/integration-messenger/apis/post"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
 import { filterIntegrationsByAccount } from "@/features/shared/comment-automation/lib/account-filter"
 import { collectSettled } from "@/lib/collect-settled"
 

@@ -3,11 +3,11 @@ import {
   metaCatalogSyncRunService,
   productService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import type { MetaCatalogBatchHandle } from "@chatbotx.io/database/partials"
-import { metaCatalogItemRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import type { MetaCatalogBatchHandle } from "@inboxos.io/database/partials"
+import { metaCatalogItemRepository } from "@inboxos.io/database/repositories"
 import {
   CATALOG_BATCH_SIZE,
   concurrencyForUsage,
@@ -16,12 +16,12 @@ import {
   resolveRetailerIds,
   submitItemsBatch,
   toMetaItem,
-} from "@chatbotx.io/integration-meta-catalog"
+} from "@inboxos.io/integration-meta-catalog"
 import {
   DefaultJobAction,
   defaultQueue,
   type JobSubmitMetaCatalogSync,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { safeMetaCatalogErrorLog } from "./safe-error-log"
 

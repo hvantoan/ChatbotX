@@ -1,11 +1,11 @@
 import {
   workspaceMemberPermissionsSchema,
   workspaceMemberRoles,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 /**
  * "Admin" of a workspace: its owner, or any member granted the `superAdmin`

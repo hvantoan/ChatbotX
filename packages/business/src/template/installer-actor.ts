@@ -1,9 +1,9 @@
-import type { TemplateActorKind } from "@chatbotx.io/database/partials"
+import type { TemplateActorKind } from "@inboxos.io/database/partials"
 import type {
   TemplateInstallationModel,
   TemplateModel,
-} from "@chatbotx.io/database/types"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/types"
+import { InboxOSException } from "../errors"
 import { userService } from "../user"
 import { workspaceMemberService } from "../workspace-member"
 import { resolveWorkspaceAccess } from "../workspace-support-access/resolve-access"
@@ -59,7 +59,7 @@ export const assertInstallerMayInstall = async (input: {
 }): Promise<void> => {
   const actor = await resolveInstallerActor(input.installation)
   if (!actor) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "The installer no longer has access to this workspace",
       "templateCategoryPermissionDenied",
       403,

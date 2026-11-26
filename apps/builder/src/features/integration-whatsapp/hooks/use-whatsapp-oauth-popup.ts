@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallbackRef } from "@chatbotx.io/ui/hooks/use-callback-ref"
+import { useCallbackRef } from "@inboxos.io/ui/hooks/use-callback-ref"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { parseOAuthRelayResult } from "../libs/oauth-relay"
 

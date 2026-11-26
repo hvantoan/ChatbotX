@@ -5,7 +5,7 @@ import {
   formFieldTypes,
   type OperatorType,
   operatorTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { sampleStringSchema } from "./shared"
 

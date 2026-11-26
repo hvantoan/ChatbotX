@@ -40,7 +40,7 @@ vi.mock("@/features/mcp-oauth/actions/revoke-mcp-oauth-grant.action", () => ({
 }))
 
 const passthrough = ({ children }: { children: ReactNode }) => children
-vi.mock("@chatbotx.io/ui/components/ui/alert-dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/alert-dialog", () => ({
   AlertDialog: ({ children, open }: { children: ReactNode; open: boolean }) =>
     open ? children : null,
   AlertDialogAction: ({ children, ...props }: { children: ReactNode }) => (
@@ -55,15 +55,15 @@ vi.mock("@chatbotx.io/ui/components/ui/alert-dialog", () => ({
   AlertDialogHeader: passthrough,
   AlertDialogTitle: passthrough,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/badge", () => ({ Badge: passthrough }))
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/badge", () => ({ Badge: passthrough }))
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({ children, ...props }: { children: ReactNode }) => (
     <button type="button" {...props}>
       {children}
     </button>
   ),
 }))
-vi.mock("@chatbotx.io/ui/components/ui/table", () => ({
+vi.mock("@inboxos.io/ui/components/ui/table", () => ({
   Table: passthrough,
   TableBody: passthrough,
   TableCell: ({ children, ...props }: { children: ReactNode }) => (

@@ -1,13 +1,13 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { Loader2Icon, UsersIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { resolveReceiversCountLabelKey } from "../lib/broadcast-send-limit"

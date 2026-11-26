@@ -3,7 +3,7 @@ import {
   aiSegmentImageDefaultFn,
   aiSegmentImageSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { act, type ReactNode } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, useForm, useFormContext } from "react-hook-form"

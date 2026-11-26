@@ -1,13 +1,10 @@
-import {
-  findContactLocation,
-  placeLocationService,
-} from "@chatbotx.io/business"
+import { findContactLocation, placeLocationService } from "@inboxos.io/business"
 import {
   type FindPlacesNearMeStepSchema,
   findUpstreamLocationFieldKeys,
   stepTypes,
   type WhatsappLocationStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { logger } from "../../lib/logger"
 import type { ExecuteStepProps } from "./flow-utils"
 

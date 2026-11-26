@@ -1,10 +1,10 @@
-import { woocommerceRepository } from "@chatbotx.io/database/repositories"
-import { verifyWooCommerceWebhookSignature } from "@chatbotx.io/integration-woocommerce"
+import { woocommerceRepository } from "@inboxos.io/database/repositories"
+import { verifyWooCommerceWebhookSignature } from "@inboxos.io/integration-woocommerce"
 import {
   getWoocommerceWebhookJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { decryptWooCommerceAuth } from "./auth"
 import { wooCommerceSyncService } from "./sync.service"

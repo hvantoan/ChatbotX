@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/vitest-config",
+  "name": "@inboxos.io/vitest-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -29,7 +29,7 @@
     "vitest": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:"
   }

@@ -1,13 +1,14 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   BROADCAST_DEFAULT_SEND_RATE_PER_MINUTE,
   BROADCAST_MAX_SEND_RATE_PER_MINUTE,
-} from "@chatbotx.io/database/partials"
-import { DateTimePickerField } from "@chatbotx.io/ui/components/form/date-picker-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { DateTimePickerField } from "@inboxos.io/ui/components/form/date-picker-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -16,9 +17,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

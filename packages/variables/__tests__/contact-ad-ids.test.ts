@@ -2,14 +2,14 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ listAdIds: vi.fn() }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: {},
   contactNoteService: {},
   contactReferralEventService: { listAdIds: mocks.listAdIds },
   tagService: {},
 }))
 
-const { CONTACT_AD_IDS_LIMIT } = await import("@chatbotx.io/database/partials")
+const { CONTACT_AD_IDS_LIMIT } = await import("@inboxos.io/database/partials")
 const { getFirstContactAdId, listContactAdIdsString } = await import(
   "../src/helpers/contact"
 )

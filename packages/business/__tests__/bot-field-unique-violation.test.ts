@@ -25,7 +25,7 @@ class UniqueViolationError extends Error {
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(db),
   }
@@ -38,7 +38,7 @@ vi.mock("../src/template/installed-resource.service", () => ({
   assertResourceEditable: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   sql: vi.fn(),
   db: {
     execute: vi.fn(),
@@ -71,21 +71,21 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "root",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   botFieldModel,
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: (value: string) => value,
   parseOrderByAsObject: vi.fn(),
   parsePagination: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
@@ -111,7 +111,7 @@ vi.mock("../src/errors", () => ({
     error.field = field
     return error
   },
-  ChatbotXException: class ChatbotXException extends Error {},
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
 vi.mock("../src/folder/service", () => ({

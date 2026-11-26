@@ -1,11 +1,11 @@
-import type { GoogleAdsSetup } from "@chatbotx.io/business"
+import type { GoogleAdsSetup } from "@inboxos.io/business"
 import {
   DEFAULT_GOOGLE_ADS_UPLOAD_METHOD,
   type GoogleAdsSetupError,
   type GoogleAdsUploadMethod,
   googleAdsUploadMethodSchema,
-} from "@chatbotx.io/database/partials"
-import type { ConnectionStatus } from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/database/partials"
+import type { ConnectionStatus } from "@inboxos.io/utils/connection"
 
 export type GoogleAdsSettingsConversionAction = {
   id: string

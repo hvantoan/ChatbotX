@@ -1,7 +1,7 @@
 "use client"
 
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,15 +9,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { FileTextIcon, Loader2Icon, SendIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

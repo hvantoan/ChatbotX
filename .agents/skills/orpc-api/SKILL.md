@@ -79,7 +79,7 @@ Snippets: `references/router-registration.md`.
 - **`summary` is the MCP tool description** (joined with `description`); put usage guidance for LLMs in `description`.
 - **Every body-less mutation (DELETE) sets `successStatus: 204`**; if it returns data add `.output(...)` instead. Enforced by `apps/builder/__tests__/public-spec-operations.test.ts`.
 - **`mcpSpec`** (`@/lib/orpc/mcp-annotations`) must be passed as the function form of `.route({ spec })`, never a plain object. Omitting `visibility` means `"hidden"` (only via `search_tools`/`call_tool`); only ~40 operations opt in with `"default"`.
-- **`.errors()` is mandatory on public routes**: pick one `possibleErrorsOn*Resource` set by what the handler can fail with; never re-declare a `commonApiErrors` code. A new `ChatbotXException` code needs a matching entry or it silently drops from the spec.
+- **`.errors()` is mandatory on public routes**: pick one `possibleErrorsOn*Resource` set by what the handler can fail with; never re-declare a `commonApiErrors` code. A new `InboxOSException` code needs a matching entry or it silently drops from the spec.
 - Split `api/public.ts` / `schema/public.ts` past ~400 lines; a submodule uses `workspaceTokenAuthAPIForScope` with **its own** scope. Prefer a sibling feature's own `api/public.ts` over a submodule.
 - Heavy list endpoints may accept `include?: string[]` and `withCount?: boolean`.
 
@@ -87,7 +87,7 @@ Details and samples: `references/public-procedures.md`.
 
 ## Errors and logging
 
-Throw `ChatbotXException` (`@chatbotx.io/business/errors`) or `ModelNotfoundException` (`@chatbotx.io/database/errors`); `mapKnownOrpcErrors` (`apps/builder/src/orpc.ts`) remaps them for all three stacks. Unknown errors are logged once by `logUnexpectedOrpcErrorCallback` (`lib/orpc/handlers.ts`). Server code (handlers, actions, queries) logs through pino, never `console`: `const logger = baseLogger.child({ feature: "myFeature" })` from `@chatbotx.io/logger`, then `logger.error({ err: error }, "[myFeature] operation failed")`. The key is `err`, not `error` (invariant 20).
+Throw `InboxOSException` (`@inboxos.io/business/errors`) or `ModelNotfoundException` (`@inboxos.io/database/errors`); `mapKnownOrpcErrors` (`apps/builder/src/orpc.ts`) remaps them for all three stacks. Unknown errors are logged once by `logUnexpectedOrpcErrorCallback` (`lib/orpc/handlers.ts`). Server code (handlers, actions, queries) logs through pino, never `console`: `const logger = baseLogger.child({ feature: "myFeature" })` from `@inboxos.io/logger`, then `logger.error({ err: error }, "[myFeature] operation failed")`. The key is `err`, not `error` (invariant 20).
 
 ## References
 

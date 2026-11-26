@@ -1,5 +1,3 @@
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { cn } from "@chatbotx.io/ui/lib/utils"
 import {
   SiInstagram,
   SiInstagramHex,
@@ -18,6 +16,8 @@ import {
   SiZalo,
   SiZaloHex,
 } from "@icons-pack/react-simple-icons"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   AppWindowIcon,
   GlobeIcon,

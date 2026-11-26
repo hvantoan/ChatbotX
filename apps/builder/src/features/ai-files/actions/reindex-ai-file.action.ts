@@ -1,8 +1,8 @@
 "use server"
 
-import { aiFileService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { aiFileService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { assertAIFileActionNotRateLimited } from "../lib/rate-limit"
@@ -23,9 +23,9 @@ export const reindexAIFileAction = workspaceActionClient
       })
       return { coalesced: result.coalesced }
     } catch (error) {
-      if (error instanceof ChatbotXException && error.code === "conflict") {
+      if (error instanceof InboxOSException && error.code === "conflict") {
         const t = await getTranslations()
-        throw new ChatbotXException(
+        throw new InboxOSException(
           t("aiFiles.reindex.conflict"),
           "conflict",
           409,

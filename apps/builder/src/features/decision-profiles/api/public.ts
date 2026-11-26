@@ -1,5 +1,5 @@
-import { decisionProfileService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { decisionProfileService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnCreatingDecisionProfile,

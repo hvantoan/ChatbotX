@@ -1,4 +1,4 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const aiFileChunkStrategies = z.enum(["prose", "tabular", "markdown"])

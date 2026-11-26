@@ -1,8 +1,8 @@
-import { googleAdsConversionErrorCodes } from "@chatbotx.io/utils/google-click"
+import { googleAdsConversionErrorCodes } from "@inboxos.io/utils/google-click"
 import { describe, expect, test, vi } from "vitest"
 import { z } from "zod"
 
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: vi.fn(),
 }))
 

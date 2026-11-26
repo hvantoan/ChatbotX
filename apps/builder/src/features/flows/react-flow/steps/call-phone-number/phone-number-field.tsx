@@ -1,12 +1,12 @@
 "use client"
 
-import { flowValidationCodes } from "@chatbotx.io/flow-config"
+import { flowValidationCodes } from "@inboxos.io/flow-config"
 import {
   FormField,
   FormItem,
   FormLabel,
   useFormField,
-} from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/form"
 import { type CountryCode, isSupportedCountry } from "libphonenumber-js"
 import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"

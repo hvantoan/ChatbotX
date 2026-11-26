@@ -1,14 +1,14 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Calendar } from "@chatbotx.io/ui/components/ui/calendar"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Calendar } from "@inboxos.io/ui/components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/popover"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CalendarIcon } from "lucide-react"
 import { useFormatter } from "next-intl"
 import type { FieldPath, FieldValues } from "react-hook-form"

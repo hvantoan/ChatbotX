@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => ({
   createReplyModel: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService: {
     recordModeration: mocks.recordModeration,
     isModerationPending: mocks.isModerationPending,
@@ -25,19 +25,19 @@ vi.mock("@chatbotx.io/analytics", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService: { findByIdForWorkspace: mocks.findAIAgent },
   commentAutomationService: { findActive: mocks.findActive },
   contactInboxService: { findBy: mocks.findContactInbox },
   logProviderError: mocks.logProviderError,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => "log-1",
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: { commentModeration: "commentModeration" },
   aiAgentQueue: { add: mocks.aiAgentQueueAdd },
   ChatJobAction: {
@@ -52,7 +52,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   MISSED_COMMENT_REPLAY_PRIORITY: 10,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: { get: mocks.storeGet, put: mocks.storePut },
 }))
 

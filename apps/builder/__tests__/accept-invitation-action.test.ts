@@ -1,12 +1,12 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/auth/server", () => ({
-  INVITATION_COOKIE_NAME: "chatbotx_invitation",
+vi.mock("@inboxos.io/auth/server", () => ({
+  INVITATION_COOKIE_NAME: "inboxos_invitation",
 }))
 
 const resolveTenantByDomain = vi.fn()
-vi.mock("@chatbotx.io/auth/tenant", () => ({ resolveTenantByDomain }))
+vi.mock("@inboxos.io/auth/tenant", () => ({ resolveTenantByDomain }))
 
 const getDomainFromHeader = vi.fn()
 vi.mock("@/lib/domain", () => ({ getDomainFromHeader }))
@@ -29,7 +29,7 @@ const workspaceMemberFindFirst = vi.fn()
 const hasReachedLimit = vi.fn()
 const workspaceServiceFind = vi.fn()
 const workspaceMemberServiceCreate = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   hasWorkspacePermission: (permissions: Record<string, unknown>, key: string) =>
     permissions.superAdmin === true || permissions[key] === true,
   invitationService: {
@@ -55,8 +55,8 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     httpStatusCode: number
     constructor(message: string, code = "systemError", httpStatusCode = 400) {
@@ -74,13 +74,13 @@ vi.mock("next-intl/server", () => ({
 }))
 
 const invalidateCacheByTags = vi.fn()
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => invalidateCacheByTags(...args),
 }))
 
 const createId = vi.fn(() => "member-id")
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId,
@@ -163,7 +163,7 @@ describe("acceptInvitationAction", () => {
   test("clears the invitation cookie after a successful join, so it can't be replayed", async () => {
     await invoke()
 
-    expect(cookieDelete).toHaveBeenCalledWith("chatbotx_invitation")
+    expect(cookieDelete).toHaveBeenCalledWith("inboxos_invitation")
   })
 
   test("uses the invitation's stored permissions on non-community editions", async () => {

@@ -3,10 +3,10 @@ import {
   type ImportType,
   importStatuses,
   importTypes,
-} from "@chatbotx.io/database/partials"
-import type { ImportErrorSample } from "@chatbotx.io/database/schema"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import type { ImportErrorSample } from "@inboxos.io/database/schema"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   createSearchParamsCache,
   parseAsInteger,

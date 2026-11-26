@@ -1,4 +1,4 @@
-import logger from "@chatbotx.io/logger"
+import logger from "@inboxos.io/logger"
 import { Redis, type RedisOptions } from "ioredis"
 
 export function createRedisConnection(

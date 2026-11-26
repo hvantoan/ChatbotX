@@ -48,7 +48,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     $count: mockCount,
     delete: mockDelete,
@@ -64,20 +64,20 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: (field: unknown, values: unknown[]) => ({ field, values }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   triggerModel: { id: "id", workspaceId: "workspaceId" },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   triggerRepository: { listPaginatedWithConditions: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   removeTriggerCache: mockRemoveTriggerCache,
   updateTriggerCache: mockUpdateTriggerCache,
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => "generated-id"),
 }))
 

@@ -1,9 +1,9 @@
-import { db } from "@chatbotx.io/database/client"
-import type { FolderModel } from "@chatbotx.io/database/types"
+import { db } from "@inboxos.io/database/client"
+import type { FolderModel } from "@inboxos.io/database/types"
 import type {
   TemplateFolderManifestEntry,
   TemplateProductCategoryManifestEntry,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 /**
  * Walks each given folder id up to its root and returns manifest entries

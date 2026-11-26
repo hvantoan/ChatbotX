@@ -2,12 +2,12 @@ import {
   aiAgentSalesProfileVersionSources,
   aiAgentTrainingMessageRoles,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   AIAgentSalesProfileVersionModel,
   AIAgentTrainingMessageModel,
-} from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const aiAgentIdParamSchema = z.object({

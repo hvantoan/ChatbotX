@@ -2,8 +2,8 @@ import {
   type ButtonStepProps,
   COPY_TEXT_MAX,
   isNativeButtonType,
-} from "@chatbotx.io/flow-config"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import {
   buildCanonicalInlineButton,

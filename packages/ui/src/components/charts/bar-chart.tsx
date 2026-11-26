@@ -1,12 +1,12 @@
 "use client"
 
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   ChartContainer,
   ChartLegend,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import { Bar, BarChart as BC, CartesianGrid, XAxis, YAxis } from "recharts"
 import { useChartCardProvider } from "./chart-card-context"
 import ChartHeader from "./chart-header"

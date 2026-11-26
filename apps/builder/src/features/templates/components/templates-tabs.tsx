@@ -1,7 +1,7 @@
 import {
   canViewTemplateInstalls,
   TEMPLATE_MANAGE_PERMISSION,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { getTranslations } from "next-intl/server"
 import { AppTab } from "@/components/app-tab"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"

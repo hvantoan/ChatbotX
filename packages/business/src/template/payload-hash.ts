@@ -1,5 +1,5 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { getTemplateAdapter } from "./adapters/registry"
 import { canonicalize, fingerprintEntry } from "./fingerprint"
 

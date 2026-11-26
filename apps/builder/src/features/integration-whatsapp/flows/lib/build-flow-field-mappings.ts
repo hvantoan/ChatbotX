@@ -1,7 +1,7 @@
 import {
   DEFAULT_WHATSAPP_FLOW_FILE_FORMAT,
   type WhatsappFlowFieldMapping,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type {
   WhatsappFlowScreenOutputResource,
   WhatsappFlowScreenResource,

@@ -1,6 +1,6 @@
 "use client"
 
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
 import {
   AI_FILE_CHUNKING_LIMITS,
   type AIFileChunkingConfig,
@@ -8,8 +8,8 @@ import {
   estimateAIFileChunkCount,
   type ResolvedAIFileChunkingConfig,
   resolveAIFileChunkingConfig,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -19,13 +19,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { useQueryClient } from "@tanstack/react-query"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

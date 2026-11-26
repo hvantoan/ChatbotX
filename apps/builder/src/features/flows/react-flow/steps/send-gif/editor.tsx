@@ -1,6 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { IGif } from "@giphy/js-types"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -8,8 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import type { IGif } from "@giphy/js-types"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { ImagePlayIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 import Image from "next/image"

@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   leaderboardAdd: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   leaderboardRepository: {
     findByIdAndWorkspace: mocks.findByIdAndWorkspace,
     claimRewards: mocks.claimRewards,
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: mocks.integrationAdd },
   LeaderboardJobAction: { triggerRewards: "triggerRewards" },

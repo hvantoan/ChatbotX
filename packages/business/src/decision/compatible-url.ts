@@ -1,4 +1,4 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { checkSsrfSafety } from "../net/ssrf-guard"
 
 const trailingSlashesPattern = /\/+$/
@@ -11,7 +11,7 @@ export const normalizeCompatibleEndpoint = async (
   try {
     endpoint = new URL(rawEndpoint.trim())
   } catch {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Decision provider endpoint must be a valid HTTPS URL",
       "invalidDecisionEndpoint",
     )
@@ -24,7 +24,7 @@ export const normalizeCompatibleEndpoint = async (
     endpoint.search ||
     endpoint.hash
   ) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Decision provider endpoint must be a canonical HTTPS URL",
       "invalidDecisionEndpoint",
     )
@@ -35,7 +35,7 @@ export const normalizeCompatibleEndpoint = async (
   const normalized = endpoint.toString()
   const safety = await checkSsrfSafety(normalized)
   if (safety.unsafe) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Decision provider endpoint is not publicly reachable",
       "unsafeDecisionEndpoint",
     )

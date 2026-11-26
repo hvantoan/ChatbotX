@@ -1,4 +1,4 @@
-import type { PipelineType } from "@chatbotx.io/database/partials"
+import type { PipelineType } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   filterPipelineList,

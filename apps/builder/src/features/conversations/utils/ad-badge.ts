@@ -1,8 +1,8 @@
 import {
   type AdsEligibleChannel,
   isAdsEligibleChannel,
-} from "@chatbotx.io/business/ads-conversion/channel-fields"
-import type { GoogleAdsChannel } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/business/ads-conversion/channel-fields"
+import type { GoogleAdsChannel } from "@inboxos.io/utils/google-click"
 
 // Minimal structural shape this helper needs — deliberately NOT the full
 // `ConversationContactInboxResource`, so extending `adReferral` with more
@@ -100,4 +100,4 @@ export function selectAdBadge(
  * click). Independent of `selectAdBadge`, which stays Meta-only, so a Meta
  * ad badge and a Google badge can render side by side.
  */
-export { selectGoogleAdsBadge } from "@chatbotx.io/business/google-ads/click-fields"
+export { selectGoogleAdsBadge } from "@inboxos.io/business/google-ads/click-fields"

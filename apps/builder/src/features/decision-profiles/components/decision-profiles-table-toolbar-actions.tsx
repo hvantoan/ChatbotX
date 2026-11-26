@@ -1,14 +1,14 @@
 "use client"
 
-import type { DecisionConnectionSafe } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { DecisionConnectionSafe } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import type { Table } from "@tanstack/react-table"
 import { PlusIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

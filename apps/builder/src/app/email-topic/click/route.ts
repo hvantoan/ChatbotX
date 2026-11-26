@@ -2,8 +2,8 @@ import {
   emailTopicService,
   emailTrackingService,
   verifyEmailClickToken,
-} from "@chatbotx.io/business"
-import { awardLeaderboardEmailEngagement } from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business"
+import { awardLeaderboardEmailEngagement } from "@inboxos.io/business/leaderboard"
 import { NextResponse } from "next/server"
 import { loadServableWorkspace } from "@/lib/workspace/load-servable-workspace"
 

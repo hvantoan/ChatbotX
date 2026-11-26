@@ -1,11 +1,11 @@
-import { tiktokIntegrationService } from "@chatbotx.io/business"
+import { tiktokIntegrationService } from "@inboxos.io/business"
 import {
   isRevokedTokenError,
   type TiktokAuthValue,
-} from "@chatbotx.io/integration-tiktok"
-import { refreshAccessToken } from "@chatbotx.io/integration-tiktok/apis/auth"
-import { parseTiktokScopes } from "@chatbotx.io/integration-tiktok/lib/scopes"
-import { buildTokenTimestamps } from "@chatbotx.io/integration-tiktok/lib/token-utils"
+} from "@inboxos.io/integration-tiktok"
+import { refreshAccessToken } from "@inboxos.io/integration-tiktok/apis/auth"
+import { parseTiktokScopes } from "@inboxos.io/integration-tiktok/lib/scopes"
+import { buildTokenTimestamps } from "@inboxos.io/integration-tiktok/lib/token-utils"
 import { logger } from "../../lib/logger"
 import { refreshWithErrorHandling, runRefreshBatch } from "./refresh-runner"
 

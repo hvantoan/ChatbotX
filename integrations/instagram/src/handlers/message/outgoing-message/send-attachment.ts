@@ -1,5 +1,5 @@
-import { stepTypes } from "@chatbotx.io/flow-config"
-import type { FileType } from "@chatbotx.io/sdk"
+import { stepTypes } from "@inboxos.io/flow-config"
+import type { FileType } from "@inboxos.io/sdk"
 import type { InstagramMessageAttachment } from "../../../schema"
 
 export function getAttachmentTemplate(

@@ -11,11 +11,11 @@ const mocks = vi.hoisted(() => ({
   reindex: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { deleteObject: mocks.deleteObject },
 }))
-vi.mock("@chatbotx.io/events", () => ({ removeTriggerCache: vi.fn() }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/events", () => ({ removeTriggerCache: vi.fn() }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   mediaLibraryFileRepository: {
     findById: mocks.findFile,
     deleteById: mocks.deleteFile,

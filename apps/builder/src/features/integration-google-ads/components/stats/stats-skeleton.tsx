@@ -1,4 +1,4 @@
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 
 const TILE_KEYS = ["a", "b", "c", "d", "e", "f"]
 

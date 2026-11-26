@@ -1,12 +1,12 @@
 // @vitest-environment node
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
   save: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiHandoverBulkRunService: { saveSettings: mocks.save },
 }))
 
@@ -104,13 +104,13 @@ describe("saveAiHandoverSettingsAction", () => {
 
   test("maps a missing or inactive flow to a translated error", async () => {
     mocks.save.mockRejectedValue(
-      new ChatbotXException("Flow not found", "notFound", 404),
+      new InboxOSException("Flow not found", "notFound", 404),
     )
     await expect(run()).rejects.toThrow("aiHandover.errors.flowNotFound")
   })
 
   test("rethrows another domain error (not a missing flow) unchanged", async () => {
-    const error = new ChatbotXException("bad", "validation", 422)
+    const error = new InboxOSException("bad", "validation", 422)
     mocks.save.mockRejectedValue(error)
     await expect(run()).rejects.toBe(error)
   })

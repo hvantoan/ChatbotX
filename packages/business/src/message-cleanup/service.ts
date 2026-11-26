@@ -8,15 +8,15 @@ import {
   liftDecompressionLimit,
   lte,
   sql,
-} from "@chatbotx.io/database/client"
-import { messageCleanupStatuses } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { messageCleanupStatuses } from "@inboxos.io/database/partials"
 import {
   attachmentModel,
   messageCleanupModel,
   messageModel,
-} from "@chatbotx.io/database/schema"
-import type { MessageCleanupModel } from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/schema"
+import type { MessageCleanupModel } from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
 import { BaseService } from "../base.service"
 import { logger } from "../logger"
 import { isStoredObjectPath } from "../media"

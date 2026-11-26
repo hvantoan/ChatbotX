@@ -1,14 +1,14 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 export const shopifyNotConnectedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Connect a Shopify store in Ecommerce → Settings → Shopify first.",
     "shopifyNotConnected",
   )
 
 /** Shopify refused the token, secret, or client credentials. */
 export const shopifyCredentialsInvalidException = (detail?: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `Shopify did not accept these credentials${detail ? `: ${detail}` : "."} Check the store domain and the app's token or keys, and that the app is installed with the required scopes.`,
     "shopifyCredentialsInvalid",
   )
@@ -17,7 +17,7 @@ export const shopifyCredentialsInvalidException = (detail?: string) => {
 }
 
 export const shopifySyncInProgressException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A Shopify sync is already running. Wait for it to finish.",
     "shopifySyncInProgress",
     409,
@@ -25,7 +25,7 @@ export const shopifySyncInProgressException = () =>
 
 /** Shopify refused the order (out of stock, bad address, …). */
 export const shopifyOrderRejectedException = (detail: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `Shopify could not place the order: ${detail}`,
     "shopifyOrderRejected",
     422,
@@ -36,7 +36,7 @@ export const shopifyOrderRejectedException = (detail: string) => {
 
 /** A product in the cart has no Shopify variant to order. */
 export const shopifyVariantMissingException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A product in the cart is no longer sold on Shopify. Remove it and try again.",
     "shopifyVariantMissing",
     409,

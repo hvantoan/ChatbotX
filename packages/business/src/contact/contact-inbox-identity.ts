@@ -1,9 +1,9 @@
-import { type ChannelType, channelTypes } from "@chatbotx.io/database/partials"
-import { createId } from "@chatbotx.io/utils"
+import { type ChannelType, channelTypes } from "@inboxos.io/database/partials"
+import { createId } from "@inboxos.io/utils"
 import {
   CONTACT_LOOKUP_ORDER,
   type ContactIdentityKind,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import { randomString } from "remeda"
 
 /** What a caller knows about a contact; each channel picks the identity it keys on. */

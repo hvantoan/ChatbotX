@@ -1,6 +1,6 @@
-import { userService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { createId } from "@chatbotx.io/utils"
+import { userService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { createId } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { APIError } from "better-auth/api"
 import { z } from "zod"
@@ -197,7 +197,7 @@ export const mePublicRouter = {
           error.statusCode >= 400 &&
           error.statusCode < 500
         ) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             error.body?.message ?? "Failed to change password",
             "changePasswordFailed",
             error.statusCode,

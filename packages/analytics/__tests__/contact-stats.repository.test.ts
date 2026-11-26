@@ -11,14 +11,14 @@ sql.identifier = (name: string) => ({ strings: [`"${name}"`], values: [] })
 
 const execute = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { execute, insert: vi.fn() },
   sql,
 }))
-vi.mock("@chatbotx.io/database/queries/date-bucket", () => ({
+vi.mock("@inboxos.io/database/queries/date-bucket", () => ({
   resolvedTimezone: (timezone: string) => timezone,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   analyticsContactEventModel: {},
 }))
 

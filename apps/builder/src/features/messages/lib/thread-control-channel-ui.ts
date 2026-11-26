@@ -1,5 +1,5 @@
-import { stepTypes } from "@chatbotx.io/flow-config"
-import type { ThreadControlChannel } from "@chatbotx.io/utils/channel"
+import { stepTypes } from "@inboxos.io/flow-config"
+import type { ThreadControlChannel } from "@inboxos.io/utils/channel"
 
 export type ThreadControlPassTarget = "escalation" | "aiAgent"
 

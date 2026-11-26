@@ -28,26 +28,26 @@ vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
 vi.mock("@/lib/oauth-state-nonce", () => ({
   consumeOAuthNonce: mocks.consumeOAuthNonce,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: { findByIdForWorkspace: mocks.findMessenger },
   instagramIntegrationService: { findByIdForWorkspace: mocks.findInstagram },
   metaConversionsService: { connectCapiWithToken: mocks.connectCapiWithToken },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   exchangeCodeForToken: mocks.exchangeMessengerCode,
   getUserPages: mocks.getUserPages,
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   exchangeLongLivedToken: mocks.exchangeLongLivedToken,
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   exchangeCodeForToken: mocks.exchangeInstagramCode,
   getPageInstagramAccess: mocks.getPageInstagramAccess,
 }))
-vi.mock("@chatbotx.io/integration-meta-conversions", () => ({
+vi.mock("@inboxos.io/integration-meta-conversions", () => ({
   getDataset: mocks.getDataset,
 }))
 vi.mock("@/features/meta-conversions/lib/provision-capi-dataset", () => ({

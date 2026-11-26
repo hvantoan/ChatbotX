@@ -1,4 +1,4 @@
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import {
   ClockIcon,
   EyeIcon,

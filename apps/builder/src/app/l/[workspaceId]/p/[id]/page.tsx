@@ -1,5 +1,5 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound, redirect } from "next/navigation"
 import { InboxListLandingPage } from "@/features/inboxes/components/landing-inbox-list"
 import { loadPollLinks } from "@/features/polls/lib/poll-links"
@@ -25,7 +25,7 @@ export default async function PollLandingPage({
 
   const loaded = await loadPollLinks({ workspaceId, pollId: id }).catch(
     (error: unknown) => {
-      if (error instanceof ChatbotXException && error.httpStatusCode === 404) {
+      if (error instanceof InboxOSException && error.httpStatusCode === 404) {
         return null
       }
       throw error

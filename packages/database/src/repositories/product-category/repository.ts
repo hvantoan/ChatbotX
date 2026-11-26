@@ -6,14 +6,14 @@ import {
   db,
   eq,
   or,
-} from "@chatbotx.io/database/client"
-import type { StoreSource } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { StoreSource } from "@inboxos.io/database/partials"
 import {
   productCategoryModel,
   productModel,
   vendorModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 /**
  * A product filed under a sub-category also belongs to that sub-category's

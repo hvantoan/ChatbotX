@@ -1,4 +1,4 @@
-import { containsVariablePlaceholder } from "@chatbotx.io/utils"
+import { containsVariablePlaceholder } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /**

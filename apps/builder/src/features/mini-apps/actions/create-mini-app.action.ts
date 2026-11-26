@@ -1,6 +1,6 @@
 "use server"
 
-import { miniAppService } from "@chatbotx.io/business/mini-app"
+import { miniAppService } from "@inboxos.io/business/mini-app"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { returnNameTakenError } from "../lib/name-taken"

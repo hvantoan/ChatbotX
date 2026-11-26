@@ -1,14 +1,14 @@
-import { aiTimeouts } from "@chatbotx.io/ai"
-import { aiContextService } from "@chatbotx.io/ai/server"
-import { aiAgentService } from "@chatbotx.io/business"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
+import { aiTimeouts } from "@inboxos.io/ai"
+import { aiContextService } from "@inboxos.io/ai/server"
+import { aiAgentService } from "@inboxos.io/business"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
 import {
   type AIAgentModelConfig,
   aiAgentProviderModels,
   aiAgentProviders,
-} from "@chatbotx.io/database/partials"
-import type { AIGenerateTextAgentSchema } from "@chatbotx.io/flow-config"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/partials"
+import type { AIGenerateTextAgentSchema } from "@inboxos.io/flow-config"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"
 import { saveResultToCustomField } from "../../utils/contact"

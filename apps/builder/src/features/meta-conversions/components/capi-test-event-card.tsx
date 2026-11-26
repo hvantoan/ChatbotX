@@ -1,9 +1,9 @@
 "use client"
 
-import type { MetaConversionsChannel } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import type { MetaConversionsChannel } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   ExternalLinkIcon,
   FlaskConicalIcon,

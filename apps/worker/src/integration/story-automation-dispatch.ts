@@ -1,10 +1,10 @@
-import { conversationService } from "@chatbotx.io/business"
+import { conversationService } from "@inboxos.io/business"
 import type {
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import { getStoryReply, isStoryMention } from "@chatbotx.io/sdk"
-import { AIJobAction, aiAgentQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { getStoryReply, isStoryMention } from "@inboxos.io/sdk"
+import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import { shouldRunStoryMentionAutomation } from "./routing"
 
 /**

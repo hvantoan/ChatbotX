@@ -28,7 +28,7 @@ flow step (productIds) ──► send-flow-step ──► productMessageService.
                  integration `sendFlowStep` (data.productMessage) ──► channel API
 ```
 
-- The step stores **ChatbotX product ids** (`sections[].productIds`). They survive SKU changes and catalog re-syncs; the
+- The step stores **InboxOS product ids** (`sections[].productIds`). They survive SKU changes and catalog re-syncs; the
   channel-side id (`retailerId`) is resolved at send time.
 - Resolution runs **before** the Message row is created. A step that cannot be
   sent (no catalog, nothing sendable, invalid as authored) creates no message and
@@ -103,7 +103,7 @@ Values live in `policies/whatsapp.ts`; the payloads follow Meta's
 | Display | `interactive.type` | Rules |
 |---------|--------------------|-------|
 | 1 product | `product` | `catalog_id` + `product_retailer_id`; optional body/footer; no header |
-| 2+ products | `product_list` | Header (≤60) and body (≤1024) required; footer ≤60; ≤30 products; section title ≤24 and required with 2+ sections; ≤10 sections (a ChatbotX limit — Meta states none) |
+| 2+ products | `product_list` | Header (≤60) and body (≤1024) required; footer ≤60; ≤30 products; section title ≤24 and required with 2+ sections; ≤10 sections (a InboxOS limit — Meta states none) |
 | `carousel` | `carousel` | 2–10 product cards, body only (≤1024) |
 
 - These are service messages: they can only be sent inside an open customer

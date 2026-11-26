@@ -1,8 +1,8 @@
 import {
   resolveWorkspaceFreezeReason,
   workspaceService,
-} from "@chatbotx.io/business"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 
 type ServableWorkspace = {
   servable: boolean

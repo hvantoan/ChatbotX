@@ -1,8 +1,8 @@
 "use client"
 
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ListChecksIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"

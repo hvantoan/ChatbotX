@@ -10,7 +10,7 @@ const {
   SORTABLE_COLUMNS,
   WITHHELD_ERROR_LOG_COLUMNS,
   withheldErrorLogColumns,
-} = await import("@chatbotx.io/business/error-log-columns")
+} = await import("@inboxos.io/business/error-log-columns")
 const {
   listErrorLogsRequest,
   listErrorLogsResponse,

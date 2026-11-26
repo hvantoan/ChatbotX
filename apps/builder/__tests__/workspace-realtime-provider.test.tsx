@@ -1,4 +1,4 @@
-import { RealtimeFatalError } from "@chatbotx.io/realtime-protocol"
+import { RealtimeFatalError } from "@inboxos.io/realtime-protocol"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"

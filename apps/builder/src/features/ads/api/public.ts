@@ -5,7 +5,7 @@ import {
   contactReferralEventService,
   getCachedCustomAudiences,
   resolveChannelAdAccountSources,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { z } from "zod"
 import { adsCampaignPublicRouter } from "@/features/ads-campaign/api/public"
 import {

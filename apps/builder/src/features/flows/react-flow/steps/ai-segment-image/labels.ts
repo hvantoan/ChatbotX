@@ -1,7 +1,7 @@
 import type {
   AISegmentImageMatchSelection,
   StateType,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 export const matchSelectionLabelKeys = {
   largest: "fields.aiSegmentImage.matchSelection.options.largest",

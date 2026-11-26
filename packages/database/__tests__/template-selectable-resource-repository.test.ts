@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   count: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       flowModel: { findMany: mocks.flowFindMany },
@@ -34,7 +34,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(() => "sql-filter"),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiAgentModel: {},
   aiFunctionModel: {},
   appointmentCalendarModel: {},
@@ -51,7 +51,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   triggerModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: vi.fn((value: string) => `%${value}%`),
 }))
 

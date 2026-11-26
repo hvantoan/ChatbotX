@@ -1,28 +1,28 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+} from "@inboxos.io/ui/components/ui/card"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import type { ColumnDef, Row } from "@tanstack/react-table"
 import {
   ChartLineIcon,

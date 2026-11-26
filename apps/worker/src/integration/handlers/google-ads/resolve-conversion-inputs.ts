@@ -1,14 +1,14 @@
-import type { RecordConversionInput } from "@chatbotx.io/business"
+import type { RecordConversionInput } from "@inboxos.io/business"
 import {
   consentTemplatesOf,
   type GoogleAdsConsentSetting,
   googleAdsSettingsService,
   toConsentInput,
-} from "@chatbotx.io/business"
-import type { GoogleAdsIdentityPolicy } from "@chatbotx.io/database/partials"
-import type { GoogleAdsConversionErrorCode } from "@chatbotx.io/utils/google-click"
-import { googleAdsConversionErrorCodes } from "@chatbotx.io/utils/google-click"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/business"
+import type { GoogleAdsIdentityPolicy } from "@inboxos.io/database/partials"
+import type { GoogleAdsConversionErrorCode } from "@inboxos.io/utils/google-click"
+import { googleAdsConversionErrorCodes } from "@inboxos.io/utils/google-click"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import type { ResolvedGoogleAdsFields } from "./google-ads-input-error"
 
 type VariableSource = Parameters<typeof resolveContactVariablesDeep>[2]

@@ -37,7 +37,7 @@ vi.mock("@/lib/safe-action", () => {
 vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
   assertWorkspaceSuperAdmin: mocks.assertWorkspaceSuperAdmin,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     replaceAuth: mocks.replaceAuth,
@@ -48,11 +48,11 @@ vi.mock("@chatbotx.io/business", () => ({
     upsertCurrentCredential: mocks.upsertCurrentCredential,
   },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 vi.mock("@/lib/platform-credential-owner", () => ({
   resolveOwnerForWorkspace: mocks.resolveOwnerForWorkspace,
@@ -60,14 +60,14 @@ vi.mock("@/lib/platform-credential-owner", () => ({
 vi.mock("@/lib/provider-origin", () => ({
   resolveProviderOriginForCredential: mocks.resolveProviderOriginForCredential,
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/auth", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/auth", () => ({
   exchangeAccessToken: mocks.exchangeAccessToken,
   appAccessToken: mocks.appAccessToken,
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba-owner", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba-owner", () => ({
   resolveOwningWabaId: mocks.resolveOwningWabaId,
 }))
-vi.mock("@chatbotx.io/integration-meta-conversions", () => ({
+vi.mock("@inboxos.io/integration-meta-conversions", () => ({
   getDataset: mocks.getDataset,
 }))
 vi.mock("@/features/meta-conversions/lib/provision-capi-dataset", () => ({

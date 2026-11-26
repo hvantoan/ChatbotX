@@ -1,7 +1,7 @@
-import { inboundWebhookService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
-import { enqueueProcessInboundWebhookRequest } from "@chatbotx.io/worker-config"
+import { inboundWebhookService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
+import { mapWithConcurrency } from "@inboxos.io/utils"
+import { enqueueProcessInboundWebhookRequest } from "@inboxos.io/worker-config"
 
 const log = getChildLogger("redispatch-inbound-webhook-requests")
 

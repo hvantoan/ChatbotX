@@ -1,8 +1,8 @@
-import { folderService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { sequenceService } from "@chatbotx.io/business/sequence"
-import { folderTypes, rootFolderId } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { folderService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { sequenceService } from "@inboxos.io/business/sequence"
+import { folderTypes, rootFolderId } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

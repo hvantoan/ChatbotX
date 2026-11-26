@@ -2,17 +2,17 @@ import type {
   SendWaTemplateMessageStepSchema,
   WaTemplateButtonParam,
   WaTemplateCarouselCard,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   encodeTemplateFlowToken,
   extractMetadata,
   TemplateFlowOrigin,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   ChannelError,
   ChannelErrorCategory,
   type MessageHandlers,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { logger } from "../../../lib/logger"
 import type {
   TemplateMessage,

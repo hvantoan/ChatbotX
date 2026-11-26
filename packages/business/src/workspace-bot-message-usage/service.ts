@@ -1,5 +1,5 @@
-import { anchoredPeriod } from "@chatbotx.io/analytics"
-import { workspaceBotMessageUsageRepository } from "@chatbotx.io/database/repositories/workspace-bot-message-usage"
+import { anchoredPeriod } from "@inboxos.io/analytics"
+import { workspaceBotMessageUsageRepository } from "@inboxos.io/database/repositories/workspace-bot-message-usage"
 import { BaseService } from "../base.service"
 import { userQuotaService } from "../user-quota/service"
 

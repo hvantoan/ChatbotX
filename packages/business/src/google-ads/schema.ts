@@ -1,8 +1,8 @@
-import { parseConversionTime } from "@chatbotx.io/utils/google-click"
+import { parseConversionTime } from "@inboxos.io/utils/google-click"
 import {
   metaCapiCurrencySchema,
   metaCapiValueSchema,
-} from "@chatbotx.io/utils/meta-capi"
+} from "@inboxos.io/utils/meta-capi"
 import { z } from "zod"
 
 /** Value and currency are sent together or not at all; both reuse the Meta CAPI validators. */

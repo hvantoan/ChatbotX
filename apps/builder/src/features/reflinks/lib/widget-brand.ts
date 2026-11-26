@@ -1,4 +1,4 @@
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import { readableForeground } from "@/features/integration-webchat/lib/brand-color"
 
 /** Background of the default chat icon when none is saved (Tailwind gray-900). */

@@ -1,12 +1,12 @@
-import { db, inArray } from "@chatbotx.io/database/client"
-import { contactSources } from "@chatbotx.io/database/partials"
+import { db, inArray } from "@inboxos.io/database/client"
+import { contactSources } from "@inboxos.io/database/partials"
 import {
   contactInboxModel,
   contactModel,
   contactsToTagsModel,
   conversationModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 // contact-custom-field/service.ts imports contactService back from
 // ../contact/service, a pre-existing cycle on main; this import re-enters it
 // via this module. TypeScript/bundler tolerate the cycle since neither side

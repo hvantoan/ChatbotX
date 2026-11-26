@@ -1,10 +1,10 @@
-import type { ChannelType } from "@chatbotx.io/database/partials"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
-} from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
-import type { IncomingContact } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
+import type { IncomingContact } from "@inboxos.io/sdk"
 import { contactInboxService } from "../../contact-inbox/service"
 import {
   finalizeContactProfile,

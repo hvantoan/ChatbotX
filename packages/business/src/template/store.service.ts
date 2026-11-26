@@ -3,13 +3,13 @@ import {
   isForeignKeyViolationError,
   isUniqueViolationError,
   type Transaction,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   TEMPLATE_STORE_CATEGORY_NAME_MAX_LENGTH,
   TEMPLATE_STORE_MAX_CATEGORIES,
   TEMPLATE_STORE_MAX_LISTINGS,
   type TemplateStoreListingStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   getInstallCounts,
   type TemplateStoreAdminRow,
@@ -17,13 +17,13 @@ import {
   type TemplateStoreCategoryRef,
   templateRepository,
   templateStoreRepository,
-} from "@chatbotx.io/database/repositories"
-import { isBigintId } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/repositories"
+import { isBigintId } from "@inboxos.io/database/utils"
 import {
   resolveTenantAdminScope,
   type TenantAdminScope,
 } from "../enterprise/tenant/admin-scope"
-import { type ChatbotXException, validationException } from "../errors"
+import { type InboxOSException, validationException } from "../errors"
 import { resolveServingHost } from "../platform/settings"
 import { isShareLive } from "./share-live"
 import { buildTemplateShareUrl } from "./share-url"
@@ -116,7 +116,7 @@ const rethrowCategoryNameTaken = (error: unknown): never => {
 /** The tenant of a scope, or the caller's own "nothing there" exception for an owner with no tenant. */
 const requireTenantId = async (
   scope: TenantAdminScope,
-  unavailable: () => ChatbotXException,
+  unavailable: () => InboxOSException,
 ): Promise<string> => {
   const tenantId = await resolveTenantAdminScope(scope)
   if (!tenantId) {
@@ -138,7 +138,7 @@ const withStoreLock = async <T>(
 /** Ids come from clients; a non-numeric one must read as "not found", never reach a bigint compare. */
 const requireBigintIds = (
   ids: readonly string[],
-  unavailable: () => ChatbotXException,
+  unavailable: () => InboxOSException,
 ): void => {
   if (!ids.every(isBigintId)) {
     throw unavailable()

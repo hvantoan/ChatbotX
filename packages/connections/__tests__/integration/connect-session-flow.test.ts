@@ -20,12 +20,12 @@
  *   and overwritten with the descriptor's real sourceId.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/connections test:db`.
+ * `pnpm --filter @inboxos.io/connections test:db`.
  */
 
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { db, eq } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { db, eq } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   connectionModel,
   inboxModel,
@@ -34,8 +34,8 @@ import {
   userQuotaModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { describe, expect, test, vi } from "vitest"
 
 const NOT_FOUND_ERROR_RE = /not found/i

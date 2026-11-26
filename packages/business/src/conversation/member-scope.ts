@@ -1,5 +1,5 @@
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
+import type { ConversationModel } from "@inboxos.io/database/types"
 import { inboxTeamService } from "../enterprise/inbox-team/service"
 import { notFoundException } from "../errors"
 import { hasContactsAccess } from "../workspace-member/permissions"

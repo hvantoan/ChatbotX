@@ -1,12 +1,12 @@
 # AGENTS.md — Context for AI assistants
 
-This file summarizes how **ChatbotX** (this repository) is structured and how to work in it safely and consistently. Prefer it as a map; read adjacent code and `.agents/skills/*` for deep dives.
+This file summarizes how **InboxOS** (this repository) is structured and how to work in it safely and consistently. Prefer it as a map; read adjacent code and `.agents/skills/*` for deep dives.
 
 ## What this project is
 
 - **Product:** Open-source omnichannel chatbot platform (inbox, flow builder, AI agents, broadcasts, webhooks, public APIs, CLI, MCP).
 - **Agent-first:** the primary user is an **AI agent** driving the product through the public API, the CLI, and the MCP server. The web UI is a secondary client of the same capabilities. A feature that exists only in the UI is invisible to agents — see invariant 23.
-- **Architecture:** **pnpm** workspaces + **Turborepo**. Shared packages use the **`@chatbotx.io/*`** npm scope.
+- **Architecture:** **pnpm** workspaces + **Turborepo**. Shared packages use the **`@inboxos.io/*`** npm scope.
 - **License:** Community Edition is **MIT**; enterprise-specific code may fall under a separate commercial license (see `apps/builder/src/enterprise/LICENSE`).
 
 ## Requirements
@@ -21,7 +21,7 @@ This file summarizes how **ChatbotX** (this repository) is structured and how to
 | `apps/builder`    | **Next.js** web app (product UI). Default dev URL often `http://localhost:3123` (see `.env.example`).                   |
 | `apps/worker`     | **BullMQ** (and related) background jobs: chat, AI, triggers, webhooks, analytics, sequences.                           |
 | `apps/realtime`   | uWebSockets.js gateway consuming Redis Streams for workspace and guest event delivery.                                  |
-| `apps/cli`        | Command-line client (`chatbotx`).                                                                                       |
+| `apps/cli`        | Command-line client (`inboxos`).                                                                                       |
 | `apps/mcp-server` | MCP server exposing public API surfaces.                                                                                |
 | `apps/javascript-executor` | Internal HTTP service that executes flow-step JavaScript in isolated-vm.                                      |
 | `packages/*`      | Shared libraries: `database` (Drizzle + PostgreSQL), `ui`, `sdk`, `worker-config`, `ai`, etc.            |
@@ -60,15 +60,15 @@ pnpm --filter worker dev
 pnpm --filter realtime dev
 pnpm --filter @hvantoan/inboxos dev:cli
 pnpm --filter @hvantoan/inboxos-mcp dev:mcp
-pnpm --filter @chatbotx.io/database db:studio
+pnpm --filter @inboxos.io/database db:studio
 ```
 
 Database migrations and setup (typical):
 
 ```bash
-pnpm --filter @chatbotx.io/database db:migrate
-pnpm --filter @chatbotx.io/database db:setup   # migrate + seed when applicable
-pnpm --filter @chatbotx.io/database make:migration <name>
+pnpm --filter @inboxos.io/database db:migrate
+pnpm --filter @inboxos.io/database db:setup   # migrate + seed when applicable
+pnpm --filter @inboxos.io/database make:migration <name>
 ```
 
 ## Local infrastructure
@@ -97,7 +97,7 @@ Optional CodeGraph code index for AI editors: setup in `docs/developer/codegraph
 - Schema and migrations: **`packages/database`** (Drizzle). Use the **drizzle-database** skill in `.agents/skills/drizzle-database/SKILL.md` for migrations and query patterns.
 - **Migration safety:** Never run or apply `db:migrate` automatically. Generate and inspect migration SQL when needed, then wait for explicit user approval before applying it. This applies even when a plan lists `db:migrate` as a verification step.
 - **Drift guard:** `db:check-drift` (run by `pnpm lint`) fails when `src/schema` and the migration snapshots disagree.
-- **Database-backed tests (opt-in):** `pnpm --filter @chatbotx.io/database test:db`; they skip themselves under plain `pnpm test`.
+- **Database-backed tests (opt-in):** `pnpm --filter @inboxos.io/database test:db`; they skip themselves under plain `pnpm test`.
 - **A drizzle `.default()` is not proof of a database default.** 19 columns have a TypeScript default but no database default; they are pinned in `packages/database/__tests__/integration/schema-default-parity.test.ts`, and every insert path for one of them must write the value explicitly.
 
 ### Workers & queues
@@ -114,12 +114,12 @@ Optional CodeGraph code index for AI editors: setup in `docs/developer/codegraph
 
 ### Dependencies
 
-- Add deps with **`pnpm add <pkg> --filter <workspace>`**. Versions shared across workspaces live in the `catalog:` block of `pnpm-workspace.yaml` (reference as `"<pkg>": "catalog:"`); bump them there, not per package. Import internal packages via their **`exports`** (e.g. `@chatbotx.io/database/client`).
+- Add deps with **`pnpm add <pkg> --filter <workspace>`**. Versions shared across workspaces live in the `catalog:` block of `pnpm-workspace.yaml` (reference as `"<pkg>": "catalog:"`); bump them there, not per package. Import internal packages via their **`exports`** (e.g. `@inboxos.io/database/client`).
 
 ## Project-specific AI guidance
 
 - **Rules (always apply):** `.agents/rules/` — `data-access.md` (no direct `db` in app layer), `git.md` (commit/PR/staging), `no-dynamic-import.md` (dynamic `import()` breaks the tsdown build — applies to `packages/*`, `integrations/*`, `apps/{worker,cli,mcp-server,javascript-executor}`; allowed in `apps/builder`).
-- **Per-tool rule mirrors:** `.devin/rules/chatbotx.md` and the ChatbotX section in `.github/copilot-instructions.md` receive generated copies of the shared invariants below. **This file (`AGENTS.md`) is canonical**; run `pnpm sync:agent-instructions` after changing them.
+- **Per-tool rule mirrors:** `.devin/rules/inboxos.md` and the InboxOS section in `.github/copilot-instructions.md` receive generated copies of the shared invariants below. **This file (`AGENTS.md`) is canonical**; run `pnpm sync:agent-instructions` after changing them.
 - **Agent skills (detailed runbooks):** `.agents/skills/<name>/SKILL.md`. Read the skill for a task **before** writing code for it. The canonical task → skill routing table is in `CLAUDE.md` ("Skill → task mapping") — it is the single inventory; do not maintain a second list here.
 - **Specialist subagents:** `.claude/agents/` — `invariant-guard` (post-edit invariant check), `rag-eval` (retrieval/tenant scoping), `incident-responder` (prod triage). General reviewers/planners come from the `~/.claude/` global set.
 - **Test placement:** use `<workspace>/__tests__/` for app/package/integration-level tests, especially tests covering actions, routes, API behavior, cache behavior, worker behavior, or multiple feature boundaries (e.g. `apps/builder/__tests__`, `apps/worker/__tests__`, `packages/sdk/__tests__`, `integrations/messenger/__tests__`). Use colocated `src/**/__tests__` only for narrow unit/component tests clearly owned by that module.
@@ -222,6 +222,7 @@ See **`.agents/rules/git.md`** for the full canonical rules (commit format, bran
 - Templates (creating, sharing, what an install copies, folders and list order, warning audiences, View Analytics, updates, uninstall, public API, deploy notes): `docs/templates.md`
 - Templates regression testing (rule → test map, public-API end-to-end script `scripts/templates-e2e.mjs`, manual UI checklist): `docs/templates-testing.md`
 - Pipelines (CRM kanban boards: data model, access scope/ACL, mutation engine and post-commit effects, locking order, queued stage deletion, keyset cursors, caching policy, pipelineItem* events/webhooks/realtime, Pipelines flow step, `pipelineItem` contact filter, `{{pipelines.*}}` variables, templates, public API/CLI/MCP, analytics, limits): `docs/pipelines.md`
+- InboxOS rename (v2.0.0: breaking command and env changes, identifiers that stay on the old name, codemod replay for open branches): `docs/inboxos-rename.md`
 - AI Agent sales persona and goal (chat-taught sales profile, immutable version history, persisted training chat, 4-section runtime prompt compiler, per-conversation `salesState`, buffered 2-tier reply guard with deterministic price verification and structured judge, single rewrite/fallback/handoff, template remapping, public API/CLI/MCP): `docs/ai-agent-sales-profile.md`
 
 When unsure, search the codebase for an existing feature that resembles the request and mirror its structure, imports, and error-handling style.

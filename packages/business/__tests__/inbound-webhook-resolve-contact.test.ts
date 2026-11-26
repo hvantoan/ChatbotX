@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("../src/contact-inbox/service", () => ({
   contactInboxService: { findLatestBySource: mocks.findLatestBySource },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findLatestByInboxAndContactIdentity: mocks.findByIdentity,
     findByInboxAndFullName: mocks.findByFullName,
@@ -22,12 +22,12 @@ vi.mock("../src/contact/create-with-inbox", () => ({
     "This contact already exists on the selected inbox",
   createContactWithInbox: mocks.createContactWithInbox,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 
-const { DrizzleQueryError } = await import("@chatbotx.io/database/client")
-const { ChatbotXException, validationException } = await import("../src/errors")
+const { DrizzleQueryError } = await import("@inboxos.io/database/client")
+const { InboxOSException, validationException } = await import("../src/errors")
 const { resolveInboundWebhookContact } = await import(
   "../src/inbound-webhook/resolve-contact"
 )
@@ -380,7 +380,7 @@ describe("creating the contact", () => {
 
   test("does not swallow unrelated failures", async () => {
     mocks.createContactWithInbox.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Please include the country code",
         "validation",
         422,

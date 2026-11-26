@@ -11,16 +11,16 @@ import {
   messageAnalyticsService,
   refLinkAnalyticsService,
   sequenceAnalyticsService,
-} from "@chatbotx.io/analytics"
-import { analyticsTimeRangeCacheKey } from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics"
+import { analyticsTimeRangeCacheKey } from "@inboxos.io/analytics/schemas"
 import {
   flowService,
   inboxService,
   smartDelayService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import type { FlowNode } from "@chatbotx.io/flow-config"
-import { invalidateCacheByTags, withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import type { FlowNode } from "@inboxos.io/flow-config"
+import { invalidateCacheByTags, withCache } from "@inboxos.io/redis"
 import type { z } from "zod"
 import { buildSmartDelayNodeStats } from "@/features/flows/analytics/smart-delay-node-stats"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"

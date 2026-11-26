@@ -1,7 +1,7 @@
-import { db } from "@chatbotx.io/database/client"
-import type { QrStyles, ReflinkType } from "@chatbotx.io/database/partials"
-import { reflinkModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { db } from "@inboxos.io/database/client"
+import type { QrStyles, ReflinkType } from "@inboxos.io/database/partials"
+import { reflinkModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { insertCopyNamed } from "./naming"
 import {
   dependenciesOn,

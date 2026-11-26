@@ -2,7 +2,7 @@ import type {
   MessageHandlers,
   ProductMessageItem,
   ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type {
   InteractiveProductCarouselMessage,
   InteractiveProductListMessage,

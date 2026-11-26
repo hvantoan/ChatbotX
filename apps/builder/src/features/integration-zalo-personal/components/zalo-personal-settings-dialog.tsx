@@ -1,23 +1,23 @@
 "use client"
 
-import type { ZaloPersonalGroupReplyConfig } from "@chatbotx.io/database/schema"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { ZaloPersonalGroupReplyConfig } from "@inboxos.io/database/schema"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { SettingsIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

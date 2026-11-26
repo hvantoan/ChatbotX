@@ -31,7 +31,7 @@ vi.mock("@/lib/auth/permission-routes", () => ({
   hasWorkspacePermission: mockHasWorkspacePermission,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: {
     updateMarkReadOnOutbound: mockUpdateMarkReadOnOutbound,
   },
@@ -41,7 +41,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/branding", () => ({
+vi.mock("@inboxos.io/business/branding", () => ({
   ensureBrandingMenuEntry: vi.fn((menus: unknown) => menus),
 }))
 

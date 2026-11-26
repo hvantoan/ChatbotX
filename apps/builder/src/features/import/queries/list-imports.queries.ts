@@ -1,4 +1,4 @@
-import { importService } from "@chatbotx.io/business/import"
+import { importService } from "@inboxos.io/business/import"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListImportsRequest, ListImportsResponse } from "../schema/query"
 

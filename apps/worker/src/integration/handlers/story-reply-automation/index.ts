@@ -4,23 +4,23 @@ import {
   contactInboxService,
   igStoryAutomationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import {
   type CommentIncludeKeywords,
   type IgStoryAutomationTrigger,
   type IgStoryTarget,
   igStoryAutomationTriggers,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
   IgStoryAutomationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
-import { applySpintax } from "@chatbotx.io/utils/spintax"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
+import { applySpintax } from "@inboxos.io/utils/spintax"
+import { contactVariableService } from "@inboxos.io/variables"
 import {
   type AIJobProcessStoryMentionAutomation,
   type AIJobProcessStoryReplyAutomation,
@@ -28,7 +28,7 @@ import {
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { generateAIReplyText } from "../automated-response/replies"
 

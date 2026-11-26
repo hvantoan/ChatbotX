@@ -1,16 +1,17 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import {
   type GetUserDataStepSchema,
   getUserDataStepSchema,
   ReplyFormat,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -18,10 +19,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { KeyboardIcon, Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo, useState } from "react"

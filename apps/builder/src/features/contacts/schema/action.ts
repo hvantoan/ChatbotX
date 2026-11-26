@@ -3,8 +3,8 @@ import {
   channelTypes,
   fileStatuses,
   genderTypes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { contactFilterCriteriaSchema } from "@/features/contact-filter/schema"
 import type { ContactResource } from "./resource"

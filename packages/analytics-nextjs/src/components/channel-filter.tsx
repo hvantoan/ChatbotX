@@ -1,12 +1,12 @@
 "use client"
 
-import type { NormalizedAnalyticsFilter } from "@chatbotx.io/analytics"
-import { MAX_ANALYTICS_FILTER_VALUES } from "@chatbotx.io/analytics/schemas"
+import type { NormalizedAnalyticsFilter } from "@inboxos.io/analytics"
+import { MAX_ANALYTICS_FILTER_VALUES } from "@inboxos.io/analytics/schemas"
 import {
   MultiSelect,
   type MultiSelectGroup,
   type MultiSelectOption,
-} from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
+} from "@inboxos.io/ui/components/ui/sersavan/multi-select"
 import { useTranslations } from "next-intl"
 import { useEffect, useMemo, useState } from "react"
 import { useAnalysisStore } from "../provider/analysis-store-context"

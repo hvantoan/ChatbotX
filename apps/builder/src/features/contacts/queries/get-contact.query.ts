@@ -1,5 +1,5 @@
-import { contactService } from "@chatbotx.io/business"
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import { contactService } from "@inboxos.io/business"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import type { ContactPermissionScope } from "../permissions"
 import { maskContactEmailAndPhone } from "../permissions"
 import type { GetContactRequest, GetContactResponse } from "../schema/query"

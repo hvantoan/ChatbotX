@@ -1,8 +1,8 @@
 import {
   integrationWebchatService,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
-import { validationException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { validationException } from "@inboxos.io/business/errors"
 import {
   buildBotSimulatorLink,
   isSimulatorWebsiteAllowed,

@@ -63,13 +63,13 @@ const appointmentService = {
   checkAvailability: vi.fn(),
 }
 const resolveTenantSettings = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentCalendarService,
   appointmentService,
   resolveTenantSettings,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

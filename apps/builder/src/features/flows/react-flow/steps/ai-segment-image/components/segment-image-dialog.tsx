@@ -5,10 +5,10 @@ import {
   type AISegmentImageSchema,
   aiSegmentImageMatchSelection,
   aiSegmentImageSchema,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -18,8 +18,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { useForm, useFormContext, useWatch } from "react-hook-form"

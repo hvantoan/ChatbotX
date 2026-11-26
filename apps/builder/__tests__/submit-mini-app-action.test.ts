@@ -10,13 +10,13 @@ vi.mock("@/lib/safe-action", () => ({
 
 const findUnscoped = vi.fn()
 const createSubmission = vi.fn()
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findUnscoped },
   miniAppSubmissionService: { create: createSubmission },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code: string) {
       super(message)
@@ -27,26 +27,26 @@ vi.mock("@chatbotx.io/business/errors", () => ({
 
 const verifyMiniAppToken = vi.fn()
 const verifyMiniAppResumeToken = vi.fn()
-vi.mock("@chatbotx.io/encryption/mini-app-token", () => ({
+vi.mock("@inboxos.io/encryption/mini-app-token", () => ({
   verifyMiniAppToken,
   verifyMiniAppResumeToken,
 }))
 
 const enqueueFlowAction = vi.fn()
 const isActiveNow = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: {
     findById: vi.fn(() => Promise.resolve({ id: "ws-1" })),
     isActiveNow,
   },
 }))
-vi.mock("@chatbotx.io/automated-response", () => ({
+vi.mock("@inboxos.io/automated-response", () => ({
   automatedResponseService: { enqueueFlowAction },
 }))
 
 // Stands in for Redis `SET NX`: true only the first time a key is set.
 const resumedKeys = new Set<string>()
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: {
     setNumberIfNotExists: vi.fn((key: string) => {
       const isNew = !resumedKeys.has(key)

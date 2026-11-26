@@ -7,10 +7,10 @@ const mocks = vi.hoisted(() => ({
   listOrders: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 vi.mock("../../audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 vi.mock("../../logger", () => ({ logger: { warn: vi.fn() } }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   shopifyRepository: {
     findIntegration: async () => ({
       workspaceId: "7",
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   productCategoryRepository: {},
   vendorRepository: {},
 }))
-vi.mock("@chatbotx.io/integration-shopify", () => ({
+vi.mock("@inboxos.io/integration-shopify", () => ({
   getShopifyShop: (...args: unknown[]) => mocks.getShop(...args),
   listShopifyOrders: (...args: unknown[]) => mocks.listOrders(...args),
   SHOPIFY_ORDER_SYNC_DAYS: 60,

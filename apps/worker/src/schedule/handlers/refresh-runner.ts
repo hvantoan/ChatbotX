@@ -1,7 +1,7 @@
-import { auditService } from "@chatbotx.io/business/audit"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { distributedLock } from "@chatbotx.io/redis"
-import type { ErrorLogProvider } from "@chatbotx.io/utils/error-log"
+import { auditService } from "@inboxos.io/business/audit"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { distributedLock } from "@inboxos.io/redis"
+import type { ErrorLogProvider } from "@inboxos.io/utils/error-log"
 import { logger } from "../../lib/logger"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"
 

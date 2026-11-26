@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type * as ChatbotxUtilsModule from "@chatbotx.io/utils"
+import type * as ChatbotxUtilsModule from "@inboxos.io/utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -61,7 +61,7 @@ vi.mock("next/navigation", () => ({
 // The mock request objects below only carry `nextUrl`, not the real
 // `url`/`headers` a NextRequest would have — resolve the public URL (used
 // to pin the connect session's `originHost`) straight from `nextUrl`.
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
   const actual = await importOriginal<typeof ChatbotxUtilsModule>()
   return {
     ...actual,
@@ -69,7 +69,7 @@ vi.mock("@chatbotx.io/utils", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: {
     findById: mockFindWorkspaceById,
     create: mockWorkspaceCreate,
@@ -77,14 +77,14 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     create: mockConnectSessionCreate,
     updateReturnUrl: mockUpdateReturnUrl,
   },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     listAndAttachCandidates: mockListAndAttachCandidates,
     startSession: mockStartSession,
@@ -238,7 +238,7 @@ describe("GET /channels/create/messenger — Facebook SSO token reuse", () => {
 
   test("redirects to /channels/create?error=… instead of 500 when the first workspace hits the plan limit", async () => {
     const { workspaceLimitReachedException } = await import(
-      "@chatbotx.io/business/errors"
+      "@inboxos.io/business/errors"
     )
     mockTryReuseFacebookSsoToken.mockResolvedValue({
       reusable: true,

@@ -3,22 +3,22 @@
 import type {
   AdsConversionRuleTrigger,
   AdsConversionRuleTriggerType,
-} from "@chatbotx.io/business"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/business"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { MultiSelect } from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
+} from "@inboxos.io/ui/components/ui/select"
+import { MultiSelect } from "@inboxos.io/ui/components/ui/sersavan/multi-select"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { InfoIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { AutomatedResponseResource } from "@/features/automated-response/schema/resource"

@@ -1,5 +1,5 @@
-import type { ContactScanRunStatus } from "@chatbotx.io/database/partials"
-import type { CoexistSyncRunModel } from "@chatbotx.io/database/types"
+import type { ContactScanRunStatus } from "@inboxos.io/database/partials"
+import type { CoexistSyncRunModel } from "@inboxos.io/database/types"
 import { CONTACT_SCAN_ERRORS } from "./constants"
 
 type RunForStatus = Pick<CoexistSyncRunModel, "status" | "currentError">

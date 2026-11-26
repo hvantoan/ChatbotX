@@ -1,11 +1,11 @@
-import { isForeignKeyViolationError } from "@chatbotx.io/database/client"
+import { isForeignKeyViolationError } from "@inboxos.io/database/client"
 import {
   flowRepository,
   type PollVoteOutcome,
   type PollVoteResult,
   type PollWithCandidates,
   pollRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
 import { getPollState } from "./state"
 

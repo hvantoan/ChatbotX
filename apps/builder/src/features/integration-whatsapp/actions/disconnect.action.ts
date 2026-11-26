@@ -3,12 +3,12 @@
 import {
   integrationWhatsappService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { db, findOrFail } from "@chatbotx.io/database/client"
-import { integrationWhatsappModel } from "@chatbotx.io/database/schema"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
-import { isRevokedTokenError } from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { db, findOrFail } from "@inboxos.io/database/client"
+import { integrationWhatsappModel } from "@inboxos.io/database/schema"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
+import { isRevokedTokenError } from "@inboxos.io/integration-whatsapp"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

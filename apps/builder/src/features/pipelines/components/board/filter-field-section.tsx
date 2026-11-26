@@ -5,8 +5,8 @@ import {
   PIPELINE_FIELD_OPERATORS_BY_TYPE,
   type PipelineFieldComparisonKind,
   type PipelineFieldOperator,
-} from "@chatbotx.io/database/partials"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/database/partials"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useTranslations } from "next-intl"
 import { MAX_FIELD_VALUE_LENGTH } from "../../schema/bounds"
 import { OptionSelect } from "../shared/option-select"

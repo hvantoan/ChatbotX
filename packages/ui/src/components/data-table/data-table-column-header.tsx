@@ -9,8 +9,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { cn } from "@inboxos.io/ui/lib/utils"
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends Omit<React.ComponentProps<typeof DropdownMenuTrigger>, "title"> {

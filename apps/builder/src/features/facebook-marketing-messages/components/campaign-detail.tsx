@@ -1,15 +1,15 @@
 "use client"
 
-import type { MarketingMessageCampaignStats } from "@chatbotx.io/business"
-import type { FacebookMarketingMessageModel } from "@chatbotx.io/database/types"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { MarketingMessageCampaignStats } from "@inboxos.io/business"
+import type { FacebookMarketingMessageModel } from "@inboxos.io/database/types"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { AlertTriangleIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

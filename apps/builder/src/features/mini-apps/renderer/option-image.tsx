@@ -1,5 +1,5 @@
-import type { MiniAppOption } from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { MiniAppOption } from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { toImageSrc } from "../lib/image-src"
 
 /** An option's image, or its color swatch when it has a color instead. */

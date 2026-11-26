@@ -4,42 +4,42 @@ import {
   inboxService,
   integrationThreadsService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { findOrFail } from "@chatbotx.io/database/client"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { integrationLookupRepository } from "@chatbotx.io/database/repositories"
-import { inboxModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import { findOrFail } from "@inboxos.io/database/client"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { integrationLookupRepository } from "@inboxos.io/database/repositories"
+import { inboxModel } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   InboxModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import { integration as integrationActiveCampaign } from "@chatbotx.io/integration-active-campaign"
-import { integration as integrationApi } from "@chatbotx.io/integration-api"
-import { integration as integrationChatbotx } from "@chatbotx.io/integration-chatbotx"
-import { integration as integrationDrip } from "@chatbotx.io/integration-drip"
-import { integration as integrationFacebookAds } from "@chatbotx.io/integration-facebook-ads"
-import { integration as integrationGetResponse } from "@chatbotx.io/integration-get-response"
-import { integration as integrationGoogleAds } from "@chatbotx.io/integration-google-ads"
-import { integration as integrationGoogleCalendar } from "@chatbotx.io/integration-google-calendar"
-import { integration as integrationGoogleSheets } from "@chatbotx.io/integration-google-sheets"
-import { integration as integrationInstagram } from "@chatbotx.io/integration-instagram"
-import { integration as integrationInstagramFacebook } from "@chatbotx.io/integration-instagram-facebook"
-import { integration as integrationKlaviyo } from "@chatbotx.io/integration-klaviyo"
-import { integration as integrationLine } from "@chatbotx.io/integration-line"
-import { integration as integrationMailchimp } from "@chatbotx.io/integration-mailchimp"
-import { integration as integrationMailerLite } from "@chatbotx.io/integration-mailer-lite"
-import { integration as integrationMessenger } from "@chatbotx.io/integration-messenger"
-import { integration as integrationMoosend } from "@chatbotx.io/integration-moosend"
-import { integration as integrationSendGrid } from "@chatbotx.io/integration-sendgrid"
-import { integration as integrationSmtp } from "@chatbotx.io/integration-smtp"
-import { integration as integrationTelegram } from "@chatbotx.io/integration-telegram"
-import { integration as integrationThreads } from "@chatbotx.io/integration-threads"
-import { integration as integrationTiktok } from "@chatbotx.io/integration-tiktok"
-import { integration as integrationWebchat } from "@chatbotx.io/integration-webchat"
-import { integration as integrationWhatsapp } from "@chatbotx.io/integration-whatsapp"
-import { integration as integrationZalo } from "@chatbotx.io/integration-zalo"
-import { integration as integrationZaloPersonal } from "@chatbotx.io/integration-zalo-personal"
+} from "@inboxos.io/database/types"
+import { integration as integrationActiveCampaign } from "@inboxos.io/integration-active-campaign"
+import { integration as integrationApi } from "@inboxos.io/integration-api"
+import { integration as integrationDrip } from "@inboxos.io/integration-drip"
+import { integration as integrationFacebookAds } from "@inboxos.io/integration-facebook-ads"
+import { integration as integrationGetResponse } from "@inboxos.io/integration-get-response"
+import { integration as integrationGoogleAds } from "@inboxos.io/integration-google-ads"
+import { integration as integrationGoogleCalendar } from "@inboxos.io/integration-google-calendar"
+import { integration as integrationGoogleSheets } from "@inboxos.io/integration-google-sheets"
+import { integration as integrationChatbotx } from "@inboxos.io/integration-inboxos"
+import { integration as integrationInstagram } from "@inboxos.io/integration-instagram"
+import { integration as integrationInstagramFacebook } from "@inboxos.io/integration-instagram-facebook"
+import { integration as integrationKlaviyo } from "@inboxos.io/integration-klaviyo"
+import { integration as integrationLine } from "@inboxos.io/integration-line"
+import { integration as integrationMailchimp } from "@inboxos.io/integration-mailchimp"
+import { integration as integrationMailerLite } from "@inboxos.io/integration-mailer-lite"
+import { integration as integrationMessenger } from "@inboxos.io/integration-messenger"
+import { integration as integrationMoosend } from "@inboxos.io/integration-moosend"
+import { integration as integrationSendGrid } from "@inboxos.io/integration-sendgrid"
+import { integration as integrationSmtp } from "@inboxos.io/integration-smtp"
+import { integration as integrationTelegram } from "@inboxos.io/integration-telegram"
+import { integration as integrationThreads } from "@inboxos.io/integration-threads"
+import { integration as integrationTiktok } from "@inboxos.io/integration-tiktok"
+import { integration as integrationWebchat } from "@inboxos.io/integration-webchat"
+import { integration as integrationWhatsapp } from "@inboxos.io/integration-whatsapp"
+import { integration as integrationZalo } from "@inboxos.io/integration-zalo"
+import { integration as integrationZaloPersonal } from "@inboxos.io/integration-zalo-personal"
 import {
   type AuthValue,
   type BaseConfig,
@@ -48,7 +48,7 @@ import {
   type Integration,
   type IntegrationDefinition,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { IntegrationNotFoundError } from "./errors"
 
 export { IntegrationNotFoundError } from "./errors"

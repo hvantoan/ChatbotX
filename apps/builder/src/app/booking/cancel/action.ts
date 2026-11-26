@@ -1,7 +1,7 @@
 "use server"
 
-import { appointmentService } from "@chatbotx.io/business"
-import { verifyAppointmentCancelToken } from "@chatbotx.io/encryption"
+import { appointmentService } from "@inboxos.io/business"
+import { verifyAppointmentCancelToken } from "@inboxos.io/encryption"
 import { cancelBookingRequestSchema } from "@/features/booking-webview/schema/action"
 import { actionClient } from "@/lib/safe-action"
 

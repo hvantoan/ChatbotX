@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   updateSet: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const returning = vi.fn(async () => [{ id: "story-1" }])
   return {
     db: {
@@ -38,7 +38,7 @@ vi.mock("@chatbotx.io/database/client", () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const { z } = await import("zod")
   return {
     igStoryAutomationTriggers: z.enum(["storyReply", "storyMention"]),
@@ -47,17 +47,17 @@ vi.mock("@chatbotx.io/database/partials", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   igStoryAutomationModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: () => ({ limit: 10, offset: 0 }),
   likeContains: (value: string) => `%${value}%`,
   parseOrderByAsObject: () => ({}),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => "new-id" }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => "new-id" }))
 
 const { igStoryAutomationService } = await import(
   "../src/ig-story-automation/service"

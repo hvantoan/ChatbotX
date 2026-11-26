@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"

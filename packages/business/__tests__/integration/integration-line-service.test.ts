@@ -7,19 +7,19 @@
  * plus `findDueForRefresh`'s work list (revoked and malformed-expiry rows).
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/business test:db integration-line-service`.
+ * `pnpm --filter @inboxos.io/business test:db integration-line-service`.
  */
 
-import { db } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+import { db } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   integrationLineModel,
   userModel,
   userQuotaModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { eq } from "drizzle-orm"
 import { describe, expect, test } from "vitest"
 import { lineIntegrationService } from "../../src/integration-line/service"

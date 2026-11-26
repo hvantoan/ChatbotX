@@ -1,8 +1,8 @@
 import {
   type TriggerEventType,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
 import z from "zod"
 
 // Simple conditions without additional fields

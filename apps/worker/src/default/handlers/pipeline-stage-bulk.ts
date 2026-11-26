@@ -1,5 +1,5 @@
-import { pipelineStageBulkService } from "@chatbotx.io/business/pipeline"
-import type { JobProcessPipelineStageBulk } from "@chatbotx.io/worker-config"
+import { pipelineStageBulkService } from "@inboxos.io/business/pipeline"
+import type { JobProcessPipelineStageBulk } from "@inboxos.io/worker-config"
 
 export const processPipelineStageBulk = async (
   data: JobProcessPipelineStageBulk["data"],

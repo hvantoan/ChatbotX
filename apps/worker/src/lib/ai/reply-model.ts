@@ -3,13 +3,13 @@ import {
   createAIProviderInstance,
   createOpenaiCompatibleModelInstance,
   getAIIntegrationInDB,
-} from "@chatbotx.io/ai/server"
-import { integrationOpenaiCompatibleService } from "@chatbotx.io/business"
+} from "@inboxos.io/ai/server"
+import { integrationOpenaiCompatibleService } from "@inboxos.io/business"
 import type {
   AIAgentModelConfig,
   AIAgentOpenaiCompatibleProviderModel,
   AIAgentProvider,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { LanguageModel } from "ai"
 import { logger } from "../logger"
 

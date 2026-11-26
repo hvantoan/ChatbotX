@@ -10,10 +10,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import { formatDistanceToNowStrict } from "date-fns"
 import { AlertTriangleIcon, Loader2Icon, Trash2Icon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"

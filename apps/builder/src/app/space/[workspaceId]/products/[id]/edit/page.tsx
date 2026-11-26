@@ -2,7 +2,7 @@ import {
   createWebshopLink,
   metaCatalogSyncRunService,
   productService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { EditProduct } from "@/features/products/components/edit-product"
 import { LockedEditorGuard } from "@/features/templates/components/locked-editor-guard"
 

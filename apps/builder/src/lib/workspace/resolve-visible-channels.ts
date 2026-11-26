@@ -2,12 +2,12 @@ import {
   inboxService,
   tenantService,
   workspaceService,
-} from "@chatbotx.io/business"
-import type { ChannelType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   CREATABLE_CHANNELS,
   MANAGEABLE_CHANNELS,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { cache } from "react"
 import { resolveOwnerForWorkspace } from "@/lib/platform-credential-owner"
 import { filterPreviewChannels } from "@/lib/workspace/preview-channels"

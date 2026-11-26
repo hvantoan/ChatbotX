@@ -1,22 +1,22 @@
-import { findOrFail } from "@chatbotx.io/database/client"
+import { findOrFail } from "@inboxos.io/database/client"
 import {
   type ChannelType,
   type ContactSource,
   channelTypes,
   contactSources,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactInboxModel,
   conversationModel,
   inboxModel,
-} from "@chatbotx.io/database/schema"
-import type { ContactModel } from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { emitContactCreated } from "@chatbotx.io/events"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import type { ContactModel } from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { emitContactCreated } from "@inboxos.io/events"
+import { createId } from "@inboxos.io/utils"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import { contactInboxService } from "../contact-inbox/service"
-import { ChatbotXException, validationException } from "../errors"
+import { InboxOSException, validationException } from "../errors"
 import { messageCleanupService } from "../message-cleanup/service"
 import { quotaEnforcementService } from "../quota-enforcement/service"
 import { workspaceService } from "../workspace/service"
@@ -201,7 +201,7 @@ export const createContactWithInbox = async ({
           })
           .returning()
         if (!contactInbox) {
-          throw new ChatbotXException("Contact inbox not found")
+          throw new InboxOSException("Contact inbox not found")
         }
 
         // A re-created contact keeps its history: cancel any pending message

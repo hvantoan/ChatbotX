@@ -38,14 +38,14 @@ vi.mock("@/env", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   canCallConversation: canCallConversationMock,
   whatsappVoipCallService: { readControl: readControlMock },
   voipTurnCredentialService: { issueCredentials: issueCredentialsMock },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code = "systemError"
     httpStatusCode = 400
     constructor(message: string, code?: string, httpStatusCode?: number) {
@@ -60,7 +60,7 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: { findById: findByIdMock },
 }))
 

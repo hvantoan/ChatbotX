@@ -1,10 +1,11 @@
 "use client"
 
-import type { DecisionConnectionSafe } from "@chatbotx.io/business"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { DecisionConnectionSafe } from "@inboxos.io/business"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -14,9 +15,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { Loader2Icon, PencilIcon, PlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

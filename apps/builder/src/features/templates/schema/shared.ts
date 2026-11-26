@@ -1,4 +1,4 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /** `{ templateInboxId: installerInboxId }`: which inbox stands in for each inbox a template was built around. */

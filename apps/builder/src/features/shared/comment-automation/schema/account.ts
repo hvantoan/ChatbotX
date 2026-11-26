@@ -1,5 +1,5 @@
-import { commentAutomationTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { commentAutomationTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /**

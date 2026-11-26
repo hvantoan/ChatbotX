@@ -1,20 +1,20 @@
 // @vitest-environment node
 
-import { aiPolicies, systemFunctionNames } from "@chatbotx.io/ai"
+import { aiPolicies, systemFunctionNames } from "@inboxos.io/ai"
 import {
   appendHandoffPolicy,
   buildSalesHandoffPolicy,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import {
   compileSalesPrompt,
   resolveConversationSalesState,
   type SalesPromptProduct,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type AIAgentSalesProfile,
   type ConversationSalesState,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { ToolSet } from "ai"
 import { describe, expect, test, vi } from "vitest"
 

@@ -1,4 +1,4 @@
-import { EVENT_BUS_MESSAGE_ID } from "@chatbotx.io/flow-config"
+import { EVENT_BUS_MESSAGE_ID } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { renderSql } from "./helpers/fake-sql"
 
@@ -7,22 +7,22 @@ const onConflictDoNothing = vi.fn().mockResolvedValue(undefined)
 const values = vi.fn(() => ({ onConflictDoNothing }))
 const insert = vi.fn(() => ({ values }))
 
-vi.mock("@chatbotx.io/database/client", async () => ({
+vi.mock("@inboxos.io/database/client", async () => ({
   db: { execute, insert, query: {} },
   sql: (await import("./helpers/fake-sql")).fakeSql,
 }))
-vi.mock("@chatbotx.io/database/queries/date-bucket", async () => {
+vi.mock("@inboxos.io/database/queries/date-bucket", async () => {
   const { fakeSql: tag } = await import("./helpers/fake-sql")
   return {
     zonedDateKey: (_column: unknown, timezone: string) =>
       tag`ZONED_DAY(${timezone})`,
   }
 })
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   analyticsAgentResponseEventModel: { occurredAt: {} },
 }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: vi.fn(() => "generated-id"),
 }))
 

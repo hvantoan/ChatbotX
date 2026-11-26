@@ -101,7 +101,7 @@ vi.mock("@/orpc", () => ({ authorizedAPI }))
 
 vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     list: mocks.list,
     getForWorkspace: mocks.getForWorkspace,
@@ -109,14 +109,14 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     cancel: mocks.cancel,
   },
 }))
 
-class MockChatbotXException extends Error {
+class MockInboxOSException extends Error {
   code: string
   constructor(message: string, code: string) {
     super(message)
@@ -124,27 +124,27 @@ class MockChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
-  ChatbotXException: MockChatbotXException,
+  InboxOSException: MockInboxOSException,
   channelHiddenException: (channel: string) =>
-    new MockChatbotXException(`${channel} is hidden`, "channelHidden"),
+    new MockInboxOSException(`${channel} is hidden`, "channelHidden"),
   connectionProviderDedicatedOnlyException: (provider: string) =>
-    new MockChatbotXException(
+    new MockInboxOSException(
       `${provider} is dedicated-only`,
       "connectionProviderDedicatedOnly",
     ),
   connectionNotConfiguredException: (provider: string) =>
-    new MockChatbotXException(`${provider} not configured`, "notConfigured"),
+    new MockInboxOSException(`${provider} not configured`, "notConfigured"),
   connectSessionExpiredException: (message: string) =>
-    new MockChatbotXException(message, "connectSessionExpired"),
+    new MockInboxOSException(message, "connectSessionExpired"),
   notFoundException: (message: string) =>
-    new MockChatbotXException(message, "notFound"),
+    new MockInboxOSException(message, "notFound"),
   validationException: (_field: string, message: string) =>
-    new MockChatbotXException(message, "validation"),
+    new MockInboxOSException(message, "validation"),
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     connectFromCredentials: mocks.connectFromCredentials,
     startSession: mocks.startSession,

@@ -14,14 +14,14 @@ const mocks = vi.hoisted(() => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertEnterpriseFeatures: mocks.assertEnterpriseFeatures,
   workspaceMemberService: {
     listByWorkspaceId: (input: unknown) => mocks.listWorkspaceMembers(input),
   },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   listAuditLogs: (input: unknown) => mocks.listAuditLogsService(input),
 }))
 

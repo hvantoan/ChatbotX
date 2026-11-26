@@ -4,8 +4,8 @@ import {
   folderTypes,
   rootFolderId,
   type TemplateCategory,
-} from "@chatbotx.io/database/partials"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import { installRootSourceId } from "./adapters/manifests/resolve"
 import { entriesForCategory, withCategoryEntries } from "./template-entries"
 

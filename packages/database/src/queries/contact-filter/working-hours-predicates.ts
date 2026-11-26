@@ -1,4 +1,4 @@
-import { parseBigIntId } from "@chatbotx.io/utils"
+import { parseBigIntId } from "@inboxos.io/utils"
 import { type AnyColumn, type SQL, sql } from "drizzle-orm"
 import {
   ASSIGNED_AGENT_WORKING_HOURS_VALUE,

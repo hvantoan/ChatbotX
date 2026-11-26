@@ -1,5 +1,5 @@
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
-import { distributedLock } from "@chatbotx.io/redis"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
+import { distributedLock } from "@inboxos.io/redis"
 import { logger } from "../../lib/logger"
 import {
   ensureZaloPersonalSession,

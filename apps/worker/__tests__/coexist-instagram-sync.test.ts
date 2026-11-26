@@ -42,7 +42,7 @@ const {
   mockUpdateProgress: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   coexistService: {
     claimRunWithNewToken: mockClaimRun,
     findIntegrationForCoexist: mockFindIntegration,
@@ -54,7 +54,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     coexistAttachmentDownload: "coexistAttachmentDownload",
     coexistInstagramSync: "coexistInstagramSync",

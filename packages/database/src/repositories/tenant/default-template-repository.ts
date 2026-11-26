@@ -1,4 +1,4 @@
-import type { EncryptedData } from "@chatbotx.io/encryption"
+import type { EncryptedData } from "@inboxos.io/encryption"
 import { type DatabaseClient, db, eq } from "../../client"
 import type { TenantDefaultTemplateAction } from "../../partials/template"
 import {

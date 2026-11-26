@@ -1,4 +1,4 @@
-import { automatedResponseService } from "@chatbotx.io/automated-response"
+import { automatedResponseService } from "@inboxos.io/automated-response"
 import {
   appointmentService,
   buildContext,
@@ -27,13 +27,13 @@ import {
   threadControlService,
   updateContactFromMessage,
   workspaceService,
-} from "@chatbotx.io/business"
-import { resolveLastUserInputTracking } from "@chatbotx.io/business/contact-inbox"
+} from "@inboxos.io/business"
+import { resolveLastUserInputTracking } from "@inboxos.io/business/contact-inbox"
 import {
   finalizeContactProfile,
   normalizeLanguage,
-} from "@chatbotx.io/business/contact-locale"
-import { isInboundConversationMessage } from "@chatbotx.io/business/contact-profile-rules"
+} from "@inboxos.io/business/contact-locale"
+import { isInboundConversationMessage } from "@inboxos.io/business/contact-profile-rules"
 import {
   type ChannelType,
   type CommentAutomationType,
@@ -42,15 +42,15 @@ import {
   type IntegrationType,
   supportsPostTracking,
   supportsProfileSnapshot,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type CreateMessageInput,
   contactInboxRepository,
   createMessageRepository,
   type IMessageRepository,
   type MessageWithAttachments,
-} from "@chatbotx.io/database/repositories"
-import { contactInboxModel, contactModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { contactInboxModel, contactModel } from "@inboxos.io/database/schema"
 import type {
   AttachmentModel,
   ContactInboxModel,
@@ -58,37 +58,37 @@ import type {
   ConversationModel,
   InboxModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   parseAppointmentCancelPostback,
   verifyAppointmentCancelPostback,
-} from "@chatbotx.io/encryption"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/encryption"
+import { emit } from "@inboxos.io/event-bus"
 import {
   emitContactCreated,
   setWebhookExecutionContext,
-} from "@chatbotx.io/events"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/events"
+import { uploader } from "@inboxos.io/filesystem"
 import {
   decodeContactHintQuickReplyPayload,
   decodeStepInputSkipPostback,
   messageEventTypeSchema,
   stepInputResolutionReasons,
-} from "@chatbotx.io/flow-config"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
-import type { ThreadsAuthValue } from "@chatbotx.io/integration-threads"
-import type { TiktokAuthValue } from "@chatbotx.io/integration-tiktok"
-import { toLogSafeError } from "@chatbotx.io/logger"
+} from "@inboxos.io/flow-config"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
+import type { ThreadsAuthValue } from "@inboxos.io/integration-threads"
+import type { TiktokAuthValue } from "@inboxos.io/integration-tiktok"
+import { toLogSafeError } from "@inboxos.io/logger"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
 import type {
   ChannelPostDetails,
   IncomingAttachment,
   MessageReferral,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   type AuthValue,
   contentTypes,
@@ -109,11 +109,11 @@ import {
   type SourceScopedIdentityMatch,
   type SourceScopedIdentityMatchedBy,
   toKeepOriginal,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { hasGoogleClick } from "@chatbotx.io/utils/google-click"
-import { isLazyAvatarChannel } from "@chatbotx.io/utils/live-media"
-import { storeIncomingImage } from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { hasGoogleClick } from "@inboxos.io/utils/google-click"
+import { isLazyAvatarChannel } from "@inboxos.io/utils/live-media"
+import { storeIncomingImage } from "@inboxos.io/utils/store-incoming-image"
 import {
   buildResolveStepInputJob,
   ChatJobAction,
@@ -131,7 +131,7 @@ import {
   integrationQueue,
   NotificationJobAction,
   notificationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { UnrecoverableError } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { LOCK_CONTENTION_POLICY } from "../../lib/lock-contention-deferral"
@@ -911,7 +911,7 @@ export const receiveMessage = async (
       }
 
       // Message echoes (agent replying from the channel's own native UI,
-      // e.g. Meta Business Suite, rather than the ChatbotX inbox) never go
+      // e.g. Meta Business Suite, rather than the InboxOS inbox) never go
       // through `create-message.action.ts`, so "Page" keyword automation
       // must be checked here too — mirrors the enqueue in that action,
       // including its `user &&` gate (see isEchoOfOwnSend).
@@ -1125,7 +1125,7 @@ async function sendAppointmentCancelFeedback(input: {
 }
 
 /**
- * How far back to look for the ChatbotX-side row an echo may be duplicating.
+ * How far back to look for the InboxOS-side row an echo may be duplicating.
  * The race it covers is sub-second — `updateSourceId` runs right after the
  * channel send returns — so this only needs to be generous, not wide: a
  * longer window would start suppressing genuine agent replies that happen to
@@ -1151,7 +1151,7 @@ const SELF_SENT_ECHO_LOOKBACK = 10
  * because an outbound rule replies through the same channel, that reply echoes
  * back and can match itself in a loop.
  *
- * Every ChatbotX send persists its Message row *before* hitting the channel,
+ * Every InboxOS send persists its Message row *before* hitting the channel,
  * so a recent outgoing row carrying the same text is our own send, not an
  * agent's.
  *

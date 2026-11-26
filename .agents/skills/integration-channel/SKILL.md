@@ -12,7 +12,7 @@ description: >-
 
 ## Architecture Overview
 
-Integrations are standalone packages under `integrations/` that implement the `IntegrationDefinition` contract from `@chatbotx.io/sdk`.
+Integrations are standalone packages under `integrations/` that implement the `IntegrationDefinition` contract from `@inboxos.io/sdk`.
 
 **Flow:** External platform → webhook → builder route → BullMQ queue → worker → integration handler
 
@@ -22,7 +22,7 @@ Before writing any code, you **MUST** resolve the 3 questions below. Analyze the
 
 ### Question 1: Integration name
 
-Channel name → determines package name (`@chatbotx.io/integration-<channel>`), DB table (`Integration<Channel>`), all file paths.
+Channel name → determines package name (`@inboxos.io/integration-<channel>`), DB table (`Integration<Channel>`), all file paths.
 
 ### Question 2: Auth fields
 
@@ -88,7 +88,7 @@ Run these checks **in order**:
 
 | Error                                                                  | Cause                                                   | Fix                                                            |
 | ---------------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------- |
-| `Cannot find module '@chatbotx.io/integration-<channel>'`              | Package not linked                                      | Run `pnpm install --no-frozen-lockfile`                        |
+| `Cannot find module '@inboxos.io/integration-<channel>'`              | Package not linked                                      | Run `pnpm install --no-frozen-lockfile`                        |
 | `Property '<channel>' is missing in type ... Record<ChannelType, ...>` | Enum value added but not all Records updated            | Grep `Record<ChannelType` and add missing entry                |
 | `The ... variable is undeclared`                                       | Import missing                                          | Read back file to verify import line exists, re-add if missing |
 | `Target signature provides too few arguments`                          | Action uses `bindArgsSchemas` but form didn't `.bind()` | Use `action.bind(null, workspaceId)` in useHookFormAction      |

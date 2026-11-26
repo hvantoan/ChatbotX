@@ -12,9 +12,9 @@ import {
   sendTextStepSchema,
   stepSupport,
   uploadModes,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
-import type { RichButtonPayloadEntry } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
+import type { RichButtonPayloadEntry } from "@inboxos.io/worker-config"
 import type { PollBotStrings } from "./bot-strings"
 import { getPollBotStrings } from "./bot-strings"
 import { getPollState, type PollState } from "./state"

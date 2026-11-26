@@ -1,5 +1,5 @@
-import type { ConversationAttributes } from "@chatbotx.io/database/partials"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+import type { ConversationAttributes } from "@inboxos.io/database/partials"
+import type { ConversationModel } from "@inboxos.io/database/types"
 
 type IncomingRoutingDecision =
   | { type: "none" }

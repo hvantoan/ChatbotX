@@ -1,5 +1,5 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import { sql } from "drizzle-orm"
 
 /** The table of each copied kind an uninstall can delete. */

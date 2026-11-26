@@ -16,14 +16,14 @@ vi.mock("../src/trigger/services/action-executor", () => ({
     execute = mocks.execute
   },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   triggerService: {
     recordContactHistory: mocks.recordContactHistory,
     incrementStats: mocks.incrementStats,
     tryAcquireContactRun: mocks.tryAcquireContactRun,
   },
 }))
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   setTriggerExecutionContext: vi.fn(),
 }))
 vi.mock("../src/lib/logger", () => ({

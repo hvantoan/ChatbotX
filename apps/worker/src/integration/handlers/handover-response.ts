@@ -1,17 +1,17 @@
-import { aiHandoverSettingsService, flowService } from "@chatbotx.io/business"
-import { parseAiHandoverChannel } from "@chatbotx.io/database/partials"
+import { aiHandoverSettingsService, flowService } from "@inboxos.io/business"
+import { parseAiHandoverChannel } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import type { ThreadControlWebhookEvent } from "@chatbotx.io/sdk"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import type { ThreadControlWebhookEvent } from "@inboxos.io/sdk"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import {
   ChatJobAction,
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { handoffExecutorService } from "../../trigger/services/handoff-executor.service"
 

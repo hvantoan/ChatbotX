@@ -1,7 +1,7 @@
 "use client"
 
-import type { FlowResponseFileFailureReason } from "@chatbotx.io/sdk"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { FlowResponseFileFailureReason } from "@inboxos.io/sdk"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { FileTextIcon, TriangleAlertIcon } from "lucide-react"
 import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"

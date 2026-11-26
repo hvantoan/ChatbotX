@@ -1,4 +1,4 @@
-import { buttonContainers } from "@chatbotx.io/flow-config"
+import { buttonContainers } from "@inboxos.io/flow-config"
 import { MediaLibraryOrInsertLink } from "@/components/media-library-or-insert-link"
 import { ButtonGroupEditor } from "../button/editor"
 import { MediaStepNotice } from "../button/media-step-notice"

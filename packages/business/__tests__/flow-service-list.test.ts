@@ -9,8 +9,8 @@ const mocks = vi.hoisted(() => ({
   listTemplateIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {}, eq: vi.fn() }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {}, eq: vi.fn() }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {
     listWithVersions: mocks.listWithVersions,
     count: mocks.count,
@@ -22,10 +22,10 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     listIdsByIntegration: mocks.listTemplateIds,
   },
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({}))
-vi.mock("@chatbotx.io/utils", () => ({ createId: vi.fn() }))
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({}))
+vi.mock("@inboxos.io/utils", () => ({ createId: vi.fn() }))
+vi.mock("@inboxos.io/flow-config", () => ({
   stepTypes: { enum: { sendWaTemplateMessage: "sendWaTemplateMessage" } },
 }))
 // The start-node matching itself is covered by the filters' own tests; here a

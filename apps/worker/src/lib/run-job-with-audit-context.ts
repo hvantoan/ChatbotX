@@ -1,4 +1,4 @@
-import { SYSTEM_ACTOR, withAuditContext } from "@chatbotx.io/business/audit"
+import { SYSTEM_ACTOR, withAuditContext } from "@inboxos.io/business/audit"
 
 export function runJobWithAuditContext<T>(
   params: {

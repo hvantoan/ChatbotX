@@ -5,15 +5,15 @@ import {
   conversationService,
   messageService,
   queueWorkspaceRealtimeEvent,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getImageDimensions, uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getImageDimensions, uploader } from "@inboxos.io/filesystem"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/realtime-protocol"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { type EditMessageRequest, editMessageRequest } from "../schema/mutation"
 
@@ -46,11 +46,11 @@ export const editMessage = async (props: {
   })
 
   if (!message || message.conversationId !== conversationId) {
-    throw new ChatbotXException("Comment not found")
+    throw new InboxOSException("Comment not found")
   }
 
   if (message.messageType !== "outgoing" || message.type !== "comment") {
-    throw new ChatbotXException("Message is not an editable comment")
+    throw new InboxOSException("Message is not an editable comment")
   }
 
   const contactInbox = await contactInboxService.findByIdForWorkspace({
@@ -58,7 +58,7 @@ export const editMessage = async (props: {
     workspaceId,
   })
   if (!contactInbox) {
-    throw new ChatbotXException("Inbox not found")
+    throw new InboxOSException("Inbox not found")
   }
 
   const attachments: Parameters<

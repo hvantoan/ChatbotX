@@ -1,4 +1,4 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import type { GaxiosError } from "googleapis-common"
 import { normalizeError } from "universal-error-normalizer"
 import { googleCalendarLogger } from "./logger"

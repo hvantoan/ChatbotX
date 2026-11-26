@@ -1,4 +1,4 @@
-import { leaderboardRepository } from "@chatbotx.io/database/repositories"
+import { leaderboardRepository } from "@inboxos.io/database/repositories"
 import { logger } from "../logger"
 import { leaderboardRankingService } from "./ranking"
 import { leaderboardService } from "./service"

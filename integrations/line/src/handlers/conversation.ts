@@ -1,4 +1,4 @@
-import { type ConversationHandlers, SdkException } from "@chatbotx.io/sdk"
+import { type ConversationHandlers, SdkException } from "@inboxos.io/sdk"
 import { lineFetch } from "../apis/client"
 import type { LineAuthValue } from "../schema"
 

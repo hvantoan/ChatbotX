@@ -1,11 +1,11 @@
-import { buildContext } from "@chatbotx.io/business"
+import { buildContext } from "@inboxos.io/business"
 import {
   MOOSEND_EDITOR_PAGE_SIZE,
   MoosendApiError,
   integration as moosendIntegration,
   moosendMailingListPageSchema,
-} from "@chatbotx.io/integration-moosend"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-moosend"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

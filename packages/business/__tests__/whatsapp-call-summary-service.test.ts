@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => ({
   conversationFindBy: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findByIdForWorkspace: mocks.findById,
     attachAiSummary: mocks.attachAiSummary,
@@ -26,7 +26,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   createMessageRepository: mocks.createMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,

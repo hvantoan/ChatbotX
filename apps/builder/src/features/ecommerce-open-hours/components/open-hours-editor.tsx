@@ -1,8 +1,8 @@
 "use client"
 
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PlusIcon, TrashIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFieldArray, useFormContext } from "react-hook-form"

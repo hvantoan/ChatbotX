@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 
 export function ImportForm({ children }: { children: React.ReactNode }) {
   return (

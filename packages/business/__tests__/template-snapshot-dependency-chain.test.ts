@@ -3,15 +3,15 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({ chainLength: 0 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   inboxRepository: { listIdentitiesByIds: vi.fn().mockResolvedValue([]) },
   templateSnapshotRepository: {
     findTags: vi.fn().mockResolvedValue([]),
     findCustomFields: vi.fn().mockResolvedValue([]),
   },
 }))
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/flow-config")>()),
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/flow-config")>()),
   parseTemplateExport: (payload: unknown) => ({ ok: true, data: payload }),
 }))
 

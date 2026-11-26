@@ -4,7 +4,7 @@
 #
 # Everything (postgres, redis, rustfs, mailhog, adminer, redisinsight,
 # javascript-executor, worker, realtime, builder) runs in containers on the
-# chatbotx network — nothing needs pnpm/node on the host besides docker.
+# inboxos network — nothing needs pnpm/node on the host besides docker.
 #
 # Usage:
 #   ./scripts/stack-up.sh             # env → build (cached) → up → verify
@@ -60,10 +60,10 @@ ensure_base_env() {
 # Idempotent — regenerated on every run; values follow .env credentials.
 write_docker_env() {
   local pg_user pg_pass pg_db rustfs_key rustfs_secret
-  pg_user="$(env_get POSTGRES_USER)";          pg_user="${pg_user:-chatbotx}"
+  pg_user="$(env_get POSTGRES_USER)";          pg_user="${pg_user:-inboxos}"
   pg_pass="$(env_get POSTGRES_PASSWORD)";      pg_pass="${pg_pass:-secretkey}"
-  pg_db="$(env_get POSTGRES_DB)";              pg_db="${pg_db:-chatbotx}"
-  rustfs_key="$(env_get RUSTFS_ACCESS_KEY)";   rustfs_key="${rustfs_key:-chatbotx}"
+  pg_db="$(env_get POSTGRES_DB)";              pg_db="${pg_db:-inboxos}"
+  rustfs_key="$(env_get RUSTFS_ACCESS_KEY)";   rustfs_key="${rustfs_key:-inboxos}"
   rustfs_secret="$(env_get RUSTFS_SECRET_KEY)"; rustfs_secret="${rustfs_secret:-secretkey}"
 
   cat >"$ENV_DOCKER" <<EOF
@@ -92,11 +92,11 @@ NEXT_PUBLIC_BUILDER_URL=http://localhost:${BUILDER_PORT}
 NEXT_PUBLIC_BROKER_URL=http://host.docker.internal:${BUILDER_PORT}
 BETTER_AUTH_URL=http://localhost:${BUILDER_PORT}
 FORCE_PUBLIC_HTTPS=false
-NEXT_PUBLIC_INTERNAL_STORAGE_URL=http://localhost:29000/chatbotx/
+NEXT_PUBLIC_INTERNAL_STORAGE_URL=http://localhost:29000/inboxos/
 
 # Mail goes to the in-stack MailHog (UI http://localhost:8025)
 SMTP_SERVER=smtp://mailhog:1025
-SMTP_FROM=ChatbotX <no-reply@chatbotx.local>
+SMTP_FROM=InboxOS <no-reply@inboxos.local>
 EOF
 }
 
@@ -106,20 +106,20 @@ EOF
 # that the docker stack needs. Stop them — scoped to this checkout so other
 # projects' node processes survive.
 stop_host_dev() {
-  if [[ -f /tmp/chatbotx-dev.pid ]]; then
+  if [[ -f /tmp/inboxos-dev.pid ]]; then
     local pid pgid=""
-    pid=$(cat /tmp/chatbotx-dev.pid)
+    pid=$(cat /tmp/inboxos-dev.pid)
     if kill -0 "$pid" 2>/dev/null; then
       pgid=$(ps -o pgid= -p "$pid" 2>/dev/null | tr -d ' ' || true)
       [[ -n "$pgid" ]] && { log "stopping dev-up session (pgid $pgid)"; kill -TERM -- "-$pgid" 2>/dev/null || true; sleep 2; }
     fi
-    rm -f /tmp/chatbotx-dev.pid
+    rm -f /tmp/inboxos-dev.pid
   fi
-  if pgrep -f "ChatbotX.*(turbo.*dev|next dev|tsx --watch)" >/dev/null 2>&1; then
+  if pgrep -f "InboxOS.*(turbo.*dev|next dev|tsx --watch)" >/dev/null 2>&1; then
     log "stopping leftover host dev processes holding stack ports…"
-    pkill -f "ChatbotX.*turbo.*dev" 2>/dev/null || true
-    pkill -f "ChatbotX.*next dev" 2>/dev/null || true
-    pkill -f "ChatbotX.*tsx --watch" 2>/dev/null || true
+    pkill -f "InboxOS.*turbo.*dev" 2>/dev/null || true
+    pkill -f "InboxOS.*next dev" 2>/dev/null || true
+    pkill -f "InboxOS.*tsx --watch" 2>/dev/null || true
     for _ in $(seq 1 10); do
       lsof -i :3123 -i :1999 2>/dev/null | grep -q LISTEN || break
       sleep 1

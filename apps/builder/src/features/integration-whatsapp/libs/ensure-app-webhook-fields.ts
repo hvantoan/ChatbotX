@@ -3,7 +3,7 @@ import {
   ensureAppWebhookFields,
   WHATSAPP_APP_SUBSCRIPTION_OBJECT,
   WHATSAPP_APP_WEBHOOK_FIELDS,
-} from "@chatbotx.io/integration-whatsapp/api/app-subscriptions"
+} from "@inboxos.io/integration-whatsapp/api/app-subscriptions"
 
 type EnsureWhatsappAppWebhookFieldsConfig = {
   appId: string

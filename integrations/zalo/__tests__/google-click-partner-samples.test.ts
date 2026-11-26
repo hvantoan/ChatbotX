@@ -1,5 +1,5 @@
-import type { Context, HandleRequestProps } from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import type { Context, HandleRequestProps } from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { describe, expect, test, vi } from "vitest"
 import { getUserProfile } from "../src/api/user"
 import { receiveMessage } from "../src/handlers/message/incoming-message"

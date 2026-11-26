@@ -11,53 +11,53 @@ import {
   parseNoAvatarSentinel,
   updateAttachmentOrThrow,
   WA_MEDIA_PREFIX,
-} from "@chatbotx.io/business"
-import { HTTP_URL_RE } from "@chatbotx.io/business/utils"
-import { db } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business"
+import { HTTP_URL_RE } from "@inboxos.io/business/utils"
+import { db } from "@inboxos.io/database/client"
 import {
   type AttachmentLookupRow,
   createMessageRepository,
   type IMessageRepository,
   type MessageWithAttachments,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   AttachmentModel,
   ContactInboxModel,
   ContactModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   getChannelMediaPrefix,
   getMirroredChannelMediaPrefix,
-} from "@chatbotx.io/filesystem"
+} from "@inboxos.io/filesystem"
 import {
   getWhatsappClient,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
-import { getChildLogger, toLogSafeError } from "@chatbotx.io/logger"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-whatsapp"
+import { getChildLogger, toLogSafeError } from "@inboxos.io/logger"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   guessFileTypeFromMimeType,
   IntegrationException,
   SdkException,
   videoMimeTypesServedAsAudio,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   optimizeImageForStorage,
   readImageDimensions,
-} from "@chatbotx.io/utils/image-optimize"
+} from "@inboxos.io/utils/image-optimize"
 import {
   getImageOptimizationSettings,
   isStoredImageOptimizationEnabled,
   runInEncodeSlot,
-} from "@chatbotx.io/utils/image-optimize-settings"
-import { isUrlOnHosts, META_MEDIA_HOSTS } from "@chatbotx.io/utils/live-media"
+} from "@inboxos.io/utils/image-optimize-settings"
+import { isUrlOnHosts, META_MEDIA_HOSTS } from "@inboxos.io/utils/live-media"
 import {
   cancelBodyQuietly,
   MediaEmptyBodyError,
   MediaTooLargeError,
   readBodyWithCap as readBodyWithCapPrimitive,
-} from "@chatbotx.io/utils/media-download"
+} from "@inboxos.io/utils/media-download"
 import {
   type IntegrationRow,
   integrationService,

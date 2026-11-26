@@ -1,3 +1,3 @@
-import type { IntegrationMuseModel } from "@chatbotx.io/database/types"
+import type { IntegrationMuseModel } from "@inboxos.io/database/types"
 
 export type IntegrationMuseResource = IntegrationMuseModel

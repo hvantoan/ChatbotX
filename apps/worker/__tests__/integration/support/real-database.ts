@@ -1,6 +1,6 @@
-import { db, sql } from "@chatbotx.io/database/client"
+import { db, sql } from "@inboxos.io/database/client"
 
-const THROWAWAY_PREFIX = "chatbotx_it_"
+const THROWAWAY_PREFIX = "inboxos_it_"
 
 /** True when the suite was started through `test:db` (a real, throwaway DB). */
 export const hasThrowawayDatabase = (): boolean =>

@@ -1,7 +1,7 @@
 "use server"
 
-import { integrationGoogleAdsService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { integrationGoogleAdsService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import { redirect } from "next/navigation"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { startConnect } from "@/features/connections/lib/connect-flow"

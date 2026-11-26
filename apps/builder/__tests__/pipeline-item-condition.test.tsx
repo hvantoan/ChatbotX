@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { act } from "react"
 import { createRoot } from "react-dom/client"
 import { type UseFormReturn, useForm } from "react-hook-form"
@@ -20,7 +20,7 @@ vi.mock("@/features/pipelines/lib/use-pipeline-options", () => ({
 }))
 // The picker as a plain list of its options: labels can be read, and a click
 // picks one the way the real picker does (form value, then the callback).
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", async () => {
+vi.mock("@inboxos.io/ui/components/form/combobox-field", async () => {
   const { useFormContext } = await import("react-hook-form")
   return {
     ComboboxField: ({

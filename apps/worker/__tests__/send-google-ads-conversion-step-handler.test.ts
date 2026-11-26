@@ -14,9 +14,9 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
-  const actual = await vi.importActual<typeof import("@chatbotx.io/business")>(
-    "@chatbotx.io/business",
+vi.mock("@inboxos.io/business", async () => {
+  const actual = await vi.importActual<typeof import("@inboxos.io/business")>(
+    "@inboxos.io/business",
   )
   return {
     ...actual,
@@ -38,7 +38,7 @@ vi.mock("../../../packages/variables/src/contact-variable", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: (...args: unknown[]) => mocks.logProviderError(...args),
 }))
 

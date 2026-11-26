@@ -2,8 +2,8 @@ import type {
   ListAllConnectedInboxesRequest,
   ListAllConnectedInboxesResponse,
   ListInboxesResponse,
-} from "@chatbotx.io/business"
-import { inboxService, type ListInboxesRequest } from "@chatbotx.io/business"
+} from "@inboxos.io/business"
+import { inboxService, type ListInboxesRequest } from "@inboxos.io/business"
 
 export async function listInboxes(
   input: ListInboxesRequest,

@@ -6,21 +6,21 @@ import {
   isUniqueViolationError,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   ALL_FORMS_ID,
   type FacebookLeadFieldMappings,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   facebookLeadAdsAutomationModel,
   facebookLeadAdsLeadModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { validationException } from "../errors"
 

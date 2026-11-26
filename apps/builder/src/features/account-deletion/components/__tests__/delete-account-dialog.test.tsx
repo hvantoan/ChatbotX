@@ -52,7 +52,7 @@ vi.mock("next/link", () => ({
   }) => <a href={href}>{children}</a>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/alert", () => ({
+vi.mock("@inboxos.io/ui/components/ui/alert", () => ({
   Alert: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   AlertDescription: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
@@ -62,7 +62,7 @@ vi.mock("@chatbotx.io/ui/components/ui/alert", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({
     children,
     ...props
@@ -74,17 +74,17 @@ vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
   buttonVariants: () => "",
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/input", () => ({
+vi.mock("@inboxos.io/ui/components/ui/input", () => ({
   Input: (props: React.InputHTMLAttributes<HTMLInputElement>) => (
     <input {...props} />
   ),
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/label", () => ({
+vi.mock("@inboxos.io/ui/components/ui/label", () => ({
   Label: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({
     children,
     onOpenChange,

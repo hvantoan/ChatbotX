@@ -5,7 +5,7 @@ import {
   isHashtagCommentAutomation,
   isValidCommentPostHashtag,
   normalizeCommentPostHashtags,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { validationException } from "../errors"
 
 /**

@@ -40,8 +40,8 @@ describe("hashTemplatePayload", () => {
 describe("legacy payloads", () => {
   test("a payload without the newer empty categories hashes like one that lists them", async () => {
     const { parseTemplateExport } = await vi.importActual<
-      typeof import("@chatbotx.io/flow-config")
-    >("@chatbotx.io/flow-config")
+      typeof import("@inboxos.io/flow-config")
+    >("@inboxos.io/flow-config")
     const legacy = {
       formatVersion: 1,
       exportedAt: "2026-01-01T00:00:00.000Z",

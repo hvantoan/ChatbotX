@@ -1,4 +1,4 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { automationInboxIdFilterSchema } from "@/features/shared/comment-automation/schema/account"
 import { publicListRequest, publicListResponse } from "@/lib/public-api/list"

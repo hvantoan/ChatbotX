@@ -1,19 +1,19 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   blockedOutcomeOf,
   failedOutcomeOf,
   finalOutcomeOf,
   type TemplateUninstallOutcome,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateInstallationRepository,
   templateInstallationSyncRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { createId } from "@chatbotx.io/utils"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import { getChildLogger } from "@inboxos.io/logger"
+import { createId } from "@inboxos.io/utils"
+import { InboxOSException } from "../errors"
 import { TEMPLATE_INSTALL_ORDER } from "./adapters/registry"
 import { UNINSTALL_HANDLER_BY_KIND } from "./adapters/uninstall-handlers"
 import { uninstallContext } from "./adapters/uninstall-kit"
@@ -109,7 +109,7 @@ const groupByCategoryAndKind = (rows: readonly Tombstone[]): Tombstone[][] => {
 }
 
 const isTransientLock = (error: unknown): boolean =>
-  error instanceof ChatbotXException && error.code === "templateLockContention"
+  error instanceof InboxOSException && error.code === "templateLockContention"
 
 /**
  * The rows, among `rows`, something outside the deleting set still points at,
@@ -457,7 +457,7 @@ const failBatch = async (
     `Template uninstall ${phase} failed`,
   )
   if (
-    error instanceof ChatbotXException &&
+    error instanceof InboxOSException &&
     isPermanentTemplateError(error.code)
   ) {
     const kind = error.data?.resourceKind

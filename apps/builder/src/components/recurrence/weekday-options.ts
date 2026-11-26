@@ -1,4 +1,4 @@
-import type { WeekdayToggleOption } from "@chatbotx.io/ui/components/form/weekday-toggle-field"
+import type { WeekdayToggleOption } from "@inboxos.io/ui/components/form/weekday-toggle-field"
 
 const DAYS_PER_WEEK = 7
 const SUNDAY = 0

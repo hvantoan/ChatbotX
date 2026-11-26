@@ -1,13 +1,4 @@
 import {
-  LEADERBOARD_FOLLOWER_CHECK_PLATFORMS,
-  LEADERBOARD_POST_TRACKING_PLATFORMS,
-  LEADERBOARD_RULES_BY_PLATFORM,
-  type LeaderboardPlatform,
-  type LeaderboardRuleKey,
-  type LeaderboardStatus,
-  leaderboardPlatforms,
-} from "@chatbotx.io/database/partials"
-import {
   SiInstagram,
   SiMessenger,
   SiTelegram,
@@ -16,6 +7,15 @@ import {
   SiWhatsapp,
   SiZalo,
 } from "@icons-pack/react-simple-icons"
+import {
+  LEADERBOARD_FOLLOWER_CHECK_PLATFORMS,
+  LEADERBOARD_POST_TRACKING_PLATFORMS,
+  LEADERBOARD_RULES_BY_PLATFORM,
+  type LeaderboardPlatform,
+  type LeaderboardRuleKey,
+  type LeaderboardStatus,
+  leaderboardPlatforms,
+} from "@inboxos.io/database/partials"
 import { Gamepad2Icon, MailIcon } from "lucide-react"
 import type { ComponentType } from "react"
 

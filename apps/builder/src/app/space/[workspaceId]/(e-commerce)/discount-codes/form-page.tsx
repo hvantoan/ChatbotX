@@ -2,7 +2,7 @@ import {
   ecommerceSettingsService,
   productCategoryService,
   productService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { DiscountCodeForm } from "@/features/discount-codes/components/discount-code-form"
 import type { DiscountCodeResource } from "@/features/discount-codes/schema/public"
 

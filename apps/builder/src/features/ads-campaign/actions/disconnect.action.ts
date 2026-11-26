@@ -1,6 +1,6 @@
 "use server"
 
-import { messagingAdsConnectionService } from "@chatbotx.io/business"
+import { messagingAdsConnectionService } from "@inboxos.io/business"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"

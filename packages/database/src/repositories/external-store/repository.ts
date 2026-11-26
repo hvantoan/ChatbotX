@@ -9,15 +9,15 @@ import {
   like,
   notInArray,
   or,
-} from "@chatbotx.io/database/client"
-import type { ExternalStoreSource } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { ExternalStoreSource } from "@inboxos.io/database/partials"
 import {
   discountCodeModel,
   productModel,
   productVariantModel,
   productVariantOptionModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 export type ExternalProductValues = Omit<
   typeof productModel.$inferInsert,

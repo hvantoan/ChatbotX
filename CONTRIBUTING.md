@@ -1,6 +1,6 @@
-# Contributing to ChatbotX
+# Contributing to InboxOS
 
-Thank you for your interest in contributing to ChatbotX! This document provides guidelines and instructions for contributing to the project.
+Thank you for your interest in contributing to InboxOS! This document provides guidelines and instructions for contributing to the project.
 
 ## Read the developers guide
 
@@ -37,7 +37,7 @@ You are responsible for every line you submit. Make sure you understand your cha
 ## How to contribute
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR-USERNAME/chatbotx.git`
+2. Clone your fork: `git clone https://github.com/YOUR-USERNAME/inboxos.git`
 3. Create a new branch: `git checkout -b feat/your-feature-name`
 4. Install dependencies: `pnpm install`
 5. Copy `.env.example` to `.env` and configure your environment variables
@@ -71,7 +71,7 @@ You are responsible for every line you submit. Make sure you understand your cha
 
 - Join our [Discord chat](https://discord.chatbotx.io) for questions
 - Check existing issues and pull requests
-- Email [security@chatbotx.io](mailto:security@chatbotx.io) for major concerns
+- Email [security@inboxos.io](mailto:security@inboxos.io) for major concerns
 
 ## Code of Conduct
 
@@ -81,4 +81,4 @@ We aim to foster an inclusive and welcoming community. Harassment and abusive be
 
 ## License
 
-By contributing to ChatbotX, you agree that your contributions will be licensed under the MIT License.
+By contributing to InboxOS, you agree that your contributions will be licensed under the MIT License.

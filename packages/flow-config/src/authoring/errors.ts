@@ -1,4 +1,4 @@
-import { levenshteinDistance } from "@chatbotx.io/utils/levenshtein"
+import { levenshteinDistance } from "@inboxos.io/utils/levenshtein"
 import { z } from "zod"
 
 /**

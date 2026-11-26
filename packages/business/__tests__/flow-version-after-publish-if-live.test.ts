@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   enqueueSync: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   desc: vi.fn(),
   eq: vi.fn(),
@@ -23,14 +23,14 @@ vi.mock("@chatbotx.io/database/client", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowModel: {},
   flowVersionModel: {},
 }))
 vi.mock("../src/pipeline/flow-publish-check", () => ({
   assertFlowPipelineStepsPublishable: vi.fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({ withCache: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ withCache: vi.fn() }))
 vi.mock("../src/base.service", () => ({
   BaseService: class {
     invalidateCacheTags = vi.fn()

@@ -1,7 +1,7 @@
 "use server"
 
-import { templateUninstallService } from "@chatbotx.io/business/template-uninstall"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { templateUninstallService } from "@inboxos.io/business/template-uninstall"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { PUBLISHER_REF_FORMAT } from "../schema/shared"
 import { templateActionClientAllowExpired } from "./template-action-client"

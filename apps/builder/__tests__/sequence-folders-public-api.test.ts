@@ -37,16 +37,16 @@ const mocks = vi.hoisted(() => ({
   bulkDelete: vi.fn(),
   findOrFail: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business", async (importOriginal) => ({
+vi.mock("@inboxos.io/business", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   folderService: mocks,
 }))
-vi.mock("@chatbotx.io/business/sequence", () => ({ sequenceService: {} }))
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/business/sequence", () => ({ sequenceService: {} }))
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
-vi.mock("@chatbotx.io/database/repositories", () => {
+vi.mock("@inboxos.io/database/repositories", () => {
   const nested: unknown = new Proxy(
     {},
     { get: (_o, prop) => (prop === "then" ? undefined : nested) },

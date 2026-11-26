@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   findMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationMessengerModel: { findFirst: mocks.findIntegration },
@@ -19,7 +19,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   ilike: vi.fn(),
   inArray: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   messengerMessageTemplateModel: {},
 }))
 

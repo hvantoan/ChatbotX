@@ -1,17 +1,17 @@
-import { and, db, eq, inArray } from "@chatbotx.io/database/client"
+import { and, db, eq, inArray } from "@inboxos.io/database/client"
 import {
   type MiniAppListInput,
   miniAppRepository,
-} from "@chatbotx.io/database/repositories"
-import { miniAppModel } from "@chatbotx.io/database/schema"
-import type { MiniAppModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import { miniAppModel } from "@inboxos.io/database/schema"
+import type { MiniAppModel } from "@inboxos.io/database/types"
 import {
   type MiniAppDefinition,
   type MiniAppValidationResult,
   toFlowJson,
   validateMiniApp,
-} from "@chatbotx.io/mini-app"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/mini-app"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { copyNamePrefix, insertWithFreeCopyName } from "../lib/copy-name"

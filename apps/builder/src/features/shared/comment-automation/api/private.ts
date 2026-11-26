@@ -1,4 +1,4 @@
-import { listAutomationAccounts } from "@chatbotx.io/business"
+import { listAutomationAccounts } from "@inboxos.io/business"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

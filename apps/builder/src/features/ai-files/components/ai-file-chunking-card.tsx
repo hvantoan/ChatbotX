@@ -1,11 +1,11 @@
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
-import type { AIFileChunking } from "@chatbotx.io/database/partials"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
+import type { AIFileChunking } from "@inboxos.io/database/partials"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useFormatter, useTranslations } from "next-intl"
 import { useIsLocked } from "@/features/templates/components/lock-context"
 import { ReindexAIFileDialog } from "./reindex-ai-file-dialog"

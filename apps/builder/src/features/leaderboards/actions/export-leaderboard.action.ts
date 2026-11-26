@@ -1,7 +1,7 @@
 "use server"
 
-import { leaderboardService } from "@chatbotx.io/business/leaderboard"
-import { uploader } from "@chatbotx.io/filesystem"
+import { leaderboardService } from "@inboxos.io/business/leaderboard"
+import { uploader } from "@inboxos.io/filesystem"
 import {
   workspaceIdAndIdRequestParams,
   workspaceIdrequestParams,

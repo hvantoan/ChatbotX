@@ -3,9 +3,9 @@
 import {
   isOnlinePaymentMethod,
   PAYMENT_EXPIRED_CANCEL_REASON,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Table,
   TableBody,
@@ -13,8 +13,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/table"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import Link from "next/link"
 import { useFormatter, useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useState } from "react"

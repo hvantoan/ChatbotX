@@ -1,10 +1,10 @@
 "use server"
 
-import { contactInboxService, conversationService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+import { contactInboxService, conversationService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {
   type ChangeMessageAttributesRequest,
@@ -30,14 +30,14 @@ export const changeMessageAttributes = async (props: {
     workspaceId,
   })
   if (!message || message.conversationId !== conversationId) {
-    throw new ChatbotXException("Message not found")
+    throw new InboxOSException("Message not found")
   }
 
   const contactInbox = await contactInboxService.findBy({
     where: { id: message.contactInboxId },
   })
   if (!contactInbox) {
-    throw new ChatbotXException("Inbox not found")
+    throw new InboxOSException("Inbox not found")
   }
 
   await Promise.allSettled([

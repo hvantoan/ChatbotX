@@ -6,13 +6,13 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 // timezone, lenient parsing, and the empty->now flag into the business service.
 // The worker has no browser context, so this threading is what lets a naive
 // date/datetime value be anchored (and a blank one stamped "now") at runtime.
-// We mock ONLY the boundaries; `@chatbotx.io/utils/datetime` is left real so
+// We mock ONLY the boundaries; `@inboxos.io/utils/datetime` is left real so
 // the asserted `TemporalInputParsing.Lenient` is the genuine enum value.
 // ---------------------------------------------------------------------------
 
 const setValueByKey = vi.fn(async () => undefined)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactCustomFieldService: { setValueByKey },
   contactService: { delete: vi.fn() },
   tagSyncService: { enqueueAttach: vi.fn(), enqueueDetach: vi.fn() },
@@ -25,19 +25,19 @@ vi.mock("@chatbotx.io/business", () => ({
 const getAllVariables = vi.fn(async () => ({}) as unknown)
 const replaceAll = vi.fn(async ({ text }: { text: string }) => text)
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: { getAll: getAllVariables, replaceAll },
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardScoringService: { changeFromFlow: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: { removeContactSequencesForContact: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
   and: (...args: unknown[]) => ({ and: args }),
   eq: (col: unknown, val: unknown) => ({ eq: [col, val] }),
@@ -45,28 +45,28 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isNull: (col: unknown) => ({ isNull: col }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactModel: {},
   contactNoteModel: {},
   contactsToTagsModel: {},
   tagModel: {},
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: vi.fn() }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit: vi.fn() }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactUnsubscribed: vi.fn(),
   emitSequenceSubscribed: vi.fn(),
   emitTagApplied: vi.fn(),
   emitTagRemoved: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/sequence-scheduler", () => ({
+vi.mock("@inboxos.io/sequence-scheduler", () => ({
   enrollContactInSequence: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "generated-id") }
 })
 
@@ -220,8 +220,8 @@ describe("setContactCustomField", () => {
   })
 
   test("a calculator rejection is logged as a warning and the flow keeps going", async () => {
-    const { ChatbotXException } = await import("@chatbotx.io/business/errors")
-    const rejection = new ChatbotXException(
+    const { InboxOSException } = await import("@inboxos.io/business/errors")
+    const rejection = new InboxOSException(
       "rejected",
       "invalidFieldOperation",
       400,

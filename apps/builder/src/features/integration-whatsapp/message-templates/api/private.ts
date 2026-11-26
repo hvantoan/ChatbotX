@@ -1,7 +1,7 @@
 import {
   integrationMetaCatalogService,
   whatsappMessageTemplateService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"
 import {

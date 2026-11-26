@@ -71,7 +71,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     insert: dbInsert,
     select: dbSelect,
@@ -93,12 +93,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sum: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   planStatuses: {},
   ACTIVE_CONNECTION_STATUSES: ["connected", "degraded"],
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   ROOT_TENANT_ID: "1",
   connectionModel: {
     id: "connection.id",
@@ -118,7 +118,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   cacheConnections: {
     useExisting: vi.fn(async () => ({ eval: redisEval, hset })),
   },
@@ -132,14 +132,14 @@ vi.mock("@chatbotx.io/redis", () => ({
 
 vi.mock("../src/keys", () => ({ isCloud: vi.fn(() => true) }))
 vi.mock("../src/logger", () => ({ logger: { warn: vi.fn(), error: vi.fn() } }))
-vi.mock("@chatbotx.io/database/repositories/tenant", () => ({
+vi.mock("@inboxos.io/database/repositories/tenant", () => ({
   tenantRepository: {
     findById: tenantFindById,
     findByOwner: tenantFindByOwner,
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories/workspace-mac", () => ({
+vi.mock("@inboxos.io/database/repositories/workspace-mac", () => ({
   workspaceMacRepository: { sumForTenant },
 }))
 

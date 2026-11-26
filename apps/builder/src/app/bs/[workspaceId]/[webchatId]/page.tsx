@@ -1,5 +1,5 @@
-import { integrationWebchatService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationWebchatService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"

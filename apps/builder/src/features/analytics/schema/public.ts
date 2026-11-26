@@ -29,9 +29,9 @@ import {
   timeRangeQueryWithGranularityMHDFilterSchema,
   uniqueConversationsByAdminStatsSchema,
   unsupportedDimensionMetricIssue,
-} from "@chatbotx.io/analytics/schemas"
-import { analyticsFilterOptionResource } from "@chatbotx.io/business/inbox/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/analytics/schemas"
+import { analyticsFilterOptionResource } from "@inboxos.io/business/inbox/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { ianaTimezoneSchema } from "@/lib/public-api/iana-timezone"
 import { publicListRequest, withPublicPaging } from "@/lib/public-api/list"
@@ -331,7 +331,7 @@ export const commentAutomationReplyStatsPublicResponse = z.object({
 export {
   listCommentAutomationErrorsResponse as commentAutomationErrorsPublicResponse,
   listCommentAutomationTextTotalsResponse as commentAutomationTextTotalsPublicResponse,
-} from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics/schemas"
 
 // ─────────────────────────────────────────────────────────────────────────
 // Filter options (the channels / inboxes an analytics call can narrow to)

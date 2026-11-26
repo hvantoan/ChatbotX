@@ -1,16 +1,16 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { isActiveInstallation } from "@chatbotx.io/database/partials"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { isActiveInstallation } from "@inboxos.io/database/partials"
 import {
   type TemplateSyncRow,
   templateInstallationRepository,
   templateInstallationSyncRepository,
   templateUninstallStateRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
+import { InboxOSException } from "../errors"
 import { logger } from "../logger"
 import { isManifestKind } from "./adapters/manifests/kinds"
 import { getTemplateAdapter } from "./adapters/registry"
@@ -40,7 +40,7 @@ export { TRACKED_KIND_BY_CATEGORY } from "./sync-apply"
 const TEMPLATE_SYNC_STATEMENT_TIMEOUT = "60s"
 
 const leaseLostException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The template sync lease was lost",
     "templateSyncLeaseLost",
   )
@@ -252,7 +252,7 @@ const MAX_STAGE_ATTEMPTS = 3
 const RESTAGE_CODE = "templateSyncRestage"
 
 const isRestage = (error: unknown): boolean =>
-  error instanceof ChatbotXException && error.code === RESTAGE_CODE
+  error instanceof InboxOSException && error.code === RESTAGE_CODE
 
 type ApplyResult = { published: PublishedFlows; skipped: boolean }
 
@@ -390,14 +390,14 @@ const applyInTransaction = async (input: {
       input.staged?.version === latest.version &&
       input.staged.hash === latest.payloadHash
     if (input.staged && !stagedMatches && input.mayRestage) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "The template changed while its objects were staged",
         RESTAGE_CODE,
       )
     }
     const parsed = parseTemplateExport(latest.payload)
     if (!parsed.ok) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `Template payload failed validation at sync time: ${parsed.reason}`,
         "templatePayloadIncompatible",
       )

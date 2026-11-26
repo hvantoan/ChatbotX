@@ -1,5 +1,5 @@
-import { commentAutomationService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { commentAutomationService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { postAccountInboxIdSchema } from "@/features/shared/comment-automation/schema/account"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"

@@ -1,4 +1,4 @@
-import { templateParameterKinds } from "@chatbotx.io/flow-config"
+import { templateParameterKinds } from "@inboxos.io/flow-config"
 import { z } from "zod"
 
 /** One value an API caller fills for a template, keyed for `templateParams`. */

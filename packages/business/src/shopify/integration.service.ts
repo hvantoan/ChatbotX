@@ -3,9 +3,9 @@ import {
   type ShopifyAuthSecret,
   type ShopifySyncScope,
   shopifyShopDomainSchema,
-} from "@chatbotx.io/database/partials"
-import { shopifyRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationShopifyModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { shopifyRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationShopifyModel } from "@inboxos.io/database/types"
 import {
   createShopifyWebhookSubscription,
   deleteShopifyWebhookSubscription,
@@ -15,13 +15,13 @@ import {
   type ShopifyCredentials,
   ShopifyUserError,
   shopifyAdminUrl,
-} from "@chatbotx.io/integration-shopify"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/integration-shopify"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import {
   getShopifySyncJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import {
   ecommerceSettingsCacheTag,

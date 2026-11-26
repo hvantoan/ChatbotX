@@ -44,7 +44,7 @@ const driftProbeFolders = readdirSync(migrationsFolder, {
 if (driftProbeFolders.length > 0) {
   console.error(
     `Refusing to migrate: ${driftProbeFolders.join(", ")} is a leftover schema-drift probe, not a real migration.\n` +
-      "Delete the folder(s) and re-run `pnpm --filter @chatbotx.io/database db:check-drift`.",
+      "Delete the folder(s) and re-run `pnpm --filter @inboxos.io/database db:check-drift`.",
   )
   process.exit(1)
 }

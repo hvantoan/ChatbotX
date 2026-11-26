@@ -6,12 +6,12 @@ const mocks = vi.hoisted(() => ({
   findMostRecentByContact: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     findLatestCreatedByContact: mocks.findLatestCreatedByContact,
   },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findByIdForContact: mocks.findByIdForContact,
     findMostRecentByContact: mocks.findMostRecentByContact,

@@ -1,7 +1,7 @@
 import {
   workspaceDeletionRecordDetailsSchema,
   workspaceDeletionRecordUsageSnapshotSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { describe, expect, test } from "vitest"
 
 describe("workspace deletion record schemas", () => {

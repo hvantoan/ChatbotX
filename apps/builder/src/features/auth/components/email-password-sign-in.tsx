@@ -1,5 +1,6 @@
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Form,
   FormControl,
@@ -7,9 +8,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { Loader2Icon } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"

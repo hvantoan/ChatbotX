@@ -32,11 +32,11 @@
  * needs the real column constraints.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { db } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   integrationClaudeModel,
   integrationDeepseekModel,
@@ -47,15 +47,15 @@ import {
   integrationOpenrouterModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { AuthType, type SecretTextAuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { AuthType, type SecretTextAuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { eq } from "drizzle-orm"
 import type { PgTable } from "drizzle-orm/pg-core"
 import { describe, expect, test } from "vitest"
 import { CONNECTION_STORE_BINDINGS } from "../../src/connection/store-bindings"
 import { saveOrInsertSatellite } from "../../src/connection/upsert"
-import { ChatbotXException } from "../../src/errors"
+import { InboxOSException } from "../../src/errors"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */
 const realDatabaseUrl = (): string | null => {
@@ -299,7 +299,7 @@ describe.skipIf(!databaseUrl)(
           store,
         })
 
-        await expect(duplicateAttempt).rejects.toBeInstanceOf(ChatbotXException)
+        await expect(duplicateAttempt).rejects.toBeInstanceOf(InboxOSException)
         await expect(duplicateAttempt).rejects.toMatchObject({
           code: "connectionAlreadyConnected",
         })

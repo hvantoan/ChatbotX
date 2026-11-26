@@ -8,7 +8,7 @@ import {
   type LeaderboardRules,
   type LeaderboardScope,
   leaderboardRuleSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { validationException } from "../errors"
 
 const COMMENT_ONLY_FIELDS = ["minChars", "bonusPoints", "bonusMinutes"] as const

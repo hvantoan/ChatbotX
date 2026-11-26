@@ -15,7 +15,7 @@ import { workspaceModel } from "./workspace"
 
 /**
  * One row = one Messenger Marketing Messages Custom Audience created through
- * ChatbotX. Inserted only after Meta returned the audience id, so
+ * InboxOS. Inserted only after Meta returned the audience id, so
  * `customAudienceId` is never null.
  *
  * `pageId` is a RAW Meta Page id with no FK to `IntegrationMessenger` on

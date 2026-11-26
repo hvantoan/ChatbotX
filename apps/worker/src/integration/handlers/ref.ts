@@ -1,38 +1,38 @@
-import { decodeRef, encodeRef, type RefConfig } from "@chatbotx.io/business"
+import { decodeRef, encodeRef, type RefConfig } from "@inboxos.io/business"
 import {
   leaderboardScoringService,
   leaderboardService,
-} from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business/leaderboard"
 import {
   isMinigameWithinPlayWindow,
   minigameContactService,
   minigameService,
-} from "@chatbotx.io/business/minigame"
-import { pollService } from "@chatbotx.io/business/poll"
-import { canReceiveRef, canShareMinigame } from "@chatbotx.io/business/utils"
-import { findOrFail } from "@chatbotx.io/database/client"
-import type { ChannelType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/minigame"
+import { pollService } from "@inboxos.io/business/poll"
+import { canReceiveRef, canShareMinigame } from "@inboxos.io/business/utils"
+import { findOrFail } from "@inboxos.io/database/client"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   flowModel,
   flowVersionModel,
   reflinkModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
 import {
   emitContactReferredANewContact,
   emitContactReferredExistingContact,
-} from "@chatbotx.io/events"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { flowEventTypeSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/events"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { flowEventTypeSchema } from "@inboxos.io/flow-config"
 import {
   IntegrationJobAction,
   type IntegrationJobRunRef,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { detectConversationAndContactInbox } from "../../lib/db"
 import { logger } from "../../lib/logger"
 import { saveResultToCustomField } from "../utils/contact"

@@ -1,4 +1,4 @@
-import type { CommentAIModeration } from "@chatbotx.io/database/partials"
+import type { CommentAIModeration } from "@inboxos.io/database/partials"
 
 /**
  * What the AI moderation block starts from: off, hiding (reversible) the three

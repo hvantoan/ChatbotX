@@ -2,8 +2,8 @@
 import {
   type SendProductsStepSchema,
   sendProductsStepDefaultFn,
-} from "@chatbotx.io/flow-config"
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/flow-config"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import type { ComponentProps } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
@@ -54,7 +54,7 @@ vi.mock("../components/product-multi-select", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: (props: {
     options: Array<{ value: string; label: string }>
     onValueChange?: (value: string) => void

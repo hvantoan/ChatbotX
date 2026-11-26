@@ -1,4 +1,4 @@
-import { inboxService } from "@chatbotx.io/business"
+import { inboxService } from "@inboxos.io/business"
 import {
   possibleErrorsOnListingResource,
   possibleErrorsOnMutatingResource,

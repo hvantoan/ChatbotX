@@ -1,9 +1,9 @@
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
-import { appAccessToken } from "@chatbotx.io/integration-whatsapp/api/auth"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
+import { appAccessToken } from "@inboxos.io/integration-whatsapp/api/auth"
 import {
   type BusinessAppCandidate,
   resolveBusinessAppCandidates,
-} from "@chatbotx.io/integration-whatsapp/api/waba-candidates"
+} from "@inboxos.io/integration-whatsapp/api/waba-candidates"
 import { logger } from "@/lib/log"
 import {
   CONNECT_WHATSAPP_RESULT_TYPES,

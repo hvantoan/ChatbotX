@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { MuseConnect } from "@/features/integration-muse/muse-connect"
 import { findIntegrationMuse } from "@/features/integration-muse/queries"

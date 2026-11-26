@@ -5,9 +5,9 @@ import {
   eq,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
-import { pipelineStageModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { pipelineStageModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 export type PipelineStageInsert = Omit<
   typeof pipelineStageModel.$inferInsert,

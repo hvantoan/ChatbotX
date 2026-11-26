@@ -39,12 +39,12 @@ const startProductImportJob = vi.hoisted(() => vi.fn())
 vi.mock("@/features/products/lib/start-product-import", () => ({
   startProductImportJob,
 }))
-vi.mock("@chatbotx.io/business", async (importOriginal) => ({
+vi.mock("@inboxos.io/business", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
 }))
-vi.mock("@chatbotx.io/business/import", async () => {
+vi.mock("@inboxos.io/business/import", async () => {
   const { matchContactImportHeaders, matchProductImportHeaders } = await import(
-    "@chatbotx.io/imports"
+    "@inboxos.io/imports"
   )
   return {
     createImportUpload,
@@ -64,11 +64,11 @@ vi.mock("@/features/products/lib/product-import-template", () => ({
   resolveProductImportTemplateLocale: (locale: string) =>
     locale === "vi" ? "vi" : "en",
 }))
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
-vi.mock("@chatbotx.io/database/repositories", () => {
+vi.mock("@inboxos.io/database/repositories", () => {
   const nested: unknown = new Proxy(
     {},
     { get: (_o, prop) => (prop === "then" ? undefined : nested) },

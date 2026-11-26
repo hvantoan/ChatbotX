@@ -7,23 +7,23 @@ import {
   eq,
   inArray,
   isNull,
-} from "@chatbotx.io/database/client"
-import { integrationTypes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { integrationTypes } from "@inboxos.io/database/partials"
 import {
   appointmentCalendarModel,
   integrationGoogleCalendarModel,
   integrationModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationGoogleCalendarModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { IntegrationGoogleCalendarModel } from "@inboxos.io/database/types"
 import {
   type GoogleCalendarAuthValue,
   googleCalendarAuthSchema,
   integration as integrationGoogleCalendar,
-} from "@chatbotx.io/integration-google-calendar"
-import type { Oauth2AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-google-calendar"
+import type { Oauth2AuthValue } from "@inboxos.io/sdk"
 import { normalizeError } from "universal-error-normalizer"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { buildContext } from "../integration-context"
 import { logger } from "../logger"
 
@@ -116,7 +116,7 @@ class AppointmentExternalCalendarService extends BaseService {
         .returning({ id: integrationModel.id })
 
       if (!integration) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Failed to create Google Calendar connection",
         )
       }
@@ -341,11 +341,7 @@ class AppointmentExternalCalendarService extends BaseService {
     }
 
     if (connection.connectedCount > 0) {
-      throw new ChatbotXException(
-        "Connection is in use",
-        "connectionInUse",
-        409,
-      )
+      throw new InboxOSException("Connection is in use", "connectionInUse", 409)
     }
 
     return await this.getGoogleConnectionForProviderCall(input)

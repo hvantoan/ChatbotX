@@ -1,8 +1,8 @@
 "use client"
 
-import { SelectTagsInputField } from "@chatbotx.io/ui/components/form/select-tags-input-field"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { SelectTagsInputField } from "@inboxos.io/ui/components/form/select-tags-input-field"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"

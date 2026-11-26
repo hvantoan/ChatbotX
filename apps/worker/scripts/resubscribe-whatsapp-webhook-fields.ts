@@ -23,9 +23,9 @@
  * in their App Dashboard.
  */
 import { pathToFileURL } from "node:url"
-import { integrationWhatsappService } from "@chatbotx.io/business"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
-import { subscribeWebhook } from "@chatbotx.io/integration-whatsapp/api/webhook"
+import { integrationWhatsappService } from "@inboxos.io/business"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
+import { subscribeWebhook } from "@inboxos.io/integration-whatsapp/api/webhook"
 import { logger } from "../src/lib/logger"
 
 const BATCH_SIZE = 50

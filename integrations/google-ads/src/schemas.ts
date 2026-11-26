@@ -3,7 +3,7 @@ import type {
   Handler,
   Oauth2AuthValue,
   Oauth2Config,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import type { GoogleAdsUploadMethod } from "./lib/scopes"
 
@@ -82,7 +82,7 @@ export const conversionActionSchema = z.object({
     .catch(undefined),
 })
 
-/** One day of one conversion action as Google reports it (by conversion date, the basis ChatbotX counts by). */
+/** One day of one conversion action as Google reports it (by conversion date, the basis InboxOS counts by). */
 export type GoogleAdsConversionReportRow = {
   date: string
   conversionActionId: string

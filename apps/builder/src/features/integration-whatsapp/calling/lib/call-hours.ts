@@ -1,9 +1,9 @@
-import type { WhatsappCallHoursSnapshot } from "@chatbotx.io/database/partials"
+import type { WhatsappCallHoursSnapshot } from "@inboxos.io/database/partials"
 import type {
   WhatsappCallHours,
   WhatsappCallingHolidaySchedule,
   WhatsappCallingWeeklyHours,
-} from "@chatbotx.io/integration-whatsapp/api/calling"
+} from "@inboxos.io/integration-whatsapp/api/calling"
 import {
   CALL_HOURS_DAYS,
   CALL_HOURS_TIMEZONE_CODES,

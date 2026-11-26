@@ -1,4 +1,4 @@
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 const atLeastOneField = (value: Record<string, unknown>) =>

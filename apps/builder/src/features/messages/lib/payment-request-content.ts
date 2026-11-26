@@ -2,7 +2,7 @@ import {
   type PaymentRequest,
   paymentAmountToMinorUnits,
   paymentRequestSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { formatPrice } from "@/lib/format-price"
 
 /** Meta fixes the currency of a Brazilian payment request to BRL. */

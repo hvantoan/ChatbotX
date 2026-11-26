@@ -1,15 +1,15 @@
 import { createHash } from "node:crypto"
-import { buildContext, integrationMoosendService } from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import type { MoosendCreateContactSchema } from "@chatbotx.io/flow-config"
+import { buildContext, integrationMoosendService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import type { MoosendCreateContactSchema } from "@inboxos.io/flow-config"
 import {
   MOOSEND_HTTP_TIMEOUT_MS,
   MoosendApiError,
   moosendAuthSchema,
   moosendContactPayloadSchema,
   integration as moosendIntegration,
-} from "@chatbotx.io/integration-moosend"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-moosend"
+import { distributedLock } from "@inboxos.io/redis"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import { getContactFieldMap } from "./contact-field-map"

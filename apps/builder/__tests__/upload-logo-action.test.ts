@@ -3,18 +3,18 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const findLogo = vi.fn()
 const setLogoIfEmpty = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { findLogo, setLogoIfEmpty },
 }))
 
 const uploadFileFromUrl = vi.fn()
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploadFileFromUrl,
 }))
 
 const createId = vi.fn(() => "logo-id")
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId,

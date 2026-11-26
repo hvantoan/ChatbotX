@@ -1,5 +1,5 @@
-import type { AIProvider } from "@chatbotx.io/ai"
-import type { ErrorLogProvider } from "@chatbotx.io/utils/error-log"
+import type { AIProvider } from "@inboxos.io/ai"
+import type { ErrorLogProvider } from "@inboxos.io/utils/error-log"
 
 /**
  * The provider an AI step's failure is attributed to in `ErrorLog`.

@@ -1,12 +1,12 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
-import type { GlobalRouterDestination } from "@chatbotx.io/decision-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
+import type { GlobalRouterDestination } from "@inboxos.io/decision-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -14,25 +14,25 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@chatbotx.io/ui/components/ui/command"
+} from "@inboxos.io/ui/components/ui/command"
 import {
   FormControl,
   FormField,
   FormItem,
-} from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/form"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/select"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useQuery } from "@tanstack/react-query"
 import { Check, ChevronsUpDown, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

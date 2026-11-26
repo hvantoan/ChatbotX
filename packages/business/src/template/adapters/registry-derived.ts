@@ -1,7 +1,7 @@
 import {
   type TemplateResourceCategory,
   templateResourceCategories,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 type CategoryResult = {
   entries: readonly (Record<string, unknown> & { sourceId: string })[]

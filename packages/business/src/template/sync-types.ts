@@ -2,15 +2,15 @@ import type {
   TemplateCategory,
   TemplateResourceCategory,
   TemplateResourceKind,
-} from "@chatbotx.io/database/partials"
-import { templateResourceKinds } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
+import { templateResourceKinds } from "@inboxos.io/database/partials"
 import type {
   TemplateSyncOutcome,
   TemplateSyncRow,
   templateInstallationRepository,
   templateInstallationSyncRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import {
   TRACKED_KIND_BY_CATEGORY,
   type templateAdapterRegistry,

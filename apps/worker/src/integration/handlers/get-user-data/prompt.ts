@@ -3,9 +3,9 @@ import {
   normalizeLanguage,
   resolveTenantSettings,
   workspaceService,
-} from "@chatbotx.io/business"
-import { validateReplyInput } from "@chatbotx.io/business/get-user-data"
-import { signUserDataWebviewToken } from "@chatbotx.io/encryption"
+} from "@inboxos.io/business"
+import { validateReplyInput } from "@inboxos.io/business/get-user-data"
+import { signUserDataWebviewToken } from "@inboxos.io/encryption"
 import {
   encodeContactHintQuickReplyPayload,
   encodeStepInputSkipPostback,
@@ -13,16 +13,16 @@ import {
   ReplyFormat,
   type SendTextStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   MESSENGER_NATIVE_QUICK_REPLY,
   type MessageButtonTemplate,
   NATIVE_LOCATION_REQUEST_CHANNELS,
   URL_QUICK_REPLY_CAPABLE_CHANNELS,
   WHATSAPP_NATIVE_LOCATION_REQUEST,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { waitForChatJobCompletion } from "../../utils/message"
 import type { ExecuteStepProps } from "../flow"
 import { enqueueFlowStepMessage } from "../flow-utils"

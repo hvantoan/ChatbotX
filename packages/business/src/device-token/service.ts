@@ -4,10 +4,10 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import type { DevicePlatformType } from "@chatbotx.io/database/partials"
-import { userDeviceTokenModel } from "@chatbotx.io/database/schema"
-import type { UserDeviceTokenModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import type { DevicePlatformType } from "@inboxos.io/database/partials"
+import { userDeviceTokenModel } from "@inboxos.io/database/schema"
+import type { UserDeviceTokenModel } from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
 
 class DeviceTokenService extends BaseService {

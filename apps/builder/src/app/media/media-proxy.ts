@@ -1,21 +1,21 @@
 export {
   isFailedOriginPath,
   isPendingOriginPath,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 
 import {
   resolveIntegrationForAttachment,
   TerminalMediaError,
-} from "@chatbotx.io/channel-registry/media-hydration"
-import type { MediaTokenPayload } from "@chatbotx.io/encryption"
-import { verifyMediaToken } from "@chatbotx.io/encryption"
-import { getPublicOriginFromRequest } from "@chatbotx.io/utils"
+} from "@inboxos.io/channel-registry/media-hydration"
+import type { MediaTokenPayload } from "@inboxos.io/encryption"
+import { verifyMediaToken } from "@inboxos.io/encryption"
+import { getPublicOriginFromRequest } from "@inboxos.io/utils"
 import {
   LOW_BULK_PRIORITY,
   LowJobAction,
   type LowJobCoexistAttachmentDownload,
   lowQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type NextRequest, NextResponse } from "next/server"
 import { httpLogger } from "@/lib/log"
 import {

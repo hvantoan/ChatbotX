@@ -1,9 +1,9 @@
 "use client"
 
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {

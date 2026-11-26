@@ -1,15 +1,15 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Tabs, TabsList, TabsTrigger } from "@chatbotx.io/ui/components/ui/tabs"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/ui/components/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@inboxos.io/ui/components/ui/tabs"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"

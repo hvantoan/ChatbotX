@@ -1,4 +1,4 @@
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
 import type { WorkspacePermissionKey } from "@/lib/auth/permission-routes"
 import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
 

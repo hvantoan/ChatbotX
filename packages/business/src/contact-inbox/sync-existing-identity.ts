@@ -1,12 +1,12 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import type {
   ContactInboxModel,
   ContactModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type {
   IncomingContact,
   SourceScopedIdentityMatchedBy,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { contactService } from "../contact/service"
 import {
   resolveParentFallbackRotationPlan,

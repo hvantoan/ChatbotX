@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -32,7 +32,7 @@ vi.mock(
 )
 
 vi.mock("../../template/template-resource-locks", async (importOriginal) => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     ...(await importOriginal<
       typeof import("../../template/template-resource-locks")
@@ -44,18 +44,18 @@ vi.mock("../../template/template-resource-locks", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (run: (tx: unknown) => unknown) => run({ name: "tx" }),
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   ecommerceSettingsRepository: {
     find: (...args: unknown[]) => mocks.find(...args),
     findForUpdate: (...args: unknown[]) => mocks.findForUpdate(...args),
@@ -525,11 +525,11 @@ describe("switching the store source", () => {
   })
 
   test("a sync already running, or a queue error, does not fail the switch", async () => {
-    const { ChatbotXException } = await import("../../errors")
+    const { InboxOSException } = await import("../../errors")
     mocks.findForUpdate.mockResolvedValue(savedAs("chatbotx"))
     mocks.findShopify.mockResolvedValue({ currency: "USD" })
     mocks.syncShopify.mockRejectedValueOnce(
-      new ChatbotXException("running", "shopifySyncInProgress", 409),
+      new InboxOSException("running", "shopifySyncInProgress", 409),
     )
     await expect(
       ecommerceSettingsService.update({

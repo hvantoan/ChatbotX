@@ -1,5 +1,5 @@
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import { resolveMessagingAdsToolEmptyState } from "../lib/tool-empty-state"

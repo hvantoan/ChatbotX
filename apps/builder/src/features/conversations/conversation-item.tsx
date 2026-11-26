@@ -1,19 +1,19 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   MailIcon,
   MessageCircleMoreIcon,

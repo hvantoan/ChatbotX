@@ -7,7 +7,7 @@ import {
   isGoogleRevokedError,
   probeVerify,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { getBusyEvents } from "./apis/busy-events"
 import { verifyCalendarAccess } from "./apis/calendars"
 import { cancelEvent, createEvent } from "./apis/events"

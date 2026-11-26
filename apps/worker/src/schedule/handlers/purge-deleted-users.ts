@@ -1,10 +1,10 @@
-import { userService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { userService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 
 const LOCK_KEY = "schedule:purge-deleted-users"
 const log = getChildLogger("purge-deleted-users")

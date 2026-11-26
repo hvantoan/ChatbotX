@@ -6,15 +6,15 @@ import {
   inArray,
   isUniqueViolationError,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
-import { magicLinkModel } from "@chatbotx.io/database/schema"
-import type { MagicLinkModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import { magicLinkModel } from "@inboxos.io/database/schema"
+import type { MagicLinkModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 

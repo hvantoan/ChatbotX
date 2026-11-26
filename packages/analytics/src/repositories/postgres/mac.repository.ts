@@ -10,8 +10,8 @@ import {
   inArray,
   lte,
   sql,
-} from "@chatbotx.io/database/client"
-import type { MacEventType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { MacEventType } from "@inboxos.io/database/partials"
 import {
   contactActiveHourlyModel,
   contactActiveMonthlyModel,
@@ -19,8 +19,8 @@ import {
   inboxModel,
   workspaceMacModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { logger } from "../../lib/logger"
 import {
   type AnalyticsFilter,

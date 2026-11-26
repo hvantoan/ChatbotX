@@ -1,7 +1,4 @@
-import {
-  createSelectSchema,
-  magicLinkModel,
-} from "@chatbotx.io/database/schema"
+import { createSelectSchema, magicLinkModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const magicLinkResource = createSelectSchema(magicLinkModel, {

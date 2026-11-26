@@ -1,17 +1,17 @@
 "use client"
 
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { TimeField } from "@chatbotx.io/ui/components/form/time-field"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { TimeField } from "@inboxos.io/ui/components/form/time-field"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useTranslations } from "next-intl"
 import { useWatch } from "react-hook-form"
 import { PublicUrlSection } from "@/components/public-url-section"

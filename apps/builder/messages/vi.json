@@ -2596,7 +2596,7 @@
     },
     "fromName": {
       "label": "Tên người gửi",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "limitContacts": {
       "label": "Maximum of Contacts"
@@ -3646,7 +3646,7 @@
     "title": "Chung"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Thao tác này xóa chiến dịch tin nhắn Meta và gỡ chiến dịch khỏi ChatbotX. Nếu Meta từ chối việc xóa, chiến dịch sẽ được giữ lại.",
+    "deleteWarning": "Thao tác này xóa chiến dịch tin nhắn Meta và gỡ chiến dịch khỏi InboxOS. Nếu Meta từ chối việc xóa, chiến dịch sẽ được giữ lại.",
     "title": "Facebook Marketing Messages",
     "description": "Tăng tương tác và doanh số bằng tin nhắn quảng cáo được cá nhân hóa trên Messenger.",
     "create": "Tạo mới",
@@ -3687,7 +3687,7 @@
       "tosNotAccepted": "Để sử dụng tính năng này, vui lòng chấp nhận điều khoản đối tượng tùy chỉnh tại {url}",
       "notFound": "Không tìm thấy tin nhắn marketing.",
       "audienceNotTargetable": "Đối tượng tùy chỉnh đã chọn chưa sẵn sàng hoặc không thuộc Trang và tài khoản quảng cáo này.",
-      "connectFirst": "Hãy kết nối Marketing Messages trong ứng dụng ChatbotX trước.",
+      "connectFirst": "Hãy kết nối Marketing Messages trong ứng dụng InboxOS trước.",
       "mmInvalidState": "Thao tác này không khả dụng ở trạng thái hiện tại của chiến dịch.",
       "mmCampaignEnded": "Chiến dịch tin nhắn Meta đã kết thúc nên không thể gửi hoặc tiếp tục.",
       "mmPageNotConnected": "Trang của chiến dịch này chưa được kết nối với không gian làm việc này.",
@@ -3707,7 +3707,7 @@
       "uploadMore": "Tải thêm hàng",
       "empty": "Chưa có đối tượng tùy chỉnh nào.",
       "deleteTitle": "Xóa đối tượng tùy chỉnh",
-      "deleteWarning": "Thao tác này sẽ xóa đối tượng tùy chỉnh \"{name}\" trên Meta và trong ChatbotX. Không thể hoàn tác.",
+      "deleteWarning": "Thao tác này sẽ xóa đối tượng tùy chỉnh \"{name}\" trên Meta và trong InboxOS. Không thể hoàn tác.",
       "deleted": "Đã xóa đối tượng tùy chỉnh.",
       "pageDisconnected": "Trang đã ngắt kết nối",
       "status": {
@@ -5563,7 +5563,7 @@
         "title": "Điều kiện gọi điện",
         "appSubscriptionMissing": "Hãy cấu hình webhook WhatsApp cho app này trong App Dashboard của Meta trước, sau đó thử lại.",
         "appSubscriptionFailed": "Không xác minh được việc app đăng ký webhook 'calls'. Vui lòng thử lại sau.",
-        "callsNotSubscribed": "App này chưa đăng ký trường webhook 'calls', nên các sự kiện cuộc gọi không thể đến ChatbotX (lỗi Meta 138018: chưa đủ điều kiện kỹ thuật — cần có ít nhất một app đăng ký với WABA cũng có trường webhook calls).",
+        "callsNotSubscribed": "App này chưa đăng ký trường webhook 'calls', nên các sự kiện cuộc gọi không thể đến InboxOS (lỗi Meta 138018: chưa đủ điều kiện kỹ thuật — cần có ít nhất một app đăng ký với WABA cũng có trường webhook calls).",
         "fixButton": "Sửa",
         "fixSuccess": "App đã được đăng ký webhook cuộc gọi WhatsApp.",
         "manualIntegrationNotice": "Số này được kết nối thủ công và không có thông tin app ở đây. Hãy đăng ký trường webhook 'calls' cho app của bạn trong App Dashboard của Meta.",
@@ -7929,7 +7929,7 @@
     "portalPricingPage": "Bảng giá"
   },
   "deleteAccountPage": {
-    "title": "Xóa tài khoản ChatbotX của bạn",
+    "title": "Xóa tài khoản InboxOS của bạn",
     "intro": "Bạn có thể xóa tài khoản và dữ liệu liên quan theo một trong các cách sau.",
     "waysTitle": "Cách xóa tài khoản",
     "wayMobile": "Trong ứng dụng di động: Cài đặt → Xóa tài khoản.",
@@ -8878,7 +8878,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Nguồn hành động",
@@ -9373,8 +9373,8 @@
       },
       "googleReport": {
         "title": "Google Ads báo cáo",
-        "description": "Số conversion mà chính Google Ads ghi nhận trong các ngày này, cạnh số ChatbotX đã gửi và Google đã xác nhận.",
-        "sent": "ChatbotX đã xác nhận",
+        "description": "Số conversion mà chính Google Ads ghi nhận trong các ngày này, cạnh số InboxOS đã gửi và Google đã xác nhận.",
+        "sent": "InboxOS đã xác nhận",
         "reported": "Google báo cáo",
         "note": "Google có thể mất vài giờ để cập nhật báo cáo và cách đếm theo cài đặt của từng action, nên chênh lệch nhỏ là bình thường.",
         "unavailable": "Hiện chưa lấy được báo cáo từ Google Ads."
@@ -10849,7 +10849,7 @@
         "label": "Nguồn cửa hàng",
         "description": "Chọn nguồn cửa hàng dùng để quản lý sản phẩm, tồn kho và đơn hàng của bạn. Khi chọn Shopify / WooCommerce, mọi sản phẩm và đơn hàng sẽ được quản lý trực tiếp từ cửa hàng Shopify / WooCommerce của bạn.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11018,7 +11018,7 @@
       },
       "authKind": {
         "label": "Xác thực",
-        "description": "Cách ChatbotX đăng nhập vào cửa hàng của bạn: dùng mã truy cập Admin API của một ứng dụng tùy chỉnh, hoặc dùng Client ID và secret của ứng dụng tạo trong Shopify Dev Dashboard.",
+        "description": "Cách InboxOS đăng nhập vào cửa hàng của bạn: dùng mã truy cập Admin API của một ứng dụng tùy chỉnh, hoặc dùng Client ID và secret của ứng dụng tạo trong Shopify Dev Dashboard.",
         "options": {
           "token": "Mã truy cập Admin API",
           "clientCredentials": "Client ID và secret (ứng dụng Dev Dashboard)"
@@ -11929,8 +11929,8 @@
     "workspaceHint": "{clientName} chỉ thao tác trên workspace này. Muốn đổi workspace, hãy ngắt kết nối rồi kết nối lại.",
     "noWorkspaces": "Bạn không phải quản trị viên của workspace nào nên không thể cấp quyền cho ứng dụng này."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12104,7 +12104,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",

@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs"
 import path from "node:path"
-import { getUserDataStepDefaultFn, stepTypes } from "@chatbotx.io/flow-config"
+import { getUserDataStepDefaultFn, stepTypes } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { sendMessageEditorMenus } from "@/features/flows/react-flow/nodes/send-message/menu"
 import type { TranslationFn } from "@/features/flows/react-flow/nodes/types"

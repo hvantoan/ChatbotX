@@ -1,4 +1,4 @@
-import { contactVariableService } from "@chatbotx.io/variables"
+import { contactVariableService } from "@inboxos.io/variables"
 
 /** Renders `text` for a contact exactly like a flow message would. */
 export const renderForContact = async (input: {

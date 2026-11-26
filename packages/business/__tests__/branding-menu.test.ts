@@ -5,7 +5,7 @@ import {
 } from "../src/platform/branding"
 
 const BRANDING_URL = "https://app.chatbotx.io/?ref=selfhosted&channel=webchat"
-const ENTRY = { label: "⚡ Built with chatbotx.io", url: BRANDING_URL }
+const ENTRY = { label: "⚡ Built with InboxOS", url: BRANDING_URL }
 
 describe("ensureBrandingMenuEntry", () => {
   test("appends the branding entry when absent", () => {

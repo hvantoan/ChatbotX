@@ -2,7 +2,7 @@ import {
   importMiniAppFlowJson,
   miniAppService,
   miniAppSubmissionService,
-} from "@chatbotx.io/business/mini-app"
+} from "@inboxos.io/business/mini-app"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
   possibleErrorsOnCreatingResource,

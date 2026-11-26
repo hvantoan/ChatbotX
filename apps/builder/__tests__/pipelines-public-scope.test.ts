@@ -27,7 +27,7 @@ const pipelineStageBulkService = { deleteStage: vi.fn() }
 const pipelineAnalyticsService = { getStats: vi.fn() }
 const contactService = { resolveIdByIdentifier: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -35,7 +35,7 @@ vi.mock("@chatbotx.io/business", () => ({
   contactService,
 }))
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   pipelineService,
   pipelineItemService,
   pipelineItemQueryService,

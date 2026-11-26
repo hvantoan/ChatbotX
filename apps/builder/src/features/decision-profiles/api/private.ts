@@ -1,7 +1,7 @@
 import {
   decisionProfileContractSchema,
   decisionProfileService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"

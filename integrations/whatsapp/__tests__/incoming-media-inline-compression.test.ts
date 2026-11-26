@@ -5,9 +5,9 @@ const mocks = vi.hoisted(() => ({
   mimeType: { current: "image/jpeg" },
 }))
 
-vi.mock("@chatbotx.io/utils/store-incoming-image", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils/store-incoming-image", async (importOriginal) => ({
   ...(await importOriginal<
-    typeof import("@chatbotx.io/utils/store-incoming-image")
+    typeof import("@inboxos.io/utils/store-incoming-image")
   >()),
   storeIncomingImage: mocks.storeIncomingImage,
 }))

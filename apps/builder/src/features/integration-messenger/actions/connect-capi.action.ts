@@ -1,7 +1,7 @@
 "use server"
 
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { startMetaCapiOAuth } from "@/features/meta-conversions/lib/start-meta-capi-oauth"
 import { workspaceActionClient } from "@/lib/safe-action"
 

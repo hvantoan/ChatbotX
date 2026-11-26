@@ -3,8 +3,8 @@
 import {
   type PipelineActivityGroup,
   pipelineActivityGroups,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import { ListFilterIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { ACTIVITY_GROUP_LABEL_KEYS } from "../../lib/activity-group-keys"

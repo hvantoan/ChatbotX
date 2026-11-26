@@ -1,8 +1,8 @@
 import {
   commentAutomationContactData,
   commentAutomationEventType,
-} from "@chatbotx.io/analytics/schemas"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/analytics/schemas"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { withPublicPaging } from "@/lib/public-api/list"
 

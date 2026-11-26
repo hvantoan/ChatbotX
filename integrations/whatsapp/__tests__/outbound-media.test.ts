@@ -14,7 +14,7 @@ const mockResolveOutboundMediaUrl = vi.fn(
   async ({ url }: { url: string }) => `https://cdn.test/rehosted?src=${url}`,
 )
 
-vi.mock("@chatbotx.io/business/outbound-media", () => ({
+vi.mock("@inboxos.io/business/outbound-media", () => ({
   resolveOutboundMediaUrl: mockResolveOutboundMediaUrl,
 }))
 

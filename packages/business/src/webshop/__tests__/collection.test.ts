@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   getSettings: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   productRepository: {
     listForShop: (...args: unknown[]) => mocks.listForShop(...args),
   },
@@ -20,7 +20,7 @@ vi.mock("../../ecommerce-settings/service", () => ({
 vi.mock("../../platform/settings", () => ({
   resolveWorkspaceAppUrl: async () => "https://app.example",
 }))
-vi.mock("@chatbotx.io/encryption/shop-token", () => ({
+vi.mock("@inboxos.io/encryption/shop-token", () => ({
   signShopToken: async (input: { contactId: string }) =>
     `signed-${input.contactId}`,
 }))

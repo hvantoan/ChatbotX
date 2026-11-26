@@ -1,6 +1,6 @@
 "use server"
 
-import { sequenceService } from "@chatbotx.io/business/sequence"
+import { sequenceService } from "@inboxos.io/business/sequence"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type * as contactPermissionScope from "@chatbotx.io/business/contact/permission-scope"
+import type * as contactPermissionScope from "@inboxos.io/business/contact/permission-scope"
 import { describe, expect, test, vi } from "vitest"
 
 type RouteConfig = {
@@ -75,13 +75,13 @@ vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
 vi.mock("@/lib/auth/utils", () => ({
   getCurrentUserAndTargetWorkspace: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business/contact-utils", () => ({
+vi.mock("@inboxos.io/business/contact-utils", () => ({
   maskContactEmailAndPhone: vi.fn((contact: unknown) => contact),
 }))
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const { buildContactPermissionScope } = await vi.importActual<
     typeof contactPermissionScope
-  >("@chatbotx.io/business/contact/permission-scope")
+  >("@inboxos.io/business/contact/permission-scope")
 
   return {
     appointmentService: {
@@ -92,7 +92,7 @@ vi.mock("@chatbotx.io/business", async () => {
     couponService: { listIssuedCouponsForContact: mocks.listContactCoupons },
   }
 })
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {
     listByContactId: mocks.listContactSequences,
   },

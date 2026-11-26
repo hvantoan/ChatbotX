@@ -5,7 +5,7 @@ import {
   dropLeaderboardScoreEventPartition,
   leaderboardRepository,
   listLeaderboardScoreEventPartitions,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { logger } from "../logger"
 
 export const LEADERBOARD_PARTITION_CONFIG = {

@@ -2,8 +2,8 @@ import {
   type PaymentRequest,
   paymentAmountToMinorUnits,
   waPaymentSettingTypeByMethod,
-} from "@chatbotx.io/flow-config"
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 import type {
   WhatsAppPaymentRequestAction,
   WhatsAppPaymentSetting,

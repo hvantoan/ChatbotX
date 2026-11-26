@@ -3,7 +3,7 @@ name: cli-mcp-docs
 description: Use as the last step of every new feature or new operation (every one ships a public procedure — AGENTS.md invariant 23), and after adding, renaming, or removing a public oRPC procedure or changing an operation's MCP visibility. The CLI and MCP server generate their surface at runtime from the live OpenAPI spec, but repo-local docs still drift. This skill lists what to check and update, plus how to catch a silent CLI command-name collision before it ships.
 ---
 
-# CLI & MCP docs sync (ChatbotX)
+# CLI & MCP docs sync (InboxOS)
 
 `apps/cli` and `apps/mcp-server` never need a code change for a normal new
 endpoint — they both fetch `GET /api/public-spec.json` (generated from
@@ -11,7 +11,7 @@ endpoint — they both fetch `GET /api/public-spec.json` (generated from
 surface from it at runtime, cached for an hour. What does **not** update
 itself is the human-facing documentation that describes that surface. Skipping
 this after a public API change is how the docs quietly drift from what
-`chatbotx --help` / `tools/list` actually returns.
+`inboxos --help` / `tools/list` actually returns.
 
 ## 1. Confirm the operation is live and named right
 
@@ -54,7 +54,7 @@ the second** (stderr warning, exit code 0 — easy to miss in CI).
 ```bash
 pnpm --filter @hvantoan/inboxos test                              # pins known collisions,
                                                           # apps/cli/__tests__/openapi-loader-command-names.test.ts
-CHATBOTX_API_URL=<local-builder-url>/api \
+INBOXOS_API_URL=<local-builder-url>/api \
   pnpm --filter @hvantoan/inboxos dev:cli -- --refresh-spec <group> --help
 ```
 
@@ -81,9 +81,9 @@ changes, sync the matching docs there in the same product change.
 
 That repo also runs its own automated check
 (`ChatbotXIO/chatbotx-agent/.github/workflows/upstream-drift.yml`): daily, and
-immediately after `publish-cli.yml`/`publish-chatbotx-mcp.yml` here publish a
+immediately after `publish-cli.yml`/`publish-inboxos-mcp.yml` here publish a
 new version (via a `repository_dispatch` call those workflows make, gated on
-the `CHATBOTX_AGENT_DISPATCH_TOKEN` secret — see the "Notify chatbotx-agent"
+the `INBOXOS_AGENT_DISPATCH_TOKEN` secret — see the "Notify chatbotx-agent"
 step in each). It compares the live CLI `--help` output and the live MCP
 default-tool set against `chatbotx-agent`'s docs and opens/updates a GitHub
 issue there on drift. It is a safety net for when this manual sync step is

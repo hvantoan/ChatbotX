@@ -1,4 +1,4 @@
-import { appointmentCalendarService } from "@chatbotx.io/business"
+import { appointmentCalendarService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 
 export async function listAppointmentCalendarsForFlow(input: {

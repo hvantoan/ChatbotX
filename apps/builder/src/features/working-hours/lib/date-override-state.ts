@@ -2,7 +2,7 @@ import {
   WORKING_HOURS_MAX_INTERVALS_PER_WEEKDAY,
   WORKING_HOURS_MINUTES_PER_DAY,
   type WorkingHoursDateRanges,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { formatMinute, TIME_STEP_MINUTES } from "./time-options"
 
 export type DateOverrideDraft = {

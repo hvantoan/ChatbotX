@@ -1,6 +1,6 @@
-import { decisionRepository } from "@chatbotx.io/database/repositories"
-import type { DecisionConnectionModel } from "@chatbotx.io/database/types"
-import { type EncryptedData, encryptUtils } from "@chatbotx.io/encryption"
+import { decisionRepository } from "@inboxos.io/database/repositories"
+import type { DecisionConnectionModel } from "@inboxos.io/database/types"
+import { type EncryptedData, encryptUtils } from "@inboxos.io/encryption"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { decisionConnectionService } from "./connection-service"
 

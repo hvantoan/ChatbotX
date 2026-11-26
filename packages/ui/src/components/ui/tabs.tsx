@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 
 type TabsListVariant = "line" | "pills"
 

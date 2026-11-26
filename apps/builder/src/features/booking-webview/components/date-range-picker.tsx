@@ -1,9 +1,9 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Calendar } from "@chatbotx.io/ui/components/ui/calendar"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Calendar } from "@inboxos.io/ui/components/ui/calendar"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { CalendarDaysIcon, Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

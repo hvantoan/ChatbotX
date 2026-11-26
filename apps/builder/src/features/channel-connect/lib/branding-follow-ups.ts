@@ -5,10 +5,10 @@ import {
   buildContext,
   resolveTenantSettings,
   workspaceService,
-} from "@chatbotx.io/business"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import type { AuthValue, Context } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import type { AuthValue, Context } from "@inboxos.io/sdk"
 import {
   BRANDING_TITLE,
   getBrandingUrl,

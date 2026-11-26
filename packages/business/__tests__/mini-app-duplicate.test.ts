@@ -14,7 +14,7 @@ const {
   isUniqueViolationError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   db: {
     insert: vi.fn(() => ({
@@ -29,12 +29,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isUniqueViolationError,
   sql: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   miniAppModel: {},
   miniAppPublicationModel: {},
   miniAppSubmissionModel: {},
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   miniAppRepository: { findByIdAndWorkspace, listNamesWithPrefix },
   miniAppSubmissionRepository: {},
 }))
@@ -45,7 +45,7 @@ vi.mock("../src/contact-custom-field/service", () => ({
 vi.mock("../src/mini-app/upload-service", () => ({ miniAppUploadService: {} }))
 
 const { createStarterDefinition, MINI_APP_NAME_MAX_LENGTH } = await import(
-  "@chatbotx.io/mini-app"
+  "@inboxos.io/mini-app"
 )
 const { miniAppService } = await import("../src/mini-app/service")
 

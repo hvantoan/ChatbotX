@@ -10,7 +10,7 @@ const { mockListFlows, mockListTags, mockListKeywords, mockListSettings } =
     mockListSettings: vi.fn(),
   }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateSelectableResourceRepository: {
     listFlows: mockListFlows,
     listTags: mockListTags,
@@ -29,7 +29,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
 }))
 // No row on these pages came from a View-only template.
 vi.mock(
-  "@chatbotx.io/database/repositories/template-installed-resource",
+  "@inboxos.io/database/repositories/template-installed-resource",
   () => ({
     templateInstalledResourceRepository: {
       findBlocking: vi.fn().mockResolvedValue([]),
@@ -37,7 +37,7 @@ vi.mock(
   }),
 )
 
-const { templateService } = await import("@chatbotx.io/business")
+const { templateService } = await import("@inboxos.io/business")
 
 type ListInput = Omit<
   Parameters<typeof templateService.listSelectableResources>[0],

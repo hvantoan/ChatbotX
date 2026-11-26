@@ -1,10 +1,10 @@
-import { findOrFail } from "@chatbotx.io/database/client"
+import { findOrFail } from "@inboxos.io/database/client"
 import {
   type IntegrationWhatsappClientResource,
   integrationWhatsappRepository,
-} from "@chatbotx.io/database/repositories"
-import { integrationWhatsappModel } from "@chatbotx.io/database/schema"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import { integrationWhatsappModel } from "@inboxos.io/database/schema"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
 import type { PaginatedResponse } from "@/features/common/schema/pagination"
 
 export const listIntegrationWhatsapps = async (

@@ -1,4 +1,4 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /** Per-admin response-time measures; averages are null when the admin has no matching rows. */

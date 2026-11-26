@@ -1,8 +1,5 @@
-import { getAuditActor } from "@chatbotx.io/business/audit"
-import type {
-  DefaultJobData,
-  TemplateJobData,
-} from "@chatbotx.io/worker-config"
+import { getAuditActor } from "@inboxos.io/business/audit"
+import type { DefaultJobData, TemplateJobData } from "@inboxos.io/worker-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 type DefaultWorkerJob = {
@@ -85,9 +82,9 @@ vi.mock("bullmq", () => {
   }
 })
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     DefaultJobAction: {

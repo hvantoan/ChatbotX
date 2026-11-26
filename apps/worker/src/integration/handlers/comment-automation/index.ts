@@ -1,30 +1,30 @@
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
 import {
   commentAutomationService,
   contactInboxService,
   contactService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type CommentAutomationMissReason,
   type CommentReply,
   commentAutomationChannelSupportsImageFilter,
   type IntegrationType,
-} from "@chatbotx.io/database/partials"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
 import type {
   CommentAutomationMissInsert,
   CommentAutomationModel,
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
+import { createId } from "@inboxos.io/utils"
 import {
   ChatJobAction,
   chatQueue,
   type IntegrationJobProcessCommentAutomation,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { integrationService } from "../../../services/integrations"
 import {

@@ -17,12 +17,12 @@ vi.mock("@/features/meta-conversions/lib/find-capi-integration", () => ({
 vi.mock("@/features/meta-conversions/lib/provision-capi-dataset", () => ({
   capiDatasetProvisioner: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-meta-conversions", () => ({
+vi.mock("@inboxos.io/integration-meta-conversions", () => ({
   getDataset: vi.fn(),
   sendConversionEvent: vi.fn(),
   MetaConversionsException: mocks.MetaConversionsException,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   CapiTestEventError: class extends Error {},
   metaConversionsService: {
     saveCapiTestEventCode: mocks.saveCapiTestEventCode,

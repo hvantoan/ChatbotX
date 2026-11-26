@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { FieldOperationType } from "@chatbotx.io/flow-config"
+import { FieldOperationType } from "@inboxos.io/flow-config"
 import { act, useEffect } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -24,7 +24,7 @@ vi.mock("@/components/tiptap/plain-text-editor-field", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/input-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/input-field", () => ({
   InputField: ({
     type,
     required,

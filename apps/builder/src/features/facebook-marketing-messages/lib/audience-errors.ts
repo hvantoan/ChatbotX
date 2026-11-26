@@ -1,11 +1,11 @@
 import "server-only"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   type AudienceErrorCode,
   type AudienceUploadResult,
   isAudienceError,
-} from "@chatbotx.io/business/facebook-marketing-message-audience"
+} from "@inboxos.io/business/facebook-marketing-message-audience"
 import { getTranslations } from "next-intl/server"
 import type { UploadOutcome } from "./audience-upload"
 
@@ -21,7 +21,7 @@ export async function withAudienceErrors<T>(fn: () => Promise<T>): Promise<T> {
     if (!isAudienceError(error)) {
       throw error
     }
-    throw new ChatbotXException(await translateAudienceError(error))
+    throw new InboxOSException(await translateAudienceError(error))
   }
 }
 
@@ -53,7 +53,7 @@ export async function toUploadOutcome(
 }
 
 async function translateAudienceError(
-  error: ChatbotXException & { code: AudienceErrorCode },
+  error: InboxOSException & { code: AudienceErrorCode },
 ): Promise<string> {
   const t = await getTranslations()
   const data = error.data ?? {}

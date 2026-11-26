@@ -15,9 +15,9 @@ or a list page that shows template locks. Run layers 2 and 3 before a release.
 ## 1. Automated tests
 
 ```bash
-pnpm --filter @chatbotx.io/business exec vitest run __tests__/template
+pnpm --filter @inboxos.io/business exec vitest run __tests__/template
 pnpm --filter builder exec vitest run __tests__/template __tests__/platform-default-template __tests__/public-template-sign-in-prompt.test.tsx __tests__/proxy-public-routes.test.ts
-pnpm --filter @chatbotx.io/flow-config exec vitest run __tests__/template-export-schema.test.ts __tests__/remap.test.ts __tests__/reference-registry-completeness.test.ts __tests__/unresolved-references.test.ts
+pnpm --filter @inboxos.io/flow-config exec vitest run __tests__/template-export-schema.test.ts __tests__/remap.test.ts __tests__/reference-registry-completeness.test.ts __tests__/unresolved-references.test.ts
 pnpm --filter worker exec vitest run __tests__/install-template-handler.test.ts __tests__/sync-template-installation-handler.test.ts __tests__/uninstall-template-handler.test.ts __tests__/redispatch-template-jobs.test.ts __tests__/run-leased-template-job.test.ts
 ```
 
@@ -53,7 +53,7 @@ agents/functions/MCP servers, comment automations, entry point links, saved
 replies).
 
 ```bash
-CHATBOTX_API_URL=https://localhost:3123/api \
+INBOXOS_API_URL=https://localhost:3123/api \
 TPL_SOURCE_TOKEN=... TPL_TARGET_TOKEN=... TPL_TARGET_RO_TOKEN=... \
 NODE_EXTRA_CA_CERTS="$HOME/Library/Application Support/mkcert/rootCA.pem" \
 node scripts/templates-e2e.mjs

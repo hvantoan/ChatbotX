@@ -2,14 +2,14 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import type { OnlinePaymentProvider } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import type { OnlinePaymentProvider } from "@inboxos.io/database/partials"
 import {
   orderPaymentRepository,
   paymentProviderRepository,
-} from "@chatbotx.io/database/repositories"
-import type { EcommercePaymentProviderModel } from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
+} from "@inboxos.io/database/repositories"
+import type { EcommercePaymentProviderModel } from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
 import {
   buildStripeAuthorizeUrl,
   connectPaypal,
@@ -26,9 +26,9 @@ import {
   readStripeAccount,
   readStripeKeyAccount,
   type StripeKeySecret,
-} from "@chatbotx.io/payments"
-import { distributedLock, distributedStore } from "@chatbotx.io/redis"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/payments"
+import { distributedLock, distributedStore } from "@inboxos.io/redis"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import { z } from "zod"
 import { BaseService } from "../base.service"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"

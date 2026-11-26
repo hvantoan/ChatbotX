@@ -2423,7 +2423,7 @@
     },
     "fromName": {
       "label": "送信者名",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "メッセージテンプレート"
@@ -3446,7 +3446,7 @@
     "title": "一般"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Metaのメッセージキャンペーンを削除し、ChatbotXからもキャンペーンを削除します。Metaが削除を拒否した場合、キャンペーンは保持されます。",
+    "deleteWarning": "Metaのメッセージキャンペーンを削除し、InboxOSからもキャンペーンを削除します。Metaが削除を拒否した場合、キャンペーンは保持されます。",
     "title": "Facebookマーケティングメッセージ",
     "description": "Messengerでパーソナライズされたプロモーションメッセージを送り、エンゲージメントと売上を高めます。",
     "create": "新規作成",
@@ -3487,7 +3487,7 @@
       "tosNotAccepted": "この機能を使用するには、{url} でカスタムオブジェクトの規約に同意してください",
       "notFound": "マーケティングメッセージが見つかりません。",
       "audienceNotTargetable": "選択したカスタムオーディエンスは準備ができていないか、このページと広告アカウントに属していません。",
-      "connectFirst": "まずChatbotXアプリでマーケティングメッセージを接続してください。",
+      "connectFirst": "まずInboxOSアプリでマーケティングメッセージを接続してください。",
       "mmInvalidState": "この操作はキャンペーンの現在の状態では利用できません。",
       "mmCampaignEnded": "Metaのメッセージキャンペーンは終了しているため、送信も再開もできません。",
       "mmPageNotConnected": "このキャンペーンのページはこのワークスペースに接続されていません。",
@@ -3507,7 +3507,7 @@
       "uploadMore": "行を追加アップロード",
       "empty": "カスタムオーディエンスはまだありません。",
       "deleteTitle": "カスタムオーディエンスを削除",
-      "deleteWarning": "この操作により、カスタムオーディエンス「{name}」がMetaとChatbotXの両方から削除されます。元に戻すことはできません。",
+      "deleteWarning": "この操作により、カスタムオーディエンス「{name}」がMetaとInboxOSの両方から削除されます。元に戻すことはできません。",
       "deleted": "カスタムオーディエンスを削除しました。",
       "pageDisconnected": "ページの接続が解除されました",
       "status": {
@@ -5498,7 +5498,7 @@
         "title": "通話の利用資格",
         "appSubscriptionMissing": "まずMetaアプリダッシュボードでこのアプリのWhatsApp Webhookを設定してから、再度お試しください。",
         "appSubscriptionFailed": "アプリの「calls」Webhookのサブスクリプションを確認できませんでした。しばらくしてから再度お試しください。",
-        "callsNotSubscribed": "このアプリは「calls」Webhookフィールドをサブスクライブしていないため、通話イベントがChatbotXに届きません（Metaエラー138018：技術的な前提条件が満たされていません。WABAにサブスクライブしているアプリのうち、少なくとも1つが通話Webhookフィールドを持つようにしてください）。",
+        "callsNotSubscribed": "このアプリは「calls」Webhookフィールドをサブスクライブしていないため、通話イベントがInboxOSに届きません（Metaエラー138018：技術的な前提条件が満たされていません。WABAにサブスクライブしているアプリのうち、少なくとも1つが通話Webhookフィールドを持つようにしてください）。",
         "fixButton": "修正",
         "fixSuccess": "アプリはWhatsApp通話Webhookに正常にサブスクライブされました。",
         "manualIntegrationNotice": "この番号は手動で接続されており、ここにはアプリの認証情報がありません。Metaアプリダッシュボードでアプリの「calls」Webhookフィールドをサブスクライブしてください。",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "アクションのソース",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "ストアソース",
         "description": "商品、在庫、注文の管理に使用するストアソースを選択します。Shopify / WooCommerce を選択すると、すべての商品と注文が Shopify / WooCommerce ストアから直接管理されます。",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "認証",
-        "description": "ChatbotX がストアにサインインする方法です。カスタムアプリの Admin API アクセストークン、または Shopify Dev Dashboard で作成したアプリの Client ID とシークレットを使用します。",
+        "description": "InboxOS がストアにサインインする方法です。カスタムアプリの Admin API アクセストークン、または Shopify Dev Dashboard で作成したアプリの Client ID とシークレットを使用します。",
         "options": {
           "token": "Admin API アクセストークン",
           "clientCredentials": "Client ID とシークレット（Dev Dashboard アプリ）"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} はこのワークスペースでのみ操作できます。後で切り替えるには、接続を解除して再接続してください。",
     "noWorkspaces": "管理者であるワークスペースがないため、このアプリケーションを承認できません。"
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "ChatbotX アカウントの削除",
+    "title": "InboxOS アカウントの削除",
     "intro": "次のいずれかの方法で、アカウントとそのデータを削除できます。",
     "waysTitle": "アカウントの削除方法",
     "wayMobile": "モバイルアプリ：設定 → アカウントを削除。",

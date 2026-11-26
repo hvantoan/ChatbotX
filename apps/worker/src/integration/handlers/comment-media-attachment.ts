@@ -1,12 +1,12 @@
-import { assertPublicUrl, buildContext } from "@chatbotx.io/business"
+import { assertPublicUrl, buildContext } from "@inboxos.io/business"
 import {
   type ChannelMediaLocation,
   getChannelMediaPrefix,
   uploadFileFromUrl,
-} from "@chatbotx.io/filesystem"
-import type { ThreadsAuthValue } from "@chatbotx.io/integration-threads"
-import type { AuthValue, IncomingAttachment } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/filesystem"
+import type { ThreadsAuthValue } from "@inboxos.io/integration-threads"
+import type { AuthValue, IncomingAttachment } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { logger } from "../../lib/logger"
 import { allIntegrations } from "../../services/integrations"
 

@@ -1,18 +1,18 @@
-import { aiFileService } from "@chatbotx.io/business"
+import { aiFileService } from "@inboxos.io/business"
 import {
   AI_FILE_CHUNKER_VERSIONS,
   resolveAIFileChunkingConfig,
-} from "@chatbotx.io/database/partials"
-import { createAiFileEmbeddingRepository } from "@chatbotx.io/database/repositories"
-import { createAIFileEmbeddingId } from "@chatbotx.io/database/repositories/ai-file-embedding-id"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/partials"
+import { createAiFileEmbeddingRepository } from "@inboxos.io/database/repositories"
+import { createAIFileEmbeddingId } from "@inboxos.io/database/repositories/ai-file-embedding-id"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   AI_FILE_EMBEDDING_PRIORITY,
   AIJobAction,
   aiAgentQueue,
   buildAIFileEmbeddingJobId,
   type HeavyJobProcessAIFile,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import {
   chunkKnowledgeDocument,

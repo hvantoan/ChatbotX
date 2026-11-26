@@ -1,4 +1,4 @@
-import type { GoogleAdsChannel } from "@chatbotx.io/utils/google-click"
+import type { GoogleAdsChannel } from "@inboxos.io/utils/google-click"
 
 // Client-safe on purpose (types and pure functions only): "use client" builder
 // code imports this subpath, and the business barrel pulls in the DB client.

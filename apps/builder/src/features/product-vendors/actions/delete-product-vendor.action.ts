@@ -1,7 +1,7 @@
 "use server"
 
-import { vendorService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { vendorService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 
 export const deleteProductVendorAction = workspaceActionClientAllowExpired

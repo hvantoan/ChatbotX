@@ -8,12 +8,12 @@ import {
   type IncomingMessage,
   messageTypes,
   type ReceivedMessageResult,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   storeIncomingImage,
   toStoredMediaFields,
-} from "@chatbotx.io/utils/store-incoming-image"
+} from "@inboxos.io/utils/store-incoming-image"
 import { lineFetch } from "../../apis/client"
 import { LineException } from "../../exception"
 import { logger } from "../../lib/logger"

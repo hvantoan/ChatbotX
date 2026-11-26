@@ -1,5 +1,5 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { SAVED_REPLY_MAX_IMAGES } from "@chatbotx.io/utils/inbox-image-support"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { SAVED_REPLY_MAX_IMAGES } from "@inboxos.io/utils/inbox-image-support"
 import { z } from "zod"
 import { savedReplyResource } from "./resource"
 

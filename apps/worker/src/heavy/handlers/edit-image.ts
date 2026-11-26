@@ -1,10 +1,10 @@
-import { aiProviders, aiTimeouts } from "@chatbotx.io/ai"
+import { aiProviders, aiTimeouts } from "@inboxos.io/ai"
 import {
   aiIntegrationService,
   createAIImageModelInstance,
-} from "@chatbotx.io/ai/server"
-import { resolveTenantSettings } from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
+} from "@inboxos.io/ai/server"
+import { resolveTenantSettings } from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
 import {
   AI_EDIT_IMAGE_FALLBACK_OPENAI_MODEL,
   type AIEditImageSchema,
@@ -12,7 +12,7 @@ import {
   IMAGE_BASE64_ENCODING,
   IMAGE_DEFAULT_EXTENSION,
   IMAGE_DEFAULT_MIME_TYPE,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { generateImage, type ImageModel } from "ai"
 import sharp from "sharp"
 import { normalizeError } from "universal-error-normalizer"

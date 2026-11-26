@@ -1,5 +1,5 @@
-import { openaiCompatibleProviderPresets } from "@chatbotx.io/ai"
-import { zodBigintIdAsString } from "@chatbotx.io/utils"
+import { openaiCompatibleProviderPresets } from "@inboxos.io/ai"
+import { zodBigintIdAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const legacyAiProviderPathParam = z.enum([

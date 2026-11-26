@@ -3,14 +3,14 @@ import {
   platformCredentialService,
   resolveTenantSettingsByOwner,
   workspaceService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { userRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { userRepository } from "@inboxos.io/database/repositories"
 import {
   DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT,
   sendAccountCredentials,
-} from "@chatbotx.io/mail"
-import { isPlaceholderEmail } from "@chatbotx.io/utils/placeholder-email"
+} from "@inboxos.io/mail"
+import { isPlaceholderEmail } from "@inboxos.io/utils/placeholder-email"
 
 export type ProvisionResellerAccountInput = {
   /** The reseller (white-label owner) provisioning the account. */
@@ -48,7 +48,7 @@ export async function provisionResellerAccount(
   // verified row on it would capture that person's Facebook sign-in while the
   // reseller's temporary password keeps working.
   if (isPlaceholderEmail(email)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Email address is reserved and cannot be provisioned",
       "invalidEmail",
       400,
@@ -64,7 +64,7 @@ export async function provisionResellerAccount(
     type: "smtp",
   })
   if (!smtp) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Reseller has no SMTP credential configured; cannot send account credentials",
       "smtpCredentialMissing",
       400,

@@ -1,10 +1,7 @@
-import {
-  inboxService,
-  messengerIntegrationService,
-} from "@chatbotx.io/business"
-import type { InboxModel } from "@chatbotx.io/database/types"
-import { mapToChannelError } from "@chatbotx.io/integration-messenger"
-import { listConversations } from "@chatbotx.io/integration-messenger/apis/sync"
+import { inboxService, messengerIntegrationService } from "@inboxos.io/business"
+import type { InboxModel } from "@inboxos.io/database/types"
+import { mapToChannelError } from "@inboxos.io/integration-messenger"
+import { listConversations } from "@inboxos.io/integration-messenger/apis/sync"
 import {
   messengerAuthSchema,
   participantSourceId,

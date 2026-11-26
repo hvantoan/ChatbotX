@@ -1,14 +1,14 @@
 import {
   inboundWebhookService,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   inboundWebhookFieldMappingsSchema,
   inboundWebhookIdentifiersSchema,
   inboundWebhookInboxResolutionSchema,
   inboundWebhookRequestStatuses,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { bulkUpdateIdsRequest } from "@/features/common/schema"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"

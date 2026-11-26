@@ -1,4 +1,4 @@
-import { processStreamingText } from "@chatbotx.io/ai"
+import { processStreamingText } from "@inboxos.io/ai"
 import {
   AppointmentAlreadyScheduledException,
   AppointmentAvailabilityChangedException,
@@ -8,12 +8,12 @@ import {
   normalizeLanguage,
   resolveTenantSettings,
   SlotUnavailableException,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type AppointmentSchedulingCopy,
   getAppointmentSchedulingCopy,
-} from "@chatbotx.io/business/appointment/copy"
-import { signAppointmentWebviewToken } from "@chatbotx.io/encryption"
+} from "@inboxos.io/business/appointment/copy"
+import { signAppointmentWebviewToken } from "@inboxos.io/encryption"
 import {
   APPOINTMENT_AVAILABILITY_RANGE_SELECTION_PAYLOAD_TYPE,
   APPOINTMENT_AVAILABILITY_RANGE_SKIPPED_PAYLOAD_TYPE,
@@ -21,9 +21,9 @@ import {
   type AppointmentSchedulingStepSchema,
   appointmentSchedulingModes,
   defaultAIModels,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
-import { ChatJobAction, chatQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
+import { ChatJobAction, chatQueue } from "@inboxos.io/worker-config"
 import { streamText } from "ai"
 import { fromZonedTime } from "date-fns-tz"
 import { normalizeError } from "universal-error-normalizer"

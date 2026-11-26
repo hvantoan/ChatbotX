@@ -1,8 +1,8 @@
 import {
   createSelectSchema,
   integrationSmtpModel,
-} from "@chatbotx.io/database/schema"
-import type { smtpProviders } from "@chatbotx.io/integration-smtp/schema"
+} from "@inboxos.io/database/schema"
+import type { smtpProviders } from "@inboxos.io/integration-smtp/schema"
 import { z } from "zod"
 import { fromAddressSchema } from "./mutation"
 

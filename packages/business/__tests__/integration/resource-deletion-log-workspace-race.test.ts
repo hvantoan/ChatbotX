@@ -6,14 +6,14 @@
  * run against committed rows from separate connections and clean up after.
  */
 
-import { asc, db, eq, sql } from "@chatbotx.io/database/client"
-import { workspaceRepository } from "@chatbotx.io/database/repositories/workspace"
+import { asc, db, eq, sql } from "@inboxos.io/database/client"
+import { workspaceRepository } from "@inboxos.io/database/repositories/workspace"
 import {
   resourceDeletionLogModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, describe, expect, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */
@@ -34,8 +34,8 @@ const databaseUrl = realDatabaseUrl()
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn(async () => undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   invalidateCacheByTags: vi.fn(async () => undefined),
 }))
 

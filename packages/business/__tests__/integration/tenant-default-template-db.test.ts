@@ -9,14 +9,14 @@
  * `template_install_core` migration applied locally.
  */
 
-import { db, eq, sql } from "@chatbotx.io/database/client"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
+import { db, eq, sql } from "@inboxos.io/database/client"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
 import {
   templateInstallationRepository,
   templateRepository,
   templateVersionRepository,
   tenantDefaultTemplateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   templateInstallationModel,
   templateModel,
@@ -25,10 +25,10 @@ import {
   tenantModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import type { EncryptedData } from "@chatbotx.io/encryption"
-import { createId } from "@chatbotx.io/utils"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/database/schema"
+import type { EncryptedData } from "@inboxos.io/encryption"
+import { createId } from "@inboxos.io/utils"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { quotaEnforcementService } from "../../src/quota-enforcement/service"
 import { stageTenantDefaultInstall } from "../../src/template/installation-stage"
@@ -48,8 +48,8 @@ vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn(),
 }))
 // The real enqueue would talk to Redis; what the tests need is whether it ran.
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   enqueueInstallTemplate: enqueued,
 }))
 

@@ -4,20 +4,20 @@ const { findLastByConversation } = vi.hoisted(() => ({
   findLastByConversation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => {
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => {
   const original =
-    await importOriginal<typeof import("@chatbotx.io/database/repositories")>()
+    await importOriginal<typeof import("@inboxos.io/database/repositories")>()
   return {
     ...original,
     createMessageRepository: vi.fn(async () => ({ findLastByConversation })),
   }
 })
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: vi.fn((_key: string, fn: () => unknown) => fn()),
   createRedisConnection: vi.fn(() => ({ on: vi.fn() })),
 }))
-vi.mock("@chatbotx.io/analytics", () => ({ macAnalyticsService: {} }))
+vi.mock("@inboxos.io/analytics", () => ({ macAnalyticsService: {} }))
 
 const { conversationService } = await import("../src/conversation/service")
 

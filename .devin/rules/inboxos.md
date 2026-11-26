@@ -1,9 +1,9 @@
 ---
 trigger: always_on
-description: ChatbotX load-bearing invariants and conventions mirrored from AGENTS.md.
+description: InboxOS load-bearing invariants and conventions mirrored from AGENTS.md.
 ---
 
-# ChatbotX — Project Invariants & Conventions
+# InboxOS — Project Invariants & Conventions
 
 > The shared invariant block below is generated from `AGENTS.md`. Do not edit the generated section directly.
 

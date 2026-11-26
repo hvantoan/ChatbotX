@@ -2,24 +2,24 @@ import {
   buildContactPermissionScope as buildContactPermissionScopeForMember,
   type ContactPermissionScope as ContactPermissionScopeValue,
   contactService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
-} from "@chatbotx.io/business/errors"
-import type { PermissionsInput } from "@chatbotx.io/business/workspace-member/permissions"
-import { isWorkspaceAdminMember } from "@chatbotx.io/business/workspace-member/predicates"
-import type { WorkspaceMemberModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/errors"
+import type { PermissionsInput } from "@inboxos.io/business/workspace-member/permissions"
+import { isWorkspaceAdminMember } from "@inboxos.io/business/workspace-member/predicates"
+import type { WorkspaceMemberModel } from "@inboxos.io/database/types"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 
-export type { ContactPermissionScope } from "@chatbotx.io/business"
+export type { ContactPermissionScope } from "@inboxos.io/business"
 export {
   buildContactPermissionScope,
   canAccessContactsSection,
   canViewContactEmailAndPhone,
-} from "@chatbotx.io/business"
-export { maskContactEmailAndPhone } from "@chatbotx.io/business/contact-utils"
-export { stripContactPIIFields } from "@chatbotx.io/worker-config/contact-pii"
+} from "@inboxos.io/business"
+export { maskContactEmailAndPhone } from "@inboxos.io/business/contact-utils"
+export { stripContactPIIFields } from "@inboxos.io/worker-config/contact-pii"
 
 type Permissions = PermissionsInput
 
@@ -69,9 +69,9 @@ export async function requireContactPermissionScope(
   // access — so re-check membership here only to pick the right message.
   const userAndWorkspace = await getCurrentUserAndTargetWorkspace(workspaceId)
   if (!userAndWorkspace) {
-    throw new ChatbotXException("User is not associated with this workspace")
+    throw new InboxOSException("User is not associated with this workspace")
   }
-  throw new ChatbotXException("User is not authorized to access contacts")
+  throw new InboxOSException("User is not authorized to access contacts")
 }
 
 /**

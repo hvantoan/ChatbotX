@@ -1,8 +1,8 @@
 "use client"
 
-import { INBOUND_WEBHOOK_LIMITS } from "@chatbotx.io/database/partials"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { INBOUND_WEBHOOK_LIMITS } from "@inboxos.io/database/partials"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PlusIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFieldArray, useFormContext } from "react-hook-form"

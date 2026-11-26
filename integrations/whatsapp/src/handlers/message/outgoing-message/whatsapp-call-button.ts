@@ -2,8 +2,8 @@ import {
   WHATSAPP_CALL_BUTTON_BODY_MAX,
   WHATSAPP_CALL_BUTTON_LABEL_MAX,
   type WhatsappCallButtonStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import type {
   InteractiveVoiceCallMessage,
   WhatsappAuthValue,

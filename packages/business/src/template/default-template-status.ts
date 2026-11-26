@@ -1,6 +1,6 @@
-import type { TenantDefaultTemplateStatus } from "@chatbotx.io/database/partials"
-import type { tenantDefaultTemplateRepository } from "@chatbotx.io/database/repositories"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+import type { TenantDefaultTemplateStatus } from "@inboxos.io/database/partials"
+import type { tenantDefaultTemplateRepository } from "@inboxos.io/database/repositories"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { isShareLive } from "./share-live"
 
 type DefaultTemplateConfig = NonNullable<

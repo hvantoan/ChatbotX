@@ -13,7 +13,7 @@ const TENANT = {
   storageUrl: "https://files.acme.test",
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   reflinkService: { findForWidget },
 }))
 

@@ -7,18 +7,18 @@ const mocks = vi.hoisted(() => ({
   NEXT_PUBLIC_EDITION: "enterprise",
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     insert: (...args: unknown[]) => mocks.dbInsert(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   auditLogModel: "auditLogModel",
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => "audit-log-1",
 }))
 

@@ -1,5 +1,5 @@
 // @vitest-environment node
-import type { HumanAgentStats } from "@chatbotx.io/analytics"
+import type { HumanAgentStats } from "@inboxos.io/analytics"
 import { describe, expect, test } from "vitest"
 import {
   buildResponseTimeColumns,

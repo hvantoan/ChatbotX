@@ -3,12 +3,12 @@
 import {
   type CommentModerationCategory,
   commentModerationCategories,
-} from "@chatbotx.io/database/partials"
-import { CheckboxGroupField } from "@chatbotx.io/ui/components/form/checkbox-group-field"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
+} from "@inboxos.io/database/partials"
+import { CheckboxGroupField } from "@inboxos.io/ui/components/form/checkbox-group-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
 import { useTranslations } from "next-intl"
 import { useFormContext, useWatch } from "react-hook-form"
 import { useAIAgentSelectOptions } from "@/features/ai-agents/hooks/use-ai-agents"

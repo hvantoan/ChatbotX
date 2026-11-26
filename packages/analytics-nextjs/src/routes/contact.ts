@@ -10,8 +10,8 @@ import {
   macAnalyticsService,
   messageAnalyticsService,
   timeRangeQueryWithFilterSchema,
-} from "@chatbotx.io/analytics"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/analytics"
+import { withCache } from "@inboxos.io/redis"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

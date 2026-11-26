@@ -1,4 +1,4 @@
-import { whatsappRegistrationErrorSchema } from "@chatbotx.io/database/partials"
+import { whatsappRegistrationErrorSchema } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import {
   connectActionResultSchema,

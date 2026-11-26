@@ -1,5 +1,5 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
-import { zodFieldReference } from "@chatbotx.io/flow-config"
+import { triggerActions } from "@inboxos.io/database/partials"
+import { zodFieldReference } from "@inboxos.io/flow-config"
 import z from "zod"
 
 export const clearCustomField = z.object({

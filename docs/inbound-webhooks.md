@@ -44,7 +44,7 @@ Every error body is `{ "accepted": false, "code": "<CODE>", "message": "<text>" 
 
 ## Choosing the inbox
 
-In ChatbotX one channel can have many inboxes and a contact must belong to one before a flow can be sent. A webhook therefore picks the inbox in one of two ways (`inboxResolution`):
+In InboxOS one channel can have many inboxes and a contact must belong to one before a flow can be sent. A webhook therefore picks the inbox in one of two ways (`inboxResolution`):
 
 - **Specific inbox** — `{ "mode": "inbox", "inboxId": "…" }`.
 - **From payload** — `{ "mode": "payload", "channel", "identifierKind", "jsonPath" }`: read the channel's own inbox id from the payload.
@@ -60,7 +60,7 @@ In ChatbotX one channel can have many inboxes and a contact must belong to one b
 | Threads | `threadsUserId` | username (lower-cased) | `channelUserId` |
 | Webchat, SMTP, API | not resolvable from a payload — use a specific inbox | webchat: the visitor id the platform minted; SMTP: the address; API: the caller's id | webchat: `phone` or `email`; SMTP: `email`; API: `channelUserId` |
 
-`GET /v1/inbound-webhook-channels` returns this table as data (source: `INBOUND_WEBHOOK_CHANNEL_SPECS` in `@chatbotx.io/utils`). Adding a channel is a compile error until its entry exists.
+`GET /v1/inbound-webhook-channels` returns this table as data (source: `INBOUND_WEBHOOK_CHANNEL_SPECS` in `@inboxos.io/utils`). Adding a channel is a compile error until its entry exists.
 
 ## Finding or creating the contact
 

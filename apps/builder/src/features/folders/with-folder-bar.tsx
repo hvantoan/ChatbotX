@@ -1,4 +1,4 @@
-import type { FolderType } from "@chatbotx.io/database/partials"
+import type { FolderType } from "@inboxos.io/database/partials"
 import type { SearchParams } from "nuqs/server"
 import type { ReactNode } from "react"
 import { FolderBarSlotProvider } from "./folder-bar-slot"

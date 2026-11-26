@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto"
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
-import type { ZaloPersonalGroupReplyConfig } from "@chatbotx.io/database/schema"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
+import type { ZaloPersonalGroupReplyConfig } from "@inboxos.io/database/schema"
 import { logger } from "@/lib/log"
 import { zaloPersonalGateway } from "./gateway"
 

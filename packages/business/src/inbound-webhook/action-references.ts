@@ -1,4 +1,4 @@
-import type { InboundWebhookAction } from "@chatbotx.io/database/partials"
+import type { InboundWebhookAction } from "@inboxos.io/database/partials"
 import { findInvalidActionReferences } from "../automation-action/references"
 
 /**

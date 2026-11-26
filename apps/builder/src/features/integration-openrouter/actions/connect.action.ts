@@ -1,6 +1,6 @@
 "use server"
 
-import { aiProviders } from "@chatbotx.io/ai"
+import { aiProviders } from "@inboxos.io/ai"
 import { createAiKeyConnectAction } from "@/lib/integration-actions"
 import { connectOpenRouterSchema } from "../schema/request"
 

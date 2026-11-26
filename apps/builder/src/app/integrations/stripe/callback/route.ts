@@ -1,6 +1,6 @@
-import { paymentProviderService, workspaceService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { getPublicUrlFromRequest } from "@chatbotx.io/utils"
+import { paymentProviderService, workspaceService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { getPublicUrlFromRequest } from "@inboxos.io/utils"
 import { redirect } from "next/navigation"
 import type { NextRequest } from "next/server"
 import { assertWorkspaceSuperAdmin } from "@/lib/auth/assert-workspace-super-admin"
@@ -92,7 +92,7 @@ export async function GET(req: NextRequest): Promise<Response> {
         ? { stripe: "connected", chargesEnabled: "false" }
         : { stripe: "connected" }
   } catch (error) {
-    if (!(error instanceof ChatbotXException)) {
+    if (!(error instanceof InboxOSException)) {
       logger.error(
         { err: error, workspaceId: workspace.id },
         "[stripe-connect] the connection could not be completed",
@@ -101,7 +101,7 @@ export async function GET(req: NextRequest): Promise<Response> {
     outcome = {
       stripe: "error",
       reason:
-        error instanceof ChatbotXException ? error.code : "connectionFailed",
+        error instanceof InboxOSException ? error.code : "connectionFailed",
     }
   }
   return back(outcome)

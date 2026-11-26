@@ -1,6 +1,6 @@
 "use client"
 
-import type { MessageInboundOrderEntity } from "@chatbotx.io/sdk"
+import type { MessageInboundOrderEntity } from "@inboxos.io/sdk"
 import { useLocale, useTranslations } from "next-intl"
 import { formatPrice } from "@/lib/format-price"
 import { ProductRow } from "./product-row"

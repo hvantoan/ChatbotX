@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   guard: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   googleAdsConversionService: { deliver: mocks.deliver },
   withBlockedOwnerGuard: (workspaceId: string, fn: () => Promise<unknown>) =>
     mocks.guard(workspaceId, fn),

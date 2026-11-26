@@ -1,6 +1,6 @@
 "use client"
 
-import type { EvaluateDecisionStepSchema } from "@chatbotx.io/flow-config"
+import type { EvaluateDecisionStepSchema } from "@inboxos.io/flow-config"
 import { BrainCircuitIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { BaseStateViewer } from "../../states/viewer"

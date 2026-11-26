@@ -1,5 +1,5 @@
-import { folderTypes, rootFolderId } from "@chatbotx.io/database/partials"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { folderTypes, rootFolderId } from "@inboxos.io/database/partials"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import type { SearchParams } from "nuqs/server"
 import { Suspense } from "react"

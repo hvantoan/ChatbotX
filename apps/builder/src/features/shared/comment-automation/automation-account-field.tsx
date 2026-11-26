@@ -1,6 +1,6 @@
 "use client"
 
-import type { CommentAutomationType } from "@chatbotx.io/database/partials"
+import type { CommentAutomationType } from "@inboxos.io/database/partials"
 import {
   FormControl,
   FormDescription,
@@ -8,14 +8,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useFormContext, useWatch } from "react-hook-form"

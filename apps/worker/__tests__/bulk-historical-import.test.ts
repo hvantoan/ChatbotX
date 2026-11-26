@@ -51,18 +51,18 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   describeDatabaseError: vi.fn((err: unknown) => err),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
   contactRepository: {
     enrichIfNull: mockEnrichIfNull,
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   bulkImportChannelContacts: mockBulkImportChannelContacts,
   contactInboxService: {
     bulkUpdateTracking: mockBulkUpdateTracking,
@@ -76,8 +76,8 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mockEmit }))
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mockEmit }))
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: mockEmitContactCreated,
 }))
 
@@ -115,7 +115,7 @@ const msg = (sourceId: string, overrides: Record<string, unknown> = {}) => ({
 
 // ---------------------------------------------------------------------------
 // Helpers — wire `bulkImportChannelContacts` (mocked at the
-// `@chatbotx.io/business` boundary) with a canned resolution. Its own
+// `@inboxos.io/business` boundary) with a canned resolution. Its own
 // dedup/event/usage behavior is covered in
 // packages/business/__tests__/bulk-import-channel-contacts.test.ts; here we
 // only assert `bulkImportHistorical` consumes the returned link map

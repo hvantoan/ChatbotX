@@ -1,4 +1,4 @@
-import { anchoredPeriod, macRepository } from "@chatbotx.io/analytics"
+import { anchoredPeriod, macRepository } from "@inboxos.io/analytics"
 import {
   parseLiveCount,
   tenantService,
@@ -6,11 +6,11 @@ import {
   userService,
   WORKSPACE_USAGE_LABEL,
   workspaceUsageService,
-} from "@chatbotx.io/business"
-import { isForeignKeyViolationError } from "@chatbotx.io/database/client"
-import { workspaceMacRepository } from "@chatbotx.io/database/repositories/workspace-mac"
-import { cacheConnections } from "@chatbotx.io/redis"
-import { liveKeyFor, USER_QUOTA_LABEL } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { isForeignKeyViolationError } from "@inboxos.io/database/client"
+import { workspaceMacRepository } from "@inboxos.io/database/repositories/workspace-mac"
+import { cacheConnections } from "@inboxos.io/redis"
+import { liveKeyFor, USER_QUOTA_LABEL } from "@inboxos.io/utils"
 import { logger } from "../../lib/logger"
 
 // Derived from the shared key builder so the reconcile walks exactly the keys

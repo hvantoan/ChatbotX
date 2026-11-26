@@ -3,13 +3,13 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { callsOn, makeFakeTx } from "./helpers/template-fake-tx"
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: {} },
   eq: (column: unknown, value: unknown) => ({ column, value }),
   inArray: (column: unknown, values: unknown) => ({ column, values }),
   isUniqueViolationError: () => false,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   aiAgentModel: { table: "AIAgent" },
   triggerModel: { table: "Trigger" },
   conditionModel: { table: "Condition" },
@@ -17,18 +17,18 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   sequenceStepModel: { table: "SequenceStep" },
   savedReplyModel: { table: "SavedReply" },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   mediaLibraryFileRepository: {},
   savedReplyImageRepository: {},
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploader: {} }))
+vi.mock("@inboxos.io/filesystem", () => ({ uploader: {} }))
 vi.mock("../src/logger", () => ({
   logger: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
 }))
 vi.mock("../src/bot-field/service", () => ({ botFieldService: {} }))
 let counter = 0
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => `new-${++counter}`,
 }))
 

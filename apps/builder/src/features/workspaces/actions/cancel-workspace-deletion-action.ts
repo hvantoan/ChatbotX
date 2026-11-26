@@ -1,7 +1,7 @@
 "use server"
 
-import { workspaceService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { workspaceService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 import {
   type WorkspaceIdRequestParams,
@@ -23,13 +23,13 @@ export const cancelWorkspaceDeletionAction = workspaceActionClientAllowExpired
       const currentUserAndTargetWorkspace =
         await getCurrentUserAndTargetWorkspace(workspaceId)
       if (!currentUserAndTargetWorkspace) {
-        throw new ChatbotXException(t("errors.superAdminRequired"))
+        throw new InboxOSException(t("errors.superAdminRequired"))
       }
 
       const { permissions } =
         currentUserAndTargetWorkspace.targetWorkspaceMember
       if (!hasWorkspacePermission(permissions, "superAdmin")) {
-        throw new ChatbotXException(t("errors.superAdminRequired"))
+        throw new InboxOSException(t("errors.superAdminRequired"))
       }
 
       try {
@@ -38,10 +38,10 @@ export const cancelWorkspaceDeletionAction = workspaceActionClientAllowExpired
         })
       } catch (err) {
         if (
-          err instanceof ChatbotXException &&
+          err instanceof InboxOSException &&
           err.code === "workspaceDeletionStarted"
         ) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             t("workspace.deletion.alreadyStarted"),
             err.code,
             err.httpStatusCode,

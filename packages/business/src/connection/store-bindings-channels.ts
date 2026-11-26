@@ -1,4 +1,4 @@
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 import {
   integrationActiveCampaignModel,
   integrationApiModel,
@@ -31,7 +31,7 @@ import {
   integrationWhatsappModel,
   integrationZaloModel,
   integrationZaloPersonalModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   ConnectionStoreBinding,
   makeChannelBinding,
@@ -54,8 +54,8 @@ type MakeWorkspaceIntegrationBinding = typeof makeWorkspaceIntegrationBinding
  * ids mirror `packages/ai/src/models/registry.ts`'s `aiChatProviders[...]
  * .defaultModel` (that file's own comment calls it the single source of
  * truth the AI agent model picker and legacy connect dialogs already use)
- * — duplicated as literals rather than imported because `@chatbotx.io/ai`
- * depends on `@chatbotx.io/business`, so importing it back here would be
+ * — duplicated as literals rather than imported because `@inboxos.io/ai`
+ * depends on `@inboxos.io/business`, so importing it back here would be
  * circular. `maxOutputTokens: 1024` matches the `.default(1024)` on the
  * legacy claude/deepseek/gemini/openrouter connect schemas
  * (`apps/builder/src/features/integration-{claude,deepseek,gemini,

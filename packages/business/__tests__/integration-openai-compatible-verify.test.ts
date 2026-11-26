@@ -19,7 +19,7 @@ vi.mock("../src/integration-openai-compatible/validate-base-url", () => ({
   validateOpenaiCompatibleBaseUrlForEnvironment: mocks.validateBaseUrl,
 }))
 
-const { ChatbotXException } = await import("../src/errors")
+const { InboxOSException } = await import("../src/errors")
 const { verifyOpenaiCompatibleProvider } = await import(
   "../src/integration-openai-compatible/verify"
 )
@@ -38,7 +38,7 @@ describe("verifyOpenaiCompatibleProvider", () => {
 
   test("blocks unsafe base URLs before calling the provider", async () => {
     mocks.validateBaseUrl.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "OpenAI-compatible base URL is not allowed.",
         "ssrfBlocked",
         400,

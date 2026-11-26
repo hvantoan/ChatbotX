@@ -9,7 +9,7 @@ const repository = {
   remove: vi.fn(),
 }
 const messageRepository = { countByAudienceId: vi.fn() }
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessageAudienceRepository: repository,
   facebookMarketingMessageRepository: messageRepository,
 }))
@@ -40,7 +40,7 @@ const graph = {
   getNotificationMessageTokenAudienceIds: vi.fn(),
   AudienceUploadError,
 }
-vi.mock("@chatbotx.io/integration-facebook-ads", () => graph)
+vi.mock("@inboxos.io/integration-facebook-ads", () => graph)
 
 const { facebookMarketingMessageAudienceService: service } = await import(
   "../src/facebook-marketing-message-audience/service"

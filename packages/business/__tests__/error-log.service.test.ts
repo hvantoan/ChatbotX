@@ -1,9 +1,9 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 const emit = vi.fn()
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: (...args: unknown[]) => emit(...args),
 }))
 
@@ -12,7 +12,7 @@ vi.mock("@chatbotx.io/event-bus", () => ({
 // stub them so this file's existing tests, which never exercise
 // `listErrorLogs`, don't pay the cost of the real modules (and never
 // importOriginal the schema module — it opens a real DB connection).
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: { errorLogModel: { findMany: vi.fn() } },
     $count: vi.fn(),
@@ -20,16 +20,16 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   errorLogModel: {},
 }))
 
 const deleteErrorLogsByIds = vi.fn()
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   deleteErrorLogsByIds: (...args: unknown[]) => deleteErrorLogsByIds(...args),
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(() => ({ limit: 10, offset: 0 })),
   likeContains: (value: string) => `%${value}%`,
   parseOrderByAsObject: () => ({}),
@@ -38,14 +38,14 @@ vi.mock("@chatbotx.io/database/utils", () => ({
 // The service short-circuits under `isNoRedisEnv()` — true by default in
 // vitest — exactly as `defaultQueue` falls back to `fakeQueue`. These tests
 // exercise the real emit path, so they opt out of that fallback.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   isNoRedisEnv: () => false,
 }))
 
-// `@chatbotx.io/utils` constructs a Snowflake singleton at module scope, which
+// `@inboxos.io/utils` constructs a Snowflake singleton at module scope, which
 // throws "Place ID 0 already in use" when `vi.resetModules()` re-evaluates it.
 let nextId = 0
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => `id-${nextId++}`,
 }))
 

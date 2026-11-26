@@ -2,7 +2,7 @@
 
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const proxy: unknown = new Proxy(() => proxy, { get: () => proxy })
   return { db: proxy }
 })
@@ -60,7 +60,7 @@ vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 const find = vi.fn()
 const list = vi.fn()
 const getStats = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessagesService: { find, list },
   facebookMarketingMessageDeliveryService: { getStats },
 }))

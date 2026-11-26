@@ -1,9 +1,9 @@
 "use client"
 
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { CopyIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useFormatter, useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
-import { botMessageAnalyticsService } from "@chatbotx.io/analytics"
-import type { MessageBotReceivedEventPayload } from "@chatbotx.io/event-bus"
+import { botMessageAnalyticsService } from "@inboxos.io/analytics"
+import type { MessageBotReceivedEventPayload } from "@inboxos.io/event-bus"
 
 export function handleMessageBotReceived(
   payloads: MessageBotReceivedEventPayload[],

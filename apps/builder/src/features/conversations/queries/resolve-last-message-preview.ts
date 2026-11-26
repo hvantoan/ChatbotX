@@ -3,7 +3,7 @@ import {
   getWhatsappCallEntity,
   resolveWhatsappCallActivityLabelKey,
   type WhatsappCallActivityLabelKey,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { useTranslations } from "next-intl"
 import { formatCallDurationSeconds } from "@/features/messages/lib/format-call-duration"
 import {

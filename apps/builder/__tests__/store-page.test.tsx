@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   StoreCatalog: vi.fn(() => null),
 }))
 
-vi.mock("@chatbotx.io/auth/tenant", () => ({
+vi.mock("@inboxos.io/auth/tenant", () => ({
   resolveTenantByDomain: mocks.resolveTenantByDomain,
 }))
 vi.mock("@/lib/domain", () => ({

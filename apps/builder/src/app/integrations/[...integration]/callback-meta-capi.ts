@@ -3,18 +3,18 @@ import {
   instagramIntegrationService,
   messengerIntegrationService,
   metaConversionsService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
   exchangeCodeForToken as exchangeInstagramFacebookCode,
   getPageInstagramAccess,
-} from "@chatbotx.io/integration-instagram-facebook"
+} from "@inboxos.io/integration-instagram-facebook"
 import {
   exchangeCodeForToken as exchangeMessengerCode,
   getUserPages,
-} from "@chatbotx.io/integration-messenger"
-import { exchangeLongLivedToken } from "@chatbotx.io/integration-messenger/apis/page"
-import { getDataset } from "@chatbotx.io/integration-meta-conversions"
+} from "@inboxos.io/integration-messenger"
+import { exchangeLongLivedToken } from "@inboxos.io/integration-messenger/apis/page"
+import { getDataset } from "@inboxos.io/integration-meta-conversions"
 import type {
   CapiConnectErrorReason,
   CapiConnectResult,

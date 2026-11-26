@@ -1,5 +1,5 @@
-import { resolveTemplateParams } from "@chatbotx.io/business"
-import { validationException } from "@chatbotx.io/business/errors"
+import { resolveTemplateParams } from "@inboxos.io/business"
+import { validationException } from "@inboxos.io/business/errors"
 import type { CreateBroadcastRequest } from "../schema/action"
 import type { CreateBroadcastPublicRequest } from "../schema/public"
 

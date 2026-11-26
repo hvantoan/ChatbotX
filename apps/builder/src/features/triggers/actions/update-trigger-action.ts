@@ -1,7 +1,7 @@
 "use server"
 
-import { triggerService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { triggerService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { updateTriggerSchema } from "../schema/mutation"
 

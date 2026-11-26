@@ -1,6 +1,6 @@
-import { aiTimeouts } from "@chatbotx.io/ai"
-import type { AISpeechToTextProvider } from "@chatbotx.io/flow-config"
-import { HeavyJobAction } from "@chatbotx.io/worker-config"
+import { aiTimeouts } from "@inboxos.io/ai"
+import type { AISpeechToTextProvider } from "@inboxos.io/flow-config"
+import { HeavyJobAction } from "@inboxos.io/worker-config"
 import { env } from "../env"
 
 type HeavyStepAction = Extract<

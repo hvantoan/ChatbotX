@@ -4,25 +4,25 @@ import {
   resolveWhatsappCallerName,
   whatsappVoipCallService,
   whatsappVoipSignalingService,
-} from "@chatbotx.io/business"
-import type { WhatsappCallHoursSnapshot } from "@chatbotx.io/database/partials"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/business"
+import type { WhatsappCallHoursSnapshot } from "@inboxos.io/database/partials"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   rejectCall,
   terminateCall,
-} from "@chatbotx.io/integration-whatsapp/api/calling"
+} from "@inboxos.io/integration-whatsapp/api/calling"
 import {
   RealtimeEventType,
   type RealtimeEventWhatsappCallOutboundAnswer,
   type RealtimeEventWhatsappCallTransportEnded,
   type RealtimeEventWhatsappCallTransportIncoming,
-} from "@chatbotx.io/realtime-protocol"
-import { isWithinCallHours } from "@chatbotx.io/utils/whatsapp-call-hours"
+} from "@inboxos.io/realtime-protocol"
+import { isWithinCallHours } from "@inboxos.io/utils/whatsapp-call-hours"
 import {
   WhatsappVoipSignalingJobAction,
   type WhatsappVoipSignalingJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 import { finalizeCallSideEffects } from "./shared/whatsapp-call-finalize"

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   revokeRealtime: vi.fn().mockResolvedValue(true),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...args: unknown[]) => ({ and: args }),
   db: {
     update: mocks.update,
@@ -17,11 +17,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: (...args: unknown[]) => ({ eq: args }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   workspaceMemberRoles: { enum: { owner: "owner" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   workspaceMemberModel: {
     id: "workspaceMember.id",
     workspaceId: "workspaceMember.workspaceId",
@@ -29,16 +29,16 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: vi.fn(() => ({ limit: 10, offset: 0 })),
   likeContains: (value: string) => `%${value}%`,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   workspaceMemberRepository: { listPermissionsByUserIds: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn(),
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))

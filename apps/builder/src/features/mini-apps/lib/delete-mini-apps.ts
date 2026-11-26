@@ -1,13 +1,13 @@
 import {
   integrationWhatsappService,
   whatsappFlowService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   miniAppPublicationService,
   miniAppService,
-} from "@chatbotx.io/business/mini-app"
-import type { MiniAppPublicationModel } from "@chatbotx.io/database/types"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+} from "@inboxos.io/business/mini-app"
+import type { MiniAppPublicationModel } from "@inboxos.io/database/types"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import { buildWhatsappContext } from "@/features/integration-whatsapp/flows/lib/whatsapp-flow-operations"
 import { integrations } from "@/integration"
 import { logger } from "@/lib/log"

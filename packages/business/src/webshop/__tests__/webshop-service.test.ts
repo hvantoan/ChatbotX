@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -36,7 +36,7 @@ vi.mock("../../conversation/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (fn: (tx: object) => unknown) => fn({ name: "cart-tx" }),
   },
@@ -64,23 +64,23 @@ vi.mock("../../order-payment/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCartItemChanged: (...args: unknown[]) =>
     mocks.emitCartItemChanged(...args),
   emitCartAbandoned: (...args: unknown[]) => mocks.emitCartAbandoned(...args),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   cartRepository: {
     find: (...args: unknown[]) => mocks.findCart(...args),
     lockOrCreate: (...args: unknown[]) => mocks.findCart(...args),

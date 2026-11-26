@@ -1,8 +1,8 @@
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   IntegrationJobAction,
   type IntegrationJobRunFlowNode,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 type SendFlowJobData = IntegrationJobRunFlowNode["data"]
 

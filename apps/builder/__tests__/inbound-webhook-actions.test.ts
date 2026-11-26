@@ -11,8 +11,8 @@ const service = vi.hoisted(() => ({
   findRequestOrFail: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({ inboundWebhookService: service }))
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/business", () => ({ inboundWebhookService: service }))
+vi.mock("@inboxos.io/utils", () => ({
   zodBigintAsString: () => ({ describe: () => ({}) }),
 }))
 vi.mock("@/features/common/schema", () => ({

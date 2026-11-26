@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: () => ({
       set: () => ({
@@ -25,12 +25,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: vi.fn((column: unknown, value: unknown) => ({ column, value })),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   CREATABLE_CHANNELS: [],
   ROOT_TENANT_ID: "root-tenant",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { listPausedByOwner: mocks.listPausedByOwner },
   inboxRepository: {
     listTenantSuspendedWithoutConnectionByOwner:
@@ -38,11 +38,11 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tenantModel: { id: "id", ownerId: "ownerId" },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.invalidateCacheByTags,
   withCache: vi.fn((_key: string, fn: () => unknown) => fn()),
 }))

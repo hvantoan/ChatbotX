@@ -1,8 +1,8 @@
 import {
   aiProviders,
   type OpenaiCompatibleProviderPreset,
-} from "@chatbotx.io/ai"
-import { aiIntegrationService } from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai"
+import { aiIntegrationService } from "@inboxos.io/ai/server"
 import {
   connectionStateService,
   integrationClaudeService,
@@ -11,12 +11,12 @@ import {
   integrationMuseService,
   integrationOpenAIService,
   integrationOpenaiCompatibleService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   notFoundException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import { connectionService } from "@chatbotx.io/connections"
+} from "@inboxos.io/business/errors"
+import { connectionService } from "@inboxos.io/connections"
 import { resolveOpenaiCompatibleDefaultModel } from "@/features/integration-openai-compatible/schema/request"
 import {
   possibleErrorsOnFindingResource,

@@ -12,17 +12,17 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: { findBy: mocks.findBy },
 }))
-vi.mock("@chatbotx.io/redis", () => ({ withCache: mocks.withCache }))
-vi.mock("@chatbotx.io/integration-telegram", () => ({
+vi.mock("@inboxos.io/redis", () => ({ withCache: mocks.withCache }))
+vi.mock("@inboxos.io/integration-telegram", () => ({
   getTelegramChatMemberStatus: mocks.getChatMember,
   isTelegramMemberStatus: (status: string, isMember?: boolean) =>
     ["creator", "administrator", "member"].includes(status) ||
     (status === "restricted" && isMember === true),
 }))
-vi.mock("@chatbotx.io/integration-zalo", () => ({
+vi.mock("@inboxos.io/integration-zalo", () => ({
   integration: { runAction: mocks.zaloRunAction },
 }))
 vi.mock("../src/services/integrations", () => ({

@@ -1,8 +1,8 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
-import { templateInstalledResourceRepository } from "@chatbotx.io/database/repositories/template-installed-resource"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
+import { templateInstalledResourceRepository } from "@inboxos.io/database/repositories/template-installed-resource"
 import { sql } from "drizzle-orm"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 /**
  * The per-resource lock protocol shared by every writer of a
@@ -105,7 +105,7 @@ export class TemplateLockSetGrownError extends Error {
 }
 
 const templateLockContentionException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The resource is being changed by another operation; try again",
     "templateLockContention",
     409,

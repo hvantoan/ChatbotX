@@ -1,5 +1,5 @@
-import { minigameTypes } from "@chatbotx.io/database/partials"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { minigameTypes } from "@inboxos.io/database/partials"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import type { SearchParams } from "nuqs/server"

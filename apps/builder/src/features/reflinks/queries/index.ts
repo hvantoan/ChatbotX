@@ -1,4 +1,4 @@
-import { reflinkService } from "@chatbotx.io/business"
+import { reflinkService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type {
   GetReflinkRequest,

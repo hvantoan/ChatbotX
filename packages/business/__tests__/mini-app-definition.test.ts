@@ -11,7 +11,7 @@ const {
   createStarterDefinition,
   fromFlowJson,
   toFlowJson,
-} = await import("@chatbotx.io/mini-app")
+} = await import("@inboxos.io/mini-app")
 const { buildNewDefinition, buildUpdatedDefinition } = await import(
   "../src/mini-app/definition"
 )

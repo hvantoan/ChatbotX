@@ -1,9 +1,9 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import {
   ChatJobAction,
   type ChatJobData,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { env } from "../env"
 import { createQueueWorker } from "../lib/create-queue-worker"

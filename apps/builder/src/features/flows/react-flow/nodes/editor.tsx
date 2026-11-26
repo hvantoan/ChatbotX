@@ -1,4 +1,5 @@
-import type { FlowNode, NodeType, StepType } from "@chatbotx.io/flow-config"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { FlowNode, NodeType, StepType } from "@inboxos.io/flow-config"
 import {
   buttonStepDefaultFn,
   buttonTypes,
@@ -7,26 +8,25 @@ import {
   MAX_QUICK_REPLIES,
   stepTypes,
   upgradeNodeSteps,
-} from "@chatbotx.io/flow-config"
-import { TriggerFormInitially } from "@chatbotx.io/ui/components/form/form-trigger-initially"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { TriggerFormInitially } from "@inboxos.io/ui/components/form/form-trigger-initially"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import {
   Sortable,
   SortableContent,
   SortableItem,
   SortableItemHandle,
-} from "@chatbotx.io/ui/components/ui/sortable"
-import { createDebouncedFn } from "@chatbotx.io/ui/hooks/create-debounced-fn"
-import { useCallbackRef } from "@chatbotx.io/ui/hooks/use-callback-ref"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import { createId } from "@chatbotx.io/utils"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/sortable"
+import { createDebouncedFn } from "@inboxos.io/ui/hooks/create-debounced-fn"
+import { useCallbackRef } from "@inboxos.io/ui/hooks/use-callback-ref"
+import { cn } from "@inboxos.io/ui/lib/utils"
+import { createId } from "@inboxos.io/utils"
 import { useReactFlow } from "@xyflow/react"
 import { CopyIcon, MoveVerticalIcon, PlusIcon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

@@ -5,16 +5,16 @@ import {
   eq,
   ilike,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import { flowModel, reflinkModel } from "@chatbotx.io/database/schema"
-import type { FlowModel, ReflinkModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import { flowModel, reflinkModel } from "@inboxos.io/database/schema"
+import type { FlowModel, ReflinkModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderBy,
-} from "@chatbotx.io/database/utils"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"
 import { flowService } from "../flow/service"

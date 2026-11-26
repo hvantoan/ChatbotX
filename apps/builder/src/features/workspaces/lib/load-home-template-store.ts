@@ -1,6 +1,6 @@
 import "server-only"
 
-import { templateService, templateStoreService } from "@chatbotx.io/business"
+import { templateService, templateStoreService } from "@inboxos.io/business"
 import {
   loadStoreCatalog,
   resolveTemplateCoverUrl,

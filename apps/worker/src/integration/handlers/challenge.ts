@@ -1,12 +1,12 @@
-import type { ConversationStepChallenge } from "@chatbotx.io/database/partials"
+import type { ConversationStepChallenge } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import type { StepInputResolutionReason } from "@chatbotx.io/flow-config"
-import { SdkException } from "@chatbotx.io/sdk"
-import type { IntegrationJobRunChallenge } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import type { StepInputResolutionReason } from "@inboxos.io/flow-config"
+import { SdkException } from "@inboxos.io/sdk"
+import type { IntegrationJobRunChallenge } from "@inboxos.io/worker-config"
 import { detectConversationAndContactInbox } from "../../lib/db"
 import { runStepsAndQuickReplies } from "./flow"
 import { runQuickReplyChallenge } from "./quick-reply-resume"

@@ -1,11 +1,11 @@
 import {
   type PipelineAccessScope,
   userPipelineActor,
-} from "@chatbotx.io/business/pipeline"
-import { hasWorkspacePermission } from "@chatbotx.io/business/workspace-member/permissions"
-import { isWorkspaceAdminMember } from "@chatbotx.io/business/workspace-member/predicates"
-import { workspaceMemberRoles } from "@chatbotx.io/database/partials"
-import type { WorkspaceMemberModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/pipeline"
+import { hasWorkspacePermission } from "@inboxos.io/business/workspace-member/permissions"
+import { isWorkspaceAdminMember } from "@inboxos.io/business/workspace-member/predicates"
+import { workspaceMemberRoles } from "@inboxos.io/database/partials"
+import type { WorkspaceMemberModel } from "@inboxos.io/database/types"
 
 /** A workspace API token is governed by its scope, not by per-pipeline grants. */
 export const PIPELINE_TOKEN_SCOPE: PipelineAccessScope = {

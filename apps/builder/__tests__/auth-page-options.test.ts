@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const isSignUpDisabled = vi.fn()
 const resolveGenericOAuthConfig = vi.fn()
 const warnIfGenericOAuthUnlicensed = vi.fn()
-vi.mock("@chatbotx.io/auth/server", () => ({
+vi.mock("@inboxos.io/auth/server", () => ({
   isSignUpDisabled: () => isSignUpDisabled(),
   resolveGenericOAuthConfig: () => resolveGenericOAuthConfig(),
   warnIfGenericOAuthUnlicensed: (isLicensed: boolean) =>
@@ -13,10 +13,10 @@ vi.mock("@chatbotx.io/auth/server", () => ({
 }))
 
 const resolveTenantByDomain = vi.fn()
-vi.mock("@chatbotx.io/auth/tenant", () => ({ resolveTenantByDomain }))
+vi.mock("@inboxos.io/auth/tenant", () => ({ resolveTenantByDomain }))
 
 const hasEnterpriseFeatures = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   hasEnterpriseFeatures: () => hasEnterpriseFeatures(),
 }))
 

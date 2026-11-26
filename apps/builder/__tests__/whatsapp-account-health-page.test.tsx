@@ -39,15 +39,15 @@ vi.mock("@/features/integration-whatsapp/queries", () => ({
   findIntegrationWhatsapp: findIntegrationWhatsappMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/phone-number", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/phone-number", () => ({
   findPhoneNumberDetail: findPhoneNumberDetailMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba", () => ({
   findWaba: findWabaMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/constants", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/constants", () => ({
   BUSINESS_URL: "https://business.facebook.com",
 }))
 

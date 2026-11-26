@@ -1,22 +1,22 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type FillableContactKey,
   fillableContactKeys,
-} from "@chatbotx.io/database/partials"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/database/partials"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import {
   Popover,
   PopoverContent,
   PopoverHeader,
   PopoverTitle,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   isTemporalCustomFieldType,
   resolveTemporalCustomFieldFormValue,
   resolveTemporalCustomFieldSaveFormat,
-} from "@chatbotx.io/utils/datetime"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/utils/datetime"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

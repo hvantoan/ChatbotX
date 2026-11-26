@@ -15,17 +15,17 @@ const mocks = vi.hoisted(() => ({
   insertReturning: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({
   folderModel: {},
   templateInstalledResourceModel: {},
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   eq: vi.fn(),
   isNull: vi.fn(),
 }))
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => "new-root" }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => "new-root" }))
 vi.mock("../src/template/adapters/registry", () => ({
   folderTypeToCategory: (type: string) =>
     type === "sequence" ? "sequences" : "flows",

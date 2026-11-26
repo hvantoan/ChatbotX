@@ -1,4 +1,4 @@
 {
-  "extends": "@chatbotx.io/typescript-config/base.json",
+  "extends": "@inboxos.io/typescript-config/base.json",
   "include": ["src/**/*.ts", "__tests__/**/*.ts"]
 }

@@ -4,8 +4,8 @@ import type {
   IncomingAttachment,
   IncomingCommerceEvent,
   IncomingMessage,
-} from "@chatbotx.io/sdk"
-import type { GoogleClickReferral } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/sdk"
+import type { GoogleClickReferral } from "@inboxos.io/utils/google-click"
 import type { WhatsAppAPI } from "whatsapp-api-js"
 import type { ServerMessageTypes } from "whatsapp-api-js/types"
 import type { WhatsappAuthValue } from "../../schema"

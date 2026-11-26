@@ -1,9 +1,9 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
+import { triggerActions } from "@inboxos.io/database/partials"
 import {
   FieldOperationType,
   withFieldOperationOperandRule,
   zodFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import z from "zod"
 import { getBrowserTimezone } from "@/features/contact-filter/lib/timezone"
 

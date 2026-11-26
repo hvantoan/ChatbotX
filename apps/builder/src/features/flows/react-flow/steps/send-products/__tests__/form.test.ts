@@ -2,7 +2,7 @@ import {
   CHANNEL_FLOW_POLICIES,
   flowValidationCodes,
   type SendProductsStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import {
   countProducts,

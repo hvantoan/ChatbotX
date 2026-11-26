@@ -1,8 +1,8 @@
 "use client"
 
-import type { GoogleAdsStatsResponse } from "@chatbotx.io/business"
-import { toStatBuckets } from "@chatbotx.io/business/google-ads/stat-buckets"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { GoogleAdsStatsResponse } from "@inboxos.io/business"
+import { toStatBuckets } from "@inboxos.io/business/google-ads/stat-buckets"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import { useLocale, useTranslations } from "next-intl"
 import { bucketLabelKey, STAT_BUCKET_ORDER } from "../../lib/stats-buckets"
 import { formatCount } from "../../lib/stats-format"

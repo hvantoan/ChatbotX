@@ -2,22 +2,22 @@ import "server-only"
 import {
   contactInboxService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import { sanitizePublicText } from "@chatbotx.io/business/errors"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { sanitizePublicText } from "@inboxos.io/business/errors"
+import { channelTypes } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   mapToChannelError,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/integration-whatsapp"
 import {
   getAppWebhookSubscriptions,
   WHATSAPP_APP_SUBSCRIPTION_OBJECT,
   WHATSAPP_APP_WEBHOOK_FIELDS,
-} from "@chatbotx.io/integration-whatsapp/api/app-subscriptions"
-import { getCallPermissions } from "@chatbotx.io/integration-whatsapp/api/calling"
-import { findPhoneNumberDetail } from "@chatbotx.io/integration-whatsapp/api/phone-number"
-import { UNKNOWN_ERROR } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-whatsapp/api/app-subscriptions"
+import { getCallPermissions } from "@inboxos.io/integration-whatsapp/api/calling"
+import { findPhoneNumberDetail } from "@inboxos.io/integration-whatsapp/api/phone-number"
+import { UNKNOWN_ERROR } from "@inboxos.io/sdk"
 import { logger } from "@/lib/log"
 import { resolveOwnerForWorkspace } from "@/lib/platform-credential-owner"
 import { resolveDialIdentity } from "./actions/outbound-dial-target"

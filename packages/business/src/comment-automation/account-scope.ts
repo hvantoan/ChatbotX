@@ -1,5 +1,5 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import type { CommentAutomationType } from "@chatbotx.io/database/partials"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import type { CommentAutomationType } from "@inboxos.io/database/partials"
 import { validationException } from "../errors"
 
 /**

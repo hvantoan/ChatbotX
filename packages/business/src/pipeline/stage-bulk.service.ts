@@ -1,18 +1,18 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   pipelineActivityRepository,
   pipelineItemRepository,
   pipelineReferenceRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import type { PipelineStageModel } from "@chatbotx.io/database/types"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import type { PipelineStageModel } from "@inboxos.io/database/types"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
   conflictException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -159,7 +159,7 @@ export class PipelineStageBulkService extends BaseService {
         count > 0 &&
         !permitsPipelineAction(permissions, ITEM_ACTION[mode.kind])
       ) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "You do not have permission to do this on this pipeline",
           "forbidden",
           403,

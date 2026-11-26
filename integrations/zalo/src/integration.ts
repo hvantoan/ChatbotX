@@ -6,7 +6,7 @@ import {
   oauth2Auth,
   probeVerify,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   convertCodeToTokens,
   getZaloOAProfile,

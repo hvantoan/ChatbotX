@@ -1,4 +1,4 @@
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import { and, asc, desc, eq, inArray, lt, sql } from "drizzle-orm"
 import { type DatabaseClient, db } from "../../client"
 import type {

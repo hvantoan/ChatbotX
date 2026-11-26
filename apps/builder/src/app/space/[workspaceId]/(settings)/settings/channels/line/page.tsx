@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { LineManage } from "@/features/integration-line/line-manage"
 import { listIntegrationLines } from "@/features/integration-line/queries"

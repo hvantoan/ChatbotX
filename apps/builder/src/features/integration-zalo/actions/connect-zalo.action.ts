@@ -1,8 +1,8 @@
-import { workspaceService, zaloIntegrationService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { ZaloCredential } from "@chatbotx.io/database/partials"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo"
+import { workspaceService, zaloIntegrationService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { ZaloCredential } from "@inboxos.io/database/partials"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo"
 import { redirect } from "next/navigation"
 import { integrations } from "@/integration"
 import { getGuestClientIp } from "@/lib/rate-limit/guest-rate-limit"
@@ -45,7 +45,7 @@ export async function connectZaloHandler({
     })
   } catch (error) {
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       error.code === "channelDuplicated"
     ) {
       redirect(

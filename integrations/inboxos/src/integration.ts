@@ -5,7 +5,7 @@ import {
   type IntegrationDefinition,
   type Oauth2AuthValue,
   selfServeConnection,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { ChatbotxAuthValue } from "./auth"
 
 const config: IntegrationDefinition<BaseConfig, ChatbotxAuthValue> = {
@@ -17,7 +17,7 @@ const config: IntegrationDefinition<BaseConfig, ChatbotxAuthValue> = {
   },
   actions: {},
   connection: selfServeConnection<ChatbotxAuthValue>({
-    displayName: "ChatbotX",
+    displayName: "InboxOS",
     multiAccount: false,
   }),
   handleRequest(
@@ -26,7 +26,7 @@ const config: IntegrationDefinition<BaseConfig, ChatbotxAuthValue> = {
     throw new Error("Method is not implemented.")
   },
   disconnect(_props: ChatbotxAuthValue): Promise<void> {
-    // ChatbotX is a built-in workspace channel with no external provider
+    // InboxOS is a built-in workspace channel with no external provider
     // to disconnect; removing the inbox row is the whole teardown.
     return Promise.resolve()
   },

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   bulkClearValues: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   botFieldService: { bulkClearValues: mocks.bulkClearValues },
 }))
 

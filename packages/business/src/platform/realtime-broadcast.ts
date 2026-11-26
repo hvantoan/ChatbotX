@@ -2,13 +2,13 @@ import type {
   RealtimeEventData,
   RealtimeGuestEventData,
   RealtimeTargetedEventData,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import {
   RealtimeEventType,
   realtimeWorkspaceEventEnvelopeSchema,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/realtime-protocol"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import {
   flushRealtimeRelayMetrics,

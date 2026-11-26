@@ -10,11 +10,11 @@
  * second run demonstrate idempotency.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/database test:db`.
+ * `pnpm --filter @inboxos.io/database test:db`.
  */
 
-import { AuthType, type AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+import { AuthType, type AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { and, eq } from "drizzle-orm"
 import { describe, expect, test, vi } from "vitest"
 import {

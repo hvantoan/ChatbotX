@@ -1,15 +1,15 @@
 "use client"
 
-import type { templateService } from "@chatbotx.io/business"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { templateService } from "@inboxos.io/business"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Table,
   TableBody,
@@ -17,7 +17,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {

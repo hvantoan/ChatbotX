@@ -1,4 +1,4 @@
-import type { DiscountCodeInput } from "@chatbotx.io/business"
+import type { DiscountCodeInput } from "@inboxos.io/business"
 import type { DiscountCodeWriteRequest } from "../schema/public"
 
 /** A full form or API body as the service takes it. */

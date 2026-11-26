@@ -4,8 +4,8 @@ import {
   MINI_APP_ACTION_KEY,
   type MiniAppAction,
   type MiniAppNavigationItem,
-} from "@chatbotx.io/mini-app"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/mini-app"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useTranslations } from "next-intl"
 import { nextFreeId } from "../../lib/list-editing"
 import { readArray } from "../../lib/props"

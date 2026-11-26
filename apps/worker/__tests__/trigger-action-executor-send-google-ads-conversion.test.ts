@@ -23,19 +23,19 @@ const mocks = vi.hoisted(() => ({
 
 // The trigger action registry imports the sequence actions, which reach
 // `contactSequenceService` through its (non-barrel) subpath.
-vi.mock("@chatbotx.io/business/contact-sequence", () => ({
+vi.mock("@inboxos.io/business/contact-sequence", () => ({
   contactSequenceService: {},
 }))
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({
+vi.mock("@inboxos.io/business/pipeline", () => ({
   runPipelineAction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   metaCapiEventChannelSchema: { safeParse: () => ({ success: false }) },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findByIdForContact: (...args: unknown[]) =>
       mocks.findByIdForContact(...args),
@@ -44,7 +44,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", async () => ({
+vi.mock("@inboxos.io/business", async () => ({
   // Pure consent mapping stays real; only the settings read is mocked.
   ...(await vi.importActual<
     typeof import("../../../packages/business/src/google-ads/consent")
@@ -75,15 +75,15 @@ vi.mock("@chatbotx.io/business", async () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: (...args: unknown[]) => mocks.logProviderError(...args),
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   default: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
   getChildLogger: () => ({
     warn: vi.fn(),
@@ -93,12 +93,12 @@ vi.mock("@chatbotx.io/logger", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: (...args: [string, unknown, unknown]) =>
     mocks.resolveContactVariablesDeep(...args),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: vi.fn() },
 }))
@@ -114,7 +114,7 @@ vi.mock("../src/integration/handlers/spreadsheet-handler", () => ({
 const { ActionExecutor } = await import(
   "../src/trigger/services/action-executor"
 )
-const baseLogger = (await import("@chatbotx.io/logger")).default
+const baseLogger = (await import("@inboxos.io/logger")).default
 
 const CLICK_ID = "gclid-secret-1234567890"
 const MESSENGER_INBOX = {

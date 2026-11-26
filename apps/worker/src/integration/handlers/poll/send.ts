@@ -1,22 +1,22 @@
-import { workspaceService } from "@chatbotx.io/business"
+import { workspaceService } from "@inboxos.io/business"
 import {
   buildCandidatesMessage,
   buildPollCardsMessage,
   getPollBotStrings,
-} from "@chatbotx.io/business/poll"
-import type { PollWithCandidates } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business/poll"
+import type { PollWithCandidates } from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ConversationModel,
   PollModel,
-} from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import {
   ChatJobAction,
   type ChatJobSendFlowStep,
   chatQueue,
   type RichButtonPayloadEntry,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 /**
  * Sentinel flow id for poll messages. Poll messages belong to no flow, but the

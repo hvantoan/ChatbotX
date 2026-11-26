@@ -1,15 +1,15 @@
 "use client"
 
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import type { ColumnDef, Row } from "@tanstack/react-table"
 import {
   ExternalLinkIcon,

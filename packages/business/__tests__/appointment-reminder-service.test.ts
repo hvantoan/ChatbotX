@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
   markSent: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   appointmentCalendarRepository: {
     getForEdit: (...args: unknown[]) => mocks.getForEdit(...args),
   },
@@ -40,14 +40,14 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: (input: { fn: () => unknown }) => input.fn(),
   },
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: {
     sendAppointmentReminder: "sendAppointmentReminder",
   },

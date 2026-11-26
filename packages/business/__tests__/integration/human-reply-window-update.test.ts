@@ -7,16 +7,16 @@
  * (workspace deletion cascades to contact and conversation).
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   contactModel,
   conversationModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { afterAll, beforeAll, describe, expect, test } from "vitest"
 import {
   humanReplyWindowSet,

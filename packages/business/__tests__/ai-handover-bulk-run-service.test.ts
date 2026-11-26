@@ -33,10 +33,10 @@ const mocks = vi.hoisted(() => ({
 
 const TX = { tx: true }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   aiHandoverBulkRunRepository: {
     createForRevision: mocks.createForRevision,
     findByRevision: mocks.findByRevision,
@@ -70,7 +70,7 @@ vi.mock("../src/ai-handover-settings/service", () => ({
     invalidate: mocks.invalidate,
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { aiHandoverBulkToggle: "aiHandoverBulkToggle" },
   integrationQueue: { add: mocks.queueAdd, getJob: mocks.getJob },
   buildAiHandoverBulkJobId: ({
@@ -81,13 +81,13 @@ vi.mock("@chatbotx.io/worker-config", () => ({
     chunkSeq: number
   }) => `ai-handover-bulk-${runId}-chunk-${chunkSeq}`,
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     error: mocks.loggerError,
     warn: mocks.loggerWarn,
   }),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   distributedLock: {
     // Serializes per key like the Redis lock, so interleaving tests see

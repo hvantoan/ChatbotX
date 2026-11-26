@@ -1,6 +1,6 @@
-import type { ContactInfoType } from "@chatbotx.io/database/partials"
-import type { ContactModel } from "@chatbotx.io/database/types"
-import { emitContactInfoUpdated } from "@chatbotx.io/events"
+import type { ContactInfoType } from "@inboxos.io/database/partials"
+import type { ContactModel } from "@inboxos.io/database/types"
+import { emitContactInfoUpdated } from "@inboxos.io/events"
 
 export type ContactInfoSnapshot = Pick<ContactModel, "phoneNumber" | "email">
 

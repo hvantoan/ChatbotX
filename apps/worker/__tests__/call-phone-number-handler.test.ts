@@ -8,7 +8,7 @@ const { resolveContactVariablesDeep, warn } = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({ resolveContactVariablesDeep }))
+vi.mock("@inboxos.io/variables", () => ({ resolveContactVariablesDeep }))
 vi.mock("../src/lib/logger", () => ({ logger: { warn } }))
 
 import { resolveCallPhoneNumberReply } from "../src/integration/handlers/call-phone-number"

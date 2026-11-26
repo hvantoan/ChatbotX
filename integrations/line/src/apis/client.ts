@@ -1,4 +1,4 @@
-import { AuthException } from "@chatbotx.io/sdk"
+import { AuthException } from "@inboxos.io/sdk"
 import ky, { isHTTPError } from "ky"
 import { LineAPIException } from "../exception"
 import { logger } from "../lib/logger"

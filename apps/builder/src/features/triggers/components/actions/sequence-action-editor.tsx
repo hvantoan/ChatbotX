@@ -1,6 +1,6 @@
 "use client"
 
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
 import { useSequenceSelectOptions } from "@/features/sequences/provider/sequence-hook"
 
 /**

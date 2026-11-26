@@ -10,12 +10,12 @@ import {
   or,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   ConversationAttributes,
   ConversationQuickReplyChallenge,
   ConversationSalesState,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   assignTargetIfUnassigned,
   assignUserIfUnassigned,
@@ -25,8 +25,8 @@ import {
   createMessageRepository,
   getSafeSinceTime,
   insertDmConversationsIfAbsent,
-} from "@chatbotx.io/database/repositories"
-import { conversationModel, inboxModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { conversationModel, inboxModel } from "@inboxos.io/database/schema"
 import type {
   AttachmentModel,
   ContactCustomFieldModel,
@@ -41,8 +41,8 @@ import type {
   SequenceModel,
   TagModel,
   UserModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
 import {
   emitConversationArchived,
   emitConversationAssigned,
@@ -50,18 +50,18 @@ import {
   emitConversationTransferredToBot,
   emitConversationTransferredToHuman,
   emitConversationUnassigned,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   RealtimeEventType,
   routeForAssignment,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/realtime-protocol"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import {
   NotificationJobAction,
   notificationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { PgUpdateSetSource } from "drizzle-orm/pg-core"
 import { BaseService } from "../base.service"
 import { contactService } from "../contact"
@@ -71,7 +71,7 @@ import type {
 } from "../contact-inbox/service"
 import { contactInboxService } from "../contact-inbox/service"
 import { inboxTeamService } from "../enterprise/inbox-team/service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { queueWorkspaceRealtimeEvent } from "../platform/realtime-broadcast"
 import { responseSlaService } from "../response-sla/service"
@@ -1285,7 +1285,7 @@ class ConversationService extends BaseService {
       if (workspaceMember) {
         updatedData.assignedUserId = workspaceMember.userId
       } else if (onInvalid === "throw") {
-        throw new ChatbotXException("User is not valid", "invalidAssignee", 400)
+        throw new InboxOSException("User is not valid", "invalidAssignee", 400)
       }
     } else if (assignedId?.startsWith("t_")) {
       const inboxTeamId = assignedId.slice(2)
@@ -1309,7 +1309,7 @@ class ConversationService extends BaseService {
     } else if (assignedId != null && onInvalid === "throw") {
       // Schema validation should already reject this shape, but guard here too
       // so a caller can never silently unassign via an unrecognized prefix.
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "assignedId must start with 'u_' or 't_'",
         "invalidAssignee",
         400,

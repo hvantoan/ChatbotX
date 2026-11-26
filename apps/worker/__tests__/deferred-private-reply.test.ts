@@ -28,7 +28,7 @@ const {
   mockIsBotMessageQuotaReached: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService: {
     incrementRepliesCount: mockIncrementRepliesCount,
   },
@@ -41,38 +41,38 @@ vi.mock("@chatbotx.io/business", () => ({
   recordDeliveredPrivateReply: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService: {
     recordEvent: mockRecordEvent,
     settleEvent: vi.fn(),
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   sendPrivateReply: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   sendPrivateReply: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   sendPrivateReply: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   sendPrivateReply: mockSendTiktokPrivateReply,
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: mockContactVariableGetAll,
     replaceAll: mockContactVariableReplaceAll,
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: { commentAIReply: "commentAIReply" },
   aiAgentQueue: { add: vi.fn() },
   IntegrationJobAction: {
@@ -332,7 +332,7 @@ describe("runDeferredCommentPrivateReply", () => {
       }),
     )
 
-    const { aiAgentQueue } = await import("@chatbotx.io/worker-config")
+    const { aiAgentQueue } = await import("@inboxos.io/worker-config")
     expect(aiAgentQueue.add).toHaveBeenCalledWith(
       expect.anything(),
       expect.anything(),
@@ -348,7 +348,7 @@ describe("runDeferredCommentPrivateReply", () => {
       buildData({ privateReply: { type: "AIAgent", value: "agent-1" } }),
     )
 
-    const { aiAgentQueue } = await import("@chatbotx.io/worker-config")
+    const { aiAgentQueue } = await import("@inboxos.io/worker-config")
     expect(aiAgentQueue.add).toHaveBeenCalledWith(
       expect.anything(),
       expect.anything(),

@@ -1,4 +1,4 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 
 export class ActiveCampaignApiError extends SdkException {
   readonly statusCode: number

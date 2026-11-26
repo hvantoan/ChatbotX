@@ -1,15 +1,15 @@
 "use client"
 
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { cn } from "@chatbotx.io/ui/lib/utils"
 import {
   SiFacebook,
   SiInstagram,
   SiThreads,
   SiTiktok,
 } from "@icons-pack/react-simple-icons"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import {
   BotIcon,
   CalendarIcon,

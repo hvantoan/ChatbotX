@@ -1,8 +1,8 @@
 "use client"
 
-import { spreadsheetGetRandomRowSchema } from "@chatbotx.io/flow-config"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { spreadsheetGetRandomRowSchema } from "@inboxos.io/flow-config"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useCallback } from "react"
 import { useForm, useFormContext, useWatch } from "react-hook-form"
 import { SpreadsheetDialog } from "@/features/flows/react-flow/steps/spreadsheet/components/dialog"

@@ -16,7 +16,7 @@ const {
   assertApiNotRateLimited: vi.fn().mockResolvedValue(undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -106,7 +106,7 @@ describe("real router: broadcasts public API scope wiring", () => {
 
   test("null scopes (unrestricted) passes the real GET /v1/broadcasts route", async () => {
     findWorkspaceByTokenHash.mockResolvedValue(authResult(null))
-    const { broadcastService } = await import("@chatbotx.io/business")
+    const { broadcastService } = await import("@inboxos.io/business")
     vi.mocked(broadcastService.list).mockResolvedValue({
       data: [],
       pageCount: 1,
@@ -162,7 +162,7 @@ describe("real router: broadcasts public API scope wiring", () => {
       }),
     ).rejects.toMatchObject({ code: "FORBIDDEN" })
 
-    const { broadcastService } = await import("@chatbotx.io/business")
+    const { broadcastService } = await import("@inboxos.io/business")
     expect(broadcastService.create).not.toHaveBeenCalled()
   })
 
@@ -180,7 +180,7 @@ describe("real router: broadcasts public API scope wiring", () => {
     })
 
     test("resend scopes to the token's workspace, not any workspace implied by the id", async () => {
-      const { broadcastService } = await import("@chatbotx.io/business")
+      const { broadcastService } = await import("@inboxos.io/business")
       vi.mocked(broadcastService.resendWithPruning).mockResolvedValue({
         id: "new-b-1",
         name: "My broadcast (Resend)",
@@ -217,7 +217,7 @@ describe("real router: broadcasts public API scope wiring", () => {
 
       test("previewRecurrence returns the next runs of the rule it was given", async () => {
         const { broadcastRecurrenceService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         vi.mocked(broadcastRecurrenceService.previewUpcoming).mockReturnValue({
           upcomingRuns: ["2026-10-14T02:00:00.000Z"],
@@ -241,7 +241,7 @@ describe("real router: broadcasts public API scope wiring", () => {
 
       test("previewRecurrence rejects an invalid rule before the service is called", async () => {
         const { broadcastRecurrenceService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         await expect(
           invoke(broadcastsPublicRouter.previewRecurrence, {
@@ -255,7 +255,7 @@ describe("real router: broadcasts public API scope wiring", () => {
 
       test("listRunGroups scopes to the token's workspace and defaults to day groups", async () => {
         const { broadcastRecurrenceService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         vi.mocked(broadcastRecurrenceService.listRunGroups).mockResolvedValue({
           data: [
@@ -300,7 +300,7 @@ describe("real router: broadcasts public API scope wiring", () => {
 
       test("listOccurrences scopes to the token's workspace and passes the window", async () => {
         const { broadcastRecurrenceService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         vi.mocked(broadcastRecurrenceService.listOccurrences).mockResolvedValue(
           {
@@ -330,7 +330,7 @@ describe("real router: broadcasts public API scope wiring", () => {
         ["restoreOccurrence", false],
       ] as const)("%s scopes to the token's workspace and names the date", async (procedure, excluded) => {
         const { broadcastRecurrenceService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         const state = {
           excludeDates: excluded ? ["2026-12-25"] : [],
@@ -381,7 +381,7 @@ describe("real router: broadcasts public API scope wiring", () => {
       })
 
       test("create and updateDraft forward the repeat rule to the service", async () => {
-        const { broadcastService } = await import("@chatbotx.io/business")
+        const { broadcastService } = await import("@inboxos.io/business")
         vi.mocked(broadcastService.create).mockResolvedValue({
           id: "999999",
           name: "Daily promo",
@@ -426,7 +426,7 @@ describe("real router: broadcasts public API scope wiring", () => {
       })
 
       test("schedule forwards the repeat rule to the service", async () => {
-        const { broadcastService } = await import("@chatbotx.io/business")
+        const { broadcastService } = await import("@inboxos.io/business")
         vi.mocked(broadcastService.scheduleDraft).mockResolvedValue({
           id: "999999",
         })
@@ -448,7 +448,7 @@ describe("real router: broadcasts public API scope wiring", () => {
       })
 
       test("resume reports when a repeating broadcast runs next", async () => {
-        const { broadcastService } = await import("@chatbotx.io/business")
+        const { broadcastService } = await import("@inboxos.io/business")
         const nextRunAt = new Date("2026-10-14T02:00:00.000Z")
         vi.mocked(broadcastService.resumeSending).mockResolvedValue({
           id: "999999",
@@ -463,7 +463,7 @@ describe("real router: broadcasts public API scope wiring", () => {
       })
 
       test("list passes the run filters, reading query-string booleans literally", async () => {
-        const { broadcastService } = await import("@chatbotx.io/business")
+        const { broadcastService } = await import("@inboxos.io/business")
         vi.mocked(broadcastService.list).mockResolvedValue({
           data: [],
           pageCount: 1,
@@ -495,7 +495,7 @@ describe("real router: broadcasts public API scope wiring", () => {
     })
 
     test("updateDraft scopes to the token's workspace, not any workspace implied by the id", async () => {
-      const { broadcastService } = await import("@chatbotx.io/business")
+      const { broadcastService } = await import("@inboxos.io/business")
       // The route's output declares `status` alongside `id`, so the mock
       // must return it too or oRPC's output validation rejects the response.
       vi.mocked(broadcastService.updateDraft).mockResolvedValue({
@@ -523,7 +523,7 @@ describe("real router: broadcasts public API scope wiring", () => {
     })
 
     test("listContacts scopes the lookup to the token's workspace", async () => {
-      const { broadcastService } = await import("@chatbotx.io/business")
+      const { broadcastService } = await import("@inboxos.io/business")
       vi.mocked(broadcastService.listContactsPage).mockResolvedValue({
         data: [],
         total: 0,

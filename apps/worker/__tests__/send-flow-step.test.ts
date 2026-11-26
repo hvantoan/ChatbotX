@@ -151,16 +151,16 @@ const { mockResolveCollectionStep } = vi.hoisted(() => ({
 // Module mocks
 // ---------------------------------------------------------------------------
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
   eq: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   botMessageFallbackReasons: {
     enum: {
       button_not_found: "button_not_found",
@@ -183,7 +183,7 @@ vi.mock("@chatbotx.io/analytics", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = { pick: vi.fn(() => schema) }
   return {
     createSelectSchema: vi.fn(() => schema),
@@ -194,7 +194,7 @@ vi.mock("@chatbotx.io/database/schema", () => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentCalendarService: {
     findByPublicLinkSlug: mockFindAppointmentCalendarBySlug,
   },
@@ -252,42 +252,42 @@ vi.mock("@chatbotx.io/business", () => ({
   resolveMediaUrl: mockResolveMediaUrl,
 }))
 
-vi.mock("@chatbotx.io/business/error-log", async (importOriginal) => {
+vi.mock("@inboxos.io/business/error-log", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/business/error-log")>()
+    await importOriginal<typeof import("@inboxos.io/business/error-log")>()
   return {
     ...actual,
     logProviderErrorForChannel: mockLogProviderErrorForChannel,
   }
 })
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   signAppointmentWebviewToken: mockSignAppointmentWebviewToken,
 }))
 
 // Its own subpath, not the barrel: `node:crypto` modules stay out of
-// `@chatbotx.io/encryption`'s index so the builder's Edge bundle can load it.
-// Only the HMAC is stubbed here — `@chatbotx.io/business/open-link` runs for
+// `@inboxos.io/encryption`'s index so the builder's Edge bundle can load it.
+// Only the HMAC is stubbed here — `@inboxos.io/business/open-link` runs for
 // real, so the exemptions it decides (same origin, self channel) stay covered.
-vi.mock("@chatbotx.io/encryption/open-link-token", () => ({
+vi.mock("@inboxos.io/encryption/open-link-token", () => ({
   signOpenLinkUrl: vi.fn(() => "open-link-signature"),
   verifyOpenLinkUrl: vi.fn(() => true),
 }))
 
 // No step here carries an Open Mini App button, so the Mini App lookup is
 // never reached; mocked only to keep its DB-backed module out of the import.
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findUnscoped: vi.fn() },
 }))
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: vi.fn((path: string, base: string) => `${base}/${path}`),
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: mockEmit,
 }))
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeEventType: { messageCreated: "messageCreated" },
   routeForConversation: vi.fn(
     (
@@ -309,8 +309,8 @@ vi.mock("@chatbotx.io/realtime-protocol", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     parseSdkError: vi.fn().mockResolvedValue({ message: "sdk error" }),
@@ -318,22 +318,22 @@ vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: vi.fn(() => "test-id") }
 })
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: mockResolveContactVariables,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploadFileFromUrl: mockUploadFileFromUrl,
 }))
 
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => {
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/flow-config")>()
+    await importOriginal<typeof import("@inboxos.io/flow-config")>()
   return { ...actual }
 })
 
@@ -373,8 +373,8 @@ vi.mock("../src/chat/handlers/send-whatsapp-template", () => ({
 import {
   BROADCAST_PAYLOAD_TYPE,
   SEQUENCE_SCHEDULE_PAYLOAD_TYPE,
-} from "@chatbotx.io/flow-config"
-import type { ChatJobSendFlowStep } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/flow-config"
+import type { ChatJobSendFlowStep } from "@inboxos.io/worker-config"
 import { logger } from "../src/lib/logger"
 
 const { sendChatMessage, sendFlowStep } = await import(
@@ -1434,7 +1434,7 @@ describe("sendFlowStep", () => {
           beforeStep: {
             id: "before-1",
             stepType: "openWebsite",
-            url: "https://builder.chatbotx.online/booking/public-slug",
+            url: "https://builder.inboxos.online/booking/public-slug",
             browserSize: 100,
           },
           steps: [],

@@ -1,5 +1,5 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { type MessageType, messageTypes } from "@chatbotx.io/database/partials"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { type MessageType, messageTypes } from "@inboxos.io/database/partials"
 import {
   type BulkCreateAttachmentInput,
   type CreateAttachmentInput,
@@ -7,11 +7,11 @@ import {
   createMessageRepository,
   type FindMessageByIdParams,
   type MessageWithAttachments,
-} from "@chatbotx.io/database/repositories"
-import type { MessageModel } from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { MessageModel } from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { createOutgoing } from "./create-outgoing"
 import {
   findByIdWithUrls,
@@ -201,7 +201,7 @@ class MessageService extends BaseService {
     const editMessage = async (tx: DatabaseClient) => {
       const updated = await this.updateText({ ...props, tx })
       if (!updated) {
-        throw new ChatbotXException("Message not found")
+        throw new InboxOSException("Message not found")
       }
       if (props.replaceAttachments) {
         await this.replaceAttachments({ ...props, tx })

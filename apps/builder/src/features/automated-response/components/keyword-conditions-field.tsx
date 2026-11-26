@@ -7,18 +7,18 @@ import {
   keywordConditionOperators,
   MAX_KEYWORD_CONDITION_VALUES,
   MAX_KEYWORD_CONDITIONS,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { FormField } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { FormField } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/select"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { PlusIcon, Trash2Icon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Fragment, type KeyboardEvent, useMemo, useState } from "react"

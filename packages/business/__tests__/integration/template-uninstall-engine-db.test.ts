@@ -9,12 +9,12 @@
  * Commits for real, so each test deletes its workspace afterwards.
  */
 
-import { db, eq, sql } from "@chatbotx.io/database/client"
+import { db, eq, sql } from "@inboxos.io/database/client"
 import {
   templateInstallationRepository,
   templateInstallationSyncRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   templateInstallationModel,
   templateInstallationSyncModel,
@@ -22,8 +22,8 @@ import {
   templateModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {

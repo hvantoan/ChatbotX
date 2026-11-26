@@ -27,7 +27,7 @@ const { repositoryMock, encryptTextMock, decryptTextMock, loggerWarnMock } =
 
 const resolveCredentialOwnerIdForWorkspace = vi.hoisted(() => vi.fn())
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: repositoryMock,
   whatsappBusinessAccountRepository: {
     findByWaba: vi.fn().mockResolvedValue(null),
@@ -53,10 +53,10 @@ vi.mock("../src/google-ads/owner", () => ({
   resolveCredentialOwnerIdForWorkspace,
 }))
 
-vi.mock("@chatbotx.io/encryption", async () => {
-  const actual = await vi.importActual<
-    typeof import("@chatbotx.io/encryption")
-  >("@chatbotx.io/encryption")
+vi.mock("@inboxos.io/encryption", async () => {
+  const actual = await vi.importActual<typeof import("@inboxos.io/encryption")>(
+    "@inboxos.io/encryption",
+  )
   return {
     ...actual,
     encryptUtils: {
@@ -73,7 +73,7 @@ const { workspaceService } = await import("../src/workspace/service")
 const { platformCredentialService } = await import(
   "../src/platform-credential/service"
 )
-const { ChannelError, ChannelErrorCategory } = await import("@chatbotx.io/sdk")
+const { ChannelError, ChannelErrorCategory } = await import("@inboxos.io/sdk")
 
 describe("integrationWhatsappService signup sessions", () => {
   beforeEach(() => {

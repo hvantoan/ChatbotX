@@ -28,7 +28,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   changedKeysOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/database/client", async () => {
+vi.mock("@inboxos.io/database/client", async () => {
   const { installedResourceModelStub } = await import(
     "./helpers/template-guard-mocks"
   )
@@ -60,14 +60,14 @@ vi.mock("@chatbotx.io/database/client", async () => {
     isDatabaseError: (error: unknown) => error instanceof FakeDatabaseError,
   }
 })
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({ customFieldModel: {} }))
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({ customFieldModel: {} }))
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: vi.fn(),
   parseOrderByAsObject: vi.fn(),
   parsePagination: vi.fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: async (_key: string, fn: () => Promise<unknown>) => await fn(),
   invalidateCacheByTags: vi.fn(),
 }))

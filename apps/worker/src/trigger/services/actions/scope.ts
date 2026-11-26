@@ -1,4 +1,4 @@
-import { conversationService } from "@chatbotx.io/business"
+import { conversationService } from "@inboxos.io/business"
 import type { ActionExecutionContext } from "../../types"
 import { resolveActionContactInbox } from "../resolve-action-contact-inbox"
 import type { TriggerActionScope } from "./types"

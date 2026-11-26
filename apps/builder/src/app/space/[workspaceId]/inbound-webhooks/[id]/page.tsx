@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { AppBreadcrumb } from "@/components/app-breadcrumb"
@@ -21,7 +21,7 @@ export default async function InboundWebhookEditorPage({
 
   const webhook = await findInboundWebhookForEditor({ workspaceId, id }).catch(
     (error: unknown) => {
-      if (error instanceof ChatbotXException && error.code === "notFound") {
+      if (error instanceof InboxOSException && error.code === "notFound") {
         return null
       }
       throw error

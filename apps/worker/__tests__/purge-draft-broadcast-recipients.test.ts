@@ -5,7 +5,7 @@ const purgeDraftRecipients = vi.fn()
 const loggerWarnSpy = vi.fn()
 const blockedWorkspaceIds = new Set<string>()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: {
     purgeDraftRecipients: (...args: unknown[]) => purgeDraftRecipients(...args),
   },

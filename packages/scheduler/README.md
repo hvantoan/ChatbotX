@@ -1,4 +1,4 @@
-# @chatbotx.io/scheduler
+# @inboxos.io/scheduler
 
 Scheduler client for managing sequence dispatches with Redis-compatible stores.
 
@@ -8,8 +8,8 @@ Scheduler client for managing sequence dispatches with Redis-compatible stores.
 ### Using the new SchedulerClient (recommended)
 
 ```typescript
-import { SchedulerClient } from "@chatbotx.io/scheduler"
-import { sequenceConnections } from "@chatbotx.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
+import { sequenceConnections } from "@inboxos.io/redis"
 
 // Create client with your own Redis instance
 const redisClient = await sequenceConnections.useExisting()

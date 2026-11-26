@@ -3,13 +3,13 @@ import type {
   MessengerTemplateParams,
   MetadataPayload,
   SendMessengerTemplateMessageStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   buttonTypes,
   encodeButtonPayload,
   extractMetadata,
-} from "@chatbotx.io/flow-config"
-import type { MessageHandlers } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageHandlers } from "@inboxos.io/sdk"
 import type {
   FacebookSendMessageRequest,
   MessengerAuthValue,

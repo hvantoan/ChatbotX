@@ -1,6 +1,6 @@
 "use client"
 
-import { buttonTypes, isNativeButtonType } from "@chatbotx.io/flow-config"
+import { buttonTypes, isNativeButtonType } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { useButtonEditorChannel } from "../../button-editor-channel"
 import { BaseStepEditor } from "../base/editor"

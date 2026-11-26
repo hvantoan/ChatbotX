@@ -53,9 +53,9 @@ const facebookLeadAdsAutomationService = {
   update: vi.fn(),
   deleteMany: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ facebookLeadAdsAutomationService }))
+vi.mock("@inboxos.io/business", () => ({ facebookLeadAdsAutomationService }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
   notFoundException: (message: string) => new Error(message),
 }))

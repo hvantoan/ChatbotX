@@ -8,8 +8,8 @@ import {
   type TemplateComponentButton,
   type WaTemplateButtonParam,
   type WaTemplateParams,
-} from "@chatbotx.io/flow-config"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/flow-config"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import Image from "next/image"
 import { useLocale, useTranslations } from "next-intl"
 import type { ReactNode } from "react"

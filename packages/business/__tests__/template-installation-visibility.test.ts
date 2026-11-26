@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   findInstallation: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   templateInstallationSyncRepository: {
     listInstalledResources: mocks.listInstalled,

@@ -23,7 +23,7 @@ const templateService = {
 }
 const templateInstallationRequestService = { getDetail: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -37,7 +37,7 @@ const templateUninstallService = {
   uninstallAsPublisher: vi.fn(),
   uninstallAsInstaller: vi.fn(),
 }
-vi.mock("@chatbotx.io/business/template-uninstall", () => ({
+vi.mock("@inboxos.io/business/template-uninstall", () => ({
   templateUninstallService,
 }))
 

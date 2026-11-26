@@ -1,5 +1,5 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { MacEventType } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { MacEventType } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type {
   CountDelta,
@@ -66,7 +66,7 @@ const isNull = vi.fn((column: unknown) => ({ op: "isNull", args: [column] }))
 const or = vi.fn((...args: unknown[]) => args)
 const sum = vi.fn((column: unknown) => ({ __sum: true, column }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     execute: dbExecute,
     insert: dbInsert,
@@ -88,7 +88,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql,
   sum,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   workspaceMacModel: {
     id: "wm.id",
     macCount: "wm.macCount",

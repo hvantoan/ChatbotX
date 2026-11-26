@@ -4,7 +4,7 @@ import {
   type Context,
   customAuthSchema,
   type Handler,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import { normalizeActiveCampaignApiUrl } from "./constants"
 

@@ -1,7 +1,7 @@
 import {
   AI_FILE_CHUNKER_VERSIONS,
   type AIFileChunkStrategy,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { chunkMarkdown } from "./markdown"
 import { chunkProse } from "./prose"
 import { chunkTabular } from "./tabular"

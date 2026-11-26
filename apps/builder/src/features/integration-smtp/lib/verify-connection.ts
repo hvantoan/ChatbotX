@@ -1,9 +1,9 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { smtpHostMap } from "@chatbotx.io/integration-smtp"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { smtpHostMap } from "@inboxos.io/integration-smtp"
 import {
   createSmtpTransporter,
   type SmtpTransportOptions,
-} from "@chatbotx.io/mail/transport"
+} from "@inboxos.io/mail/transport"
 import { getTranslations } from "next-intl/server"
 import type { CreateSmtpRequest } from "../schema/mutation"
 
@@ -15,7 +15,7 @@ export async function verifySmtpTransport(options: SmtpTransportOptions) {
   try {
     await transporter.verify()
   } catch {
-    throw new ChatbotXException(t("smtp.errors.connectionFailed"))
+    throw new InboxOSException(t("smtp.errors.connectionFailed"))
   } finally {
     transporter.close()
   }

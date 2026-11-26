@@ -1,4 +1,4 @@
-import { integrationZaloPersonalService } from "@chatbotx.io/business"
+import { integrationZaloPersonalService } from "@inboxos.io/business"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import {

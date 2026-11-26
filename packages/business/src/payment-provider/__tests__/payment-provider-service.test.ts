@@ -31,12 +31,12 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (...args: unknown[]) => mocks.transaction(...args) },
   isUniqueViolationError: (error: { code?: string }) => error.code === "23505",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   paymentProviderRepository: {
     find: (...args: unknown[]) => mocks.find(...args),
     findByExternalAccount: (...args: unknown[]) =>
@@ -51,14 +51,14 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptUtils: {
     encryptObject: (...args: unknown[]) => mocks.encryptObject(...args),
     decryptObject: (...args: unknown[]) => mocks.decryptObject(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/payments", () => ({
+vi.mock("@inboxos.io/payments", () => ({
   buildStripeAuthorizeUrl: (input: { state: string }) =>
     `https://connect.stripe.com/oauth/authorize?state=${input.state}`,
   exchangeStripeCode: (...args: unknown[]) => mocks.exchangeStripeCode(...args),
@@ -80,7 +80,7 @@ vi.mock("@chatbotx.io/payments", () => ({
   isPaymentProviderError: () => false,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: (...args: unknown[]) => mocks.runExclusive(...args),
   },

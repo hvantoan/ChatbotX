@@ -1,7 +1,7 @@
 import type {
   ShopifyOrder,
   ShopifyProduct,
-} from "@chatbotx.io/integration-shopify"
+} from "@inboxos.io/integration-shopify"
 import { describe, expect, test } from "vitest"
 import {
   mapShopifyDiscount,

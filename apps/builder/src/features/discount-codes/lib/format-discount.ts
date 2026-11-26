@@ -1,4 +1,4 @@
-import type { DiscountType } from "@chatbotx.io/database/partials"
+import type { DiscountType } from "@inboxos.io/database/partials"
 
 /** "20%", the amount in the store's format, or null for free shipping. */
 export const formatDiscountValue = (

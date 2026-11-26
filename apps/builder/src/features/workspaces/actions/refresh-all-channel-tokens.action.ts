@@ -7,42 +7,42 @@ import {
   messengerIntegrationService,
   tiktokIntegrationService,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
   type InstagramAuthValue,
   integration as integrationInstagram,
   isRevokedTokenError as isInstagramRevokedTokenError,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import {
   integration as integrationInstagramFacebook,
   isRevokedTokenError as isInstagramFacebookRevokedTokenError,
-} from "@chatbotx.io/integration-instagram-facebook"
+} from "@inboxos.io/integration-instagram-facebook"
 import {
   integration as integrationMessenger,
   isRevokedTokenError as isMessengerRevokedTokenError,
   logMessengerWelcomeProfile,
   type MessengerAuthValue,
-} from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/integration-messenger"
 import {
   isRevokedTokenError as isTiktokRevokedTokenError,
   type TiktokAuthValue,
-} from "@chatbotx.io/integration-tiktok"
-import { refreshAccessToken as refreshTiktokAccessToken } from "@chatbotx.io/integration-tiktok/apis/auth"
-import { parseTiktokScopes } from "@chatbotx.io/integration-tiktok/lib/scopes"
-import { buildTokenTimestamps } from "@chatbotx.io/integration-tiktok/lib/token-utils"
+} from "@inboxos.io/integration-tiktok"
+import { refreshAccessToken as refreshTiktokAccessToken } from "@inboxos.io/integration-tiktok/apis/auth"
+import { parseTiktokScopes } from "@inboxos.io/integration-tiktok/lib/scopes"
+import { buildTokenTimestamps } from "@inboxos.io/integration-tiktok/lib/token-utils"
 import {
   integration as integrationWhatsapp,
   isRevokedTokenError as isWhatsappRevokedTokenError,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/integration-whatsapp"
 import {
   calculateExpiresAt,
   isRevokedTokenError as isZaloRevokedTokenError,
   refreshAccessToken as refreshZaloAccessToken,
   type ZaloAuthValue,
-} from "@chatbotx.io/integration-zalo"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-zalo"
+import { distributedLock } from "@inboxos.io/redis"
 import { isCloud } from "@/env"
 import { getAllWorkspaceMembers } from "@/features/workspace-members/queries"
 import { logger } from "@/lib/log"

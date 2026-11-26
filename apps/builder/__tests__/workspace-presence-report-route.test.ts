@@ -3,8 +3,8 @@
 import {
   signMemberConnectToken,
   signPresenceReportToken,
-} from "@chatbotx.io/realtime-protocol/auth"
-import { hashPresenceUserIds } from "@chatbotx.io/realtime-protocol/presence"
+} from "@inboxos.io/realtime-protocol/auth"
+import { hashPresenceUserIds } from "@inboxos.io/realtime-protocol/presence"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const SECRET = "a".repeat(32)
@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspacePresenceService: { heartbeatMany: mocks.heartbeatMany },
 }))
 
@@ -219,7 +219,7 @@ describe("POST /api/workspace-presence/report", () => {
 
   test("truncates an over-cap userIds batch instead of rejecting it, and matches the token hashed over the same truncated set (LOW-7)", async () => {
     const { MAX_PRESENCE_USER_IDS_PER_REPORT } = await import(
-      "@chatbotx.io/realtime-protocol/presence"
+      "@inboxos.io/realtime-protocol/presence"
     )
     const overCapUserIds = Array.from(
       { length: MAX_PRESENCE_USER_IDS_PER_REPORT + 5 },

@@ -3,7 +3,7 @@
  * column from the previous key to the current key.
  *
  * Usage:
- *   pnpm --filter @chatbotx.io/database rotate:encryption-key [--dry-run]
+ *   pnpm --filter @inboxos.io/database rotate:encryption-key [--dry-run]
  *
  * Required env vars:
  *   ENCRYPTION_KEY      — the new (target) key hex
@@ -21,7 +21,7 @@
  * `encryptedAuth` row is still bound to a previous key id, so operators know
  * ENCRYPTION_KEY_PREV must not be removed yet.
  */
-import { encryptUtils } from "@chatbotx.io/encryption"
+import { encryptUtils } from "@inboxos.io/encryption"
 import { eq, sql } from "drizzle-orm"
 import type { z } from "zod"
 import { db } from "../src/client"

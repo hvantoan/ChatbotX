@@ -27,7 +27,7 @@ const { mockFindById, mockResolveForOwner, mockWorkspaceFind, mockIsMember } =
     mockIsMember: vi.fn(async () => true),
   }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { findById: mockFindById },
 }))
 
@@ -40,7 +40,7 @@ vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: { resolveForOwner: mockResolveForOwner },
   workspaceService: {
     create: vi.fn(),
@@ -59,21 +59,21 @@ vi.mock("@chatbotx.io/business", () => ({
 // this test — `mockResolveForOwner` defaults to `undefined`, so
 // `resolveConnectSession` throws `credentialMissingException` first — this
 // stub only satisfies the module import.
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { connectTargets: vi.fn() },
 }))
 
 // The REAL session/item-outcome mapping table — `resolveConnectSession`
 // (called by `connectMessengerPage`) throws genuine exceptions from the
-// (also real, below) `@chatbotx.io/business/errors`, so this file lets the
+// (also real, below) `@inboxos.io/business/errors`, so this file lets the
 // real mapping classify them instead of re-implementing that table as a
 // second source of truth that could silently drift from production.
-vi.mock("@chatbotx.io/business/inbox/connect-outcome", async (importOriginal) =>
+vi.mock("@inboxos.io/business/inbox/connect-outcome", async (importOriginal) =>
   importOriginal(),
 )
 
-vi.mock("@chatbotx.io/business/errors", () => {
-  class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => {
+  class InboxOSException extends Error {
     code?: string
     constructor(message: string, code?: string) {
       super(message)
@@ -81,36 +81,36 @@ vi.mock("@chatbotx.io/business/errors", () => {
     }
   }
   return {
-    ChatbotXException,
+    InboxOSException,
     connectSessionExpiredException: (message: string) =>
-      new ChatbotXException(message, "connectSessionExpired"),
+      new InboxOSException(message, "connectSessionExpired"),
     notWorkspaceMemberException: () =>
-      new ChatbotXException("not a member", "notWorkspaceMember"),
+      new InboxOSException("not a member", "notWorkspaceMember"),
     credentialMissingException: (message: string) =>
-      new ChatbotXException(message, "credentialMissing"),
+      new InboxOSException(message, "credentialMissing"),
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: vi.fn(async () => undefined) },
   isDatabaseError: vi.fn(() => false),
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: { runChannelHandler: vi.fn() },
 }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => "id-1" }
 })
-vi.mock("@chatbotx.io/utils/id", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils/id")>()
+vi.mock("@inboxos.io/utils/id", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils/id")>()
   return { ...actual, createId: () => "id-1" }
 })
 
@@ -118,7 +118,7 @@ vi.mock("next/navigation", () => ({ redirect: vi.fn() }))
 
 vi.mock("@/env", () => ({ isCloud: () => true }))
 vi.mock("@/features/integration-webchat/lib", () => ({
-  BRANDING_TITLE: "ChatbotX",
+  BRANDING_TITLE: "InboxOS",
   getBrandingUrl: vi.fn(() => ""),
 }))
 vi.mock("@/features/workspaces/actions/upload-logo", () => ({

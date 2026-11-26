@@ -1,23 +1,23 @@
-import { db } from "@chatbotx.io/database/client"
-import type { PipelineActivityKind } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import type { PipelineActivityKind } from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   type PipelineActivityInsert,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PipelineItemModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   emitPipelineItemEvent,
   type PipelineEventType,
   type PipelineItemEventMetadata,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   type PipelineItemChangedData,
   RealtimeEventType,
-} from "@chatbotx.io/realtime-protocol"
-import { invalidateCacheByTags } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import { invalidateCacheByTags } from "@inboxos.io/redis"
 import { conversationService } from "../conversation/service"
 import { logger } from "../logger"
 import { queueWorkspaceRealtimeEvent } from "../platform/realtime-broadcast"

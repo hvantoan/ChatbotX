@@ -1,4 +1,4 @@
-import { isMobileAccessTokenCandidate } from "@chatbotx.io/auth/mobile-resource-candidate"
+import { isMobileAccessTokenCandidate } from "@inboxos.io/auth/mobile-resource-candidate"
 import { ORPCError } from "@orpc/server"
 import { mobileCredentialId } from "@/lib/mobile-auth/mobile-credential-id"
 import {

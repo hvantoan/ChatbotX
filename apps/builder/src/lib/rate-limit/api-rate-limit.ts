@@ -1,5 +1,5 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { distributedStore } from "@chatbotx.io/redis"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { distributedStore } from "@inboxos.io/redis"
 import { logger } from "@/lib/log"
 
 const WINDOW_SECONDS = 10
@@ -152,7 +152,7 @@ export const assertApiNotRateLimited = async (
   const { limited, retryAfter } = await checkApiRateLimit(props)
   if (limited) {
     props.resHeaders?.set("Retry-After", String(retryAfter))
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `Too many requests. Retry after ${retryAfter}s.`,
       "tooManyRequests",
       TOO_MANY_REQUESTS_STATUS,

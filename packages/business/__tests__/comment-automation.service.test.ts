@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
 // The template lock guard has its own suite; these tests cover the service.
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(db),
   }
@@ -30,7 +30,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   changedKeysOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       commentAutomationModel: {
@@ -60,7 +60,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const actual = await vi.importActual<
     typeof import("../../database/src/partials/comment-automation")
   >("../../database/src/partials/comment-automation")
@@ -99,7 +99,7 @@ vi.mock("../src/ai-agent/service", () => ({
   aiAgentService: { findByIdForWorkspace: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactInboxModel: { contactId: "ContactInbox.contactId" },
   commentAutomationModel: {
     id: "CommentAutomation.id",
@@ -114,7 +114,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "generated-id",
 }))
 

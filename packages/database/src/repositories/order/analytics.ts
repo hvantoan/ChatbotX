@@ -9,12 +9,12 @@ import {
   ne,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   zonedBucketKey,
   zonedHourKey,
-} from "@chatbotx.io/database/queries/date-bucket"
-import { orderItemModel, orderModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/queries/date-bucket"
+import { orderItemModel, orderModel } from "@inboxos.io/database/schema"
 
 /**
  * The orders a sales figure counts: this workspace's, not cancelled, in one

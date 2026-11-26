@@ -2,17 +2,17 @@ import type {
   DiscountType,
   EcommerceSettings,
   OrderShippingAddress,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   externalStoreRepository,
   shopifyRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   buildShopifyCartPermalink,
   createShopifyOrder,
   type ShopifyOrderCreateInput,
   ShopifyUserError,
-} from "@chatbotx.io/integration-shopify"
+} from "@inboxos.io/integration-shopify"
 import {
   type ExternalCheckoutShopper,
   signContactReference,

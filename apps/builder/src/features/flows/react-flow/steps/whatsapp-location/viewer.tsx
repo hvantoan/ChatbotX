@@ -1,7 +1,7 @@
 "use client"
 
-import type { WhatsappLocationStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { WhatsappLocationStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { useTranslations } from "next-intl"
 import { LocationPreview } from "./location-preview"
 

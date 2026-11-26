@@ -37,11 +37,11 @@
 ## Docker Images
 
 ```
-ghcr.io/chatbotxio/chatbotx-builder:VERSION
-ghcr.io/chatbotxio/chatbotx-worker:VERSION
-ghcr.io/chatbotxio/chatbotx-realtime:VERSION
-ghcr.io/chatbotxio/chatbotx-mcp:VERSION
-ghcr.io/chatbotxio/chatbotx-javascript-executor:VERSION
+ghcr.io/inboxosio/inboxos-builder:VERSION
+ghcr.io/inboxosio/inboxos-worker:VERSION
+ghcr.io/inboxosio/inboxos-realtime:VERSION
+ghcr.io/inboxosio/inboxos-mcp:VERSION
+ghcr.io/inboxosio/inboxos-javascript-executor:VERSION
 ```
 
 ## Upgrade Notes

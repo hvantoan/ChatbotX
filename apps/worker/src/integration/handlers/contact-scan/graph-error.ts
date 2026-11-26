@@ -2,7 +2,7 @@ import {
   type ChannelError,
   ChannelErrorCategory,
   isRateLimited,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { isRetryable, readOriginError } from "../shared/http-retry"
 import type { ContactScanErrorClassification } from "./adapter"
 

@@ -1,11 +1,12 @@
 "use client"
 
-import { openaiCompatiblePresetConfigs } from "@chatbotx.io/ai"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { openaiCompatiblePresetConfigs } from "@inboxos.io/ai"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -15,9 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PencilIcon } from "lucide-react"
 import { useRouter } from "next/navigation"

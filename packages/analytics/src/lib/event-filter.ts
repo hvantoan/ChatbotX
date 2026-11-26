@@ -1,4 +1,4 @@
-import { sql } from "@chatbotx.io/database/client"
+import { sql } from "@inboxos.io/database/client"
 import {
   type AnalyticsFilter,
   normalizeAnalyticsFilters,

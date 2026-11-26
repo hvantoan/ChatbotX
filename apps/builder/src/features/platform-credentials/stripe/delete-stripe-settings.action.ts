@@ -1,6 +1,6 @@
 "use server"
 
-import { removePlatformStripe } from "@chatbotx.io/business"
+import { removePlatformStripe } from "@inboxos.io/business"
 import { authActionClient } from "@/lib/safe-action"
 import { credentialScopeSchema } from "../scope"
 import { resolveStripeCredentialScope } from "./scope"

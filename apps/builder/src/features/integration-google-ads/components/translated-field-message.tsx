@@ -1,7 +1,7 @@
 "use client"
 
-import { useFormField } from "@chatbotx.io/ui/components/ui/form"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { useFormField } from "@inboxos.io/ui/components/ui/form"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 
 type TranslatedFieldMessageProps = {

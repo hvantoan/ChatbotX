@@ -1,4 +1,4 @@
-import { CONTACT_FILTER_FIELD_REFERENCE } from "@chatbotx.io/flow-config"
+import { CONTACT_FILTER_FIELD_REFERENCE } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { type ContactFilterField, contactFilterFields } from "../src/partials"
 

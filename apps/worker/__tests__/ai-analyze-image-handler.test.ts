@@ -1,4 +1,4 @@
-import type { AIAnalyzeImageSchema } from "@chatbotx.io/flow-config"
+import type { AIAnalyzeImageSchema } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -12,12 +12,12 @@ const mocks = vi.hoisted(() => ({
   streamText: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 30_000 },
   isImageUrl: mocks.isImageUrl,
   processStreamingText: mocks.processStreamingText,
 }))
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   resolveContactVariablesDeep: mocks.resolveContactVariablesDeep,
 }))
 vi.mock("ai", () => ({ streamText: mocks.streamText }))

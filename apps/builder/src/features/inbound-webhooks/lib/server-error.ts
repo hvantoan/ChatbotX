@@ -1,4 +1,4 @@
-import { INBOUND_WEBHOOK_LIMITS } from "@chatbotx.io/database/partials"
+import { INBOUND_WEBHOOK_LIMITS } from "@inboxos.io/database/partials"
 
 type Translator = {
   (key: string, values?: Record<string, string | number>): string

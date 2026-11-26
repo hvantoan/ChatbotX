@@ -1,7 +1,7 @@
 import {
   assertCanManageTemplates,
   type TemplateActor,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   workspaceActionClient,
   workspaceActionClientAllowExpired,

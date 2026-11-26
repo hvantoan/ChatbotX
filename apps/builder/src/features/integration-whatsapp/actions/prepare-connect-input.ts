@@ -1,12 +1,12 @@
-import type { WhatsappSignupSessionAuthorized } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
+import type { WhatsappSignupSessionAuthorized } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
 import {
   appAccessToken,
   exchangeAccessToken,
-} from "@chatbotx.io/integration-whatsapp/api/auth"
-import { findWaba } from "@chatbotx.io/integration-whatsapp/api/waba"
-import { resolveOwningWabaId } from "@chatbotx.io/integration-whatsapp/api/waba-owner"
+} from "@inboxos.io/integration-whatsapp/api/auth"
+import { findWaba } from "@inboxos.io/integration-whatsapp/api/waba"
+import { resolveOwningWabaId } from "@inboxos.io/integration-whatsapp/api/waba-owner"
 import { getTranslations } from "next-intl/server"
 import { notSelectableOutcome } from "@/features/channel-connect/lib/connect-action-outcomes"
 import {
@@ -43,7 +43,7 @@ async function resolveAccessToken(
     return exchangeResult.access_token
   }
 
-  throw new ChatbotXException("WhatsApp access token is required.")
+  throw new InboxOSException("WhatsApp access token is required.")
 }
 
 /**
@@ -252,7 +252,7 @@ async function prepareAutoSelectInput(params: {
   ) {
     const [phoneNumber] = candidates
     if (!phoneNumber) {
-      throw new ChatbotXException("No WhatsApp phone number was found.")
+      throw new InboxOSException("No WhatsApp phone number was found.")
     }
 
     return toDirectInput({
@@ -310,7 +310,7 @@ async function prepareOwningWabaInput(
   }
 
   if (input.wabaId && input.wabaId !== targets.wabaId) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Selected WhatsApp Business Account does not match the authorization.",
     )
   }

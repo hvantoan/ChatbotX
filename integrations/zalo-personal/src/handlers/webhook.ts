@@ -1,5 +1,5 @@
-import type { HandleRequestProps } from "@chatbotx.io/sdk"
-import { timingSafeStringEqual } from "@chatbotx.io/utils/crypto"
+import type { HandleRequestProps } from "@inboxos.io/sdk"
+import { timingSafeStringEqual } from "@inboxos.io/utils/crypto"
 import { ZaloPersonalWebhookException } from "../exception"
 import {
   type ZaloPersonalConfig,

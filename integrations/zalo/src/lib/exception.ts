@@ -1,4 +1,4 @@
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { isHTTPError } from "ky"
 
 const FALLBACK_HTTP_STATUS = 400

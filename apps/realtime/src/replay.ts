@@ -2,8 +2,8 @@ import {
   getRealtimeStreamKey,
   isRealtimeSeqAfter,
   STREAM_ID_PATTERN,
-} from "@chatbotx.io/realtime-protocol"
-import type { Redis } from "@chatbotx.io/redis"
+} from "@inboxos.io/realtime-protocol"
+import type { Redis } from "@inboxos.io/redis"
 import type { StreamRecordEntry } from "./delivery"
 import { logger } from "./logger"
 import { parseStreamRecord, type StreamEntry } from "./stream-reader"

@@ -1,7 +1,7 @@
 import {
   googleAdsSettingsService,
   integrationGoogleAdsService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type { z } from "zod"
 import type { googleAdsIntegrationResource } from "../schema/integration"
 import { toConsentView } from "./to-consent-view"

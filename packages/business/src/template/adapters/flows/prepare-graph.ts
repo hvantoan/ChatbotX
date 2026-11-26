@@ -1,14 +1,14 @@
-import { rootFolderId } from "@chatbotx.io/database/partials"
+import { rootFolderId } from "@inboxos.io/database/partials"
 import type {
   FlowExportedFlow,
   TemplateFlowEntry,
   UnresolvedReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   normalizeFlowGraphDecisionMappings,
   remapFlowGraphReferences,
   templateFlowNodeSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { z } from "zod"
 import { decisionProfileService } from "../../../decision/profile-service"
 import { assertFlowGraphPublishable } from "../../../flow-version/assert-publishable"

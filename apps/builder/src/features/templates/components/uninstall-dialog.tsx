@@ -3,8 +3,8 @@
 import type {
   TemplateUninstallPublisherResult,
   TemplateUninstallRequestResult,
-} from "@chatbotx.io/business/template-uninstall"
-import type { TemplateUninstallCounts } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/template-uninstall"
+import type { TemplateUninstallCounts } from "@inboxos.io/database/partials"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,9 +14,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

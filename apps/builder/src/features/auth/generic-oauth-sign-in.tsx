@@ -1,7 +1,7 @@
 "use client"
 
-import { GENERIC_OAUTH_PROVIDER_ID } from "@chatbotx.io/auth/client"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { GENERIC_OAUTH_PROVIDER_ID } from "@inboxos.io/auth/client"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import Image from "next/image"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"

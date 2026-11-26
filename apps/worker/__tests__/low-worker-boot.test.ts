@@ -63,7 +63,7 @@ vi.mock("bullmq", () => {
   return { Worker: WorkerMock }
 })
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   LowJobAction: {
     coexistAttachmentDownload: "coexistAttachmentDownload",
     updateContactAvatar: "updateContactAvatar",
@@ -89,7 +89,7 @@ vi.mock("../src/leaderboard/process-job", () => ({
   processLeaderboardJob: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService: {
     finishMissedCommentReplay: workerState.finishMissedCommentReplay,
   },

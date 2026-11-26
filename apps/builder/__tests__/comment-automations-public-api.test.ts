@@ -46,7 +46,7 @@ const commentAutomationService = {
   findMissedCommentsInProgress: vi.fn(),
 }
 const igStoryAutomationService = { deleteMany: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService,
   igStoryAutomationService,
 }))

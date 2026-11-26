@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { ExternalLinkIcon, Loader2Icon, RefreshCwIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

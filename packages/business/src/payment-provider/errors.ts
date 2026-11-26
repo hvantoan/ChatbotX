@@ -1,11 +1,11 @@
-import type { OnlinePaymentProvider } from "@chatbotx.io/database/partials"
-import { isPaymentProviderError } from "@chatbotx.io/payments"
-import { ChatbotXException } from "../errors"
+import type { OnlinePaymentProvider } from "@inboxos.io/database/partials"
+import { isPaymentProviderError } from "@inboxos.io/payments"
+import { InboxOSException } from "../errors"
 
 export const paymentProviderNotConnectedException = (
   provider: OnlinePaymentProvider,
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `Connect ${provider} in Settings → Integrations first.`,
     "paymentProviderNotConnected",
   )
@@ -21,7 +21,7 @@ export const paymentProviderInUseException = (
   provider: OnlinePaymentProvider,
   count: number,
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `${count} open order(s) were paid with ${provider} or are waiting for it. Complete or cancel them first.`,
     "paymentProviderInUse",
     409,
@@ -32,7 +32,7 @@ export const paymentProviderInUseException = (
 
 /** Stores are connected through the current platform Stripe account. */
 export const stripePlatformAccountInUseException = (count: number) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `${count} store(s) are connected through the current Stripe account. A key of another Stripe account would cut them off; disconnect them first.`,
     "stripePlatformAccountInUse",
     409,
@@ -42,13 +42,13 @@ export const stripePlatformAccountInUseException = (count: number) => {
 }
 
 export const stripePlatformNotConfiguredException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Stripe Connect is not set up on this platform yet (secret key and Connect client id).",
     "stripePlatformNotConfigured",
   )
 
 export const stripeAccountAlreadyConnectedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This Stripe account is already connected to another workspace.",
     "stripeAccountAlreadyConnected",
     409,
@@ -56,7 +56,7 @@ export const stripeAccountAlreadyConnectedException = () =>
 
 /** What was pasted is not a Stripe secret (`sk_…`) or restricted (`rk_…`) key. */
 export const stripeSecretKeyInvalidException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "Paste a Stripe secret key (sk_live_… or sk_test_…) or a restricted key (rk_…), not a publishable key (pk_…).",
     "stripeSecretKeyInvalid",
   )
@@ -65,7 +65,7 @@ export const paymentCurrencyUnsupportedException = (
   provider: OnlinePaymentProvider,
   currency: string,
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `${provider} does not take payments in ${currency}.`,
     "paymentCurrencyUnsupported",
   )
@@ -74,7 +74,7 @@ export const paymentCurrencyUnsupportedException = (
 }
 
 export const paymentMethodUnavailableException = (method: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `The store does not take ${method} payments.`,
     "paymentMethodUnavailable",
   )
@@ -90,9 +90,9 @@ export const paymentMethodUnavailableException = (method: string) => {
 export const toPaymentProviderException = (
   provider: OnlinePaymentProvider,
   error: unknown,
-): ChatbotXException => {
+): InboxOSException => {
   if (!isPaymentProviderError(error)) {
-    return new ChatbotXException(
+    return new InboxOSException(
       `${provider} could not be reached.`,
       "paymentProviderUnavailable",
       503,
@@ -100,7 +100,7 @@ export const toPaymentProviderException = (
   }
   const data = { provider, providerCode: error.providerCode ?? "" }
   const build = (message: string, code: string, status?: number) => {
-    const exception = new ChatbotXException(message, code, status)
+    const exception = new InboxOSException(message, code, status)
     exception.data = data
     return exception
   }
@@ -139,5 +139,5 @@ export const callPaymentProvider = async <T>(
 
 /** The store disconnected the provider (`paymentProviderNotConnectedException`). */
 export const isPaymentProviderNotConnected = (error: unknown) =>
-  error instanceof ChatbotXException &&
+  error instanceof InboxOSException &&
   error.code === "paymentProviderNotConnected"

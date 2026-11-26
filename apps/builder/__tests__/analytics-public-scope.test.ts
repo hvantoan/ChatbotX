@@ -19,7 +19,7 @@ const {
 const contactAnalyticsService = { getContactsCount: vi.fn() }
 const agentResponseAnalyticsService = { getAgentResponseSeries: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -28,7 +28,7 @@ vi.mock("@chatbotx.io/business", () => ({
   contactInboxService: { findManyByIds: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   agentResponseAnalyticsService,
   contactAnalyticsService,
   macAnalyticsService: {},
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/analytics", () => ({
   commentAutomationAnalyticsService: {},
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn((_key: string, loader: () => unknown) => loader()),
   invalidateCacheByTags: vi.fn(),
 }))

@@ -1,7 +1,7 @@
 import {
   RESPONSE_SLA_MAX_TARGET_SECONDS,
   RESPONSE_SLA_MIN_TARGET_SECONDS,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { z } from "zod"
 
 const targetSeconds = z

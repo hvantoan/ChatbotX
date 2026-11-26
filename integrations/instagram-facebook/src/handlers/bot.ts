@@ -1,4 +1,4 @@
-import type { BotHandlers } from "@chatbotx.io/sdk"
+import type { BotHandlers } from "@inboxos.io/sdk"
 import {
   addBranding,
   deleteProfileFields as deleteProfileFieldsApi,

@@ -1,11 +1,11 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   type FillableContactKey,
   fillableContactKeys,
   genderTypes,
-} from "@chatbotx.io/database/partials"
-import type { ContactModel } from "@chatbotx.io/database/types"
-import { isNumericId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import type { ContactModel } from "@inboxos.io/database/types"
+import { isNumericId } from "@inboxos.io/utils"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import { contactCustomFieldService } from "../contact-custom-field/service"
 import { contactInboxService } from "../contact-inbox/service"

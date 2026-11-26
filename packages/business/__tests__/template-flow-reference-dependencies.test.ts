@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   aiFunctions: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/client", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   db: {
     query: {

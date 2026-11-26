@@ -1,5 +1,5 @@
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { CREATABLE_CHANNELS } from "@chatbotx.io/database/partials"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { CREATABLE_CHANNELS } from "@inboxos.io/database/partials"
 import { resolveChannelPolicy } from "@/lib/workspace/resolve-visible-channels"
 
 /**

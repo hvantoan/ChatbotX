@@ -3,7 +3,7 @@
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
+} from "@inboxos.io/ui/components/ui/radio-group"
 import { useId } from "react"
 
 type FilterRadioListProps<T extends string> = {

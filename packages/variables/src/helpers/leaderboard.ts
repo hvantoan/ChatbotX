@@ -1,4 +1,4 @@
-import { findLeaderboardReferrerName } from "@chatbotx.io/business/leaderboard"
+import { findLeaderboardReferrerName } from "@inboxos.io/business/leaderboard"
 
 export const getLeaderboardReferrerName = async (
   contactId: string,

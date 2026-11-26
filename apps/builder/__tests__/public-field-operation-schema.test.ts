@@ -2,7 +2,7 @@ import {
   FIELD_OPERATION_DEFINITIONS,
   fieldOperationApiNames,
   fieldOperationCodes,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { describe, expect, test } from "vitest"
 import { z } from "zod"
 import {

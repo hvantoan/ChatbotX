@@ -2,17 +2,17 @@
 
 /** Editors for the simple prop types: text, number, boolean, enum, date and lists. */
 
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/select"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useId } from "react"
 import {

@@ -6,12 +6,12 @@ const { logError } = vi.hoisted(() => ({ logError: vi.fn() }))
 
 vi.mock("@/lib/log", () => ({ logger: { error: logError } }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { nullOnNotFound } = await import(
   "../src/features/templates/lib/not-found-guard"
 )
 
-const notFound = () => new ChatbotXException("missing", "notFound", 404)
+const notFound = () => new InboxOSException("missing", "notFound", 404)
 
 beforeEach(() => vi.clearAllMocks())
 

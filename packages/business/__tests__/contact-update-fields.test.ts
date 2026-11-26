@@ -94,7 +94,7 @@ vi.mock("../src/contact/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (cb: (tx: unknown) => unknown) => {
       const result = await cb(txHandle)
@@ -104,9 +104,9 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/partials", async (importOriginal) => {
+vi.mock("@inboxos.io/database/partials", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/partials")>()
+    await importOriginal<typeof import("@inboxos.io/database/partials")>()
   return actual
 })
 

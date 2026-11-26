@@ -10,7 +10,7 @@ vi.mock("next-intl", () => ({
   useLocale: () => "en",
 }))
 // Only the selects are stubbed; the date control and its preset logic are real.
-vi.mock("@chatbotx.io/ui/components/ui/select", () => ({
+vi.mock("@inboxos.io/ui/components/ui/select", () => ({
   Select: () => null,
   SelectTrigger: () => null,
   SelectValue: () => null,

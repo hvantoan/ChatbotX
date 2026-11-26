@@ -1,6 +1,6 @@
-import { pipelineSettingsSchema } from "@chatbotx.io/database/partials"
-import { pipelineVariableTargetRepository } from "@chatbotx.io/database/repositories"
-import type { PipelineItemModel } from "@chatbotx.io/database/types"
+import { pipelineSettingsSchema } from "@inboxos.io/database/partials"
+import { pipelineVariableTargetRepository } from "@inboxos.io/database/repositories"
+import type { PipelineItemModel } from "@inboxos.io/database/types"
 import {
   applyEffectiveCurrency,
   workspaceCurrencyDefault,

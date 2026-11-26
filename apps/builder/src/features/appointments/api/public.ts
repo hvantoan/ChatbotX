@@ -4,7 +4,7 @@ import {
   createInboxBookingLink,
   resolveTenantSettings,
   sendInboxBookingLink,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   possibleErrorsOnBookingAppointment,
   possibleErrorsOnCreatingBookingLink,

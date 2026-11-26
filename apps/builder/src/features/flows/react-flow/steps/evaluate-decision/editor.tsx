@@ -1,15 +1,16 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import {
   type EvaluateDecisionFieldMapping,
   type EvaluateDecisionStepSchema,
   evaluateDecisionStepDefaultFn,
   evaluateDecisionStepSchema,
-} from "@chatbotx.io/flow-config"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -19,9 +20,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useQuery } from "@tanstack/react-query"
 import { BrainCircuitIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

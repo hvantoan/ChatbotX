@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   getAll: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       commentAutomationModel: { findFirst: mocks.findAutomation },
@@ -36,17 +36,17 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () => {
+vi.mock("@inboxos.io/database/partials", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/database/partials")
-  >("@chatbotx.io/database/partials")
+    typeof import("@inboxos.io/database/partials")
+  >("@inboxos.io/database/partials")
   return {
     canProcessMissedComments: actual.canProcessMissedComments,
     commentAutomationTypes: actual.commentAutomationTypes,
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   commentAutomationEventModel: {
     name: "event",
     automationId: "Event.automationId",
@@ -74,7 +74,7 @@ vi.mock("../src/ai-agent/service", () => ({
   aiAgentService: { findByIdForWorkspace: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: {
     setNumberIfNotExists: mocks.setNumberIfNotExists,
     delete: mocks.deleteKeys,

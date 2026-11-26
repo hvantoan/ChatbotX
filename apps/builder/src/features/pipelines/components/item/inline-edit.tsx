@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { PencilIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { type KeyboardEvent, type ReactNode, useState } from "react"

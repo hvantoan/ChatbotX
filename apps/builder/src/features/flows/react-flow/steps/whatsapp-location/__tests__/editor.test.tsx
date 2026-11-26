@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { whatsappLocationStepDefaultFn } from "@chatbotx.io/flow-config"
+import { whatsappLocationStepDefaultFn } from "@inboxos.io/flow-config"
 import { act, type ComponentProps, type ReactElement } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, type UseFormReturn, useForm } from "react-hook-form"
@@ -12,7 +12,7 @@ vi.mock("@/components/tiptap/tiptap-editor-field", () => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({ children, ...props }: ComponentProps<"button">) => (
     <button {...props}>{children}</button>
   ),
@@ -20,7 +20,7 @@ vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
 
 // Render the dialog inline (no portal / animation) so jsdom can query it;
 // DialogClose closes it through the same onOpenChange the real one calls.
-vi.mock("@chatbotx.io/ui/components/ui/dialog", async () => {
+vi.mock("@inboxos.io/ui/components/ui/dialog", async () => {
   const { cloneElement, createContext, useContext } = await import("react")
   const CloseContext = createContext<() => void>(() => undefined)
   type Children = { children: ReactElement }

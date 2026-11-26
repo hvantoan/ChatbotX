@@ -39,7 +39,7 @@ export function errorLabelKey(code: number | null): ErrorLabelKey | null {
   return (labelKeyByCode as Record<number, ErrorLabelKey>)[code] ?? null
 }
 
-/** Webhook failures carry no code; two known strings are written by ChatbotX itself. */
+/** Webhook failures carry no code; two known strings are written by InboxOS itself. */
 export function messageLabelKey(message: string): ErrorLabelKey | null {
   return (labelKeyByMessage as Record<string, ErrorLabelKey>)[message] ?? null
 }

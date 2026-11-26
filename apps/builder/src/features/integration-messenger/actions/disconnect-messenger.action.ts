@@ -1,6 +1,6 @@
 "use server"
 
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 import { disconnectMessenger } from "./disconnect-messenger"
 

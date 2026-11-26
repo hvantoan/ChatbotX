@@ -2,12 +2,12 @@ import {
   OutboundMediaError,
   resolveOutboundImageRenditions,
   resolveVideoPreviewPlaceholderUrl,
-} from "@chatbotx.io/business/outbound-media"
+} from "@inboxos.io/business/outbound-media"
 import {
   ChannelError,
   ChannelErrorCategory,
   type Context,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type { LineAuthValue } from "../../../schema"
 import type { LineMessage } from "./dispatch"
 import { LINE_LIMITS } from "./limits"

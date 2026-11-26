@@ -1,6 +1,6 @@
 "use server"
 
-import { miniAppService } from "@chatbotx.io/business/mini-app"
+import { miniAppService } from "@inboxos.io/business/mini-app"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 

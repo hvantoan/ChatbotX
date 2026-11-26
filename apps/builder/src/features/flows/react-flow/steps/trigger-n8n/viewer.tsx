@@ -1,8 +1,8 @@
 "use client"
 
-import type { TriggerN8nStepSchema } from "@chatbotx.io/flow-config"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { TriggerN8nStepSchema } from "@inboxos.io/flow-config"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { WebhookIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { BaseStateViewer } from "../../states/viewer"

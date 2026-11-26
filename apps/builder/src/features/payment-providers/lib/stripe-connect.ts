@@ -1,6 +1,6 @@
 import "server-only"
-import { paymentProviderService } from "@chatbotx.io/business"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import { paymentProviderService } from "@inboxos.io/business"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { sanitizeReferer } from "@/lib/oauth-referer"
 import { resolveOwnerForWorkspace } from "@/lib/platform-credential-owner"
 import { buildProviderCallbackUrl } from "@/lib/provider-origin"

@@ -1,11 +1,11 @@
-import { db, eq } from "@chatbotx.io/database/client"
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { db, eq } from "@inboxos.io/database/client"
+import { channelTypes } from "@inboxos.io/database/partials"
 import {
   integrationZaloPersonalModel,
   type ZaloPersonalGroupReplyConfig,
-} from "@chatbotx.io/database/schema"
-import { type EncryptedData, encryptUtils } from "@chatbotx.io/encryption"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { type EncryptedData, encryptUtils } from "@inboxos.io/encryption"
+import { createId } from "@inboxos.io/utils"
 import { z } from "zod"
 import { bulkImportChannelContacts } from "../contact/bulk-import-channel-contacts"
 import { channelDuplicatedException } from "../errors"

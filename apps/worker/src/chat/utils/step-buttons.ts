@@ -1,8 +1,8 @@
 import type {
   ButtonStepProps,
   SendCardStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 
 /**
  * Every button a step sends: its own buttons, then each card's buttons. The

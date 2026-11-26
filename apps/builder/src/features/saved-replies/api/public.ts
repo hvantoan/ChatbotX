@@ -1,5 +1,5 @@
-import { savedReplyService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { savedReplyService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnCreatingResource,

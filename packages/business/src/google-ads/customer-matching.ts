@@ -1,10 +1,10 @@
 import type {
   GoogleAdsMatchingSnapshot,
   GoogleAdsUploadMethod,
-} from "@chatbotx.io/database/partials"
-import { contactInboxRepository } from "@chatbotx.io/database/repositories"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
-import { isGoogleAdsMatchTemplate } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/database/partials"
+import { contactInboxRepository } from "@inboxos.io/database/repositories"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
+import { isGoogleAdsMatchTemplate } from "@inboxos.io/utils/google-click"
 import {
   type HashedMatchingIdentifiers,
   hashMatchingIdentifiers,

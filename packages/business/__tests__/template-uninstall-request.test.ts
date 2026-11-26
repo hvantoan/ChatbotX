@@ -18,18 +18,18 @@ const mocks = vi.hoisted(() => ({
   workspaceFindFirst: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (callback: (client: unknown) => unknown) => callback({}),
   },
 }))
-vi.mock("@chatbotx.io/database/statement-timeout", () => ({
+vi.mock("@inboxos.io/database/statement-timeout", () => ({
   setLocalStatementTimeout: vi.fn(),
 }))
 vi.mock("../src/workspace", () => ({
   workspaceService: { find: mocks.workspaceFindFirst },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateRepository: { findLiveTenant: mocks.templateFindFirst },
   templateInstallationRepository: {
     // Spies over the same row source (`mocks.find`), so a test can tell a
@@ -51,7 +51,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     listTombstones: vi.fn(),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueUninstallTemplate: mocks.enqueue,
 }))
 vi.mock("../src/template/adapters/uninstall-handlers", () => ({

@@ -96,7 +96,7 @@ vi.mock("@/lib/log", () => ({
   logger: { error: vi.fn(), warn: vi.fn(), info: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   canCallConversation: canCallConversationMock,
   whatsappCallLifecycleService: {
     markRecordingArrangement: markRecordingArrangementMock,
@@ -127,11 +127,11 @@ vi.mock("@chatbotx.io/business", () => ({
   WhatsappCallInProgressError: InProgressError,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   channelTypes: { enum: { whatsapp: "whatsapp" } },
   resolveWhatsappCallOutcome: ({
     status,
@@ -142,14 +142,14 @@ vi.mock("@chatbotx.io/database/partials", () => ({
   }) => (status === "failed" && canceledByBusiness ? "canceled" : status),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     findByInboxIdForWorkspace: findByInboxIdForWorkspaceMock,
   },
   WhatsappCallPendingOutboundExistsError: PendingOutboundExistsError,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/calling", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/calling", () => ({
   getCallPermissions: getCallPermissionsMock,
   connectCall: connectCallMock,
   terminateCall: terminateCallMock,
@@ -165,7 +165,7 @@ vi.mock("@chatbotx.io/integration-whatsapp/api/calling", () => ({
     input && SUPPORTED_ANNOUNCEMENT_LANGUAGES.has(input) ? input : "en_US",
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/exception", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/exception", () => ({
   WhatsappException: FakeWhatsappException,
 }))
 

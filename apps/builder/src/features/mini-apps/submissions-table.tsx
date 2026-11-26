@@ -7,11 +7,11 @@ import {
   type MiniAppDefinition,
   type MiniAppFileAnswer,
   type MiniAppOption,
-} from "@chatbotx.io/mini-app"
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/mini-app"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import type { ColumnDef } from "@tanstack/react-table"
 import { FileTextIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"

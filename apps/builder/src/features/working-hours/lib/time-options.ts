@@ -1,4 +1,4 @@
-import { WORKING_HOURS_MINUTES_PER_DAY } from "@chatbotx.io/database/partials"
+import { WORKING_HOURS_MINUTES_PER_DAY } from "@inboxos.io/database/partials"
 
 /** Granularity of the schedule editor (plan decision Q7). */
 export const TIME_STEP_MINUTES = 15

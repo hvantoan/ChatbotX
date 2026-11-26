@@ -48,7 +48,7 @@ const insertTagChannel = (values: TagChannelRow) => ({
   }),
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     insert: () => ({ values: insertTagChannel }),
     query: {
@@ -72,7 +72,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: (strings: TemplateStringsArray) => ({ sql: strings.join("?") }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tagChannelModel: {
     id: "TagChannel.id",
     tagId: "TagChannel.tagId",
@@ -87,19 +87,19 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   contactModel: {},
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => `tc-${++nextId}` }
 })
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitTagApplied: vi.fn(),
   emitTagRemoved: vi.fn(),
 }))
 vi.mock("../src/ads-conversion/service", () => ({
   adsConversionService: { enqueueTagAppliedEvaluationsBulk: vi.fn() },
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: async (_key: string, callback: () => Promise<unknown>) =>
     await callback(),

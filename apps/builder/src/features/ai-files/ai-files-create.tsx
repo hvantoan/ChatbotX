@@ -1,9 +1,10 @@
 "use client"
 
-import { getAllowableKnowledgeExtensions } from "@chatbotx.io/ai"
-import { AI_FILE_MAX_UPLOAD_BYTES } from "@chatbotx.io/sdk"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { getAllowableKnowledgeExtensions } from "@inboxos.io/ai"
+import { AI_FILE_MAX_UPLOAD_BYTES } from "@inboxos.io/sdk"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -13,17 +14,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@chatbotx.io/ui/components/ui/tabs"
-import { DirectUploadButton } from "@chatbotx.io/ui/components/uploader/direct-upload-button"
-import { getMimeTypeFromFile } from "@chatbotx.io/ui/lib/file-types"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/tabs"
+import { DirectUploadButton } from "@inboxos.io/ui/components/uploader/direct-upload-button"
+import { getMimeTypeFromFile } from "@inboxos.io/ui/lib/file-types"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

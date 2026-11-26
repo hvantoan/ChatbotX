@@ -9,9 +9,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import { Loader2Icon, Trash2Icon } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -44,7 +44,7 @@ export const McpOAuthGrantsTable = ({
   )
   const formatter = useFormatter()
   const router = useRouter()
-  const t = useTranslations("chatbotxMcp")
+  const t = useTranslations("inboxosMcp")
   const common = useTranslations()
   const { execute, isPending } = useAction(
     revokeMcpOAuthGrantAction.bind(null, workspaceId),

@@ -14,7 +14,7 @@
 | notification | `notification` | `src/notification/worker.ts` |
 | low | `low` | `src/low/worker.ts` |
 | marketing-message | `marketingMessage` | `src/marketing-message/worker.ts` |
-| events | event-bus (not BullMQ) | `src/events/worker.ts` — `startWorker([...listeners])` from `@chatbotx.io/event-bus/worker` |
+| events | event-bus (not BullMQ) | `src/events/worker.ts` — `startWorker([...listeners])` from `@inboxos.io/event-bus/worker` |
 
 `queueNames` (`packages/worker-config/src/lib/types.ts:3`) also declares `broadcast` and
 `quota`, which have queues but no dedicated worker entry — their jobs are consumed by the

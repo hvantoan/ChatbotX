@@ -3,7 +3,7 @@ import {
   type ThreadControlAction,
   type ThreadControlRole,
   threadControlRoles,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import z from "zod"
 
 /** The public API also offers `sync`, which only reads the owner. */

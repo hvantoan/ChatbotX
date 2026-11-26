@@ -1,5 +1,5 @@
-import { messengerWelcomeMessageFlowRepository as repository } from "@chatbotx.io/database/repositories"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { messengerWelcomeMessageFlowRepository as repository } from "@inboxos.io/database/repositories"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 
 /** Collapse bursts of publish/rename clicks into one job per flow. */
@@ -16,7 +16,7 @@ const SYNC_BACKOFF_MS = 30_000
  * Bookkeeping for the Meta welcome message flows mirrored from published
  * flows, plus the fire-and-forget enqueue helpers the flow services call.
  * Meta calls themselves live in the worker: this package cannot import
- * `@chatbotx.io/integration-messenger` (it depends on us).
+ * `@inboxos.io/integration-messenger` (it depends on us).
  */
 class MessengerWelcomeMessageFlowService {
   // Delegates resolve the repository at call time (not at construction), so

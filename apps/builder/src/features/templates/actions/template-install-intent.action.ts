@@ -3,7 +3,7 @@
 import {
   templateInstallIntentService,
   templateService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { cookies } from "next/headers"
 import { z } from "zod"
 import { authActionClient } from "@/lib/safe-action"

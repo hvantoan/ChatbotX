@@ -1,13 +1,13 @@
 {
-  "name": "@chatbotx.io/integration-zalo",
+  "name": "@inboxos.io/integration-zalo",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chatbotx.io/flow-config": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/flow-config": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "cross-fetch": "catalog:",
     "image-size": "catalog:",
     "ky": "catalog:",
@@ -15,8 +15,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "msw": "catalog:",
     "typescript": "catalog:",

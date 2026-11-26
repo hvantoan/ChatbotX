@@ -2,7 +2,7 @@ import {
   queueNames,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type Job, Queue } from "bullmq"
 import { createQueueWorker } from "../lib/create-queue-worker"
 import { logger } from "../lib/logger"

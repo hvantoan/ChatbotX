@@ -1,10 +1,10 @@
-import { paymentProviderService, workspaceService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { paymentProviderService, workspaceService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 import { allIntegrations } from "../../services/integrations"
 
 const LOCK_KEY = "schedule:purge-workspaces"

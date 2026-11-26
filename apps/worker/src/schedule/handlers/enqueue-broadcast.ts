@@ -1,9 +1,9 @@
-import { broadcastService } from "@chatbotx.io/business"
+import { broadcastService } from "@inboxos.io/business"
 import {
   broadcastPrepareJobId,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { startOfMinute } from "date-fns"
 
 const ENQUEUE_BULK_SIZE = 500

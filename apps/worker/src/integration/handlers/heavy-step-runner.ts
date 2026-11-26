@@ -10,7 +10,7 @@ import {
   aiSegmentImageSchema,
   aiSpeechToTextSchema,
   aiTextToSpeechSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   flowContinuationJobOptions,
   getHeavyJobCompletionWaitTimeoutMs,
@@ -24,7 +24,7 @@ import {
   heavyStepOutputValueSchema,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
 import { env } from "../../env"

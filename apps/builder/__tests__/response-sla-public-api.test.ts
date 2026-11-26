@@ -39,7 +39,7 @@ const responseSlaService = {
   upsertPolicy: vi.fn(),
   deletePolicy: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   responseSlaService,
   RESPONSE_SLA_MIN_TARGET_SECONDS: 60,
   RESPONSE_SLA_MAX_TARGET_SECONDS: 2_592_000,

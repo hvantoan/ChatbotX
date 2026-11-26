@@ -1,4 +1,4 @@
-import { SamSegmentationError } from "@chatbotx.io/ai/sam"
+import { SamSegmentationError } from "@inboxos.io/ai/sam"
 import { describe, expect, test } from "vitest"
 import {
   ExpectedHeavyStepError,

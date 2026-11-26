@@ -53,7 +53,7 @@ describe("chunkProse", () => {
 
 describe("chunkTabular", () => {
   // Pinned output format: if this changes, bump
-  // AI_FILE_CHUNKER_VERSIONS.tabular in @chatbotx.io/database/partials.
+  // AI_FILE_CHUNKER_VERSIONS.tabular in @inboxos.io/database/partials.
   test("renders the documented chunk format", () => {
     const chunks = chunkTabular(
       [
@@ -241,7 +241,7 @@ describe("chunkTabular", () => {
 
 describe("chunkMarkdown", () => {
   // Pinned output format: if this changes, bump
-  // AI_FILE_CHUNKER_VERSIONS.markdown in @chatbotx.io/database/partials.
+  // AI_FILE_CHUNKER_VERSIONS.markdown in @inboxos.io/database/partials.
   test("renders the documented chunk format", () => {
     const chunks = chunkMarkdown(
       [

@@ -1,8 +1,8 @@
 "use client"
 
-import type { SendProductsStepSchema } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import type { SendProductsStepSchema } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { ShoppingCartIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"

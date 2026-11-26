@@ -4,10 +4,10 @@ import {
   commentExcludeKeywordsTypes,
   commentIncludeKeywordsSchema,
   resolveReplyTexts,
-} from "@chatbotx.io/database/partials"
-import type { CommentAutomationModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import type { CommentAutomationModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   createSearchParamsCache,
   parseAsBoolean,

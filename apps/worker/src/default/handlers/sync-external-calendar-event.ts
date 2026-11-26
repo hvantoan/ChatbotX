@@ -1,13 +1,13 @@
 import {
   appointmentExternalCalendarService,
   appointmentService,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   type JobSyncExternalCalendarEventData,
   jobSyncExternalCalendarEventDataSchema,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { type Job, UnrecoverableError } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { isFinalAttempt } from "../../lib/job-attempts"

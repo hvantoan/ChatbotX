@@ -1,4 +1,4 @@
-import type { AIProvider } from "@chatbotx.io/ai"
+import type { AIProvider } from "@inboxos.io/ai"
 
 type AIProviderWithCompatible = AIProvider | "openaiCompatible"
 

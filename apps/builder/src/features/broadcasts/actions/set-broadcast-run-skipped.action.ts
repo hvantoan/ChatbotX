@@ -1,7 +1,7 @@
 "use server"
 
-import { broadcastRecurrenceService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { broadcastRecurrenceService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { setBroadcastRunSkippedSchema } from "../schema/action"
 

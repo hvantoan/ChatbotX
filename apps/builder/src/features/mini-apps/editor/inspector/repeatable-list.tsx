@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import type { ReactNode } from "react"
 import { moveItem, patchItem, removeItem } from "../../lib/list-editing"

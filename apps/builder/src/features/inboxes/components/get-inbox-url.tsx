@@ -1,13 +1,13 @@
-import type { RefConfig } from "@chatbotx.io/business"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { RefConfig } from "@inboxos.io/business"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useTranslations } from "next-intl"
 import { InboxIcon } from "@/features/inboxes/components/inbox-icon"
 import {

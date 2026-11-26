@@ -1,7 +1,7 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type * as RedisModule from "@chatbotx.io/redis"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type * as RedisModule from "@inboxos.io/redis"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type * as RateLimitModule from "@/lib/rate-limit/api-rate-limit"
 
@@ -30,7 +30,7 @@ const aiFileService = {
   reindex: vi.fn(),
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -41,7 +41,7 @@ vi.mock("@chatbotx.io/business", () => ({
 
 // In-memory idempotency store with the casStore contract, so a replay goes
 // through the real middleware.
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal<typeof RedisModule>()
   const matches = (
     current: Record<string, unknown> | undefined,
@@ -85,7 +85,7 @@ vi.mock("@chatbotx.io/redis", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/ai/server", () => ({ searchAIFiles: vi.fn() }))
+vi.mock("@inboxos.io/ai/server", () => ({ searchAIFiles: vi.fn() }))
 vi.mock("@/lib/log", () => ({ logger: { warn: vi.fn(), error: vi.fn() } }))
 vi.mock("@/env", () => ({ isCloud: () => true }))
 vi.mock("@/middlewares/auth", () => ({ authMiddleware: vi.fn() }))
@@ -249,7 +249,7 @@ describe("aiFiles.reindex", () => {
 
   test("answers 409 when parameters meet an active run", async () => {
     aiFileService.reindex.mockRejectedValue(
-      new ChatbotXException("busy", "conflict", 409),
+      new InboxOSException("busy", "conflict", 409),
     )
 
     await expect(

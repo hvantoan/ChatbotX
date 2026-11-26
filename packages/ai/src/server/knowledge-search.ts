@@ -1,10 +1,10 @@
-import { aiAgentService, aiFileService } from "@chatbotx.io/business"
+import { aiAgentService, aiFileService } from "@inboxos.io/business"
 import {
   notFoundException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import type { AIEmbeddingStatus } from "@chatbotx.io/database/partials"
-import type { AIFileModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/errors"
+import type { AIEmbeddingStatus } from "@inboxos.io/database/partials"
+import type { AIFileModel } from "@inboxos.io/database/types"
 import { toolPrefixes } from "../constants"
 import { logger } from "../logger"
 import {

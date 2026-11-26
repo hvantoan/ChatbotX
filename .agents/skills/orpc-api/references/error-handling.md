@@ -2,13 +2,13 @@
 
 ## Error Handling
 
-Throw `ChatbotXException` (`@chatbotx.io/business/errors`) or `ModelNotfoundException` (`@chatbotx.io/database/errors`) — they are auto-mapped to oRPC errors by `mapKnownOrpcErrors` (`apps/builder/src/orpc.ts`), the middleware-level `onError` interceptor shared by all three auth stacks: it warn-logs and remaps known errors, leaving anything else untouched. Unknown errors are logged exactly once at error level by `logUnexpectedOrpcErrorCallback` (`apps/builder/src/lib/orpc/handlers.ts`), the route-level interceptor used by the `/api` and `/rpc` handlers:
+Throw `InboxOSException` (`@inboxos.io/business/errors`) or `ModelNotfoundException` (`@inboxos.io/database/errors`) — they are auto-mapped to oRPC errors by `mapKnownOrpcErrors` (`apps/builder/src/orpc.ts`), the middleware-level `onError` interceptor shared by all three auth stacks: it warn-logs and remaps known errors, leaving anything else untouched. Unknown errors are logged exactly once at error level by `logUnexpectedOrpcErrorCallback` (`apps/builder/src/lib/orpc/handlers.ts`), the route-level interceptor used by the `/api` and `/rpc` handlers:
 
 ```typescript
-import { ChatbotXException, notFoundException } from "@chatbotx.io/business/errors"
+import { InboxOSException, notFoundException } from "@inboxos.io/business/errors"
 
 throw notFoundException("Item not found")
-throw new ChatbotXException("Custom error", "BAD_REQUEST", 400)
+throw new InboxOSException("Custom error", "BAD_REQUEST", 400)
 ```
 
 ### Declared errors (`.errors()`) — public routes only
@@ -43,5 +43,5 @@ a route missing a universal code, and a duplicated one.
 (`validateORPCError` in `@orpc/contract`). On a miss it does not error — it
 returns the error with `defined: false`, so an undeclared code still reaches
 the client but never appears in the spec. That silent degrade is why a new
-`ChatbotXException` code thrown from a public route needs a matching entry in
+`InboxOSException` code thrown from a public route needs a matching entry in
 one of these sets.

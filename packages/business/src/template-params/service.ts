@@ -1,4 +1,4 @@
-import type { ChannelType } from "@chatbotx.io/database/partials"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import {
   type AppliedTemplateParameters,
   applyMessengerTemplateParameterValues,
@@ -13,7 +13,7 @@ import {
   validateWaTemplateSendParams,
   type WaTemplateParams,
   waTemplateParamsSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { notFoundException, validationException } from "../errors"
 import { messengerMessageTemplateService } from "../messenger-message-template/service"
 import { whatsappMessageTemplateService } from "../whatsapp-message-template/service"

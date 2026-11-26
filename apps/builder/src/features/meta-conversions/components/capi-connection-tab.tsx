@@ -1,16 +1,16 @@
 "use client"
 
-import type { MetaConversionsChannel } from "@chatbotx.io/business"
-import type { CapiConnection } from "@chatbotx.io/business/meta-conversions/connection-state"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import type { MetaConversionsChannel } from "@inboxos.io/business"
+import type { CapiConnection } from "@inboxos.io/business/meta-conversions/connection-state"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/card"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import type { ComponentProps, ReactNode } from "react"
 import { useWorkspaceId } from "@/hooks/routing"

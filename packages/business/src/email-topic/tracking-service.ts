@@ -3,16 +3,16 @@ import {
   type EmailRecipientTransition,
   type EmailTopicCounterIncrement,
   emailTopicAnalyticsService,
-} from "@chatbotx.io/analytics"
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+} from "@inboxos.io/analytics"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import type {
   ContactActivityType,
   EmailTrackingPhase,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { sha256 } from "@noble/hashes/sha2.js"
 import { bytesToHex, utf8ToBytes } from "@noble/hashes/utils.js"
 import { contactActivityService } from "../contact-activity/service"

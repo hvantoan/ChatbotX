@@ -1,13 +1,13 @@
-import { instagramIntegrationService } from "@chatbotx.io/business"
-import type { IntegrationInstagramModel } from "@chatbotx.io/database/types"
+import { instagramIntegrationService } from "@inboxos.io/business"
+import type { IntegrationInstagramModel } from "@inboxos.io/database/types"
 import {
   type InstagramAuthValue,
   listInstagramStories as listInstagramLoginStoriesApi,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import {
   type InstagramAuthValue as InstagramFacebookAuthValue,
   listInstagramStories as listInstagramFacebookStoriesApi,
-} from "@chatbotx.io/integration-instagram-facebook"
+} from "@inboxos.io/integration-instagram-facebook"
 import { filterIntegrationsByAccount } from "@/features/shared/comment-automation/lib/account-filter"
 import { collectSettled } from "@/lib/collect-settled"
 

@@ -1,5 +1,5 @@
-import { messageService } from "@chatbotx.io/business"
-import { type SenderType, senderTypes } from "@chatbotx.io/database/partials"
+import { messageService } from "@inboxos.io/business"
+import { type SenderType, senderTypes } from "@inboxos.io/database/partials"
 import { resolveContactMessageWindow } from "./message-window"
 
 /**

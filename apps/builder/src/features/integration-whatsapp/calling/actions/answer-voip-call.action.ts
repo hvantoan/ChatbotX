@@ -11,18 +11,18 @@ import {
   publishWorkspaceRealtimeEvent,
   summarizeIceCandidates,
   whatsappVoipCallService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   acceptCall,
   preAcceptCall,
   terminateCall,
   type WhatsappCallAnnouncementOptions,
   type WhatsappCallSdpAnswerInput,
-} from "@chatbotx.io/integration-whatsapp/api/calling"
-import { RealtimeEventType } from "@chatbotx.io/realtime-protocol"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-whatsapp/api/calling"
+import { RealtimeEventType } from "@inboxos.io/realtime-protocol"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { logger } from "@/lib/log"
@@ -117,7 +117,7 @@ async function resolveCallAndAuth(input: {
     workspaceId: input.workspaceId,
   })
   if (!call?.wacid) {
-    throw new ChatbotXException(t("whatsapp.calls.errors.callNotFound"))
+    throw new InboxOSException(t("whatsapp.calls.errors.callNotFound"))
   }
 
   const integration =
@@ -126,7 +126,7 @@ async function resolveCallAndAuth(input: {
       inboxId: call.inboxId,
     })
   if (!integration) {
-    throw new ChatbotXException(t("whatsapp.calls.errors.notFound"))
+    throw new InboxOSException(t("whatsapp.calls.errors.notFound"))
   }
 
   const contactLocale = await resolveContactLocale(call.contactInboxId)
@@ -347,7 +347,7 @@ export const answerWhatsappVoipCallAction = callingActionClient
               "WhatsApp VoIP call: releaseClaim after accept failure failed",
             )
           })
-        throw new ChatbotXException(t("whatsapp.calls.errors.voipAnswerFailed"))
+        throw new InboxOSException(t("whatsapp.calls.errors.voipAnswerFailed"))
       }
 
       const committed = await whatsappVoipCallService.commitAccepted({

@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import {
   templateInstalledResourceRepository,
   templateUninstallRepository,
-} from "@chatbotx.io/database/repositories/template-installed-resource"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/repositories/template-installed-resource"
+import { InboxOSException, notFoundException } from "../errors"
 import { TEMPLATE_LOCKED_CONTENT_KEYS } from "./lock-policy"
 import { templateUninstallInProgressException } from "./template-errors"
 import {
@@ -16,13 +16,13 @@ import {
 } from "./template-resource-locks"
 
 export const templateAllowDeleteViolationException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This resource was installed from a template that disallows deletion",
     "templateAllowDeleteViolation",
   )
 
 export const templateAllowEditViolationException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This resource was installed from a template that disallows editing",
     "templateAllowEditViolation",
     403,

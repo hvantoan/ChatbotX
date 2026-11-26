@@ -1,10 +1,10 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { ArrowLeftIcon } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -50,7 +50,7 @@ export default async function InboundWebhookAnalyticsPage({
       perPage: REQUESTS_PER_PAGE,
     }),
   ]).catch((error: unknown) => {
-    if (error instanceof ChatbotXException && error.code === "notFound") {
+    if (error instanceof InboxOSException && error.code === "notFound") {
       return null
     }
     throw error

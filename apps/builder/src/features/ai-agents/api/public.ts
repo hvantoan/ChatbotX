@@ -1,11 +1,11 @@
-import { generateSalesProfileProposalPatch } from "@chatbotx.io/ai/sales-profile-proposer"
+import { generateSalesProfileProposalPatch } from "@inboxos.io/ai/sales-profile-proposer"
 import {
   aiAgentSalesProfileProposalService,
   aiAgentSalesProfileService,
   aiAgentService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

@@ -20,7 +20,7 @@ const mocks = vi.hoisted(() => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   whatsappCallLifecycleService: { attachTranscript: mocks.attachTranscript },
   contactInboxService: { findBy: mocks.contactInboxFindBy },
   callRecordingService: { getRecordingSignedUrl: mocks.getRecordingSignedUrl },
@@ -42,7 +42,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findById: mocks.findById,
   },
@@ -56,16 +56,16 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCallTranscribed: mocks.emitCallTranscribed,
   setWebhookExecutionContext: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 60_000 },
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiIntegrationService: { findBy: mocks.aiFindBy },
   getAIModel: vi.fn(() => ({
     transcription: vi.fn(() => "whisper-model"),

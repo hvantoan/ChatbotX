@@ -1,5 +1,5 @@
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import { templateSelectableResourceRepository } from "@chatbotx.io/database/repositories"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import { templateSelectableResourceRepository } from "@inboxos.io/database/repositories"
 import { listLockedIds } from "./installed-resource.service"
 import {
   assertCanListTemplateCategory,

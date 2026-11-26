@@ -13,7 +13,7 @@ describe("resolveFlowFiles", () => {
       fileName,
       mimeType: "application/pdf",
       size: 10,
-    }) satisfies import("@chatbotx.io/sdk").FlowResponseFile
+    }) satisfies import("@inboxos.io/sdk").FlowResponseFile
   const failed = (mediaId: string) =>
     ({
       status: "failed" as const,
@@ -21,7 +21,7 @@ describe("resolveFlowFiles", () => {
       fileName: `${mediaId}.pdf`,
       mimeType: "application/pdf",
       reason: "download_failed" as const,
-    }) satisfies import("@chatbotx.io/sdk").FlowResponseFile
+    }) satisfies import("@inboxos.io/sdk").FlowResponseFile
 
   test("is undefined for a response without files", () => {
     expect(
@@ -97,7 +97,7 @@ describe("resolveFlowFiles", () => {
     // `JSON.parse` yields an own "__proto__" key, as a customer's response can.
     const files = JSON.parse(
       '{"__proto__":[{"status":"failed","mediaId":"1","fileName":"a.pdf","mimeType":null,"reason":"download_failed"}]}',
-    ) as Record<string, import("@chatbotx.io/sdk").FlowResponseFile[]>
+    ) as Record<string, import("@inboxos.io/sdk").FlowResponseFile[]>
 
     const resolved = resolveFlowFiles({
       response: { files },

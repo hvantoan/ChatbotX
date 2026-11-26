@@ -1,6 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -9,8 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import { type FieldValues, FormProvider, useForm } from "react-hook-form"

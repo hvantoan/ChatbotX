@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   vectorSearch: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createAiFileEmbeddingRepository: () => ({
     vectorSearch: mocks.vectorSearch,
   }),

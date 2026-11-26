@@ -33,9 +33,9 @@ const tool = (method: string, pathTemplate: string, commandName: string) => ({
 describe("loadOpenApiSpecForCli with a cache from an older CLI", () => {
   test("re-derives command names instead of returning the cached ones", async () => {
     const apiUrl = "https://api.example.com/api"
-    mkdirSync(join(home, ".chatbotX"), { recursive: true })
+    mkdirSync(join(home, ".inboxos"), { recursive: true })
     writeFileSync(
-      join(home, ".chatbotX", "openapi-cache.json"),
+      join(home, ".inboxos", "openapi-cache.json"),
       JSON.stringify({
         url: `${apiUrl}/public-spec.json`,
         fetchedAt: Date.now(),

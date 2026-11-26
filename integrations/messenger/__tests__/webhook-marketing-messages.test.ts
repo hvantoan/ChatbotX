@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto"
-import type { HandleRequestProps } from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+import type { HandleRequestProps } from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import {
   PAGE_SUBSCRIBE_SCOPES,

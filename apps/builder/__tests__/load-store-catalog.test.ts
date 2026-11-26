@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
 }))
 
 vi.mock("server-only", () => ({}))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateStoreService: { listPublished: mocks.listPublished },
   buildTemplateSharePath: (input: { templateId: string; shareToken: string }) =>
     `/t/template?id=${input.templateId}&key=${input.shareToken}`,

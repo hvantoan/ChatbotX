@@ -4,17 +4,17 @@ import {
   type FileStatus,
   fileContextTypes,
   fileStatuses,
-} from "@chatbotx.io/database/partials"
-import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/partials"
+import type { ContactFilterCriteriaInput } from "@inboxos.io/database/queries"
 import {
   type ExportFileCursor,
   fileRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId } from "@chatbotx.io/utils"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
-import { stripContactPIIFields } from "@chatbotx.io/worker-config/contact-pii"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId } from "@inboxos.io/utils"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
+import { stripContactPIIFields } from "@inboxos.io/worker-config/contact-pii"
 import { BaseService } from "../base.service"
 import { notFoundException } from "../errors"
 import { logger } from "../logger"

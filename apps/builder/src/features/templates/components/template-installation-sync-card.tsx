@@ -3,15 +3,15 @@
 import type {
   TemplateInstallationDetail as Detail,
   TemplateSyncHistoryItem,
-} from "@chatbotx.io/business"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/business"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { Loader2Icon, RefreshCwIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { syncInstallationAction } from "../actions/sync-installation.action"

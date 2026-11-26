@@ -81,11 +81,11 @@ const registerConfigCommand = (cli: ReturnType<typeof yargs>): void => {
           (setCli: Argv<ConfigOptions>) =>
             setCli
               .option("apiKey", {
-                describe: "ChatbotX API key",
+                describe: "InboxOS API key",
                 type: "string",
               })
               .option("apiUrl", {
-                describe: "ChatbotX API URL",
+                describe: "InboxOS API URL",
                 type: "string",
               })
               .option("allowSelfSignedCert", {
@@ -143,15 +143,15 @@ const toolsToCommands = (tools: DynamicTool[]): Record<string, GroupEntry> => {
 
 const main = async (): Promise<void> => {
   const cli = yargs(hideBin(process.argv))
-    .scriptName("chatbotx")
+    .scriptName("inboxos")
     .usage("$0 <group> <action> [options]")
     .option("apiKey", {
-      describe: "ChatbotX API key (global)",
+      describe: "InboxOS API key (global)",
       type: "string",
       global: true,
     })
     .option("apiUrl", {
-      describe: "ChatbotX API URL (global)",
+      describe: "InboxOS API URL (global)",
       type: "string",
       global: true,
     })

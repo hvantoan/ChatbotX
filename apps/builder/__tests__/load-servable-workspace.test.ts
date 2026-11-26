@@ -5,9 +5,9 @@ const { mockWorkspaceFind } = vi.hoisted(() => ({
   mockWorkspaceFind: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const predicates = await import(
-    "@chatbotx.io/business/workspace-lifecycle/predicates"
+    "@inboxos.io/business/workspace-lifecycle/predicates"
   )
   return {
     ...predicates,

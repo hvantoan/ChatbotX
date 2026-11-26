@@ -1,19 +1,19 @@
 "use client"
 
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@chatbotx.io/ui/components/ui/accordion"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+} from "@inboxos.io/ui/components/ui/accordion"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

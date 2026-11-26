@@ -1,4 +1,4 @@
-import { zodToConfigFields } from "@chatbotx.io/utils/connection"
+import { zodToConfigFields } from "@inboxos.io/utils/connection"
 import { describe, expect, test } from "vitest"
 import selfServeConfigFields from "../../../fixtures/self-serve-config-fields.json"
 import { apiConnectConfigSchema } from "../src/integration-api/schema"

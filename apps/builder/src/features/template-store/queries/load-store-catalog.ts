@@ -3,8 +3,8 @@ import "server-only"
 import {
   buildTemplateSharePath,
   templateStoreService,
-} from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/utils"
 import { getTenantSettings } from "@/features/tenant/utils"
 import type {
   StoreCatalogCategory,

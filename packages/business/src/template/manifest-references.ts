@@ -1,13 +1,13 @@
 import {
   systemFieldTypes,
   type TemplateResourceCategory,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   collectReferencesByKind,
   forEachStringLeaf,
-} from "@chatbotx.io/flow-config"
-import { isNumericId } from "@chatbotx.io/utils/id"
-import { VARIABLE_PLACEHOLDER_SOURCE } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/flow-config"
+import { isNumericId } from "@inboxos.io/utils/id"
+import { VARIABLE_PLACEHOLDER_SOURCE } from "@inboxos.io/utils/variables"
 import { z } from "zod"
 import type { TemplateHardDependency } from "./adapters/types"
 import {

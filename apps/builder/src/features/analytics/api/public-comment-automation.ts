@@ -1,4 +1,4 @@
-import { commentAutomationService } from "@chatbotx.io/business"
+import { commentAutomationService } from "@inboxos.io/business"
 import { listCommentAutomationContacts } from "@/features/shared/comment-automation/lib/list-automation-contacts"
 import { commentAutomationStatCounters } from "@/features/shared/comment-automation/lib/stat-counters"
 import { possibleErrorsOnFindingResource } from "@/lib/orpc/orpc-error-helper"

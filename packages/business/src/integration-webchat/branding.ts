@@ -1,5 +1,5 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { WebchatPersistentMenu } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { WebchatPersistentMenu } from "@inboxos.io/database/partials"
 import { isCommunity } from "../keys"
 import {
   BRANDING_TITLE,

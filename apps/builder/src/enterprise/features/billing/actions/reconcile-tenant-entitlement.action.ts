@@ -1,7 +1,7 @@
 "use server"
 
-import { tenantService } from "@chatbotx.io/business"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { tenantService } from "@inboxos.io/business"
+import type { UserModel } from "@inboxos.io/database/types"
 import { isCloud } from "@/env"
 import { authActionClient } from "@/lib/safe-action"
 

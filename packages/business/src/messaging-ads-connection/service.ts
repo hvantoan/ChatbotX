@@ -1,14 +1,14 @@
-import { isDatabaseError } from "@chatbotx.io/database/client"
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
-import { messagingAdsConnectionRepository } from "@chatbotx.io/database/repositories"
-import type { MessagingAdsConnectionModel } from "@chatbotx.io/database/types"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
+import { isDatabaseError } from "@inboxos.io/database/client"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
+import { messagingAdsConnectionRepository } from "@inboxos.io/database/repositories"
+import type { MessagingAdsConnectionModel } from "@inboxos.io/database/types"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
 import {
   type FacebookAdsAuthValue,
   facebookAdsAuthSchema,
   integration as facebookAdsIntegration,
-} from "@chatbotx.io/integration-facebook-ads"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-facebook-ads"
+import { createId } from "@inboxos.io/utils"
 import { perChannelIntegrationIdsOrNull } from "../ads-conversion/channel-fields"
 import { logger } from "../logger"
 import { invalidateMessagingAdsCache } from "./graph-cache"

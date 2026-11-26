@@ -1,8 +1,8 @@
 import "server-only"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { miniAppService } from "@chatbotx.io/business/mini-app"
-import type { MiniAppModel } from "@chatbotx.io/database/types"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { miniAppService } from "@inboxos.io/business/mini-app"
+import type { MiniAppModel } from "@inboxos.io/database/types"
 import { headers } from "next/headers"
 import { getTranslations } from "next-intl/server"
 import {
@@ -33,7 +33,7 @@ export async function requireServableMiniApp(
   const miniApp = await loadServableMiniApp(id)
   if (!miniApp) {
     const t = await getTranslations("miniApps.public")
-    throw new ChatbotXException(t("notFoundDescription"), "notFound", 404)
+    throw new InboxOSException(t("notFoundDescription"), "notFound", 404)
   }
   return miniApp
 }
@@ -59,6 +59,6 @@ export async function assertVisitorNotRateLimited(input: {
   })
   if (rateLimit.limited) {
     const t = await getTranslations("miniApps.public")
-    throw new ChatbotXException(t("rateLimited"), "rateLimited", 429)
+    throw new InboxOSException(t("rateLimited"), "rateLimited", 429)
   }
 }

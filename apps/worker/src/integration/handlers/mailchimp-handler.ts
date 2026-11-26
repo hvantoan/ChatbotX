@@ -1,15 +1,12 @@
-import {
-  buildContext,
-  integrationMailchimpService,
-} from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import type { MailchimpAddMemberSchema } from "@chatbotx.io/flow-config"
+import { buildContext, integrationMailchimpService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import type { MailchimpAddMemberSchema } from "@inboxos.io/flow-config"
 import {
   integration as integrationMailchimp,
   isSupportedMailchimpMergeFieldType,
   MailchimpApiError,
   mailchimpAuthSchema,
-} from "@chatbotx.io/integration-mailchimp"
+} from "@inboxos.io/integration-mailchimp"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import { getContactFieldMap } from "./contact-field-map"

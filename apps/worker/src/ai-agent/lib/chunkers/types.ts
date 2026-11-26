@@ -1,4 +1,4 @@
-import type { AIFileChunkStrategy } from "@chatbotx.io/database/partials"
+import type { AIFileChunkStrategy } from "@inboxos.io/database/partials"
 
 export type TextChunk = { content: string }
 

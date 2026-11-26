@@ -1,7 +1,7 @@
 import type {
   PipelineActivityKind,
   PipelineType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 /** What an item is called for each pipeline type (UI noun, translated). */
 export const itemNounKeys = {

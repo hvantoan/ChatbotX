@@ -1,13 +1,13 @@
-import { workspacePresenceService } from "@chatbotx.io/business"
+import { workspacePresenceService } from "@inboxos.io/business"
 import {
   extractBearerToken,
   verifyPresenceReportToken,
-} from "@chatbotx.io/realtime-protocol/auth"
+} from "@inboxos.io/realtime-protocol/auth"
 import {
   hashPresenceUserIds,
   truncatePresenceUserIds,
-} from "@chatbotx.io/realtime-protocol/presence"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/realtime-protocol/presence"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { type NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { env } from "@/env"

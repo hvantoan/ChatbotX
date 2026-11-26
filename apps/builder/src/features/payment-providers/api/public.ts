@@ -1,8 +1,8 @@
 import {
   paymentProviderService,
   resolveWorkspaceAppUrl,
-} from "@chatbotx.io/business"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/business"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import {
   possibleErrorsOnConnectingPaymentProvider,
   possibleErrorsOnFindingResource,

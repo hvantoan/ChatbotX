@@ -1,5 +1,5 @@
-import type { MessengerPersona } from "@chatbotx.io/database/partials"
-import { createId } from "@chatbotx.io/utils"
+import type { MessengerPersona } from "@inboxos.io/database/partials"
+import { createId } from "@inboxos.io/utils"
 import type { MessengerPersonaPublicInput } from "../schema/public"
 
 /**

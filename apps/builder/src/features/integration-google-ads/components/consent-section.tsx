@@ -1,14 +1,14 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type GoogleAdsConsent,
   type GoogleAdsConsentSource,
   type GoogleAdsUploadMethod,
   googleAdsConsentSchema,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { ExternalLinkIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

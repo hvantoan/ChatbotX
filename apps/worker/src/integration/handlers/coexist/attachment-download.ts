@@ -3,8 +3,8 @@ import {
   markAttachmentUnresolvable,
   restoreMirroredAttachment,
   TerminalMediaError,
-} from "@chatbotx.io/channel-registry/media-hydration"
-import type { LowJobCoexistAttachmentDownload } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/channel-registry/media-hydration"
+import type { LowJobCoexistAttachmentDownload } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { logger } from "../../../lib/logger"
 
@@ -15,7 +15,7 @@ export {
   downloadWhatsappMedia,
   MAX_ATTACHMENT_BYTES,
   readBodyWithCap,
-} from "@chatbotx.io/channel-registry/media-hydration"
+} from "@inboxos.io/channel-registry/media-hydration"
 
 type AttachmentDownloadJob = Pick<Job, "attemptsMade" | "opts">
 

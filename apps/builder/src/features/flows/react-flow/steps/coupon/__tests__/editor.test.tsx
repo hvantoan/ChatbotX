@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
+
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type CouponStepSchema,
   setUpCouponStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/flow-config"
 import {
   act,
   type ButtonHTMLAttributes,
@@ -29,7 +30,7 @@ vi.mock("@/features/coupons/provider/use-coupon-topic-options", () => ({
     useCouponTopicOptionsMock(props),
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", async () => {
+vi.mock("@inboxos.io/ui/components/form/combobox-field", async () => {
   const { useFormContext } = await import("react-hook-form")
   return {
     ComboboxField: ({
@@ -70,7 +71,7 @@ vi.mock("@chatbotx.io/ui/components/form/combobox-field", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/ui/components/form/select-field", async () => {
+vi.mock("@inboxos.io/ui/components/form/select-field", async () => {
   const { useFormContext } = await import("react-hook-form")
   return {
     SelectField: ({
@@ -114,13 +115,13 @@ vi.mock("@chatbotx.io/ui/components/form/select-field", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button {...props}>{children}</button>
   ),
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({ children }: { children: ReactNode }) => <>{children}</>,
   DialogContent: ({ children }: { children: ReactNode }) => <>{children}</>,
   DialogDescription: ({ children }: { children?: ReactNode }) => (
@@ -131,7 +132,7 @@ vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
   DialogTrigger: ({ children }: { children: ReactNode }) => <>{children}</>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/form", async () => {
+vi.mock("@inboxos.io/ui/components/ui/form", async () => {
   const { FormProvider } = await import("react-hook-form")
   return { Form: FormProvider }
 })

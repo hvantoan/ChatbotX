@@ -1,10 +1,10 @@
 import "server-only"
 
 import { createHash } from "node:crypto"
-import { automatedResponseService } from "@chatbotx.io/automated-response"
-import { workspaceService } from "@chatbotx.io/business"
-import { verifyMiniAppResumeToken } from "@chatbotx.io/encryption/mini-app-token"
-import { distributedStore } from "@chatbotx.io/redis"
+import { automatedResponseService } from "@inboxos.io/automated-response"
+import { workspaceService } from "@inboxos.io/business"
+import { verifyMiniAppResumeToken } from "@inboxos.io/encryption/mini-app-token"
+import { distributedStore } from "@inboxos.io/redis"
 import { logger } from "@/lib/log"
 
 // Outlives the 7-day resume token, so a token can never continue a flow twice.

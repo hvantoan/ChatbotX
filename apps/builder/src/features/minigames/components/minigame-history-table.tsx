@@ -1,28 +1,28 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import type { ColumnDef } from "@tanstack/react-table"
 import { EllipsisVerticalIcon, Loader, ScrollTextIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"

@@ -2,8 +2,8 @@ import {
   contactInboxService,
   serializeProfileSnapshotCursor,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import { distributedStore } from "@chatbotx.io/redis"
+} from "@inboxos.io/business"
+import { distributedStore } from "@inboxos.io/redis"
 import { enqueueProfileSnapshotJobs } from "../../integration/handlers/profile-snapshot/queue"
 import { logger } from "../../lib/logger"
 

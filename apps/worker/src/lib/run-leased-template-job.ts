@@ -2,7 +2,7 @@ import {
   isPermanentTemplateError,
   isTemplateLeaseLost,
   templateErrorCodeOf,
-} from "@chatbotx.io/business/template-errors"
+} from "@inboxos.io/business/template-errors"
 import { type Job, UnrecoverableError } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { isFinalAttempt } from "./job-attempts"

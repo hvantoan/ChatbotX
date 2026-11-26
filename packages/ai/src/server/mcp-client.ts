@@ -1,8 +1,8 @@
-import { assertSafeMcpEndpoint } from "@chatbotx.io/business"
+import { assertSafeMcpEndpoint } from "@inboxos.io/business"
 import {
   type AIMcpServerAuth,
   aiMcpServerAuthTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import ky, { type Options } from "ky"
 import { normalizeError } from "universal-error-normalizer"
 import { aiTimeouts, helpTexts, mcpConstants } from "../constants"

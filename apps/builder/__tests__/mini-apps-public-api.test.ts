@@ -16,7 +16,7 @@ const {
   assertApiNotRateLimited: vi.fn().mockResolvedValue(undefined),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -34,10 +34,10 @@ const miniAppService = {
 }
 const miniAppSubmissionService = { list: vi.fn() }
 
-vi.mock("@chatbotx.io/business/mini-app", async () => {
+vi.mock("@inboxos.io/business/mini-app", async () => {
   const { fromFlowJson, validateMiniApp } = await vi.importActual<
-    typeof import("@chatbotx.io/mini-app")
-  >("@chatbotx.io/mini-app")
+    typeof import("@inboxos.io/mini-app")
+  >("@inboxos.io/mini-app")
   miniAppService.validate.mockImplementation(validateMiniApp)
   return {
     miniAppService,
@@ -135,8 +135,8 @@ const storedMiniApp = (definition: unknown) => ({
 beforeEach(async () => {
   vi.clearAllMocks()
   const { validateMiniApp } = await vi.importActual<
-    typeof import("@chatbotx.io/mini-app")
-  >("@chatbotx.io/mini-app")
+    typeof import("@inboxos.io/mini-app")
+  >("@inboxos.io/mini-app")
   miniAppService.validate.mockImplementation(validateMiniApp)
   isWorkspaceScheduledForDeletion.mockReturnValue(false)
   getAccessState.mockResolvedValue({ blocked: false })
@@ -173,8 +173,8 @@ describe("Mini Apps public API", () => {
   test("create passes the Flow JSON to the service and returns validation", async () => {
     findWorkspaceByTokenHash.mockResolvedValue(authResult(null))
     const { fromFlowJson } = await vi.importActual<
-      typeof import("@chatbotx.io/mini-app")
-    >("@chatbotx.io/mini-app")
+      typeof import("@inboxos.io/mini-app")
+    >("@inboxos.io/mini-app")
     miniAppService.create.mockImplementation(
       async (input: { flowJson: never }) =>
         storedMiniApp(fromFlowJson(input.flowJson)),
@@ -198,8 +198,8 @@ describe("Mini Apps public API", () => {
   test("create without Flow JSON starts from the builder's starter screen", async () => {
     findWorkspaceByTokenHash.mockResolvedValue(authResult(null))
     const { createStarterDefinition } = await vi.importActual<
-      typeof import("@chatbotx.io/mini-app")
-    >("@chatbotx.io/mini-app")
+      typeof import("@inboxos.io/mini-app")
+    >("@inboxos.io/mini-app")
     const starter = createStarterDefinition("New screen")
     createTranslatedStarterDefinition.mockResolvedValue(starter)
     miniAppService.create.mockImplementation(

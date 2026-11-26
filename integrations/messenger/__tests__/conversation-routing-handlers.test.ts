@@ -2,8 +2,8 @@ import {
   ChannelError,
   ChannelErrorCategory,
   ThreadControlTakeRefusedError,
-} from "@chatbotx.io/sdk"
-import { HttpResponse, http, server } from "@chatbotx.io/vitest-config/msw"
+} from "@inboxos.io/sdk"
+import { HttpResponse, http, server } from "@inboxos.io/vitest-config/msw"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { DEFAULT_API_VERSION } from "../src/constants"
 import {

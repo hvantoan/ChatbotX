@@ -2,17 +2,17 @@ import type {
   BroadcastEventType,
   CommentAutomationEventType,
   SequenceStepEventType,
-} from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics/schemas"
 import type {
   ChannelType,
   CouponIssueStatus,
   CouponUsageStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   appointmentExternalSyncOperations,
   type PipelineActorKind,
-} from "@chatbotx.io/database/partials"
-import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/partials"
+import type { ContactFilterCriteriaInput } from "@inboxos.io/database/queries"
 import { Queue } from "bullmq"
 import { z } from "zod"
 import {

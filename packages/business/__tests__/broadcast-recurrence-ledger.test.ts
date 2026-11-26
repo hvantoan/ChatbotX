@@ -1,4 +1,4 @@
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const repo = vi.hoisted(() => ({
@@ -7,7 +7,7 @@ const repo = vi.hoisted(() => ({
   selectDbNow: vi.fn(),
   lockAllForWorkspace: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRecurrenceRepository: repo,
 }))
 

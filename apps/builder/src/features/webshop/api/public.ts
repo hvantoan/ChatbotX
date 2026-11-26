@@ -2,7 +2,7 @@ import {
   contactService,
   createWebshopLink,
   webshopService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { ORPCError } from "@orpc/server"
 import { possibleErrorsOnFindingResource } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"

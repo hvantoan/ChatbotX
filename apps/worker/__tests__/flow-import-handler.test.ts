@@ -1,5 +1,5 @@
 import { Readable } from "node:stream"
-import { FlowAuthoringException } from "@chatbotx.io/flow-config"
+import { FlowAuthoringException } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { ImportRow } from "../src/default/handlers/imports/base-import"
 
@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   updateValues: [] as Record<string, unknown>[],
 }))
 
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   importService: {
     markProcessing: vi.fn(() => {
       mocks.updateValues.push({ status: "processing" })
@@ -55,7 +55,7 @@ vi.mock("@chatbotx.io/business/import", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowService: {
     importFlowExport: (...args: unknown[]) => mocks.importFlowExport(...args),
   },
@@ -67,8 +67,8 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code: string) {
       super(message)
@@ -77,7 +77,7 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     headObject: (...args: unknown[]) => mocks.headObject(...args),
     getObjectStream: (...args: unknown[]) => mocks.getObjectStream(...args),

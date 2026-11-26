@@ -6,10 +6,10 @@ import {
   type ProductImportColumnMap,
   productImportFields,
   uploadTypes,
-} from "@chatbotx.io/database/partials"
-import { matchProductImportHeaders } from "@chatbotx.io/imports"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+} from "@inboxos.io/database/partials"
+import { matchProductImportHeaders } from "@inboxos.io/imports"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   Dialog,
   DialogContent,
@@ -17,16 +17,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/select"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { FileDownIcon, Loader2Icon, UploadIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

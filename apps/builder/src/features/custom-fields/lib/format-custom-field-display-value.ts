@@ -1,6 +1,6 @@
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
-import { canonicalBooleanLiteral } from "@chatbotx.io/utils/custom-field"
-import { formatCustomFieldValueInTimeZone } from "@chatbotx.io/utils/datetime"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
+import { canonicalBooleanLiteral } from "@inboxos.io/utils/custom-field"
+import { formatCustomFieldValueInTimeZone } from "@inboxos.io/utils/datetime"
 
 type BooleanLabels = { true: string; false: string }
 

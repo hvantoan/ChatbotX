@@ -1,8 +1,8 @@
 "use server"
 
-import { getAuditActor } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { importService } from "@chatbotx.io/business/import"
+import { getAuditActor } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { importService } from "@inboxos.io/business/import"
 import { returnValidationErrors } from "next-safe-action"
 import {
   type WorkspaceIdRequestParams,
@@ -46,7 +46,7 @@ export const importContactsAction = workspaceActionClient
           actor: { ipAddress: actor?.ipAddress, userAgent: actor?.userAgent },
         })
       } catch (error) {
-        if (error instanceof ChatbotXException) {
+        if (error instanceof InboxOSException) {
           if (
             [
               "contactImportFileNotFound",

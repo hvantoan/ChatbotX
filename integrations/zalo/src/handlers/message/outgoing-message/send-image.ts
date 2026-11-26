@@ -3,8 +3,8 @@ import {
   type SendImageStepSchema,
   type SendMultipleImagesStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepProps } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepProps } from "@inboxos.io/sdk"
 import { uploadAttachment } from "../../../api/message"
 import { MAX_BUTTONS } from "../../../constants"
 import { logger } from "../../../lib/logger"

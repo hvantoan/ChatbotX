@@ -7,23 +7,23 @@ const mocks = vi.hoisted(() => ({
   findIdBySourceId: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: { findOrFail: mocks.findOrFail },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertPublicUrl: vi.fn(),
   buildContext: vi.fn(),
   messengerMessageTemplateService: {
     findIdBySourceId: mocks.findIdBySourceId,
   },
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/message-templates", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/message-templates", () => ({
   createPageMessageTemplate: mocks.createPageMessageTemplate,
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/upload", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/upload", () => ({
   resumableUploadImage: vi.fn(),
 }))
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 // The created template is synced back from Meta through the integration.
 vi.mock("@/integration", () => ({
   integrations: { messenger: { syncMessageTemplates: vi.fn() } },

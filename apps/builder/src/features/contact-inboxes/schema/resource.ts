@@ -1,7 +1,7 @@
 import {
   contactInboxModel,
   createSelectSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import z from "zod"
 
 export const contactInboxResource = createSelectSchema(contactInboxModel, {

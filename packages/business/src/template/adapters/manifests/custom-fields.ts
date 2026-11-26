@@ -1,9 +1,9 @@
-import { inArray } from "@chatbotx.io/database/client"
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
-import { templateInstalledResourceRepository } from "@chatbotx.io/database/repositories/template-installed-resource"
-import { customFieldModel } from "@chatbotx.io/database/schema"
-import type { TemplateCustomFieldManifestEntry } from "@chatbotx.io/flow-config"
-import { customFieldResolutionKey } from "@chatbotx.io/utils/custom-field"
+import { inArray } from "@inboxos.io/database/client"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
+import { templateInstalledResourceRepository } from "@inboxos.io/database/repositories/template-installed-resource"
+import { customFieldModel } from "@inboxos.io/database/schema"
+import type { TemplateCustomFieldManifestEntry } from "@inboxos.io/flow-config"
+import { customFieldResolutionKey } from "@inboxos.io/utils/custom-field"
 import {
   customFieldService,
   type ResolvedCustomField,

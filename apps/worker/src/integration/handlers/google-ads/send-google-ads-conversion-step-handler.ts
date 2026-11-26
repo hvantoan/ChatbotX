@@ -1,10 +1,10 @@
-import { googleAdsConversionService } from "@chatbotx.io/business"
-import type { SendGoogleAdsConversionSchema } from "@chatbotx.io/flow-config"
-import { sanitizeGoogleAdsError } from "@chatbotx.io/integration-google-ads"
+import { googleAdsConversionService } from "@inboxos.io/business"
+import type { SendGoogleAdsConversionSchema } from "@inboxos.io/flow-config"
+import { sanitizeGoogleAdsError } from "@inboxos.io/integration-google-ads"
 import {
   type GoogleAdsConversionErrorCode,
   googleAdsConversionErrorCodes,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { logger } from "../../../lib/logger"
 import { isDurableFlowExecutionKey } from "../../flow-execution-key"
 import type { ExecuteStepProps } from "../flow-utils"

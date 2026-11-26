@@ -1,20 +1,20 @@
 import {
   connectionStateService,
   instagramIntegrationService,
-} from "@chatbotx.io/business"
-import type { InstagramAuthValue } from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/business"
+import type { InstagramAuthValue } from "@inboxos.io/integration-instagram"
 import {
   getInstagramAccount,
   integration as instagramChannelIntegration,
   subscribePageToInstagramWebhook,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import {
   getFacebookUser,
   getUserInstagramAccounts,
   integration as instagramFacebookChannelIntegration,
   subscribePageToInstagramWebhook as subscribeFacebookPageToInstagramWebhook,
-} from "@chatbotx.io/integration-instagram-facebook"
-import { AuthType } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-instagram-facebook"
+import { AuthType } from "@inboxos.io/sdk"
 import { seedReconnectBranding } from "@/features/channel-connect/lib/branding-follow-ups"
 import type { ReconnectResult } from "@/lib/channel-reconnect"
 import {

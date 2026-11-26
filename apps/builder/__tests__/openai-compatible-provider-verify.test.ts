@@ -4,7 +4,7 @@ const mocks = vi.hoisted(() => ({
   verifyOpenaiCompatibleProvider: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   verifyOpenaiCompatibleProvider: mocks.verifyOpenaiCompatibleProvider,
 }))
 
@@ -17,7 +17,7 @@ describe("verifyOpenaiCompatibleProvider (builder re-export)", () => {
     vi.clearAllMocks()
   })
 
-  test("re-exports verifyOpenaiCompatibleProvider from @chatbotx.io/business", async () => {
+  test("re-exports verifyOpenaiCompatibleProvider from @inboxos.io/business", async () => {
     mocks.verifyOpenaiCompatibleProvider.mockResolvedValueOnce({ ok: true })
 
     await expect(

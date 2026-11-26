@@ -1,29 +1,29 @@
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import {
   isActiveConnectionStatus,
   resolveOwnerId,
-} from "@chatbotx.io/business/connection"
+} from "@inboxos.io/business/connection"
 import {
-  ChatbotXException,
   connectionAlreadyConnectedException,
   connectSessionExpiredException,
+  InboxOSException,
   notFoundException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business/errors"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
 import type {
   ConnectSessionOutcome,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import type {
   ConnectionModel,
   ConnectSessionModel,
-} from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import type { ConnectionCandidate } from "@chatbotx.io/sdk"
-import { ConnectionProviderRejectedError } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
+import type { ConnectionCandidate } from "@inboxos.io/sdk"
+import { ConnectionProviderRejectedError } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import {
   connectAndPersist,
   encryptedCandidatesSchema,
@@ -59,7 +59,7 @@ const toFailureOutcome = (input: {
   targetId: string
 }): ConnectSessionOutcome => {
   if (
-    input.err instanceof ChatbotXException &&
+    input.err instanceof InboxOSException &&
     input.err.code === "channelLimitReached"
   ) {
     return {
@@ -69,7 +69,7 @@ const toFailureOutcome = (input: {
     }
   }
   if (
-    input.err instanceof ChatbotXException &&
+    input.err instanceof InboxOSException &&
     input.err.code === "connectionAlreadyConnected"
   ) {
     return {

@@ -4,25 +4,25 @@ import {
   facebookLeadAdsAutomationService,
   facebookLeadAdsLeadService,
   isRichSystemContactField,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import {
   contactSources,
   type FacebookLeadFieldMapping,
   FB_LEAD_STANDARD_FIELD_TARGET,
   genderTypes,
   type IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   getLead,
   getLeadAdAttribution,
   getLeadgenFormName,
   type LeadAdAttribution,
   type LeadFieldDatum,
-} from "@chatbotx.io/integration-messenger/apis/leadgen"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import type { IncomingContact } from "@chatbotx.io/sdk"
-import type { IntegrationJobProcessLeadgen } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/integration-messenger/apis/leadgen"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import type { IncomingContact } from "@inboxos.io/sdk"
+import type { IntegrationJobProcessLeadgen } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { isFinalAttempt } from "../../../lib/job-attempts"
 import { logger } from "../../../lib/logger"

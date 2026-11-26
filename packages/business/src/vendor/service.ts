@@ -2,26 +2,26 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import { isExternalStoreSource } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { isExternalStoreSource } from "@inboxos.io/database/partials"
 import {
   productCategoryRepository,
   type VendorListInput,
   vendorRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
 import { ecommerceOpenHoursService } from "../ecommerce-open-hours/service"
 import { resolveStoreSource } from "../ecommerce-settings/store-source"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { externalStoreManagedException } from "../external-store/errors"
 
 const normalizeVendorName = (name: string): string => name.trim()
 
 const vendorNameRequired = () =>
-  new ChatbotXException("Vendor name is required", "productVendorNameRequired")
+  new InboxOSException("Vendor name is required", "productVendorNameRequired")
 
 const vendorDuplicated = () =>
-  new ChatbotXException("Vendor already exists", "productVendorDuplicated")
+  new InboxOSException("Vendor already exists", "productVendorDuplicated")
 
 export type VendorWriteData = {
   name: string

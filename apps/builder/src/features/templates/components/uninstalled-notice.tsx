@@ -3,7 +3,7 @@
 import type {
   TemplateUninstallCounts,
   TemplateUninstallRequester,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 
 type UninstalledNoticeProps = {

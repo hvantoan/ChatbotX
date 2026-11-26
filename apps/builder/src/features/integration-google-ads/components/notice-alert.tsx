@@ -2,9 +2,9 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { InfoIcon, TriangleAlertIcon, XIcon } from "lucide-react"
 import type { ReactNode } from "react"
 

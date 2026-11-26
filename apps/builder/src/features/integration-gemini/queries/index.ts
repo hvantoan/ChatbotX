@@ -1,4 +1,4 @@
-import { integrationGeminiService } from "@chatbotx.io/business"
+import { integrationGeminiService } from "@inboxos.io/business"
 import type { IntegrationGeminiResource } from "../schema/resource"
 
 export const findIntegrationGemini = async ({

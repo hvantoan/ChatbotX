@@ -1,20 +1,21 @@
 "use client"
 
-import { fileTypes } from "@chatbotx.io/database/partials"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { fileTypes } from "@inboxos.io/database/partials"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@chatbotx.io/ui/components/ui/collapsible"
+} from "@inboxos.io/ui/components/ui/collapsible"
 import {
   Dialog,
   DialogContent,
@@ -22,10 +23,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { useMutation } from "@tanstack/react-query"
 import { ChevronDownIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

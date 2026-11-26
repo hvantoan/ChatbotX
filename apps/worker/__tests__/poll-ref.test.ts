@@ -8,41 +8,41 @@ const mocks = vi.hoisted(() => ({
   emit: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   decodeRef: mocks.decodeRef,
   encodeRef: vi.fn(),
   workspaceService: { findById: mocks.findWorkspace },
 }))
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardScoringService: {},
   leaderboardService: {},
 }))
-vi.mock("@chatbotx.io/business/minigame", () => ({
+vi.mock("@inboxos.io/business/minigame", () => ({
   isMinigameWithinPlayWindow: vi.fn(),
   minigameService: {},
   minigameContactService: {},
 }))
-vi.mock("@chatbotx.io/business/poll", async (importOriginal) => ({
+vi.mock("@inboxos.io/business/poll", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   pollService: {
     findUnscopedWithCandidates: mocks.findUnscopedWithCandidates,
   },
   pollVoteService: {},
 }))
-vi.mock("@chatbotx.io/database/client", () => ({ findOrFail: vi.fn() }))
+vi.mock("@inboxos.io/database/client", () => ({ findOrFail: vi.fn() }))
 vi.mock(
-  "@chatbotx.io/database/schema",
+  "@inboxos.io/database/schema",
   () => new Proxy({}, { get: () => ({}), has: () => true }),
 )
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mocks.emit }))
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mocks.emit }))
+vi.mock("@inboxos.io/events", () => ({
   emitContactReferredANewContact: vi.fn(),
   emitContactReferredExistingContact: vi.fn(),
 }))
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "channel",
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendFlowMessage: "sendFlowMessage" },
   IntegrationJobAction: { sendFlow: "sendFlow" },
   chatQueue: { add: mocks.chatAdd },

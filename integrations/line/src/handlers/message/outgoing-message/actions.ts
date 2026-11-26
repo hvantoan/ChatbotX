@@ -4,8 +4,8 @@ import {
   buttonTypes,
   encodeButtonPayload,
   normalizeDialablePhoneNumber,
-} from "@chatbotx.io/flow-config"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
 import { LINE_LIMITS, truncate } from "./limits"
 
 /**

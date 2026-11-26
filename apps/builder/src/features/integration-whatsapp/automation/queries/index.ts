@@ -1,9 +1,9 @@
-import { integrationWhatsappService } from "@chatbotx.io/business"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
+import { integrationWhatsappService } from "@inboxos.io/business"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
 import {
   type ConversationalAutomation,
   findConversationalAutomation,
-} from "@chatbotx.io/integration-whatsapp/api/phone-number"
+} from "@inboxos.io/integration-whatsapp/api/phone-number"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListWhatsappPhoneNumberAutomation } from "../schema/get-ice-breakers-schema"
 

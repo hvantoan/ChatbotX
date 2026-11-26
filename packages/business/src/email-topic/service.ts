@@ -7,20 +7,20 @@ import {
   inArray,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
-import { rootFolderId } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { rootFolderId } from "@inboxos.io/database/partials"
 import {
   analyticsEmailTopicModel,
   emailTopicModel,
-} from "@chatbotx.io/database/schema"
-import type { EmailTopicModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { EmailTopicModel } from "@inboxos.io/database/types"
 import {
   likeContains,
   parseOrderByAsObject,
   parsePagination,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
+import { InboxOSException, notFoundException } from "../errors"
 import { folderService } from "../folder/service"
 import { type IdLabel, selectLabelsByIds } from "../select-labels-by-ids"
 import type { PaginatedResult } from "../types"
@@ -126,7 +126,7 @@ class EmailTopicService {
       where: { name: data.name, workspaceId },
     })
     if (existing) {
-      throw new ChatbotXException("Name is already taken.", "nameTaken", 400)
+      throw new InboxOSException("Name is already taken.", "nameTaken", 400)
     }
 
     if (data.folderId) {
@@ -165,7 +165,7 @@ class EmailTopicService {
       where: { name: data.name, workspaceId, id: { ne: id } },
     })
     if (existing) {
-      throw new ChatbotXException("Name is already taken.", "nameTaken", 400)
+      throw new InboxOSException("Name is already taken.", "nameTaken", 400)
     }
 
     const [updated] = await tx

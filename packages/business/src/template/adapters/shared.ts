@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   TemplateCategory,
   TemplateResourceCategory,
   TemplateResourceKind,
-} from "@chatbotx.io/database/partials"
-import type { UnresolvedReference } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import type { UnresolvedReference } from "@inboxos.io/flow-config"
 import { templateBackupNotRestorableException } from "../template-errors"
 import type {
   PatchTask,

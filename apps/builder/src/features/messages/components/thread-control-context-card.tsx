@@ -1,8 +1,8 @@
 "use client"
 
-import type { ThreadControlHistoryItem } from "@chatbotx.io/sdk"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { ThreadControlHistoryItem } from "@inboxos.io/sdk"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { format } from "date-fns"
 import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

@@ -4,14 +4,14 @@ import {
   type ProductStatus,
   productStatuses,
   storeSources,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createSelectSchema,
   integrationMetaCatalogModel,
   metaCatalogSyncRunModel,
   productModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { isMetaCatalogSyncScopeComplete } from "../lib/meta-catalog-operations"
 import { productFormRequest } from "./action"

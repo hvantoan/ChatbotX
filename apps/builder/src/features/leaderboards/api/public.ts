@@ -5,8 +5,8 @@ import {
   listTelegramLeaderboardChats,
   signLeaderboardViewTokenForContact,
   triggerLeaderboardRewards,
-} from "@chatbotx.io/business/leaderboard"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/business/leaderboard"
+import { uploader } from "@inboxos.io/filesystem"
 import { z } from "zod"
 import {
   possibleErrorsOnCreatingResource,

@@ -1,6 +1,6 @@
 "use client"
 
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
 import { useQueryClient } from "@tanstack/react-query"
 import { useRef } from "react"
 import { useWorkspaceRealtimeEvents } from "@/features/realtime/use-workspace-realtime-events"

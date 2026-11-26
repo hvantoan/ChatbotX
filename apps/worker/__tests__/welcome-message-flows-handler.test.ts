@@ -26,7 +26,7 @@ const m = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: m.buildContext,
   flowService: { findBy: m.findBy },
   flowVersionService: {
@@ -35,28 +35,25 @@ vi.mock("@chatbotx.io/business", () => ({
   },
   messengerWelcomeMessageFlowService: m.svc,
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   channelTypes: { enum: { messenger: "messenger" } },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: {
     listByWorkspace: m.listByWorkspace,
   },
 }))
-vi.mock("@chatbotx.io/integration-messenger/messenger-ads", () => ({
+vi.mock("@inboxos.io/integration-messenger/messenger-ads", () => ({
   convertStartNodeToMessengerAdsJson: m.convert,
 }))
-vi.mock(
-  "@chatbotx.io/integration-messenger/apis/welcome-message-flows",
-  () => ({
-    createWelcomeMessageFlow: m.create,
-    updateWelcomeMessageFlow: m.update,
-    deleteWelcomeMessageFlow: m.del,
-    getWelcomeMessageFlow: m.get,
-    isTransientWelcomeMessageFlowError: m.isTransient,
-  }),
-)
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/welcome-message-flows", () => ({
+  createWelcomeMessageFlow: m.create,
+  updateWelcomeMessageFlow: m.update,
+  deleteWelcomeMessageFlow: m.del,
+  getWelcomeMessageFlow: m.get,
+  isTransientWelcomeMessageFlowError: m.isTransient,
+}))
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: (opts: {
       key: string
@@ -69,7 +66,7 @@ vi.mock("@chatbotx.io/redis", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   welcomeMessageFlowLockKey: (id: string) => `welcome-message-flow-${id}`,
 }))
 vi.mock("../src/lib/logger", () => ({

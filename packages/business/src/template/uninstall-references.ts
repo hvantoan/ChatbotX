@@ -1,11 +1,11 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 // The subpath, not the barrel: this module sits on every guarded write's
 // import graph, and the barrel drags in every repository.
 import {
   type InboundEdge,
   templateUninstallReferenceRepository,
-} from "@chatbotx.io/database/repositories/template-uninstall-references"
+} from "@inboxos.io/database/repositories/template-uninstall-references"
 import {
   CONTACT_FILTER_FIELD_REFERENCE,
   collectReferencesByKind,
@@ -15,7 +15,7 @@ import {
   REFERENCE_ARRAY_FIELD_ENTITY_KIND,
   REFERENCE_FIELD_ENTITY_KIND,
   REFERENCE_KIND_POLICY,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 /** A resource that is being deleted, as the closure and `protectedDependents` see it. */
 export const uninstallKey = (kind: TemplateResourceKind, id: string): string =>

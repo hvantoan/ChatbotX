@@ -1,6 +1,6 @@
 "use client"
 
-import type { TypingStepSchema } from "@chatbotx.io/flow-config"
+import type { TypingStepSchema } from "@inboxos.io/flow-config"
 
 type TypingStepViewerProps = {
   data: TypingStepSchema

@@ -1,7 +1,7 @@
 import {
   hasEnterpriseFeatures,
   isSupportConsentRequired,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { getTranslations } from "next-intl/server"
 import type { SearchParams } from "nuqs/server"
 import { Suspense } from "react"

@@ -1,5 +1,5 @@
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
-import { customerIdSchema } from "@chatbotx.io/utils/google-click"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
+import { customerIdSchema } from "@inboxos.io/utils/google-click"
 import { z } from "zod"
 import { GoogleAdsException, rescueGoogleAds } from "../exception"
 import { adsHeaders, googleAdsHttp } from "../lib/http-client"

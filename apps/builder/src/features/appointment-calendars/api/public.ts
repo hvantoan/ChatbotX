@@ -2,7 +2,7 @@ import {
   appointmentCalendarService,
   appointmentService,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   possibleErrorsOnCreatingAppointmentCalendar,
   possibleErrorsOnDeletingResource,

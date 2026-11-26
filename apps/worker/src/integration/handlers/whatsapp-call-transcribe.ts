@@ -1,21 +1,21 @@
-import { aiTimeouts } from "@chatbotx.io/ai"
-import { aiIntegrationService, getAIModel } from "@chatbotx.io/ai/server"
+import { aiTimeouts } from "@inboxos.io/ai"
+import { aiIntegrationService, getAIModel } from "@inboxos.io/ai/server"
 import {
   callRecordingService,
   contactInboxService,
   whatsappCallLifecycleService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   integrationWhatsappRepository,
   whatsappCallRepository,
-} from "@chatbotx.io/database/repositories"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
 import {
   emitCallTranscribed,
   setWebhookExecutionContext,
-} from "@chatbotx.io/events"
-import { transcribesCalls } from "@chatbotx.io/utils/whatsapp-call"
-import type { CallTranscriptionJobTranscribeCall } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/events"
+import { transcribesCalls } from "@inboxos.io/utils/whatsapp-call"
+import type { CallTranscriptionJobTranscribeCall } from "@inboxos.io/worker-config"
 import { transcribe } from "ai"
 import ky from "ky"
 import { normalizeError } from "universal-error-normalizer"

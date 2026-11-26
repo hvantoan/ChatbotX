@@ -24,7 +24,7 @@ vi.mock("@/features/integration-instagram/queries", () => ({
 }))
 // Only the services these pages are allowed to use exist on the mock: touching
 // `metaConversionsService` (a live scope refresh) would throw.
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: { findByIdForWorkspace: mocks.findWhatsapp },
   platformCredentialService: { resolveForOwner: mocks.resolveForOwner },
   workspaceService: { findById: mocks.findWorkspace },

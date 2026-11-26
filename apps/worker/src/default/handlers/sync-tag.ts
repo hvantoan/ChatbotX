@@ -3,28 +3,28 @@ import {
   tagService,
   tagSyncService,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   logProviderError,
   logProviderErrorForChannel,
-} from "@chatbotx.io/business/error-log"
-import { channelTypes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business/error-log"
+import { channelTypes } from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   integrationMessengerRepository,
   tagChannelRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   IntegrationMessengerModel,
   IntegrationZaloModel,
-} from "@chatbotx.io/database/types"
-import { chunkById } from "@chatbotx.io/database/utils"
-import { integration as integrationMessenger } from "@chatbotx.io/integration-messenger"
-import { integration as integrationZalo } from "@chatbotx.io/integration-zalo"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo/schema"
-import { distributedLock } from "@chatbotx.io/redis"
-import type { JobSyncTag } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { chunkById } from "@inboxos.io/database/utils"
+import { integration as integrationMessenger } from "@inboxos.io/integration-messenger"
+import { integration as integrationZalo } from "@inboxos.io/integration-zalo"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo/schema"
+import { distributedLock } from "@inboxos.io/redis"
+import type { JobSyncTag } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { buildMessengerContext } from "../../lib/messenger-context"
 

@@ -5,10 +5,10 @@ import {
   eq,
   inArray,
   isNull,
-} from "@chatbotx.io/database/client"
-import { miniAppUploadModel } from "@chatbotx.io/database/schema"
-import type { MiniAppModel } from "@chatbotx.io/database/types"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/client"
+import { miniAppUploadModel } from "@inboxos.io/database/schema"
+import type { MiniAppModel } from "@inboxos.io/database/types"
+import { uploader } from "@inboxos.io/filesystem"
 import {
   buildUploadPath,
   MINI_APP_UPLOAD_SNIFF_BYTES,
@@ -17,10 +17,10 @@ import {
   resolveUploadRules,
   sanitizeFileName,
   verifyUpload,
-} from "@chatbotx.io/mini-app"
-import { createId, getPublicFileUrl } from "@chatbotx.io/utils"
+} from "@inboxos.io/mini-app"
+import { createId, getPublicFileUrl } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
-import { ChatbotXException, validationException } from "../errors"
+import { InboxOSException, validationException } from "../errors"
 import { resolveTenantSettings } from "../platform/settings"
 import { findVisitorContactId } from "./visitor-contact"
 
@@ -40,7 +40,7 @@ const randomToken = () =>
 export type MiniAppUploadErrorCode = MiniAppUploadRejection | "unknown_input"
 
 /** A rejected upload; `code` lets the public route answer with a precise message. */
-export class MiniAppUploadError extends ChatbotXException {
+export class MiniAppUploadError extends InboxOSException {
   readonly reason: MiniAppUploadErrorCode
 
   constructor(reason: MiniAppUploadErrorCode) {

@@ -1,23 +1,23 @@
 import {
   contactCustomFieldService,
   customFieldService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type OperatorType,
   pipelineConditionValueSchema,
   type TriggerEventType,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import type {
   CartItemEventMetadata,
   OrderEventMetadata,
   PipelineItemEventMetadata,
   ShoppingCartSentMetadata,
   UserAskedAboutProductMetadata,
-} from "@chatbotx.io/events"
-import type { ResolvedInboundProductReference } from "@chatbotx.io/sdk"
-import { toZonedWallClock } from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/events"
+import type { ResolvedInboundProductReference } from "@inboxos.io/sdk"
+import { toZonedWallClock } from "@inboxos.io/utils/datetime"
 import type { ConditionEvaluationContext } from "../types"
 import { parseDateTimeValue } from "../utils/datetime-calculator"
 

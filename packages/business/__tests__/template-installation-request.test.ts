@@ -33,7 +33,7 @@ const mocks = vi.hoisted(() => ({
   listInstalled: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (callback: (tx: object) => unknown) => callback({}),
   },
@@ -41,7 +41,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     mocks.isUniqueViolation(...args),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   loadResourceLabels: (...args: unknown[]) => mocks.loadLabels(...args),
   inboxRepository: {
     listIdentitiesByIds: (...args: unknown[]) => mocks.listInboxes(...args),
@@ -86,7 +86,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   createId: () => "new-id",
 }))
@@ -100,7 +100,7 @@ vi.mock("../src/user", () => ({
 }))
 
 vi.mock("../src/template/service", async () => {
-  const { ChatbotXException } = await import("../src/errors")
+  const { InboxOSException } = await import("../src/errors")
   return {
     templateService: {
       assertInstallable: (...args: unknown[]) =>
@@ -109,7 +109,7 @@ vi.mock("../src/template/service", async () => {
         mocks.assertInstallableById(...args),
     },
     templateShareDisabledException: () =>
-      new ChatbotXException("gone", "templateShareDisabled"),
+      new InboxOSException("gone", "templateShareDisabled"),
     toPublicProjection: (row: { name: string }) => ({ name: row.name }),
   }
 })
@@ -117,7 +117,7 @@ vi.mock("../src/template/service", async () => {
 const { templateInstallationRequestService: service } = await import(
   "../src/template/installation-request.service"
 )
-const { ChatbotXException } = await import("../src/errors")
+const { InboxOSException } = await import("../src/errors")
 
 const template = {
   id: "t-1",
@@ -509,7 +509,7 @@ describe("templateInstallationRequestService.retry", () => {
   test("a retry is refused once the template is no longer shared or installable", async () => {
     mocks.findById.mockResolvedValue(failed)
     mocks.assertInstallableById.mockRejectedValue(
-      new ChatbotXException("gone", "templateShareDisabled"),
+      new InboxOSException("gone", "templateShareDisabled"),
     )
 
     await expect(service.retry(input)).rejects.toMatchObject({
@@ -615,7 +615,7 @@ describe("templateInstallationRequestService.preview", () => {
 
   test("reports a business rejection as a reason, not an error", async () => {
     mocks.assertInstallable.mockRejectedValue(
-      new ChatbotXException("nope", "templateCrossTenantInstall", 400),
+      new InboxOSException("nope", "templateCrossTenantInstall", 400),
     )
 
     await expect(
@@ -632,7 +632,7 @@ describe("templateInstallationRequestService.preview", () => {
 
   test("keeps a permission rejection distinct from an unusable link", async () => {
     mocks.assertInstallable.mockRejectedValue(
-      new ChatbotXException("no", "templateCategoryPermissionDenied", 403),
+      new InboxOSException("no", "templateCategoryPermissionDenied", 403),
     )
 
     await expect(

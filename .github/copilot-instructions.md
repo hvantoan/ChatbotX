@@ -1,10 +1,10 @@
-# ChatbotX Repository Instructions
+# InboxOS Repository Instructions
 
 These instructions apply repository-wide. Read the relevant detailed rule in `.agents/rules/` and skill in `.agents/skills/` before making specialized changes.
 
 ## Project context
 
-- ChatbotX is a pnpm workspace + Turborepo monorepo.
+- InboxOS is a pnpm workspace + Turborepo monorepo.
 - The builder is Next.js 16 with React 19; persistence uses Drizzle ORM and PostgreSQL; workers use BullMQ and Redis.
 - Application and integration code must follow the service/repository boundaries described in `.agents/rules/data-access.md`.
 
@@ -80,7 +80,7 @@ These instructions apply repository-wide. Read the relevant detailed rule in `.a
 ```bash
 pnpm lint
 pnpm --filter builder check-types
-pnpm --filter @chatbotx.io/database check-types
+pnpm --filter @inboxos.io/database check-types
 pnpm --filter worker test
 pnpm build
 ```

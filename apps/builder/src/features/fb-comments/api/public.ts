@@ -1,4 +1,4 @@
-import { commentAutomationService } from "@chatbotx.io/business"
+import { commentAutomationService } from "@inboxos.io/business"
 import { z } from "zod"
 import { bulkUpdateIdsRequest } from "@/features/common/schema"
 import { postsAccountFilterSchema } from "@/features/shared/comment-automation/schema/account"

@@ -3,9 +3,9 @@
 import {
   telegramIntegrationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import type { TelegramAuthValue } from "@chatbotx.io/integration-telegram"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import type { TelegramAuthValue } from "@inboxos.io/integration-telegram"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

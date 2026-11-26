@@ -1,7 +1,7 @@
 "use server"
 
-import { whatsappVoipCallService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { whatsappVoipCallService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { callingActionClient } from "@/lib/safe-action"
 
 /**

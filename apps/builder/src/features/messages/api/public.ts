@@ -2,12 +2,12 @@ import {
   conversationService,
   messageService,
   resolveTemplateParams,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   IMAGES_NOT_SUPPORTED_ON_CHANNEL_CODE,
   PRODUCT_MESSAGE_UNRESOLVABLE_CODE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import {
   ENGLISH_CALL_PERMISSION_MESSAGES,

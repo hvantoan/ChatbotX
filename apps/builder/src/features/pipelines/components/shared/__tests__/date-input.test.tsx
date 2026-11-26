@@ -12,7 +12,7 @@ vi.mock("next-intl", () => ({
 }))
 
 // Capture what the shared picker receives instead of opening its popover.
-vi.mock("@chatbotx.io/ui/components/ui/date-picker", () => ({
+vi.mock("@inboxos.io/ui/components/ui/date-picker", () => ({
   DateTimePicker: (props: unknown) => {
     picker.props = props
     return null

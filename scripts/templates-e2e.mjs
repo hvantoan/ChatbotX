@@ -5,7 +5,7 @@
  * `docs/templates-testing.md` for setup and for what each check covers.
  *
  * Required env:
- *   CHATBOTX_API_URL         e.g. https://localhost:3123/api
+ *   INBOXOS_API_URL         e.g. https://localhost:3123/api
  *   TPL_SOURCE_TOKEN         `templates`-scoped full token of the publishing workspace
  *   TPL_TARGET_TOKEN         `templates`-scoped full token of another workspace (same tenant)
  *   TPL_TARGET_RO_TOKEN      read_only token of the target workspace
@@ -26,7 +26,7 @@ const env = (name) => {
   return value
 }
 
-const API = env("CHATBOTX_API_URL").replace(/\/$/, "")
+const API = env("INBOXOS_API_URL").replace(/\/$/, "")
 const TOKENS = {
   src: env("TPL_SOURCE_TOKEN"),
   tgt: env("TPL_TARGET_TOKEN"),

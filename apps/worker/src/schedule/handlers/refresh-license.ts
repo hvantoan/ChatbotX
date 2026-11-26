@@ -1,10 +1,10 @@
-import { refreshLicense as refreshLicenseToken } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { refreshLicense as refreshLicenseToken } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 
 const LOCK_KEY = "schedule:refresh-license"
 const LOCK_TTL_SECONDS = 60

@@ -3,7 +3,7 @@ import {
   ChannelErrorReason,
   isAccountSendBlocked,
   isRateLimited,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { MessengerException } from "../src/exception"
 import {

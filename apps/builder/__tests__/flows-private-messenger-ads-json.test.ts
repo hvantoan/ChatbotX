@@ -46,21 +46,21 @@ vi.mock("../src/features/flows/schema/query", () => ({
   listFlowsRequest: { and: vi.fn(() => ({})) },
   listFlowsResponse: {},
 }))
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   flowAnalyticsService: {},
   flowNodeStatsResponse: {},
   flowStatsRequest: { and: vi.fn(() => ({})) },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowVersionService: { getMessengerAdsStartNode: m.getStartNode },
   messengerWelcomeMessageFlowService: {
     listCurrentByFlow: m.listCurrentByFlow,
   },
 }))
-vi.mock("@chatbotx.io/integration-messenger/messenger-ads", () => ({
+vi.mock("@inboxos.io/integration-messenger/messenger-ads", () => ({
   convertStartNodeToMessengerAdsJson: m.convert,
 }))
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

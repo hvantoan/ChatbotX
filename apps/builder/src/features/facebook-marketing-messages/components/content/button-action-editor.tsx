@@ -1,9 +1,9 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import type { SingleSelectOption } from "@chatbotx.io/ui/components/form/select-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import type { SingleSelectOption } from "@inboxos.io/ui/components/form/select-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useFormContext, useWatch } from "react-hook-form"

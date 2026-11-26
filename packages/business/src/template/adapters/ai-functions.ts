@@ -1,5 +1,5 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
-import { aiFunctionModel } from "@chatbotx.io/database/schema"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
+import { aiFunctionModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 import { aiFunctionService } from "../../ai-function/service"
 import { templateBackupNotRestorableException } from "../template-errors"

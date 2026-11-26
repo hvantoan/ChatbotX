@@ -1,4 +1,4 @@
-import { resolveTenantByDomain } from "@chatbotx.io/auth/tenant"
+import { resolveTenantByDomain } from "@inboxos.io/auth/tenant"
 import { InvitationCard } from "@/features/invitations/invitatation-card"
 import { findInvitation } from "@/features/invitations/queries"
 import { getCurrentUser } from "@/lib/auth/utils"

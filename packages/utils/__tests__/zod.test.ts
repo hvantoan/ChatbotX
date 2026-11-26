@@ -36,7 +36,7 @@ describe("zodBigintIdAsString", () => {
 })
 
 describe("containsVariablePlaceholder", () => {
-  // Mirrors the runtime resolver grammar (`@chatbotx.io/variables`), which
+  // Mirrors the runtime resolver grammar (`@inboxos.io/variables`), which
   // matches any run of non-brace/non-newline characters and trims surrounding
   // whitespace — so `{{ domain }}` is a placeholder the resolver handles.
   test.each([

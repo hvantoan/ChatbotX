@@ -1,12 +1,12 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { integrationTypes } from "@chatbotx.io/database/partials"
-import { integrationApiRepository } from "@chatbotx.io/database/repositories"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { integrationTypes } from "@inboxos.io/database/partials"
+import { integrationApiRepository } from "@inboxos.io/database/repositories"
 import type {
   ConnectionModel,
   IntegrationApiModel,
-} from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { dispatchAuditRecord } from "../audit/dispatcher"
 import { BaseService } from "../base.service"
 import {
@@ -16,7 +16,7 @@ import {
   withQuotaCompensation,
 } from "../connection"
 import { connectionStateService } from "../connection/state-service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { inboxService } from "../inbox/service"
 import { assertPublicUrl } from "../net/ssrf-guard"
 import { dispatchStagedInstalls } from "../template/installation-dispatch"
@@ -191,7 +191,7 @@ class IntegrationApiService extends BaseService {
       try {
         await assertPublicUrl(callbackUrl, "API channel callback URL")
       } catch (error) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           error instanceof Error
             ? error.message
             : "Invalid API channel callback URL",

@@ -1,8 +1,9 @@
 "use client"
 
-import { MAX_ADMIN_WORKSPACE_MEMBERS } from "@chatbotx.io/business/admin-workspace/constants"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { MAX_ADMIN_WORKSPACE_MEMBERS } from "@inboxos.io/business/admin-workspace/constants"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -10,11 +11,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PlusIcon } from "lucide-react"
 import { useRouter } from "next/navigation"

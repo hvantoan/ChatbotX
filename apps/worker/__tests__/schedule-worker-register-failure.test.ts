@@ -12,7 +12,7 @@ vi.mock("bullmq", () => {
   return { Queue }
 })
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,

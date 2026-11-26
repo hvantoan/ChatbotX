@@ -1,6 +1,6 @@
-import { mcpOAuthService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { distributedLock } from "@chatbotx.io/redis"
+import { mcpOAuthService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
+import { distributedLock } from "@inboxos.io/redis"
 
 const log = getChildLogger("purge-expired-oauth-tokens")
 const LOCK_KEY = "schedule:purge-expired-oauth-tokens"

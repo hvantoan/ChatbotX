@@ -1,7 +1,7 @@
 "use client"
 
-import type { KlaviyoSyncProfileSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { KlaviyoSyncProfileSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { MailIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { BaseStateViewer } from "../../states/viewer"

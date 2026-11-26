@@ -1,5 +1,5 @@
-import type { DataTableConfig } from "@chatbotx.io/ui/config/data-table"
-import type { FilterItemSchema } from "@chatbotx.io/ui/lib/parsers"
+import type { DataTableConfig } from "@inboxos.io/ui/config/data-table"
+import type { FilterItemSchema } from "@inboxos.io/ui/lib/parsers"
 import type { ColumnSort, Row, RowData } from "@tanstack/react-table"
 
 declare module "@tanstack/react-table" {

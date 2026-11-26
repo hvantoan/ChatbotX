@@ -1,4 +1,4 @@
-import { connectionStatusReasons } from "@chatbotx.io/utils/connection"
+import { connectionStatusReasons } from "@inboxos.io/utils/connection"
 import { describe, expect, test } from "vitest"
 import {
   CONNECTION_STATUS_REASON_MESSAGE_KEYS,

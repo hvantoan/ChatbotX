@@ -1,10 +1,10 @@
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
   ConversationModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // Every helper is stubbed: this suite is about the resolver's own switch, not
@@ -42,7 +42,7 @@ vi.mock("../src/logger", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentService: {
     findBy: vi.fn().mockResolvedValue({
       id: "appointment-1",
@@ -117,16 +117,16 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/pipeline/variable-targets", () => ({
+vi.mock("@inboxos.io/business/pipeline/variable-targets", () => ({
   loadLastPipelineItemId: vi.fn().mockResolvedValue("pipeline-item-1"),
   loadPipelineVariableTargets: vi.fn().mockResolvedValue([]),
 }))
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   resolveGenderLabel: vi.fn().mockReturnValue("Anh"),
 }))
 
-vi.mock("@chatbotx.io/encryption/keys", () => ({
+vi.mock("@inboxos.io/encryption/keys", () => ({
   env: { ENCRYPTION_KEY: testEncryptionKey },
 }))
 

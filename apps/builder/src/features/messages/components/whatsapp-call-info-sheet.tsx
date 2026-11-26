@@ -1,6 +1,6 @@
 "use client"
 
-import type { CallTranscriptSegment } from "@chatbotx.io/business"
+import type { CallTranscriptSegment } from "@inboxos.io/business"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,22 +11,22 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/sheet"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@chatbotx.io/ui/components/ui/tabs"
+} from "@inboxos.io/ui/components/ui/tabs"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import {
   AlertCircleIcon,

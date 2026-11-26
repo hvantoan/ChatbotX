@@ -13,24 +13,24 @@ const mocks = vi.hoisted(() => ({
   checkWorkspaceOwnerAccess: vi.fn().mockResolvedValue(null),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isPlatformAdmin: mocks.isPlatformAdmin,
   isSuperAdmin: mocks.isSuperAdmin,
   isWorkspaceScheduledForDeletion: mocks.isWorkspaceScheduledForDeletion,
   resolveWorkspaceAccess: mocks.resolveWorkspaceAccess,
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: () => undefined,
   withAuditContext: (_actor: unknown, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: mocks.findOrFail,
   isDatabaseError: mocks.isDatabaseError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   userModel: {},
 }))
 

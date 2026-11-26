@@ -1,11 +1,11 @@
-import { toThreadControlTimestamp } from "@chatbotx.io/database/partials"
+import { toThreadControlTimestamp } from "@inboxos.io/database/partials"
 import type {
   IncomingContact,
   ThreadControlAppRolesEvent,
   ThreadControlRequestEvent,
   ThreadControlWebhookEvent,
   ThreadControlWebhookResult,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import {
   messengerAppRolesEventSchema,

@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   filterOptions: vi.fn(async () => []),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: { listAnalyticsFilterOptions: mocks.filterOptions },
 }))
 vi.mock("@/features/analytics/components/analytics-channel-filter", () => ({
@@ -42,11 +42,11 @@ vi.mock("@/lib/auth/utils", () => ({
     targetWorkspaceMember: { permissions: {} },
   }),
 }))
-vi.mock("@chatbotx.io/analytics-nextjs/components/contacts-dashboard", () => ({
+vi.mock("@inboxos.io/analytics-nextjs/components/contacts-dashboard", () => ({
   ContactsDashboard: ({ nav }: { nav: ReactNode }) => nav,
 }))
 vi.mock(
-  "@chatbotx.io/analytics-nextjs/components/conversations-dashboard",
+  "@inboxos.io/analytics-nextjs/components/conversations-dashboard",
   () => ({ ConversationsDashboard: ({ nav }: { nav: ReactNode }) => nav }),
 )
 

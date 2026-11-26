@@ -1,4 +1,4 @@
-import { parseEnvBool } from "@chatbotx.io/utils"
+import { parseEnvBool } from "@inboxos.io/utils"
 import { keys } from "../keys"
 import { hasEnterpriseFeatures } from "../user/entitlements"
 

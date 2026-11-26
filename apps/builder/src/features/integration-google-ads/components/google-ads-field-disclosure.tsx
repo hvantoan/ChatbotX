@@ -4,7 +4,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@chatbotx.io/ui/components/ui/collapsible"
+} from "@inboxos.io/ui/components/ui/collapsible"
 import { ChevronRightIcon } from "lucide-react"
 import { type ReactNode, useEffect, useRef, useState } from "react"
 import { useFormContext, useFormState, useWatch } from "react-hook-form"

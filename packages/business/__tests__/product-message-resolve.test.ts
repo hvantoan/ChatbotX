@@ -1,8 +1,8 @@
 import {
   CHANNEL_FLOW_POLICIES,
   type SendProductsStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { ProductMessageItem } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { ProductMessageItem } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { resolveProductMessage } from "../src/product-message/resolve-message"
 

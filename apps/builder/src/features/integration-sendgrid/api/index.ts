@@ -3,8 +3,8 @@ import {
   sendGridCustomFieldSchema,
   integration as sendGridIntegration,
   sendGridListPageSchema,
-} from "@chatbotx.io/integration-sendgrid"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-sendgrid"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { ORPCError } from "@orpc/server"
 import { z } from "zod"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

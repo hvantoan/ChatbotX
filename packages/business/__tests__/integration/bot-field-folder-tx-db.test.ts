@@ -8,9 +8,9 @@
  * Commits for real, so each test deletes what it created.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
-import { userModel, workspaceModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { db, eq } from "@inboxos.io/database/client"
+import { userModel, workspaceModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { botFieldService } from "../../src/bot-field/service"
 import { folderService } from "../../src/folder/service"

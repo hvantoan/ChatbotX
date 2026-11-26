@@ -1,9 +1,9 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import type { TemplatePipelineManifestEntry } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/repositories"
+import type { TemplatePipelineManifestEntry } from "@inboxos.io/flow-config"
 import type { TemplateInstallContext } from "./adapters/types"
 
 /** Stage names match case- and space-insensitively, as on install. */

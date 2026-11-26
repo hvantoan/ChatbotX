@@ -1,7 +1,7 @@
 import {
   type ButtonStepProps,
   isNativeButtonType,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { buildInlineButton } from "../src/handlers/message/outgoing-message/send-button"
 

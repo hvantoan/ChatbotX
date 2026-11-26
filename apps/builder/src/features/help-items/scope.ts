@@ -1,6 +1,6 @@
-import { isSuperAdmin, resolveAdminTenantId } from "@chatbotx.io/business"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/schema"
-import type { UserModel } from "@chatbotx.io/database/types"
+import { isSuperAdmin, resolveAdminTenantId } from "@inboxos.io/business"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/schema"
+import type { UserModel } from "@inboxos.io/database/types"
 import { z } from "zod"
 
 export const helpItemScopeSchema = z.enum(["tenant", "platform"])

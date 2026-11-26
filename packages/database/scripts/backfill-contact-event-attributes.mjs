@@ -29,7 +29,7 @@ const LOCK_TIMEOUT_MS = 5000
 
 /**
  * The languages the live emitters record (`supportedContactLanguages` in
- * `@chatbotx.io/business/contact-locale`, which cannot be imported from a plain
+ * `@inboxos.io/business/contact-locale`, which cannot be imported from a plain
  * script). A test in the business package pins this list to the real one.
  */
 export const SUPPORTED_LANGUAGES = [

@@ -1,5 +1,5 @@
-import { zodBigintAsString, zodBigintIdAsString } from "@chatbotx.io/utils"
-import { type ChannelType, channelTypes } from "@chatbotx.io/utils/channel"
+import { zodBigintAsString, zodBigintIdAsString } from "@inboxos.io/utils"
+import { type ChannelType, channelTypes } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 
 const FROM_FLOOR = new Date("2020-01-01T00:00:00.000Z")

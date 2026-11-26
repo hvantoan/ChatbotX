@@ -2,11 +2,11 @@ import {
   processShopifyWebhook,
   shopifySyncService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   IntegrationJobShopifySync,
   IntegrationJobShopifyWebhook,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 /**
  * Pulls the connected Shopify store's catalog, discount codes and recent

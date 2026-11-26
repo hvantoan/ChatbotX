@@ -1,8 +1,8 @@
-import { whatsappVoipCallService } from "@chatbotx.io/business"
-import { resolveWhatsappCallOutcome } from "@chatbotx.io/database/partials"
-import { whatsappCallRepository } from "@chatbotx.io/database/repositories"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { whatsappVoipCallService } from "@inboxos.io/business"
+import { resolveWhatsappCallOutcome } from "@inboxos.io/database/partials"
+import { whatsappCallRepository } from "@inboxos.io/database/repositories"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   endReservedCall,
   resolveVoipAuthByInboxId,

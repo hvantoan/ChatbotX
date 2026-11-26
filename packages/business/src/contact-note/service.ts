@@ -4,11 +4,11 @@ import {
   db,
   eq,
   findOrFail,
-} from "@chatbotx.io/database/client"
-import { contactNoteModel } from "@chatbotx.io/database/schema"
-import type { ContactNoteModel } from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import { contactNoteModel } from "@inboxos.io/database/schema"
+import type { ContactNoteModel } from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { type ContactAccessScope, contactService } from "../contact/service"
 import { notFoundException } from "../errors"

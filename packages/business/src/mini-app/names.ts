@@ -1,5 +1,5 @@
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
-import { MINI_APP_NAME_MAX_LENGTH } from "@chatbotx.io/mini-app"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
+import { MINI_APP_NAME_MAX_LENGTH } from "@inboxos.io/mini-app"
 import { validationException } from "../errors"
 
 export const NAME_TAKEN = "Name is already taken"

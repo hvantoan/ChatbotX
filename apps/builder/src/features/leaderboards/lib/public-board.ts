@@ -3,7 +3,7 @@ import {
   getLeaderboardPublicBoard,
   getLeaderboardViewer,
   leaderboardService,
-} from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business/leaderboard"
 import { loadServableWorkspace } from "@/lib/workspace/load-servable-workspace"
 import { buildLeaderboardShareUrl } from "./leaderboard-share"
 

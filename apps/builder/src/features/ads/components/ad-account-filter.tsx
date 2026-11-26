@@ -6,13 +6,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import type { AdsEligibleChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import type { AdsEligibleChannelType } from "@inboxos.io/utils/channel"
 import { useQuery } from "@tanstack/react-query"
 import { InfoIcon } from "lucide-react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"

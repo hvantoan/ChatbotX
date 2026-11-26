@@ -1,4 +1,4 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   and,
   db,
@@ -9,18 +9,18 @@ import {
   isUniqueViolationError,
   ne,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   ACTIVE_CONNECTION_STATUSES,
   integrationTypes,
-} from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   connectionModel,
   integrationLineModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationLineModel } from "@chatbotx.io/database/types"
-import type { AuthValue, Oauth2AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/schema"
+import type { IntegrationLineModel } from "@inboxos.io/database/types"
+import type { AuthValue, Oauth2AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import {
   CONNECTION_STORE_BINDINGS,
@@ -31,8 +31,8 @@ import {
 } from "../connection"
 import { connectionStateService } from "../connection/state-service"
 import {
-  ChatbotXException,
   channelDuplicatedException,
+  InboxOSException,
   notFoundException,
 } from "../errors"
 import { inboxService } from "../inbox/service"
@@ -40,7 +40,7 @@ import { logger } from "../logger"
 import { type WorkspaceQuotaConsumption, workspaceService } from "../workspace"
 
 /**
- * Structural copy of `@chatbotx.io/integration-line`'s `LineAuthValue`
+ * Structural copy of `@inboxos.io/integration-line`'s `LineAuthValue`
  * (business does not depend on integration packages).
  */
 export type LineIntegrationAuth = Oauth2AuthValue & {
@@ -287,7 +287,7 @@ class LineIntegrationService extends BaseService {
       return channelDuplicatedException()
     }
     if (
-      error instanceof ChatbotXException &&
+      error instanceof InboxOSException &&
       error.code === "connectionAlreadyConnected" &&
       ctx.workspaceId
     ) {

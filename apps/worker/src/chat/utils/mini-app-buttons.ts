@@ -1,8 +1,8 @@
-import { miniAppService } from "@chatbotx.io/business/mini-app"
+import { miniAppService } from "@inboxos.io/business/mini-app"
 import {
   signMiniAppResumeToken,
   signMiniAppToken,
-} from "@chatbotx.io/encryption/mini-app-token"
+} from "@inboxos.io/encryption/mini-app-token"
 import {
   type ButtonStepProps,
   buttonTypes,
@@ -10,9 +10,9 @@ import {
   extractMetadata,
   type MetadataPayload,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { logger } from "../../lib/logger"
 import { mapStepButtons, readStepButtons } from "./step-buttons"
 

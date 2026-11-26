@@ -1,8 +1,8 @@
 "use client"
 
-import type { RoutingRolesSnapshot } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { RoutingRolesSnapshot } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { Loader2Icon, RefreshCwIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"

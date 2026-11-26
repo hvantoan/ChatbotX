@@ -2,16 +2,16 @@ import {
   templateInstallationRequestService,
   templateService,
   templateSyncRequestService,
-} from "@chatbotx.io/business"
-import { templateSyncRestoreService } from "@chatbotx.io/business/template-sync/restore"
+} from "@inboxos.io/business"
+import { templateSyncRestoreService } from "@inboxos.io/business/template-sync/restore"
 import {
   templateUninstallCancelService,
   templateUninstallService,
-} from "@chatbotx.io/business/template-uninstall"
+} from "@inboxos.io/business/template-uninstall"
 import {
   templateSyncStatuses,
   templateSyncTriggers,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

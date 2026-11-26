@@ -1,18 +1,18 @@
 "use client"
 
-import type { WhatsappCallHours } from "@chatbotx.io/integration-whatsapp/api/calling"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { WhatsappCallHours } from "@inboxos.io/integration-whatsapp/api/calling"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/select"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PlusIcon, TrashIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

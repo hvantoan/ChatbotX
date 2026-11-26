@@ -20,7 +20,7 @@ const mocks = vi.hoisted(() => ({
   relationsFilterToSQL: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...conditions: unknown[]) => ({ and: conditions }),
   eq: (column: unknown, value: unknown) => ({ eq: [column, value] }),
   inArray: (column: unknown, values: unknown) => ({
@@ -42,7 +42,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: mocks.relationsFilterToSQL,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   magicLinkModel: {
     id: "magicLink.id",
     name: "magicLink.name",
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: (input: { page: number; perPage: number }) => ({
     limit: input.perPage,
     offset: (input.page - 1) * input.perPage,
@@ -60,7 +60,7 @@ vi.mock("@chatbotx.io/database/utils", () => ({
 }))
 
 let nextId = 0
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => `id-${nextId++}`,
 }))
 

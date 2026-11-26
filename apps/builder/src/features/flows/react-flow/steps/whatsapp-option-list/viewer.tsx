@@ -1,7 +1,7 @@
 "use client"
 
-import type { WhatsappOptionListStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { WhatsappOptionListStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { Position } from "@xyflow/react"
 import { BaseHandle } from "@/components/base-handle"
 

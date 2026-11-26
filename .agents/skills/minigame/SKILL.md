@@ -44,8 +44,8 @@ Namespace `minigames.*` in `apps/builder/messages/en.json`; update all locale fi
 ## Verify
 
 ```bash
-pnpm --filter @chatbotx.io/business vitest run __tests__/minigame-service-update.test.ts __tests__/resolve-minigame-prize.test.ts
-pnpm --filter @chatbotx.io/encryption vitest run __tests__/minigame-play-token.test.ts
+pnpm --filter @inboxos.io/business vitest run __tests__/minigame-service-update.test.ts __tests__/resolve-minigame-prize.test.ts
+pnpm --filter @inboxos.io/encryption vitest run __tests__/minigame-play-token.test.ts
 pnpm --filter builder check-types
 pnpm lint
 ```

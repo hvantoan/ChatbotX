@@ -1,5 +1,5 @@
-import { adsEligibleChannelTypes } from "@chatbotx.io/utils/channel"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+import { adsEligibleChannelTypes } from "@inboxos.io/utils/channel"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 import {
   type AnyColumn,
   inArray,

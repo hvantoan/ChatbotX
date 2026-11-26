@@ -1,10 +1,10 @@
 {
-  "name": "@chatbotx.io/filesystem",
+  "name": "@inboxos.io/filesystem",
   "version": "0.1.0",
   "type": "module",
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/probe-image-size": "^7.2.5",
     "typescript": "catalog:",
@@ -13,9 +13,9 @@
   "dependencies": {
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/lib-storage": "^3.1039.0",
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "aws4fetch": "^1.0.20",
     "image-size": "catalog:",

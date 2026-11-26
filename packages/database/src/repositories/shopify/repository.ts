@@ -1,6 +1,6 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
-import { integrationShopifyModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
+import { integrationShopifyModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 type IntegrationShopifyInsert = typeof integrationShopifyModel.$inferInsert
 

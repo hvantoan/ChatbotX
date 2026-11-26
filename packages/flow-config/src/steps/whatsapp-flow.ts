@@ -1,5 +1,5 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import { z } from "zod"
 import { flowValidationCodes } from "../validation-codes"
 import { baseStepSchema } from "./base"

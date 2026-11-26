@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 // ── analytics mock (the key subject of this test) ──────────────────────────
 const markFailed = vi.fn().mockResolvedValue(undefined)
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   emailTopicAnalyticsService: { markFailed },
 }))
 
@@ -14,14 +14,14 @@ const recordTransitionOrEnqueueRepair = vi.fn().mockResolvedValue(undefined)
 const recordTransition = vi.fn().mockResolvedValue(undefined)
 const awardLeaderboardEmailEngagement = vi.fn().mockResolvedValue(undefined)
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   awardLeaderboardEmailEngagement,
 }))
 
 // ── business services ───────────────────────────────────────────────────────
 const runAction = vi.fn().mockResolvedValue(undefined)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn().mockResolvedValue({ ctx: true }),
   buildUnsubscribeUrl: vi
     .fn()
@@ -56,7 +56,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/integration-smtp", () => ({
+vi.mock("@inboxos.io/integration-smtp", () => ({
   integration: { runAction },
   smtpAuthSchema: {
     parse: vi.fn((v) => v),
@@ -65,11 +65,11 @@ vi.mock("@chatbotx.io/integration-smtp", () => ({
 
 const renderDynamicEmailHtmlMock = vi.fn().mockReturnValue("<html/>")
 
-vi.mock("@chatbotx.io/mail/dynamic", () => ({
+vi.mock("@inboxos.io/mail/dynamic", () => ({
   renderDynamicEmailHtml: renderDynamicEmailHtmlMock,
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn().mockResolvedValue([]),
     replaceAll: vi.fn(({ text }: { text: string }) => Promise.resolve(text)),

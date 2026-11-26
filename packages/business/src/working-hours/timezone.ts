@@ -1,4 +1,4 @@
-import { resolveFilterTimezone } from "@chatbotx.io/utils"
+import { resolveFilterTimezone } from "@inboxos.io/utils"
 import { logger } from "../logger"
 
 /**

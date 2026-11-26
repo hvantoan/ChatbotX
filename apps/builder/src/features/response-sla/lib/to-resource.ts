@@ -1,4 +1,4 @@
-import type { ResponseSlaPolicyModel } from "@chatbotx.io/database/types"
+import type { ResponseSlaPolicyModel } from "@inboxos.io/database/types"
 import type { ResponseSlaResource } from "../schema/resource"
 
 export const toResponseSlaResource = (

@@ -1,4 +1,4 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
+import { triggerActions } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { allActions } from "@/features/triggers/components/actions/schema"
 import {

@@ -1,7 +1,7 @@
 "use client"
 
-import { Avatar, AvatarFallback } from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Avatar, AvatarFallback } from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PhoneIcon, PhoneOffIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

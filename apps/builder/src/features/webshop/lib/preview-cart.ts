@@ -1,6 +1,6 @@
 import "server-only"
 
-import { cartLineSchema } from "@chatbotx.io/database/partials"
+import { cartLineSchema } from "@inboxos.io/database/partials"
 import { cookies } from "next/headers"
 import { z } from "zod"
 

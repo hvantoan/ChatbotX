@@ -1,4 +1,4 @@
-import { TOUCH_DEVICE_MEDIA_QUERY } from "@chatbotx.io/ui/hooks/use-touch-device"
+import { TOUCH_DEVICE_MEDIA_QUERY } from "@inboxos.io/ui/hooks/use-touch-device"
 import { act, cloneElement, forwardRef, useSyncExternalStore } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { useForm } from "react-hook-form"
@@ -61,7 +61,7 @@ vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }))
 vi.mock("sonner", () => ({ toast }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
   // The component's schema transitively imports other utility exports.
   const actual = (await importOriginal()) as Record<string, unknown>
   return {

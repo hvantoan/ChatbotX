@@ -76,7 +76,7 @@ vi.mock("../src/features/contacts/lib/list-contact-tags", () => ({
   listContactTags,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactService: { resolveIdByIdentifier: resolveContactId },
   customFieldService: {
     findByKeyOrFail: findCustomFieldByKeyOrFail,

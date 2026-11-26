@@ -17,7 +17,7 @@ vi.mock("../src/template/template-resource-locks", () => ({
     run({ tx: true }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: async (fn: (tx: unknown) => unknown) => await fn({ tx: true }),
     query: {
@@ -29,7 +29,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   leaderboardRepository: { insert: mocks.insert, update: mocks.update },
   leaderboardParticipantRepository: {},
   leaderboardAuditLogRepository: {},
@@ -50,13 +50,13 @@ vi.mock("../src/leaderboard/scoring", () => ({
   leaderboardInboxCacheTag: (id: string) => `i:${id}`,
   leaderboardMinigameCacheTag: (id: string) => `m:${id}`,
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   DefaultJobAction: {},
   defaultQueue: {},
   LeaderboardJobAction: {},
   leaderboardQueue: {},
 }))
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 
 const { leaderboardService } = await import("../src/leaderboard/service")

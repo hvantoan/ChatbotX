@@ -1,5 +1,5 @@
-import { contactExportService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { contactExportService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { decodeCursor, encodeCursor } from "@/lib/pagination"
 import {
   contactExportFileCursor,
@@ -22,7 +22,7 @@ export async function listContactExportFiles(input: {
     : undefined
   // A corrupt cursor must not restart at page 1 (a client appending pages would repeat rows).
   if (cursor === null) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "The cursor is invalid. Start again without a cursor.",
       "invalidCursor",
       400,

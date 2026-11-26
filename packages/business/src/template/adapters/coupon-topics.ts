@@ -1,6 +1,6 @@
-import { and, db, eq } from "@chatbotx.io/database/client"
-import { couponTopicModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+import { and, db, eq } from "@inboxos.io/database/client"
+import { couponTopicModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { rewriteBotFieldTokensDeep } from "../field-token-binder"
 import { insertCopyNamed } from "./naming"
 import {

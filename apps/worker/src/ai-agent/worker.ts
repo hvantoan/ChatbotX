@@ -1,4 +1,4 @@
-import { runWithWebhookExecutionContext } from "@chatbotx.io/events/context"
+import { runWithWebhookExecutionContext } from "@inboxos.io/events/context"
 import {
   AIJobAction,
   type AIJobData,
@@ -9,7 +9,7 @@ import {
   HeavyJobAction,
   heavyQueue,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"

@@ -1,8 +1,8 @@
 "use client"
 
-import type { CapiConnection } from "@chatbotx.io/business/meta-conversions/connection-state"
-import type { WhatsappCredentialPublic } from "@chatbotx.io/database/partials"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
+import type { CapiConnection } from "@inboxos.io/business/meta-conversions/connection-state"
+import type { WhatsappCredentialPublic } from "@inboxos.io/database/partials"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
 import { useTranslations } from "next-intl"
 import { CapiConnectionTab } from "@/features/meta-conversions/components/capi-connection-tab"
 import { useWorkspaceId } from "@/hooks/routing"

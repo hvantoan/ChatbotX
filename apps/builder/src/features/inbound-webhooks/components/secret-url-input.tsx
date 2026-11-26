@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { type ComponentProps, useState } from "react"

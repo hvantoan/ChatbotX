@@ -2,7 +2,7 @@ import {
   dateTimeTriggerTypes,
   operatorTypes,
   triggerEventTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import z from "zod"
 
 export const dateTimeBasedTrigger = z

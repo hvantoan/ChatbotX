@@ -1,4 +1,4 @@
-import { canViewTemplateInstalls } from "@chatbotx.io/business"
+import { canViewTemplateInstalls } from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 import { type MemberPermissions, memberActor } from "./actor"

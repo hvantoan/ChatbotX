@@ -2,17 +2,17 @@ import type {
   GoogleAdsEventOptions,
   GoogleAdsEventSource,
   GoogleAdsIdentityPolicy,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   googleAdsConversionEventRepository,
-} from "@chatbotx.io/database/repositories"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   type GoogleAdsAuthValue,
   sanitizeGoogleAdsError,
   uploadMethodOf,
-} from "@chatbotx.io/integration-google-ads"
+} from "@inboxos.io/integration-google-ads"
 import {
   type GoogleAdsChannel,
   googleAdsChannels,
@@ -20,7 +20,7 @@ import {
   isEnabledConversionAction,
   isExternalAttributionAction,
   isOnePerClickAction,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { contactReferralEventService } from "../contact-referral-event/service"
 import { integrationGoogleAdsService } from "../integration-google-ads/service"
 import {

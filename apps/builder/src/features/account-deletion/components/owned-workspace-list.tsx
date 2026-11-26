@@ -1,4 +1,4 @@
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { Building2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

@@ -90,8 +90,8 @@ const { fakeDb, mobileRefreshTokenRepository, rows } = vi.hoisted(() => {
   return { fakeDb, mobileRefreshTokenRepository, rows }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: fakeDb }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: fakeDb }))
+vi.mock("@inboxos.io/database/repositories", () => ({
   mobileRefreshTokenRepository,
 }))
 

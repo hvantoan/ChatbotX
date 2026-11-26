@@ -1,8 +1,8 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { CopyIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
@@ -54,7 +54,7 @@ export const McpConnectGuide = ({
   mcpUrl,
   workspaceId,
 }: McpConnectGuideProps) => {
-  const t = useTranslations("chatbotxMcp")
+  const t = useTranslations("inboxosMcp")
   const common = useTranslations()
   const snippets = buildMcpConnectSnippets({ builderUrl, mcpUrl })
   const copyLabel = common("actions.copy")

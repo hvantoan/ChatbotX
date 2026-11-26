@@ -11,17 +11,17 @@ import {
   ne,
   or,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   integrationMetaCatalogModel,
   metaCatalogItemModel,
   productModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 /** Keeps a single "type to search" list from ever returning an unbounded page. */
 const DEFAULT_SEARCH_LIMIT = 20

@@ -1,4 +1,4 @@
-import { type DatabaseClient, db, sql } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, sql } from "@inboxos.io/database/client"
 import { WorkspacePurgeIncompleteError } from "../errors"
 import { logger } from "../logger"
 

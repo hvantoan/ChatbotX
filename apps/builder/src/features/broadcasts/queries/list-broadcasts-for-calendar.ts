@@ -1,11 +1,11 @@
 import {
   type BroadcastCalendarRow,
   broadcastService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type BroadcastStatus,
   broadcastScheduleTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { BroadcastKind } from "../lib/broadcast-status"
 import {

@@ -10,9 +10,9 @@ const mocks = vi.hoisted(() => ({
   waitForChatJobCompletion: vi.fn(async () => undefined),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     ChatJobAction: {
@@ -24,22 +24,22 @@ vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
     integrationQueue: { add: mocks.integrationQueueAdd },
   }
 })
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: {}, update: vi.fn(), insert: vi.fn() },
   eq: vi.fn(),
   findOrFail: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => {
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/schema")>()
+    await importOriginal<typeof import("@inboxos.io/database/schema")>()
   return { ...actual }
 })
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn(async () => undefined),
 }))
-vi.mock("@chatbotx.io/events", () => ({}))
-vi.mock("@chatbotx.io/sdk", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/sdk")>()
+vi.mock("@inboxos.io/events", () => ({}))
+vi.mock("@inboxos.io/sdk", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/sdk")>()
   return {
     ...actual,
     initVariables: vi.fn(() => ({ conversation: {} })),

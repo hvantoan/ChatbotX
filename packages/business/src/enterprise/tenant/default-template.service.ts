@@ -1,11 +1,11 @@
-import { db } from "@chatbotx.io/database/client"
-import type { TenantDefaultTemplateStatus } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import type { TenantDefaultTemplateStatus } from "@inboxos.io/database/partials"
 import {
   templateRepository,
   tenantDefaultTemplateRepository,
-} from "@chatbotx.io/database/repositories"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/database/repositories"
+import { encryptUtils } from "@inboxos.io/encryption"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { resolveDefaultTemplateStatus } from "../../template/default-template-status"
 import { isShareLive } from "../../template/share-live"
 import {

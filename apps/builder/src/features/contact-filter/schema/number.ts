@@ -1,7 +1,4 @@
-import {
-  type OperatorType,
-  operatorTypes,
-} from "@chatbotx.io/database/partials"
+import { type OperatorType, operatorTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { sampleStringSchema } from "./shared"
 

@@ -6,19 +6,19 @@ import {
   findOrFail,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   channelTypes,
   type IntegrationUserInfo,
   type MessengerPersistentMenu,
-} from "@chatbotx.io/database/partials"
-import { integrationMessengerRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { integrationMessengerRepository } from "@inboxos.io/database/repositories"
 import {
   integrationMessengerModel,
   tagChannelModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/schema"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import { recordRefreshedAuth } from "../connection/record-refreshed-auth"
 import { connectionStateService } from "../connection/state-service"

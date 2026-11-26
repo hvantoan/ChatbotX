@@ -9,13 +9,13 @@ import {
   notInArray,
   or,
   sql,
-} from "@chatbotx.io/database/client"
-import type { OccurrenceBucketGranularity } from "@chatbotx.io/database/partials"
-import { zonedBucketKey } from "@chatbotx.io/database/queries/date-bucket"
+} from "@inboxos.io/database/client"
+import type { OccurrenceBucketGranularity } from "@inboxos.io/database/partials"
+import { zonedBucketKey } from "@inboxos.io/database/queries/date-bucket"
 import {
   broadcastModel,
   contactsOnBroadcastsModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   BroadcastBulkUpdateItem,
   BroadcastEventType,

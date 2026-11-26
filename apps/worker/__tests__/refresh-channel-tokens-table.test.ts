@@ -34,7 +34,7 @@ const mocks = vi.hoisted(() => ({
   isZaloRevokedTokenError: vi.fn(() => false),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: {
     findAllForTokenRefresh: mocks.findMessengerAll,
     findByIdForWorkspace: mocks.findMessengerByIdForWorkspace,
@@ -55,30 +55,30 @@ vi.mock("@chatbotx.io/business", () => ({
     markTokenRefreshError: mocks.markZaloTokenRefreshError,
   },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: mocks.logProviderError,
 }))
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   integration: { refreshAuth: mocks.refreshMessengerAuth },
   isRevokedTokenError: mocks.isMessengerRevokedTokenError,
 }))
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   integration: { refreshAuth: mocks.refreshInstagramAuth },
   isRevokedTokenError: mocks.isInstagramRevokedTokenError,
 }))
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: { refreshAuth: mocks.refreshInstagramFacebookAuth },
   isRevokedTokenError: mocks.isInstagramFacebookRevokedTokenError,
 }))
-vi.mock("@chatbotx.io/integration-zalo", () => ({
+vi.mock("@inboxos.io/integration-zalo", () => ({
   refreshAccessToken: mocks.refreshZaloAccessToken,
   calculateExpiresAt: mocks.calculateZaloExpiresAt,
   isRevokedTokenError: mocks.isZaloRevokedTokenError,
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 vi.mock("../src/lib/logger", () => ({
@@ -93,7 +93,7 @@ vi.mock("../src/lib/run-job-with-audit-context", () => ({
 
 // Dynamic `import()` is required here, not a static import: the `vi.mock`
 // calls above must be registered before these SUTs (and their
-// `@chatbotx.io/business`/integration-package dependencies) are evaluated,
+// `@inboxos.io/business`/integration-package dependencies) are evaluated,
 // which only a post-`vi.mock` dynamic import guarantees.
 const { refreshMessengerTokens } = await import(
   "../src/schedule/handlers/refresh-messenger-tokens"

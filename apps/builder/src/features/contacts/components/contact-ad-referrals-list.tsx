@@ -1,7 +1,7 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { Loader2Icon, MegaphoneIcon } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"

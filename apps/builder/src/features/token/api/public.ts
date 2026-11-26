@@ -1,7 +1,7 @@
 import {
   type WorkspaceApiTokenPermission,
   workspaceApiTokenScopes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import { possibleErrorsOnListingResource } from "@/lib/orpc/orpc-error-helper"

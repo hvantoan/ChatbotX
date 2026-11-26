@@ -1,7 +1,7 @@
 "use client"
 
-import type { BroadcastPlanLimitReason } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { BroadcastPlanLimitReason } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { UpgradePlanDialog } from "@/enterprise/features/billing/upgrade-plan-dialog"

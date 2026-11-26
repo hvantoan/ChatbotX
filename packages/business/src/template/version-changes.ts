@@ -2,8 +2,8 @@ import {
   type TemplateCategory,
   type TemplateVersionChange,
   templateCategories,
-} from "@chatbotx.io/database/partials"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import type { TemplateExport } from "@inboxos.io/flow-config"
 import { canonicalize } from "./fingerprint"
 import { entriesForCategory } from "./template-entries"
 

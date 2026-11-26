@@ -1,5 +1,5 @@
-import { reflinkTypes } from "@chatbotx.io/database/partials"
-import { createSelectSchema, reflinkModel } from "@chatbotx.io/database/schema"
+import { reflinkTypes } from "@inboxos.io/database/partials"
+import { createSelectSchema, reflinkModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 export const reflinkResource = createSelectSchema(reflinkModel, {

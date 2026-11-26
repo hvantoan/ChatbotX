@@ -1,5 +1,5 @@
 import type { Readable } from "node:stream"
-import type { RealtimeGuestEventData } from "@chatbotx.io/realtime-protocol"
+import type { RealtimeGuestEventData } from "@inboxos.io/realtime-protocol"
 import type { AuthValue } from "../auth"
 
 export type ContextUploader = {

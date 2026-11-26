@@ -3,13 +3,13 @@
 import {
   type OccurrenceBucketGranularity,
   occurrenceBucketGranularities,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@chatbotx.io/ui/components/ui/toggle-group"
+} from "@inboxos.io/ui/components/ui/toggle-group"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { ArrowLeftIcon, Loader2Icon } from "lucide-react"
 import Link from "next/link"

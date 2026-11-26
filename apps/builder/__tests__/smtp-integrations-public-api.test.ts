@@ -57,7 +57,7 @@ const integrationSmtpService = {
   update: vi.fn(),
   disconnect: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ integrationSmtpService }))
+vi.mock("@inboxos.io/business", () => ({ integrationSmtpService }))
 
 const callOrder: string[] = []
 const verifySmtpConnection = vi.fn()

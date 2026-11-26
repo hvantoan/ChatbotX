@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import { act } from "react"
 import { createRoot } from "react-dom/client"
 import { useForm } from "react-hook-form"

@@ -1,4 +1,4 @@
-import type { CommentAutomationEventType } from "@chatbotx.io/analytics/schemas"
+import type { CommentAutomationEventType } from "@inboxos.io/analytics/schemas"
 
 /**
  * Which lifetime counter on the automation row backs each column. The counters

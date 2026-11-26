@@ -1,17 +1,17 @@
-import { and, db, eq, inArray } from "@chatbotx.io/database/client"
-import type { FolderType } from "@chatbotx.io/database/partials"
+import { and, db, eq, inArray } from "@inboxos.io/database/client"
+import type { FolderType } from "@inboxos.io/database/partials"
 import {
   conditionRepository,
   listWebhooksPaginated,
-} from "@chatbotx.io/database/repositories"
-import { conditionModel, webhookModel } from "@chatbotx.io/database/schema"
-import type { ConditionModel, WebhookModel } from "@chatbotx.io/database/types"
-import { removeWebhookCache, updateWebhookCache } from "@chatbotx.io/events"
-import { distributedLock } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { conditionModel, webhookModel } from "@inboxos.io/database/schema"
+import type { ConditionModel, WebhookModel } from "@inboxos.io/database/types"
+import { removeWebhookCache, updateWebhookCache } from "@inboxos.io/events"
+import { distributedLock } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -151,7 +151,7 @@ class WebhookService extends BaseService {
           eq(webhookModel.workspaceId, workspaceId),
         )
         if (count >= MAX_WEBHOOKS_PER_WORKSPACE) {
-          throw new ChatbotXException(
+          throw new InboxOSException(
             `Workspace has reached the maximum of ${MAX_WEBHOOKS_PER_WORKSPACE} webhooks`,
             "webhookLimitReached",
           )
@@ -195,7 +195,7 @@ class WebhookService extends BaseService {
     try {
       await assertPublicUrl(url, "Webhook URL")
     } catch (error) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         error instanceof Error ? error.message : "Invalid webhook URL",
         "invalidRequestData",
         422,

@@ -1,8 +1,8 @@
 import {
   createSelectSchema,
   integrationWebchatModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type { z } from "zod"
 
 export { webchatConnectConfigSchema } from "./connect-config"

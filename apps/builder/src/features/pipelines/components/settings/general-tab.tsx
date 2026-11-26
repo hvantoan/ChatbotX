@@ -1,8 +1,8 @@
 "use client"
 
-import type { WorkspaceCurrencyDefault } from "@chatbotx.io/business/pipeline"
-import { PIPELINE_REFERENCE_NAME_MAX } from "@chatbotx.io/database/partials"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import type { WorkspaceCurrencyDefault } from "@inboxos.io/business/pipeline"
+import { PIPELINE_REFERENCE_NAME_MAX } from "@inboxos.io/database/partials"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useLocale, useTranslations } from "next-intl"
 import {
   useCurrencyLabel,

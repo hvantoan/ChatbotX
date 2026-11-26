@@ -2,8 +2,8 @@ import {
   type ImportType,
   type UploadTypes,
   uploadTypes,
-} from "@chatbotx.io/database/partials"
-import { getImportEntry } from "@chatbotx.io/imports"
+} from "@inboxos.io/database/partials"
+import { getImportEntry } from "@inboxos.io/imports"
 
 export type UploadHandlerInput = {
   workspaceId?: string
@@ -109,7 +109,7 @@ const genericHandler: UploadHandler = (input) => {
  * oRPC's `assertWorkspaceSuperAdmin`, which `/api/presigned-upload`'s default
  * membership-only auth does not otherwise provide). Keep the path prefix in
  * sync with `buildMessagingAdCreativeStoragePrefix`
- * (`@chatbotx.io/integration-facebook-ads`).
+ * (`@inboxos.io/integration-facebook-ads`).
  */
 const adsCampaignCreativeHandler: UploadHandler = (input) => {
   if (!(input.path && input.workspaceId)) {

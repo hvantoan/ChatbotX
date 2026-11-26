@@ -1,4 +1,4 @@
-import type { GoogleAdsEventStatus } from "@chatbotx.io/database/partials"
+import type { GoogleAdsEventStatus } from "@inboxos.io/database/partials"
 
 // Client-safe on purpose (a type import and pure functions only): "use client"
 // builder code imports this subpath, and the business barrel pulls in the DB client.

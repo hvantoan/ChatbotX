@@ -6,19 +6,19 @@ import {
   type PendingQuotaRelease,
   resolveForeignKey,
   resolveOwnerId,
-} from "@chatbotx.io/business/connection"
+} from "@inboxos.io/business/connection"
 import {
   connectionInactiveException,
   connectionNotConfiguredException,
   connectionNotRefreshableException,
   notFoundException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
-import { distributedLock } from "@chatbotx.io/redis"
-import type { AuthStore, AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business/errors"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import type { ConnectionModel } from "@inboxos.io/database/types"
+import { distributedLock } from "@inboxos.io/redis"
+import type { AuthStore, AuthValue } from "@inboxos.io/sdk"
 
 import { findOrThrow, resolveAdapter } from "./internal"
 import { logger } from "./logger"
@@ -284,7 +284,7 @@ export const refresh = async (input: {
 
   // `refreshAuth`/`ensureFreshAuth` only ever read `ctx.auth`/`ctx.authStore`
   // (never `ctx.platform`/`ctx.storagePrefix`/`ctx.integrationDetail`) —
-  // see `Integration.refreshAndPersist` in `@chatbotx.io/sdk`. The
+  // see `Integration.refreshAndPersist` in `@inboxos.io/sdk`. The
   // `platform` stub below is structurally required but never invoked on
   // this path.
   await adapter.integration.ensureFreshAuth(

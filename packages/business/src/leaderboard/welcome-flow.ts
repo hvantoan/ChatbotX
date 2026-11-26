@@ -3,8 +3,8 @@ import {
   openWebsiteStepDefaultFn,
   type SendMessageNodeSchema,
   sendTextStepDefaultFn,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 
 /** Default welcome text for a friend arriving via a referral link (editable in Flow Builder). */
 export const LEADERBOARD_WELCOME_TEXT =

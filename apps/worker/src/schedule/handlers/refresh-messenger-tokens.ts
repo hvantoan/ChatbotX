@@ -1,9 +1,9 @@
-import { messengerIntegrationService } from "@chatbotx.io/business"
+import { messengerIntegrationService } from "@inboxos.io/business"
 import {
   integration as integrationMessenger,
   isRevokedTokenError,
   type MessengerAuthValue,
-} from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/integration-messenger"
 import { logger } from "../../lib/logger"
 import { refreshWithErrorHandling, runRefreshBatch } from "./refresh-runner"
 

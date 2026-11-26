@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import { act, type MutableRefObject, useState } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import {

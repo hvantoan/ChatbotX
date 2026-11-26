@@ -10,7 +10,7 @@ const { mockBuildExport, mockGetCurrentUserAndTargetWorkspace } = vi.hoisted(
   }),
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flowService: { buildExport: mockBuildExport },
 }))
 
@@ -65,7 +65,7 @@ describe("flow export route", () => {
   test("downloads the export as a JSON attachment", async () => {
     mockBuildExport.mockResolvedValue({
       ok: true,
-      fileName: "onboarding.chatbotx-flow.json",
+      fileName: "onboarding.inboxos-flow.json",
       envelope: { formatVersion: 2 },
     })
 
@@ -73,7 +73,7 @@ describe("flow export route", () => {
 
     expect(response.status).toBe(200)
     expect(response.headers.get("Content-Disposition")).toBe(
-      'attachment; filename="onboarding.chatbotx-flow.json"',
+      'attachment; filename="onboarding.inboxos-flow.json"',
     )
     expect(response.headers.get("Cache-Control")).toBe("no-store")
     await expect(response.json()).resolves.toEqual({ formatVersion: 2 })

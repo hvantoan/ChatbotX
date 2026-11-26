@@ -1,8 +1,8 @@
-import type { QueuedTemplateAiFile } from "@chatbotx.io/database/repositories"
+import type { QueuedTemplateAiFile } from "@inboxos.io/database/repositories"
 import {
   templateAiFileDispatchRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { aiFileService } from "../ai-file/service"
 
 /** A queued run this old is re-enqueued: the enqueue after commit was lost. */

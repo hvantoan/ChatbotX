@@ -1,8 +1,8 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   metaCatalogItemRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { logger } from "../logger"
 import {
   getProductCategoryPathKey,

@@ -6,24 +6,24 @@ import {
   inArray,
   ne,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   FulfillmentStatus,
   OrderSource,
   OrderStatus,
   PaymentStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   orderItemModel,
   orderModel,
   orderStatusHistoryModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   likeContains,
   parseOrderByAsObject,
   parsePagination,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 export type OrderListInput = {
   workspaceId: string

@@ -5,8 +5,8 @@ import {
   type SendCardStepSchema,
   sendMessageNodeSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { containsVariablePlaceholder } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/flow-config"
+import { containsVariablePlaceholder } from "@inboxos.io/utils/variables"
 import { chunk } from "remeda"
 import { getAttachmentTemplate } from "./handlers/message/outgoing-message/send-attachment"
 import { convertButtons } from "./handlers/message/outgoing-message/send-button"

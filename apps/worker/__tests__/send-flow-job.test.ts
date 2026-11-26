@@ -1,9 +1,9 @@
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
 }))
 

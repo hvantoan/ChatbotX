@@ -1,5 +1,5 @@
-import type { GoogleAdsConsentLoad } from "@chatbotx.io/business"
-import type { GoogleAdsConsentSource } from "@chatbotx.io/database/partials"
+import type { GoogleAdsConsentLoad } from "@inboxos.io/business"
+import type { GoogleAdsConsentSource } from "@inboxos.io/database/partials"
 import type {
   GoogleAdsConsentSettingView,
   GoogleAdsConsentView,

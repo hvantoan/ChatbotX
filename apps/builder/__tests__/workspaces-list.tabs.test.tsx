@@ -18,10 +18,10 @@ vi.mock("@/env", () => ({
 
 // The component reads only isWorkspaceScheduledForDeletion; the full package
 // pulls in the database client, which needs a real server runtime.
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isWorkspaceScheduledForDeletion: () => false,
 }))
-vi.mock("@chatbotx.io/business/workspace-lifecycle/predicates", () => ({
+vi.mock("@inboxos.io/business/workspace-lifecycle/predicates", () => ({
   isWorkspaceScheduledForDeletion: () => false,
 }))
 vi.mock("@/enterprise/features/billing/upgrade-plan-dialog", () => ({

@@ -22,13 +22,13 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@/lib/auth/utils", () => ({
   getCurrentUser: mocks.getCurrentUser,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertEnterpriseFeatures: mocks.assertEnterpriseFeatures,
   isSuperAdmin: mocks.isSuperAdmin,
   workspaceSupportAccessService: { listWorkspaces: mocks.listWorkspaces },
   workspaceService: { find: mocks.findWorkspace },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   listPlatformAuditLogs: mocks.listPlatformAuditLogsService,
 }))
 vi.mock("next/navigation", () => ({

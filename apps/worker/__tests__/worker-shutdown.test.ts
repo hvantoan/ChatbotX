@@ -22,11 +22,11 @@ const { bootstrapMock, envMock, loggerMock } = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   closeAllQueueEvents: vi.fn(),
 }))
 vi.mock("../src/lib/bootstrap", () => ({

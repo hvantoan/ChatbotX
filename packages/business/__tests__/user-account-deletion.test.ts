@@ -1,6 +1,6 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 // biome-ignore lint/performance/noNamespaceImport: replaces the imported batch drainer in place
-import * as conversationRepository from "@chatbotx.io/database/repositories"
+import * as conversationRepository from "@inboxos.io/database/repositories"
 import {
   auditLogRepository,
   authAccountRepository,
@@ -14,7 +14,7 @@ import {
   userDeviceTokenRepository,
   userRepository,
   workspaceRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import { resourceDeletionLogService } from "../src/resource-deletion-log/service"
 import { userService } from "../src/user/service"

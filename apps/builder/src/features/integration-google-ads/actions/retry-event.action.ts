@@ -1,6 +1,6 @@
 "use server"
 
-import { googleAdsConversionService } from "@chatbotx.io/business"
+import { googleAdsConversionService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import {

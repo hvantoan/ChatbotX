@@ -2,14 +2,14 @@ import {
   commentAutomationService,
   type MissedCommentsIneligibleReason,
   workspaceService,
-} from "@chatbotx.io/business"
-import type { CommentAutomationType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import type { CommentAutomationType } from "@inboxos.io/database/partials"
 import {
   LOW_BULK_PRIORITY,
   LowJobAction,
   type LowJobReplayMissedComment,
   lowQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { subDays } from "date-fns"
 import { logger } from "@/lib/log"
 import { scanPostComments } from "./index"

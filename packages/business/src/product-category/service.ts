@@ -2,15 +2,15 @@ import {
   type DatabaseClient,
   db,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
-import { isExternalStoreSource } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { isExternalStoreSource } from "@inboxos.io/database/partials"
 import {
   discountCodeRepository,
   productCategoryRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { BaseService } from "../base.service"
 import { resolveStoreSource } from "../ecommerce-settings/store-source"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { externalStoreManagedException } from "../external-store/errors"
 import {
   assertResourceEditable,
@@ -146,7 +146,7 @@ class ProductCategoryService extends BaseService {
     }
     const name = normalizeCategoryName(input.name)
     if (!name) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Product category name is required",
         "productCategoryNameRequired",
       )
@@ -158,7 +158,7 @@ class ProductCategoryService extends BaseService {
       return row
     } catch (error) {
       if (isUniqueViolationError(error)) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Product category already exists",
           "productCategoryDuplicated",
         )
@@ -189,7 +189,7 @@ class ProductCategoryService extends BaseService {
     const name =
       input.name === undefined ? undefined : normalizeCategoryName(input.name)
     if (name === "") {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Product category name is required",
         "productCategoryNameRequired",
       )
@@ -266,7 +266,7 @@ class ProductCategoryService extends BaseService {
       return row
     } catch (error) {
       if (isUniqueViolationError(error)) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Product category already exists",
           "productCategoryDuplicated",
         )
@@ -518,7 +518,7 @@ class ProductCategoryService extends BaseService {
       return
     }
     if (input.parentId === input.categoryId) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "A product category cannot be its own parent",
         "productCategoryParentSelf",
       )
@@ -531,7 +531,7 @@ class ProductCategoryService extends BaseService {
       throw notFoundException("Parent product category not found")
     }
     if (parent.parentId) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "A sub-category cannot contain further sub-categories",
         "productCategoryNestingTooDeep",
       )
@@ -552,7 +552,7 @@ class ProductCategoryService extends BaseService {
       parentId: input.categoryId,
     })
     if (children.length > 0) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "A category with sub-categories cannot itself become a sub-category",
         "productCategoryNestingTooDeep",
       )

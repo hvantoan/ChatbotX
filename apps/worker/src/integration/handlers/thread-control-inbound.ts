@@ -1,6 +1,6 @@
-import { threadControlService } from "@chatbotx.io/business"
-import type { ContactInboxModel, InboxModel } from "@chatbotx.io/database/types"
-import type { ThreadControlReceiveInfo } from "@chatbotx.io/sdk"
+import { threadControlService } from "@inboxos.io/business"
+import type { ContactInboxModel, InboxModel } from "@inboxos.io/database/types"
+import type { ThreadControlReceiveInfo } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 
 /**

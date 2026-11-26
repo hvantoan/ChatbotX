@@ -1,10 +1,10 @@
-import { authAccountRepository } from "@chatbotx.io/database/repositories"
+import { authAccountRepository } from "@inboxos.io/database/repositories"
 import {
   debugToken,
   getFacebookUser,
   MESSENGER_REUSE_REQUIRED_SCOPES,
   toAppAccessToken,
-} from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/integration-messenger"
 
 export type FacebookSsoReuse =
   | {

@@ -1,7 +1,7 @@
 "use server"
 
-import { userService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { userService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { z } from "zod"
 import { authActionClient } from "@/lib/safe-action"
 
@@ -16,7 +16,7 @@ export const requestAccountDeletion = authActionClient
       return { status: "success" as const }
     } catch (error) {
       if (
-        error instanceof ChatbotXException &&
+        error instanceof InboxOSException &&
         error.code === "accountDeletionSupportRequired"
       ) {
         return { status: "supportRequired" as const }

@@ -1,4 +1,4 @@
-import { miniAppService } from "@chatbotx.io/business/mini-app"
+import { miniAppService } from "@inboxos.io/business/mini-app"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"
 import {

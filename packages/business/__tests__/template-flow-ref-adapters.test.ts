@@ -10,8 +10,8 @@ const mocks = vi.hoisted(() => ({
   createProduct: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {}, eq: vi.fn() }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {}, eq: vi.fn() }))
+vi.mock("@inboxos.io/database/schema", () => ({
   aiFunctionModel: {},
   integrationWebchatModel: {},
 }))

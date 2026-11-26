@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   performFileSearch: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiFileService: { findManyByIds: mocks.findManyByIds },
 }))
 vi.mock("../src/server/knowledge-base", () => ({

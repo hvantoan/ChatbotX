@@ -1,5 +1,5 @@
-import type { ThreadsCredentialPublic } from "@chatbotx.io/database/partials"
-import { generateAuthUrl } from "@chatbotx.io/integration-threads"
+import type { ThreadsCredentialPublic } from "@inboxos.io/database/partials"
+import { generateAuthUrl } from "@inboxos.io/integration-threads"
 import { getOriginFromHeader } from "@/lib/domain"
 import { logger } from "@/lib/log"
 import { buildProviderCallbackUrl } from "@/lib/provider-origin"

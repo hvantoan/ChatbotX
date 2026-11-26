@@ -1,4 +1,4 @@
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
 import {
   hasContactsAccess,
   hasWorkspacePermission,

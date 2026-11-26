@@ -1,6 +1,6 @@
 "use server"
 
-import { responseSlaService } from "@chatbotx.io/business"
+import { responseSlaService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { toResponseSlaResource } from "../lib/to-resource"

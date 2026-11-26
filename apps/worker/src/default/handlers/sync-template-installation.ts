@@ -1,5 +1,5 @@
-import { templateSyncRequestService } from "@chatbotx.io/business"
-import { templateSyncExecuteService } from "@chatbotx.io/business/template-sync/execute"
+import { templateSyncRequestService } from "@inboxos.io/business"
+import { templateSyncExecuteService } from "@inboxos.io/business/template-sync/execute"
 import type { Job } from "bullmq"
 import { runLeasedTemplateJob } from "../../lib/run-leased-template-job"
 import { enqueueInstalledAiFiles } from "./template-ai-files"

@@ -2,7 +2,7 @@ import {
   pipelineItemContentService,
   pipelineItemQueryService,
   pipelineItemService,
-} from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business/pipeline"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
   possibleErrorsOnFindingResource,

@@ -33,7 +33,7 @@ vi.mock("next/navigation", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isWorkspaceScheduledForDeletion: (
     workspace:
       | { scheduledDeletionAt?: Date | string | null }
@@ -353,7 +353,7 @@ describe("WebchatPage", () => {
     ).props.config
     expect(config.persistentMenus).toHaveLength(2)
     expect(config.persistentMenus.at(-1)).toEqual({
-      label: "⚡ Built with chatbotx.io",
+      label: "⚡ Built with InboxOS",
       type: "url",
       url: "https://app.chatbotx.io/?ref=selfhosted&channel=webchat",
     })

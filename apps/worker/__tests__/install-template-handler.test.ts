@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
   enqueueProcessAIFile: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateInstallService: {
     claim: mocks.claim,
     run: mocks.run,
@@ -29,12 +29,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueProcessAIFile: mocks.enqueueProcessAIFile,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code = "systemError") {
       super(message)
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   parseTemplateExport: vi.fn((payload: unknown) =>
     payload === "invalid"
       ? { ok: false, reason: "bad" }
@@ -58,7 +58,7 @@ vi.mock("../src/lib/logger", () => ({
 const { installTemplate, failBlockedTemplateInstall } = await import(
   "../src/default/handlers/install-template"
 )
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 
 const data = { installationId: "install-1", workspaceId: "ws-1" }
 const jobOn = (attemptsMade: number, attempts = 2) =>
@@ -173,7 +173,7 @@ describe("installTemplate handler", () => {
 
   test("a permanent error fails at once and stops BullMQ retrying", async () => {
     mocks.run.mockRejectedValue(
-      new ChatbotXException("incompatible", "templatePayloadIncompatible"),
+      new InboxOSException("incompatible", "templatePayloadIncompatible"),
     )
 
     await expect(installTemplate(data, jobOn(0))).rejects.toBeInstanceOf(
@@ -205,7 +205,7 @@ describe("installTemplate handler", () => {
 
   test("a source template deleted before the job ran is permanent", async () => {
     mocks.findInstallationByIdOrFail.mockRejectedValue(
-      new ChatbotXException("gone", "templateInstallationSourceMissing"),
+      new InboxOSException("gone", "templateInstallationSourceMissing"),
     )
 
     await expect(installTemplate(data, jobOn(0))).rejects.toBeInstanceOf(

@@ -1,8 +1,5 @@
-import {
-  AuthException,
-  ConnectionProviderRejectedError,
-} from "@chatbotx.io/sdk"
-import { oauthCredential } from "@chatbotx.io/vitest-config/test-utils"
+import { AuthException, ConnectionProviderRejectedError } from "@inboxos.io/sdk"
+import { oauthCredential } from "@inboxos.io/vitest-config/test-utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type * as GoogleAdsApi from "../src/apis/google-ads"
 import type * as ClientModule from "../src/client"

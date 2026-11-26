@@ -1,15 +1,15 @@
 import {
   MobileTokenVerificationUnavailableError,
   verifyMobileAccessToken,
-} from "@chatbotx.io/auth/mobile-resource"
-import { userService, workspaceMemberService } from "@chatbotx.io/business"
-import { hasContactsAccess } from "@chatbotx.io/business/workspace-member/permissions"
-import type { WorkspaceApiTokenScope } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/auth/mobile-resource"
+import { userService, workspaceMemberService } from "@inboxos.io/business"
+import { hasContactsAccess } from "@inboxos.io/business/workspace-member/permissions"
+import type { WorkspaceApiTokenScope } from "@inboxos.io/database/partials"
 import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { ORPCError } from "@orpc/server"
 import type { SessionUser } from "@/lib/auth/utils"
 

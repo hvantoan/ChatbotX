@@ -1,7 +1,7 @@
 import {
   flowAnalyticsService,
   flowStatsRepository,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const payload = (extra: Record<string, unknown>) =>

@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   verifyFlows: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   templateSnapshotRepository: {
     findTags: mocks.findTags,
     findCustomFields: mocks.findCustomFields,

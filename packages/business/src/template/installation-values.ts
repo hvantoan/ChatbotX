@@ -1,7 +1,7 @@
-import type { TemplateInstallSource } from "@chatbotx.io/database/partials"
-import type { templateInstallationModel } from "@chatbotx.io/database/schema"
-import type { TemplateModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+import type { TemplateInstallSource } from "@inboxos.io/database/partials"
+import type { templateInstallationModel } from "@inboxos.io/database/schema"
+import type { TemplateModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 
 /**
  * The version of the "the publisher sees this workspace's name and can

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import { PgDialect } from "drizzle-orm/pg-core"
 import { describe, expect, test } from "vitest"
 

@@ -1,8 +1,8 @@
-import { conversationService } from "@chatbotx.io/business"
-import { smartDelayService } from "@chatbotx.io/business/smart-delay"
-import { emit } from "@chatbotx.io/event-bus"
-import { emitConversationTransferredToHuman } from "@chatbotx.io/events"
-import baseLogger from "@chatbotx.io/logger"
+import { conversationService } from "@inboxos.io/business"
+import { smartDelayService } from "@inboxos.io/business/smart-delay"
+import { emit } from "@inboxos.io/event-bus"
+import { emitConversationTransferredToHuman } from "@inboxos.io/events"
+import baseLogger from "@inboxos.io/logger"
 import { normalizeError } from "universal-error-normalizer"
 
 export interface HandoffRequest {

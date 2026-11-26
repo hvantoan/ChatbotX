@@ -1,13 +1,13 @@
 "use client"
 
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import {
   canMapToCustomField,
   isTextInputDateType,
   type MiniAppNode,
   type TextInputDateType,
-} from "@chatbotx.io/mini-app"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/mini-app"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { CustomFieldSelect } from "@/features/custom-fields/custom-field-select"

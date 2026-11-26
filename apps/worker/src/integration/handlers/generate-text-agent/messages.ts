@@ -1,18 +1,18 @@
 import {
   AI_MESSAGE_HISTORY_LOOKBACK_MS,
   MAX_CONVERSATION_HISTORY,
-} from "@chatbotx.io/ai"
-import { aiMessageRoles } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/ai"
+import { aiMessageRoles } from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   findConversationAIContextState,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import type { AIGenerateTextAgentSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/types"
+import type { AIGenerateTextAgentSchema } from "@inboxos.io/flow-config"
 import type { ModelMessage } from "ai"
 
 export async function buildAIAgentMessages(

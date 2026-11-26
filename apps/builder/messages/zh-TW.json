@@ -1247,7 +1247,7 @@
     },
     "fromName": {
       "label": "寄件人姓名",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "訊息範本"
@@ -3887,7 +3887,7 @@
     "title": "常規"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "這會刪除 Meta 訊息廣告活動，並從 ChatbotX 移除該廣告活動。如果 Meta 拒絕刪除，則會保留該廣告活動。",
+    "deleteWarning": "這會刪除 Meta 訊息廣告活動，並從 InboxOS 移除該廣告活動。如果 Meta 拒絕刪除，則會保留該廣告活動。",
     "title": "Facebook 行銷訊息",
     "description": "透過 Messenger 上的個人化推廣訊息提升互動與銷售。",
     "create": "新增",
@@ -3928,7 +3928,7 @@
       "tosNotAccepted": "若要使用此功能，請於 {url} 接受自訂物件條款",
       "notFound": "找不到行銷訊息。",
       "audienceNotTargetable": "所選自訂目標受眾尚未就緒，或不屬於此粉絲專頁和廣告帳號。",
-      "connectFirst": "請先在 ChatbotX 應用程式中連接行銷訊息。",
+      "connectFirst": "請先在 InboxOS 應用程式中連接行銷訊息。",
       "mmInvalidState": "目前的活動狀態下無法執行此操作。",
       "mmCampaignEnded": "Meta 訊息廣告活動已結束，因此無法傳送或恢復。",
       "mmPageNotConnected": "此廣告活動的粉絲專頁未連接到此工作區。",
@@ -3948,7 +3948,7 @@
       "uploadMore": "上傳更多列",
       "empty": "尚無自訂目標受眾。",
       "deleteTitle": "刪除自訂目標受眾",
-      "deleteWarning": "此操作會在 Meta 和 ChatbotX 中刪除自訂目標受眾「{name}」，且無法復原。",
+      "deleteWarning": "此操作會在 Meta 和 InboxOS 中刪除自訂目標受眾「{name}」，且無法復原。",
       "deleted": "自訂目標受眾已刪除。",
       "pageDisconnected": "粉絲專頁已中斷連結",
       "status": {
@@ -5567,7 +5567,7 @@
         "title": "通話資格",
         "appSubscriptionMissing": "請先在 Meta 應用程式儀表板中為此應用程式設定 WhatsApp webhook，然後再試一次。",
         "appSubscriptionFailed": "無法驗證應用程式的「calls」webhook 訂閱狀態，請稍後再試。",
-        "callsNotSubscribed": "此應用程式未訂閱「calls」webhook 欄位，因此通話事件無法傳送至 ChatbotX（Meta 錯誤 138018：未滿足技術先決條件 — 請確保訂閱 WABA 的至少一個應用程式也具有通話 webhook 欄位）。",
+        "callsNotSubscribed": "此應用程式未訂閱「calls」webhook 欄位，因此通話事件無法傳送至 InboxOS（Meta 錯誤 138018：未滿足技術先決條件 — 請確保訂閱 WABA 的至少一個應用程式也具有通話 webhook 欄位）。",
         "fixButton": "修復",
         "fixSuccess": "此應用程式現已訂閱 WhatsApp 通話 webhook。",
         "manualIntegrationNotice": "此號碼是手動連接的，此處沒有應用程式憑證。請在 Meta 應用程式儀表板中為您的應用程式訂閱「calls」webhook 欄位。",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "動作來源",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "商店來源",
         "description": "選擇用於管理商品、庫存和訂單的商店來源。設為 Shopify / WooCommerce 後，所有商品和訂單都將直接在您的 Shopify / WooCommerce 商店中管理。",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "驗證",
-        "description": "ChatbotX 登入您商店的方式：使用自訂應用程式的 Admin API 存取權杖，或使用在 Shopify Dev Dashboard 中建立的應用程式的 Client ID 和密鑰。",
+        "description": "InboxOS 登入您商店的方式：使用自訂應用程式的 Admin API 存取權杖，或使用在 Shopify Dev Dashboard 中建立的應用程式的 Client ID 和密鑰。",
         "options": {
           "token": "Admin API 存取權杖",
           "clientCredentials": "Client ID 和密鑰（Dev Dashboard 應用程式）"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} 只能在此工作區中操作。如需更換，請中斷連線後重新連線。",
     "noWorkspaces": "你不是任何工作區的管理員，因此無法授權此應用程式。"
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "刪除您的 ChatbotX 帳號",
+    "title": "刪除您的 InboxOS 帳號",
     "intro": "您可以透過以下任一方式刪除帳號及其資料。",
     "waysTitle": "如何刪除帳號",
     "wayMobile": "在行動應用程式中：設定 → 刪除帳號。",

@@ -10,7 +10,7 @@ const {
   mockListTeamNamesByUserId: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     findBy: mockConversationFindBy,
   },
@@ -23,7 +23,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       inboxTeamModel: {

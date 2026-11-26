@@ -1,5 +1,5 @@
-import { contactScanService } from "@chatbotx.io/business"
-import type { ContactScanChannel } from "@chatbotx.io/utils/channel"
+import { contactScanService } from "@inboxos.io/business"
+import type { ContactScanChannel } from "@inboxos.io/utils/channel"
 import type {
   ListContactScanHistoryItem,
   ListContactScanHistoryResponse,

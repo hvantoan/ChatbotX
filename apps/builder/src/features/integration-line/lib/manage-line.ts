@@ -1,5 +1,5 @@
-import { lineIntegrationService, workspaceService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+import { lineIntegrationService, workspaceService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import { checkConnectedLineWebhook } from "./connect-line"
 
 type LineChannelRef = { workspaceId: string; id: string }

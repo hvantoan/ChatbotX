@@ -1,6 +1,6 @@
 "use client"
 
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
 import { useEffect } from "react"
 import { type UseFormReturn, useWatch } from "react-hook-form"
 

@@ -3,7 +3,7 @@ import {
   ChannelErrorReason,
   isAccountSendBlocked,
   isRateLimited,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { InstagramException } from "../src/exception"
 import { mapToChannelError } from "../src/lib/error-mapper"

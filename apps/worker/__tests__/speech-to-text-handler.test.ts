@@ -1,4 +1,4 @@
-import { AISpeechToTextDefaultFn } from "@chatbotx.io/flow-config"
+import { AISpeechToTextDefaultFn } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -17,9 +17,9 @@ const mocks = vi.hoisted(() => ({
   transcribeWithMuse: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({ aiTimeouts: { aiTotal: 120_000 } }))
-vi.mock("@chatbotx.io/ai/server", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/ai/server")>()),
+vi.mock("@inboxos.io/ai", () => ({ aiTimeouts: { aiTotal: 120_000 } }))
+vi.mock("@inboxos.io/ai/server", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/ai/server")>()),
   aiIntegrationService: { findBy: mocks.aiFindBy },
   getAIModel: mocks.getAIModel,
   transcribeWithMuse: mocks.transcribeWithMuse,
@@ -36,7 +36,7 @@ vi.mock("../src/lib/logger", () => ({
   logger: { error: vi.fn(), info: mocks.loggerInfo, warn: vi.fn() },
 }))
 
-const { MuseTranscribeError } = await import("@chatbotx.io/ai/server")
+const { MuseTranscribeError } = await import("@inboxos.io/ai/server")
 const { speechToTextOutput } = await import(
   "../src/heavy/handlers/speech-to-text"
 )

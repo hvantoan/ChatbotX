@@ -56,7 +56,7 @@ const conversationService = {
   setFollowed: vi.fn(),
   setBotEnabledByIds: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationMemberScope: {
     resolve: vi.fn(),
     allows: () => true,
@@ -69,7 +69,7 @@ vi.mock("@chatbotx.io/business", () => ({
 // The thread-control routes are covered by
 // conversations-thread-control-public-api.test.ts; here the channel registry
 // (which reads server env) only has to be importable.
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   requestConversationThreadControl: vi.fn(),
   syncConversationThreadOwner: vi.fn(),
 }))

@@ -3,7 +3,7 @@ import {
   type RealtimeEventRoute,
   type RealtimeMemberClaims,
   type RealtimeStreamRecord,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import type { RealtimeServerCounters } from "./lib/realtime-metrics"
 import { endSocket } from "./lib/socket-end"
 import { logger } from "./logger"

@@ -11,7 +11,7 @@ vi.mock("../src/custom-field/service", () => ({
 }))
 
 vi.mock(
-  "@chatbotx.io/database/repositories/template-installed-resource",
+  "@inboxos.io/database/repositories/template-installed-resource",
   () => ({
     templateInstalledResourceRepository: {
       findPriorCopies: mocks.findPriorCopies,

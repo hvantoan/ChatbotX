@@ -3,15 +3,15 @@
 import type {
   ProductMessageItem,
   ResolvedProductMessage,
-} from "@chatbotx.io/sdk"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/sdk"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@chatbotx.io/ui/components/ui/carousel"
+} from "@inboxos.io/ui/components/ui/carousel"
 import { useLocale } from "next-intl"
 import { ProductThumbnail } from "@/features/products/components/product-thumbnail"
 import { formatPrice } from "@/lib/format-price"

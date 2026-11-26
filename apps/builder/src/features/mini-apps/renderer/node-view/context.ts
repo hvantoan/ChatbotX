@@ -6,7 +6,7 @@ import {
   type MiniAppOption,
   type MiniAppRuntimeScope,
   readMiniAppAction,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { readArray, readString } from "../../lib/props"
 
 export type NodeViewMode = "design" | "run"

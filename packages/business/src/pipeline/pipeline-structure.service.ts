@@ -1,15 +1,15 @@
-import { db } from "@chatbotx.io/database/client"
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   type PipelineFieldInsert,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PipelineFieldModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
-import { isBigintId } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/types"
+import { isBigintId } from "@inboxos.io/database/utils"
 import { notFoundException, validationException } from "../errors"
 import type { PipelineAccessScope } from "./access"
 import { sameIdSet } from "./equality"

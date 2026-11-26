@@ -1,4 +1,4 @@
-import { GOOGLE_ADS_CHANNEL_VALUES } from "@chatbotx.io/utils/google-click"
+import { GOOGLE_ADS_CHANNEL_VALUES } from "@inboxos.io/utils/google-click"
 import {
   createParser,
   createSearchParamsCache,

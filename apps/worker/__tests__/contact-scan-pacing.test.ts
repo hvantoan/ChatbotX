@@ -1,4 +1,4 @@
-import { CONTACT_SCAN_RELEASED_GRACE_MS } from "@chatbotx.io/business/contact-scan"
+import { CONTACT_SCAN_RELEASED_GRACE_MS } from "@inboxos.io/business/contact-scan"
 import { describe, expect, it } from "vitest"
 import {
   CONTACT_SCAN_PACING,

@@ -1,17 +1,17 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { ArrowRightLeftIcon, CircleCheckIcon, Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useState } from "react"

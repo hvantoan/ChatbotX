@@ -9,20 +9,20 @@
  * .transition`) instead of touching only `IntegrationThreads`.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
-import { db } from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+import { db } from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   connectionModel,
   userModel,
   userQuotaModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { AuthType, type Oauth2AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { AuthType, type Oauth2AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { eq } from "drizzle-orm"
 import { describe, expect, test } from "vitest"
 import { integrationThreadsService } from "../../src/integration-threads/service"

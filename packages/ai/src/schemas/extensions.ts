@@ -1,9 +1,9 @@
-import { AI_FILE_EXTENSION_MIME_TYPES } from "@chatbotx.io/sdk"
+import { AI_FILE_EXTENSION_MIME_TYPES } from "@inboxos.io/sdk"
 import z from "zod"
 
 /**
  * Knowledge upload extensions grouped by MIME type, derived from
- * `AI_FILE_EXTENSION_MIME_TYPES` in `@chatbotx.io/sdk` so the picker and the
+ * `AI_FILE_EXTENSION_MIME_TYPES` in `@inboxos.io/sdk` so the picker and the
  * server never disagree on what counts as a knowledge file.
  */
 export const allowableKnowledgeExtensionsMap = (): Record<string, string[]> => {

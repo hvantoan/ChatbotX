@@ -12,14 +12,14 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   paymentProviderRepository: {
     countByPlatformCredential: (...args: unknown[]) =>
       mocks.countByPlatformCredential(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/payments", () => ({
+vi.mock("@inboxos.io/payments", () => ({
   readPlatformStripeAccountId: (...args: unknown[]) =>
     mocks.readPlatformStripeAccountId(...args),
   ensureStripeConnectWebhook: (...args: unknown[]) =>

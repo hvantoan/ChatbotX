@@ -1,21 +1,21 @@
 "use client"
 
-import type { IntegrationWhatsappRegistrationError } from "@chatbotx.io/database/schema"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { IntegrationWhatsappRegistrationError } from "@inboxos.io/database/schema"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/card"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
   Loader2Icon,

@@ -1,7 +1,7 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { updateSpreadsheet } from "../lib/manage-spreadsheet"
@@ -29,7 +29,7 @@ export const updateSpreadsheetAction = workspaceActionClient
         messages,
       })
     } catch (error) {
-      if (error instanceof ChatbotXException && error.code === "validation") {
+      if (error instanceof InboxOSException && error.code === "validation") {
         // Key on the field the service tagged so a validation added on any
         // other field stops mis-rendering under the URL input.
         return returnValidationErrors(createSpreadsheetRequest, {

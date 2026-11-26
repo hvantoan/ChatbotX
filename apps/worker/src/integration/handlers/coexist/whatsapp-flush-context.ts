@@ -1,17 +1,17 @@
-import { coexistService } from "@chatbotx.io/business/coexist"
+import { coexistService } from "@inboxos.io/business/coexist"
 import {
   type CoexistRunWriteGuard,
   inboxRepository,
   integrationWhatsappRepository,
   LIVE_RUN_STATUSES,
-} from "@chatbotx.io/database/repositories"
-import type { PendingCoexistPatch } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import type { PendingCoexistPatch } from "@inboxos.io/database/schema"
 import type {
   CoexistSyncRunModel,
   InboxModel,
   IntegrationWhatsappModel,
-} from "@chatbotx.io/database/types"
-import type { IntegrationJobCoexistWhatsappFlush } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import type { IntegrationJobCoexistWhatsappFlush } from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import type { HistoryMetadata } from "./whatsapp-history-payload"
 

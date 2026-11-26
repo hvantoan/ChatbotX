@@ -3,7 +3,7 @@
 import {
   pipelineItemContentService,
   pipelineItemService,
-} from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business/pipeline"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import {
   workspaceActionClient,

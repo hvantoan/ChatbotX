@@ -297,9 +297,9 @@ const startMcpClient = async (
     args: ["--import", "tsx", "src/index.ts"],
     cwd: serverSource,
     env: {
-      CHATBOTX_API_KEY: "synthetic-evaluation-token",
-      CHATBOTX_API_URL: apiUrl,
-      CHATBOTX_MCP_TRANSPORT: "stdio",
+      INBOXOS_API_KEY: "synthetic-evaluation-token",
+      INBOXOS_API_URL: apiUrl,
+      INBOXOS_MCP_TRANSPORT: "stdio",
       DOTENV_CONFIG_PATH: "/dev/null",
     },
     stderr: "pipe",

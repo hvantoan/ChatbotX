@@ -3,10 +3,10 @@ import {
   contactNoteService,
   contactService,
   tagService,
-} from "@chatbotx.io/business"
-import { contactSequenceService } from "@chatbotx.io/business/contact-sequence"
-import { leaderboardScoringService } from "@chatbotx.io/business/leaderboard"
-import { emitContactUnsubscribed } from "@chatbotx.io/events"
+} from "@inboxos.io/business"
+import { contactSequenceService } from "@inboxos.io/business/contact-sequence"
+import { leaderboardScoringService } from "@inboxos.io/business/leaderboard"
+import { emitContactUnsubscribed } from "@inboxos.io/events"
 import type {
   AddContactNotesStepSchema,
   AddContactTagStepSchema,
@@ -21,8 +21,8 @@ import type {
   SubscribeSequenceStepSchema,
   UnsubscribeBroadcastStepSchema,
   UnsubscribeSequenceStepSchema,
-} from "@chatbotx.io/flow-config"
-import { TemporalInputParsing } from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/flow-config"
+import { TemporalInputParsing } from "@inboxos.io/utils/datetime"
 import { logger } from "../../lib/logger"
 import { applyCustomFieldOperation } from "./custom-field-operation"
 import type { ExecuteStepProps } from "./flow"

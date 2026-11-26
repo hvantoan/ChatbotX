@@ -1,4 +1,4 @@
-import { shopifyIntegrationService } from "@chatbotx.io/business"
+import { shopifyIntegrationService } from "@inboxos.io/business"
 import {
   possibleErrorsOnFindingResource,
   possibleErrorsOnShopify,

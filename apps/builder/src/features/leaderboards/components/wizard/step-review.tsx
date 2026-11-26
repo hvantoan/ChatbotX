@@ -1,13 +1,13 @@
 "use client"
 
-import type { LeaderboardRuleKey } from "@chatbotx.io/database/partials"
+import type { LeaderboardRuleKey } from "@inboxos.io/database/partials"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/card"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import { useLocale, useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import { useWatch } from "react-hook-form"

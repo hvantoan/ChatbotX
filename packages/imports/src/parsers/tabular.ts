@@ -1,5 +1,5 @@
 import { Readable } from "node:stream"
-import { UTF8_BOM } from "@chatbotx.io/utils/csv"
+import { UTF8_BOM } from "@inboxos.io/utils/csv"
 import { parse } from "csv-parse/sync"
 import { readXlsxRows, XlsxLimitError } from "./xlsx"
 

@@ -1,4 +1,4 @@
-import type { PipelineItemModel } from "@chatbotx.io/database/types"
+import type { PipelineItemModel } from "@inboxos.io/database/types"
 
 /** An open item whose due date has passed. */
 export const isItemOverdue = (

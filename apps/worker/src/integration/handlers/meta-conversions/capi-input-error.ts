@@ -1,5 +1,5 @@
-import { metaConversionsService } from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
+import { metaConversionsService } from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
 import { z } from "zod"
 import { isZodLikeError } from "./sanitize-capi-error"
 

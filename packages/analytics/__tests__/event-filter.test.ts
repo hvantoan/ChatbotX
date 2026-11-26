@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from "vitest"
 import { renderSql } from "./helpers/fake-sql"
 
-vi.mock("@chatbotx.io/database/client", async () => ({
+vi.mock("@inboxos.io/database/client", async () => ({
   sql: (await import("./helpers/fake-sql")).fakeSql,
 }))
 

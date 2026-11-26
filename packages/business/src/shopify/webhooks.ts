@@ -1,13 +1,13 @@
-import { shopifyRepository } from "@chatbotx.io/database/repositories"
+import { shopifyRepository } from "@inboxos.io/database/repositories"
 import {
   toShopifyGid,
   verifyShopifyWebhookSignature,
-} from "@chatbotx.io/integration-shopify"
+} from "@inboxos.io/integration-shopify"
 import {
   getShopifyWebhookJobId,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { decryptShopifyAuth, webhookSecretOf } from "./auth"
 import { shopifyIntegrationService } from "./integration.service"

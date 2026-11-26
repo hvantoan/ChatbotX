@@ -11,12 +11,12 @@ const mocks = vi.hoisted(() => ({
 
 class MediaNotReadyErrorStub extends Error {}
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureAttachmentStored: mocks.ensureAttachmentStored,
   MediaNotReadyError: MediaNotReadyErrorStub,
 }))
-vi.mock("@chatbotx.io/business", () => ({ assertPublicUrl: vi.fn() }))
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/business", () => ({ assertPublicUrl: vi.fn() }))
+vi.mock("@inboxos.io/database/partials", () => ({
   aiConversationSourceStatuses: {
     enum: {
       success: "success",
@@ -25,7 +25,7 @@ vi.mock("@chatbotx.io/database/partials", () => ({
     },
   },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createConversationSourceRepository: () => ({
     findByIdWithAttachment: mocks.findByIdWithAttachment,
     update: mocks.update,
@@ -34,8 +34,8 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     createMany: mocks.saveEmbeddings,
   }),
 }))
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => "id" }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/utils", () => ({ createId: () => "id" }))
+vi.mock("@inboxos.io/worker-config", () => ({
   AI_FILES_DEFAULT_CHUNK_SIZE: 1000,
   AI_FILES_DEFAULT_OVERLAP_SIZE: 100,
   AIJobAction: { processConversationSourceEmbedding: "embed" },

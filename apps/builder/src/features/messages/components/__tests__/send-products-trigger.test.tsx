@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import type { SendProductsStepSchema } from "@chatbotx.io/flow-config"
+import type { SendProductsStepSchema } from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -38,8 +38,8 @@ vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }))
 vi.mock("sonner", () => ({ toast: { error: mocks.toastError } }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => "client-id-1",
 }))
 

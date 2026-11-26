@@ -6,7 +6,7 @@ const { mockPut, mockGet, mockWarn } = vi.hoisted(() => ({
   mockWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: { put: mockPut, get: mockGet },
 }))
 

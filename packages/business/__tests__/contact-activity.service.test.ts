@@ -11,17 +11,17 @@ const mocks = vi.hoisted(() => ({
   upsertLastDelivered: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.dbTransaction },
 }))
 
-vi.mock("@chatbotx.io/database/repositories/workspace", () => ({
+vi.mock("@inboxos.io/database/repositories/workspace", () => ({
   workspaceRepository: {
     lockWorkspaceForChildWrite: mocks.lockWorkspaceForChildWrite,
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories/contact-activity", () => ({
+vi.mock("@inboxos.io/database/repositories/contact-activity", () => ({
   CONTACT_ACTIVITY_TABLES: [
     "ContactActivity",
     "ContactKeywordMessage",

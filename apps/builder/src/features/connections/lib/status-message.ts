@@ -2,7 +2,7 @@ import {
   type ConnectionStatusReason,
   type ConnectionStatusState,
   isProviderOffboardedConnection,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { MessageKey } from "@/features/channel-connect/lib/message-key"
 
 /**

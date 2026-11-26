@@ -2,7 +2,7 @@ import {
   ecommerceAnalyticsService,
   ecommerceSettingsService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { AnalyticsDashboard } from "@/features/ecommerce-analytics/components/analytics-dashboard"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 

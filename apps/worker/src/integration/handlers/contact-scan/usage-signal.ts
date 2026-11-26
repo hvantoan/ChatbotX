@@ -2,7 +2,7 @@ import {
   type BucUsage,
   estimatedMinutesToMs,
   parseBucHeader,
-} from "@chatbotx.io/integration-messenger/apis/usage"
+} from "@inboxos.io/integration-messenger/apis/usage"
 import { readOriginError } from "../shared/http-retry"
 import type { ContactScanUsageSignal } from "./adapter"
 

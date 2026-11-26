@@ -1,4 +1,4 @@
-import type { DecisionProfileModel } from "@chatbotx.io/database/types"
+import type { DecisionProfileModel } from "@inboxos.io/database/types"
 import { describe, expect, test } from "vitest"
 import { toPublicDecisionProfile } from "./to-public-decision-profile"
 

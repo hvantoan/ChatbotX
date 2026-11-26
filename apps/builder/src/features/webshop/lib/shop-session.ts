@@ -1,7 +1,7 @@
 import "server-only"
 
-import type { WebshopShopper } from "@chatbotx.io/business"
-import { verifyShopToken } from "@chatbotx.io/encryption/shop-token"
+import type { WebshopShopper } from "@inboxos.io/business"
+import { verifyShopToken } from "@inboxos.io/encryption/shop-token"
 
 /**
  * Who is shopping, read from the signed `token` of a shop link. A customer

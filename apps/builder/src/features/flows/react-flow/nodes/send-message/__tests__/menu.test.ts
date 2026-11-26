@@ -1,5 +1,5 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { stepTypes } from "@chatbotx.io/flow-config"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { stepTypes } from "@inboxos.io/flow-config"
 import { describe, expect, it } from "vitest"
 import type { MenuData, MenuItem, TranslationFn } from "../../types"
 import { sendMessageEditorMenus } from "../menu"

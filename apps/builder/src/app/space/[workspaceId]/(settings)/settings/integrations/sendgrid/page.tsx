@@ -1,5 +1,5 @@
-import { integrationSendGridService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationSendGridService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageSendGrid } from "@/features/integration-sendgrid/components/manage-sendgrid"
 

@@ -36,7 +36,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ conditions })),
   db: {
     delete: mocks.mockDelete,
@@ -57,11 +57,11 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn((field: unknown, values: unknown[]) => ({ field, values })),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   channelTypes: { enum: { zalo: "zalo" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationZaloModel: { id: "id", oaId: "oaId", workspaceId: "workspaceId" },
   tagChannelModel: {
     channelType: "channelType",
@@ -69,14 +69,14 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.mockInvalidateCacheByTags,
 }))
 
 const dispatchAuditRecord = vi.fn()
 vi.mock("../src/audit/dispatcher", () => ({ dispatchAuditRecord }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mocks.mockFindByProviderSourceId,
   },

@@ -1,10 +1,10 @@
-import { contactInboxService } from "@chatbotx.io/business"
+import { contactInboxService } from "@inboxos.io/business"
 import {
   dynamicImageService,
   getDynamicElementIds,
-} from "@chatbotx.io/business/dynamic-image"
-import { ensureContactAvatarMirrored } from "@chatbotx.io/channel-registry/media-hydration"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/business/dynamic-image"
+import { ensureContactAvatarMirrored } from "@inboxos.io/channel-registry/media-hydration"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import { type NextRequest, NextResponse } from "next/server"
 import { loadServableWorkspace } from "@/lib/workspace/load-servable-workspace"
 

@@ -6,15 +6,15 @@ import {
   inArray,
   type RelationsFieldFilter,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
-import type { AIMcpServerAuth } from "@chatbotx.io/database/partials"
-import { aiMCPServerModel } from "@chatbotx.io/database/schema"
-import type { AIMCPServerModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import type { AIMcpServerAuth } from "@inboxos.io/database/partials"
+import { aiMCPServerModel } from "@inboxos.io/database/schema"
+import type { AIMCPServerModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
 import { validationException } from "../errors"

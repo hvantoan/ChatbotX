@@ -1,23 +1,23 @@
 import { createHash } from "node:crypto"
-import { assertPublicUrl } from "@chatbotx.io/business"
+import { assertPublicUrl } from "@inboxos.io/business"
 import {
   ensureAttachmentStored,
   MediaNotReadyError,
-} from "@chatbotx.io/channel-registry/media-hydration"
-import { aiConversationSourceStatuses } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/channel-registry/media-hydration"
+import { aiConversationSourceStatuses } from "@inboxos.io/database/partials"
 import {
   type AiConversationSourceWithAttachment,
   createConversationEmbeddingRepository,
   createConversationSourceRepository,
-} from "@chatbotx.io/database/repositories"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { createId } from "@inboxos.io/utils"
 import {
   AI_FILES_DEFAULT_CHUNK_SIZE,
   AI_FILES_DEFAULT_OVERLAP_SIZE,
   AIJobAction,
   type AIJobProcessConversationSource,
   aiAgentQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { Readability } from "@mozilla/readability"
 import { htmlToText } from "html-to-text"
 import { parseHTML } from "linkedom"
@@ -251,7 +251,7 @@ async function fetchSafe(
     signal,
     redirect: "manual",
     headers: {
-      "User-Agent": "ChatbotX-URLContext/1.0",
+      "User-Agent": "InboxOS-URLContext/1.0",
       Accept: "text/html,text/plain;q=0.9",
     },
   })

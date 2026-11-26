@@ -8,10 +8,10 @@ const mocks = vi.hoisted(() => ({
   logError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateSyncRequestService: { fanOutAutoUpdate: mocks.fanOutAutoUpdate },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueSyncTemplateInstallation: mocks.enqueueSync,
   enqueueFanOutTemplateUpdate: mocks.enqueueFanOut,
 }))

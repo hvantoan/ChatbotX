@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const TOS_URL_PATTERN = /customaudiences\/tos/
 
-class ChatbotXException extends Error {
+class InboxOSException extends Error {
   code: string
   data?: Record<string, string | number>
   constructor(message: string, code = "systemError") {
@@ -25,11 +25,11 @@ const validGrant = {
   facebookUserId: "asuid",
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: { findByPageId },
 }))
 vi.mock(
-  "@chatbotx.io/business/facebook-marketing-message-audience/upload",
+  "@inboxos.io/business/facebook-marketing-message-audience/upload",
   () => ({
     facebookMarketingMessageAudienceUploadService: {
       create: serviceCreate,
@@ -37,15 +37,15 @@ vi.mock(
     },
   }),
 )
-vi.mock("@chatbotx.io/business/facebook-marketing-message-audience", () => ({
+vi.mock("@inboxos.io/business/facebook-marketing-message-audience", () => ({
   facebookMarketingMessageAudienceService: {
     delete: serviceDelete,
   },
   isAudienceError: (error: unknown) =>
-    error instanceof ChatbotXException && error.code.startsWith("audience"),
+    error instanceof InboxOSException && error.code.startsWith("audience"),
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({ ChatbotXException }))
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({ InboxOSException }))
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   getMarketingMessagesAdAccounts,
 }))
 vi.mock("@/features/facebook-marketing-messages/lib/grant", () => ({
@@ -157,7 +157,7 @@ describe("createAudience", () => {
 
   test("a pre-creation service error is returned as invalid", async () => {
     serviceCreate.mockRejectedValue(
-      new ChatbotXException("audienceNoIdentifier", "audienceNoIdentifier"),
+      new InboxOSException("audienceNoIdentifier", "audienceNoIdentifier"),
     )
     await expect(createAudience({ workspace, input })).resolves.toEqual({
       status: "invalid",
@@ -167,10 +167,10 @@ describe("createAudience", () => {
   })
 
   test("a Graph rejection of the create is returned as invalid with Meta's reason", async () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "audienceCreateRejected",
       "audienceCreateRejected",
-    ) as ChatbotXException & { data: Record<string, string | number> }
+    ) as InboxOSException & { data: Record<string, string | number> }
     error.data = { reason: "(#100) Invalid parameter" }
     serviceCreate.mockRejectedValue(error)
     await expect(createAudience({ workspace, input })).resolves.toEqual({
@@ -181,7 +181,7 @@ describe("createAudience", () => {
   })
 
   test("a partial upload is returned as partial with its count and message", async () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "audiencePartialUpload",
       "audiencePartialUpload",
     )

@@ -1,10 +1,10 @@
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
 import type {
   CommentAutomationEventType,
   ListCommentAutomationContactsResponse,
-} from "@chatbotx.io/analytics/schemas"
-import { contactInboxService } from "@chatbotx.io/business"
-import type { ChannelType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/analytics/schemas"
+import { contactInboxService } from "@inboxos.io/business"
+import type { ChannelType } from "@inboxos.io/database/partials"
 
 /**
  * One page of the contacts behind a comment automation stat column, newest

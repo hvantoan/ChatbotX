@@ -1,4 +1,4 @@
-import type { ButtonPayload } from "@chatbotx.io/flow-config"
+import type { ButtonPayload } from "@inboxos.io/flow-config"
 import { z } from "zod"
 import type { ChannelError } from "../channel-error"
 import { guessFileTypeFromMimeType } from "../util"
@@ -248,7 +248,7 @@ export type EchoOrigin = z.infer<typeof echoOrigins>
 /**
  * Channel-agnostic conversation-routing (thread control) vocabulary shared by
  * channel integrations. The persisted state model lives in
- * `@chatbotx.io/database/partials` (`thread-control.ts`); the SDK cannot depend
+ * `@inboxos.io/database/partials` (`thread-control.ts`); the SDK cannot depend
  * on the database layer, so the role/action values are mirrored here and
  * pinned to the database copy by `packages/database/__tests__/thread-control-sdk-parity.test.ts`.
  */

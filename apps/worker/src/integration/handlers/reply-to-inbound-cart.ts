@@ -1,15 +1,15 @@
-import { webshopService, withBlockedOwnerGuard } from "@chatbotx.io/business"
+import { webshopService, withBlockedOwnerGuard } from "@inboxos.io/business"
 import {
   buttonTypes,
   type SendTextStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import {
   ChatJobAction,
   chatQueue,
   type IntegrationJobReplyToInboundCart,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 /** A text with one link button, as a flow's own sendText step would carry. */
 const buildCheckoutStep = (reply: {

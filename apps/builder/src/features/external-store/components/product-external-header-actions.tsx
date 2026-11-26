@@ -1,6 +1,6 @@
 "use client"
 
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import { ExternalLinkIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {

@@ -1,4 +1,4 @@
-import { workspaceMemberPermissionsSchema } from "@chatbotx.io/database/partials"
+import { workspaceMemberPermissionsSchema } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 /**

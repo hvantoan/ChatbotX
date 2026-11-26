@@ -1,5 +1,6 @@
 "use client"
 
+import { useDraggable, useDroppable } from "@dnd-kit/core"
 import {
   MINI_APP_COMPONENTS,
   type MiniAppNode,
@@ -7,9 +8,8 @@ import {
   type MiniAppSlotAddress,
   screenLabel,
   slotEntries,
-} from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import { useDraggable, useDroppable } from "@dnd-kit/core"
+} from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CopyIcon, GripVerticalIcon, Trash2Icon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { createContext, type HTMLAttributes, useContext } from "react"

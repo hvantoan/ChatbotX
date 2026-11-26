@@ -3,10 +3,10 @@
 import {
   automatedResponseService,
   type UpdateAutomatedResponseRequest,
-} from "@chatbotx.io/business"
-import type { AutomatedResponseType } from "@chatbotx.io/database/partials"
-import { automatedResponseTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import type { AutomatedResponseType } from "@inboxos.io/database/partials"
+import { automatedResponseTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { returnValidationErrors } from "next-safe-action"
 import { isValidationException } from "@/lib/errors/validation-exception"
 import { workspaceActionClient } from "@/lib/safe-action"

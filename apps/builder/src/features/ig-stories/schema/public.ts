@@ -1,8 +1,8 @@
 import {
   igStoryAutomationTriggers,
   igStoryAutomationTypes,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   automationInboxIdFilterSchema,

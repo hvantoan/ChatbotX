@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { createContext, type ReactNode, useContext } from "react"
 
 const LockedEditorContext = createContext<boolean | null>(null)

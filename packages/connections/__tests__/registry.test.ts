@@ -1,5 +1,5 @@
-import { integrationTypes } from "@chatbotx.io/database/partials"
-import { CHANNEL_CAPABILITIES, channelTypes } from "@chatbotx.io/utils/channel"
+import { integrationTypes } from "@inboxos.io/database/partials"
+import { CHANNEL_CAPABILITIES, channelTypes } from "@inboxos.io/utils/channel"
 import { describe, expect, it } from "vitest"
 import { CONNECTION_REGISTRY } from "../src/registry"
 
@@ -10,7 +10,7 @@ describe("CONNECTION_REGISTRY", () => {
     }
   })
 
-  it("every non-null adapter's provider is populated, and store is populated except chatbotx's documented no-satellite-table exception", () => {
+  it("every non-null adapter's provider is populated, and store is populated except inboxos's documented no-satellite-table exception", () => {
     for (const [type, adapter] of Object.entries(CONNECTION_REGISTRY)) {
       if (!adapter) {
         continue
@@ -43,11 +43,11 @@ describe("CONNECTION_REGISTRY", () => {
     ])
   })
 
-  it("kind=channel adapters map onto a real ChannelType (directly, via instagramFacebook -> instagram, or chatbotx's documented exception)", () => {
+  it("kind=channel adapters map onto a real ChannelType (directly, via instagramFacebook -> instagram, or inboxos's documented exception)", () => {
     const channelSet = new Set<string>(channelTypes.options)
     for (const [type, adapter] of Object.entries(CONNECTION_REGISTRY)) {
       if (adapter?.provider.kind !== "channel" || type === "chatbotx") {
-        // `chatbotx` is a channel-shaped internal integration (it has
+        // `inboxos` is a channel-shaped internal integration (it has
         // `channels` handlers) with no formal `ChannelType` membership and
         // no `Inbox.channel = "chatbotx"` value — it is never offered
         // through the normal channel-connect surface.
@@ -81,7 +81,7 @@ describe("CONNECTION_REGISTRY", () => {
     //   - `api`/`smtp`/`webchat`: self_serve with no external account to
     //     validate AND no stable per-instance identity to derive
     //     `Connection.sourceId` from before their satellite row exists (I1).
-    //   - `chatbotx`: the internal built-in channel is auto-provisioned per
+    //   - `inboxos`: the internal built-in channel is auto-provisioned per
     //     workspace, never connected through a user-supplied credential.
     //   - `whatsapp`: the provider-owned signup flow supplies auth; this
     //     generic credential route must not synthesize an alternate flow.

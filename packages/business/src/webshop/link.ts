@@ -1,14 +1,14 @@
 import {
   productCategoryRepository,
   productRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   SHOP_PREVIEW_TOKEN_TTL_MS,
   SHOP_TOKEN_TTL_MS,
   signShopPreviewToken,
   signShopToken,
-} from "@chatbotx.io/encryption/shop-token"
-import { joinAppUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/encryption/shop-token"
+import { joinAppUrl } from "@inboxos.io/utils/web-url"
 import { notFoundException } from "../errors"
 import { resolveWorkspaceAppUrl } from "../platform/settings"
 import { vendorService } from "../vendor/service"

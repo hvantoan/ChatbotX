@@ -1,4 +1,4 @@
-import { ChatJobAction } from "@chatbotx.io/worker-config"
+import { ChatJobAction } from "@inboxos.io/worker-config"
 import { DelayedError } from "bullmq"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -6,16 +6,16 @@ const findByZaloUid = vi.fn()
 const getAccountStatus = vi.fn()
 const ensureZaloPersonalSession = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationZaloPersonalService: {
     findByZaloUid: (zaloUid: string) => findByZaloUid(zaloUid),
   },
 }))
 
-vi.mock("@chatbotx.io/integration-zalo-personal", async (importOriginal) => {
+vi.mock("@inboxos.io/integration-zalo-personal", async (importOriginal) => {
   const actual =
     await importOriginal<
-      typeof import("@chatbotx.io/integration-zalo-personal")
+      typeof import("@inboxos.io/integration-zalo-personal")
     >()
   return {
     ...actual,
@@ -35,7 +35,7 @@ vi.mock("../src/lib/logger", () => ({
 }))
 
 const { ZaloPersonalAPIException } = await import(
-  "@chatbotx.io/integration-zalo-personal"
+  "@inboxos.io/integration-zalo-personal"
 )
 const { deferSendWhileZaloPersonalReconnects } = await import(
   "../src/chat/utils/zalo-personal-send-gate"

@@ -1,4 +1,4 @@
-import { onlinePaymentProviders } from "@chatbotx.io/database/partials"
+import { onlinePaymentProviders } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const paymentProviderResource = z.object({

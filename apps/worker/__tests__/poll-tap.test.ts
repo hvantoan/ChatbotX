@@ -10,10 +10,10 @@ const mocks = vi.hoisted(() => ({
   integrationAdd: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { findById: mocks.findWorkspace },
 }))
-vi.mock("@chatbotx.io/business/poll", async (importOriginal) => ({
+vi.mock("@inboxos.io/business/poll", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   pollService: {
     findUnscopedWithCandidates: mocks.findUnscopedWithCandidates,
@@ -21,10 +21,10 @@ vi.mock("@chatbotx.io/business/poll", async (importOriginal) => ({
   },
   pollVoteService: { castVote: mocks.castVote },
 }))
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "channel",
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendFlowMessage: "sendFlowMessage" },
   IntegrationJobAction: { sendFlow: "sendFlow" },
   chatQueue: { add: mocks.chatAdd },

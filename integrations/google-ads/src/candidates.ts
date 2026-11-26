@@ -1,5 +1,5 @@
-import type { ConnectionCandidate } from "@chatbotx.io/sdk"
-import { formatCustomerId } from "@chatbotx.io/utils/google-click"
+import type { ConnectionCandidate } from "@inboxos.io/sdk"
+import { formatCustomerId } from "@inboxos.io/utils/google-click"
 import {
   getCustomer,
   listAccessibleCustomers,

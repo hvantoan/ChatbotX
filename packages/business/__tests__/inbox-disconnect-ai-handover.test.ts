@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   cancelLive: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importActual) => ({
+vi.mock("@inboxos.io/database/repositories", async (importActual) => ({
   ...(await importActual<object>()),
   aiHandoverSettingsRepository: { lockExisting: mocks.lockExisting },
   aiHandoverBulkRunRepository: { cancelLive: mocks.cancelLive },
@@ -26,7 +26,7 @@ const whereMock = vi.fn()
 const setMock = vi.fn(() => ({ where: whereMock }))
 const tx = { update: vi.fn(() => ({ set: setMock })) }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   eq: vi.fn(),
   db: tx,

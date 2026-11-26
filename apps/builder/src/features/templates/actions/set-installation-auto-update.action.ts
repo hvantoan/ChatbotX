@@ -1,7 +1,7 @@
 "use server"
 
-import { templateSyncRequestService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { templateSyncRequestService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { installerActionClient } from "./installer-action-client"
 

@@ -1,20 +1,20 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { useIsTouchDevice } from "@chatbotx.io/ui/hooks/use-touch-device"
-import { createId } from "@chatbotx.io/utils"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { zodResolver } from "@hookform/resolvers/zod"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { useIsTouchDevice } from "@inboxos.io/ui/hooks/use-touch-device"
+import { createId } from "@inboxos.io/utils"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import {
   checkInboxImages,
   getInboxImageLimit,
   type InboxImageCheckResult,
   isImageMimeType,
   resolveInboxReplyKind,
-} from "@chatbotx.io/utils/inbox-image-support"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/utils/inbox-image-support"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import {
   HandIcon,

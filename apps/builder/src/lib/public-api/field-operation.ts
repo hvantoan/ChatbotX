@@ -1,9 +1,9 @@
-import { isFieldOperandMissing } from "@chatbotx.io/flow-config"
+import { isFieldOperandMissing } from "@inboxos.io/flow-config"
 import {
   FIELD_OPERATION_DEFINITIONS,
   fieldOperationApiNames,
   fieldOperationByApiName,
-} from "@chatbotx.io/utils/custom-field-operation"
+} from "@inboxos.io/utils/custom-field-operation"
 import { z } from "zod"
 
 // The public API speaks friendly operation names (`increase`, not the

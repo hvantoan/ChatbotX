@@ -30,7 +30,7 @@ const {
   resolveTemplateShareUrl: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const permissions = await import(
     "../../../packages/business/src/template/permissions"
   )

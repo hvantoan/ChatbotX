@@ -8,8 +8,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import type { Option } from "@chatbotx.io/ui/types/data-table"
+} from "@inboxos.io/ui/components/ui/select"
+import type { Option } from "@inboxos.io/ui/types/data-table"
 
 const ALL_VALUE = "__all__"
 

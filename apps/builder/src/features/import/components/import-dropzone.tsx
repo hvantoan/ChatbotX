@@ -1,9 +1,9 @@
 "use client"
 
-import type { ImportType, UploadTypes } from "@chatbotx.io/database/partials"
-import { getImportEntry } from "@chatbotx.io/imports"
-import { extractCsvHeaders } from "@chatbotx.io/imports/parsers/headers"
-import { Card } from "@chatbotx.io/ui/components/ui/card"
+import type { ImportType, UploadTypes } from "@inboxos.io/database/partials"
+import { getImportEntry } from "@inboxos.io/imports"
+import { extractCsvHeaders } from "@inboxos.io/imports/parsers/headers"
+import { Card } from "@inboxos.io/ui/components/ui/card"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"

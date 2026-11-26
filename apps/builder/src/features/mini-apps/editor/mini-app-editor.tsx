@@ -1,14 +1,14 @@
 "use client"
 
+import { DndContext, DragOverlay } from "@dnd-kit/core"
 import {
   type MiniAppComponentType,
   type MiniAppDefinition,
   toFlowJson,
   validateMiniApp,
-} from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { ScrollArea } from "@chatbotx.io/ui/components/ui/scroll-area"
-import { DndContext, DragOverlay } from "@dnd-kit/core"
+} from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { ScrollArea } from "@inboxos.io/ui/components/ui/scroll-area"
 import { SendIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

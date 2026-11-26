@@ -1,9 +1,9 @@
 "use client"
 
-import { ChartCardProvider } from "@chatbotx.io/ui/components/charts/chart-card-context"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { ChartCardProvider } from "@inboxos.io/ui/components/charts/chart-card-context"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import type { ReactNode } from "react"
 import type { DashboardLoadAction } from "../provider/analysis-store"

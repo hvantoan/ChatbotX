@@ -1,5 +1,5 @@
-import { AI_FILE_MAX_UPLOAD_BYTES } from "@chatbotx.io/sdk"
-import { ChatbotXException } from "../errors"
+import { AI_FILE_MAX_UPLOAD_BYTES } from "@inboxos.io/sdk"
+import { InboxOSException } from "../errors"
 
 /** Why creating an AI File was refused; stable, safe to branch on. */
 const aiFileCreateErrorReasons = [
@@ -32,7 +32,7 @@ export const isAIFileCreateErrorReason = (
  * which the oRPC error mapper would fold into the message. Server actions read
  * them to show a translated message.
  */
-export class AIFileCreateException extends ChatbotXException {
+export class AIFileCreateException extends InboxOSException {
   readonly reason: AIFileCreateErrorReason
   readonly maxBytes?: number
 

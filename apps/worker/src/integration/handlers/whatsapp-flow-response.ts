@@ -1,9 +1,9 @@
-import { whatsappFlowResponseService } from "@chatbotx.io/business"
-import { enqueueLeaderboardAward } from "@chatbotx.io/business/leaderboard"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
-import type { WhatsappFlowStepSchema } from "@chatbotx.io/flow-config"
-import { createdAtFromId } from "@chatbotx.io/utils"
-import type { ResolvedFlowFile } from "@chatbotx.io/worker-config"
+import { whatsappFlowResponseService } from "@inboxos.io/business"
+import { enqueueLeaderboardAward } from "@inboxos.io/business/leaderboard"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
+import type { WhatsappFlowStepSchema } from "@inboxos.io/flow-config"
+import { createdAtFromId } from "@inboxos.io/utils"
+import type { ResolvedFlowFile } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 
 /**

@@ -22,7 +22,7 @@ class FakeProviderError extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/payments", () => ({
+vi.mock("@inboxos.io/payments", () => ({
   parseStripeConnectWebhook: (...args: unknown[]) => mocks.parseStripe(...args),
   parseStripeAccountWebhook: (...args: unknown[]) =>
     mocks.parseStripeAccount(...args),
@@ -31,7 +31,7 @@ vi.mock("@chatbotx.io/payments", () => ({
     error instanceof FakeProviderError,
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { confirmOrderPayment: "confirmOrderPayment" },
   getOrderPaymentEventJobId: (provider: string, eventId: string) =>
     `order-payment-event-${provider}-${eventId}`,

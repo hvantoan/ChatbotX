@@ -105,7 +105,7 @@ export const getWorkspaceIdFromRequest = (
 }
 
 export const makeCredentialState = (req: IncomingMessage): CredentialState => ({
-  token: getApiTokenFromRequest(req) || env.CHATBOTX_API_KEY,
+  token: getApiTokenFromRequest(req) || env.INBOXOS_API_KEY,
   workspaceId: getWorkspaceIdFromRequest(req),
 })
 
@@ -129,7 +129,7 @@ const getCredentialsFromState = (state: CredentialState) => () =>
     : undefined
 
 const enableCors = (res: ServerResponse): void => {
-  res.setHeader("Access-Control-Allow-Origin", env.CHATBOTX_MCP_CORS_ORIGIN)
+  res.setHeader("Access-Control-Allow-Origin", env.INBOXOS_MCP_CORS_ORIGIN)
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
   res.setHeader("Access-Control-Allow-Headers", "*")
   res.setHeader("Access-Control-Expose-Headers", "WWW-Authenticate")
@@ -160,7 +160,7 @@ const authorizeRequest = async (
   res: ServerResponse,
   pathSuffix: string,
 ): Promise<boolean> => {
-  const token = getApiTokenFromRequest(req) || env.CHATBOTX_API_KEY
+  const token = getApiTokenFromRequest(req) || env.INBOXOS_API_KEY
   if (!token) {
     writeJsonRpcError(
       res,
@@ -268,10 +268,7 @@ const handleSseRequest = async (
     const server = createMcpServer({
       getCredentials: getCredentialsFromState(credentialState),
     })
-    const transport = new SSEServerTransport(
-      env.CHATBOTX_MCP_MESSAGES_PATH,
-      res,
-    )
+    const transport = new SSEServerTransport(env.INBOXOS_MCP_MESSAGES_PATH, res)
     legacySseSessions.set(transport.sessionId, {
       credentialState,
       server,
@@ -404,7 +401,7 @@ export const createRequestListener =
       enableCors(res)
       const url = new URL(req.url ?? "", "http://localhost")
       if (
-        env.CHATBOTX_MCP_OAUTH_ENABLED === "true" &&
+        env.INBOXOS_MCP_OAUTH_ENABLED === "true" &&
         (url.pathname === protectedResourcePrefix ||
           url.pathname.startsWith(`${protectedResourcePrefix}/`))
       ) {
@@ -416,27 +413,27 @@ export const createRequestListener =
       }
 
       if (
-        env.CHATBOTX_MCP_OAUTH_ENABLED === "true" &&
+        env.INBOXOS_MCP_OAUTH_ENABLED === "true" &&
         req.method !== "OPTIONS" &&
-        (url.pathname === env.CHATBOTX_MCP_SSE_PATH ||
-          url.pathname === env.CHATBOTX_MCP_MESSAGES_PATH) &&
+        (url.pathname === env.INBOXOS_MCP_SSE_PATH ||
+          url.pathname === env.INBOXOS_MCP_MESSAGES_PATH) &&
         !(await authorizeRequest(req, res, url.pathname))
       ) {
         return
       }
       // A POST to the SSE path comes from a Streamable HTTP client pointed at
       // the SSE URL; serve it like the messages path instead of a 405.
-      if (url.pathname === env.CHATBOTX_MCP_SSE_PATH && req.method === "POST") {
+      if (url.pathname === env.INBOXOS_MCP_SSE_PATH && req.method === "POST") {
         await handleMessagesRequest(req, res, createMcpServer)
         return
       }
 
-      if (url.pathname === env.CHATBOTX_MCP_SSE_PATH) {
+      if (url.pathname === env.INBOXOS_MCP_SSE_PATH) {
         await handleSseRequest(req, res, createMcpServer)
         return
       }
 
-      if (url.pathname === env.CHATBOTX_MCP_MESSAGES_PATH) {
+      if (url.pathname === env.INBOXOS_MCP_MESSAGES_PATH) {
         await handleMessagesRequest(req, res, createMcpServer)
         return
       }
@@ -467,10 +464,10 @@ export const runSseServer = async (
 ): Promise<void> => {
   const httpServer = createServer(createRequestListener(createMcpServer))
   const { promise: listening, resolve } = Promise.withResolvers<void>()
-  httpServer.listen(env.CHATBOTX_MCP_PORT, env.CHATBOTX_MCP_HOST, resolve)
+  httpServer.listen(env.INBOXOS_MCP_PORT, env.INBOXOS_MCP_HOST, resolve)
   await listening
 
   console.error(
-    `MCP Server running on http://${env.CHATBOTX_MCP_HOST}:${env.CHATBOTX_MCP_PORT}${env.CHATBOTX_MCP_SSE_PATH}`,
+    `MCP Server running on http://${env.INBOXOS_MCP_HOST}:${env.INBOXOS_MCP_PORT}${env.INBOXOS_MCP_SSE_PATH}`,
   )
 }

@@ -1,5 +1,5 @@
-import { ASSIGNED_AGENT_WORKING_HOURS_VALUE } from "@chatbotx.io/database/partials"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+import { ASSIGNED_AGENT_WORKING_HOURS_VALUE } from "@inboxos.io/database/partials"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useCallback, useMemo } from "react"

@@ -6,8 +6,8 @@ import {
   type WhatsappOptionListItem,
   type WhatsappOptionListOptionFormValues,
   whatsappOptionListItemDefaultFn,
-} from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { Pencil, PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useCallback, useState } from "react"

@@ -1,4 +1,4 @@
-import { type SQL, sql } from "@chatbotx.io/database/client"
+import { type SQL, sql } from "@inboxos.io/database/client"
 
 /**
  * SQL fragment builders for the DM "waiting for a human reply" window on

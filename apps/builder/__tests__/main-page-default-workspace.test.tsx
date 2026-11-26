@@ -12,16 +12,16 @@ const mocks = vi.hoisted(() => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/auth/tenant", () => ({
+vi.mock("@inboxos.io/auth/tenant", () => ({
   resolveTenantByDomain: mocks.resolveTenantByDomain,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isPlatformAdmin: vi.fn(async () => false),
   isSuperAdmin: vi.fn(async () => false),
   quotaEnforcementService: {},
   userQuotaService: {},
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({ ROOT_TENANT_ID: "1" }))
+vi.mock("@inboxos.io/database/schema", () => ({ ROOT_TENANT_ID: "1" }))
 vi.mock("next/navigation", () => ({
   notFound: vi.fn(),
   redirect: mocks.redirect,

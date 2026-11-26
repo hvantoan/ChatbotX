@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { workspaceDeletionRecordRepository } from "@chatbotx.io/database/repositories/workspace-deletion-record"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { workspaceDeletionRecordRepository } from "@inboxos.io/database/repositories/workspace-deletion-record"
 import {
   type WorkspaceDeletionRecordUsageSnapshot,
   workspaceDeletionRecordDetailsSchema,
   workspaceDeletionRecordUsageSnapshotSchema,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { BaseService } from "../base.service"
 
 const toIso = (value: Date): string => value.toISOString()

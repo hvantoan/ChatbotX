@@ -1,7 +1,7 @@
 "use client"
 
-import type { TemplateSyncHistoryItem } from "@chatbotx.io/business"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateSyncHistoryItem } from "@inboxos.io/business"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ArchiveRestoreIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"

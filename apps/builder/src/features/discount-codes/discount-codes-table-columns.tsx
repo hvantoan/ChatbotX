@@ -1,16 +1,16 @@
 "use client"
 
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import type { ColumnDef, Row } from "@tanstack/react-table"
 import { MoreHorizontalIcon, PencilIcon, Trash2Icon } from "lucide-react"
 import Link from "next/link"

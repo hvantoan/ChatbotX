@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   listInstalledCopies: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceMemberService: { listByUserId: mocks.listByUserId },
   templateInstallationRequestService: {
     findInboxManifestByShareToken: mocks.findInboxManifestByShareToken,
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/business", () => ({
     listInstalledCopies: mocks.listInstalledCopies,
   },
 }))
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   getPublicFileUrl: (path: string) => path,
 }))
 vi.mock("@/features/tenant/utils", () => ({

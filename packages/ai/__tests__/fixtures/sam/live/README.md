@@ -1,6 +1,6 @@
 # SAM 3.1 live captures
 
-Response bodies recorded by ChatbotX from the Meta Model API
+Response bodies recorded by InboxOS from the Meta Model API
 (`POST /v1/responses`, model `sam-3.1`, `stream: true`,
 `metadata = { include_confidence: "true", mask_encoding: "one_bit" }`) on
 2026-11-01 by a local end-to-end script against a real workspace.

@@ -2,22 +2,22 @@ import {
   callRecordingService,
   contactInboxService,
   whatsappCallLifecycleService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   createMessageRepository,
   whatsappCallRepository,
-} from "@chatbotx.io/database/repositories"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
 import {
   emitCallRecorded,
   setWebhookExecutionContext,
-} from "@chatbotx.io/events"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/events"
+import { createId } from "@inboxos.io/utils"
 import {
   callTranscriptionJobId,
   callTranscriptionQueue,
   type IntegrationJobWhatsappCallRecordingReady,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import {

@@ -3,7 +3,7 @@
 import {
   broadcastPlanLimitDataSchema,
   TRIAL_BROADCAST_PLAN_POLICY,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { mockLoggerError, mockLoggerWarn } = vi.hoisted(() => ({
@@ -27,11 +27,11 @@ vi.mock("@/middlewares/mobile-user-auth", () => ({
   mobileUserPasswordChangeAuthMiddleware: {},
 }))
 
-vi.mock("@chatbotx.io/database/errors", () => ({
+vi.mock("@inboxos.io/database/errors", () => ({
   ModelNotfoundException: class ModelNotfoundException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   SdkException: class SdkException extends Error {
     httpStatusCode?: number
     constructor(message: string, httpStatusCode?: number) {
@@ -48,8 +48,8 @@ vi.mock("@chatbotx.io/sdk", () => ({
 
 // `@/orpc` now attaches `commonApiErrors` (from orpc-error-helper.ts) to the
 // public stacks, which reuses `DENIAL_MESSAGES` from this module — stub it so
-// importing `@/orpc` doesn't pull in the real `@chatbotx.io/business` barrel
-// (and transitively the google-calendar integration's `@chatbotx.io/sdk`
+// importing `@/orpc` doesn't pull in the real `@inboxos.io/business` barrel
+// (and transitively the google-calendar integration's `@inboxos.io/sdk`
 // `Integration` export, which the mock above doesn't provide).
 vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
   DENIAL_MESSAGES: {
@@ -58,11 +58,11 @@ vi.mock("@/lib/workspace/authorize-workspace-access", () => ({
   },
 }))
 
-const { broadcastPlanLimitException, ChatbotXException, validationException } =
-  await import("@chatbotx.io/business/errors")
-const { ModelNotfoundException } = await import("@chatbotx.io/database/errors")
-const { FlowAuthoringException } = await import("@chatbotx.io/flow-config")
-const { SdkException } = await import("@chatbotx.io/sdk")
+const { broadcastPlanLimitException, InboxOSException, validationException } =
+  await import("@inboxos.io/business/errors")
+const { ModelNotfoundException } = await import("@inboxos.io/database/errors")
+const { FlowAuthoringException } = await import("@inboxos.io/flow-config")
+const { SdkException } = await import("@inboxos.io/sdk")
 const { ActionValidationError } = await import("next-safe-action")
 const { ORPCError } = await import("@orpc/server")
 const { z } = await import("zod")
@@ -74,8 +74,8 @@ beforeEach(() => {
 })
 
 describe("mapKnownOrpcErrors", () => {
-  test("maps a ChatbotXException subclass via instanceof, not error.name", () => {
-    class SlotUnavailableException extends ChatbotXException {
+  test("maps a InboxOSException subclass via instanceof, not error.name", () => {
+    class SlotUnavailableException extends InboxOSException {
       constructor() {
         super("Slot unavailable", "slotUnavailable", 409)
         this.name = "SlotUnavailableException"
@@ -118,8 +118,8 @@ describe("mapKnownOrpcErrors", () => {
     expect(mockLoggerWarn).toHaveBeenCalledTimes(1)
   })
 
-  test("maps a validationException-shaped ChatbotXException to a 422 validation error", () => {
-    const error = new ChatbotXException("Name already taken", "validation", 422)
+  test("maps a validationException-shaped InboxOSException to a 422 validation error", () => {
+    const error = new InboxOSException("Name already taken", "validation", 422)
 
     expect(() => mapKnownOrpcErrors(error)).toThrow(
       expect.objectContaining({ code: "validation", status: 422 }),
@@ -167,8 +167,8 @@ describe("mapKnownOrpcErrors", () => {
     )
   })
 
-  test("maps a tooManyRequests ChatbotXException to a 429 error", () => {
-    const error = new ChatbotXException(
+  test("maps a tooManyRequests InboxOSException to a 429 error", () => {
+    const error = new InboxOSException(
       "Too many requests. Retry after 5s.",
       "tooManyRequests",
       429,
@@ -181,7 +181,7 @@ describe("mapKnownOrpcErrors", () => {
   })
 
   test("maps a duplicate place category to a 409 placeCategoryDuplicated error", () => {
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       "Place category already exists",
       "placeCategoryDuplicated",
       409,
@@ -192,8 +192,8 @@ describe("mapKnownOrpcErrors", () => {
     )
   })
 
-  test("maps a 5xx ChatbotXException without warn-logging — the route callback logs it once", () => {
-    const error = new ChatbotXException("boom", "upstream", 502)
+  test("maps a 5xx InboxOSException without warn-logging — the route callback logs it once", () => {
+    const error = new InboxOSException("boom", "upstream", 502)
 
     expect(() => mapKnownOrpcErrors(error)).toThrow(
       expect.objectContaining({ code: "upstream", status: 502 }),

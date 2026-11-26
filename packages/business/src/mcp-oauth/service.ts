@@ -1,17 +1,17 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   oauthAccessTokenRepository,
   oauthClientRepository,
   oauthConsentRepository,
   oauthRefreshTokenRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   OAuthClientModel,
   UserModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { logger } from "../logger"
 import { mobileRefreshTokenService } from "../mobile-auth/service"
 import { userService } from "../user/service"
@@ -142,7 +142,7 @@ export class McpOAuthService extends BaseService {
       workspaceId: props.workspaceId,
     })
     if (!workspace || isWorkspaceScheduledForDeletion(workspace)) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You must be an admin of the selected workspace",
         "forbidden",
         403,
@@ -168,7 +168,7 @@ export class McpOAuthService extends BaseService {
       workspaceId: workspace.id,
     })
     if (updated === 0) {
-      throw new ChatbotXException("OAuth consent not found", "notFound", 404)
+      throw new InboxOSException("OAuth consent not found", "notFound", 404)
     }
     logger.info(
       {
@@ -186,7 +186,7 @@ export class McpOAuthService extends BaseService {
     try {
       return await userService.findByIdOrFail(userId)
     } catch (error) {
-      if (error instanceof ChatbotXException && error.code === "notFound") {
+      if (error instanceof InboxOSException && error.code === "notFound") {
         return null
       }
       throw error

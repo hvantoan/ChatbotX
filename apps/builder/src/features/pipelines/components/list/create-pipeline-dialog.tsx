@@ -4,8 +4,8 @@ import {
   PIPELINE_LIMITS,
   type PipelineType,
   pipelineTypes,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -13,8 +13,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   CircleAlertIcon,
   Columns3Icon,

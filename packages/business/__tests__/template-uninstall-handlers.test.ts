@@ -1,9 +1,9 @@
 // @vitest-environment node
 
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => {
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => {
   const actual = await importOriginal<Record<string, unknown>>()
   return {
     ...actual,
@@ -40,13 +40,13 @@ const {
   referenceSlotsOf,
   referencedParentsOf,
 } = await import("../src/template/uninstall-references")
-const schema = await import("@chatbotx.io/database/schema")
+const schema = await import("@inboxos.io/database/schema")
 const { UNINSTALL_PARENT_TABLE } = await import(
   "../src/template/uninstall-parent-locks"
 )
 const { getTableConfig } = await import("drizzle-orm/pg-core")
 const { REFERENCE_FIELD_ENTITY_KIND, REFERENCE_ARRAY_FIELD_ENTITY_KIND } =
-  await import("@chatbotx.io/flow-config")
+  await import("@inboxos.io/flow-config")
 const { templateAdapterRegistry } = await import(
   "../src/template/adapters/registry"
 )

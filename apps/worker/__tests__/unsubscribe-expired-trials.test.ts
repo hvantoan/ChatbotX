@@ -8,17 +8,17 @@ const runExclusive = vi.fn(async ({ fn }: { fn: () => Promise<unknown> }) =>
 )
 const loggerError = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userQuotaService: { listDueExpiredTrials },
 }))
-vi.mock("@chatbotx.io/redis", () => ({ distributedLock: { runExclusive } }))
+vi.mock("@inboxos.io/redis", () => ({ distributedLock: { runExclusive } }))
 vi.mock("../src/lib/logger", () => ({
   logger: { error: loggerError, warn: vi.fn(), info: vi.fn() },
 }))
 
 const envState = vi.hoisted(() => ({ NEXT_PUBLIC_EDITION: "cloud" }))
 vi.mock("../src/env", () => ({ env: envState }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {
     unsubscribeExpiredTrials: "unsubscribeExpiredTrials",
     teardownExpiredTrial: "teardownExpiredTrial",

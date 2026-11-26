@@ -1,6 +1,6 @@
 "use client"
 
-import type { SendProductsStepSchema } from "@chatbotx.io/flow-config"
+import type { SendProductsStepSchema } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { displayLabelKey } from "../lib/form"
 

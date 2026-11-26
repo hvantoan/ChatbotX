@@ -1,25 +1,22 @@
-import { buildContext, conversationService } from "@chatbotx.io/business"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+import { buildContext, conversationService } from "@inboxos.io/business"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/repositories"
+import { emit } from "@inboxos.io/event-bus"
 import {
   type MetadataPayload,
   messageEventTypeSchema,
   UPDATE_STATUS_PAYLOAD_TYPE,
   WA_TEMPLATE_STATUS_BUTTON_LABELS,
-} from "@chatbotx.io/flow-config"
-import {
-  resolveSourceScopedIdentityMatch,
-  SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { resolveSourceScopedIdentityMatch, SdkException } from "@inboxos.io/sdk"
 import {
   IntegrationJobAction,
   type IntegrationJobMessageStatus,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { logger } from "../../lib/logger"
 import {

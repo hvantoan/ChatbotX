@@ -1,5 +1,5 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { adsEligibleChannelTypes } from "@chatbotx.io/utils/channel"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { adsEligibleChannelTypes } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 import { MAX_ADS_ANALYTICS_RANGE_DAYS } from "@/features/ads/schema/analytics"
 

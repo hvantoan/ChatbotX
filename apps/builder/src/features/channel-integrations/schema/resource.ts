@@ -1,5 +1,5 @@
-import { channelIntegrationChannels } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { channelIntegrationChannels } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const channelIntegrationResource = z.object({

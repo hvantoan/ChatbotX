@@ -20,7 +20,7 @@ const listByWorkspaceId = vi.fn()
 const findByUserIds = vi.fn()
 const deleteByTokens = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   hasWorkspacePermission: (permissions: Record<string, unknown>, key: string) =>
     permissions.superAdmin === true || permissions[key] === true,
   orderService: { getDetail },
@@ -42,7 +42,7 @@ vi.mock("../../src/lib/logger", () => ({
   logger: { warn: vi.fn(), info: vi.fn() },
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { notifyNewOrder } = await import(
   "../../src/notification/handlers/notify-new-order"
 )
@@ -109,7 +109,7 @@ describe("notifyNewOrder", () => {
 
   test("does nothing for an order deleted before the push", async () => {
     getDetail.mockRejectedValue(
-      new ChatbotXException("Order does not exist.", "notFound", 404),
+      new InboxOSException("Order does not exist.", "notFound", 404),
     )
     await notifyNewOrder(job)
     expect(listByWorkspaceId).not.toHaveBeenCalled()

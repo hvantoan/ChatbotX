@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   assertVendor: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   productRepository: {
     find: (...args: unknown[]) => mocks.findProduct(...args),
   },
@@ -14,7 +14,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     find: (...args: unknown[]) => mocks.findCategory(...args),
   },
 }))
-vi.mock("@chatbotx.io/encryption/shop-token", () => ({
+vi.mock("@inboxos.io/encryption/shop-token", () => ({
   SHOP_TOKEN_TTL_MS: 7 * 24 * 60 * 60 * 1000,
   SHOP_PREVIEW_TOKEN_TTL_MS: 24 * 60 * 60 * 1000,
   signShopToken: async () => "contact-token",

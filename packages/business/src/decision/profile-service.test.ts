@@ -1,8 +1,8 @@
-import { decisionRepository } from "@chatbotx.io/database/repositories"
+import { decisionRepository } from "@inboxos.io/database/repositories"
 import type {
   DecisionConnectionModel,
   DecisionProfileModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import type { DecisionProfileForm } from "./contracts"
 import { decisionProfileService } from "./profile-service"

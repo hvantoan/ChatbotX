@@ -1,4 +1,4 @@
-import { referenceNameFromName } from "@chatbotx.io/database/partials"
+import { referenceNameFromName } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { allocateUniqueName, nextFieldPosition } from "../src/pipeline/naming"
 

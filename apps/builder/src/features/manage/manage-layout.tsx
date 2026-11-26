@@ -5,7 +5,7 @@ import {
   SidebarMobileHandle,
   SidebarProvider,
   SidebarTrigger,
-} from "@chatbotx.io/ui/components/ui/sidebar"
+} from "@inboxos.io/ui/components/ui/sidebar"
 import { usePathname } from "next/navigation"
 import { type ReactNode, useEffect, useState } from "react"
 

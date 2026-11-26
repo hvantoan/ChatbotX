@@ -1,18 +1,18 @@
 {
-  "name": "@chatbotx.io/imports",
+  "name": "@inboxos.io/imports",
   "version": "0.1.0",
   "type": "module",
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/unzipper": "^0.10.11",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "csv-parse": "^7.0.2",
     "exceljs": "^4.4.0",
     "unzipper": "^0.12.5",

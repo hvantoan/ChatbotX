@@ -1,7 +1,7 @@
 import {
   type TriggerAction,
   triggerActions,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   archiveConversation,
   assignConversation,

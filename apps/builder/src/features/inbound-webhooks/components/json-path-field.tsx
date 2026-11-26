@@ -1,9 +1,9 @@
 "use client"
 
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { canonicalizeJsonPath } from "@chatbotx.io/utils/json-path"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { canonicalizeJsonPath } from "@inboxos.io/utils/json-path"
 import { FileSearchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useId, useState } from "react"

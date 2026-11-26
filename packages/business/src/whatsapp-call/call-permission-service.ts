@@ -1,6 +1,6 @@
-import type { WhatsappCallPermissionResponse } from "@chatbotx.io/database/partials"
-import { whatsappCallPermissionRepository } from "@chatbotx.io/database/repositories"
-import type { WhatsappCallPermissionModel } from "@chatbotx.io/database/types"
+import type { WhatsappCallPermissionResponse } from "@inboxos.io/database/partials"
+import { whatsappCallPermissionRepository } from "@inboxos.io/database/repositories"
+import type { WhatsappCallPermissionModel } from "@inboxos.io/database/types"
 
 const MS_PER_SECOND = 1000
 

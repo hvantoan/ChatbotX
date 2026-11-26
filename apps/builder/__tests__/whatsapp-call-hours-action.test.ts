@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 type UpdateCallHoursHandler = (args: {
@@ -36,7 +36,7 @@ vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
   assertWorkspaceSuperAdmin: assertSuperAdminMock,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async () => ({})),
   integrationWhatsappService: {
     findWorkspaceIntegration: findWorkspaceIntegrationMock,
@@ -44,19 +44,19 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheKeys: invalidateCacheKeysMock,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp/api/calling", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/calling", () => ({
   getCallingSettings: getCallingSettingsMock,
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp", () => ({
+vi.mock("@inboxos.io/integration-whatsapp", () => ({
   mapToChannelError: (error: unknown) => error,
   readWhatsappOriginErrorDetail: (originError: unknown) => {
     const error = (originError as { error?: Record<string, unknown> })?.error

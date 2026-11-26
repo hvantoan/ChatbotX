@@ -1,6 +1,6 @@
-import type { EcommerceSettings } from "@chatbotx.io/database/partials"
-import { productRepository } from "@chatbotx.io/database/repositories"
-import { signShopToken } from "@chatbotx.io/encryption/shop-token"
+import type { EcommerceSettings } from "@inboxos.io/database/partials"
+import { productRepository } from "@inboxos.io/database/repositories"
+import { signShopToken } from "@inboxos.io/encryption/shop-token"
 import {
   buttonTypes,
   COLLECTION_MAX_PRODUCTS,
@@ -8,14 +8,14 @@ import {
   type SendCollectionStepSchema,
   stepTypes,
   uploadModes,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import {
   computeLinePrice,
   formatMoney,
   stackDiscountPercents,
-} from "@chatbotx.io/utils/money"
-import { toSafeWebUrl } from "@chatbotx.io/utils/web-url"
+} from "@inboxos.io/utils/money"
+import { toSafeWebUrl } from "@inboxos.io/utils/web-url"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
 import {
   type CustomerMessageLanguage,

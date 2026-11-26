@@ -3,7 +3,7 @@ import {
   AITextToSpeechDefaultFn,
   aiEditImageDefaultFn,
   aiGenerateImageDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { HeavyStepProps } from "../src/integration/handlers/flow-utils"
 
@@ -17,9 +17,9 @@ const redisState = new Map<string, string>()
 const heavyResumeFallbackJobIdPattern = /^heavy-resume-fallback-/
 const imageJobIdPattern = /^heavy-aiGenerateImage-/
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     getRedisConnection: () => mocks.redis,
@@ -105,7 +105,7 @@ function evalTransition(
   return Promise.resolve(nextStatus)
 }
 
-const { HeavyJobAction } = await import("@chatbotx.io/worker-config")
+const { HeavyJobAction } = await import("@inboxos.io/worker-config")
 const {
   buildHeavyJobId,
   buildHeavyOutcomeKey,

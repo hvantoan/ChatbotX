@@ -13,18 +13,18 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
   isLockAcquisitionError: mocks.isLockAcquisitionError,
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   CallSummaryProviderNotConnectedError:
     mocks.CallSummaryProviderNotConnectedError,
   generateCallSummary: mocks.generateCallSummary,
   listConnectedCallSummaryProviders: mocks.listConnectedCallSummaryProviders,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   whatsappCallSummaryService: { attachSummary: mocks.attachSummary },
   whatsappCallTranscriptService: {
     getTranscriptTextForCall: mocks.getTranscriptTextForCall,

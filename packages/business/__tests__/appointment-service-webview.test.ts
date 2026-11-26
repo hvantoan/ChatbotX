@@ -32,14 +32,14 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
   },
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   appointmentRepository: {
     findBy: (...args: unknown[]) => mocks.findBy(...args),
     create: (...args: unknown[]) => mocks.create(...args),
@@ -62,19 +62,19 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   buildAppointmentCancelPostback: (token: string) =>
     `appointment_cancel:${token}`,
   signAppointmentCancelToken: vi.fn(async () => "cancel-token"),
   signAppointmentScheduleToken: vi.fn(async () => "schedule-token"),
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: {
     sendChatMessage: "sendChatMessage",
   },

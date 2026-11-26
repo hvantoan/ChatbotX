@@ -1,7 +1,5 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { useCallbackRef } from "@chatbotx.io/ui/hooks/use-callback-ref"
 import {
   DndContext,
   type DragEndEvent,
@@ -12,6 +10,8 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { useCallbackRef } from "@inboxos.io/ui/hooks/use-callback-ref"
 import {
   keepPreviousData,
   useQuery,

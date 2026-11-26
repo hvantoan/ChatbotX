@@ -1,27 +1,27 @@
 import { createHash } from "node:crypto"
-import { commentAutomationAnalyticsService } from "@chatbotx.io/analytics"
+import { commentAutomationAnalyticsService } from "@inboxos.io/analytics"
 import {
   aiAgentService,
   commentAutomationService,
   contactInboxService,
   logProviderError,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type AIAgentProviderModels,
   type CommentAIModeration,
   type CommentModerationCategory,
   commentModerationCategories,
   isAIModerationEnabled,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   CommentAutomationModel,
   CommentModerationLogInsert,
   ContactInboxModel,
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import { distributedStore } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { distributedStore } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import {
   AIJobAction,
   type AIJobCommentModeration,
@@ -29,7 +29,7 @@ import {
   IntegrationJobAction,
   type IntegrationJobProcessCommentAutomation,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { generateText, Output } from "ai"
 import { z } from "zod"
 import { createReplyModel, getProviderName } from "../../../lib/ai/reply-model"

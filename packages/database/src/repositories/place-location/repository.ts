@@ -6,13 +6,13 @@ import {
   eq,
   getTableColumns,
   ilike,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   placeCategoryModel,
   placeLocationModel,
-} from "@chatbotx.io/database/schema"
-import { likeContains, parsePagination } from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { likeContains, parsePagination } from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 /** Every column a place location form or API writes. */
 export type PlaceLocationWriteValues = Omit<

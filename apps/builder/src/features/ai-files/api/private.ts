@@ -1,5 +1,5 @@
-import { aiFileService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { aiFileService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"
 import { listAIFiles } from "../queries"

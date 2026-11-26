@@ -6,15 +6,15 @@ import {
   inArray,
   like,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   pipelineFieldModel,
   pipelineItemCounterModel,
   pipelineItemModel,
   pipelineMemberModel,
   pipelineModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { escapeLikePattern } from "../../utils"
 
 export type PipelineInsert = Omit<

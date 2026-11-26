@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   copyObject: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       questionnaireModel: { findMany: mocks.questionnaireFindMany },
@@ -23,18 +23,18 @@ vi.mock("@chatbotx.io/database/client", () => ({
   and: vi.fn(),
   isUniqueViolationError: () => false,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   questionnaireModel: { table: "questionnaire" },
   questionnaireQuestionModel: { table: "question" },
   couponTopicModel: { table: "topic" },
 }))
 let counter = 0
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { copyObject: mocks.copyObject },
 }))
 vi.mock("../src/logger", () => ({ logger: { warn: vi.fn() } }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => `new-${++counter}`,
   mapWithConcurrency: <T, R>(
     items: readonly T[],

@@ -1,4 +1,4 @@
-import { FieldOperationType as RegistryOperationType } from "@chatbotx.io/utils/custom-field-operation"
+import { FieldOperationType as RegistryOperationType } from "@inboxos.io/utils/custom-field-operation"
 import { describe, expect, test } from "vitest"
 import {
   FieldOperationType,

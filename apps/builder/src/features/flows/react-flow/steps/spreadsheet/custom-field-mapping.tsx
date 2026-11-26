@@ -3,8 +3,8 @@
 import {
   spreadsheetContactToSheetMappingDefaultFn,
   spreadsheetSheetToContactMappingDefaultFn,
-} from "@chatbotx.io/flow-config"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
+} from "@inboxos.io/flow-config"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useCallback, useEffect } from "react"

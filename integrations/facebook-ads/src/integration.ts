@@ -5,7 +5,7 @@ import {
   type IntegrationDefinition,
   probeVerify,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   getAdAccountDetails,
   getAdAccounts,

@@ -1,13 +1,13 @@
 "use client"
 
-import { FormOptionalLabelProvider } from "@chatbotx.io/ui/components/form/optional-label-context"
+import { FormOptionalLabelProvider } from "@inboxos.io/ui/components/form/optional-label-context"
 import {
   CONTACT_LOOKUP_ORDER,
   type ContactIdentityKind,
   GENERIC_CHANNEL_USER_ID_EXAMPLE_PATH,
   INBOUND_WEBHOOK_CHANNEL_SPECS,
   missingCreationIdentityKinds,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useFormContext, useWatch } from "react-hook-form"

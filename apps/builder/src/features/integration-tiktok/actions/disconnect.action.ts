@@ -3,8 +3,8 @@
 import {
   tiktokIntegrationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

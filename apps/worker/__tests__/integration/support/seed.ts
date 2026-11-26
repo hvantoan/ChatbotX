@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   appointmentCalendarModel,
   appointmentModel,
@@ -18,8 +18,8 @@ import {
   userModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 let counter = 0
 const nextCounter = (): number => {

@@ -4,7 +4,7 @@ import {
   customFieldTypes,
   formFieldTypes,
   operatorTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   botFieldConditionSchema,

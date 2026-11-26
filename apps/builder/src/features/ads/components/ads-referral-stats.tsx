@@ -1,14 +1,14 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/card"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import {
   Table,
   TableBody,
@@ -16,8 +16,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
-import type { AdsEligibleChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/table"
+import type { AdsEligibleChannelType } from "@inboxos.io/utils/channel"
 import { ORPCError } from "@orpc/client"
 import { type UseQueryResult, useQuery } from "@tanstack/react-query"
 import { useLocale, useTranslations } from "next-intl"
@@ -26,7 +26,7 @@ import { orpc } from "@/lib/orpc/query"
 import type { ReferralStatsResponse } from "../schema/referral-stats"
 
 const AD_ROWS_LIMIT = 50
-/** `reportTimeoutException` in `@chatbotx.io/business`: retrying cannot help. */
+/** `reportTimeoutException` in `@inboxos.io/business`: retrying cannot help. */
 const REPORT_TIMEOUT_CODE = "reportTimeout"
 /** TanStack Query's default, kept for every failure except a timeout. */
 const MAX_REPORT_RETRIES = 3

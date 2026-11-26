@@ -1,7 +1,7 @@
-import { db, eq } from "@chatbotx.io/database/client"
-import { integrationModel } from "@chatbotx.io/database/schema"
-import { AuthType, type SecretTextAuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+import { db, eq } from "@inboxos.io/database/client"
+import { integrationModel } from "@inboxos.io/database/schema"
+import { AuthType, type SecretTextAuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import type { AnyPgTable } from "drizzle-orm/pg-core"
 
 type AiProviderTable = AnyPgTable & {

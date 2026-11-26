@@ -1,4 +1,4 @@
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 
 type ErrorLogger = {
   error: (context: Record<string, unknown>, message: string) => void

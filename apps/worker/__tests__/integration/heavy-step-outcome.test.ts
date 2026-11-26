@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto"
-import { aiGenerateImageDefaultFn } from "@chatbotx.io/flow-config"
+import { aiGenerateImageDefaultFn } from "@inboxos.io/flow-config"
 import { Redis } from "ioredis"
 import { afterAll, beforeEach, describe, expect, test, vi } from "vitest"
 import type { HeavyStepProps } from "../../src/integration/handlers/flow-utils"
@@ -19,9 +19,9 @@ const mocks = vi.hoisted(() => ({
   saveResultToCustomField: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     getRedisConnection: () => redis,
@@ -36,7 +36,7 @@ vi.mock("../../src/integration/utils/contact", () => ({
   saveResultToCustomField: mocks.saveResultToCustomField,
 }))
 
-const { HeavyJobAction } = await import("@chatbotx.io/worker-config")
+const { HeavyJobAction } = await import("@inboxos.io/worker-config")
 const {
   buildHeavyOutcomeKey,
   claimHeavyStepResume,

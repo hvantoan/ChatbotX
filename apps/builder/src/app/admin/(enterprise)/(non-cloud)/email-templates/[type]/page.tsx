@@ -1,5 +1,5 @@
-import { tenantService } from "@chatbotx.io/business"
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/schema"
+import { tenantService } from "@inboxos.io/business"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/schema"
 import {
   DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT,
   DEFAULT_ACCOUNT_CREDENTIALS_TEMPLATE,
@@ -9,8 +9,8 @@ import {
   DEFAULT_MAGIC_LINK_TEMPLATE,
   DEFAULT_SIGNUP_SUBJECT,
   DEFAULT_SIGNUP_TEMPLATE,
-} from "@chatbotx.io/mail"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/mail"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import { ArrowLeftIcon } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"

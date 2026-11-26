@@ -6,7 +6,7 @@ import {
   REALTIME_TOKEN_PURPOSE,
   signGuestConnectToken,
   signMemberConnectToken,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { SignJWT } from "jose"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { createRealtimeGateway, type RealtimeGateway } from "../src/gateway"

@@ -9,7 +9,7 @@ import {
   type SendProductsDisplay,
   type SendProductsStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 export type SendProductsFormValues = Pick<
   SendProductsStepSchema,

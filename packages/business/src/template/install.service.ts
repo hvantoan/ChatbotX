@@ -1,22 +1,22 @@
-import { type DatabaseClient, db, sql } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, sql } from "@inboxos.io/database/client"
 import type {
   TemplateCategory,
   TemplatePermissions,
   TemplateResourceKind,
-} from "@chatbotx.io/database/partials"
-import { templateInstallationRepository } from "@chatbotx.io/database/repositories"
-import { spreadCreatedAt } from "@chatbotx.io/database/repositories/template-installed-resource"
-import { templateInstalledResourceModel } from "@chatbotx.io/database/schema"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import { updateTriggerCache } from "@chatbotx.io/events"
-import type { TemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { templateInstallationRepository } from "@inboxos.io/database/repositories"
+import { spreadCreatedAt } from "@inboxos.io/database/repositories/template-installed-resource"
+import { templateInstalledResourceModel } from "@inboxos.io/database/schema"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import { updateTriggerCache } from "@inboxos.io/events"
+import type { TemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { aiAgentService } from "../ai-agent/service"
 import { automatedResponseService } from "../automated-response/service"
 import { botFieldService } from "../bot-field/service"
 import { couponService } from "../coupon/service"
 import { customFieldService } from "../custom-field/service"
-import { ChatbotXException, toPublicErrorMessage } from "../errors"
+import { InboxOSException, toPublicErrorMessage } from "../errors"
 import { logger } from "../logger"
 import { pipelineService } from "../pipeline/service"
 import { resolveManifests } from "./adapters/manifests/resolve"
@@ -363,7 +363,7 @@ export const invalidateAfterCommit = async (
 const TEMPLATE_INSTALL_LEASE_LOST_CODE = "templateInstallLeaseLost"
 
 const templateInstallLeaseLostException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The template install lease was lost",
     TEMPLATE_INSTALL_LEASE_LOST_CODE,
   )

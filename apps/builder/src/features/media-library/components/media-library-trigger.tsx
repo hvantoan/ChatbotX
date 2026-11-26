@@ -1,7 +1,7 @@
 "use client"
 
-import { Button, ButtonPrimitive } from "@chatbotx.io/ui/components/ui/button"
-import { isImageMimeType } from "@chatbotx.io/utils/inbox-image-support"
+import { Button, ButtonPrimitive } from "@inboxos.io/ui/components/ui/button"
+import { isImageMimeType } from "@inboxos.io/utils/inbox-image-support"
 import { ImageIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useCallback, useRef, useState, useTransition } from "react"

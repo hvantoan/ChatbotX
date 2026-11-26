@@ -7,24 +7,24 @@ import {
   contactInboxService,
   contactService,
   conversationService,
-} from "@chatbotx.io/business"
-import { describeDatabaseError } from "@chatbotx.io/database/client"
+} from "@inboxos.io/business"
+import { describeDatabaseError } from "@inboxos.io/database/client"
 import type {
   BulkCreateAttachmentInput,
   CreateMessageInput,
   IMessageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   contactRepository,
   createMessageRepository,
-} from "@chatbotx.io/database/repositories"
-import type { InboxModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { InboxModel } from "@inboxos.io/database/types"
 import {
   type IncomingContact,
   type IncomingMessage,
   toKeepOriginal,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import pLimit from "p-limit"
 import { logger } from "../../../lib/logger"
 
@@ -43,7 +43,7 @@ export type ContactImportLink = ChannelContactImportLink
 export type BulkImportContactsResult = BulkImportChannelContactsResult
 
 // ---------- Coexist time-derived Message IDs ----------
-// Layout mirrors `@chatbotx.io/utils` `createId()` shift so coexist IDs share
+// Layout mirrors `@inboxos.io/utils` `createId()` shift so coexist IDs share
 // the same numeric magnitude/length as live snowflakes:
 //   high → low: [ 53 bits ms since epoch ][ 14 bits disambiguator ]
 //   ts_shift = 14   (identical to uuniq layout)

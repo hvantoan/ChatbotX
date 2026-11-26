@@ -1,8 +1,8 @@
 import {
   adsConversionService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import type { AdsConversionJobEvaluateConversionTrigger } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { AdsConversionJobEvaluateConversionTrigger } from "@inboxos.io/worker-config"
 
 type EvaluateConversionTriggerData =
   AdsConversionJobEvaluateConversionTrigger["data"]

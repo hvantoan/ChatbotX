@@ -1,11 +1,11 @@
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   questionnaireModel,
   questionnaireQuestionModel,
-} from "@chatbotx.io/database/schema"
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId, mapWithConcurrency } from "@chatbotx.io/utils"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/database/schema"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId, mapWithConcurrency } from "@inboxos.io/utils"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import { logger } from "../../logger"
 import { questionnaireImagePrefix } from "../template-object-keys"
 import { insertCopyNamed } from "./naming"

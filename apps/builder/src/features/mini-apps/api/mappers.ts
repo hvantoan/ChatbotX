@@ -1,9 +1,9 @@
-import { miniAppService } from "@chatbotx.io/business/mini-app"
+import { miniAppService } from "@inboxos.io/business/mini-app"
 import type {
   MiniAppModel,
   MiniAppPublicationModel,
-} from "@chatbotx.io/database/types"
-import { collectCustomFieldMappings, locateIssues } from "@chatbotx.io/mini-app"
+} from "@inboxos.io/database/types"
+import { collectCustomFieldMappings, locateIssues } from "@inboxos.io/mini-app"
 import { buildMiniAppPublicUrl } from "../lib/public-url"
 
 /** Response shapes shared by the public API and the builder actions. */

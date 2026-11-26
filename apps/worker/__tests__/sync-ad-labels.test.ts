@@ -11,7 +11,7 @@ const linkTagToContactsReturningNewUnscoped = vi.fn(async () => [
 const findByTagAndIntegration = vi.fn(
   async (): Promise<{ id: string } | undefined> => undefined,
 )
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   tagChannelRepository: {
     findByTagAndIntegration: (...args: unknown[]) =>
       findByTagAndIntegration(...args),
@@ -19,7 +19,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
 }))
 const recordTagChannelAssignmentsUnscoped = vi.fn(async () => undefined)
 const enqueueTagAppliedEvaluationsForInbox = vi.fn(async () => undefined)
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   tagService: {
     ensureTagByName: (...args: unknown[]) => ensureTagByName(...args),
     linkTagToContactsReturningNewUnscoped: (...args: unknown[]) =>
@@ -33,7 +33,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 const emitTagApplied = vi.fn(async () => undefined)
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitTagApplied: (...args: unknown[]) => emitTagApplied(...args),
 }))
 vi.mock("../src/lib/logger", () => ({

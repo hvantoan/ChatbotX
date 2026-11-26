@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   agentResponseAnalyticsService: { recordEvents: mocks.recordEvents },
 }))
 vi.mock("../src/lib/logger", () => ({ logger: { warn: mocks.warn } }))

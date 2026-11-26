@@ -11,22 +11,22 @@ import {
   isUniqueViolationError,
   sql,
   sum,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import type {
   QuestionnaireAnswerValue,
   QuestionnaireChoiceOption,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   contactModel,
   questionnaireAnswerModel,
   type questionnaireQuestionModel,
   questionnaireSubmissionModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { contactService, isRichSystemContactField } from "../contact/service"
 import { contactCustomFieldService } from "../contact-custom-field/service"

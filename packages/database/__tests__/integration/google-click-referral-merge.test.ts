@@ -8,7 +8,7 @@
  *
  * Every test seeds its own fixture inside a transaction that is always rolled
  * back. Skipped unless `DATABASE_URL` points at a reachable database; run it
- * with `pnpm --filter @chatbotx.io/database test:db`.
+ * with `pnpm --filter @inboxos.io/database test:db`.
  */
 
 import { eq } from "drizzle-orm"

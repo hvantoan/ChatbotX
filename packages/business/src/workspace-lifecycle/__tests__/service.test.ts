@@ -36,7 +36,7 @@ vi.mock("../../leaderboard/purge", () => ({
   purgeLeaderboardDataForWorkspace: vi.fn().mockResolvedValue(0),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mockTransaction },
   sql: Object.assign(
     vi.fn(() => ({})),
@@ -47,7 +47,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByInboxId: mockFindByInboxId },
   HEAVY_WORKSPACE_TABLES: ["ErrorLog"],
   LIVE_RUN_STATUSES: [],

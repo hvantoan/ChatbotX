@@ -5,10 +5,10 @@ const mocks = vi.hoisted(() => ({
   mockFindMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { aiMCPServerModel: { findMany: mocks.mockFindMany } } },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertSafeMcpEndpoint: mocks.assertSafeMcpEndpoint,
 }))
 

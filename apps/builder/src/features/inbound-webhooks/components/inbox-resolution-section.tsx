@@ -1,19 +1,19 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import {
   SelectField,
   type SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/form/select-field"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@chatbotx.io/ui/components/ui/radio-group"
+} from "@inboxos.io/ui/components/ui/radio-group"
 import {
   INBOUND_WEBHOOK_CHANNEL_SPECS,
   PAYLOAD_RESOLVABLE_CHANNELS,
-} from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/utils/inbound-webhook-channel"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { type PathValue, useFormContext, useWatch } from "react-hook-form"

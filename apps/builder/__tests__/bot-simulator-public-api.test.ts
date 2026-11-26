@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   resolveTenantSettings: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWebchatService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
   },

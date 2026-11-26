@@ -5,7 +5,7 @@ import {
 import {
   MUSE_MAX_TEMPERATURE,
   MUSE_REASONING_HEADROOM_TOKENS,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 
 export const MUSE_BASE_URL = "https://api.meta.ai/v1"
 

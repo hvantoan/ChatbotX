@@ -4,16 +4,16 @@ import type {
   TemplateInstallationDetail as Detail,
   TemplateInstallationResourcePage,
   TemplateSyncHistoryItem,
-} from "@chatbotx.io/business"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/business"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/card"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { Loader2Icon, LockIcon, RotateCcwIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"

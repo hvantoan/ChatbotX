@@ -2,14 +2,14 @@ import {
   botMessageAnalyticsService,
   messageAnalyticsService,
   timeRangeQueryWithGranularityMHDFilterSchema,
-} from "@chatbotx.io/analytics"
+} from "@inboxos.io/analytics"
 import {
   getBotMessagesAIProvidersResponseSchema,
   getMessagesBySenderStatsResponseSchema,
   getMessagesStatsResponseSchema,
   timeRangeQueryWithFilterSchema,
   timeRangeQueryWithGranularityDMFilterSchema,
-} from "@chatbotx.io/analytics/schemas"
+} from "@inboxos.io/analytics/schemas"
 import { os } from "@orpc/server"
 import { logger } from "../lib/log"
 

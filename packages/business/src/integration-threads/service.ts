@@ -5,11 +5,11 @@ import {
   eq,
   findOrFail,
   sql,
-} from "@chatbotx.io/database/client"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import { integrationThreadsModel } from "@chatbotx.io/database/schema"
-import type { IntegrationThreadsModel } from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/client"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import { integrationThreadsModel } from "@inboxos.io/database/schema"
+import type { IntegrationThreadsModel } from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { z } from "zod"
 import { BaseService } from "../base.service"
 import {
@@ -22,7 +22,7 @@ import {
   withQuotaCompensation,
 } from "../connection"
 import { connectionStateService } from "../connection/state-service"
-import { ChatbotXException, channelDuplicatedException } from "../errors"
+import { channelDuplicatedException, InboxOSException } from "../errors"
 import { inboxService } from "../inbox/service"
 import { logger } from "../logger"
 import { workspaceService } from "../workspace"
@@ -219,7 +219,7 @@ class IntegrationThreadsService extends BaseService {
             })
           } catch (err) {
             if (
-              err instanceof ChatbotXException &&
+              err instanceof InboxOSException &&
               err.code === "connectionAlreadyConnected"
             ) {
               throw channelDuplicatedException()

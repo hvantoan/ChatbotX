@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { update: mocks.update },
   and: vi.fn(),
   eq: vi.fn(),
@@ -25,16 +25,16 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByProviderSourceId: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationTiktokModel: { id: "id" },
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/integration-tiktok")>()),
+vi.mock("@inboxos.io/integration-tiktok", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/integration-tiktok")>()),
   updateTiktokDirectReplyStatus: mocks.updateTiktokDirectReplyStatus,
   getTiktokDirectReplyStatus: mocks.getTiktokDirectReplyStatus,
 }))

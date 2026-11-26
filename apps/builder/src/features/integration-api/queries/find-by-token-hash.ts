@@ -1,5 +1,5 @@
-import { integrationApiRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationApiModel } from "@chatbotx.io/database/types"
+import { integrationApiRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationApiModel } from "@inboxos.io/database/types"
 
 /** Auth-path lookup — no user session, called from the bearer-token middleware. */
 export const findIntegrationApiByTokenHash = async ({

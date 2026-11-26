@@ -1,12 +1,12 @@
 "use client"
 
-import type { ValidateIngestFailureCode } from "@chatbotx.io/business"
+import type { ValidateIngestFailureCode } from "@inboxos.io/business"
 import {
   type GoogleAdsClickIdType,
   googleAdsClickIdTypeValues,
-} from "@chatbotx.io/database/partials"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -16,17 +16,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { isSendableConversionAction } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/ui/components/ui/select"
+import { isSendableConversionAction } from "@inboxos.io/utils/google-click"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

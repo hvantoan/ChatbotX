@@ -2,7 +2,7 @@
 
 Sending Meta's **payment request CTA templates**: a template button that lets a
 buyer in Brazil copy a Pix code, copy a Boleto line, open a payment link, or
-confirm a saved card with one click. ChatbotX does not create these templates
+confirm a saved card with one click. InboxOS does not create these templates
 (they are made in WhatsApp Manager and synced like any other template); it
 sends them, with the per-customer payment data filled in.
 

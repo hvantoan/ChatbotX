@@ -1,9 +1,9 @@
 "use client"
 
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
 import { TrophyIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useLeaderboardOptions } from "@/features/leaderboards/lib/use-leaderboard-options"

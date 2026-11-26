@@ -1,4 +1,4 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { zodFieldReference } from "../field-reference"
 import {

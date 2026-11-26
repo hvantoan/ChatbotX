@@ -2,7 +2,7 @@ import {
   type ContactImportColumnMap,
   type ContactImportField,
   contactImportFields,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 export const normalizeContactHeader = (raw: string): string =>
   raw

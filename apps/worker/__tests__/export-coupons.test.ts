@@ -8,24 +8,24 @@ const mocks = vi.hoisted(() => ({
   updateExportFile: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   couponService: {
     listCouponsForExportPage: (...args: unknown[]) =>
       mocks.listCouponsForExportPage(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   couponRepository: {
     updateExportFile: (...args: unknown[]) => mocks.updateExportFile(...args),
   },
 }))
 
-vi.mock("@chatbotx.io/filesystem/node-upload", () => ({
+vi.mock("@inboxos.io/filesystem/node-upload", () => ({
   createUpload: (...args: unknown[]) => mocks.createUpload(...args),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   loopableItemsCount: 2,
 }))
 

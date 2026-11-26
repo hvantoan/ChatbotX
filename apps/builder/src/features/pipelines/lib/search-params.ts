@@ -2,7 +2,7 @@ import {
   type PipelineType,
   pipelineItemSortKeys,
   pipelineTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   parseAsArrayOf,
   parseAsInteger,

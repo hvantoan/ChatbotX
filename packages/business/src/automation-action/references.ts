@@ -1,16 +1,16 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   flowRepository,
   pipelineReferenceRepository,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import { isBigintId } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/repositories"
+import { isBigintId } from "@inboxos.io/database/utils"
 import {
   FieldReferenceKind,
   type PipelineStepAction,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { stableStringify } from "../audit/diff"
 import { botFieldService } from "../bot-field/service"
 import { customFieldService } from "../custom-field/service"

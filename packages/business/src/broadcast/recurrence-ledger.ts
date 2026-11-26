@@ -1,17 +1,17 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   BroadcastOccurrenceOutcome,
   BroadcastOccurrenceReason,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type LedgerRowInput,
   broadcastRecurrenceRepository as repository,
-} from "@chatbotx.io/database/repositories"
-import type { BroadcastRecurrenceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { BroadcastRecurrenceModel } from "@inboxos.io/database/types"
 import {
   listOccurrencesBetween,
   toLocalSlot,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 
 /**
  * Stopping a series and accounting its ledger. Kept free of the plan and

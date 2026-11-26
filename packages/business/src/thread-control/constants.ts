@@ -1,8 +1,8 @@
-import type { ThreadControlEvent } from "@chatbotx.io/database/partials"
+import type { ThreadControlEvent } from "@inboxos.io/database/partials"
 import {
   isThreadControlChannel,
   type ThreadControlChannel,
-} from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/utils/channel"
 
 /**
  * Events that prove another responder shares the number (or that an explicit

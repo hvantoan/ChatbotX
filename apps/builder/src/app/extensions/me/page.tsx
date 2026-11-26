@@ -1,5 +1,5 @@
-import { systemFieldService } from "@chatbotx.io/business/system-field"
-import { ensureContactAvatarMirrored } from "@chatbotx.io/channel-registry/media-hydration"
+import { systemFieldService } from "@inboxos.io/business/system-field"
+import { ensureContactAvatarMirrored } from "@inboxos.io/channel-registry/media-hydration"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"

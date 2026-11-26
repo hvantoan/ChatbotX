@@ -1,4 +1,4 @@
-import type { TemplateFlowEntry } from "@chatbotx.io/flow-config"
+import type { TemplateFlowEntry } from "@inboxos.io/flow-config"
 import { idMapOf } from "../shared"
 import type { TemplateInstallContext } from "../types"
 

@@ -4,20 +4,20 @@ import {
   type AIAgentSalesProfile,
   type AIAgentSalesTargetProduct,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+} from "@inboxos.io/ui/components/ui/select"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Loader2Icon, PlusIcon, SaveIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"

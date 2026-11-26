@@ -1,8 +1,8 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CalendarClockIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"

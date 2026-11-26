@@ -23,15 +23,15 @@ const mocks = vi.hoisted(() => ({
   upsertConnectionRow: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: { create: mocks.inboxCreate },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   dispatchAuditRecordSafely: mocks.dispatchAuditRecordSafely,
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   connectionStateService: { transition: mocks.transition },
   toChannelType: (provider: string) => provider,
   upsertConnectionRow: mocks.upsertConnectionRow,
@@ -44,7 +44,7 @@ vi.mock("@chatbotx.io/business/connection", () => ({
   saveOrInsertSatellite: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   connectionNotConfiguredException: (provider: string) =>
     new Error(`${provider} not configured`),
   notFoundException: (message: string) => new Error(message),
@@ -52,11 +52,11 @@ vi.mock("@chatbotx.io/business/errors", () => ({
     Object.assign(new Error(message), { field }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (fn: (tx: unknown) => unknown) => fn({}) },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByIdForWorkspace: vi.fn() },
 }))
 
@@ -67,8 +67,8 @@ vi.mock("../src/logger", () => ({
 }))
 
 // Dynamic `import()` is required here, not a static import: the mocks above
-// must be registered before `internal.ts` (and its `@chatbotx.io/business`/
-// `@chatbotx.io/database` dependencies) are evaluated, which only a
+// must be registered before `internal.ts` (and its `@inboxos.io/business`/
+// `@inboxos.io/database` dependencies) are evaluated, which only a
 // post-`vi.mock` dynamic import guarantees.
 const { connectAndPersist, subscribeWebhookBestEffort } = await import(
   "../src/internal"

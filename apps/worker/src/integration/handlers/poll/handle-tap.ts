@@ -3,22 +3,22 @@ import {
   getPollState,
   pollService,
   pollVoteService,
-} from "@chatbotx.io/business/poll"
-import type { PollWithCandidates } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business/poll"
+import type { PollWithCandidates } from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   sendTextStepDefaultFn,
   sendTextStepSchema,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import type { RichButtonPayload } from "../rich-response/button-payload"
 import { MESSAGE_ORDER_DELAY_MS } from "../rich-response/constants"

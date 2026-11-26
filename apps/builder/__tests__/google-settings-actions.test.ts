@@ -18,7 +18,7 @@ vi.mock("@/lib/safe-action", () => {
   return { authActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: {
     findDecrypted: findDecryptedSpy,
     remove: removeSpy,
@@ -32,7 +32,7 @@ vi.mock("../src/features/platform-credentials/scope", () => ({
 }))
 
 const { googleCredentialUpdateSchema } = await import(
-  "@chatbotx.io/database/partials"
+  "@inboxos.io/database/partials"
 )
 const { deleteGoogleSettingsAction } = await import(
   "../src/features/platform-credentials/google/delete-google-settings.action"
@@ -138,7 +138,7 @@ describe("Google credential actions", () => {
 
   test("the public projection exposes only the client id", async () => {
     const { googleCredentialPublicSchema } = await import(
-      "@chatbotx.io/database/partials"
+      "@inboxos.io/database/partials"
     )
 
     expect(googleCredentialPublicSchema.parse(STORED)).toEqual({

@@ -1,4 +1,4 @@
-import { aiAgentModelConfig } from "@chatbotx.io/database/partials"
+import { aiAgentModelConfig } from "@inboxos.io/database/partials"
 import {
   aiEditImageSchema,
   aiGenerateImageSchema,
@@ -7,10 +7,10 @@ import {
   aiTextToSpeechSchema,
   type FlowActionTargetType,
   metadataSchema,
-} from "@chatbotx.io/flow-config"
-import { getChildLogger } from "@chatbotx.io/logger"
-import type { CommentAnchor } from "@chatbotx.io/sdk"
-import { isStoredImageOptimizationEnabled } from "@chatbotx.io/utils/image-optimize-settings"
+} from "@inboxos.io/flow-config"
+import { getChildLogger } from "@inboxos.io/logger"
+import type { CommentAnchor } from "@inboxos.io/sdk"
+import { isStoredImageOptimizationEnabled } from "@inboxos.io/utils/image-optimize-settings"
 import { type JobsOptions, Queue } from "bullmq"
 import { z } from "zod"
 import {

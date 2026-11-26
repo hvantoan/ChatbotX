@@ -39,7 +39,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: mocks.buildContext,
   flowService: { assertAllExist: mocks.assertAllExist },
   inboxService: {
@@ -50,28 +50,28 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/branding", () => ({
+vi.mock("@inboxos.io/business/branding", () => ({
   moveBrandingMenuLast: mocks.moveBrandingMenuLast,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.dbTransaction },
   eq: vi.fn((field: unknown, value: unknown) => ({ field, value })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationMessengerModel: { id: "id" },
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   encodeButtonPayload: mocks.encodeButtonPayload,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   ensureMessengerWhitelistedDomain: mocks.ensureMessengerWhitelistedDomain,
   integration: {
     runAction: mocks.runAction,
@@ -92,7 +92,7 @@ vi.mock("@/lib/log", () => ({
   logger: { debug: vi.fn(), warn: mocks.loggerWarn },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: ({ fn }: { fn: () => Promise<unknown> }) => fn(),
   },

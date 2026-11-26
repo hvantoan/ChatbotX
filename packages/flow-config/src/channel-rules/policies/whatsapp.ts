@@ -30,7 +30,7 @@ export const whatsappFlowPolicy = defineChannelFlowPolicy({
   ],
   // Cloud API product messages (single/multi-product, product carousel).
   // Meta states no section cap for non-template multi-product messages, so the
-  // 10-section limit is ChatbotX's own, matched to the MPM template button.
+  // 10-section limit is InboxOS's own, matched to the MPM template button.
   productMessages: {
     displays: {
       products: {

@@ -1,4 +1,4 @@
-export { inboxResource } from "@chatbotx.io/business/inbox/schema"
+export { inboxResource } from "@inboxos.io/business/inbox/schema"
 
 import type {
   InboxModel,
@@ -9,7 +9,7 @@ import type {
   IntegrationWebchatModel,
   IntegrationWhatsappModel,
   IntegrationZaloModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 export type InboxResource = InboxModel & {
   integrationWhatsapp?: IntegrationWhatsappModel

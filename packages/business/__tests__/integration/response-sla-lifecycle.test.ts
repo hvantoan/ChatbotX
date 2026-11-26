@@ -7,21 +7,21 @@
  * and switching the policy off while windows open concurrently.
  *
  * Skipped unless `DATABASE_URL` points at a reachable database; run it with
- * `pnpm --filter @chatbotx.io/business test:db`.
+ * `pnpm --filter @inboxos.io/business test:db`.
  */
 
-import { db, eq, sql } from "@chatbotx.io/database/client"
+import { db, eq, sql } from "@inboxos.io/database/client"
 import {
   closeHumanReplyWindow,
   responseSlaRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   contactModel,
   conversationModel,
   userModel,
   workingHoursMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { afterAll, beforeAll, describe, expect, test, vi } from "vitest"
 import { humanReplyWindowSet } from "../../src/conversation/human-reply-window"
 import { responseSlaService } from "../../src/response-sla"

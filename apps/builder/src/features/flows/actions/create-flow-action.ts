@@ -1,6 +1,6 @@
 "use server"
 
-import { flowService } from "@chatbotx.io/business"
+import { flowService } from "@inboxos.io/business"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

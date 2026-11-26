@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     listObjects: mocks.listObjects,
     deleteObject: mocks.deleteObject,

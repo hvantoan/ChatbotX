@@ -6,24 +6,24 @@ import {
   aiHandoverSettingsService,
   type BulkRunInbox,
   ThreadControlUnsupportedError,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type BulkThreadControl,
   createBulkThreadControl,
-} from "@chatbotx.io/channel-registry/thread-control"
-import { toThreadControlTimestamp } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/channel-registry/thread-control"
+import { toThreadControlTimestamp } from "@inboxos.io/database/partials"
 import type {
   AiHandoverBulkRunGuard,
   BulkAiContactInboxRow,
-} from "@chatbotx.io/database/repositories"
-import type { AiHandoverBulkRunModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { AiHandoverBulkRunModel } from "@inboxos.io/database/types"
 import {
   type BulkThreadControlLimits,
   type BulkThreadControlResult,
   ChannelError,
   ChannelErrorCategory,
-} from "@chatbotx.io/sdk"
-import type { IntegrationJobAiHandoverBulkToggle } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import type { IntegrationJobAiHandoverBulkToggle } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import {
   accountBatch,

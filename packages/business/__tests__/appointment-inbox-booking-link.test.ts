@@ -1,4 +1,4 @@
-import { verifyAppointmentWebviewToken } from "@chatbotx.io/encryption"
+import { verifyAppointmentWebviewToken } from "@inboxos.io/encryption"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -18,7 +18,7 @@ vi.mock("../src/logger", () => ({
   logger: { info: vi.fn(), warn: vi.fn() },
 }))
 
-const { ChatbotXException, notFoundException } = await import("../src/errors")
+const { InboxOSException, notFoundException } = await import("../src/errors")
 const { createInboxBookingLink, sendInboxBookingLink } = await import(
   "../src/appointment/inbox-booking-link"
 )
@@ -68,7 +68,7 @@ describe("createInboxBookingLink", () => {
 
     const error = await createInboxBookingLink(baseInput).catch((e) => e)
 
-    expect(error).toBeInstanceOf(ChatbotXException)
+    expect(error).toBeInstanceOf(InboxOSException)
     expect(error.code).toBe("appointmentCalendarInactive")
     expect(error.httpStatusCode).toBe(409)
   })

@@ -11,7 +11,7 @@ import {
   type WhatsappFlowStepSchema,
   type WhatsappLocationStepSchema,
   type WhatsappOptionListStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   contentTypes,
   getWhatsappCallPermissionRequest,
@@ -21,7 +21,7 @@ import {
   type MessageHandlers,
   type MessageProductEntity,
   type OutgoingMessage,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { Audio, Document, Image, Text, Video } from "whatsapp-api-js/messages"
 import type {
   ClientMessage,

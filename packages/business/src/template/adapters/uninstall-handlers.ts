@@ -1,11 +1,11 @@
-import { and, eq, inArray, sql } from "@chatbotx.io/database/client"
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import { and, eq, inArray, sql } from "@inboxos.io/database/client"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   pipelineActivityRepository,
   savedReplyImageRepository,
   templateUninstallRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   aiFileModel,
   appointmentCalendarModel,
@@ -16,7 +16,7 @@ import {
   productModel,
   sequenceModel,
   triggerModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { aiAgentService } from "../../ai-agent/service"
 import { aiFileService } from "../../ai-file/service"
 import { aiFunctionService } from "../../ai-function/service"

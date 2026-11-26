@@ -1,8 +1,8 @@
 "use server"
 
-import { triggerService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { folderTypes } from "@chatbotx.io/database/partials"
+import { triggerService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { folderTypes } from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 import {
   type WorkspaceIdRequestParams,
@@ -33,12 +33,12 @@ export const createTriggerAction = workspaceActionClient
         })
       } catch (error) {
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "validation" &&
           error.data
         ) {
           const t = await getTranslations()
-          throw new ChatbotXException(t(error.message, error.data))
+          throw new InboxOSException(t(error.message, error.data))
         }
         throw error
       }

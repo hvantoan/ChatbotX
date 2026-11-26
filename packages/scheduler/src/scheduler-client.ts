@@ -1,7 +1,4 @@
-import {
-  type DistributedLock,
-  distributedLockFactory,
-} from "@chatbotx.io/redis"
+import { type DistributedLock, distributedLockFactory } from "@inboxos.io/redis"
 
 import type Redis from "ioredis"
 import type { ChainableCommander } from "ioredis"

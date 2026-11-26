@@ -1,6 +1,6 @@
 import "server-only"
-import { customDomainService, tenantService } from "@chatbotx.io/business"
-import type { CredentialType } from "@chatbotx.io/database/partials"
+import { customDomainService, tenantService } from "@inboxos.io/business"
+import type { CredentialType } from "@inboxos.io/database/partials"
 import { cache } from "react"
 import { isCloud } from "@/env"
 import { getBrokerOrigin } from "@/lib/oauth-broker"

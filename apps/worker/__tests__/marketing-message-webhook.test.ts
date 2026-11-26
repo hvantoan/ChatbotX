@@ -11,7 +11,7 @@ const m = vi.hoisted(() => ({
   guard: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   const actual = await vi.importActual<Record<string, unknown>>(
     "../../../packages/business/src/facebook-marketing-message-delivery/webhook",
   )

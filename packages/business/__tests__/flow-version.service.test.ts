@@ -36,13 +36,13 @@ vi.mock("../src/template/installed-resource.service", async () => ({
 
 // Run the locked transaction against the same mocked client the tests assert on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(db),
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       flowVersionModel: {
@@ -60,8 +60,8 @@ vi.mock("@chatbotx.io/database/client", () => ({
   lte: (...args: unknown[]) => ({ lte: args }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/database/schema")>()),
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/database/schema")>()),
   flowVersionModel: {
     name: "flowVersionModel",
     id: "flowVersionModel.id",
@@ -71,8 +71,8 @@ vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: mockWithCache,
 }))
 vi.mock("../src/smart-delay/service", () => ({ smartDelayService: {} }))

@@ -1,6 +1,6 @@
 // @vitest-environment node
-import { broadcastPlanLimitException } from "@chatbotx.io/business/errors"
-import { TRIAL_BROADCAST_PLAN_POLICY } from "@chatbotx.io/database/partials"
+import { broadcastPlanLimitException } from "@inboxos.io/business/errors"
+import { TRIAL_BROADCAST_PLAN_POLICY } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 type Handler = (args: {
@@ -72,7 +72,7 @@ const { MockBroadcastValidationException, returnValidationErrors } = vi.hoisted(
   },
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastService: { scheduleDraft, softDeleteBroadcasts, updateDraft },
   BroadcastValidationException: MockBroadcastValidationException,
 }))

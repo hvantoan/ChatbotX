@@ -1,30 +1,30 @@
 /**
  * Audience create/upload: parses the file and hashes every row with
  * `node:crypto`, so this module is Node-only. It is a separate subpath
- * (`@chatbotx.io/business/facebook-marketing-message-audience/upload`), not part
+ * (`@inboxos.io/business/facebook-marketing-message-audience/upload`), not part
  * of the module index, because the builder's oRPC router reaches the read
  * service and Next.js traces that graph into the Edge instrumentation bundle
  * (AGENTS.md invariant 25). Only server actions and the public API import it.
  */
-import { facebookMarketingMessageAudienceRepository } from "@chatbotx.io/database/repositories"
-import type { FacebookMarketingMessageAudienceModel } from "@chatbotx.io/database/types"
+import { facebookMarketingMessageAudienceRepository } from "@inboxos.io/database/repositories"
+import type { FacebookMarketingMessageAudienceModel } from "@inboxos.io/database/types"
 import {
   readTabularFile,
   TabularFileError,
   type TabularFormat,
-} from "@chatbotx.io/imports/parsers"
+} from "@inboxos.io/imports/parsers"
 import {
   AudienceUploadError,
   createMarketingMessagesAudience,
   FacebookAdsException,
   uploadAudienceUsersSession,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 import {
   buildCustomerFilePayload,
   type CustomerFilePayload,
   mapCustomerFileHeaders,
-} from "@chatbotx.io/integration-facebook-ads/customer-file"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-facebook-ads/customer-file"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { logger } from "../logger"
 import { audienceError, isAudienceError } from "./errors"

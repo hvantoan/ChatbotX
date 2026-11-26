@@ -1,9 +1,9 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   ChannelError,
   ChannelErrorCategory,
   ThreadControlTakeRefusedError,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -15,16 +15,16 @@ const mocks = vi.hoisted(() => ({
   loggerWarn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiHandoverSettingsService: {
     isConfiguredAndInactive: mocks.isConfiguredAndInactive,
   },
   threadControlService: { resolveCurrentState: mocks.resolveCurrentState },
 }))
-vi.mock("@chatbotx.io/channel-registry/thread-control", () => ({
+vi.mock("@inboxos.io/channel-registry/thread-control", () => ({
   requestThreadControlAction: mocks.requestThreadControlAction,
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     aiHandoverTakeBack: "aiHandoverTakeBack",
     incomingMessage: "incomingMessage",
@@ -306,7 +306,7 @@ describe("runAiHandoverTakeBack", () => {
       "a permanent channel error",
       new ChannelError("nope", ChannelErrorCategory.PERMISSION_DENIED),
     ],
-    ["a domain rejection", new ChatbotXException("not found", "notFound", 404)],
+    ["a domain rejection", new InboxOSException("not found", "notFound", 404)],
   ])("%s: logged, no replay, the job completes (the bot stays silent)", async (_label, error) => {
     mocks.requestThreadControlAction.mockRejectedValue(error)
 

@@ -1,25 +1,25 @@
-import { contactInboxService } from "@chatbotx.io/business"
+import { contactInboxService } from "@inboxos.io/business"
 import {
   buildBrandingUrl,
   moveBrandingMenuLast,
-} from "@chatbotx.io/business/branding"
+} from "@inboxos.io/business/branding"
 import type {
   MessengerPersistentMenu,
   MessengerPersona,
-} from "@chatbotx.io/database/partials"
-import { findUserPersistentMenuById } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/partials"
+import { findUserPersistentMenuById } from "@inboxos.io/database/repositories"
 import type {
   DisableMessengerComposerStepSchema,
   EnableMessengerComposerStepSchema,
   SetMessengerPersonaStepSchema,
   SetMessengerUserPersistentMenuStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   findRegisteredPersona,
   messengerMenusToCallToActions,
-} from "@chatbotx.io/integration-messenger"
-import type { FacebookButton } from "@chatbotx.io/integration-messenger/schema"
-import type { UserCustomSettings } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-messenger"
+import type { FacebookButton } from "@inboxos.io/integration-messenger/schema"
+import type { UserCustomSettings } from "@inboxos.io/sdk"
 import { env } from "../../env"
 import { logger } from "../../lib/logger"
 import type { ExecuteStepProps } from "./flow-utils"

@@ -1,4 +1,4 @@
-import { MARKDOWN_ESCAPE_PATTERN } from "@chatbotx.io/mini-app"
+import { MARKDOWN_ESCAPE_PATTERN } from "@inboxos.io/mini-app"
 import { Fragment, type ReactNode } from "react"
 
 /**

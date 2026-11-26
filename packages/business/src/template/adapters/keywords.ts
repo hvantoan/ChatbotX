@@ -1,11 +1,11 @@
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
 import {
   type AutomatedResponseType,
   automatedResponseTypes,
   type KeywordCondition,
-} from "@chatbotx.io/database/partials"
-import { keywordConditionsSchema } from "@chatbotx.io/database/partials/keyword-condition-schema"
-import { automatedResponseModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import { keywordConditionsSchema } from "@inboxos.io/database/partials/keyword-condition-schema"
+import { automatedResponseModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 import {
   automatedResponseService,

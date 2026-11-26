@@ -1,8 +1,8 @@
 import {
   type OpenaiCompatiblePresetConfig,
   openaiCompatiblePresetConfigs,
-} from "@chatbotx.io/ai"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/ai"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import type { IntegrationOpenaiCompatibleResource } from "./schema/resource"
 
 export function shouldUseCustomOpenaiCompatibleModelInput(

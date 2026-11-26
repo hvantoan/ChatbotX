@@ -6,8 +6,8 @@ const { resolveTemplateParams } = vi.hoisted(() => ({
   resolveTemplateParams: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({ resolveTemplateParams }))
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business", () => ({ resolveTemplateParams }))
+vi.mock("@inboxos.io/business/errors", () => ({
   validationException: (field: string, message: string) =>
     Object.assign(new Error(message), { code: "validation", field }),
 }))

@@ -52,7 +52,7 @@ vi.mock("next-safe-action/hooks", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({
     open,
     children,
@@ -79,7 +79,7 @@ vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
   DialogClose: ({ render }: { render: React.ReactElement }) => render,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: ({
     children,
     ...rest

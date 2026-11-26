@@ -1,4 +1,4 @@
-import type { DecisionProfileModel } from "@chatbotx.io/database/types"
+import type { DecisionProfileModel } from "@inboxos.io/database/types"
 
 export type DecisionProfileListItem = DecisionProfileModel & {
   connectionName: string | null

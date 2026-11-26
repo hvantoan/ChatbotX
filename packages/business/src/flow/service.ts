@@ -5,25 +5,25 @@ import {
   eq,
   inArray,
   isNull,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CustomFieldType,
   rootFolderId,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type FlowListInput,
   flowRepository,
   integrationWhatsappRepository,
   reflinkRepository,
   whatsappMessageTemplateRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   flowAnalyticsSessionModel,
   flowModel,
   flowVersionModel,
-} from "@chatbotx.io/database/schema"
-import type { FlowModel, FlowVersionModel } from "@chatbotx.io/database/types"
-import { parsePagination } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/schema"
+import type { FlowModel, FlowVersionModel } from "@inboxos.io/database/types"
+import { parsePagination } from "@inboxos.io/database/utils"
 import {
   collectFieldReferences,
   type EdgeSchema,
@@ -38,9 +38,9 @@ import {
   sendMessageNodeDefaultFn,
   stepTypes,
   type UnresolvedReference,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
-import { customFieldResolutionKey } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
+import { customFieldResolutionKey } from "@inboxos.io/utils/custom-field"
 import { BaseService } from "../base.service"
 import { botFieldService } from "../bot-field/service"
 import {
@@ -208,7 +208,7 @@ const toExportFileName = (name: string): string => {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "") || "flow"
-  return `${slug}.chatbotx-flow.json`
+  return `${slug}.inboxos-flow.json`
 }
 
 class FlowService extends BaseService {

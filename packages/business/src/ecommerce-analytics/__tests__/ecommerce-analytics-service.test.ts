@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   countOtherCurrencyOrders: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   orderAnalyticsRepository: {
     summary: (...args: unknown[]) => mocks.summary(...args),
     series: (...args: unknown[]) => mocks.series(...args),
@@ -20,7 +20,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))

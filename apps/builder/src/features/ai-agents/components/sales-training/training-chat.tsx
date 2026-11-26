@@ -1,6 +1,6 @@
 "use client"
 
-import type { AIAgentSalesProfile } from "@chatbotx.io/database/partials"
+import type { AIAgentSalesProfile } from "@inboxos.io/database/partials"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,9 +11,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import {
   useInfiniteQuery,
   useMutation,

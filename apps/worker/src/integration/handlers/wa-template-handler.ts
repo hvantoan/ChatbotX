@@ -1,11 +1,11 @@
 import {
   inboxService,
   whatsappMessageTemplateService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   IntegrationWhatsappModel,
   WhatsappMessageTemplateModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   extractTemplateParams,
   type PaymentRequest,
@@ -14,11 +14,11 @@ import {
   readPaymentRequestField,
   type SendWaTemplateMessageStepSchema,
   type TemplateComponent,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   contactVariableService,
   type ReplaceVariableProps,
-} from "@chatbotx.io/variables"
+} from "@inboxos.io/variables"
 
 /** Resolves `{{variables}}` in every value of a payment request. */
 async function replacePaymentRequestVariables(

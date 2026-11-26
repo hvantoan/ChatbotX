@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { googleAdsConversionErrorCodes } from "@chatbotx.io/utils/google-click"
+import { googleAdsConversionErrorCodes } from "@inboxos.io/utils/google-click"
 import type { ReactElement } from "react"
 import { afterEach, beforeEach, describe, expect, test } from "vitest"
 import { getColumns } from "@/features/error-logs/error-logs-table-columns"

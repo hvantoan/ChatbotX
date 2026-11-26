@@ -9,7 +9,7 @@ vi.mock("../src/lib/logger", () => ({
 const { runLeasedTemplateJob } = await import(
   "../src/lib/run-leased-template-job"
 )
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 
 const jobOn = (attemptsMade: number, attempts = 3) =>
   ({ attemptsMade, opts: { attempts } }) as never
@@ -44,7 +44,7 @@ describe("runLeasedTemplateJob", () => {
   ])("a lost lease (%s) is dropped: the winner owns the row", async (code) => {
     await expect(
       runLeasedTemplateJob(
-        base(() => Promise.reject(new ChatbotXException("lost", code))),
+        base(() => Promise.reject(new InboxOSException("lost", code))),
       ),
     ).resolves.toBeUndefined()
     expect(release).not.toHaveBeenCalled()
@@ -56,7 +56,7 @@ describe("runLeasedTemplateJob", () => {
     "templateUninstallNotGranted",
     "templateUninstallNoHandler",
   ])("a permanent failure (%s) closes the row and is never retried", async (code) => {
-    const error = new ChatbotXException("no", code)
+    const error = new InboxOSException("no", code)
     await expect(
       runLeasedTemplateJob(base(() => Promise.reject(error))),
     ).rejects.toBeInstanceOf(UnrecoverableError)
@@ -85,7 +85,7 @@ describe("runLeasedTemplateJob", () => {
       runLeasedTemplateJob(
         base(() =>
           Promise.reject(
-            new ChatbotXException("x", "templateUninstallDependencyConflict"),
+            new InboxOSException("x", "templateUninstallDependencyConflict"),
           ),
         ),
       ),

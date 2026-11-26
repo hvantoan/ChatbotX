@@ -1,6 +1,6 @@
 "use client"
 
-import { formatDate } from "@chatbotx.io/ui/lib/format"
+import { formatDate } from "@inboxos.io/ui/lib/format"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { daysLeft } from "../../lib/format"

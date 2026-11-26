@@ -8,8 +8,8 @@
  * pipelines migration applied.
  */
 
-import { db, eq, sql } from "@chatbotx.io/database/client"
-import { pipelineStageRepository } from "@chatbotx.io/database/repositories"
+import { db, eq, sql } from "@inboxos.io/database/client"
+import { pipelineStageRepository } from "@inboxos.io/database/repositories"
 import {
   contactInboxModel,
   contactModel,
@@ -19,7 +19,7 @@ import {
   userModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {
@@ -41,7 +41,7 @@ const mocks = vi.hoisted(() => ({
   queueAdd: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitPipelineItemEvent: mocks.emitPipelineItemEvent,
 }))
 vi.mock("../../src/platform/realtime-broadcast", () => ({
@@ -56,8 +56,8 @@ vi.mock("../../src/conversation/service", () => ({
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))
@@ -66,8 +66,8 @@ vi.mock("../../src/ecommerce-settings/service", () => ({
     get: vi.fn().mockResolvedValue({ payments: { currency: "VND" } }),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   defaultQueue: {
     add: mocks.queueAdd,
     getJob: vi.fn().mockResolvedValue(null),
@@ -98,7 +98,7 @@ const { pipelineAnalyticsService } = await import(
 const { dispatchPipelineEffects } = await import(
   "../../src/pipeline/mutation-engine"
 )
-const { invalidateCacheByTags } = await import("@chatbotx.io/redis")
+const { invalidateCacheByTags } = await import("@inboxos.io/redis")
 const {
   pipelineStageBulkJobId,
   pipelineStageBulkService,

@@ -7,12 +7,12 @@ const { enqueueLeaderboardAward, inboxHasLeaderboardRule, findByIds } =
     findByIds: vi.fn().mockResolvedValue([]),
   }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward,
   inboxHasLeaderboardRule,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   channelPostRepository: { findByIds },
 }))
 

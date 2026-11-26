@@ -18,7 +18,7 @@ vi.mock("@/lib/safe-action", () => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: { update: mockUpdate, updateSettings: mockUpdateSettings },
 }))
 

@@ -7,18 +7,18 @@ import type {
   OrderStatus,
   PaymentStatus,
   ProductStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ExternalProductValues,
   ExternalVariantValues,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   WooCommerceAddress,
   WooCommerceCoupon,
   WooCommerceOrder,
   WooCommerceProduct,
   WooCommerceVariation,
-} from "@chatbotx.io/integration-woocommerce"
+} from "@inboxos.io/integration-woocommerce"
 import { normalizePhoneToE164 } from "../contact/phone"
 
 const SHORT_DESCRIPTION_LENGTH = 300

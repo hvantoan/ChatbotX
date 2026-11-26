@@ -7,7 +7,7 @@
  * comparison across a timezone boundary. Each kind seeds its own workspace.
  *
  * Runs only against an explicitly configured database
- * (`pnpm --filter @chatbotx.io/database test:db`).
+ * (`pnpm --filter @inboxos.io/database test:db`).
  */
 
 import { eq } from "drizzle-orm"

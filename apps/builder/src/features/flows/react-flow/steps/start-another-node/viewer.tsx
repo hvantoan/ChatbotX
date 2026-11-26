@@ -1,6 +1,6 @@
 "use client"
 
-import type { StartAnotherNodeStepSchema } from "@chatbotx.io/flow-config"
+import type { StartAnotherNodeStepSchema } from "@inboxos.io/flow-config"
 import { useReactFlow } from "@xyflow/react"
 import { useMemo } from "react"
 

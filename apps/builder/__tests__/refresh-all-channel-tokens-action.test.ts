@@ -41,7 +41,7 @@ const mocks = vi.hoisted(() => ({
   isZaloRevokedTokenError: vi.fn(() => false),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   instagramIntegrationService: {
     findForTokenRefreshByWorkspaceIds: mocks.findInstagramByWorkspaceIds,
     findFacebookForTokenRefreshByWorkspaceIds:
@@ -77,50 +77,50 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
 
-vi.mock("@chatbotx.io/integration-instagram", () => ({
+vi.mock("@inboxos.io/integration-instagram", () => ({
   integration: { refreshAuth: mocks.refreshInstagramAuth },
   isRevokedTokenError: mocks.isInstagramRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/integration-instagram-facebook", () => ({
+vi.mock("@inboxos.io/integration-instagram-facebook", () => ({
   integration: { refreshAuth: mocks.refreshInstagramFacebookAuth },
   isRevokedTokenError: mocks.isInstagramFacebookRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   integration: { refreshAuth: mocks.refreshMessengerAuth },
   logMessengerWelcomeProfile: mocks.logMessengerWelcomeProfile,
   isRevokedTokenError: mocks.isMessengerRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   isRevokedTokenError: mocks.isTiktokRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok/apis/auth", () => ({
+vi.mock("@inboxos.io/integration-tiktok/apis/auth", () => ({
   refreshAccessToken: mocks.refreshTiktokAccessToken,
 }))
 
-vi.mock("@chatbotx.io/integration-tiktok/lib/token-utils", () => ({
+vi.mock("@inboxos.io/integration-tiktok/lib/token-utils", () => ({
   buildTokenTimestamps: vi.fn(() => ({})),
 }))
 
-vi.mock("@chatbotx.io/integration-whatsapp", () => ({
+vi.mock("@inboxos.io/integration-whatsapp", () => ({
   integration: { refreshAuth: mocks.refreshWhatsappAuth },
   isRevokedTokenError: mocks.isWhatsappRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/integration-zalo", () => ({
+vi.mock("@inboxos.io/integration-zalo", () => ({
   calculateExpiresAt: vi.fn(() => "2026-10-10T00:00:00.000Z"),
   refreshAccessToken: mocks.refreshZaloAccessToken,
   isRevokedTokenError: mocks.isZaloRevokedTokenError,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: async ({ fn }: { fn: () => Promise<unknown> }) => {
       mocks.lock.held = true

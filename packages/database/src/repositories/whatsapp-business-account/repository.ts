@@ -1,4 +1,4 @@
-import type { EncryptedData } from "@chatbotx.io/encryption"
+import type { EncryptedData } from "@inboxos.io/encryption"
 import { and, type DatabaseClient, db, eq, notExists, sql } from "../../client"
 import {
   integrationWhatsappModel,

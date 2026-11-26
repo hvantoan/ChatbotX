@@ -9,12 +9,12 @@ import {
   type SendVideoStepSchema,
   type StepType,
   stepTypes,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   contentTypes,
   type MessageHandlers,
   type SendFlowStepProps,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   sendTelegramAudio,
   sendTelegramDocument,

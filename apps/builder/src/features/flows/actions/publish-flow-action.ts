@@ -1,7 +1,7 @@
 "use server"
 
-import { flowVersionService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { flowVersionService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { publishFlowSchema } from "../schema/action"
 

@@ -1,9 +1,9 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
-import { isBigintId } from "@chatbotx.io/database/utils"
+import { triggerActions } from "@inboxos.io/database/partials"
+import { isBigintId } from "@inboxos.io/database/utils"
 import {
   FieldReferenceKind,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { customFieldService } from "../custom-field/service"
 
 type ActionRecord = Record<string, unknown>

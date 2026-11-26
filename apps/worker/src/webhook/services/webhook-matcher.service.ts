@@ -1,12 +1,12 @@
-import { webhookService, workspaceService } from "@chatbotx.io/business"
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import { webhookService, workspaceService } from "@inboxos.io/business"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import {
   conditionListensToSource,
   isMatchableEventType,
   matchableConditionTypesFor,
   SCANNER_VERIFIED_EVENT_TYPES,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import { logger } from "../../lib/logger"
 import { ConditionEvaluator } from "../../trigger/services/condition-evaluator"
 import type {

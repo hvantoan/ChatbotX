@@ -17,7 +17,7 @@ const mockLockOptions = vi.hoisted(() => vi.fn())
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -62,7 +62,7 @@ vi.mock("../src/flow/service", () => ({
   flowService: { exists: mocks.flowExists },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: mocks.and,
   db: {
     insert: mocks.insert,
@@ -86,7 +86,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isUniqueViolationError: mocks.isUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   flowModel: {},
   reflinkModel: {
     id: "reflink.id",
@@ -96,7 +96,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   getPaginationWithDefaults: (input: { page: number; perPage: number }) => ({
     limit: input.perPage,
     offset: (input.page - 1) * input.perPage,
@@ -105,15 +105,15 @@ vi.mock("@chatbotx.io/database/utils", () => ({
   parseOrderBy: () => [],
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.invalidateCacheByTags,
   withCache: mocks.withCache,
 }))
 
-// `@chatbotx.io/utils` constructs a Snowflake singleton at module scope, which
+// `@inboxos.io/utils` constructs a Snowflake singleton at module scope, which
 // throws "Place ID 0 already in use" when `vi.resetModules()` re-evaluates it.
 let nextId = 0
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => `id-${nextId++}`,
 }))
 

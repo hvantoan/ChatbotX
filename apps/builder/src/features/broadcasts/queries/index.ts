@@ -1,5 +1,5 @@
-import { broadcastService } from "@chatbotx.io/business"
-import { broadcastScheduleTypes } from "@chatbotx.io/database/partials"
+import { broadcastService } from "@inboxos.io/business"
+import { broadcastScheduleTypes } from "@inboxos.io/database/partials"
 import type { PaginatedResponse } from "@/features/common/schema/pagination"
 import type { GetBroadcastsSchema } from "../schema/query"
 import type { BroadcastResourceWithRelations } from "../schema/resource"

@@ -1,9 +1,9 @@
-import { db, sql } from "@chatbotx.io/database/client"
+import { db, sql } from "@inboxos.io/database/client"
 // Narrow subpath, NOT the `queries` barrel — see message-stats.repository.ts.
-import { zonedDateKey } from "@chatbotx.io/database/queries/date-bucket"
-import { analyticsAgentResponseEventModel } from "@chatbotx.io/database/schema"
-import type { EventBusMessageMetadata } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+import { zonedDateKey } from "@inboxos.io/database/queries/date-bucket"
+import { analyticsAgentResponseEventModel } from "@inboxos.io/database/schema"
+import type { EventBusMessageMetadata } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { buildEventFilter } from "../../lib/event-filter"
 import type {
   AgentResponseAverages,

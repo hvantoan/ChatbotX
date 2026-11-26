@@ -1,7 +1,7 @@
 "use client"
 
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"
 import { toast } from "sonner"

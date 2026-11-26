@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   hasIntegrationOfTypes: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationService: { hasIntegrationOfTypes: mocks.hasIntegrationOfTypes },
 }))
 

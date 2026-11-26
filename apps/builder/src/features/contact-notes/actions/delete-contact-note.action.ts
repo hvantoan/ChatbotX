@@ -1,7 +1,7 @@
 "use server"
-import { contactNoteService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { contactNoteService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { requireContactPermissionScope } from "@/features/contacts/permissions"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { deleteContactNoteRequest } from "../schema/action"
@@ -23,7 +23,7 @@ export const deleteContactNoteAction = workspaceActionClient
         // list is optimistic, so a double-click or a stale list would
         // otherwise surface an error toast for work that is already done.
         // The public API keeps the 404 — only this surface swallows it.
-        if (error instanceof ChatbotXException && error.code === "notFound") {
+        if (error instanceof InboxOSException && error.code === "notFound") {
           return
         }
         throw error

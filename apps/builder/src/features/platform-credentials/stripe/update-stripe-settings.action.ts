@@ -1,7 +1,7 @@
 "use server"
 
-import { savePlatformStripe } from "@chatbotx.io/business"
-import { stripeCredentialUpdateSchema } from "@chatbotx.io/database/partials"
+import { savePlatformStripe } from "@inboxos.io/business"
+import { stripeCredentialUpdateSchema } from "@inboxos.io/database/partials"
 import { resolveProviderOriginForCredential } from "@/lib/provider-origin"
 import { authActionClient } from "@/lib/safe-action"
 import { credentialScopeSchema } from "../scope"

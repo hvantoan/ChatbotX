@@ -1,6 +1,6 @@
 import { DATA_MANAGER_SCOPE, GOOGLE_ADS_API_SCOPE } from "../constants"
 
-/** How a conversion reaches Google; mirrors `GoogleAdsUploadMethod` in `@chatbotx.io/database`. */
+/** How a conversion reaches Google; mirrors `GoogleAdsUploadMethod` in `@inboxos.io/database`. */
 export type GoogleAdsUploadMethod = "dataManager" | "legacy"
 
 /** What an absent or unrecognised method means (rows saved before the choice existed). */

@@ -1,8 +1,8 @@
 import type {
   ButtonStepProps,
   WhatsappFlowStepSchema,
-} from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { WorkflowIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"

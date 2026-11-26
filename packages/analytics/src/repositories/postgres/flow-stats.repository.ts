@@ -1,16 +1,16 @@
-import { and, count, db, eq, inArray, sql } from "@chatbotx.io/database/client"
+import { and, count, db, eq, inArray, sql } from "@inboxos.io/database/client"
 import {
   conversationModel,
   flowAnalyticsSessionModel,
   flowNodeStatModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   type FlowNode,
   messageEventTypeSchema,
   nodeTypeSchema,
   type SendMessageNodeSchema,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import type { ContactEventData } from "../../schemas/common"
 import type {
   FlowNodeEventType,

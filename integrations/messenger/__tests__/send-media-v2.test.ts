@@ -4,12 +4,12 @@ import {
   type SendVideoStepSchema,
   sendImageStepDefaultFn,
   sendVideoStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   ChannelError,
   type MessageButtonTemplate,
   type SendFlowStepProps,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import type { MessengerAuthValue } from "../src/schema"
 

@@ -7,16 +7,16 @@ const mocks = vi.hoisted(() => ({
 }))
 
 vi.mock("@ai-sdk/mcp", () => ({ createMCPClient: mocks.createMCPClient }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   assertSafeMcpEndpoint: mocks.assertSafeMcpEndpoint,
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   aiMcpServerAuthTypes: { enum: { header: "header", token: "token" } },
 }))
-vi.mock("@chatbotx.io/variables/bot-field-variable-resolver", () => ({
+vi.mock("@inboxos.io/variables/bot-field-variable-resolver", () => ({
   resolveBotFieldVariableText: mocks.resolveBotFieldVariableText,
 }))
 const { validateAIMcpServer } = await import(

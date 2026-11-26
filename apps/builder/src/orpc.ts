@@ -1,11 +1,11 @@
 import {
-  ChatbotXException,
+  InboxOSException,
   toPublicErrorMessage,
-} from "@chatbotx.io/business/errors"
-import { ModelNotfoundException } from "@chatbotx.io/database/errors"
-import type { WorkspaceApiTokenScope } from "@chatbotx.io/database/partials"
-import { FlowAuthoringException } from "@chatbotx.io/flow-config"
-import { SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business/errors"
+import { ModelNotfoundException } from "@inboxos.io/database/errors"
+import type { WorkspaceApiTokenScope } from "@inboxos.io/database/partials"
+import { FlowAuthoringException } from "@inboxos.io/flow-config"
+import { SdkException } from "@inboxos.io/sdk"
 import { oo } from "@orpc/openapi"
 import { ORPCError, onError, ValidationError } from "@orpc/server"
 import { ActionValidationError } from "next-safe-action"
@@ -40,7 +40,7 @@ const CHANNEL_ERROR_FALLBACK = "The provider rejected the request."
  * hand-roll its own error wrapping.
  */
 /**
- * A `ChatbotXException` carrying `data` holds an i18n KEY in `message` (e.g.
+ * A `InboxOSException` carrying `data` holds an i18n KEY in `message` (e.g.
  * `"validation.maxItemsReached"`), which server actions re-localize in their
  * own catch via `getTranslations()`. This interceptor is sync and has no
  * request-scoped translator, so it cannot localize — but it must never emit a
@@ -48,7 +48,7 @@ const CHANNEL_ERROR_FALLBACK = "The provider rejected the request."
  * response is at least self-describing; a handler that wants real
  * localization should translate before the error reaches here.
  */
-function toDisplayMessage(error: ChatbotXException): string {
+function toDisplayMessage(error: InboxOSException): string {
   if (!error.data) {
     return error.message
   }
@@ -61,7 +61,7 @@ function toDisplayMessage(error: ChatbotXException): string {
 function toKnownOrpcError(
   error: unknown,
 ): ORPCError<string, unknown> | undefined {
-  if (error instanceof ChatbotXException) {
+  if (error instanceof InboxOSException) {
     return new ORPCError(error.code, {
       message: toDisplayMessage(error),
       status: error.httpStatusCode ?? 400,
@@ -90,7 +90,7 @@ function toKnownOrpcError(
     })
   }
 
-  // `compileFlowSpec` (`@chatbotx.io/flow-config`) rejects an agent-authored
+  // `compileFlowSpec` (`@inboxos.io/flow-config`) rejects an agent-authored
   // flow spec with every error it found (unknown template/flow names, an
   // unreachable step, a bad `goto` target, ...) — same 422 shape as
   // `ActionValidationError` above so a caller has one error contract to

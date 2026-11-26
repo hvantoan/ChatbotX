@@ -1,9 +1,9 @@
-import { mcpOAuthService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { mcpOAuthService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { env } from "@/env"
 import { getMcpPublicUrl } from "@/features/mcp-oauth/lib/mcp-oauth"
-import { ManageChatbotxMcp } from "@/features/mcp-oauth/manage-chatbotx-mcp"
+import { ManageChatbotxMcp } from "@/features/mcp-oauth/manage-inboxos-mcp"
 import { toMcpOAuthGrantDto } from "@/features/mcp-oauth/schema/grant-dto"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 

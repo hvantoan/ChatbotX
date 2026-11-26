@@ -1,14 +1,14 @@
 # WhatsApp Conversation Routing (thread control)
 
-Lets ChatbotX share one WhatsApp number with other responders — Meta's Business
+Lets InboxOS share one WhatsApp number with other responders — Meta's Business
 Agent ("Meta AI") or another BSP/bot — under Meta's
 [Conversation Routing](https://developers.facebook.com/documentation/business-messaging/whatsapp/conversation-routing/thread-control).
-Meta decides who owns each thread; ChatbotX tracks that ownership locally, stops
+Meta decides who owns each thread; InboxOS tracks that ownership locally, stops
 its own Service replies while another responder owns the thread, lets agents
 take over / release / pass, and shows the handover context in the inbox.
 
 Routing is configured by the **business in Meta Business Suite** (primary
-responder per entry point, one escalation partner, standby grants). ChatbotX
+responder per entry point, one escalation partner, standby grants). InboxOS
 never chooses its role. Support is **always on**: a number with a single
 responder never receives routing traffic, so its threads stay `null` and behave
 exactly like before.
@@ -28,7 +28,7 @@ exactly like before.
 
 ## Ops setup
 
-1. **Apply the migration** (`pnpm --filter @chatbotx.io/database db:migrate`) —
+1. **Apply the migration** (`pnpm --filter @inboxos.io/database db:migrate`) —
    additive, nullable columns only, no backfill.
 2. **Meta enrollment.** The app must be enrolled for thread control by Meta.
 3. **App Dashboard** → WhatsApp → Webhooks: subscribe the app to the
@@ -50,7 +50,7 @@ exactly like before.
    `verifyToken`, exactly as manual connect does), so their callback is kept.
    Step 3 does not cover them: the customer must subscribe their own app to
    `messaging_handovers` and `standby` in their App Dashboard (and be enrolled
-   by Meta) before routing traffic reaches ChatbotX.
+   by Meta) before routing traffic reaches InboxOS.
 
 **Rollback:** there is no runtime switch; rolling back is a code revert.
 Subscriptions to `messaging_handovers` / `standby` are left in place and are
@@ -58,8 +58,8 @@ inert without the handlers.
 
 ## States
 
-`ContactInbox.threadControlState` is one of `owned` (ChatbotX answers), `standby`
-(another responder owns the thread; ChatbotX only listens), `idle`, or `null`
+`ContactInbox.threadControlState` is one of `owned` (InboxOS answers), `standby`
+(another responder owns the thread; InboxOS only listens), `idle`, or `null`
 (routing never observed — today's behaviour everywhere).
 
 Every event maps to exactly one state (`THREAD_CONTROL_TRANSITIONS`):
@@ -169,7 +169,7 @@ flow does not start — and if the failure came before the handover was recorded
 the handover is lost too; the conversation then waits for an agent. There is no
 outbox for this by design. A deleted or inactive flow is
 logged and skipped. End it with the **Thread Control → Release** step, otherwise
-ChatbotX keeps the thread while the customer stays active and the other app
+InboxOS keeps the thread while the customer stays active and the other app
 cannot answer.
 
 **Archive release.** Archiving conversations (action, API, bulk) enqueues one
@@ -273,7 +273,7 @@ WhatsApp settings page.
 - **No current-owner API.** Meta exposes no way to read the owner ("There is no
   endpoint that reports which responder currently owns a thread"). The state is
   inferred from webhooks, our own calls and sends; with standby visibility off,
-  ChatbotX does not see the partner's activity and the 24 h idle clock may lag.
+  InboxOS does not see the partner's activity and the 24 h idle clock may lag.
   `routing_roles` reports this app's roles on the number, not the owner of a
   thread.
 - **One WhatsApp inbox per conversation.** A contact on two WhatsApp numbers

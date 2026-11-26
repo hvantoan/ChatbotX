@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { ImageIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 

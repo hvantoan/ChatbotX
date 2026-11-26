@@ -1,7 +1,7 @@
 "use client"
 
-import type { EmailStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { EmailStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { PageElementViewer } from "../../components/page-element-builder"
 
 type EmailStepViewerProps = {

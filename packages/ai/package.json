@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/ai",
+  "name": "@inboxos.io/ai",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -17,13 +17,13 @@
     "@ai-sdk/google": "^4.0.109",
     "@ai-sdk/openai": "catalog:",
     "@ai-sdk/openai-compatible": "^3.0.82",
-    "@chatbotx.io/business": "workspace:*",
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/flow-config": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/redis": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
-    "@chatbotx.io/worker-config": "workspace:*",
+    "@inboxos.io/business": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/flow-config": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
+    "@inboxos.io/worker-config": "workspace:*",
     "@openrouter/ai-sdk-provider": "^3.1.0",
     "@t3-oss/env-core": "catalog:",
     "ai": "catalog:",
@@ -34,8 +34,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/mime-types": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

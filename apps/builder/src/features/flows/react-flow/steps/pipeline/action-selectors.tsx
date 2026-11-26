@@ -3,9 +3,9 @@
 import {
   type PipelineStepAction,
   pipelineStepActions,
-} from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useFormContext, useWatch } from "react-hook-form"
 import { usePipelineOptions } from "@/features/pipelines/lib/use-pipeline-options"

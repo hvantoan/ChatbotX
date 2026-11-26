@@ -1,5 +1,5 @@
-import { broadcastSubactions } from "@chatbotx.io/database/partials"
-import { stepTypes } from "@chatbotx.io/flow-config"
+import { broadcastSubactions } from "@inboxos.io/database/partials"
+import { stepTypes } from "@inboxos.io/flow-config"
 import { describe, expect, test, vi } from "vitest"
 
 vi.mock("@/features/broadcasts/actions/create-broadcast.action", () => ({

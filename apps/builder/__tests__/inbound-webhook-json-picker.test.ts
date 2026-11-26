@@ -1,4 +1,4 @@
-import { listJsonPathEntries } from "@chatbotx.io/utils/json-path"
+import { listJsonPathEntries } from "@inboxos.io/utils/json-path"
 import { describe, expect, test } from "vitest"
 import { filterJsonPathEntries } from "../src/features/inbound-webhooks/components/json-path-picker-dialog"
 

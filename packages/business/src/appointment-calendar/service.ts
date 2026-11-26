@@ -5,32 +5,32 @@ import {
   eq,
   gte,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type AppointmentScheduleWindowConfig,
   appointmentScheduleWindowConfigSchema,
   defaultAppointmentExternalEventAttendeesTemplate,
   defaultAppointmentExternalEventTitleTemplate,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   appointmentCalendarRepository,
   appointmentReminderDispatchRepository,
-} from "@chatbotx.io/database/repositories"
-import { appointmentModel } from "@chatbotx.io/database/schema"
-import type { AppointmentCalendarModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import { appointmentModel } from "@inboxos.io/database/schema"
+import type { AppointmentCalendarModel } from "@inboxos.io/database/types"
 import {
   chooseChannelStepDefaultFn,
   openWebsiteStepDefaultFn,
   type SendMessageNodeSchema,
   sendTextStepDefaultFn,
-} from "@chatbotx.io/flow-config"
-import { createId, resolveFilterTimezone } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId, resolveFilterTimezone } from "@inboxos.io/utils"
 import { formatInTimeZone, fromZonedTime } from "date-fns-tz"
 import { normalizeError } from "universal-error-normalizer"
 import { appointmentExternalCalendarService } from "../appointment-external-calendar"
 import { appointmentReminderService } from "../appointment-reminder"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { flowService } from "../flow/service"
 import { flowVersionService } from "../flow-version"
 import { copyNamePrefix, insertWithFreeCopyName } from "../lib/copy-name"
@@ -346,11 +346,7 @@ export function listZonedCalendarDays(
 export const CALENDAR_COPY_NAME = { style: "dash", maxLength: 255 } as const
 
 const calendarNameExistsException = () =>
-  new ChatbotXException(
-    "Calendar name already exists",
-    "nameAlreadyExists",
-    409,
-  )
+  new InboxOSException("Calendar name already exists", "nameAlreadyExists", 409)
 
 /** The flows a calendar write points at (confirmation, cancellation, reminders). */
 const referencedFlowIdsOf = (
@@ -824,7 +820,7 @@ class AppointmentCalendarService extends BaseService {
             )
           } catch (error) {
             if (isUniqueViolationError(error)) {
-              throw new ChatbotXException(
+              throw new InboxOSException(
                 "Duplicate reminder: same flow and timing already exists",
                 "duplicateReminder",
                 409,

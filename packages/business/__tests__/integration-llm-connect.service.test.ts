@@ -30,7 +30,7 @@ vi.mock("../src/integration-ai-provider/connect", () => ({
   connectAiProviderIntegration: mocks.connectAiProviderIntegration,
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       integrationClaudeModel: { findFirst: mocks.findFirstClaude },
@@ -45,7 +45,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: vi.fn((field: unknown, value: unknown) => ({ field, value })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationClaudeModel: { id: "id", workspaceId: "workspaceId" },
   integrationDeepseekModel: { id: "id", workspaceId: "workspaceId" },
   integrationGeminiModel: { id: "id", workspaceId: "workspaceId" },

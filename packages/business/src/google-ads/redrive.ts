@@ -1,5 +1,5 @@
-import { googleAdsConversionEventRepository } from "@chatbotx.io/database/repositories"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+import { googleAdsConversionEventRepository } from "@inboxos.io/database/repositories"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import { enqueueSend } from "./send-queue"
 import { computeSendDelayMs } from "./timing"
 

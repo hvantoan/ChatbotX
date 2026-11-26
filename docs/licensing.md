@@ -1,6 +1,6 @@
 # Enterprise licensing
 
-How the **enterprise** edition of ChatbotX is unlocked and verified.
+How the **enterprise** edition of InboxOS is unlocked and verified.
 
 - **Model:** license verification is fully offline against a public key baked
   into the app. Connected deployments can optionally fetch a renewed token;
@@ -186,7 +186,7 @@ To gate an individual capability, add a server-side check at the read/creation
 point (all DB access stays in services — never in `apps/`):
 
 ```ts
-import { hasFeature, getLimit } from "@chatbotx.io/business"
+import { hasFeature, getLimit } from "@inboxos.io/business"
 
 if (!(await hasFeature("customDomain"))) {
   // omit / block the feature

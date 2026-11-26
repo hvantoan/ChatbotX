@@ -20,12 +20,12 @@ const mockHasBroadcastRecipients = vi.fn()
 const mockScheduleAdd = vi.fn()
 const mockScheduleGetJob = vi.fn()
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: vi.fn() },
   sequenceAnalyticsService: { getContacts: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       broadcastModel: {
@@ -101,7 +101,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: "broadcast.id",
     name: "broadcast.name",
@@ -132,7 +132,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {
     purgeDraftBroadcastRecipients: "purgeDraftBroadcastRecipients",
   },
@@ -146,7 +146,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   hasBroadcastRecipients: (...args: unknown[]) =>
     mockHasBroadcastRecipients(...args),
   purgeBroadcastRecipients: vi.fn(),
@@ -161,13 +161,13 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: (...args: unknown[]) => pruneFilter(...args),
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   likeContains: (value: string) => `%${value}%`,
   getPaginationWithDefaults: () => ({ limit: 10, offset: 0 }),
@@ -1549,7 +1549,7 @@ describe("repeating drafts", () => {
       "../src/broadcast/recurrence.service"
     )
     const { broadcastRecurrenceRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     vi.mocked(broadcastRecurrenceService.upsertRule).mockResolvedValue({
       id: "series-1",
@@ -1800,7 +1800,7 @@ describe("repeating drafts", () => {
 describe("broadcastService.list — repeating broadcasts", () => {
   test("a one-off that kept a disarmed series row does not present a schedule, same as the detail", async () => {
     const { broadcastRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     const series = { id: "series-1", rule: {} }
     Object.assign(broadcastRepository, {
@@ -1838,7 +1838,7 @@ describe("broadcastService.list — repeating broadcasts", () => {
 
   test("a series row carries the next run that really sends", async () => {
     const { broadcastRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     const { broadcastRecurrenceService } = await import(
       "../src/broadcast/recurrence.service"
@@ -1876,7 +1876,7 @@ describe("broadcastService.findByIdOrName — repeating broadcasts", () => {
 
   const find = async (broadcast: Record<string, unknown>) => {
     const { broadcastRepository } = await import(
-      "@chatbotx.io/database/repositories"
+      "@inboxos.io/database/repositories"
     )
     const { broadcastRecurrenceService } = await import(
       "../src/broadcast/recurrence.service"

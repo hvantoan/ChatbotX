@@ -1,4 +1,4 @@
-import { AuthException } from "@chatbotx.io/sdk"
+import { AuthException } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import {
   GoogleAdsException,

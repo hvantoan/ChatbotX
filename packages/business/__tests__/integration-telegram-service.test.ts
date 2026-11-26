@@ -45,7 +45,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     delete: mockDelete,
     transaction: mockTransaction,
@@ -55,15 +55,15 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: mockFindOrFail,
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   integrationTypes: { enum: { telegram: "telegram" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationTelegramModel: { id: "id", botId: "botId" },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByProviderSourceId: mockFindByProviderSourceId },
 }))
 

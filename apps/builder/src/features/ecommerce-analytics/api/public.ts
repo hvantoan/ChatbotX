@@ -1,4 +1,4 @@
-import { ecommerceAnalyticsService } from "@chatbotx.io/business"
+import { ecommerceAnalyticsService } from "@inboxos.io/business"
 import { possibleErrorsOnFindingResource } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"
 import {

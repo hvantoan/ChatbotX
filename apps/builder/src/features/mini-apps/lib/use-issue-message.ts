@@ -3,7 +3,7 @@
 import type {
   MiniAppComponentType,
   MiniAppValidationIssue,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { useTranslations } from "next-intl"
 import { useCallback } from "react"
 import {

@@ -1,4 +1,4 @@
-import { GOOGLE_CLICK_REFERRAL_KEYS } from "@chatbotx.io/utils/google-click"
+import { GOOGLE_CLICK_REFERRAL_KEYS } from "@inboxos.io/utils/google-click"
 import { type SQL, sql } from "drizzle-orm"
 import { contactInboxModel } from "../schema"
 

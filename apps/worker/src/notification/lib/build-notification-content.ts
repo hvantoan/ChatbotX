@@ -1,5 +1,5 @@
-import type { ContentType } from "@chatbotx.io/database/partials"
-import type { NotificationJobConversation } from "@chatbotx.io/worker-config"
+import type { ContentType } from "@inboxos.io/database/partials"
+import type { NotificationJobConversation } from "@inboxos.io/worker-config"
 import { t } from "./strings"
 
 const resolveIncomingMessageBody = (

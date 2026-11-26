@@ -4,23 +4,23 @@ import {
   db,
   eq,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
-import { workspaceMemberRoles } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/client"
+import { workspaceMemberRoles } from "@inboxos.io/database/partials"
 import {
   type WorkspaceMemberPermissionsRow,
   workspaceMemberRepository,
-} from "@chatbotx.io/database/repositories"
-import { workspaceMemberModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { workspaceMemberModel } from "@inboxos.io/database/schema"
 import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/utils"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
 import { notFoundException } from "../errors"
 import { logger } from "../logger"

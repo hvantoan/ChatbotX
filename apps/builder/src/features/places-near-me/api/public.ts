@@ -1,7 +1,7 @@
 import {
   placeCategoryService,
   placeLocationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   possibleErrorsOnCreatingPlaceCategory,
   possibleErrorsOnDeletingResource,

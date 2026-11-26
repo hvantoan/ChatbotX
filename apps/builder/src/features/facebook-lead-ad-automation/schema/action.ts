@@ -1,4 +1,4 @@
-import { facebookLeadFieldMappingSchema } from "@chatbotx.io/database/partials"
+import { facebookLeadFieldMappingSchema } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const createFacebookLeadAdAutomationRequest = z.object({

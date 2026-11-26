@@ -1,9 +1,9 @@
-import { and, asc, db, eq, gt } from "@chatbotx.io/database/client"
+import { and, asc, db, eq, gt } from "@inboxos.io/database/client"
 import {
   contactsOnSequenceModel,
   sequenceStepModel,
-} from "@chatbotx.io/database/schema"
-import type { SchedulerClient } from "@chatbotx.io/scheduler"
+} from "@inboxos.io/database/schema"
+import type { SchedulerClient } from "@inboxos.io/scheduler"
 import { calculateNextRunAtFromStep } from "./calculate-next-run-at"
 import { getContactInboxes } from "./contacts-on-sequences"
 import { createDispatch } from "./dispatch-manager"

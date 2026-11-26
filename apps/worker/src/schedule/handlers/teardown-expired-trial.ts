@@ -1,9 +1,9 @@
 import {
   userQuotaService,
   workspaceLifecycleService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { getChildLogger } from "@chatbotx.io/logger"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { getChildLogger } from "@inboxos.io/logger"
 import { runJobWithAuditContext } from "../../lib/run-job-with-audit-context"
 import { allIntegrations } from "../../services/integrations"
 

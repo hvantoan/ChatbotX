@@ -35,7 +35,7 @@ The scheduled worker may retry this path. Every step must be idempotent and leav
 7. **Retain billing ledgers.** Owner-keyed billing consumption rollups such as `WorkspaceMac` are evidence of period usage and must be registered as `retainedBilling`, never deleted with their workspace.
 
 ## Before merge
-- Run `pnpm --filter @chatbotx.io/database test` and inspect the purge FK index tests.
+- Run `pnpm --filter @inboxos.io/database test` and inspect the purge FK index tests.
 - Inspect generated migration SQL. Partitioned indexes must use per-partition `CREATE INDEX CONCURRENTLY`, `ON ONLY` parent indexes, `ATTACH PARTITION`, and validity checks.
 - Run `EXPLAIN (ANALYZE, BUFFERS)` in `BEGIN … ROLLBACK` for representative purge batches. RI triggers must use index scans.
 - Verify a purge alongside activity in another workspace: no long-lived lock waits and no purge transaction longer than a batch.

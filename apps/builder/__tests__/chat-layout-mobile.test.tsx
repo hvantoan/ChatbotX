@@ -1,5 +1,5 @@
-import type * as MobileHook from "@chatbotx.io/ui/hooks/use-mobile"
-import { setViewportWidth } from "@chatbotx.io/vitest-config/setup-dom"
+import type * as MobileHook from "@inboxos.io/ui/hooks/use-mobile"
+import { setViewportWidth } from "@inboxos.io/vitest-config/setup-dom"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
@@ -23,7 +23,7 @@ const { mockMobileState } = vi.hoisted(() => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/hooks/use-mobile", async (importOriginal) => {
+vi.mock("@inboxos.io/ui/hooks/use-mobile", async (importOriginal) => {
   const actual = await importOriginal<typeof MobileHook>()
 
   return {

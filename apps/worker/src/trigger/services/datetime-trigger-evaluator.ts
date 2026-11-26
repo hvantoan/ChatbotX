@@ -1,11 +1,11 @@
 import { createHash } from "node:crypto"
-import { triggerService } from "@chatbotx.io/business"
-import { triggerEventTypes } from "@chatbotx.io/database/partials"
+import { triggerService } from "@inboxos.io/business"
+import { triggerEventTypes } from "@inboxos.io/database/partials"
 import {
   listContactCustomFieldsForDateTimeSweep,
   listContactCustomFieldsForDateTimeSweepContacts,
-} from "@chatbotx.io/database/repositories"
-import { getRedisConnection } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import { getRedisConnection } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import {
   allDateTimeConditionsMatch,

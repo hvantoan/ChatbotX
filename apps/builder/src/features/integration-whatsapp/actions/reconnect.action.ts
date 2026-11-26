@@ -6,15 +6,15 @@ import {
   platformCredentialService,
   WHATSAPP_CAPI_SCOPE,
   whatsappBusinessAccountService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import type { WhatsappAuthValue } from "@chatbotx.io/integration-whatsapp"
-import { listPhoneNumbers as whatsappListPhoneNumbers } from "@chatbotx.io/integration-whatsapp/api/phone-number"
-import { findWaba } from "@chatbotx.io/integration-whatsapp/api/waba"
-import { subscribeWebhook } from "@chatbotx.io/integration-whatsapp/api/webhook"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import type { WhatsappAuthValue } from "@inboxos.io/integration-whatsapp"
+import { listPhoneNumbers as whatsappListPhoneNumbers } from "@inboxos.io/integration-whatsapp/api/phone-number"
+import { findWaba } from "@inboxos.io/integration-whatsapp/api/waba"
+import { subscribeWebhook } from "@inboxos.io/integration-whatsapp/api/webhook"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { getWhatsappGrantedScopes } from "@/features/integration-whatsapp/libs/capi-scope"
@@ -45,7 +45,7 @@ async function findReconnectTarget(input: {
     workspaceId: input.workspaceId,
   })
   if (!existing) {
-    throw new ChatbotXException(input.t("whatsapp.reconnect.errors.notFound"))
+    throw new InboxOSException(input.t("whatsapp.reconnect.errors.notFound"))
   }
 
   return existing
@@ -65,7 +65,7 @@ async function resolveWhatsappSettings(input: {
     type: "whatsapp",
   })
   if (!credential) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       input.t("whatsapp.connect.errors.appSettingsNotFound"),
     )
   }
@@ -112,7 +112,7 @@ async function exchangeAndValidateWhatsappAccount(input: {
     (candidate) => candidate.id === input.existing.phoneNumberId,
   )
   if (!phoneNumber) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       input.t("whatsapp.reconnect.errors.phoneNumberMismatch"),
     )
   }

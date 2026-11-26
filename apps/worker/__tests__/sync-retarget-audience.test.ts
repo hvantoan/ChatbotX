@@ -19,7 +19,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsConversionService: {
     listRetargetContacts: mocks.listRetargetContacts,
   },
@@ -34,14 +34,14 @@ vi.mock("@chatbotx.io/business", () => ({
   withBlockedOwnerGuard: mocks.withBlockedOwnerGuard,
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptedDataSchema: { parse: vi.fn((value: unknown) => value) },
   encryptUtils: {
     decryptObject: mocks.decryptObject,
   },
 }))
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   GRAPH_ERROR_CODE_INVALID_TOKEN: 190,
   facebookAdsAuthSchema: {},
   getGraphErrorCode: (error: unknown) =>

@@ -1,4 +1,4 @@
-import { devicePlatformTypes } from "@chatbotx.io/database/partials"
+import { devicePlatformTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 export const meResource = z.object({

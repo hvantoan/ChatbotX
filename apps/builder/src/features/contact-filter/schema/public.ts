@@ -1,4 +1,4 @@
-import { formFieldTypes } from "@chatbotx.io/database/partials"
+import { formFieldTypes } from "@inboxos.io/database/partials"
 import { z } from "zod"
 import { CONTACT_FILTER_SURFACES } from "./definitions"
 

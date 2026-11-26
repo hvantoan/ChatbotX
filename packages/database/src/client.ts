@@ -1,4 +1,4 @@
-import { parseEnvBool } from "@chatbotx.io/utils"
+import { parseEnvBool } from "@inboxos.io/utils"
 import {
   DrizzleQueryError,
   type InferSelectModel,
@@ -56,7 +56,7 @@ export type DatabaseClient = typeof db | Transaction
 
 // Side-effect-free hypertable helpers (kept out of this module so they can be
 // imported without booting the connection pool). Re-exported here so callers
-// keep using the single `@chatbotx.io/database/client` entrypoint.
+// keep using the single `@inboxos.io/database/client` entrypoint.
 export {
   type StatementTimeout,
   setLocalStatementTimeout,

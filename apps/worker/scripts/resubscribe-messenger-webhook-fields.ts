@@ -24,8 +24,8 @@
  * scope instead of the bare base set, and the failure is logged (`err`).
  */
 import { pathToFileURL } from "node:url"
-import { messengerIntegrationService } from "@chatbotx.io/business"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
+import { messengerIntegrationService } from "@inboxos.io/business"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
 import {
   getPageSubscribedFields,
   LEAD_ADS_PAGE_SUBSCRIBE_FIELDS,
@@ -33,7 +33,7 @@ import {
   PAGE_SUBSCRIBE_SCOPES,
   ROUTING_PAGE_SUBSCRIBE_FIELDS,
   subscribePageToAppWebhook,
-} from "@chatbotx.io/integration-messenger/apis/page"
+} from "@inboxos.io/integration-messenger/apis/page"
 import { logger } from "../src/lib/logger"
 
 const PAGE_SIZE = 200

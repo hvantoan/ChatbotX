@@ -1,4 +1,4 @@
-import { FieldOperationType } from "@chatbotx.io/flow-config"
+import { FieldOperationType } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { addContactCustomFieldRequest } from "@/features/contacts/schema/contact-custom-field"
 

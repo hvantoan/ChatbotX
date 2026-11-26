@@ -1,5 +1,5 @@
-import { getPollState } from "@chatbotx.io/business/poll"
-import type { PollCandidateModel, PollModel } from "@chatbotx.io/database/types"
+import { getPollState } from "@inboxos.io/business/poll"
+import type { PollCandidateModel, PollModel } from "@inboxos.io/database/types"
 
 type PollRow = Pick<
   PollModel,

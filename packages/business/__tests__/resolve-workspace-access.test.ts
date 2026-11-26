@@ -20,7 +20,7 @@ vi.mock("../src/workspace-member/service", () => ({
   workspaceMemberService: { findMembership: vi.fn() },
 }))
 
-const user = { id: "user-1", email: "admin@chatbotx.io" }
+const user = { id: "user-1", email: "admin@inboxos.io" }
 
 beforeEach(() => {
   vi.clearAllMocks()

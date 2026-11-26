@@ -1,4 +1,4 @@
-import type { EncryptedData } from "@chatbotx.io/encryption"
+import type { EncryptedData } from "@inboxos.io/encryption"
 import { sql } from "drizzle-orm"
 import { index, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core"
 import { bigintAsString, timestampConfig } from "../../partials/shared"

@@ -3,17 +3,17 @@
 import {
   type GoogleAdsEventStatus,
   googleAdsEventStatusValues,
-} from "@chatbotx.io/database/partials"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/database/partials"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/select"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import { useRouter } from "next/navigation"

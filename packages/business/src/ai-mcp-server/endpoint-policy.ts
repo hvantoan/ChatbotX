@@ -1,4 +1,4 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { isCloud } from "../keys"
 import { checkSsrfSafety } from "../net"
 
@@ -8,7 +8,7 @@ const blockedHostnames = new Set([
 ])
 
 function rejectEndpoint(): never {
-  throw new ChatbotXException(
+  throw new InboxOSException(
     "MCP server endpoint is not permitted.",
     "invalidMcpServerEndpoint",
     400,

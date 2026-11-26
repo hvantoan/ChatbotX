@@ -1,15 +1,15 @@
-import { conversationService } from "@chatbotx.io/business"
-import { contactInboxService } from "@chatbotx.io/business/contact-inbox"
-import { smartDelayService } from "@chatbotx.io/business/smart-delay"
+import { conversationService } from "@inboxos.io/business"
+import { contactInboxService } from "@inboxos.io/business/contact-inbox"
+import { smartDelayService } from "@inboxos.io/business/smart-delay"
 import {
   type ConversationQuickReplyChallenge,
   smartDelayStatuses,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   type ButtonStepProps,
   type FlowNode,
@@ -19,8 +19,8 @@ import {
   resolveActiveQuickReplySettings,
   type SendTextStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { initVariables, SdkException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { initVariables, SdkException } from "@inboxos.io/sdk"
 import {
   detectConversationAndContactInbox,
   detectFlowVersion,

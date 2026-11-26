@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type * as RedisModule from "@chatbotx.io/redis"
+import type * as RedisModule from "@inboxos.io/redis"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -18,7 +18,7 @@ const matches = (
 
 // An in-memory stand-in for the Redis compare-and-set store the idempotency
 // middleware claims keys in.
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal<typeof RedisModule>()
   return {
     ...actual,
@@ -53,7 +53,7 @@ vi.mock("@chatbotx.io/redis", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: {
     findWorkspaceByTokenHash: mocks.findWorkspaceByTokenHash,
   },
@@ -66,7 +66,7 @@ vi.mock("@chatbotx.io/business", () => ({
   templateInstallationRequestService: {},
   resolveTemplateShareUrl: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business/template-uninstall", () => ({
+vi.mock("@inboxos.io/business/template-uninstall", () => ({
   templateUninstallService: {},
 }))
 vi.mock("../src/features/templates/lib/request-install", () => ({

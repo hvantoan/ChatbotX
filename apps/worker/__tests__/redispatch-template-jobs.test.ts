@@ -25,7 +25,7 @@ const mocks = vi.hoisted(() => ({
   enqueueFanOut: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateAiFileDispatchService: { listForSweep: mocks.listForSweep },
   templateInstallService: {
     abandonStale: mocks.abandonStale,
@@ -47,17 +47,17 @@ vi.mock("@chatbotx.io/business", () => ({
     listTemplatesNeedingFanOut: mocks.listFanOuts,
   },
 }))
-vi.mock("@chatbotx.io/business/template-uninstall/execute", () => ({
+vi.mock("@inboxos.io/business/template-uninstall/execute", () => ({
   templateUninstallExecuteService: { flushEffects: mocks.flushEffects },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   enqueueInstallTemplate: mocks.enqueueInstallTemplate,
   enqueueProcessAIFile: mocks.enqueueProcessAIFile,
   enqueueUninstallTemplate: mocks.enqueueUninstallTemplate,
   enqueueSyncTemplateInstallation: mocks.enqueueSync,
   enqueueFanOutTemplateUpdate: mocks.enqueueFanOut,
 }))
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     info: vi.fn(),
     warn: vi.fn(),

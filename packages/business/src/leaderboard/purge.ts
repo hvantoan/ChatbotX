@@ -1,8 +1,8 @@
 import {
   leaderboardRepository,
   leaderboardScoreEventRepository,
-} from "@chatbotx.io/database/repositories"
-import { leaderboardStore } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import { leaderboardStore } from "@inboxos.io/redis"
 import { logger } from "../logger"
 import { drainInBatches } from "../workspace-lifecycle/purge-batch"
 

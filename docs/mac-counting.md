@@ -276,12 +276,12 @@ contact-creation time (Path A) is what makes the subsequent `message:received` e
 ## Dependencies
 
 - **External:** PostgreSQL (native `RANGE` partitioning), Redis (Bloom filter via
-  `@chatbotx.io/redis` `bloomFilter`, distributed cache/lock, live counters), BullMQ
+  `@inboxos.io/redis` `bloomFilter`, distributed cache/lock, live counters), BullMQ
   (scheduled jobs), `date-fns-tz` (timezone-aware hour truncation).
-- **Internal:** `@chatbotx.io/database/client|schema|partials`, `@chatbotx.io/redis`
+- **Internal:** `@inboxos.io/database/client|schema|partials`, `@inboxos.io/redis`
   (`distributedStore`, `bloomFilter`, `cacheConnections`, `distributedLock`),
-  `@chatbotx.io/business` (`userQuotaService`, `quotaEnforcementService`,
-  `tenantService`), `@chatbotx.io/event-bus` (`emit`), `@chatbotx.io/flow-config`
+  `@inboxos.io/business` (`userQuotaService`, `quotaEnforcementService`,
+  `tenantService`), `@inboxos.io/event-bus` (`emit`), `@inboxos.io/flow-config`
   (`messageEventTypeSchema`).
 
 ## Things worth flagging

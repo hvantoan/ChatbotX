@@ -5,41 +5,41 @@ import {
   eq,
   inArray,
   sql,
-} from "@chatbotx.io/database/client"
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
-import { contactCustomFieldRepository } from "@chatbotx.io/database/repositories"
-import { contactCustomFieldModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/client"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
+import { contactCustomFieldRepository } from "@inboxos.io/database/repositories"
+import { contactCustomFieldModel } from "@inboxos.io/database/schema"
 import {
   type DecisionFlowOrigin,
   emitCustomFieldChanged,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   FieldOperationType,
   FieldReferenceKind,
   isBotFieldReference,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
-import { createId, isNumericId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId, isNumericId } from "@inboxos.io/utils"
 import {
   canonicalBooleanLiteral,
   canonicalNumberLiteral,
-} from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/utils/custom-field"
 import {
   DEFAULT_FILTER_TIMEZONE,
   isTemporalCustomFieldType,
   type SourceTimezoneStrategy,
   TemporalInputParsing,
-} from "@chatbotx.io/utils/datetime"
+} from "@inboxos.io/utils/datetime"
 import {
   calculateFieldValue,
   type FieldValueCalculationResult,
-} from "@chatbotx.io/utils/field-value-calculator"
+} from "@inboxos.io/utils/field-value-calculator"
 import { BaseService } from "../base.service"
 import { botFieldService } from "../bot-field/service"
 import { type ContactAccessScope, contactService } from "../contact/service"
 import { customFieldService } from "../custom-field/service"
 import {
-  ChatbotXException,
+  InboxOSException,
   invalidFieldOperationException,
   notFoundException,
 } from "../errors"
@@ -902,7 +902,7 @@ class ContactCustomFieldService extends BaseService {
         (type === "boolean" && canonicalBooleanLiteral(value) === value) ||
         (type === "number" && canonicalNumberLiteral(value) === value)
       if ((type === "boolean" || type === "number") && !isCanonical) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           `Non-canonical ${type} value for custom field ${customFieldId}; normalize before calling insertNormalizedValuesForNewContacts.`,
           "invalidCustomFieldValue",
           400,

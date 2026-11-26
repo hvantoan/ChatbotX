@@ -32,7 +32,7 @@ vi.mock("bullmq", () => {
 
 // A partial mock keeps worker-config's unrelated runtime exports needed by
 // handler imports; Vitest's importOriginal is required for that test seam.
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,

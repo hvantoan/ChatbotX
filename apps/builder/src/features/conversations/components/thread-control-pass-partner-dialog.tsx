@@ -1,13 +1,14 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type ThreadControlRole,
   threadControlRoles,
   threadTakePermissions,
-} from "@chatbotx.io/database/partials"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -15,10 +16,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import type { ThreadControlChannel } from "@chatbotx.io/utils/channel"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import type { ThreadControlChannel } from "@inboxos.io/utils/channel"
 import { Loader2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect } from "react"

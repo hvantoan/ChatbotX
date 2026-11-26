@@ -1,6 +1,6 @@
-import { integrationGetResponseService } from "@chatbotx.io/business"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import { getResponseAuthSchema } from "@chatbotx.io/integration-get-response"
+import { integrationGetResponseService } from "@inboxos.io/business"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import { getResponseAuthSchema } from "@inboxos.io/integration-get-response"
 
 export const getGetResponseAuth = async (workspaceId: string) => {
   const row =

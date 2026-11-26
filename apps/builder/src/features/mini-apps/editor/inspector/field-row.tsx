@@ -1,9 +1,9 @@
 "use client"
 
-import type { MiniAppValidationIssue } from "@chatbotx.io/mini-app"
-import { displayTextLength } from "@chatbotx.io/mini-app"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { MiniAppValidationIssue } from "@inboxos.io/mini-app"
+import { displayTextLength } from "@inboxos.io/mini-app"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { createContext, type ReactNode, useContext } from "react"
 import { type MiniAppPropertyKey, propertyLabelKey } from "../../lib/labels"

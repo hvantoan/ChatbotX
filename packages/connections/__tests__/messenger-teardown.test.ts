@@ -15,7 +15,7 @@ const mocks = vi.hoisted(() => ({
   tx: { marker: "tx" },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   coexistService: { tearDownForIntegration: mocks.tearDownForIntegration },
   contactScanService: { cancelForIntegration: mocks.cancelScanForIntegration },
   instagramIntegrationService: { existsForPage: mocks.existsForPage },
@@ -25,24 +25,24 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   connectionStateService: { disconnectInbox: mocks.disconnectInbox },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   metaCapiEventRepository: { deleteByIntegration: mocks.deleteByIntegration },
 }))
 
-vi.mock("@chatbotx.io/integration-messenger", () => ({
+vi.mock("@inboxos.io/integration-messenger", () => ({
   isDisconnectSafeError: mocks.isDisconnectSafeError,
   integration: { disconnect: mocks.remoteDisconnect },
 }))
 
-vi.mock("@chatbotx.io/integration-messenger/apis/page", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/page", () => ({
   subscribePageToAppWebhook: mocks.subscribePageToAppWebhook,
 }))
 
@@ -253,7 +253,7 @@ describe("messengerConnectionTeardownHook", () => {
 
   test("surfaces a sanitized remote Graph API failure message in remoteErrors instead of throwing", async () => {
     // `toPublicErrorMessage` is not mocked in this file, so this exercises
-    // the real implementation: a plain (non-`ChatbotXException`) `Error`
+    // the real implementation: a plain (non-`InboxOSException`) `Error`
     // always collapses to the call site's fallback instead of leaking its
     // raw message.
     mocks.remoteDisconnect.mockRejectedValue(new Error("Graph API down"))

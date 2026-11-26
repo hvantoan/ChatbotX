@@ -25,7 +25,7 @@ coordinator drains all registered workers on `SIGINT`/`SIGTERM`; `worker
 standalone` and `worker core` default `WORKER_SHUTDOWN_TIMEOUT_MS` to 8 seconds,
 while other modes drain until complete unless that variable is set.
 
-**Shared config** lives in `packages/worker-config/` (`@chatbotx.io/worker-config`).
+**Shared config** lives in `packages/worker-config/` (`@inboxos.io/worker-config`).
 Check `apps/worker/tsdown.config.ts` for the authoritative entry list.
 
 ## Workflow: new queue / job / consumer
@@ -34,7 +34,7 @@ Check `apps/worker/tsdown.config.ts` for the authoritative entry list.
 2. **Job types and queue** — `packages/worker-config/src/queues/<name>/index.ts`, exported from `packages/worker-config/src/index.ts`. Samples: [queue-definition](references/queue-definition.md).
 3. **Worker** — copy `apps/worker/src/notification/worker.ts` to `apps/worker/src/<domain>/worker.ts`; use `createQueueWorker` + `runWorker`, never a hand-rolled `new Worker(…)`, `ensureBootstrapped()` or `failed` listeners. Change the queue, the `Job<MyQueueJobData>` type, the `switch (job.data.type)` body (with `default: return`), and the concurrency env var.
 4. **Register in three places** — import in `apps/worker/src/core.ts` (or `standalone.ts` for cron/sequence-like workers), add the tsdown entry, add it to the existing-workers table. Plus a dev script in `apps/worker/package.json`. Details: [worker-registration](references/worker-registration.md).
-5. **Producer** — `myQueue.add(...)` / `addBulk` from `@chatbotx.io/worker-config`. See [enqueue-and-job-ids](references/enqueue-and-job-ids.md).
+5. **Producer** — `myQueue.add(...)` / `addBulk` from `@inboxos.io/worker-config`. See [enqueue-and-job-ids](references/enqueue-and-job-ids.md).
 6. **Cron job** — four-edit flow (`ScheduleJobData`, handler, `case` in `src/schedule/worker.ts`, `upsertJobScheduler`). See [scheduled-jobs](references/scheduled-jobs.md).
 
 The `heavy` queue is a workload-class queue (RAM/CPU/I/O/model-heavy jobs); see [existing-workers](references/existing-workers.md).
@@ -78,12 +78,12 @@ jobs can still report failures.
 
 | What | Import from |
 |------|-------------|
-| Queue names, job types | `@chatbotx.io/worker-config` |
-| Redis connection, options | `@chatbotx.io/worker-config` |
-| Database | `@chatbotx.io/database/client` |
+| Queue names, job types | `@inboxos.io/worker-config` |
+| Redis connection, options | `@inboxos.io/worker-config` |
+| Database | `@inboxos.io/database/client` |
 | Integration handlers | `../services/integrations` (within worker) |
-| Logger | `@chatbotx.io/logger` |
-| SDK types | `@chatbotx.io/sdk` |
+| Logger | `@inboxos.io/logger` |
+| SDK types | `@inboxos.io/sdk` |
 
 ## Logging
 
@@ -99,7 +99,7 @@ never use `console`. Log errors as `{ err, jobId: job?.id }` — the key is `err
 
 ## Verification
 
-- `pnpm lint` and `pnpm --filter worker check-types` (plus `@chatbotx.io/worker-config` if touched).
+- `pnpm lint` and `pnpm --filter worker check-types` (plus `@inboxos.io/worker-config` if touched).
 - Unit-test the processor and assert produced `jobId`s.
 
 ## References

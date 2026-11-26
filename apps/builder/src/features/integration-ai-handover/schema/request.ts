@@ -1,6 +1,6 @@
-import { aiHandoverTimeRangesSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { AI_HANDOVER_CHANNEL_POLICIES } from "@chatbotx.io/utils/channel"
+import { aiHandoverTimeRangesSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { AI_HANDOVER_CHANNEL_POLICIES } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 
 /**

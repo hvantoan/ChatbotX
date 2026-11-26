@@ -5,11 +5,11 @@ import {
   inboxTeamService,
   listOnShiftUserIds,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { requestThreadControlAction } from "@chatbotx.io/channel-registry/thread-control"
-import { gte, type SQL } from "@chatbotx.io/database/client"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { conversationModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import { requestThreadControlAction } from "@inboxos.io/channel-registry/thread-control"
+import { gte, type SQL } from "@inboxos.io/database/client"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { conversationModel } from "@inboxos.io/database/schema"
 import {
   type ArchiveConversationStepSchema,
   type AssignConversationStepSchema,
@@ -28,8 +28,8 @@ import {
   type UnarchiveConversationStepSchema,
   type UnassignConversationStepSchema,
   type UnfollowConversationStepSchema,
-} from "@chatbotx.io/flow-config"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/flow-config"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import { subHours } from "date-fns"
 import {
   resolveWhatsappMessageSourceId,

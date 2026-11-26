@@ -4,7 +4,7 @@ import {
   type MessengerTemplateComponent,
   type MessengerTemplateParams,
   readMessengerMiniAppButtons,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { logger } from "../../lib/logger"
 import {
   findSendableMiniAppIds,

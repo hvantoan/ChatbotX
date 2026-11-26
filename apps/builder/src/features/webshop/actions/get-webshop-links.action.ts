@@ -1,7 +1,7 @@
 "use server"
 
-import { createWebshopLink } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { createWebshopLink } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { workspaceActionClient } from "@/lib/safe-action"
 

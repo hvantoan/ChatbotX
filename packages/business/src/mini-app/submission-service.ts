@@ -1,16 +1,16 @@
-import { type DatabaseClient, db, eq, sql } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db, eq, sql } from "@inboxos.io/database/client"
 import {
   type MiniAppSubmissionListInput,
   miniAppSubmissionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   miniAppModel,
   miniAppSubmissionModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   MiniAppModel,
   MiniAppSubmissionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   collectCustomFieldMappings,
   collectFileInputNames,
@@ -20,8 +20,8 @@ import {
   type MiniAppAnswerValue,
   type MiniAppDefinition,
   sanitizeMiniAppAnswers,
-} from "@chatbotx.io/mini-app"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/mini-app"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
   contactCustomFieldService,

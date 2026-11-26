@@ -1,10 +1,10 @@
 // @vitest-environment node
 
-import { and, asc, db, eq, inArray } from "@chatbotx.io/database/client"
+import { and, asc, db, eq, inArray } from "@inboxos.io/database/client"
 import {
   buildContactInboxContactFilterSQL,
   contactInboxHasDmSQL,
-} from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/queries"
 import {
   contactInboxModel,
   contactModel,
@@ -12,8 +12,8 @@ import {
   inboxModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterAll, beforeAll, describe, expect, test, vi } from "vitest"
 
 /** The shared Vitest preset uses a non-routable port so DB suites self-skip. */

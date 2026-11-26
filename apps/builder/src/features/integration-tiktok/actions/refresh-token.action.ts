@@ -1,15 +1,15 @@
 "use server"
 
-import { tiktokIntegrationService } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { tiktokIntegrationService } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import {
   isRevokedTokenError,
   type TiktokAuthValue,
-} from "@chatbotx.io/integration-tiktok"
-import { refreshAccessToken } from "@chatbotx.io/integration-tiktok/apis/auth"
-import { buildTokenTimestamps } from "@chatbotx.io/integration-tiktok/lib/token-utils"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-tiktok"
+import { refreshAccessToken } from "@inboxos.io/integration-tiktok/apis/auth"
+import { buildTokenTimestamps } from "@inboxos.io/integration-tiktok/lib/token-utils"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,
@@ -44,7 +44,7 @@ const refreshTiktokToken = async (ctx: { workspaceId: string; id: string }) => {
       const auth = integrationTiktok.auth as TiktokAuthValue
 
       if (!auth.tokens.refreshToken) {
-        throw new ChatbotXException("TikTok refresh token not available")
+        throw new InboxOSException("TikTok refresh token not available")
       }
 
       try {
@@ -85,7 +85,7 @@ const refreshTiktokToken = async (ctx: { workspaceId: string; id: string }) => {
           error: error instanceof Error ? error.message : String(error),
           isRevoked: isRevokedTokenError(error),
         })
-        throw new ChatbotXException("Failed to refresh TikTok token")
+        throw new InboxOSException("Failed to refresh TikTok token")
       }
     },
   })

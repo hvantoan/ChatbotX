@@ -1,6 +1,6 @@
 "use client"
 
-import { isRecurringTemplate } from "@chatbotx.io/database/partials"
+import { isRecurringTemplate } from "@inboxos.io/database/partials"
 import { useFormatter, useTranslations } from "next-intl"
 import type { BroadcastResourceWithRelations } from "../schema/resource"
 

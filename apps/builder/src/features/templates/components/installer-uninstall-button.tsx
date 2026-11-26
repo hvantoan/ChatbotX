@@ -1,12 +1,12 @@
 "use client"
 
-import type { TemplateUninstallState } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateUninstallState } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"

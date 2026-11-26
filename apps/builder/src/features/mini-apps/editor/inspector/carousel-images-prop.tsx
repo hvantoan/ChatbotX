@@ -3,8 +3,8 @@
 import {
   MINI_APP_MAX_IMAGE_BASE64_LENGTH,
   type MiniAppImageItem,
-} from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { moveItem, patchItem, removeItem } from "../../lib/list-editing"

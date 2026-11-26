@@ -1,9 +1,9 @@
-import type { RichButtonPayloadEntry as DatabaseRichButtonPayloadEntry } from "@chatbotx.io/database/schema"
+import type { RichButtonPayloadEntry as DatabaseRichButtonPayloadEntry } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ConversationModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type {
   ButtonStepProps,
   MessengerTemplateParams,
@@ -27,8 +27,8 @@ import type {
   WaTemplateStatusBranch,
   WhatsappCallButtonStepSchema,
   WhatsappLocationStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { CommentAnchor, MessageButtonTemplate } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { CommentAnchor, MessageButtonTemplate } from "@inboxos.io/sdk"
 import { Queue } from "bullmq"
 import {
   defaultJobOptions,
@@ -39,7 +39,7 @@ import {
 import { queueNames } from "../../lib/types"
 import type { BotResponseTrackingContext } from "../types"
 
-export type { RichButtonPayloadEntry } from "@chatbotx.io/database/schema"
+export type { RichButtonPayloadEntry } from "@inboxos.io/database/schema"
 
 export const ChatJobAction = {
   sendChannelMessage: "sendChannelMessage",

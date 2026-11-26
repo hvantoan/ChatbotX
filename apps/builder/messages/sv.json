@@ -1776,7 +1776,7 @@
     "unknown": "Okänt"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Detta tar bort Metas meddelandekampanj och tar bort kampanjen från ChatbotX. Om Meta nekar borttagningen behålls kampanjen.",
+    "deleteWarning": "Detta tar bort Metas meddelandekampanj och tar bort kampanjen från InboxOS. Om Meta nekar borttagningen behålls kampanjen.",
     "title": "Facebook Marketing Messages",
     "description": "Öka engagemang och försäljning med personliga kampanjmeddelanden på Messenger.",
     "create": "Skapa ny",
@@ -1817,7 +1817,7 @@
       "tosNotAccepted": "För att använda den här funktionen behöver du godkänna villkoren för anpassade objekt på {url}",
       "notFound": "Marknadsföringsmeddelandet hittades inte.",
       "audienceNotTargetable": "Den valda anpassade målgruppen är inte redo eller tillhör inte den här sidan och annonskontot.",
-      "connectFirst": "Anslut Marketing Messages i ChatbotX-appen först.",
+      "connectFirst": "Anslut Marketing Messages i InboxOS-appen först.",
       "mmInvalidState": "Den här åtgärden är inte tillgänglig i kampanjens nuvarande tillstånd.",
       "mmCampaignEnded": "Metas meddelandekampanj har avslutats och kan därför inte skickas eller återupptas.",
       "mmPageNotConnected": "Kampanjens sida är inte ansluten till den här arbetsytan.",
@@ -1837,7 +1837,7 @@
       "uploadMore": "Ladda upp fler rader",
       "empty": "Inga anpassade målgrupper ännu.",
       "deleteTitle": "Ta bort anpassad målgrupp",
-      "deleteWarning": "Detta tar bort den anpassade målgruppen \"{name}\" på Meta och i ChatbotX. Det går inte att ångra.",
+      "deleteWarning": "Detta tar bort den anpassade målgruppen \"{name}\" på Meta och i InboxOS. Det går inte att ångra.",
       "deleted": "Anpassad målgrupp borttagen.",
       "pageDisconnected": "Sidan är frånkopplad",
       "status": {
@@ -2830,7 +2830,7 @@
     },
     "fromName": {
       "label": "Avsändarnamn",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "fullName": {
       "label": "Fullständigt namn"
@@ -8123,7 +8123,7 @@
         "title": "Samtalsbehörighet",
         "appSubscriptionMissing": "Konfigurera först WhatsApp-webhooken för denna app i Meta App Dashboard och försök sedan igen.",
         "appSubscriptionFailed": "Kunde inte verifiera appens prenumeration på 'calls'-webhooken. Försök igen om en stund.",
-        "callsNotSubscribed": "Denna app prenumererar inte på webhookfältet 'calls', så samtalshändelser kan inte nå ChatbotX (Meta-fel 138018: tekniska förutsättningar är inte uppfyllda — se till att minst en app som prenumererar på WABA:n också har webhookfältet för samtal).",
+        "callsNotSubscribed": "Denna app prenumererar inte på webhookfältet 'calls', så samtalshändelser kan inte nå InboxOS (Meta-fel 138018: tekniska förutsättningar är inte uppfyllda — se till att minst en app som prenumererar på WABA:n också har webhookfältet för samtal).",
         "fixButton": "Åtgärda",
         "fixSuccess": "Appen prenumererar nu på WhatsApp-samtalswebhooks.",
         "manualIntegrationNotice": "Detta nummer anslöts manuellt och har inga appuppgifter här. Prenumerera på webhookfältet 'calls' för din app i Meta App Dashboard.",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Åtgärdskälla",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "Butikskälla",
         "description": "Välj den butikskälla som används för att hantera dina produkter, lager och beställningar. När Shopify / WooCommerce är valt hanteras alla produkter och beställningar direkt från din Shopify / WooCommerce-butik.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "Autentisering",
-        "description": "Hur ChatbotX loggar in i din butik: med Admin API-åtkomsttoken från en anpassad app eller med Client ID och secret från en app som skapats i Shopify Dev Dashboard.",
+        "description": "Hur InboxOS loggar in i din butik: med Admin API-åtkomsttoken från en anpassad app eller med Client ID och secret från en app som skapats i Shopify Dev Dashboard.",
         "options": {
           "token": "Admin API-åtkomsttoken",
           "clientCredentials": "Client ID och secret (Dev Dashboard-app)"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} kan bara agera i den här arbetsytan. Koppla från och anslut igen för att byta senare.",
     "noWorkspaces": "Du är inte administratör för någon arbetsyta och kan därför inte auktorisera den här applikationen."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "Radera ditt ChatbotX-konto",
+    "title": "Radera ditt InboxOS-konto",
     "intro": "Du kan radera ditt konto och dess data på något av följande sätt.",
     "waysTitle": "Så raderar du ditt konto",
     "wayMobile": "I mobilappen: Inställningar → Radera konto.",

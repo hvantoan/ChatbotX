@@ -33,7 +33,7 @@ export const AI_FILE_MAX_UPLOAD_BYTES = 25 * 1024 * 1024
 
 /**
  * Knowledge MIME type by file extension — the single source for both the
- * upload picker (`allowableKnowledgeExtensionsMap` in `@chatbotx.io/ai`) and
+ * upload picker (`allowableKnowledgeExtensionsMap` in `@inboxos.io/ai`) and
  * the server, which infers a type from a filename when the bytes arrive as
  * `application/octet-stream`. Kept apart from `EXTENSION_MIME_TYPES`, which
  * serves chat-channel media.

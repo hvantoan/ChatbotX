@@ -1,14 +1,14 @@
-import { and, count, db, eq, gte, lte, sql } from "@chatbotx.io/database/client"
+import { and, count, db, eq, gte, lte, sql } from "@inboxos.io/database/client"
 import type {
   CommentModerationAction,
   CommentModerationSource,
   CommentModerationStatus,
-} from "@chatbotx.io/database/partials"
-import { commentModerationLogModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/partials"
+import { commentModerationLogModel } from "@inboxos.io/database/schema"
 import type {
   CommentModerationLogInsert,
   CommentModerationLogModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { BaseRepository } from "./base.repository"
 
 export type CommentModerationLogFilter = {

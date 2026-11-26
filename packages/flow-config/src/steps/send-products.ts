@@ -1,4 +1,4 @@
-import { createId, zodBigintAsString } from "@chatbotx.io/utils"
+import { createId, zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { countMessageCharacters } from "../channel-rules/characters"
 import { flowValidationCodes } from "../validation-codes"
@@ -7,7 +7,7 @@ import { stepTypes } from "./step-action"
 
 /**
  * Product-message step: shows products from the workspace catalog. The step
- * stores ChatbotX product ids only — how a channel renders them, and which
+ * stores InboxOS product ids only — how a channel renders them, and which
  * catalog id they map to there, is resolved at send time.
  */
 export const sendProductsDisplays = z.enum(["products", "carousel"])

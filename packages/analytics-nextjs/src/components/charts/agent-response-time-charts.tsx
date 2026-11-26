@@ -1,6 +1,6 @@
 "use client"
 
-import BarChart from "@chatbotx.io/ui/components/charts/bar-chart"
+import BarChart from "@inboxos.io/ui/components/charts/bar-chart"
 import { useLocale, useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useAnalysisStore } from "../../provider/analysis-store-context"

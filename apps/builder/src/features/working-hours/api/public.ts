@@ -1,4 +1,4 @@
-import { workingHoursService } from "@chatbotx.io/business"
+import { workingHoursService } from "@inboxos.io/business"
 import {
   possibleErrorsOnCreatingResource,
   possibleErrorsOnDeletingResource,

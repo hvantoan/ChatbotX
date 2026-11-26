@@ -2,7 +2,7 @@ import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type { HTTPMethod } from "@orpc/server"
 import { ORPCError } from "@orpc/server"
 import type { RequestApiToken } from "@/middlewares/context"

@@ -40,7 +40,7 @@ vi.mock("@/lib/auth/auth", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     error: vi.fn(),
     info: vi.fn(),
@@ -50,8 +50,8 @@ vi.mock("@chatbotx.io/logger", () => ({
 }))
 
 const { call } = await import("@orpc/server")
-const { getAuditActor } = await import("@chatbotx.io/business/audit")
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { getAuditActor } = await import("@inboxos.io/business/audit")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { integrationMessengerConnectAPIs } = await import(
   "@/features/integration-messenger/api/connect"
 )
@@ -151,9 +151,9 @@ describe("connect routes", () => {
     ).resolves.toEqual(sessionError)
   })
 
-  test("a ChatbotXException escaping a core is mapped to its own 4xx, never a 500", async () => {
+  test("a InboxOSException escaping a core is mapped to its own 4xx, never a 500", async () => {
     mockConnectMessengerPage.mockRejectedValue(
-      new ChatbotXException("Nope", "BAD_REQUEST", 400),
+      new InboxOSException("Nope", "BAD_REQUEST", 400),
     )
 
     const error = await call(

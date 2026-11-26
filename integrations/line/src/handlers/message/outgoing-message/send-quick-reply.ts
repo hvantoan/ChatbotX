@@ -1,4 +1,4 @@
-import type { SendQuickReplyStepSchema } from "@chatbotx.io/flow-config"
+import type { SendQuickReplyStepSchema } from "@inboxos.io/flow-config"
 import { type LineAction, toLineActions } from "./actions"
 import type { LineMessage } from "./dispatch"
 import { LINE_LIMITS } from "./limits"

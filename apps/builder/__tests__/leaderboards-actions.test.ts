@@ -8,7 +8,7 @@ const service = vi.hoisted(() => ({
   adjust: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardService: {
     create: service.create,
     publish: service.publish,
@@ -94,10 +94,10 @@ describe("createLeaderboardAction", () => {
   })
 
   test("keeps the draft and reports the publish error instead of throwing", async () => {
-    const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+    const { InboxOSException } = await import("@inboxos.io/business/errors")
     service.create.mockResolvedValue({ id: "7" })
     service.publish.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "Enable at least one scoring rule",
         "validation",
         422,

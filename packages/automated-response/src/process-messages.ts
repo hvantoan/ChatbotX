@@ -2,12 +2,12 @@ import {
   createMessageRepository,
   getSafeSinceTime,
   type MessageTextWithFileTypes,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { simpleQueue } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import { simpleQueue } from "@inboxos.io/redis"
 import { getKey } from "./constants"
 import { dispatchAutomatedResponseReply } from "./dispatch-reply"
 import { isKeywordMediaFileType } from "./keyword-match"

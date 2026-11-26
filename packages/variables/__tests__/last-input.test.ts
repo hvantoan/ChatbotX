@@ -1,4 +1,4 @@
-import { contentTypes } from "@chatbotx.io/database/partials"
+import { contentTypes } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -17,11 +17,11 @@ const {
   mockResolveTenantSettings: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureAttachmentStored: mockEnsureAttachmentStored,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     findLatestByContact: mockFindLatestByContact,
   },
@@ -36,7 +36,7 @@ vi.mock("@chatbotx.io/business", () => ({
 
 const ABSOLUTE_URL_RE = /^https?:\/\//i
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, baseUrl: string) =>
     new URL(path, baseUrl).toString(),
   toPublicStorageUrl: (path: string, baseUrl: string) =>

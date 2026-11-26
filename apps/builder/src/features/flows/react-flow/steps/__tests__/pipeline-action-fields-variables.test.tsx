@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import type { PipelineStepAction } from "@chatbotx.io/flow-config"
+import type { PipelineStepAction } from "@inboxos.io/flow-config"
 import type { ReactNode } from "react"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
@@ -20,13 +20,13 @@ vi.mock("@/components/tiptap/plain-text-editor-field", () => ({
   },
 }))
 vi.mock("next-intl", () => ({ useTranslations: () => (key: string) => key }))
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/combobox-field", () => ({
   ComboboxField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/multi-select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/multi-select-field", () => ({
   MultiSelectField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: () => null,
 }))
 vi.mock("@/features/pipelines/lib/use-assignee-options", () => ({

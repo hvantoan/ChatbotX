@@ -44,7 +44,7 @@ concurrency:
 
 jobs:
   # Type-checking is split across two runners. Every workspace resolves
-  # `@chatbotx.io/*` to raw source, so each `tsc` re-checks the shared
+  # `@inboxos.io/*` to raw source, so each `tsc` re-checks the shared
   # database/business graph itself: the 65 tasks summed ~284s locally, with
   # builder (48s) and worker (19s) the largest, and one 4-vCPU runner took
   # ~450s on a full run. builder + worker on one runner and the other 63 on

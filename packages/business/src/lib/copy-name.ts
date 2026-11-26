@@ -1,4 +1,4 @@
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
 
 /** How many numbered copies (`… Copy`, `… Copy 2`, …) are tried before giving up. */
 export const MAX_COPY_NAME_ATTEMPTS = 50

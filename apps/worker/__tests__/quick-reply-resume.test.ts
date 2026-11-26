@@ -1,4 +1,4 @@
-import { quickReplySettingsDefaultFn } from "@chatbotx.io/flow-config"
+import { quickReplySettingsDefaultFn } from "@inboxos.io/flow-config"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -22,17 +22,17 @@ const mocks = vi.hoisted(() => ({
   SdkException: class SdkException extends Error {},
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: mocks.conversationService,
   contactInboxService: mocks.contactInboxService,
 }))
-vi.mock("@chatbotx.io/business/contact-inbox", () => ({
+vi.mock("@inboxos.io/business/contact-inbox", () => ({
   contactInboxService: mocks.contactInboxService,
 }))
-vi.mock("@chatbotx.io/business/smart-delay", () => ({
+vi.mock("@inboxos.io/business/smart-delay", () => ({
   smartDelayService: mocks.smartDelayService,
 }))
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   initVariables: mocks.initVariables,
   SdkException: mocks.SdkException,
 }))

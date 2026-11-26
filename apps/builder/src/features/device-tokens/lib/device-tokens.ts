@@ -1,8 +1,8 @@
 import {
   deviceTokenService,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type { z } from "zod"
 import type {
   registerDeviceTokenRequest,
@@ -24,7 +24,7 @@ export const registerDeviceToken = async (
       userId,
     })
     if (!isMember) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Not a member of this workspace",
         "forbidden",
         403,

@@ -1,8 +1,8 @@
 import type {
   SendWaTemplateMessageStepSchema,
   TemplateComponent,
-} from "@chatbotx.io/flow-config"
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { assertPaymentRequestsSendable } from "../src/integration/handlers/wa-payment-request-guard"
 

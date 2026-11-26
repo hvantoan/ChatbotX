@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/sequence-scheduler",
+  "name": "@inboxos.io/sequence-scheduler",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -8,15 +8,15 @@
     "./dispatch-cancel": "./src/dispatch-cancel.ts"
   },
   "dependencies": {
-    "@chatbotx.io/database": "workspace:*",
-    "@chatbotx.io/redis": "workspace:*",
-    "@chatbotx.io/scheduler": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/database": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
+    "@inboxos.io/scheduler": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "date-fns": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

@@ -5,7 +5,7 @@ const mocks = vi.hoisted(() => ({
   findByIdUnscoped: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     updateAuthUnscoped: mocks.updateAuthUnscoped,
     findByIdUnscoped: mocks.findByIdUnscoped,

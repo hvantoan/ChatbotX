@@ -47,7 +47,7 @@ vi.mock("../src/ecommerce-settings/store-source", () => ({
   ecommerceSettingsCacheTag: (workspaceId: string) =>
     `ecommerce-settings:${workspaceId}`,
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
     query: {
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   eq: (column: unknown, value: unknown) => ({ column, value }),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   discountCodeRepository: {
     removeProductIds: (...args: unknown[]) => mocks.removeProductIds(...args),
   },
@@ -76,13 +76,13 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   productAddonModel: { productId: "addon-product-id" },
   productVariantModel: { productId: "variant-product-id" },
   productVariantOptionModel: { productId: "option-product-id" },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
 }))
 

@@ -2,7 +2,7 @@ import {
   type BroadcastForSend,
   type BroadcastRecipientForSend,
   broadcastService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   broadcastSendsFlow,
   broadcastSendsTemplate,
@@ -12,24 +12,24 @@ import {
   resolveBroadcastSendRatePerMinute,
   resolveBroadcastTemplateSend,
   usesBroadcastTargets,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   BROADCAST_PAYLOAD_TYPE,
   type MessengerTemplateParams,
   type WaTemplateParams,
-} from "@chatbotx.io/flow-config"
-import { mapWithConcurrency } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { mapWithConcurrency } from "@inboxos.io/utils"
 import {
   BROADCAST_SEND_PRIORITY,
   ChatJobAction,
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"
 import { logger } from "../../lib/logger"
 

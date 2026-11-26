@@ -1,17 +1,17 @@
-import { and, db, eq, ilike } from "@chatbotx.io/database/client"
-import type { DynamicImageDocument } from "@chatbotx.io/database/partials"
+import { and, db, eq, ilike } from "@inboxos.io/database/client"
+import type { DynamicImageDocument } from "@inboxos.io/database/partials"
 import {
   contactCustomFieldModel,
   dynamicImageModel,
-} from "@chatbotx.io/database/schema"
-import type { DynamicImageModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { DynamicImageModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   likeContains,
   parseOrderBy,
-} from "@chatbotx.io/database/utils"
-import { uploader } from "@chatbotx.io/filesystem"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { uploader } from "@inboxos.io/filesystem"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { contactCustomFieldService } from "../contact-custom-field/service"
 import { notFoundException } from "../errors"
@@ -389,7 +389,7 @@ class DynamicImageService extends BaseService {
   /**
    * Fills in `url` for `avatarUser`/`customField` image elements from the
    * contact's data. Text/QR `{{variable}}` placeholders are left untouched —
-   * the caller resolves those via `@chatbotx.io/variables` before rendering.
+   * the caller resolves those via `@inboxos.io/variables` before rendering.
    */
   async resolveDynamicElements(input: {
     workspaceId: string

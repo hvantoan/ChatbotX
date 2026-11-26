@@ -1,7 +1,7 @@
 import {
   leaderboardPlatforms,
   leaderboardStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createSearchParamsCache,
   parseAsArrayOf,

@@ -1,5 +1,5 @@
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { adsEligibleChannelTypes } from "@chatbotx.io/utils/channel"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { adsEligibleChannelTypes } from "@inboxos.io/utils/channel"
 import { z } from "zod"
 
 export const listChannelAdAccountsRequest = z.object({

@@ -1,4 +1,4 @@
-import type { ImportErrorSample } from "@chatbotx.io/database/schema"
+import type { ImportErrorSample } from "@inboxos.io/database/schema"
 
 type ImportErrorSampleTranslation = (
   key:

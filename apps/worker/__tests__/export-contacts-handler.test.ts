@@ -1,5 +1,5 @@
 import { PassThrough, Readable } from "node:stream"
-import { createImportCsvParser } from "@chatbotx.io/imports/parsers"
+import { createImportCsvParser } from "@inboxos.io/imports/parsers"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // ── Mocks ─────────────────────────────────────────────────────────────────────
@@ -12,7 +12,7 @@ const findFirstWorkspace = vi.fn()
 const updateSet = vi.fn()
 const updateWhere = vi.fn()
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactRepository: {
     listForExportPage: (...args: unknown[]) => findManyContacts(...args),
   },
@@ -24,16 +24,16 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/partials", async () =>
-  vi.importActual("@chatbotx.io/database/partials"),
+vi.mock("@inboxos.io/database/partials", async () =>
+  vi.importActual("@inboxos.io/database/partials"),
 )
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   applyContactFilter: (criteria: unknown) => ({ __filter: criteria }),
   pruneEmailPhoneFilterConditions: (criteria: unknown) => criteria,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   // The handler reads the workspace timezone to format date/datetime custom
   // fields for CSV export.
   workspaceService: {
@@ -51,7 +51,7 @@ vi.mock("@chatbotx.io/business", () => ({
 }))
 
 const recordAuditLog = vi.fn()
-vi.mock("@chatbotx.io/business/audit", async () => {
+vi.mock("@inboxos.io/business/audit", async () => {
   const { AsyncLocalStorage } = await import("node:async_hooks")
   const storage = new AsyncLocalStorage<Record<string, unknown>>()
   return {
@@ -64,7 +64,7 @@ vi.mock("@chatbotx.io/business/audit", async () => {
 })
 
 // Small page size keeps multi-page pagination tests to a few rows.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   loopableItemsCount: 2,
 }))
 
@@ -74,7 +74,7 @@ const createUpload = vi.fn(() => {
   uploadStream = new PassThrough()
   return { stream: uploadStream, done: Promise.resolve() }
 })
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: {
     createUpload: (path: string, options?: unknown) =>
       createUpload(path, options),
@@ -83,7 +83,7 @@ vi.mock("@chatbotx.io/filesystem", () => ({
 
 // The handler imports createUpload from the node-upload subpath, not the
 // filesystem barrel — mock that exact specifier or it hits real S3.
-vi.mock("@chatbotx.io/filesystem/node-upload", () => ({
+vi.mock("@inboxos.io/filesystem/node-upload", () => ({
   createUpload: (path: string, options?: unknown) =>
     createUpload(path, options),
 }))

@@ -1,9 +1,9 @@
-import { googleAdsEventStatusValues } from "@chatbotx.io/database/partials"
+import { googleAdsEventStatusValues } from "@inboxos.io/database/partials"
 import {
   type GoogleAdsActionStatsRow,
   type GoogleAdsDayChannelStatsRow,
   googleAdsConversionEventRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 // Direct file imports: the `ads-analytics` index pulls in the Meta service graph.
 import {
   enumerateDateKeys,

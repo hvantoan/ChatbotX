@@ -1,4 +1,4 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   type AnyColumn,
   and,
@@ -6,7 +6,7 @@ import {
   eq,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   inboxTeamModel,
   pipelineItemAssigneeModel,
@@ -16,7 +16,7 @@ import {
   userModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type { PgTable } from "drizzle-orm/pg-core"
 
 /** `"Table"."column"`: drizzle drops the table prefix when a query selects from one source, which makes the joined subselect ambiguous. */

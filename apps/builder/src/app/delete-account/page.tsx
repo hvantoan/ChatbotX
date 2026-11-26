@@ -1,4 +1,4 @@
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Delete your account",
 }
 
-const SUPPORT_EMAIL = "support@chatbotx.io"
+const SUPPORT_EMAIL = "support@inboxos.io"
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (

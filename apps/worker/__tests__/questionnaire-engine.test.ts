@@ -18,11 +18,11 @@ const mocks = vi.hoisted(() => ({
   enqueueLeaderboardAward: vi.fn(async (_input: unknown) => true),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward: mocks.enqueueLeaderboardAward,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   conversationService: {
     updateChallenge: mocks.updateChallenge,
   },
@@ -35,7 +35,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: vi.fn(async () => ({
     findById: mocks.findById,
     findLastByConversation: mocks.findLastByConversation,
@@ -43,11 +43,11 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   getSafeSinceTime: mocks.getSafeSinceTime,
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "channel",
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   flowContinuationJobOptions: () => ({}),
   ChatJobAction: { sendChatMessage: "sendChatMessage" },
   IntegrationJobAction: { sendFlow: "sendFlow" },

@@ -1,15 +1,15 @@
-import { conversationService } from "@chatbotx.io/business"
-import { smartDelayService } from "@chatbotx.io/business/smart-delay"
+import { conversationService } from "@inboxos.io/business"
+import { smartDelayService } from "@inboxos.io/business/smart-delay"
 import {
   type ConversationAttributes,
   smartDelayTypes,
-} from "@chatbotx.io/database/partials"
-import type { ConversationModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { ConversationModel } from "@inboxos.io/database/types"
 import {
   computeQuickReplyFollowUpTriggerAt,
   type MetadataPayload,
   resolveActiveQuickReplySettings,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { logger } from "../../lib/logger"
 import { scheduleSmartDelayResume } from "./smart-delay"
 

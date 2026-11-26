@@ -15,7 +15,7 @@ const calendar = vi.hoisted(() => ({ props: null as CalendarProps | null }))
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }))
-vi.mock("@chatbotx.io/ui/components/ui/calendar", () => ({
+vi.mock("@inboxos.io/ui/components/ui/calendar", () => ({
   Calendar: (props: CalendarProps) => {
     calendar.props = props
     return <div data-testid="calendar" />

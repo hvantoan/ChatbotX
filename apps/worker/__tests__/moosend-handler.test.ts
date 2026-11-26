@@ -1,4 +1,4 @@
-import { moosendCreateContactDefaultFn } from "@chatbotx.io/flow-config"
+import { moosendCreateContactDefaultFn } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const state = vi.hoisted(() => ({
@@ -13,7 +13,7 @@ const state = vi.hoisted(() => ({
 const CONTACT_LOCK_KEY_PATTERN =
   /^moosend:subscribe:[a-f0-9]{64}:[a-f0-9]{64}:[a-f0-9]{64}$/u
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async ({ integration }: { integration: unknown }) => ({
     auth: state.auth,
     integration,
@@ -23,19 +23,17 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptedDataSchema: { parse: vi.fn((value: unknown) => value) },
   encryptUtils: { decryptObject: vi.fn(async () => state.auth) },
 }))
 
-vi.mock("@chatbotx.io/integration-moosend", async (importOriginal) => ({
-  ...(await importOriginal<
-    typeof import("@chatbotx.io/integration-moosend")
-  >()),
+vi.mock("@inboxos.io/integration-moosend", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/integration-moosend")>()),
   integration: { runAction: state.runAction },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   cacheConnections: {
     useExisting: vi.fn(async () => ({ eval: state.eval, set: state.set })),
   },

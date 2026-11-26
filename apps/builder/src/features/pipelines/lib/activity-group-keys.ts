@@ -1,4 +1,4 @@
-import type { PipelineActivityGroup } from "@chatbotx.io/database/partials"
+import type { PipelineActivityGroup } from "@inboxos.io/database/partials"
 
 /** Message key (in `pipelines`) of each activity group's label. */
 export const ACTIVITY_GROUP_LABEL_KEYS = {

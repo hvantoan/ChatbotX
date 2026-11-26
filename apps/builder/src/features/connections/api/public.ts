@@ -1,8 +1,8 @@
-import { connectionStateService } from "@chatbotx.io/business"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { connectionService } from "@chatbotx.io/connections"
-import type { WorkspaceApiTokenScope } from "@chatbotx.io/database/partials"
+import { connectionStateService } from "@inboxos.io/business"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { connectionService } from "@inboxos.io/connections"
+import type { WorkspaceApiTokenScope } from "@inboxos.io/database/partials"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
   possibleErrorsOnCancelingConnectSession,

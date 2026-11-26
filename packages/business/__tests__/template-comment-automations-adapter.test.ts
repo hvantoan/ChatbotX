@@ -7,11 +7,11 @@ const mocks = vi.hoisted(() => ({
   listAutomationAccounts: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({ db: {} }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ db: {} }))
+vi.mock("@inboxos.io/database/schema", () => ({
   commentAutomationModel: { table: "commentAutomation" },
 }))
-vi.mock("@chatbotx.io/utils", () => ({ createId: () => "new-automation" }))
+vi.mock("@inboxos.io/utils", () => ({ createId: () => "new-automation" }))
 vi.mock("../src/comment-automation/account-scope", () => ({
   listAutomationAccounts: (...args: unknown[]) =>
     mocks.listAutomationAccounts(...args),

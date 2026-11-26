@@ -1,11 +1,11 @@
-import { resolveAiProviderAuth } from "@chatbotx.io/business/connection/ai-provider-auth"
-import { db } from "@chatbotx.io/database/client"
+import { resolveAiProviderAuth } from "@inboxos.io/business/connection/ai-provider-auth"
+import { db } from "@inboxos.io/database/client"
 import type {
   AIAgentModelConfig,
   AIAgentOpenaiCompatibleProviderModel,
   AIAgentProviderModels,
   AIAgentSalesProfile,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { generateText, type LanguageModel, Output } from "ai"
 import { z } from "zod"
 import { aiTimeouts } from "../../constants"

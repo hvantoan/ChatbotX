@@ -1,5 +1,5 @@
-import { contactExportService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { contactExportService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

@@ -43,7 +43,7 @@ const {
 
 const botFieldModel = { table: "BotField" }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: mockDb,
   and: vi.fn(),
   eq: vi.fn(),
@@ -52,21 +52,21 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "root",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   botFieldModel,
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: vi.fn(),
   parseOrderByAsObject: vi.fn(),
   parsePagination: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   FieldOperationType: {
     set: "set",
     append: "append",
@@ -76,24 +76,24 @@ vi.mock("@chatbotx.io/flow-config", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: mockCreateId,
 }))
 
 // The real planner: this suite pins what the service does with its decisions.
-vi.mock("@chatbotx.io/utils/custom-field", async () => {
+vi.mock("@inboxos.io/utils/custom-field", async () => {
   const actual = await vi.importActual<
-    typeof import("@chatbotx.io/utils/custom-field")
-  >("@chatbotx.io/utils/custom-field")
+    typeof import("@inboxos.io/utils/custom-field")
+  >("@inboxos.io/utils/custom-field")
   return actual
 })
 
-vi.mock("@chatbotx.io/utils/datetime", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils/datetime")>()),
+vi.mock("@inboxos.io/utils/datetime", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils/datetime")>()),
   SourceTimezoneStrategy: { Workspace: "workspace" },
 }))
 
@@ -112,14 +112,14 @@ vi.mock("../src/contact-custom-field/normalize", () => ({
 
 // This suite doesn't exercise value normalization, so mock away the (real)
 // module the same way `contact-custom-field/normalize` is mocked above —
-// otherwise it would pull in `@chatbotx.io/utils/temporal-input`, which needs
-// more of the real `@chatbotx.io/utils/datetime` than this file mocks.
+// otherwise it would pull in `@inboxos.io/utils/temporal-input`, which needs
+// more of the real `@inboxos.io/utils/datetime` than this file mocks.
 vi.mock("../src/javascript-execution/custom-field-value", () => ({
   normalizeNumber: vi.fn(),
 }))
 
 vi.mock("../src/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+  InboxOSException: class InboxOSException extends Error {},
   notFoundException: (message: string) => new Error(message),
 }))
 

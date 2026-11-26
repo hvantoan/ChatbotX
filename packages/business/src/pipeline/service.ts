@@ -1,11 +1,11 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   mergePipelineSettings,
   PIPELINE_LIMITS,
   type PipelineSettingsPatch,
   type PipelineType,
   pipelineTypeDefaults,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   acquirePipelineAdvisoryLock,
   type PipelineUpdate,
@@ -13,14 +13,14 @@ import {
   pipelineItemRepository,
   pipelineRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
-import { pipelineModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { pipelineModel } from "@inboxos.io/database/schema"
 import type {
   PipelineFieldModel,
   PipelineModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/types"
+import { withCache } from "@inboxos.io/redis"
 import { conflictException, notFoundException } from "../errors"
 import { type IdLabel, selectLabelsByIds } from "../select-labels-by-ids"
 import {

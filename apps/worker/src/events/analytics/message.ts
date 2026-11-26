@@ -1,14 +1,14 @@
-import { messageAnalyticsService } from "@chatbotx.io/analytics"
+import { messageAnalyticsService } from "@inboxos.io/analytics"
 import {
   quotaEnforcementService,
   workspaceBotMessageUsageService,
   workspaceService,
   workspaceUsageService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import type {
   BotMessageSentEventPayload,
   HumanMessageSentEventPayload,
-} from "@chatbotx.io/event-bus"
+} from "@inboxos.io/event-bus"
 import { logger } from "../../lib/logger"
 
 export function handleHumanMessageSent(

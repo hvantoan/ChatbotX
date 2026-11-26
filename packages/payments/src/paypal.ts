@@ -348,7 +348,7 @@ export const createPaypalGateway = (
       }
     },
 
-    // A PayPal order is never charged unless ChatbotX captures it, and an
+    // A PayPal order is never charged unless InboxOS captures it, and an
     // expired order is never captured: there is nothing to close.
     async expireCheckout(reference): Promise<CheckoutStatus> {
       const status = toCheckoutStatus(await getOrder(reference))
@@ -468,7 +468,7 @@ const isCredentialsRejected = (error: unknown) =>
 /**
  * Checks a store's Client ID and Secret — live first, then sandbox, so the
  * store never has to say which — and creates the webhook PayPal calls the
- * store's ChatbotX back on. Returns what is stored for the store.
+ * store's InboxOS back on. Returns what is stored for the store.
  */
 export const connectPaypal = async (
   input: { clientId: string; clientSecret: string; webhookUrl: string },

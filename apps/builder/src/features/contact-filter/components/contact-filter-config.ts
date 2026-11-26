@@ -2,7 +2,7 @@ import {
   contactLanguageOptions,
   contactLocaleOptions,
   contactTimezoneOptions,
-} from "@chatbotx.io/business/contact-locale"
+} from "@inboxos.io/business/contact-locale"
 import {
   CONTACT_ACTIVITY_TRACKED_FIELDS,
   type ContactFilterField,
@@ -20,8 +20,8 @@ import {
   type OperatorType,
   operatorTypes,
   type PipelineItemFilterAttribute,
-} from "@chatbotx.io/database/partials"
-import type { SelectOption } from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/database/partials"
+import type { SelectOption } from "@inboxos.io/ui/components/form/select-field"
 import { languageOptions } from "@/features/integration-whatsapp/message-templates/type"
 import type { PipelineOptionsResponse } from "@/features/pipelines/schema/resource"
 import {

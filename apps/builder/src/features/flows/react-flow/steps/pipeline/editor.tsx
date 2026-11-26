@@ -4,7 +4,7 @@ import {
   type PipelineStepAction,
   type PipelineStepSchema,
   pipelineStepDefaultFn,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { SquareKanbanIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

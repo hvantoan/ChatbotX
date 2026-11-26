@@ -1,5 +1,5 @@
-import type { SmtpProvider } from "@chatbotx.io/integration-smtp"
-import { smtpHostMap } from "@chatbotx.io/integration-smtp"
+import type { SmtpProvider } from "@inboxos.io/integration-smtp"
+import { smtpHostMap } from "@inboxos.io/integration-smtp"
 
 /**
  * Resolves the effective host/port for a provider. Anything but "other" is

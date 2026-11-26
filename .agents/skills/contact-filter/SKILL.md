@@ -1,7 +1,7 @@
 ---
 name: contact-filter
 description: >-
-  Work with the ChatbotX contact filter system — the shared filter model behind
+  Work with the InboxOS contact filter system — the shared filter model behind
   the contacts list, conversations, and broadcast audiences. Use when adding a
   filter field or operator, changing the filter UI, editing the SQL query
   builder, or enforcing an audience constraint. Covers the definitions
@@ -14,7 +14,7 @@ description: >-
 
 A reusable, structured filter (`{ operator, conditions[] }`, flat, `operator` top-level only)
 applied to contacts. Frontend: `apps/builder/src/features/contact-filter/`. Backend query
-builder: `packages/database/src/queries/contact-filter/` (`@chatbotx.io/database/queries`),
+builder: `packages/database/src/queries/contact-filter/` (`@inboxos.io/database/queries`),
 shared by the builder and the worker. Fields are defined once in
 `CONTACT_FILTER_FIELD_DEFINITIONS` (`schema/definitions.ts`), which generates both the Zod
 condition schema and the UI config. Operator rules live in two places that must stay in sync.
@@ -91,7 +91,7 @@ condition schema and the UI config. Operator rules live in two places that must 
 - [ ] If the option source's values are workspace entity ids, register it in `FILTER_VALUE_LABEL_SOURCES` (`lib/filter-value-labels.ts`) and the id lookup (`resolveContactFilterValueLabels`) so read-only labels show names / "Unknown" instead of raw ids
 - [ ] Tests: `apps/builder/__tests__/contact-filter-*.test.ts` and
       `packages/database/__tests__/contact-filter.test.ts`
-- [ ] `pnpm lint` + `check-types` for `builder` and `@chatbotx.io/database`
+- [ ] `pnpm lint` + `check-types` for `builder` and `@inboxos.io/database`
 
 ## References
 

@@ -2,7 +2,7 @@ import {
   emptyTemplateUninstallCounts,
   type TemplateUninstallCounts,
   type TemplateUninstallRequester,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 export const emptyUninstallCounts = emptyTemplateUninstallCounts
 

@@ -5,8 +5,8 @@ const mocks = vi.hoisted(() => ({
   take: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   distributedStore: { put: mocks.put, take: mocks.take },
 }))
 

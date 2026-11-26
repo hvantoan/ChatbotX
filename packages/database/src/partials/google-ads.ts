@@ -1,20 +1,20 @@
 import {
   googleAdsCustomerTypes,
   googleAdsCustomerValueBuckets,
-} from "@chatbotx.io/utils/google-click"
-import { containsVariablePlaceholder } from "@chatbotx.io/utils/variables"
+} from "@inboxos.io/utils/google-click"
+import { containsVariablePlaceholder } from "@inboxos.io/utils/variables"
 import { z } from "zod"
 
 // Client-safe (no drizzle): the builder imports these through
-// `@chatbotx.io/database/partials`; `schema/*` builds the `pgEnum`s from them.
+// `@inboxos.io/database/partials`; `schema/*` builds the `pgEnum`s from them.
 
-// The supported channel list lives in `@chatbotx.io/utils/google-click`
+// The supported channel list lives in `@inboxos.io/utils/google-click`
 // (re-exported like `channelTypes`); the table stores a plain `ChannelType`.
 export {
   GOOGLE_ADS_CHANNEL_VALUES,
   type GoogleAdsChannel,
   googleAdsChannels,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 /** Largest page the event-history list serves; shared by the repository and the API schema. */
 export const GOOGLE_ADS_EVENTS_MAX_PER_PAGE = 100
 export const googleAdsEventSourceValues = ["flowStep", "triggerAction"] as const

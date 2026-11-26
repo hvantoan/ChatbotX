@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   existsInWorkspace: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pollRepository: {
     findWithCandidates: mocks.findWithCandidates,
     upsertVote: mocks.upsertVote,

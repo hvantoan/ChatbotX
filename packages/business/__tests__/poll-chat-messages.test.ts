@@ -2,7 +2,7 @@ import {
   sendCarouselStepSchema,
   sendQuickReplyStepSchema,
   sendTextStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, it } from "vitest"
 import {
   buildCandidatesMessage,

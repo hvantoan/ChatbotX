@@ -5,7 +5,7 @@ const returnValidationErrors = vi.fn((_schema: unknown, errors: unknown) => ({
   validationErrors: errors,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   mcpOAuthService: { revokeGrant: mocks.revokeGrant },
 }))
 vi.mock("next-intl/server", () => ({
@@ -64,7 +64,7 @@ describe("revokeMcpOAuthGrantAction", () => {
     mocks.revokeGrant.mockResolvedValue(false)
 
     await expect(callAction("missing")).resolves.toEqual({
-      validationErrors: { _errors: ["chatbotxMcp.grants.notFound"] },
+      validationErrors: { _errors: ["inboxosMcp.grants.notFound"] },
     })
   })
 

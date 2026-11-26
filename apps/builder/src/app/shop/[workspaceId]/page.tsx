@@ -1,4 +1,4 @@
-import { webshopService } from "@chatbotx.io/business"
+import { webshopService } from "@inboxos.io/business"
 import type { Metadata } from "next"
 import { ProductFilters } from "@/features/webshop/components/product-filters"
 import { ProductList } from "@/features/webshop/components/product-list"

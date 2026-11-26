@@ -1,7 +1,7 @@
 import {
   type TemplateActor,
   templateInstallationRequestService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import { possibleErrorsOnFindingResource } from "@/lib/orpc/orpc-error-helper"
 import { workspaceTokenAuthAPIForScope } from "@/orpc"

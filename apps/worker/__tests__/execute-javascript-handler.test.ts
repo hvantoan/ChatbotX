@@ -20,7 +20,7 @@ const mocks = vi.hoisted(() => ({
 
 // Mirrors packages/variables/src/javascript-interpolation.ts's real
 // implementation exactly (a pure number/boolean coercion, no DB
-// dependency), since `@chatbotx.io/variables`'s barrel can't be imported
+// dependency), since `@inboxos.io/variables`'s barrel can't be imported
 // actual here without resurrecting the Snowflake-collision problem
 // documented at the bottom of this file.
 const coerceCustomFieldValueForJavascript = (
@@ -37,7 +37,7 @@ const coerceCustomFieldValueForJavascript = (
   return value
 }
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: { getAll: mocks.getAll },
   getSystemFieldValue: mocks.getSystemFieldValue,
   resolveJavascriptInput: mocks.resolveJavascriptInput,
@@ -45,7 +45,7 @@ vi.mock("@chatbotx.io/variables", () => ({
   coerceCustomFieldValueForJavascript,
 }))
 
-vi.mock("@chatbotx.io/business/javascript-execution", () => ({
+vi.mock("@inboxos.io/business/javascript-execution", () => ({
   javascriptExecutionService: { executeAndMap: mocks.executeAndMap },
 }))
 
@@ -205,7 +205,7 @@ describe("handleExecuteJavascript", () => {
   })
 
   test("routes an output type mismatch to the error result with its actionable message", async () => {
-    // executeAndMap throws a ChatbotXException (which extends Error) when
+    // executeAndMap throws a InboxOSException (which extends Error) when
     // the sandbox's result doesn't fit the output field's declared type —
     // this proves that failure reaches the step's error branch instead of
     // being swallowed or reported as a generic success.
@@ -253,16 +253,16 @@ describe("handleExecuteJavascript", () => {
   })
 })
 
-// The suite above mocks @chatbotx.io/variables entirely, so it only pins the
+// The suite above mocks @inboxos.io/variables entirely, so it only pins the
 // WIRING between the handler and resolveJavascriptInput/
 // interpolateIntoJavascript — not their actual placement/injection
 // behavior. An unmocked, `vi.importActual` end-to-end test was tried here
-// and dropped: @chatbotx.io/variables's barrel (its only export path — see
+// and dropped: @inboxos.io/variables's barrel (its only export path — see
 // package.json) re-exports contact-variable.ts, which pulls in
-// @chatbotx.io/database and re-initializes a module-singleton Snowflake ID
+// @inboxos.io/database and re-initializes a module-singleton Snowflake ID
 // generator, colliding with the one this test file's own transitive imports
 // already initialized ("Place ID 0 already in use"). Reproducing the
-// @chatbotx.io/business/* submodule mocks needed to import utils.ts in
+// @inboxos.io/business/* submodule mocks needed to import utils.ts in
 // isolation would duplicate the setup already in
 // packages/variables/__tests__/interpolate-into-javascript.test.ts, which is
 // exactly where that coverage belongs (see AGENTS.md's test-placement

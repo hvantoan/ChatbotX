@@ -1,6 +1,6 @@
 "use client"
 
-import type { ChangeGamificationScoreStepSchema } from "@chatbotx.io/flow-config"
+import type { ChangeGamificationScoreStepSchema } from "@inboxos.io/flow-config"
 import { TrophyIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useLeaderboardOptions } from "@/features/leaderboards/lib/use-leaderboard-options"

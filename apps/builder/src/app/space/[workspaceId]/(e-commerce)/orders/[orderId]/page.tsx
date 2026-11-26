@@ -1,5 +1,5 @@
-import { ecommerceSettingsService, orderService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { ecommerceSettingsService, orderService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { notFound } from "next/navigation"
 import { OrderDetail } from "@/features/orders/components/order-detail"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
@@ -19,7 +19,7 @@ export default async function OrderDetailPage({
 
   const [order, settings] = await Promise.all([
     orderService.getDetail({ workspaceId, orderId }).catch((error) => {
-      if (error instanceof ChatbotXException && error.code === "notFound") {
+      if (error instanceof InboxOSException && error.code === "notFound") {
         return null
       }
       throw error

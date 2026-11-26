@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { waitNodeDefaultFn } from "@chatbotx.io/flow-config"
+import { waitNodeDefaultFn } from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const {
@@ -17,18 +17,18 @@ const {
   mockBotFieldsByIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { flowModel: { findFirst: mockFindFlow } } },
   eq: (...args: unknown[]) => ({ eq: args }),
   inArray: (...args: unknown[]) => ({ inArray: args }),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {},
   reflinkRepository: {},
   whatsappMessageTemplateRepository: {},
 }))
-vi.mock("@chatbotx.io/database/partials", () => ({ rootFolderId: "0" }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({ rootFolderId: "0" }))
+vi.mock("@inboxos.io/database/schema", () => ({
   flowAnalyticsSessionModel: {},
   flowModel: {},
   flowVersionModel: {},
@@ -139,7 +139,7 @@ describe("flowService.buildExport", () => {
 
     expect(result).toMatchObject({
       ok: true,
-      fileName: "onboarding.chatbotx-flow.json",
+      fileName: "onboarding.inboxos-flow.json",
     })
     if (!result.ok) {
       return

@@ -37,7 +37,7 @@ const wooCommerceIntegrationService = {
   requestSync: vi.fn(),
   disconnect: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ wooCommerceIntegrationService }))
+vi.mock("@inboxos.io/business", () => ({ wooCommerceIntegrationService }))
 
 await import("@/features/woocommerce/api/public")
 const { connectWooCommerceRequest, syncWooCommerceRequest } = await import(

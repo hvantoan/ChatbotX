@@ -7,7 +7,7 @@ const transaction = vi.fn((callback: (tx: unknown) => unknown) =>
   callback({ execute: vi.fn() }),
 )
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   integrationQueue: { remove: queueRemove },
 }))
 vi.mock("../src/logger", () => ({
@@ -16,7 +16,7 @@ vi.mock("../src/logger", () => ({
 vi.mock("../src/smart-delay/service", () => ({
   smartDelayService: { cancelActiveForWorkspace },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction },
   sql: Object.assign(
     vi.fn(() => ({})),

@@ -1,8 +1,8 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { sequenceService } from "@chatbotx.io/business/sequence"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { sequenceService } from "@inboxos.io/business/sequence"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import { isValidationException } from "@/lib/errors/validation-exception"
@@ -32,10 +32,10 @@ export const updateSequenceAction = workspaceActionClient
         })
       }
 
-      // A `ChatbotXException` (e.g. not-found) already carries a correct
+      // A `InboxOSException` (e.g. not-found) already carries a correct
       // status/message — rethrow it unchanged so it doesn't get masked as
       // a generic 500. Only genuinely unknown errors get wrapped.
-      if (error instanceof ChatbotXException) {
+      if (error instanceof InboxOSException) {
         throw error
       }
 

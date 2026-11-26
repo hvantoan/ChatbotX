@@ -2,25 +2,25 @@ import {
   buildContext,
   tagSyncService,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { type ChannelType, channelTypes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { type ChannelType, channelTypes } from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   integrationMessengerRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   IntegrationMessengerModel,
   IntegrationZaloModel,
-} from "@chatbotx.io/database/types"
-import { chunkById } from "@chatbotx.io/database/utils"
-import { integration as integrationMessenger } from "@chatbotx.io/integration-messenger"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import { integration as integrationZalo } from "@chatbotx.io/integration-zalo"
-import type { ZaloAuthValue } from "@chatbotx.io/integration-zalo/schema"
-import type { ErrorLogProvider } from "@chatbotx.io/utils/error-log"
-import type { JobSyncChannelLabels } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/types"
+import { chunkById } from "@inboxos.io/database/utils"
+import { integration as integrationMessenger } from "@inboxos.io/integration-messenger"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import { integration as integrationZalo } from "@inboxos.io/integration-zalo"
+import type { ZaloAuthValue } from "@inboxos.io/integration-zalo/schema"
+import type { ErrorLogProvider } from "@inboxos.io/utils/error-log"
+import type { JobSyncChannelLabels } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 
 const BATCH_SIZE = 100

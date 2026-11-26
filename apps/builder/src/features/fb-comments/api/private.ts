@@ -1,9 +1,9 @@
 import {
   listCommentAutomationContactsRequest,
   listCommentAutomationContactsResponse,
-} from "@chatbotx.io/analytics/schemas"
-import { commentAutomationService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/analytics/schemas"
+import { commentAutomationService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { listCommentAutomationContacts } from "@/features/shared/comment-automation/lib/list-automation-contacts"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"

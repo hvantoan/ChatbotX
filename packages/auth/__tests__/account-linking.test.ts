@@ -40,11 +40,11 @@ vi.mock("better-auth/plugins", () => ({
   oneTimeToken: () => ({ id: "one-time-token" }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {},
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   accountModel: {},
   jwkModel: {},
   oauthAccessTokenModel: {},
@@ -59,7 +59,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   verificationModel: {},
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { listActiveDomains: vi.fn().mockResolvedValue([]) },
   platformCredentialService: {
     findDecryptedPlatform: vi.fn(),
@@ -71,13 +71,13 @@ vi.mock("@chatbotx.io/business", () => ({
   userService: { findById },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: () => "test-id",
   getPublicOriginFromRequest: vi.fn(),
   parseEnvBool: (value: unknown) => value === true || value === "true",
 }))
 
-vi.mock("@chatbotx.io/mail", () => ({
+vi.mock("@inboxos.io/mail", () => ({
   DEFAULT_FORGOT_PASSWORD_SUBJECT: "reset",
   DEFAULT_MAGIC_LINK_SUBJECT: "magic",
   DEFAULT_SIGNUP_SUBJECT: "signup",

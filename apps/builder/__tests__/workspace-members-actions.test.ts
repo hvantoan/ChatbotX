@@ -65,7 +65,7 @@ vi.mock("@/lib/auth/utils", () => ({
   getCurrentUserAndTargetWorkspace: mockGetCurrentUserAndTargetWorkspace,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceMemberCacheTag: (userId: string) =>
     `users:${userId}:workspace-members`,
   invitationService: {
@@ -91,7 +91,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     insert: mockDbInsert,
   },
@@ -99,23 +99,23 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: mockFindOrFail,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mockInvalidateCacheByTags,
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mockAuditRecord },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   invitationModel: { _: "invitationModel" },
   workspaceMemberModel: {
     id: "workspaceMember.id",
   },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: () => "invitation-id",
@@ -234,7 +234,7 @@ describe("inviteWorkspaceMemberAction", () => {
       code: "invite-code",
     })
     mockBuildInviteUrl.mockResolvedValue(
-      "https://app.chatbotx.test/invitations/invite-code",
+      "https://app.inboxos.test/invitations/invite-code",
     )
     mockIsCommunity.mockReturnValue(false)
   })
@@ -298,7 +298,7 @@ describe("inviteWorkspaceMemberAction", () => {
     ).resolves.toEqual({
       code: "invite-code",
       id: "invitation-id",
-      inviteUrl: "https://app.chatbotx.test/invitations/invite-code",
+      inviteUrl: "https://app.inboxos.test/invitations/invite-code",
     })
     expect(mockBuildInviteUrl).toHaveBeenCalledWith({
       code: "invite-code",

@@ -2,8 +2,8 @@ import {
   edgeSchema,
   flowSpecSchema,
   publishFlowSchema as publishFlowGraphSchema,
-} from "@chatbotx.io/flow-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const createFlowSchema = z.object({

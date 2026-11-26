@@ -1,11 +1,11 @@
 {
-  "name": "@chatbotx.io/integration-google-calendar",
+  "name": "@inboxos.io/integration-google-calendar",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
     "@googleapis/calendar": "^20.1.0",
     "google-auth-library": "catalog:",
     "googleapis-common": "^9.3.1",
@@ -13,8 +13,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

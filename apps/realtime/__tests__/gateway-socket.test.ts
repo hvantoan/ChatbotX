@@ -1,7 +1,7 @@
 import {
   signGuestConnectToken,
   signMemberConnectToken,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { describe, expect, test, vi } from "vitest"
 import type { GuestSocketData, WorkspaceSocketData } from "../src/delivery"
 import { createGuestSocketBehavior } from "../src/gateway-guest-socket"

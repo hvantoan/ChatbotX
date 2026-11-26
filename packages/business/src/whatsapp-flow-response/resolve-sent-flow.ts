@@ -1,4 +1,4 @@
-import type { FlowVersionModel } from "@chatbotx.io/database/types"
+import type { FlowVersionModel } from "@inboxos.io/database/types"
 import {
   type BroadcastTemplateFlowToken,
   decodeButtonPayload,
@@ -11,7 +11,7 @@ import {
   type TemplateFlowToken,
   type WaTemplateButtonParam,
   type WaTemplateParams,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { broadcastService } from "../broadcast/service"
 import { flowService } from "../flow/service"
 import { flowVersionService } from "../flow-version/service"
@@ -215,7 +215,7 @@ const resolveFromWhatsappFlowStep = async (
  * The WhatsApp Flow a response's `flow_token` was sent with. Meta's response
  * carries no Flow id, so the token is the only link: a "Send WhatsApp Flow"
  * step's button payload, or a template FLOW button's token. Null for a token
- * this workspace did not issue (e.g. a Flow sent outside ChatbotX).
+ * this workspace did not issue (e.g. a Flow sent outside InboxOS).
  */
 export const resolveSentWhatsappFlow = async (props: {
   workspaceId: string

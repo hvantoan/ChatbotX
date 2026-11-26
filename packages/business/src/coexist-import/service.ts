@@ -6,17 +6,17 @@ import {
   inArray,
   or,
   type SQL,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactSources,
   supportsProfileSnapshot,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactInboxModel,
   contactModel,
   conversationModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import { messageCleanupService } from "../message-cleanup/service"
 

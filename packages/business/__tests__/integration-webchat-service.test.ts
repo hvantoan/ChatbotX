@@ -89,7 +89,7 @@ const {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ conditions })),
   db: {
     $count: mockCount,
@@ -114,24 +114,24 @@ vi.mock("@chatbotx.io/database/client", () => ({
   relationsFilterToSQL: mockRelationsFilterToSQL,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mockConnectionFindByProviderSourceId,
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactInboxModel: {},
   contactModel: {},
   conversationModel: {},
   integrationWebchatModel: { id: "id", workspaceId: "workspaceId" },
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   parsePagination: mockParsePagination,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
   ...(await importOriginal()),
   createId: mockCreateId,
   zodBigintAsString: () => z.string(),
@@ -201,7 +201,7 @@ vi.mock("../src/flow/service", () => ({
 // Runs through the mocked `db.transaction` and records the initial lock keys.
 const { lockOptionsSpy } = vi.hoisted(() => ({ lockOptionsSpy: vi.fn() }))
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -233,7 +233,7 @@ vi.mock("../src/message-cleanup/service", () => ({
   messageCleanupService: { cancelByInboxSource: mockMessageCleanup },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: mockEmitContactCreated,
 }))
 
@@ -522,7 +522,7 @@ describe("integrationWebchatService.create — quota gate", () => {
         extraConfig: expect.objectContaining({
           persistentMenus: [
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://app.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -545,7 +545,7 @@ describe("integrationWebchatService.create — quota gate", () => {
           ...baseData,
           persistentMenus: [
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://old.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -562,7 +562,7 @@ describe("integrationWebchatService.create — quota gate", () => {
           persistentMenus: [
             { label: "Docs", type: "url", url: "https://docs.example.com" },
             {
-              label: "⚡ Built with chatbotx.io",
+              label: "⚡ Built with InboxOS",
               type: "url",
               url: "https://app.example.com/?ref=selfhosted&channel=webchat",
             },
@@ -799,7 +799,7 @@ describe("integrationWebchatService.update", () => {
       expect.objectContaining({
         persistentMenus: [
           {
-            label: "⚡ Built with chatbotx.io",
+            label: "⚡ Built with InboxOS",
             type: "url",
             url: "https://app.example.com/?ref=selfhosted&channel=webchat",
           },

@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { NextRequest } from "next/server"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -9,7 +9,7 @@ const handleRequest = vi.fn()
 const logWebhookRequestBody = vi.fn()
 const loggerWarn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: {
     findByIdUnscoped: findIntegrationWhatsappById,
     markWebhookVerified: markWhatsappWebhookVerified,

@@ -6,7 +6,7 @@
 
 1. Read the relevant skill file in `.agents/skills/` before writing code for a new feature, API, database table, worker, or integration.
    - New feature or new operation: build and test the public API procedure (`api/public.ts`) **before** the UI — AI agents are the primary users (AGENTS.md invariant 23).
-2. When touching `packages/database`, always run `pnpm --filter @chatbotx.io/database db:migrate` after schema changes.
+2. When touching `packages/database`, always run `pnpm --filter @inboxos.io/database db:migrate` after schema changes.
 3. After any code change, run `pnpm lint` and `pnpm --filter <app> check-types` before reporting done.
 4. Use `pnpm fix` (Biome auto-fix) instead of manually formatting code.
 
@@ -14,7 +14,7 @@
 
 | Task | Skill to read first |
 |------|---------------------|
-| Broad/ambiguous request, onboarding, "where does X live" | `chatbotx-basecode` |
+| Broad/ambiguous request, onboarding, "where does X live" | `inboxos-basecode` |
 | New feature / page (then `orpc-api` for the public API first, `cli-mcp-docs` last) | `feature-scaffold` |
 | Builder UI component, form, table, dialog, or any user-facing string | `builder-ui-i18n` |
 | New API endpoint | `orpc-api` |
@@ -43,7 +43,7 @@ Dispatch these project subagents by name when relevant:
 
 | Agent | When |
 |-------|------|
-| `invariant-guard` | after editing `apps/`/`packages/`/`integrations/` — checks the ChatbotX invariants no linter enforces |
+| `invariant-guard` | after editing `apps/`/`packages/`/`integrations/` — checks the InboxOS invariants no linter enforces |
 | `rag-eval` | changes under `packages/ai` or the embedding repositories/handlers |
 | `incident-responder` | triaging a production error or failed job (then `diagnosing-bugs` to reproduce and fix it locally) |
 
@@ -66,6 +66,6 @@ Default to the cheapest tier that fits the task; reserve the top tier for judgme
 - Do not skip `pnpm lint` — the CI will fail.
 - Do not hardcode user-facing strings — use `useTranslations()`.
 - Do not ship a UI-only feature or UI-only button — every operation, including result-returning ones like the bot simulator link, needs a public API procedure unless it is on the exempt list of invariant 23 in `docs/agents/invariants.md`.
-- Do not import `db` directly in `apps/` or `integrations/` — the chain is `action | API handler → service (@chatbotx.io/business) → repository (@chatbotx.io/database/repositories) → DB`; app code calls a service, never a repository directly (the one exception is a pure read with zero business logic). See `.agents/rules/data-access.md`.
+- Do not import `db` directly in `apps/` or `integrations/` — the chain is `action | API handler → service (@inboxos.io/business) → repository (@inboxos.io/database/repositories) → DB`; app code calls a service, never a repository directly (the one exception is a pure read with zero business logic). See `.agents/rules/data-access.md`.
 - Do not put Node-only code (`node:crypto`, `node:stream`, `fs`, any `process.*` but `env`) in a module the builder's oRPC router reaches — it lands in the Edge instrumentation bundle. Split it into its own file + package subpath (outside `index.ts`) imported only by actions/public API/workers; never gate `instrumentation.ts` instead. Guarded by `apps/builder/__tests__/edge-instrumentation-graph.test.ts`; see AGENTS.md invariant 25.
 - Do not use dynamic `import()` in tsdown-built code (`packages/*`, `integrations/*`, `apps/worker`, `apps/cli`, `apps/mcp-server`, `apps/javascript-executor`) — it breaks the tsdown build. In `apps/builder/src` dynamic imports and `next/dynamic` are allowed (and preferred for heavy client islands). See `.agents/rules/no-dynamic-import.md`.

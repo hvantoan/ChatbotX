@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
   webhookFindMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       triggerModel: { findMany: mocks.triggerFindMany },
@@ -23,7 +23,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   getRedisConnection: () => ({
     get: async () => null,
     setex: async () => "OK",

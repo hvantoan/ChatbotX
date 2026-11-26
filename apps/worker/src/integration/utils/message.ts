@@ -1,14 +1,14 @@
-import { isImageUrl } from "@chatbotx.io/ai"
-import { findOrFail } from "@chatbotx.io/database/client"
-import { conversationModel } from "@chatbotx.io/database/schema"
-import type { MetadataPayload } from "@chatbotx.io/flow-config"
+import { isImageUrl } from "@inboxos.io/ai"
+import { findOrFail } from "@inboxos.io/database/client"
+import { conversationModel } from "@inboxos.io/database/schema"
+import type { MetadataPayload } from "@inboxos.io/flow-config"
 import {
   type BotResponseTrackingContext,
   ChatJobAction,
   chatQueue,
   getQueueEvents,
   queueNames,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { env } from "../../env"
 import { logger } from "../../lib/logger"
 

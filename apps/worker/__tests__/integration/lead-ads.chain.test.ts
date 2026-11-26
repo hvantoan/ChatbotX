@@ -1,10 +1,10 @@
 import { createHmac } from "node:crypto"
-import { db } from "@chatbotx.io/database/client"
-import { ALL_FORMS_ID } from "@chatbotx.io/database/partials"
-import { facebookLeadAdsAutomationModel } from "@chatbotx.io/database/schema"
-import { integration as messengerIntegration } from "@chatbotx.io/integration-messenger"
-import { createId } from "@chatbotx.io/utils"
-import type { IntegrationJobProcessLeadgen } from "@chatbotx.io/worker-config"
+import { db } from "@inboxos.io/database/client"
+import { ALL_FORMS_ID } from "@inboxos.io/database/partials"
+import { facebookLeadAdsAutomationModel } from "@inboxos.io/database/schema"
+import { integration as messengerIntegration } from "@inboxos.io/integration-messenger"
+import { createId } from "@inboxos.io/utils"
+import type { IntegrationJobProcessLeadgen } from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import {
   afterAll,
@@ -36,7 +36,7 @@ const graph = vi.hoisted(() => ({
   getLeadgenFormName: vi.fn(),
   getLeadAdAttribution: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-messenger/apis/leadgen", () => ({
+vi.mock("@inboxos.io/integration-messenger/apis/leadgen", () => ({
   getLead: graph.getLead,
   getLeadgenFormName: graph.getLeadgenFormName,
   getLeadAdAttribution: graph.getLeadAdAttribution,

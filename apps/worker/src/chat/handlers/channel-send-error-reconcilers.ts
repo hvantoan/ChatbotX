@@ -1,5 +1,5 @@
-import { channelTypes } from "@chatbotx.io/database/partials"
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
+import { channelTypes } from "@inboxos.io/database/partials"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
 import { reconcileAccountSendBlocked } from "./account-send-blocked"
 import type {
   ChannelSendErrorContext,

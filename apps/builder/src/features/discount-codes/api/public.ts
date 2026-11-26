@@ -2,7 +2,7 @@ import {
   contactService,
   discountCodeService,
   orderService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   externalStoreManagedErrors,
   possibleErrorsOnCreatingDiscountCode,

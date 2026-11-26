@@ -13,7 +13,7 @@ const mockEmit = vi.fn()
 const mockLoggerError = vi.fn()
 const mockQueueMessageCreatedEvent = vi.fn()
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: async () => ({
     create: mockRepositoryCreate,
     createWithAttachments: vi.fn(),
@@ -22,21 +22,21 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   mediaLibraryFileRepository: { findByPath: vi.fn(), findById: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   guessFileTypeFromMimeType: vi.fn(() => "image"),
   pathJoin: (...parts: string[]) => parts.join("/"),
   uploader: { copyObject: vi.fn(), getPresignedDownload: vi.fn() },
   uploadMultipleFiles: vi.fn(async () => []),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return { ...actual, createId: () => "generated-id" }
 })
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mockEmit }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mockEmit }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: {
     sendChannelMessage: "sendChannelMessage",
     checkOutboundAutomatedResponse: "checkOutboundAutomatedResponse",

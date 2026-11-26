@@ -1,7 +1,7 @@
 // @vitest-environment node
 
-import { FieldOperationType } from "@chatbotx.io/flow-config"
-import { TemporalInputParsing } from "@chatbotx.io/utils/datetime"
+import { FieldOperationType } from "@inboxos.io/flow-config"
+import { TemporalInputParsing } from "@inboxos.io/utils/datetime"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 // `sql` is mocked to capture its tagged-template call (strings + interpolated
@@ -61,12 +61,12 @@ const botFieldModel = {
   name: "BOT_FIELD_NAME_COL",
 }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     execute: vi.fn(),
     // Runs the callback against the same mocked client the test asserts on.
     transaction: async (run: (tx: unknown) => unknown) =>
-      run((await import("@chatbotx.io/database/client")).db),
+      run((await import("@inboxos.io/database/client")).db),
     query: {
       botFieldModel: {
         findFirst: mocks.findFirst,
@@ -112,21 +112,21 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: mocks.sqlMock,
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   rootFolderId: "root",
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   botFieldModel,
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   likeContains: (value: string) => value,
   parseOrderByAsObject: mocks.parseOrderByAsObject,
   parsePagination: mocks.parsePagination,
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
@@ -145,11 +145,11 @@ vi.mock("../src/errors", () => ({
       code: "invalidFieldOperation",
       data: { reason },
     }),
-  ChatbotXException: class ChatbotXException extends Error {
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code?: string) {
       super(message)
-      this.name = "ChatbotXException"
+      this.name = "InboxOSException"
       this.code = code ?? "systemError"
     }
   },
@@ -161,7 +161,7 @@ vi.mock("../src/folder/service", () => ({
 
 // Run the locked transaction against the same mocked client the test asserts on.
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -182,7 +182,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
 }))
 
 const { botFieldService } = await import("../src/bot-field/service")
-const { ChatbotXException } = await import("../src/errors")
+const { InboxOSException } = await import("../src/errors")
 
 // Zoned day-start ISO for a "now" stamp in Asia/Ho_Chi_Minh (+07:00).
 const NOW_STAMPED_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}T00:00:00\+07:00$/
@@ -284,7 +284,7 @@ describe("botFieldService.applyValueOperation — set", () => {
     const { assertResourceEditable } = await import(
       "../src/template/installed-resource.service"
     )
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     vi.mocked(assertResourceEditable).mockClear()
     mocks.findFirst.mockResolvedValue(existingRow({ type: "shortText" }))
     mocks.updateReturning.mockResolvedValue([
@@ -354,7 +354,7 @@ describe("botFieldService.applyValueOperation — set", () => {
         operation: FieldOperationType.set,
         value: "1aaa1",
       }),
-    ).rejects.toBeInstanceOf(ChatbotXException)
+    ).rejects.toBeInstanceOf(InboxOSException)
 
     expect(mocks.updateSet).not.toHaveBeenCalled()
   })
@@ -795,7 +795,7 @@ describe("botFieldService.applyValueOperation — operation x type policy", () =
     }
   })
 
-  test("thrown exceptions are ChatbotXException instances", async () => {
+  test("thrown exceptions are InboxOSException instances", async () => {
     mocks.findFirst.mockResolvedValue(existingRow({ type: "boolean" }))
 
     await expect(
@@ -805,7 +805,7 @@ describe("botFieldService.applyValueOperation — operation x type policy", () =
         operation: FieldOperationType.increase,
         value: "1",
       }),
-    ).rejects.toBeInstanceOf(ChatbotXException)
+    ).rejects.toBeInstanceOf(InboxOSException)
   })
 })
 
@@ -829,12 +829,12 @@ describe("botFieldService.applyValueOperation — error contract", () => {
       (caught: unknown) => caught,
     )
 
-    expect(error).toBeInstanceOf(ChatbotXException)
+    expect(error).toBeInstanceOf(InboxOSException)
     expect(error).toMatchObject({
       code: "invalidFieldOperation",
       message: 'Operation "O04" is not supported for field type "boolean"',
     })
-    expect((error as ChatbotXException).data).toBeUndefined()
+    expect((error as InboxOSException).data).toBeUndefined()
   })
 
   test("a calculator rejection carries the machine-readable reason", async () => {
@@ -867,7 +867,7 @@ describe("botFieldService.applyValueOperation — error contract", () => {
       code: "invalidFieldOperation",
       message: '"abc" is not a valid number value for this field.',
     })
-    expect((error as ChatbotXException).data).toBeUndefined()
+    expect((error as InboxOSException).data).toBeUndefined()
     expect(mocks.updateSet).not.toHaveBeenCalled()
   })
 })
@@ -1147,7 +1147,7 @@ describe("botFieldService.create — value normalization", () => {
         workspaceId: "ws-1",
         data: { name: "field", type: "number", value: "1aaa1" },
       }),
-    ).rejects.toBeInstanceOf(ChatbotXException)
+    ).rejects.toBeInstanceOf(InboxOSException)
 
     expect(mocks.insertValues).not.toHaveBeenCalled()
   })
@@ -1234,7 +1234,7 @@ describe("botFieldService.updateByKey — value normalization", () => {
         key: "field",
         data: { value: "1aaa1" },
       }),
-    ).rejects.toBeInstanceOf(ChatbotXException)
+    ).rejects.toBeInstanceOf(InboxOSException)
 
     expect(mocks.updateSet).not.toHaveBeenCalled()
   })

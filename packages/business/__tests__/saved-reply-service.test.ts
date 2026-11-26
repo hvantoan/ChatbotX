@@ -34,7 +34,7 @@ const newTx = () => ({
 })
 let tx = newTx()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
     query: { savedReplyModel: { findMany: mocks.findMany } },
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: mocks.findOrFail,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   mediaLibraryFileRepository: { findByIds: mocks.findByIds },
   savedReplyImageRepository: {
     listBySavedReplyIds: mocks.listBySavedReplyIds,

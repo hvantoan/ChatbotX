@@ -116,7 +116,7 @@ vi.mock("@/features/contact-scan/lib/contact-scan-history", () => ({
   listContactScanHistoryRows,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactScanService: {
     schedule: contactScanServiceSchedule,
     cancel: contactScanServiceCancel,

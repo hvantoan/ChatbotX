@@ -1,4 +1,4 @@
-import type { IntegrationWebchatModel } from "@chatbotx.io/database/types"
+import type { IntegrationWebchatModel } from "@inboxos.io/database/types"
 
 /**
  * Client-safe subset of the webchat config. The full `IntegrationWebchatModel`

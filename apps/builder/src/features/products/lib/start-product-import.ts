@@ -1,6 +1,6 @@
-import { importService } from "@chatbotx.io/business/import"
-import type { ProductImportMeta } from "@chatbotx.io/database/partials"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { importService } from "@inboxos.io/business/import"
+import type { ProductImportMeta } from "@inboxos.io/database/partials"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 
 /**
  * Validates the uploaded file, creates the import row and queues the worker

@@ -2,16 +2,14 @@
 
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   loadResourceLabels: vi.fn(),
 }))
 
 const { countInstallerWarnings, groupInstallationWarnings } = await import(
   "../src/template/warning-groups"
 )
-const { loadResourceLabels } = await import(
-  "@chatbotx.io/database/repositories"
-)
+const { loadResourceLabels } = await import("@inboxos.io/database/repositories")
 const { loadInstallationWarningGroups } = await import(
   "../src/template/warning-groups"
 )

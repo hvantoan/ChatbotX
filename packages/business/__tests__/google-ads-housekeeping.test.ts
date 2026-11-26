@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   refreshSetup: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   googleAdsConversionEventRepository: {
     listDueForProcessingCheck: mocks.listDueForProcessingCheck,
     applyProcessingResult: mocks.applyProcessingResult,
@@ -40,9 +40,9 @@ vi.mock("../src/workspace-lifecycle/with-blocked-owner-guard", () => ({
   withBlockedOwnerGuard: (workspaceId: string, fn: () => Promise<unknown>) =>
     mocks.guard(workspaceId, fn),
 }))
-vi.mock("@chatbotx.io/integration-google-ads", async (importOriginal) => {
+vi.mock("@inboxos.io/integration-google-ads", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/integration-google-ads")>()
+    await importOriginal<typeof import("@inboxos.io/integration-google-ads")>()
   return { ...actual, integration: { runAction: mocks.runAction } }
 })
 vi.mock("../src/error-log/service", () => ({

@@ -1,5 +1,5 @@
 import http, { type IncomingMessage, type ServerResponse } from "node:http"
-import { timingSafeStringEqual } from "@chatbotx.io/utils/crypto"
+import { timingSafeStringEqual } from "@inboxos.io/utils/crypto"
 import { z } from "zod"
 import { logger } from "./logger"
 import type { QrSessionManager } from "./qr-manager"

@@ -1,7 +1,7 @@
-import { automatedResponseService } from "@chatbotx.io/business"
-import { automatedResponseTypes } from "@chatbotx.io/database/partials"
-import { keywordConditionsSchema } from "@chatbotx.io/database/partials/keyword-condition-schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { automatedResponseService } from "@inboxos.io/business"
+import { automatedResponseTypes } from "@inboxos.io/database/partials"
+import { keywordConditionsSchema } from "@inboxos.io/database/partials/keyword-condition-schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {

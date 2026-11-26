@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const getAgentResponseSeries = vi.fn()
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   agentResponseAnalyticsService: { getAgentResponseSeries },
   conversationAnalyticsService: {},
 }))

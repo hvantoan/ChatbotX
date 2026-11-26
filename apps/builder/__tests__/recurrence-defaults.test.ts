@@ -1,4 +1,4 @@
-import { recurrenceRuleSchema } from "@chatbotx.io/utils/recurrence"
+import { recurrenceRuleSchema } from "@inboxos.io/utils/recurrence"
 import { describe, expect, test } from "vitest"
 import {
   applyFrequency,

@@ -1,8 +1,8 @@
 import {
   broadcastPlanPolicyService,
   broadcastService,
-} from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { CreateBroadcastForm } from "@/features/broadcasts/create-broadcast-form"
 import { buildEditBroadcastDefaultValues } from "@/features/broadcasts/lib/create-broadcast-defaults"

@@ -1,5 +1,5 @@
-import { appointmentService } from "@chatbotx.io/business"
-import { verifyAppointmentCancelToken } from "@chatbotx.io/encryption"
+import { appointmentService } from "@inboxos.io/business"
+import { verifyAppointmentCancelToken } from "@inboxos.io/encryption"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { CancelAppointmentPanel } from "@/features/booking-webview/components/cancel-appointment-panel"

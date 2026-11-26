@@ -2,17 +2,17 @@ import { createHash } from "node:crypto"
 import {
   buildContext,
   integrationGetResponseService,
-} from "@chatbotx.io/business"
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import type { GetResponseAddContactSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/business"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import type { GetResponseAddContactSchema } from "@inboxos.io/flow-config"
 import {
   GET_RESPONSE_HTTP_TIMEOUT_MS,
   GetResponseApiError,
   getResponseAuthSchema,
   integration as getResponseIntegration,
-} from "@chatbotx.io/integration-get-response"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-get-response"
+import { distributedLock } from "@inboxos.io/redis"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import { getContactFieldMap } from "./contact-field-map"

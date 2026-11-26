@@ -1,4 +1,4 @@
-import type { AIAgentActionRule } from "@chatbotx.io/database/partials"
+import type { AIAgentActionRule } from "@inboxos.io/database/partials"
 import { type Tool, tool } from "ai"
 import { z } from "zod"
 

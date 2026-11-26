@@ -1,6 +1,6 @@
 "use server"
 
-import { minigameService } from "@chatbotx.io/business/minigame"
+import { minigameService } from "@inboxos.io/business/minigame"
 import {
   type BulkUpdateIdsRequest,
   bulkUpdateIdsRequest,

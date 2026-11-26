@@ -1,11 +1,11 @@
 import {
   type TemplateActor,
   templateInstallationRequestService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   enqueueInstallTemplate,
   enqueueSyncTemplateInstallation,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "@/lib/log"
 
 /**

@@ -1,7 +1,7 @@
 "use client"
 
-import type { TemplateInstallSource } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+import type { TemplateInstallSource } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useTranslations } from "next-intl"
 
 /** "Automatic" for a copy a white-label default installed; nothing for one the installer chose. */

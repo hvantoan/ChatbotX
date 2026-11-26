@@ -5,16 +5,16 @@
 | What | Path |
 |------|------|
 | App internal | `@/features/<feature>/...`, `@/lib/...`, `@/components/...` |
-| Shared UI | `@chatbotx.io/ui/components/ui/<component>` (via the package's `exports` map) |
-| Business services | `@chatbotx.io/business` — the only way to reach data from a feature |
-| Types | `@chatbotx.io/database/types` |
-| Shared helpers | `@chatbotx.io/utils` (`getIdFromParams`, `zodBigintAsString`, …) |
+| Shared UI | `@inboxos.io/ui/components/ui/<component>` (via the package's `exports` map) |
+| Business services | `@inboxos.io/business` — the only way to reach data from a feature |
+| Types | `@inboxos.io/database/types` |
+| Shared helpers | `@inboxos.io/utils` (`getIdFromParams`, `zodBigintAsString`, …) |
 | oRPC client | `@/lib/orpc/orpc` |
 | oRPC stacks | `@/orpc` (for `authorizedAPI`, `workspaceTokenAuthAPIForScope`) |
 | Auth middleware | `@/middlewares/auth` |
 | Safe action clients | `@/lib/safe-action` |
 
-`@chatbotx.io/database/client` and `@chatbotx.io/database/schema` are **not**
+`@inboxos.io/database/client` and `@inboxos.io/database/schema` are **not**
 importable from `apps/builder/src/features/*` — see `.agents/rules/data-access.md`.
 
 ## Layout Patterns

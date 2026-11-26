@@ -8,12 +8,12 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 // ---------------------------------------------------------------------------
 
 const findFirstQuota = vi.fn(async () => null as unknown)
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { userQuotaModel: { findFirst: findFirstQuota } } },
   eq: vi.fn(),
   sql: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({ userQuotaModel: {} }))
+vi.mock("@inboxos.io/database/schema", () => ({ userQuotaModel: {} }))
 
 const redisClient = {
   hmget: vi.fn(async (..._args: unknown[]) => [] as (string | null)[]),
@@ -24,7 +24,7 @@ const redisClient = {
 const cacheConnections = {
   useExisting: vi.fn(async () => redisClient),
 }
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: {
     get: vi.fn(async () => null),
     put: vi.fn(async () => undefined),

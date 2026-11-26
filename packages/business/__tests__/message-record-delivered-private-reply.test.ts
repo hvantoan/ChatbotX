@@ -14,7 +14,7 @@ const mockUnblockIfBlocked = vi.fn()
 const mockQueueMessageCreatedEvent = vi.fn()
 const mockLoggerWarn = vi.fn()
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   createMessageRepository: mockCreateMessageRepository,
 }))
 

@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   findEarliestLiveStart: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   addUtcMonths: (date: Date, months: number) =>
     new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + months, 1)),
   createLeaderboardScoreEventPartition: mocks.createPartition,

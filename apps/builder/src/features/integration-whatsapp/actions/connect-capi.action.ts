@@ -4,12 +4,12 @@ import {
   integrationWhatsappService,
   metaConversionsService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
-import { getDataset } from "@chatbotx.io/integration-meta-conversions"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
+import { getDataset } from "@inboxos.io/integration-meta-conversions"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
 import { capiDatasetProvisioner } from "@/features/meta-conversions/lib/provision-capi-dataset"
@@ -51,9 +51,7 @@ export const connectWhatsappCapiAction = workspaceActionClient
         { id: integrationId, workspaceId },
       )
       if (!integration) {
-        throw new ChatbotXException(
-          t("metaConversions.errors.whatsappNotFound"),
-        )
+        throw new InboxOSException(t("metaConversions.errors.whatsappNotFound"))
       }
 
       const credential = await platformCredentialService.resolveForOwner({
@@ -61,7 +59,7 @@ export const connectWhatsappCapiAction = workspaceActionClient
         type: "whatsapp",
       })
       if (!credential) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           t("whatsapp.connect.errors.appSettingsNotFound"),
         )
       }
@@ -95,9 +93,7 @@ export const connectWhatsappCapiAction = workspaceActionClient
       }
       // The write matched no row: the integration was removed after the lookup.
       if (!connected) {
-        throw new ChatbotXException(
-          t("metaConversions.errors.whatsappNotFound"),
-        )
+        throw new InboxOSException(t("metaConversions.errors.whatsappNotFound"))
       }
 
       await auditService.record({

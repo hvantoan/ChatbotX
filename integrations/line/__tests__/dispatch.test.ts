@@ -1,4 +1,4 @@
-import { ChannelError, ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { ChannelError, ChannelErrorCategory } from "@inboxos.io/sdk"
 import { HttpResponse, http } from "msw/http"
 import { setupServer } from "msw/node"
 import {
@@ -42,7 +42,7 @@ const mediaMocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/business/outbound-media", () => ({
+vi.mock("@inboxos.io/business/outbound-media", () => ({
   OutboundMediaError: mediaMocks.OutboundMediaError,
   resolveOutboundImageRenditions: mediaMocks.resolveImage,
   resolveVideoPreviewPlaceholderUrl: mediaMocks.resolveVideoPreview,

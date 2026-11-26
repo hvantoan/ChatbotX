@@ -1,4 +1,4 @@
-import { PIPELINE_VARIABLE_ATTRIBUTES } from "@chatbotx.io/database/partials"
+import { PIPELINE_VARIABLE_ATTRIBUTES } from "@inboxos.io/database/partials"
 import { describe, expect, it } from "vitest"
 import { buildPipelinePromptVariableOptions } from "@/components/tiptap/use-prompt-variable-options"
 

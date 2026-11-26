@@ -1,7 +1,7 @@
 "use server"
 
-import { couponService } from "@chatbotx.io/business"
-import { DefaultJobAction, defaultQueue } from "@chatbotx.io/worker-config"
+import { couponService } from "@inboxos.io/business"
+import { DefaultJobAction, defaultQueue } from "@inboxos.io/worker-config"
 import {
   type WorkspaceIdRequestParams,
   workspaceIdrequestParams,

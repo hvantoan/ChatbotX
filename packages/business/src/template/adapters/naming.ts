@@ -1,7 +1,7 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { isUniqueViolationError } from "@chatbotx.io/database/client"
-import type { TemplateCategory } from "@chatbotx.io/database/partials"
-import { escapeLikePattern } from "@chatbotx.io/database/utils"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { isUniqueViolationError } from "@inboxos.io/database/client"
+import type { TemplateCategory } from "@inboxos.io/database/partials"
+import { escapeLikePattern } from "@inboxos.io/database/utils"
 import {
   type CopyNameStyle,
   copyNamePrefix,

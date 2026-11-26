@@ -1,9 +1,9 @@
 "use server"
 
-import { assertPublicUrl } from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { integrationApiRepository } from "@chatbotx.io/database/repositories"
-import type { ApiAuthValue } from "@chatbotx.io/integration-api"
+import { assertPublicUrl } from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { integrationApiRepository } from "@inboxos.io/database/repositories"
+import type { ApiAuthValue } from "@inboxos.io/integration-api"
 import {
   type WorkspaceIdAndIdRequestParams,
   workspaceIdAndIdRequestParams,

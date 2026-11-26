@@ -1,9 +1,9 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { UserModel, WorkspaceModel } from "@chatbotx.io/database/types"
-import { HandleRequestType } from "@chatbotx.io/sdk"
+import { platformCredentialService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { UserModel, WorkspaceModel } from "@inboxos.io/database/types"
+import { HandleRequestType } from "@inboxos.io/sdk"
 import { redirect } from "next/navigation"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { integrations } from "@/integration"
@@ -36,7 +36,7 @@ export const connectGoogleCalendarAction = workspaceActionClient
         type: "google",
       })
       if (!googleCredential) {
-        throw new ChatbotXException("Google App settings is not valid")
+        throw new InboxOSException("Google App settings is not valid")
       }
 
       const originUrl = await getOriginUrlFromHeader()
@@ -56,7 +56,7 @@ export const connectGoogleCalendarAction = workspaceActionClient
       })
 
       if (typeof authUrl !== "string") {
-        throw new ChatbotXException("Failed to connect Google Calendar")
+        throw new InboxOSException("Failed to connect Google Calendar")
       }
 
       return redirect(authUrl)

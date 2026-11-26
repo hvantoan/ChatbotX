@@ -1,18 +1,18 @@
-import { couponService } from "@chatbotx.io/business"
+import { couponService } from "@inboxos.io/business"
 import {
   type CouponIssueStatus,
   couponIssueStatuses,
   fileStatuses,
-} from "@chatbotx.io/database/partials"
-import { couponRepository } from "@chatbotx.io/database/repositories"
-import { chunkById } from "@chatbotx.io/database/utils"
-import { createUpload } from "@chatbotx.io/filesystem/node-upload"
-import { toUploadWriter } from "@chatbotx.io/filesystem/upload-writer"
-import { toCsvRow, UTF8_BOM } from "@chatbotx.io/utils/csv"
+} from "@inboxos.io/database/partials"
+import { couponRepository } from "@inboxos.io/database/repositories"
+import { chunkById } from "@inboxos.io/database/utils"
+import { createUpload } from "@inboxos.io/filesystem/node-upload"
+import { toUploadWriter } from "@inboxos.io/filesystem/upload-writer"
+import { toCsvRow, UTF8_BOM } from "@inboxos.io/utils/csv"
 import {
   type JobExportCoupons,
   loopableItemsCount,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 type ExportData = JobExportCoupons["data"]
 type CouponExportRow = Awaited<

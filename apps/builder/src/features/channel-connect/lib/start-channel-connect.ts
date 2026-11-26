@@ -3,18 +3,18 @@ import "server-only"
 import {
   type WorkspaceQuotaConsumption,
   workspaceService,
-} from "@chatbotx.io/business"
-import "@chatbotx.io/business/audit"
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
-import { connectionService, failSession } from "@chatbotx.io/connections"
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import "@inboxos.io/business/audit"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
+import { connectionService, failSession } from "@inboxos.io/connections"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { IntegrationType } from "@inboxos.io/database/partials"
 import type {
   ConnectSessionModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
-import type { ConnectSessionNextAction } from "@chatbotx.io/sdk"
-import { getPublicUrlFromRequest } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import type { ConnectSessionNextAction } from "@inboxos.io/sdk"
+import { getPublicUrlFromRequest } from "@inboxos.io/utils"
 import { notFound, redirect, unstable_rethrow } from "next/navigation"
 import type { NextRequest } from "next/server"
 import { resolveOAuthCredential } from "@/features/connections/lib/resolve-connect-credential"
@@ -190,7 +190,7 @@ export async function startChannelConnect(
     // `createFirstWorkspace` (either awaited eagerly above via
     // `targetWorkspacePromise`, or run as `startSession`'s own
     // `createWorkspace` callback inside its transaction) redirects straight
-    // to a plan-limit error page itself on a known `ChatbotXException`
+    // to a plan-limit error page itself on a known `InboxOSException`
     // (`workspaceLimitReached`/`trialExpired`/`macLimitReached`) — that
     // `redirect()` throws a `NEXT_REDIRECT` control-flow error, which
     // reaches this `catch` same as a real failure. `unstable_rethrow` lets

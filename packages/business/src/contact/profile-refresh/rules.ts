@@ -1,6 +1,6 @@
-import { type ChannelType, genderTypes } from "@chatbotx.io/database/partials"
-import type { ContactModel } from "@chatbotx.io/database/types"
-import type { IncomingContact, IncomingMessage } from "@chatbotx.io/sdk"
+import { type ChannelType, genderTypes } from "@inboxos.io/database/partials"
+import type { ContactModel } from "@inboxos.io/database/types"
+import type { IncomingContact, IncomingMessage } from "@inboxos.io/sdk"
 
 /**
  * "Real inbound" = not an echo/outgoing send, and not a non-message row (e.g.

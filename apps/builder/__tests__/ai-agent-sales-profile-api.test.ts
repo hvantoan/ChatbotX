@@ -3,7 +3,7 @@
 import {
   type AIAgentSalesProfile,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 type RouteConfig = {
@@ -54,7 +54,7 @@ const { workspaceTokenAuthAPIForScope, capturedProcedures } = vi.hoisted(() => {
 vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 
 const mockGenerateSalesProfileProposalPatch = vi.hoisted(() => vi.fn())
-vi.mock("@chatbotx.io/ai/sales-profile-proposer", () => ({
+vi.mock("@inboxos.io/ai/sales-profile-proposer", () => ({
   generateSalesProfileProposalPatch: mockGenerateSalesProfileProposalPatch,
 }))
 
@@ -84,18 +84,18 @@ const {
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService,
   aiAgentSalesProfileService,
   aiAgentSalesProfileProposalService,
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   BROADCAST_PLAN_LIMIT_CODE: "broadcastPlanLimit",
   notFoundException: (message: string) => new Error(message),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

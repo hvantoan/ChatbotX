@@ -10,7 +10,7 @@ vi.mock("next-intl", () => ({
     })[key] ?? key,
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/switch", () => ({
+vi.mock("@inboxos.io/ui/components/ui/switch", () => ({
   Switch: ({
     "aria-label": ariaLabel,
     checked,

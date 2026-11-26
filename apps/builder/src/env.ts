@@ -1,6 +1,6 @@
-import { keys as database } from "@chatbotx.io/database/keys"
-import { keys as mail } from "@chatbotx.io/mail/keys"
-import { keys as realtime } from "@chatbotx.io/realtime-protocol/keys"
+import { keys as database } from "@inboxos.io/database/keys"
+import { keys as mail } from "@inboxos.io/mail/keys"
+import { keys as realtime } from "@inboxos.io/realtime-protocol/keys"
 import { createEnv } from "@t3-oss/env-nextjs"
 import { z } from "zod"
 import { clientEnv } from "./lib/client-env"
@@ -37,7 +37,7 @@ export const env = createEnv({
     NEXT_PUBLIC_INTERNAL_STORAGE_URL: z
       .url()
       .optional()
-      .default("http://localhost:9000/chatbotx/"),
+      .default("http://localhost:9000/inboxos/"),
     NEXT_PUBLIC_STORAGE_URL: z.url().optional(),
     NEXT_PUBLIC_PANCAKE_CHAT_PAGE_ID: z.string().optional(),
     NEXT_PUBLIC_AUTH_OAUTH_DISPLAY_NAME: z.string().optional(),
@@ -58,7 +58,7 @@ export const env = createEnv({
     NEXT_PUBLIC_BROKER_URL: clientEnv("NEXT_PUBLIC_BROKER_URL"),
     NEXT_PUBLIC_INTERNAL_STORAGE_URL:
       clientEnv("NEXT_PUBLIC_INTERNAL_STORAGE_URL") ||
-      "http://localhost:9000/chatbotx/",
+      "http://localhost:9000/inboxos/",
     NEXT_PUBLIC_EDITION: clientEnv("NEXT_PUBLIC_EDITION") || "community",
     NEXT_PUBLIC_STORAGE_URL: clientEnv("NEXT_PUBLIC_STORAGE_URL"),
     NEXT_PUBLIC_PANCAKE_CHAT_PAGE_ID: clientEnv(

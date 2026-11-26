@@ -9,13 +9,13 @@ vi.mock("@/lib/log", () => ({
 }))
 
 // ---------------------------------------------------------------------------
-// Mock @chatbotx.io/business
+// Mock @inboxos.io/business
 // ---------------------------------------------------------------------------
 const replaceAuth = vi.fn()
 const commitReconnect = vi.fn()
 const upsertCurrentCredential = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     commitReconnect,
   },
@@ -29,12 +29,12 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(() => null),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 
 // ---------------------------------------------------------------------------
@@ -50,24 +50,24 @@ const SENTINEL_TX = { __tx: true }
 // which `persistReconnectAuthAndResubscribe` itself calls, but the module
 // must still load cleanly.
 // ---------------------------------------------------------------------------
-vi.mock("@chatbotx.io/integration-whatsapp/api/auth", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/auth", () => ({
   appAccessToken: vi.fn(),
   exchangeAccessToken: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/phone-number", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/phone-number", () => ({
   listPhoneNumbers: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba", () => ({
   findWaba: vi.fn(),
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/waba-owner", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/waba-owner", () => ({
   resolveOwningWabaId: vi.fn(),
 }))
 const subscribeWebhook = vi.fn()
-vi.mock("@chatbotx.io/integration-whatsapp/api/webhook", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/webhook", () => ({
   subscribeWebhook,
 }))
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   zodBigintAsString: vi.fn(() => ({})),
 }))
 vi.mock("next-intl/server", () => ({

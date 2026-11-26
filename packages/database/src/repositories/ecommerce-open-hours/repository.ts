@@ -5,10 +5,10 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
-import type { OpenHoursRange } from "@chatbotx.io/database/partials"
-import { ecommerceOpenHoursModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/client"
+import type { OpenHoursRange } from "@inboxos.io/database/partials"
+import { ecommerceOpenHoursModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 
 export const ecommerceOpenHoursRepository = {
   async list(workspaceId: string, tx: DatabaseClient = db) {

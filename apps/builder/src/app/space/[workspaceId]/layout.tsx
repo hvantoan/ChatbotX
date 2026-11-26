@@ -6,15 +6,15 @@ import {
   isSupportConsentRequired,
   isWorkspaceScheduledForDeletion,
   quotaEnforcementService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   SidebarInset,
   SidebarMobileHandle,
   SidebarProvider,
   SidebarTrigger,
-} from "@chatbotx.io/ui/components/ui/sidebar"
-import { getIdFromParams } from "@chatbotx.io/utils"
-import { CALL_CAPABLE_CHANNELS } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/ui/components/ui/sidebar"
+import { getIdFromParams } from "@inboxos.io/utils"
+import { CALL_CAPABLE_CHANNELS } from "@inboxos.io/utils/channel"
 import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 import { AppSidebar } from "@/components/app-sidebar"

@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, AvatarFallback } from "@chatbotx.io/ui/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@inboxos.io/ui/components/ui/avatar"
 import {
   Command,
   CommandEmpty,
@@ -8,7 +8,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@chatbotx.io/ui/components/ui/command"
+} from "@inboxos.io/ui/components/ui/command"
 import { CheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { initials } from "@/features/contacts/lib/initials"

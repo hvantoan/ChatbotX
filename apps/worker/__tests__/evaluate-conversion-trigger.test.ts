@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   adsConversionService: {
     evaluateConversionTrigger: mocks.evaluateConversionTrigger,
   },

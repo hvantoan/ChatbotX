@@ -2,20 +2,20 @@ import {
   conversationService,
   messageService,
   queueMessageCreatedEvent,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type CommentReply,
   resolveReplyTexts,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
-import { COMMENT_AUTOMATION_PAYLOAD_TYPE } from "@chatbotx.io/flow-config"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
-import { applySpintax } from "@chatbotx.io/utils/spintax"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
+import { COMMENT_AUTOMATION_PAYLOAD_TYPE } from "@inboxos.io/flow-config"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
+import { applySpintax } from "@inboxos.io/utils/spintax"
+import { contactVariableService } from "@inboxos.io/variables"
 import {
   AIJobAction,
   aiAgentQueue,
@@ -23,7 +23,7 @@ import {
   chatQueue,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import type { CommentAutomationChannelType } from "./channel-type"
 import type { CommentAutomationDedup } from "./dedup"

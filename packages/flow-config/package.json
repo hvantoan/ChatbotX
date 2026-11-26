@@ -1,17 +1,17 @@
 {
-  "name": "@chatbotx.io/flow-config",
+  "name": "@inboxos.io/flow-config",
   "version": "0.1.0",
   "type": "module",
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "@xyflow/react": "^12.10.2",
     "date-fns": "catalog:",
     "libphonenumber-js": "catalog:",

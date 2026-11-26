@@ -1,4 +1,4 @@
-import { channelTypes } from "@chatbotx.io/utils/channel"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { describe, expect, test } from "vitest"
 import {
   countMpmProducts,

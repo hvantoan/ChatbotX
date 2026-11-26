@@ -1,4 +1,4 @@
-import type { ValidateIngestFailureCode } from "@chatbotx.io/business"
+import type { ValidateIngestFailureCode } from "@inboxos.io/business"
 import type {
   GoogleAdsClickIdType,
   GoogleAdsEventStatus,
@@ -6,12 +6,12 @@ import type {
   GoogleAdsProcessingStatus,
   GoogleAdsSetupError,
   GoogleAdsUploadMethod,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ConnectErrorQueryCode,
   ConnectionStatus,
   ConnectSessionErrorCode,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"
 import type { GoogleAdsEventResource } from "../schema/events"
 
 /**

@@ -1,5 +1,6 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type AISpeechToTextProvider,
   aiSpeechToTextSchema,
@@ -7,10 +8,10 @@ import {
   MUSE_TRANSCRIBE_MAX_KEYWORDS,
   type MuseVoiceLanguage,
   museVoiceLanguages,
-} from "@chatbotx.io/flow-config"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/flow-config"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -20,10 +21,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import { useForm, useFormContext } from "react-hook-form"

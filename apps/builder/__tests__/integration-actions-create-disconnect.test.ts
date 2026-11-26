@@ -8,13 +8,13 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByProviderSourceId: mocks.findByProviderSourceId,
   },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { disconnect: mocks.connectionServiceDisconnect },
 }))
 

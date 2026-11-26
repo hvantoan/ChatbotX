@@ -11,7 +11,7 @@ import type { ComponentType } from "react"
 
 /**
  * Ordered registry of the workspace-settings integration providers, following
- * the `CHANNEL_CAPABILITIES` pattern in `@chatbotx.io/utils`.
+ * the `CHANNEL_CAPABILITIES` pattern in `@inboxos.io/utils`.
  *
  * `slug` is the single source of truth for BOTH the route directory name
  * (`settings/integrations/<slug>/page.tsx`) and the accordion's active-segment
@@ -38,7 +38,7 @@ export const INTEGRATION_SETTINGS_REGISTRY: readonly IntegrationSettingsEntry[] 
       titleKey: "workspaceToken.title",
       icon: CodeIcon,
     },
-    { slug: "chatbotx-mcp", titleKey: "chatbotxMcp.title", icon: PlugIcon },
+    { slug: "inboxos-mcp", titleKey: "inboxosMcp.title", icon: PlugIcon },
     { slug: "openai", titleKey: "openai.title", icon: BotIcon },
     { slug: "muse", titleKey: "muse.title", icon: SiMeta },
     { slug: "gemini", titleKey: "gemini.title", icon: BotIcon },

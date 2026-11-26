@@ -37,7 +37,7 @@ const ecommerceOpenHoursService = {
   update: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ ecommerceOpenHoursService }))
+vi.mock("@inboxos.io/business", () => ({ ecommerceOpenHoursService }))
 
 await import("@/features/ecommerce-open-hours/api/public")
 

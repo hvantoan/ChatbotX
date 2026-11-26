@@ -7,8 +7,8 @@ import {
   type MmQuickReply,
   type MmTemplateType,
   uploadModes,
-} from "@chatbotx.io/database/partials"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { createId } from "@inboxos.io/utils"
 
 export {
   MM_ELEMENT_SUBTITLE_MAX,
@@ -30,7 +30,7 @@ export {
   mmGenericElementSchema,
   mmMediaRefSchema,
   mmQuickReplySchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 // ── Defaults (used by the form editors) ─────────────────────────────────────
 export const mmMediaRefDefaultFn = (): MmMediaRef => ({

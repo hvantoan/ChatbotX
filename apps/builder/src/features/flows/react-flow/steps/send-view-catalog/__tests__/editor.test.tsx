@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { resolveSendViewCatalogLengthLimits } from "@chatbotx.io/flow-config"
+import { resolveSendViewCatalogLengthLimits } from "@inboxos.io/flow-config"
 import { act, type ReactElement } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, type UseFormReturn, useForm } from "react-hook-form"

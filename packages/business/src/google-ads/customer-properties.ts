@@ -1,11 +1,11 @@
 import type {
   GoogleAdsCustomerPropertiesSnapshot,
   GoogleAdsUploadMethod,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   googleAdsCustomerTypes,
   googleAdsCustomerValueBuckets,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 
 /**
  * Customer properties (Data Manager `userProperties`): advertiser-assessed

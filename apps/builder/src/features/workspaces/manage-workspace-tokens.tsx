@@ -1,8 +1,9 @@
 "use client"
 
-import { CheckboxGroupField } from "@chatbotx.io/ui/components/form/checkbox-field"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { RadioGroupField } from "@chatbotx.io/ui/components/form/radio-group-field"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { CheckboxGroupField } from "@inboxos.io/ui/components/form/checkbox-field"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { RadioGroupField } from "@inboxos.io/ui/components/form/radio-group-field"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,10 +13,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@chatbotx.io/ui/components/ui/alert-dialog"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
+} from "@inboxos.io/ui/components/ui/alert-dialog"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
 import {
   Dialog,
   DialogClose,
@@ -25,9 +26,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import {
   Table,
   TableBody,
@@ -35,8 +36,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/table"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { Loader2Icon, PlusIcon, Trash2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

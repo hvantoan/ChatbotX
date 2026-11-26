@@ -9,11 +9,11 @@ const mocks = vi.hoisted(() => ({
 // `resolve-provider.ts` also imports `connectionStateService`/
 // `platformCredentialService` for its OTHER exports (`resolveOneProvider` /
 // `resolveAlreadyConnectedProviders`, neither exercised here) — but merely
-// importing the real `@chatbotx.io/business` barrel reaches `better-auth`'s
+// importing the real `@inboxos.io/business` barrel reaches `better-auth`'s
 // init (via `enterprise/custom-domain/service.ts`), which opens a real DB
 // pool. Mocked at the boundary so this narrow `toConnectionResource` test
 // doesn't need a live database.
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     list: vi.fn(),
     listProvidersWithStatus: mocks.listProvidersWithStatus,
@@ -26,7 +26,7 @@ vi.mock("@chatbotx.io/business", () => ({
   customDomainService: { listActiveDomains: vi.fn(async () => []) },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   CONNECTION_REGISTRY: {
     messenger: {
       provider: {

@@ -8,8 +8,8 @@ import {
   notInArray,
   or,
   sql,
-} from "@chatbotx.io/database/client"
-import { sequenceDispatchModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/client"
+import { sequenceDispatchModel } from "@inboxos.io/database/schema"
 import type { ContactEventData } from "../../schemas/common"
 import type {
   SequenceFailedBulkUpdateItem,

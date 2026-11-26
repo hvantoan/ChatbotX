@@ -3,7 +3,7 @@ import {
   CHANNEL_AUDIENCE_EVENT_JOB_NAME,
   type ContextQueue,
   type HandleRequestProps,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { describe, expect, test, vi } from "vitest"
 import { verifyLineSignature, webhookHandler } from "../src/handlers/webhook"
 import type { LineConfig } from "../src/schema"

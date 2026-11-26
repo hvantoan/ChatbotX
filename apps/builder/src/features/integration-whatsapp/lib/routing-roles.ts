@@ -1,19 +1,19 @@
 import {
   type FetchRoutingRoles,
   integrationWhatsappService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { RoutingRolesSnapshot } from "@chatbotx.io/database/partials"
-import { getRoutingRoles } from "@chatbotx.io/integration-whatsapp/api/routing-roles"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { RoutingRolesSnapshot } from "@inboxos.io/database/partials"
+import { getRoutingRoles } from "@inboxos.io/integration-whatsapp/api/routing-roles"
 import { logger } from "@/lib/log"
 
-/** The `ChatbotXException` code a failed Meta lookup surfaces as. */
+/** The `InboxOSException` code a failed Meta lookup surfaces as. */
 export const ROUTING_ROLES_UNAVAILABLE_CODE = "routingRolesUnavailable"
 
 /**
  * Provider-facing lookup built from the primitives the business service hands
  * back — the builder layer is the only one allowed to depend on
- * `@chatbotx.io/integration-whatsapp` (same split as `coexist-trigger-sync`).
+ * `@inboxos.io/integration-whatsapp` (same split as `coexist-trigger-sync`).
  */
 const fetchRoutingRoles: FetchRoutingRoles = ({
   accessToken,
@@ -39,7 +39,7 @@ export async function syncWhatsappRoutingRoles(input: {
       fetchRoutingRoles,
     })
   } catch (error) {
-    if (error instanceof ChatbotXException) {
+    if (error instanceof InboxOSException) {
       throw error
     }
     logger.warn(
@@ -47,7 +47,7 @@ export async function syncWhatsappRoutingRoles(input: {
       "[whatsappRoutingRoles] Meta routing_roles lookup failed",
     )
     const reason = error instanceof Error ? error.message : "unknown error"
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `Meta did not return the routing roles (${reason}). Try again.`,
       ROUTING_ROLES_UNAVAILABLE_CODE,
       502,

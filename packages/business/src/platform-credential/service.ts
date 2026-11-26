@@ -7,7 +7,7 @@ import {
   isNotNull,
   isNull,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type CredentialByType,
   type CredentialPublicByType,
@@ -16,11 +16,11 @@ import {
   credentialEncryptedSchema,
   credentialPublicSchemas,
   credentialSchemas,
-} from "@chatbotx.io/database/partials"
-import { platformCredentialModel } from "@chatbotx.io/database/schema"
-import type { PlatformCredentialModel } from "@chatbotx.io/database/types"
-import { encryptUtils } from "@chatbotx.io/encryption"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/partials"
+import { platformCredentialModel } from "@inboxos.io/database/schema"
+import type { PlatformCredentialModel } from "@inboxos.io/database/types"
+import { encryptUtils } from "@inboxos.io/encryption"
+import { withCache } from "@inboxos.io/redis"
 import type { z } from "zod"
 import { BaseService } from "../base.service"
 import { logger } from "../logger"

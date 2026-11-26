@@ -2,7 +2,7 @@
 import type {
   MessageInboundOrderEntity,
   ResolvedInboundProductReference,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"

@@ -1,7 +1,7 @@
 import {
   GOOGLE_ADS_CHANNEL_VALUES,
   type GoogleAdsEventStatus,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 // Pure zod (no DB client): the service returns this shape and the builder's

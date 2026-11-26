@@ -1,6 +1,6 @@
 "use server"
 
-import { vendorService } from "@chatbotx.io/business"
+import { vendorService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { productVendorFormSchema } from "../schema/action"

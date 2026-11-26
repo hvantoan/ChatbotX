@@ -1,6 +1,6 @@
-import { botFieldService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { fieldOperationByApiName } from "@chatbotx.io/utils/custom-field-operation"
+import { botFieldService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { fieldOperationByApiName } from "@inboxos.io/utils/custom-field-operation"
 import z from "zod"
 import {
   possibleErrorsOnCreatingBotField,
@@ -324,10 +324,7 @@ export const botFieldsPublicRouter = {
     .handler(async ({ context, input }) => {
       const operation = fieldOperationByApiName(input.operation)
       if (!operation) {
-        throw new ChatbotXException(
-          "Unknown operation",
-          "invalidFieldOperation",
-        )
+        throw new InboxOSException("Unknown operation", "invalidFieldOperation")
       }
       return await botFieldService.applyValueOperation({
         workspaceId: context.workspace.id,

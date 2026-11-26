@@ -34,7 +34,7 @@ vi.mock("@/orpc", () => ({ workspaceTokenAuthAPIForScope }))
 const contactService = { resolveIdByIdentifier: vi.fn() }
 const webshopService = { getCart: vi.fn() }
 const createWebshopLink = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactService,
   webshopService,
   createWebshopLink,

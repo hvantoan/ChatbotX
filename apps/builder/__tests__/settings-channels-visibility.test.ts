@@ -25,7 +25,7 @@ const {
   mockFilterPreviewChannels: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: {
     distinctConnectedChannels: mockDistinctConnectedChannels,
   },
@@ -59,8 +59,8 @@ vi.mock("next/navigation", () => ({
   useSelectedLayoutSegment: () => null,
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     getIdFromParams: (

@@ -1,6 +1,6 @@
-import { purgeStaleAutomationThrottles } from "@chatbotx.io/database/repositories"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { distributedLock } from "@chatbotx.io/redis"
+import { purgeStaleAutomationThrottles } from "@inboxos.io/database/repositories"
+import { getChildLogger } from "@inboxos.io/logger"
+import { distributedLock } from "@inboxos.io/redis"
 
 const log = getChildLogger("purge-automation-throttle")
 

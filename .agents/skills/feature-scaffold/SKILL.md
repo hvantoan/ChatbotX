@@ -53,9 +53,9 @@ Not every feature needs all directories. A feature folder holds only these; neve
 - **Public routes** (short links, webhooks, redirects): Route Handler under `app/<public-prefix>/.../route.ts` plus the prefix in `PUBLIC_ROUTES` (`apps/builder/src/lib/public-routes.ts`); register Tools in `features/tools/tools-list.tsx`.
 - **Server actions**: `workspaceActionClient.bindArgsSchemas([z.string()])`; always `.bind(null, workspaceId)` before `useHookFormAction`/`useAction`; `execute()` takes no argument when the action has no input (invariants 4, 6). Default to the most restrictive client; `...AllowExpired` only for delete/disconnect/cancel (invariant 14).
 - **Server data** goes through TanStack Query, never a zustand store; every create/update/delete/toggle/move calls the resource invalidator before `router.push` (invariant 21). Zustand is for client-only state.
-- **Forms**: React Hook Form + Zod + `useHookFormAction`; nullable text defaults are `""` (never `null`), use `z.preprocess` to map `""` to `null`; read values with `useWatch`, not `form.watch()`. Prefer defined fields from `@chatbotx.io/ui/components/form/*`, `<Card>` and `<Button>`, never raw HTML.
+- **Forms**: React Hook Form + Zod + `useHookFormAction`; nullable text defaults are `""` (never `null`), use `z.preprocess` to map `""` to `null`; read values with `useWatch`, not `form.watch()`. Prefer defined fields from `@inboxos.io/ui/components/form/*`, `<Card>` and `<Button>`, never raw HTML.
 - **i18n is mandatory**: every user-facing string via `useTranslations()`; reuse `fields.*` keys; add keys to all locale files in `apps/builder/messages/` (parity check in `pnpm lint`). See the `builder-ui-i18n` skill.
-- **Imports**: never `@chatbotx.io/database/client` or `/schema` from `features/*`; reach data through `@chatbotx.io/business`.
+- **Imports**: never `@inboxos.io/database/client` or `/schema` from `features/*`; reach data through `@inboxos.io/business`.
 
 ## Tests
 

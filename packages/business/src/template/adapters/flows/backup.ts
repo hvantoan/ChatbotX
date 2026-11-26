@@ -1,4 +1,4 @@
-import type { TemplateFlowEntry } from "@chatbotx.io/flow-config"
+import type { TemplateFlowEntry } from "@inboxos.io/flow-config"
 import { z } from "zod"
 import type { ReferenceExistenceCache } from "../../reference-sanitizer"
 import { templateBackupNotRestorableException } from "../../template-errors"

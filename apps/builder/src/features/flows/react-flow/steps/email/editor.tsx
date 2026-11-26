@@ -1,21 +1,21 @@
 "use client"
 
-import type { PageElementSchema } from "@chatbotx.io/flow-config"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Card } from "@chatbotx.io/ui/components/ui/card"
+import type { PageElementSchema } from "@inboxos.io/flow-config"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Card } from "@inboxos.io/ui/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import {
   Sortable,
   SortableContent,
   SortableItem,
   SortableItemHandle,
-} from "@chatbotx.io/ui/components/ui/sortable"
+} from "@inboxos.io/ui/components/ui/sortable"
 import { MoveVerticalIcon, PlusIcon, XIcon } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"

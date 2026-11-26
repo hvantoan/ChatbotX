@@ -1,8 +1,8 @@
 "use client"
 
-import type { CapiConnection } from "@chatbotx.io/business/meta-conversions/connection-state"
-import type { IntegrationInstagramModel } from "@chatbotx.io/database/types"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import type { CapiConnection } from "@inboxos.io/business/meta-conversions/connection-state"
+import type { IntegrationInstagramModel } from "@inboxos.io/database/types"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { CapiConnectButton } from "@/features/meta-conversions/components/capi-connect-button"

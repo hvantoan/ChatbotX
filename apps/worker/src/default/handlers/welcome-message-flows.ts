@@ -2,26 +2,26 @@ import {
   flowService,
   flowVersionService,
   messengerWelcomeMessageFlowService as store,
-} from "@chatbotx.io/business"
-import { integrationMessengerRepository } from "@chatbotx.io/database/repositories"
-import type { IntegrationMessengerModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { integrationMessengerRepository } from "@inboxos.io/database/repositories"
+import type { IntegrationMessengerModel } from "@inboxos.io/database/types"
 import {
   createWelcomeMessageFlow,
   deleteWelcomeMessageFlow,
   getWelcomeMessageFlow,
   isTransientWelcomeMessageFlowError,
   updateWelcomeMessageFlow,
-} from "@chatbotx.io/integration-messenger/apis/welcome-message-flows"
+} from "@inboxos.io/integration-messenger/apis/welcome-message-flows"
 import {
   convertStartNodeToMessengerAdsJson,
   type MessengerAdsMessage,
-} from "@chatbotx.io/integration-messenger/messenger-ads"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-messenger/messenger-ads"
+import { distributedLock } from "@inboxos.io/redis"
 import {
   type JobDeleteWelcomeMessageFlows,
   type JobSyncWelcomeMessageFlows,
   welcomeMessageFlowLockKey,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { groupBy } from "remeda"
 import { logger } from "../../lib/logger"
 import { buildMessengerContext } from "../../lib/messenger-context"

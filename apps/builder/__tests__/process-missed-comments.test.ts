@@ -26,7 +26,7 @@ const {
   mockSettleEnqueue: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService: {
     resolveMissedCommentsTarget: mockResolveTarget,
     claimMissedCommentsRun: mockClaimRun,
@@ -42,7 +42,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   LOW_BULK_PRIORITY: 10,
   LowJobAction: { replayMissedComment: "replayMissedComment" },
   lowQueue: { addBulk: mockQueueAddBulk },

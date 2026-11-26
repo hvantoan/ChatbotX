@@ -1,15 +1,15 @@
-import { auditService } from "@chatbotx.io/business/audit"
-import { SEQUENCE_SCHEDULE_PAYLOAD_TYPE } from "@chatbotx.io/flow-config"
-import { isLockAcquisitionError, sequenceConnections } from "@chatbotx.io/redis"
-import { SchedulerClient } from "@chatbotx.io/scheduler"
-import { advanceEnrollment } from "@chatbotx.io/sequence-scheduler"
+import { auditService } from "@inboxos.io/business/audit"
+import { SEQUENCE_SCHEDULE_PAYLOAD_TYPE } from "@inboxos.io/flow-config"
+import { isLockAcquisitionError, sequenceConnections } from "@inboxos.io/redis"
+import { SchedulerClient } from "@inboxos.io/scheduler"
+import { advanceEnrollment } from "@inboxos.io/sequence-scheduler"
 import {
   flowContinuationJobOptions,
   IntegrationJobAction,
   integrationQueue,
   queueNames,
   type SequenceSchedulerJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { Worker } from "bullmq"
 import { isBlockedWorkspace } from "../lib/is-blocked-workspace"
 import { logger } from "../lib/logger"

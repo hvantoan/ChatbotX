@@ -1,7 +1,7 @@
 "use client"
 
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import { setInstallationAutoUpdateAction } from "../actions/set-installation-auto-update.action"
 import { useRefreshingAction } from "../lib/use-refreshing-action"
 

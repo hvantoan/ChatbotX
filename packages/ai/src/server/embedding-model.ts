@@ -1,6 +1,6 @@
 import { createGoogle } from "@ai-sdk/google"
 import { createOpenAI } from "@ai-sdk/openai"
-import { secretTextAuthSchema } from "@chatbotx.io/sdk"
+import { secretTextAuthSchema } from "@inboxos.io/sdk"
 import type { EmbeddingModel } from "ai"
 import { geminiEmbeddingModels, openaiEmbeddingModels } from "../models"
 import {

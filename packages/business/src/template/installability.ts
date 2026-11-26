@@ -1,9 +1,9 @@
-import type { TemplateModel } from "@chatbotx.io/database/types"
+import type { TemplateModel } from "@inboxos.io/database/types"
 import {
   parseTemplateExport,
   type TemplateExport,
-} from "@chatbotx.io/flow-config"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/flow-config"
+import { InboxOSException } from "../errors"
 import { workspaceService } from "../workspace"
 import { categoryCountsOfPayload } from "./category-counts"
 import {
@@ -14,20 +14,20 @@ import { isShareLive } from "./share-live"
 import { canInstallFromTenant } from "./tenant-gate"
 
 export const templateShareDisabledException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This share link is no longer available",
     "templateShareDisabled",
   )
 
 export const templateCrossTenantInstallException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template is not available for your workspace",
     "templateCrossTenantInstall",
   )
 
 /** A template is never installed into the workspace it was made in: its resources are already there. */
 export const templateInstallIntoSourceException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A template can not be installed into the workspace it was created in",
     "templateInstallIntoSource",
   )
@@ -75,7 +75,7 @@ export const assertTemplateInstallable = async (input: {
 
   const parsed = parseTemplateExport(template.payload)
   if (!parsed.ok) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `This template's saved data is no longer compatible: ${parsed.reason}`,
       "templatePayloadIncompatible",
     )

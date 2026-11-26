@@ -1,11 +1,11 @@
-import { flowService } from "@chatbotx.io/business"
-import { startExternalStepActionSchema } from "@chatbotx.io/flow-config"
-import baseLogger from "@chatbotx.io/logger"
+import { flowService } from "@inboxos.io/business"
+import { startExternalStepActionSchema } from "@inboxos.io/flow-config"
+import baseLogger from "@inboxos.io/logger"
 import {
   IntegrationJobAction,
   type IntegrationJobRunFlowNode,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { buildSendFlowJob } from "../../../integration/handlers/send-flow-job"
 import type { ActionExecutionContext } from "../../types"
 import { skipped, succeeded, type TriggerActionHandler } from "./types"

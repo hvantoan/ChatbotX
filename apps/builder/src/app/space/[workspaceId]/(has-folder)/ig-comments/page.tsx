@@ -1,11 +1,11 @@
-import { folderTypes } from "@chatbotx.io/database/partials"
+import { folderTypes } from "@inboxos.io/database/partials"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/ui/components/ui/card"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import type { SearchParams } from "nuqs/server"

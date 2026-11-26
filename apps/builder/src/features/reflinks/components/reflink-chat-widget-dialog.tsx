@@ -1,24 +1,24 @@
 "use client"
 
-import { isProfileLinkChannel } from "@chatbotx.io/business/utils"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { ColorPickerField } from "@chatbotx.io/ui/components/form/color-picker-field"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { isProfileLinkChannel } from "@inboxos.io/business/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { ColorPickerField } from "@inboxos.io/ui/components/form/color-picker-field"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { TagsInputField } from "@chatbotx.io/ui/components/ui/muhammada86/tags-input-field"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { TagsInputField } from "@inboxos.io/ui/components/ui/muhammada86/tags-input-field"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { CopyIcon, ImageIcon, Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"

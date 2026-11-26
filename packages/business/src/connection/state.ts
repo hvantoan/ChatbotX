@@ -1,6 +1,6 @@
 /**
  * Pure Connection status state machine. It depends only on status types and
- * the standard `ChatbotXException`, so it can be unit-tested without a
+ * the standard `InboxOSException`, so it can be unit-tested without a
  * database and reused by both `ConnectionStateService.transition` (DB writes
  * + audit) and any future dry-run/preview caller.
  *
@@ -19,8 +19,8 @@ import {
   type ConnectionStatus,
   type ConnectionStatusReason,
   isProviderOffboardedConnection,
-} from "@chatbotx.io/database/partials"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/partials"
+import { InboxOSException } from "../errors"
 
 export type ConnectionEvent =
   | "connect.completed"
@@ -63,7 +63,7 @@ export const isActiveConnectionStatus = (
 ): status is ActiveConnectionStatus =>
   new Set<ConnectionStatus>(ACTIVE_CONNECTION_STATUSES).has(status)
 
-export class InvalidConnectionTransitionException extends ChatbotXException {
+export class InvalidConnectionTransitionException extends InboxOSException {
   constructor(from: ConnectionStatus | undefined, event: ConnectionEvent) {
     super(
       `Connection cannot handle event "${event}" from status "${from ?? "∅"}"`,

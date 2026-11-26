@@ -1,7 +1,7 @@
 import {
   appointmentCalendarService,
   appointmentService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { requireContactAccessForMember } from "@/features/contacts/permissions"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"

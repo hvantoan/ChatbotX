@@ -18,8 +18,8 @@ const {
   sendAccountCredentials: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code?: string
     constructor(message: string, code?: string) {
       super(message)
@@ -28,18 +28,18 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   generateTemporaryPassword,
   platformCredentialService: { findDecryptedForUser },
   resolveTenantSettingsByOwner,
   workspaceService: { resolveTenantForOwner },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   userRepository: { findIdByEmail, insertWithCredential },
 }))
 
-vi.mock("@chatbotx.io/mail", () => ({
+vi.mock("@inboxos.io/mail", () => ({
   DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT: "Your {{brandName}} account is ready",
   sendAccountCredentials,
 }))

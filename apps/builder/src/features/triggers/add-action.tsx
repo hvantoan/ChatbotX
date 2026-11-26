@@ -3,14 +3,14 @@
 import {
   type TriggerAction,
   triggerActions,
-} from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
 import { PlusIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
@@ -56,7 +56,7 @@ export function AddAction({
   allowedTypes?: readonly TriggerAction[]
 }) {
   const t = useTranslations()
-  // Reference action-picker order; the actions only ChatbotX has come last.
+  // Reference action-picker order; the actions only InboxOS has come last.
   const options = useMemo(
     () => [
       {

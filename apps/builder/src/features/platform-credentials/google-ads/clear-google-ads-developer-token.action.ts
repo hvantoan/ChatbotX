@@ -1,8 +1,8 @@
 "use server"
 
-import { platformCredentialService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { GoogleAdsCredential } from "@chatbotx.io/database/partials"
+import { platformCredentialService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { GoogleAdsCredential } from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 
 import { authActionClient } from "@/lib/safe-action"
@@ -28,7 +28,7 @@ export const clearGoogleAdsDeveloperTokenAction = authActionClient
 
     if (!stored) {
       const t = await getTranslations()
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t("googleAds.errors.credentialSecretsRequired"),
         "googleAds.credentialSecretsRequired",
         422,

@@ -1,9 +1,9 @@
-import { type StepType, stepTypes } from "@chatbotx.io/flow-config"
+import { type StepType, stepTypes } from "@inboxos.io/flow-config"
 import {
   contentTypes,
   type MessageHandlers,
   type SendFlowStepData,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { toChannelErrorUnlessAuth } from "../../../lib/error-mapper"
 import { logger } from "../../../lib/logger"
 import type { LineAuthValue } from "../../../schema"

@@ -4,8 +4,8 @@ import type {
   OrderStatus,
   PaymentMethod,
   PaymentStatus,
-} from "@chatbotx.io/database/partials"
-import { formatMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/partials"
+import { formatMoney } from "@inboxos.io/utils/money"
 import {
   CUSTOMER_MESSAGE_LANGUAGES,
   CUSTOMER_MESSAGE_STRINGS,

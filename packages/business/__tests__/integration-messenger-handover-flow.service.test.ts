@@ -14,7 +14,7 @@ vi.mock("../src/template/template-resource-locks", () => ({
   withTemplateLockedTransaction: (run: (tx: unknown) => unknown) => run(TX),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationMessengerRepository: {
     updateHandoverResumeFlow: mocks.updateHandoverResumeFlow,
   },

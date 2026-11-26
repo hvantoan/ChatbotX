@@ -4,7 +4,7 @@ import {
   ChannelErrorCategory,
   SdkException,
   UNKNOWN_ERROR,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { type ChannelErrorSource, parseOriginError } from "../exception"
 
 const MONTHLY_LIMIT_PATTERN = "monthly limit"

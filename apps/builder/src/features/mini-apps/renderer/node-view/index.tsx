@@ -1,6 +1,6 @@
 "use client"
 
-import type { MiniAppComponentType } from "@chatbotx.io/mini-app"
+import type { MiniAppComponentType } from "@inboxos.io/mini-app"
 import type { ComponentType } from "react"
 import {
   ChipsSelectorView,

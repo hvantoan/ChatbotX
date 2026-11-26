@@ -1,5 +1,5 @@
-import { readBodyWithLimit } from "@chatbotx.io/filesystem/bounded-fetch"
-import type { FlowResponseFileFailureReason } from "@chatbotx.io/sdk"
+import { readBodyWithLimit } from "@inboxos.io/filesystem/bounded-fetch"
+import type { FlowResponseFileFailureReason } from "@inboxos.io/sdk"
 import { API_URL } from "../../constants"
 import { isRetryableHttpStatus } from "../../lib/http-status"
 import { asString, isRecord } from "../../lib/value"

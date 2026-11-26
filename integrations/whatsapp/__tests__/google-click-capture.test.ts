@@ -1,4 +1,4 @@
-import { GOOGLE_INVISIBLE_CHAR_SET } from "@chatbotx.io/utils/google-click"
+import { GOOGLE_INVISIBLE_CHAR_SET } from "@inboxos.io/utils/google-click"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import { receiveMessage } from "../src/handlers/message/incomming-message"
 

@@ -3,9 +3,9 @@
 import type {
   GoogleAdsConversionReport,
   GoogleAdsStatsResponse,
-} from "@chatbotx.io/business"
-import { toStatBuckets } from "@chatbotx.io/business/google-ads/stat-buckets"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/business"
+import { toStatBuckets } from "@inboxos.io/business/google-ads/stat-buckets"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Table,
   TableBody,
@@ -13,11 +13,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import { useLocale, useTranslations } from "next-intl"
 import { formatCount } from "../../lib/stats-format"
 
-/** Google's own conversion count next to what ChatbotX sent, so a gap is visible. */
+/** Google's own conversion count next to what InboxOS sent, so a gap is visible. */
 export function StatsGoogleReport({
   report,
   byAction,

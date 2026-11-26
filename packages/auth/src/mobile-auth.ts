@@ -1,5 +1,5 @@
-import { mobileRefreshTokenService, userService } from "@chatbotx.io/business"
-import { createId } from "@chatbotx.io/utils"
+import { mobileRefreshTokenService, userService } from "@inboxos.io/business"
+import { createId } from "@inboxos.io/utils"
 import type { BetterAuthPlugin } from "better-auth"
 import {
   APIError,

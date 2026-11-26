@@ -1,7 +1,7 @@
 "use client"
 
-import { type FlowJson, hasContactVariable } from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { type FlowJson, hasContactVariable } from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -9,8 +9,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Skeleton } from "@chatbotx.io/ui/components/ui/skeleton"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Skeleton } from "@inboxos.io/ui/components/ui/skeleton"
 import { CopyIcon, TriangleAlertIcon } from "lucide-react"
 import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"

@@ -1,5 +1,5 @@
 /**
- * `Connection`'s enums are defined in `@chatbotx.io/utils/connection` (same
+ * `Connection`'s enums are defined in `@inboxos.io/utils/connection` (same
  * rationale as `channelTypes` in `./channel.ts`) so packages that cannot
  * depend on the database layer can still reference these values. Re-exported
  * here as the conventional database-layer import site.
@@ -31,4 +31,4 @@ export {
   type ProviderAccountTarget,
   providerAccountEventKinds,
   TERMINAL_CONNECT_SESSION_STATUSES,
-} from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/utils/connection"

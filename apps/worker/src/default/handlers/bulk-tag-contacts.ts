@@ -2,13 +2,13 @@ import {
   broadcastAnalyticsService,
   commentAutomationAnalyticsService,
   sequenceAnalyticsService,
-} from "@chatbotx.io/analytics"
-import { tagService } from "@chatbotx.io/business"
-import { chunkById } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/analytics"
+import { tagService } from "@inboxos.io/business"
+import { chunkById } from "@inboxos.io/database/utils"
 import {
   type JobBulkTagContacts,
   loopableItemsCount,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 
 type BulkTagContactsData = JobBulkTagContacts["data"]
 

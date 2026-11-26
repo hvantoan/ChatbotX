@@ -1,23 +1,23 @@
 {
-  "name": "@chatbotx.io/integration-instagram-facebook",
+  "name": "@inboxos.io/integration-instagram-facebook",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chatbotx.io/business": "workspace:*",
-    "@chatbotx.io/flow-config": "workspace:*",
-    "@chatbotx.io/integration-instagram": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/sdk": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/business": "workspace:*",
+    "@inboxos.io/flow-config": "workspace:*",
+    "@inboxos.io/integration-instagram": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/sdk": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "cross-fetch": "catalog:",
     "ky": "catalog:",
     "remeda": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

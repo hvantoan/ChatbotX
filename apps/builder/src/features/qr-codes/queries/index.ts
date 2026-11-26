@@ -1,5 +1,5 @@
-import { qrCodeService, qrCodeWorkspaceCacheTag } from "@chatbotx.io/business"
-import { withCache } from "@chatbotx.io/redis"
+import { qrCodeService, qrCodeWorkspaceCacheTag } from "@inboxos.io/business"
+import { withCache } from "@inboxos.io/redis"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { ListQrCodesRequest, ListQrCodesResponse } from "../schema/query"
 import type { QrCodeResource } from "../schema/resource"

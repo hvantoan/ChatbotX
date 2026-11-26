@@ -1,4 +1,4 @@
-import type { IntegrationJobProviderAccountEvent } from "@chatbotx.io/worker-config"
+import type { IntegrationJobProviderAccountEvent } from "@inboxos.io/worker-config"
 import { z } from "zod"
 import { logger } from "./logger"
 import { asString, readWebhookEntries } from "./value"

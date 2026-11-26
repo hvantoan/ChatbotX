@@ -1,9 +1,9 @@
-import { eq } from "@chatbotx.io/database/client"
-import { flowVersionModel } from "@chatbotx.io/database/schema"
+import { eq } from "@inboxos.io/database/client"
+import { flowVersionModel } from "@inboxos.io/database/schema"
 import {
   remapFlowGraphReferences,
   type UnresolvedReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { flowVersionService } from "../../../flow-version"
 import { sanitizeFlowGraphReferences } from "../../reference-sanitizer"
 import { notYetReported } from "../shared"

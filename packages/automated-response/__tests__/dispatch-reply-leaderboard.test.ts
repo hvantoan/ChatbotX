@@ -1,15 +1,15 @@
-import { createdAtFromId, createId } from "@chatbotx.io/utils"
+import { createdAtFromId, createId } from "@inboxos.io/utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const { mockEnqueueLeaderboardAward } = vi.hoisted(() => ({
   mockEnqueueLeaderboardAward: vi.fn().mockResolvedValue(true),
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   enqueueLeaderboardAward: mockEnqueueLeaderboardAward,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactActivityService: {
     recordKeywordMatch: vi.fn().mockResolvedValue(true),
   },
@@ -19,22 +19,22 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: { flowModel: { findFirst: vi.fn().mockResolvedValue(null) } } },
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: vi.fn(() => "webhook"),
 }))
 
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: {
     getAll: vi.fn().mockResolvedValue({}),
     replaceAll: vi.fn(async ({ text }: { text: string }) => text),
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendChatMessage: "sendChatMessage" },
   IntegrationJobAction: { sendFlow: "sendFlow" },
   chatQueue: { add: vi.fn().mockResolvedValue(undefined) },
@@ -150,7 +150,7 @@ describe("dispatchAutomatedResponseReply leaderboard keywords rule", () => {
 describe("dispatchAutomatedResponseReply flow rule start flag", () => {
   beforeEach(async () => {
     vi.clearAllMocks()
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
     vi.mocked(db.query.flowModel.findFirst).mockResolvedValue({
       id: "flow-1",
     } as never)
@@ -160,7 +160,7 @@ describe("dispatchAutomatedResponseReply flow rule start flag", () => {
     [true, true],
     [undefined, undefined],
   ])("enqueues the flow with startedByContactMessage=%s -> %s", async (flag, expected) => {
-    const { integrationQueue } = await import("@chatbotx.io/worker-config")
+    const { integrationQueue } = await import("@inboxos.io/worker-config")
 
     await dispatchAutomatedResponseReply({
       conversation,

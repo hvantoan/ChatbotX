@@ -1,8 +1,8 @@
 "use server"
 
-import { verifyMcpOAuthQuery } from "@chatbotx.io/auth/mcp-resource"
-import { mcpOAuthService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { verifyMcpOAuthQuery } from "@inboxos.io/auth/mcp-resource"
+import { mcpOAuthService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { headers } from "next/headers"
 import { auth } from "@/lib/auth/auth"
 import { logger } from "@/lib/log"
@@ -43,7 +43,7 @@ export const submitOAuthConsentAction = authActionClient
 
     const verified = await verifyMcpOAuthQuery(parsedInput.oauthQuery)
     if (!verified) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "OAuth consent request is invalid or expired",
         "forbidden",
         403,

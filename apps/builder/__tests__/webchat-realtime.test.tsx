@@ -1,4 +1,4 @@
-import { RealtimeFatalError } from "@chatbotx.io/realtime-protocol"
+import { RealtimeFatalError } from "@inboxos.io/realtime-protocol"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, expect, test, vi } from "vitest"

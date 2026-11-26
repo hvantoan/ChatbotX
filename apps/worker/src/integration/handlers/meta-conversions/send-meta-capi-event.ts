@@ -13,23 +13,23 @@ import {
   resolveContactMessagingId,
   withBlockedOwnerGuard,
   workspaceService,
-} from "@chatbotx.io/business"
-import { logProviderError } from "@chatbotx.io/business/error-log"
-import { isCapiScopeRequired } from "@chatbotx.io/business/meta-conversions/capi-scope-policy"
-import type { MetaCapiEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { logProviderError } from "@inboxos.io/business/error-log"
+import { isCapiScopeRequired } from "@inboxos.io/business/meta-conversions/capi-scope-policy"
+import type { MetaCapiEventModel } from "@inboxos.io/database/types"
 import {
   buildDatasetName,
   ensureDataset,
   type MetaCapiEventName,
   sendConversionEvent,
-} from "@chatbotx.io/integration-meta-conversions"
+} from "@inboxos.io/integration-meta-conversions"
 import {
   type HashedCapiUserData,
   type MetaCapiActionSource,
   type MetaCapiContentType,
   metaCapiActionSourcePolicy,
-} from "@chatbotx.io/utils/meta-capi"
-import type { IntegrationJobSendMetaCapiEvent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/utils/meta-capi"
+import type { IntegrationJobSendMetaCapiEvent } from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { findEventIntegration, refreshScopeCache } from "./capi-scope-checkers"
 

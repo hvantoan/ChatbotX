@@ -4,13 +4,13 @@ import {
   museAnalyzeImageModelOptions,
   openaiAnalyzeImageModelOptions,
   openrouterAnalyzeImageModelOptions,
-} from "@chatbotx.io/ai"
-import type { AIAnalyzeImageProvider } from "@chatbotx.io/flow-config"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+} from "@inboxos.io/ai"
+import type { AIAnalyzeImageProvider } from "@inboxos.io/flow-config"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import type {
   SelectFieldProps,
   SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import type { FieldValues } from "react-hook-form"

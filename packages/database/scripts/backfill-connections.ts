@@ -11,18 +11,18 @@
  * A second run always inserts 0 new rows (`--verify` proves this).
  *
  * This intentionally does NOT call `upsertConnectionRow` / go through
- * `@chatbotx.io/business`'s connection engine: `@chatbotx.io/database` cannot
- * depend on `@chatbotx.io/business` (the dependency points the other way),
+ * `@inboxos.io/business`'s connection engine: `@inboxos.io/database` cannot
+ * depend on `@inboxos.io/business` (the dependency points the other way),
  * and this backfill never touches `UserQuota`/`WorkspaceUsage` — it is a pure
  * backfill of `Connection` rows, not a quota recompute. `authExpiresAtOf`'s
  * one-line logic is duplicated locally (see `backfill-connections/status.ts`)
  * for the same layering reason.
  *
  * Usage:
- *   pnpm --filter @chatbotx.io/database db:backfill-connections -- --dry-run
- *   pnpm --filter @chatbotx.io/database db:backfill-connections
- *   pnpm --filter @chatbotx.io/database db:backfill-connections -- --provider=whatsapp --workspace=123
- *   pnpm --filter @chatbotx.io/database db:backfill-connections -- --verify
+ *   pnpm --filter @inboxos.io/database db:backfill-connections -- --dry-run
+ *   pnpm --filter @inboxos.io/database db:backfill-connections
+ *   pnpm --filter @inboxos.io/database db:backfill-connections -- --provider=whatsapp --workspace=123
+ *   pnpm --filter @inboxos.io/database db:backfill-connections -- --verify
  *
  * Flags:
  *   --dry-run          Count + print a sample of what would be inserted. No writes.
@@ -60,7 +60,7 @@
  * runs nightly, just forced immediately instead of waiting for the next scheduled pass.
  *
  * Skipped entirely (no adapter / no live feature): metaCatalog,
- * outlookCalendar, chatbotx.
+ * outlookCalendar, inboxos.
  *
  * Implementation lives in `./backfill-connections/`; this file is a thin entry
  * so `tsx scripts/backfill-connections.ts --dry-run`/`--verify` keeps working,

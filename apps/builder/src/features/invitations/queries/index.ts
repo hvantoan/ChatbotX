@@ -1,4 +1,4 @@
-import { invitationService } from "@chatbotx.io/business"
+import { invitationService } from "@inboxos.io/business"
 
 /**
  * Not a server action (`"use server"`): this reads full invitation details and

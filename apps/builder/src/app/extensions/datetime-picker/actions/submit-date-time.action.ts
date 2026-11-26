@@ -1,11 +1,11 @@
 "use server"
 
-import { verifyUserDataWebviewToken } from "@chatbotx.io/encryption"
-import { GET_USER_DATA_WEBVIEW_SELECTION_PAYLOAD_TYPE } from "@chatbotx.io/flow-config"
+import { verifyUserDataWebviewToken } from "@inboxos.io/encryption"
+import { GET_USER_DATA_WEBVIEW_SELECTION_PAYLOAD_TYPE } from "@inboxos.io/flow-config"
 import {
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import {
   type SubmitDateTimeInput,
   submitDateTimeRequestSchema,

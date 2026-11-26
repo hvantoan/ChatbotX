@@ -1,10 +1,10 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { normalizeBroadcastSendLimit } from "@chatbotx.io/database/partials"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { normalizeBroadcastSendLimit } from "@inboxos.io/database/partials"
 import {
   type broadcastModel,
   broadcastTargetModel,
-} from "@chatbotx.io/database/schema"
-import type { BroadcastModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { BroadcastModel } from "@inboxos.io/database/types"
 
 type BroadcastInsert = typeof broadcastModel.$inferInsert
 

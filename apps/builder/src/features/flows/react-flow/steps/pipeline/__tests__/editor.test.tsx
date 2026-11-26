@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { pipelineStepDefaultFn } from "@chatbotx.io/flow-config"
+import { pipelineStepDefaultFn } from "@inboxos.io/flow-config"
 import { act, type ReactNode } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, type UseFormReturn, useForm } from "react-hook-form"
@@ -39,7 +39,7 @@ vi.mock("../../base/editor", () => ({
   BaseStepEditor: ({ children }: { children: ReactNode }) => <>{children}</>,
 }))
 
-vi.mock("@chatbotx.io/ui/components/form/select-field", async () => {
+vi.mock("@inboxos.io/ui/components/form/select-field", async () => {
   const { Controller, useFormContext } = await import("react-hook-form")
   return {
     SelectField: ({
@@ -78,7 +78,7 @@ vi.mock("@chatbotx.io/ui/components/form/select-field", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", async () => {
+vi.mock("@inboxos.io/ui/components/form/combobox-field", async () => {
   const { Controller, useFormContext } = await import("react-hook-form")
   return {
     ComboboxField: ({

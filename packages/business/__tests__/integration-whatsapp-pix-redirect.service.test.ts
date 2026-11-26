@@ -4,7 +4,7 @@ const mocks = vi.hoisted(() => ({
   updatePixRedirectEnabled: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   integrationWhatsappRepository: {
     updatePixRedirectEnabled: mocks.updatePixRedirectEnabled,
   },

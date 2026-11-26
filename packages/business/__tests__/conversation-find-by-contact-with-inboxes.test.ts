@@ -1,8 +1,8 @@
 // @vitest-environment node
 import { afterEach, describe, expect, test, vi } from "vitest"
 
-const { db } = await import("@chatbotx.io/database/client")
-const { conversationModel } = await import("@chatbotx.io/database/schema")
+const { db } = await import("@inboxos.io/database/client")
+const { conversationModel } = await import("@inboxos.io/database/schema")
 const { conversationService } = await import("../src/conversation/service")
 
 const spyOnFindFirst = () =>

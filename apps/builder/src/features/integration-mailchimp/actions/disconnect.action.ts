@@ -1,6 +1,6 @@
 "use server"
 
-import { integrationMailchimpService } from "@chatbotx.io/business"
+import { integrationMailchimpService } from "@inboxos.io/business"
 import { createDisconnectAction } from "@/lib/integration-actions"
 
 export const disconnectMailchimpAction = createDisconnectAction(

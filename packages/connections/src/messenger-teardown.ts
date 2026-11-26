@@ -3,21 +3,21 @@ import {
   contactScanService,
   instagramIntegrationService,
   messengerIntegrationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type ConnectionAdapter,
   type ConnectionTeardownResult,
   connectionStateService,
-} from "@chatbotx.io/business/connection"
-import { toPublicErrorMessage } from "@chatbotx.io/business/errors"
-import { db } from "@chatbotx.io/database/client"
-import { metaCapiEventRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business/connection"
+import { toPublicErrorMessage } from "@inboxos.io/business/errors"
+import { db } from "@inboxos.io/database/client"
+import { metaCapiEventRepository } from "@inboxos.io/database/repositories"
 import {
   isDisconnectSafeError,
   type MessengerAuthValue,
   integration as messengerIntegration,
-} from "@chatbotx.io/integration-messenger"
-import { subscribePageToAppWebhook } from "@chatbotx.io/integration-messenger/apis/page"
+} from "@inboxos.io/integration-messenger"
+import { subscribePageToAppWebhook } from "@inboxos.io/integration-messenger/apis/page"
 import { logger } from "./logger"
 
 /**
@@ -162,7 +162,7 @@ const tearDownMessengerConnection = async (input: {
  * and runs the returned `withinTransaction` closure plus the matching
  * `connectionStateService.disconnectInbox` transition inside it, so
  * `disconnect-messenger.ts` (apps/builder) never has to import `db` from
- * `@chatbotx.io/database/client` just to open a transaction.
+ * `@inboxos.io/database/client` just to open a transaction.
  */
 export const disconnectMessengerConnection = async (input: {
   workspaceId: string

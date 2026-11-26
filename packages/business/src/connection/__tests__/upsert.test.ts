@@ -1,5 +1,5 @@
-import type { ConnectionModel } from "@chatbotx.io/database/types"
-import type { ConnectionDescriptor } from "@chatbotx.io/sdk"
+import type { ConnectionModel } from "@inboxos.io/database/types"
+import type { ConnectionDescriptor } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { ConnectionStoreBinding } from "../store-bindings"
 
@@ -22,11 +22,11 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   isUniqueViolationError: mocks.isUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { update: mocks.connectionRepositoryUpdate },
 }))
 
@@ -58,10 +58,10 @@ vi.mock("../state-service", () => ({
 }))
 
 // Dynamic `import()` is required here, not a static import: the mocks above
-// must be registered before `../upsert` (and its `@chatbotx.io/database/
+// must be registered before `../upsert` (and its `@inboxos.io/database/
 // repositories`/`../workspace-member/service` dependencies) is evaluated,
 // which only a post-`vi.mock` dynamic import guarantees — same pattern as
-// `@chatbotx.io/connections`'s `internal.test.ts`.
+// `@inboxos.io/connections`'s `internal.test.ts`.
 const {
   upsertConnectionRow,
   withQuotaCompensation,
@@ -348,7 +348,7 @@ describe("resolveForeignKey", () => {
     ).toBe("integration-1")
   })
 
-  it("returns null when neither FK is set (chatbotx)", () => {
+  it("returns null when neither FK is set (inboxos)", () => {
     expect(
       resolveForeignKey({
         inboxId: null,

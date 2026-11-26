@@ -1,8 +1,8 @@
 import {
   type PipelineFieldConditionInput,
   pipelineFieldConditionError,
-} from "@chatbotx.io/database/partials"
-import type { PipelineFieldModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { PipelineFieldModel } from "@inboxos.io/database/types"
 import { validationException } from "../errors"
 
 /** 422 when `condition` cannot run on `field` (operator not offered for its type, bad operand). */

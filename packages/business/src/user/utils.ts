@@ -1,4 +1,4 @@
-import type { UserModel } from "@chatbotx.io/database/types"
+import type { UserModel } from "@inboxos.io/database/types"
 import { tenantService } from "../enterprise/tenant/service"
 import { isCloud } from "../keys"
 import { platformAdminService } from "../platform-admin/service"

@@ -9,7 +9,7 @@ const mocks = vi.hoisted(() => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   templateInstallIntentService: { clear: vi.fn(async () => undefined) },
   workspaceService: {
     ensureConnectTargetForOwner: mocks.mockEnsureConnectTargetForOwner,
@@ -18,8 +18,8 @@ vi.mock("@chatbotx.io/business", () => ({
 }))
 vi.mock("next/navigation", () => ({ redirect: mocks.mockRedirect }))
 
-const { ChatbotXException, workspaceLimitReachedException } = await import(
-  "@chatbotx.io/business/errors"
+const { InboxOSException, workspaceLimitReachedException } = await import(
+  "@inboxos.io/business/errors"
 )
 const {
   CREATE_CHANNEL_ERROR_MESSAGE_KEYS,
@@ -107,14 +107,14 @@ describe("create-first-workspace", () => {
     )
   })
 
-  test("rethrows any other failure untouched, including unlisted ChatbotXException codes", async () => {
+  test("rethrows any other failure untouched, including unlisted InboxOSException codes", async () => {
     mocks.mockEnsureConnectTargetForOwner.mockRejectedValueOnce(
       new Error("db down"),
     )
     await expect(createFirstWorkspace("user-1")).rejects.toThrow("db down")
 
     mocks.mockEnsureConnectTargetForOwner.mockRejectedValueOnce(
-      new ChatbotXException("boom", "systemError"),
+      new InboxOSException("boom", "systemError"),
     )
     await expect(createFirstWorkspace("user-1")).rejects.toThrow("boom")
 

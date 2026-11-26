@@ -1,7 +1,7 @@
 import {
   discountCodeService,
   ecommerceSettingsService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { DiscountCodesTable } from "@/features/discount-codes/discount-codes-table"
 import { listDiscountCodesSearchParams } from "@/features/discount-codes/schema/query"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"

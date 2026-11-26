@@ -1,11 +1,11 @@
 "use client"
 
-import type { SocialProvider } from "@chatbotx.io/auth/server"
+import type { SocialProvider } from "@inboxos.io/auth/server"
 import {
   Card,
   CardContent,
   CardHeader,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"

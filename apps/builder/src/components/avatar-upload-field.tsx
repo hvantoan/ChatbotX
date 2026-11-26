@@ -4,10 +4,10 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@chatbotx.io/ui/components/ui/avatar"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { DirectUploadButton } from "@chatbotx.io/ui/components/uploader/direct-upload-button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/avatar"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { DirectUploadButton } from "@inboxos.io/ui/components/uploader/direct-upload-button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useRef } from "react"
 import { toast } from "sonner"
 

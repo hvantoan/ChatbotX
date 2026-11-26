@@ -1,11 +1,11 @@
-import { db, eq } from "@chatbotx.io/database/client"
-import { resolveThreadTakePermission } from "@chatbotx.io/database/partials"
+import { db, eq } from "@inboxos.io/database/client"
+import { resolveThreadTakePermission } from "@inboxos.io/database/partials"
 import {
   flowModel,
   integrationWhatsappModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
-import { integrationQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
+import { integrationQueue } from "@inboxos.io/worker-config"
 import {
   afterAll,
   beforeAll,
@@ -784,10 +784,10 @@ describe.skipIf(!hasThrowawayDatabase())(
     describe("routing roles (GET /{phone_number_id}/routing_roles)", () => {
       const sync = async (world: RoutingWorld) => {
         const { integrationWhatsappService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         const { getRoutingRoles } = await import(
-          "@chatbotx.io/integration-whatsapp/api/routing-roles"
+          "@inboxos.io/integration-whatsapp/api/routing-roles"
         )
         const integration = await db.query.integrationWhatsappModel.findFirst({
           where: { inboxId: world.inboxId },
@@ -817,7 +817,7 @@ describe.skipIf(!hasThrowawayDatabase())(
         })
         expect(resolveThreadTakePermission(snapshot)).toBe("forbidden")
         const { integrationWhatsappService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         expect(
           await integrationWhatsappService.findRoutingRolesByInbox({
@@ -848,7 +848,7 @@ describe.skipIf(!hasThrowawayDatabase())(
       test("a sync answered after a newer one never overwrites it (real SQL guard)", async () => {
         const world = await buildRoutingWorld()
         const { integrationWhatsappService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         const integration = await db.query.integrationWhatsappModel.findFirst({
           where: { inboxId: world.inboxId },
@@ -897,7 +897,7 @@ describe.skipIf(!hasThrowawayDatabase())(
         })
         await expect(sync(world)).rejects.toBeTruthy()
         const { integrationWhatsappService } = await import(
-          "@chatbotx.io/business"
+          "@inboxos.io/business"
         )
         expect(
           await integrationWhatsappService.findRoutingRolesByInbox({

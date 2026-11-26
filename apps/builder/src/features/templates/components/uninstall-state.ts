@@ -1,7 +1,7 @@
 import {
   TEMPLATE_UNINSTALL_ACTIVE_STATES,
   type TemplateUninstallState,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 /** An uninstall is queued or running: the page polls and blocks sync, restore and a second request. */
 export const isUninstallInProgress = (

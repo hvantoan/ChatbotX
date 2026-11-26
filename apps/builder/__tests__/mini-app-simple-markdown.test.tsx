@@ -1,5 +1,5 @@
 // biome-ignore-all lint/suspicious/noTemplateCurlyInString: Flow JSON references are literal `${...}` text
-import { escapeContactValue, interpolate } from "@chatbotx.io/mini-app"
+import { escapeContactValue, interpolate } from "@inboxos.io/mini-app"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 import { SimpleMarkdown } from "@/features/mini-apps/renderer/simple-markdown"

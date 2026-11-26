@@ -1,4 +1,4 @@
-import { isPlaceholderEmail } from "@chatbotx.io/utils/placeholder-email"
+import { isPlaceholderEmail } from "@inboxos.io/utils/placeholder-email"
 import type { BetterAuthOptions } from "better-auth"
 import { env } from "./keys"
 import { logger } from "./logger"

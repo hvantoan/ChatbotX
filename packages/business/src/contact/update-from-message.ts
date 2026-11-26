@@ -1,5 +1,5 @@
-import { and, db, eq } from "@chatbotx.io/database/client"
-import { contactModel } from "@chatbotx.io/database/schema"
+import { and, db, eq } from "@inboxos.io/database/client"
+import { contactModel } from "@inboxos.io/database/schema"
 import { emitContactInfoChangeEvents } from "./contact-info-changes"
 import { extractContactInfo } from "./extract-contact"
 

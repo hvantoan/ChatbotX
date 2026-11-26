@@ -1,4 +1,4 @@
-import type { WhatsappLocationStepSchema } from "@chatbotx.io/flow-config"
+import type { WhatsappLocationStepSchema } from "@inboxos.io/flow-config"
 import { describe, expect, test } from "vitest"
 import { convertFlowStepWhatsappLocation } from "../src/handlers/message/outgoing-message/whatsapp-location"
 

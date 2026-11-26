@@ -1,4 +1,4 @@
-import { UploadValidationError } from "@chatbotx.io/filesystem"
+import { UploadValidationError } from "@inboxos.io/filesystem"
 import { z } from "zod"
 
 /**

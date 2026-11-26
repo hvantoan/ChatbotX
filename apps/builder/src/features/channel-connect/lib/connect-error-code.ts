@@ -1,5 +1,5 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { ConnectErrorQueryCode } from "@chatbotx.io/utils/connection"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { ConnectErrorQueryCode } from "@inboxos.io/utils/connection"
 import {
   type CreateChannelErrorCode,
   isCreateChannelErrorCode,
@@ -59,7 +59,7 @@ const RENAMED_EXCEPTION_CODES: Readonly<
  * channel's own "nothing to pick" copy, so this stays channel-agnostic.
  */
 export function selectPageErrorCode(
-  err: ChatbotXException,
+  err: InboxOSException,
   options: {
     noCandidatesError: CreateChannelErrorCode
     connectError?: string | null
@@ -85,7 +85,7 @@ export function selectPageErrorCode(
  * (`startChannelConnect`). Never "session expired": no session existed yet.
  */
 export function startFailureErrorCode(err: unknown): CreateChannelErrorCode {
-  if (!(err instanceof ChatbotXException)) {
+  if (!(err instanceof InboxOSException)) {
     return "connectFailed"
   }
   if (err.code === "connectSessionLimitReached") {

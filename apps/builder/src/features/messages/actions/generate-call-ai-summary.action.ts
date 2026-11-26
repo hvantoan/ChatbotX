@@ -1,7 +1,7 @@
 "use server"
 
-import { aiProviders } from "@chatbotx.io/ai"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { aiProviders } from "@inboxos.io/ai"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { assertCanReadCallArtifactOrThrow } from "@/features/integration-whatsapp/calling/actions/assert-call-access"
 import { workspaceActionClient } from "@/lib/safe-action"

@@ -4,11 +4,11 @@ const createPending = vi.fn()
 const getPresignedUpload = vi.fn()
 const getUploadHandler = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   fileService: { createPending },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { getPresignedUpload },
 }))
 

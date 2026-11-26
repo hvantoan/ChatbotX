@@ -12,7 +12,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const findOrFailMock = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...conditions: unknown[]) => ({ conditions })),
   db: {
     transaction: vi.fn(),
@@ -23,25 +23,25 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isDatabaseError: vi.fn(() => false),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   channelTypes: { enum: { zalo: "zalo", telegram: "telegram" } },
   integrationTypes: { enum: { telegram: "telegram" } },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   integrationZaloModel: { __table: "IntegrationZalo" },
   integrationTelegramModel: { __table: "IntegrationTelegram" },
   tagChannelModel: { __table: "TagChannel" },
 }))
 
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => "generated-id"),
 }))
 
 // These new imports (added alongside `connect`/`disconnect` on both
 // services) pull in real modules transitively — mock them at the boundary
 // so this narrow lookup test doesn't have to satisfy their own dependency
-// graphs (e.g. `@chatbotx.io/analytics`'s schema requirements).
+// graphs (e.g. `@inboxos.io/analytics`'s schema requirements).
 vi.mock("../src/inbox/service", () => ({
   inboxService: { disconnect: vi.fn() },
 }))
@@ -59,11 +59,11 @@ vi.mock("../src/workspace", () => ({
 
 // `disconnect`'s Connection-row integration (so a real channel disconnect
 // drives the FSM instead of bypassing it — see `disconnect-messenger.ts`)
-// pulls in the full `@chatbotx.io/database/repositories` barrel, which
+// pulls in the full `@inboxos.io/database/repositories` barrel, which
 // transitively needs schema exports this narrow lookup test's sparse
 // schema mock above doesn't carry — mocked at the boundary for the same
 // reason as the imports above.
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { findByInboxId: vi.fn() },
 }))
 

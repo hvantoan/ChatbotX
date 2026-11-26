@@ -19,9 +19,9 @@ const {
   },
 }))
 
-vi.mock("@chatbotx.io/business/smart-delay", () => ({ smartDelayService }))
+vi.mock("@inboxos.io/business/smart-delay", () => ({ smartDelayService }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   flowContinuationJobOptions: () => ({}),
   IntegrationJobAction: {
     resumeFollowUp: "resumeFollowUp",

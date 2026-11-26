@@ -5,8 +5,8 @@ import {
   MuseTranscribeError,
   MuseWavFormatError,
   transcribeWithMuse,
-} from "@chatbotx.io/ai/server"
-import type { AISpeechToTextSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/ai/server"
+import type { AISpeechToTextSchema } from "@inboxos.io/flow-config"
 import { transcribe } from "ai"
 import { z } from "zod"
 import { env } from "../../env"

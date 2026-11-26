@@ -18,14 +18,14 @@ const {
 
 const productService = { list: vi.fn() }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
   quotaEnforcementService: { isAtLimit },
   productService,
 }))
-vi.mock("@chatbotx.io/business/import", () => ({
+vi.mock("@inboxos.io/business/import", () => ({
   createImportUpload: vi.fn(),
   importService: { list: vi.fn(), find: vi.fn() },
 }))

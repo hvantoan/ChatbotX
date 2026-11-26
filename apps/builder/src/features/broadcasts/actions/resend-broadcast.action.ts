@@ -1,7 +1,7 @@
 "use server"
 
-import { broadcastService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { broadcastService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { canViewContactEmailAndPhone } from "@/features/contacts/permissions"
 import { getCurrentUserAndTargetWorkspace } from "@/lib/auth/utils"
 import { workspaceActionClient } from "@/lib/safe-action"

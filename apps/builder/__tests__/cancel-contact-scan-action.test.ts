@@ -5,7 +5,7 @@ const mockCancel = vi.fn()
 const mockRequireUnrestrictedContactsScope = vi.fn()
 const clientUsed = vi.hoisted(() => ({ name: "" }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactScanService: { cancel: (...args: unknown[]) => mockCancel(...args) },
 }))
 

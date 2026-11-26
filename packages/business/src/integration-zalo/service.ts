@@ -1,13 +1,13 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq, findOrFail, inArray } from "@chatbotx.io/database/client"
-import { channelTypes } from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq, findOrFail, inArray } from "@inboxos.io/database/client"
+import { channelTypes } from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   integrationZaloModel,
   tagChannelModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationZaloModel } from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/schema"
+import type { IntegrationZaloModel } from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import {
   CONNECTION_STORE_BINDINGS,

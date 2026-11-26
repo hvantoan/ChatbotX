@@ -1,4 +1,4 @@
-export type { DispatchWithRelations } from "@chatbotx.io/database/repositories"
+export type { DispatchWithRelations } from "@inboxos.io/database/repositories"
 
 export type DispatchMessage = {
   dispatchId: string

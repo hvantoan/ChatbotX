@@ -5,8 +5,8 @@ import type {
   MmMediaRef,
   MmPostbackAction,
   MmQuickReply,
-} from "@chatbotx.io/database/partials"
-import { encodeButtonPayload } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/database/partials"
+import { encodeButtonPayload } from "@inboxos.io/flow-config"
 
 const WEBVIEW_RATIO = { 40: "compact", 70: "tall", 100: "full" } as const
 

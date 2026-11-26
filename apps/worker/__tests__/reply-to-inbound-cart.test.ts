@@ -4,13 +4,13 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 const buildInboundCartReply = vi.fn()
 const chatQueueAdd = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   webshopService: { buildInboundCartReply },
   withBlockedOwnerGuard: async (_workspaceId: string, fn: () => unknown) =>
     await fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ChatJobAction: { sendFlowMessage: "sendFlowMessage" },
   chatQueue: { add: (...args: unknown[]) => chatQueueAdd(...args) },
 }))

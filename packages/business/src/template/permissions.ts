@@ -1,9 +1,9 @@
 import {
   type TemplateCategory,
   templateCategories,
-} from "@chatbotx.io/database/partials"
-import type { TemplateModel } from "@chatbotx.io/database/types"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/partials"
+import type { TemplateModel } from "@inboxos.io/database/types"
+import { InboxOSException } from "../errors"
 import {
   hasWorkspacePermission,
   type PermissionsInput,
@@ -55,7 +55,7 @@ export type TemplateActor =
   | { kind: "apiToken"; permission: "full" | "read_only" }
 
 const templateCategoryPermissionDeniedException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "You don't have permission to use this template's contents",
     "templateCategoryPermissionDenied",
     403,
@@ -74,7 +74,7 @@ export const canManageTemplates = (actor: TemplateActor): boolean =>
 
 export const assertCanManageTemplates = (actor: TemplateActor): void => {
   if (!canManageTemplates(actor)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "You don't have permission to manage templates",
       "templateManagePermissionDenied",
       403,
@@ -93,7 +93,7 @@ export const canReadTemplates = (actor: TemplateActor): boolean =>
 
 export const assertCanReadTemplates = (actor: TemplateActor): void => {
   if (!canReadTemplates(actor)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "You don't have permission to view templates",
       "templateManagePermissionDenied",
       403,
@@ -107,7 +107,7 @@ export const assertCanReadTemplates = (actor: TemplateActor): void => {
  */
 export const assertCanWriteTemplateInstalls = (actor: TemplateActor): void => {
   if (actor.kind === "apiToken" && actor.permission === "read_only") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "A read-only token can not change template installations",
       "templateManagePermissionDenied",
       403,

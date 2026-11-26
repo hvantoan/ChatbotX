@@ -1,5 +1,5 @@
-import type { GenderType } from "@chatbotx.io/database/partials"
-import { TemporalInputParsing } from "@chatbotx.io/utils/datetime"
+import type { GenderType } from "@inboxos.io/database/partials"
+import { TemporalInputParsing } from "@inboxos.io/utils/datetime"
 import {
   contactService,
   isRichSystemContactField,

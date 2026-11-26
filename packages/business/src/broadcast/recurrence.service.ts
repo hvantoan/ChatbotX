@@ -1,6 +1,6 @@
-import { broadcastAnalyticsService } from "@chatbotx.io/analytics"
-import { type DatabaseClient, db, eq } from "@chatbotx.io/database/client"
-import type { OccurrenceBucketGranularity } from "@chatbotx.io/database/partials"
+import { broadcastAnalyticsService } from "@inboxos.io/analytics"
+import { type DatabaseClient, db, eq } from "@inboxos.io/database/client"
+import type { OccurrenceBucketGranularity } from "@inboxos.io/database/partials"
 import {
   type BroadcastOccurrenceReason,
   broadcastOccurrenceOutcomes,
@@ -10,19 +10,19 @@ import {
   isRecurringTemplate,
   isTemplateSendWithoutPage,
   usesBroadcastTargets,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   broadcastRepository,
   type DueRecurrence,
   type DueRecurrenceCursor,
   type LedgerBucketCell,
   broadcastRecurrenceRepository as repository,
-} from "@chatbotx.io/database/repositories"
-import { broadcastModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { broadcastModel } from "@inboxos.io/database/schema"
 import type {
   BroadcastModel,
   BroadcastRecurrenceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   computeLatestOccurrence,
   computeNextOccurrence,
@@ -37,17 +37,17 @@ import {
   recurrenceRuleSchema,
   resolveZonedInstant,
   toLocalSlot,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import {
   canonicalizeTimezone,
   isValidTimezone,
-} from "@chatbotx.io/utils/timezone"
+} from "@inboxos.io/utils/timezone"
 import { formatInTimeZone } from "date-fns-tz"
 import { BaseService } from "../base.service"
 import {
   BROADCAST_PLAN_LIMIT_CODE,
   BroadcastValidationException,
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -139,7 +139,7 @@ const NOTHING_MATERIALIZED: MaterializeOccurrenceResult = {
 }
 
 const isActiveBroadcastsLimit = (error: unknown): boolean =>
-  error instanceof ChatbotXException &&
+  error instanceof InboxOSException &&
   error.code === BROADCAST_PLAN_LIMIT_CODE &&
   error.data?.reason === "activeBroadcasts"
 
@@ -635,7 +635,7 @@ class BroadcastRecurrenceService extends BaseService {
         columns: { id: true },
       })
       if (!existing) {
-        throw new ChatbotXException("Run could not be created")
+        throw new InboxOSException("Run could not be created")
       }
       return existing.id
     }
@@ -696,7 +696,7 @@ class BroadcastRecurrenceService extends BaseService {
       },
     })
     if (!advanced) {
-      throw new ChatbotXException("Recurrence moved while materializing")
+      throw new InboxOSException("Recurrence moved while materializing")
     }
 
     await tx

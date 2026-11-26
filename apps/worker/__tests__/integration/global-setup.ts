@@ -4,7 +4,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { Redis } from "ioredis"
 
-const THROWAWAY_PREFIX = "chatbotx_it_"
+const THROWAWAY_PREFIX = "inboxos_it_"
 const TEST_REDIS_DB = "5"
 const REDIS_URL_ENV_KEYS = [
   "REDIS_URL",
@@ -74,7 +74,7 @@ const assertRedisDbIsEmpty = async (redisUrl: string): Promise<void> => {
 }
 
 /**
- * Creates `chatbotx_it_<random>` on the server `DATABASE_URL` points at (that
+ * Creates `inboxos_it_<random>` on the server `DATABASE_URL` points at (that
  * URL is only used to run CREATE/DROP DATABASE), applies every migration with
  * the repo's own runner, then points every worker at the new database and at
  * Redis db 5. `E2E_KEEP_DB=1` keeps the database after the run for inspection.

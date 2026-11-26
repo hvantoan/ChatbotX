@@ -1,20 +1,20 @@
 "use client"
 
-import { pipelineActivityGroups } from "@chatbotx.io/database/partials"
+import { pipelineActivityGroups } from "@inboxos.io/database/partials"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@chatbotx.io/ui/components/ui/accordion"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/accordion"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
+} from "@inboxos.io/ui/components/ui/sheet"
 import { ArrowLeftIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { type ReactNode, useState } from "react"

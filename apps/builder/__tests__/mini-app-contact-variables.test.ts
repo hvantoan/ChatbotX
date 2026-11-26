@@ -1,12 +1,12 @@
 // biome-ignore-all lint/suspicious/noTemplateCurlyInString: Flow JSON references are literal `${...}` text
-import type { MiniAppDefinition } from "@chatbotx.io/mini-app"
+import type { MiniAppDefinition } from "@inboxos.io/mini-app"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 vi.mock("server-only", () => ({}))
 
 const findRecentByContactId = vi.fn()
 const integrationWhatsappFind = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   contactInboxService: { findRecentByContactId },
   integrationWhatsappService: { findByIdForWorkspace: integrationWhatsappFind },
   whatsappFlowService: { upsertFromMeta },
@@ -18,16 +18,16 @@ const runWhatsappAction = vi.fn()
 
 const getAll = vi.fn()
 const replaceAll = vi.fn()
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: { getAll, replaceAll },
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ warn: vi.fn() }),
 }))
 
 const findOrFail = vi.fn()
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppService: {
     findOrFail,
     validate: () => ({ valid: true, issues: [] }),
@@ -38,8 +38,8 @@ vi.mock("@chatbotx.io/business/mini-app", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code: string) {
       super(message)

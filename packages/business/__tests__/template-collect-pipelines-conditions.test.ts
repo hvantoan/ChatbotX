@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   fields: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       pipelineStageModel: { findMany: mocks.stages },

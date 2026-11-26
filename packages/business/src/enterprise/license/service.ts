@@ -1,4 +1,4 @@
-import { licenseRepository } from "@chatbotx.io/database/repositories"
+import { licenseRepository } from "@inboxos.io/database/repositories"
 import { decodeProtectedHeader, errors, importSPKI, jwtVerify } from "jose"
 import { isCloud, isEnterprise, keys } from "../../keys"
 import { logger } from "../../logger"

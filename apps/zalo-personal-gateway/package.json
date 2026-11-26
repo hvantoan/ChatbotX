@@ -12,8 +12,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "dotenv": "^17.4.2",
     "ioredis": "catalog:",
@@ -22,8 +22,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "dotenv-cli": "catalog:",
     "tsdown": "catalog:",

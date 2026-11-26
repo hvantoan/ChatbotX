@@ -1,5 +1,5 @@
-import type { HandleRequestProps } from "@chatbotx.io/sdk"
-import { SdkException } from "@chatbotx.io/sdk"
+import type { HandleRequestProps } from "@inboxos.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { exchangeCodeForToken } from "../apis/auth"
 import { getUserInfo } from "../apis/user"
 import { assertTiktokGrant } from "../lib/scopes"

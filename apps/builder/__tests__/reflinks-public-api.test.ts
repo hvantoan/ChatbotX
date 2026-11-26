@@ -62,13 +62,13 @@ const resolveTenantSettings = vi.fn(async () => ({
   appUrl: "https://app.tenant.test",
   storageUrl: "https://storage.tenant.test",
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   reflinkService,
   inboxService,
   resolveTenantSettings,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const schema = {
     pick: vi.fn(() => schema),
     extend: vi.fn(() => schema),

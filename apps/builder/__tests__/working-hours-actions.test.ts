@@ -6,7 +6,7 @@ const mockUpdate = vi.fn()
 const mockReplaceMembers = vi.fn()
 const mockDelete = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workingHoursService: {
     create: (...args: unknown[]) => mockCreate(...args),
     update: (...args: unknown[]) => mockUpdate(...args),

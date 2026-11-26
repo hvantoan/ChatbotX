@@ -1,5 +1,5 @@
-import { Progress } from "@chatbotx.io/ui/components/ui/progress"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Progress } from "@inboxos.io/ui/components/ui/progress"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useFormatter } from "next-intl"
 import {
   type QuotaMetric,

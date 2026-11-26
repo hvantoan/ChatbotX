@@ -26,13 +26,13 @@ class ThrownRedirect extends Error {
 vi.mock("@/lib/auth/assert-workspace-super-admin", () => ({
   assertWorkspaceSuperAdmin: mocks.assertWorkspaceSuperAdmin,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messengerIntegrationService: { findByIdForWorkspace: mocks.findMessenger },
   instagramIntegrationService: { findByIdForWorkspace: mocks.findInstagram },
   platformCredentialService: { resolveForOwner: mocks.resolveForOwner },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 vi.mock("@/lib/platform-credential-owner", () => ({
   resolveOwnerForWorkspace: mocks.resolveOwnerForWorkspace,

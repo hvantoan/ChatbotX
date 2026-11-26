@@ -7,13 +7,13 @@ const findAnalyticsWorkspaceIdByToken = vi.fn()
 const loadServableWorkspace = vi.fn()
 const awardLeaderboardEmailEngagement = vi.fn().mockResolvedValue(undefined)
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   emailTopicService: { findAnalyticsWorkspaceIdByToken },
   emailTrackingService: { recordTransitionOrEnqueueRepair: recordClick },
   verifyEmailClickToken,
 }))
 
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   awardLeaderboardEmailEngagement,
 }))
 

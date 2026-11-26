@@ -1,15 +1,15 @@
 import {
   fetchFollowingSafeRedirects,
   readBodyWithLimit,
-} from "@chatbotx.io/filesystem"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { distributedStore } from "@chatbotx.io/redis"
-import { sha256Hex } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/filesystem"
+import { getChildLogger } from "@inboxos.io/logger"
+import { distributedStore } from "@inboxos.io/redis"
+import { sha256Hex } from "@inboxos.io/utils/crypto"
 import {
   inspectImage,
   renderJpegWithinBytes,
   renderVideoPlaceholderJpeg,
-} from "@chatbotx.io/utils/image-renditions"
+} from "@inboxos.io/utils/image-renditions"
 import { assertPublicUrl } from "../net/ssrf-guard"
 import { getPublicFileUrl } from "../utils"
 

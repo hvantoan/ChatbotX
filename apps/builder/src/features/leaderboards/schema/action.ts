@@ -5,8 +5,8 @@ import {
   leaderboardRulesSchema,
   leaderboardScopeSchema,
   leaderboardStatuses,
-} from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 /**
@@ -14,7 +14,7 @@ import { z } from "zod"
  * the public API, so the three can never accept different shapes.
  * Cross-field rules (rules per platform, points when enabled, time window)
  * are enforced once in `assertValidLeaderboardConfig` in
- * `@chatbotx.io/business/leaderboard`.
+ * `@inboxos.io/business/leaderboard`.
  */
 export const leaderboardConfigRequest = z.object({
   name: z

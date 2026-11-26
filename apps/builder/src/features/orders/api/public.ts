@@ -3,7 +3,7 @@ import {
   type OrderActor,
   orderPaymentService,
   orderService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   possibleErrorsOnDeletingOrder,
   possibleErrorsOnFindingResource,

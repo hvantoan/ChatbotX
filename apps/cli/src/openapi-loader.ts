@@ -98,7 +98,7 @@ interface SpecCache {
   url: string
 }
 
-const CACHE_DIR = join(homedir(), ".chatbotX")
+const CACHE_DIR = join(homedir(), ".inboxos")
 const CACHE_FILE = join(CACHE_DIR, "openapi-cache.json")
 const DEFAULT_TTL_SECONDS = 3600
 
@@ -142,7 +142,7 @@ const V1_PREFIX_RE = /^\/v1\//
 const LEADING_SLASH_RE = /^\//
 
 function getTtlSeconds(): number {
-  const raw = process.env.CHATBOTX_SPEC_CACHE_TTL_SECONDS
+  const raw = process.env.INBOXOS_SPEC_CACHE_TTL_SECONDS
   if (!raw) {
     return DEFAULT_TTL_SECONDS
   }

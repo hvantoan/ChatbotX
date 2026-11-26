@@ -1,7 +1,7 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 

@@ -40,7 +40,7 @@ vi.mock("@/lib/auth/utils", () => ({ getCurrentUserId: vi.fn() }))
 vi.mock("@/features/workspace-members/queries", () => ({
   getAllWorkspaceMembers: vi.fn(),
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: vi.fn(),
   isDatabaseError: vi.fn(() => false),
 }))
@@ -50,17 +50,17 @@ vi.mock("@/env", () => ({
 vi.mock("@/lib/log", () => ({
   logger: { error: vi.fn(), warn: vi.fn(), info: vi.fn() },
 }))
-vi.mock("@chatbotx.io/sdk", () => ({
+vi.mock("@inboxos.io/sdk", () => ({
   SdkException: class SdkException extends Error {},
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: vi.fn(() => undefined),
   withAuditContext: vi.fn(
     async (_ctx: unknown, fn: () => Promise<unknown>) => await fn(),
   ),
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string | undefined
     httpStatusCode: number | undefined
     constructor(message: string, code?: string, httpStatusCode?: number) {
@@ -70,7 +70,7 @@ vi.mock("@chatbotx.io/business/errors", () => ({
     }
   },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isPlatformAdmin: vi.fn(async () => false),
   isSuperAdmin: vi.fn(async () => true),
   isWorkspaceScheduledForDeletion: vi.fn(() => false),
@@ -92,7 +92,7 @@ vi.mock("@chatbotx.io/business", () => ({
   googleAdsConversionService: { retry: mocks.retry },
   googleAdsSettingsService: { updateConsent: mocks.updateConsent },
 }))
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     cancel: mocks.cancel,
@@ -101,7 +101,7 @@ vi.mock("@chatbotx.io/business/connect-session", () => ({
     updateReturnUrl: mocks.updateReturnUrl,
   },
 }))
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: {
     connectTargets: mocks.connectTargets,
     disconnect: mocks.disconnect,
@@ -158,7 +158,7 @@ const { validateGoogleAdsRequestAction } = await import(
   "@/features/integration-google-ads/actions/validate-request.action"
 )
 const { getCurrentUserId } = await import("@/lib/auth/utils")
-const { findOrFail } = await import("@chatbotx.io/database/client")
+const { findOrFail } = await import("@inboxos.io/database/client")
 const { getAllWorkspaceMembers } = await import(
   "@/features/workspace-members/queries"
 )

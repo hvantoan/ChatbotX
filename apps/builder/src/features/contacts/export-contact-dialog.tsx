@@ -1,7 +1,8 @@
 "use client"
 
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Dialog,
   type DialogChangeEventDetails,
@@ -10,10 +11,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import type { MultiSelectGroup } from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import type { MultiSelectGroup } from "@inboxos.io/ui/components/ui/sersavan/multi-select"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import {

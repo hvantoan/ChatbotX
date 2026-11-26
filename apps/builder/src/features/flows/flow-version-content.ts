@@ -1,4 +1,4 @@
-import type { FlowNode } from "@chatbotx.io/flow-config"
+import type { FlowNode } from "@inboxos.io/flow-config"
 import type { Edge, Node } from "@xyflow/react"
 
 const normalizeNodeForSave = (node: FlowNode) => {

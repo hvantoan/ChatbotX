@@ -8,7 +8,7 @@ const removeFromScheduleMock = vi.fn()
 const useExistingMock = vi.fn()
 const executeMock = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     execute: (...args: unknown[]) => executeMock(...args),
     insert: () => ({
@@ -36,7 +36,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   sequenceDispatchModel: {
     __table: "SequenceDispatch",
     id: { __col: "id" },
@@ -46,19 +46,19 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   sequenceConnections: { useExisting: useExistingMock },
 }))
 
-vi.mock("@chatbotx.io/scheduler", () => ({
+vi.mock("@inboxos.io/scheduler", () => ({
   // Must use a regular function (not arrow) so that `new SchedulerClient()` works
   SchedulerClient: vi.fn(function SchedulerClientMock() {
     return { removeFromSchedule: removeFromScheduleMock }
   }),
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/utils")>()
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/utils")>()
   return {
     ...actual,
     createId: () => "test-id",
@@ -217,7 +217,7 @@ describe("createDispatch", () => {
 
   test("uses the provided root db client without wrapping another transaction", async () => {
     const { createDispatch } = await import("../src/dispatch-manager")
-    const { db } = await import("@chatbotx.io/database/client")
+    const { db } = await import("@inboxos.io/database/client")
 
     const result = await createDispatch({
       workspaceId: "ws-2",

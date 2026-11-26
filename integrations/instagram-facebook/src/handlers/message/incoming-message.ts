@@ -1,4 +1,4 @@
-import { normalizeMetaAdReferral } from "@chatbotx.io/business/referral"
+import { normalizeMetaAdReferral } from "@inboxos.io/business/referral"
 import {
   type Context,
   contentTypes,
@@ -11,9 +11,9 @@ import {
   messageTypes,
   type ReceivedMessageResult,
   toPendingIncomingAttachment,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 
-import { isLiveMediaDeferrableUrl } from "@chatbotx.io/utils/live-media"
+import { isLiveMediaDeferrableUrl } from "@inboxos.io/utils/live-media"
 import { getMessageAttachmentEntity } from "../../apis/attachment"
 import { InstagramException } from "../../exception"
 import { logger } from "../../lib/logger"

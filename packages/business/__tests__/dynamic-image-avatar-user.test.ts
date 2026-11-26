@@ -6,15 +6,15 @@ const mocks = vi.hoisted(() => ({
   ensureAvatarMirrored: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn(),
   eq: vi.fn(),
   ilike: vi.fn(),
   db: { query: { contactModel: { findFirst: mocks.findContact } } },
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploader: {} }))
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/filesystem", () => ({ uploader: {} }))
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: () => "id",
 }))
 vi.mock("../src/contact-custom-field/service", () => ({

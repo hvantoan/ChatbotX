@@ -31,7 +31,7 @@ vi.mock("next-safe-action/hooks", () => ({
 vi.mock("@/app/booking/picker/actions/submit-booking.action", () => ({
   submitBookingAction: {},
 }))
-vi.mock("@chatbotx.io/ui/components/ui/calendar", () => ({
+vi.mock("@inboxos.io/ui/components/ui/calendar", () => ({
   Calendar: () => <div data-testid="calendar" />,
 }))
 

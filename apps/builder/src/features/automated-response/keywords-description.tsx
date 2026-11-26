@@ -1,7 +1,7 @@
 "use client"
 
-import type { AutomatedResponseType } from "@chatbotx.io/database/partials"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
+import type { AutomatedResponseType } from "@inboxos.io/database/partials"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
 import { TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

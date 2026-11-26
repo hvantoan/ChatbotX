@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   telegramIntegrationService: {},
 }))
-vi.mock("@chatbotx.io/integration-telegram", () => ({
+vi.mock("@inboxos.io/integration-telegram", () => ({
   registerWebhook: vi.fn(),
   isRevokedTokenError: vi.fn(),
 }))

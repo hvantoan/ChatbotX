@@ -1,4 +1,4 @@
-import type { Context } from "@chatbotx.io/sdk"
+import type { Context } from "@inboxos.io/sdk"
 import ky, { type KyInstance } from "ky"
 import type { ChatbotxAuthValue } from "../auth"
 

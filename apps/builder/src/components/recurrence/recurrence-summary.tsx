@@ -5,7 +5,7 @@ import {
   RECURRENCE_MONTH_DAY_LAST,
   type RecurrenceRule,
   recurrenceRuleSchema,
-} from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/utils/recurrence"
 import { useFormatter, useLocale, useTranslations } from "next-intl"
 import { formatLocalDate, RUN_WHEN_FORMAT } from "./local-date"
 import { todayIn } from "./recurrence-defaults"

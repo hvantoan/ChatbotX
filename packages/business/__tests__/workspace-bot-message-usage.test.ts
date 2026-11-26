@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
 }))
 
 vi.mock(
-  "@chatbotx.io/database/repositories/workspace-bot-message-usage",
+  "@inboxos.io/database/repositories/workspace-bot-message-usage",
   () => ({
     workspaceBotMessageUsageRepository: { increment: mocks.increment },
   }),

@@ -1,4 +1,4 @@
-import type { ContactActivityValueSource } from "@chatbotx.io/database/partials"
+import type { ContactActivityValueSource } from "@inboxos.io/database/partials"
 import { automatedResponseService } from "../automated-response/service"
 import { broadcastService } from "../broadcast/service"
 import {

@@ -1,15 +1,15 @@
 import { createHash } from "node:crypto"
-import type { systemFunctionNames } from "@chatbotx.io/ai"
+import type { systemFunctionNames } from "@inboxos.io/ai"
 import type {
   ImageReaderInput,
   SystemToolExecutors,
-} from "@chatbotx.io/ai/server"
+} from "@inboxos.io/ai/server"
 import {
   ensureAttachmentStored,
   MediaNotReadyError,
-} from "@chatbotx.io/channel-registry/media-hydration"
-import type { AIAgentModelConfig } from "@chatbotx.io/database/partials"
-import type { AttachmentModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/channel-registry/media-hydration"
+import type { AIAgentModelConfig } from "@inboxos.io/database/partials"
+import type { AttachmentModel } from "@inboxos.io/database/types"
 import {
   getHeavyJobCompletionWaitTimeoutMs,
   getHeavyJobOptions,
@@ -19,7 +19,7 @@ import {
   heavyQueue,
   queueNames,
   waitForJobCompletionWithRetries,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { env } from "../../../../env"
 import { getProviderName } from "../../../../lib/ai/reply-model"

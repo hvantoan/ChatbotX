@@ -1,6 +1,6 @@
 "use client"
 
-import type { CopyTextStepSchema } from "@chatbotx.io/flow-config"
+import type { CopyTextStepSchema } from "@inboxos.io/flow-config"
 import { CopyIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { BaseStepViewer } from "../base/viewer"

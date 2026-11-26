@@ -1,10 +1,10 @@
-import { PIPELINE_LIMITS } from "@chatbotx.io/database/partials"
+import { PIPELINE_LIMITS } from "@inboxos.io/database/partials"
 import {
   pipelineActivityRepository,
   pipelineItemContentRepository,
   pipelineItemRepository,
-} from "@chatbotx.io/database/repositories"
-import type { PipelineItemCommentModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { PipelineItemCommentModel } from "@inboxos.io/database/types"
 import { notFoundException, validationException } from "../errors"
 import type { PipelineAccessScope } from "./access"
 import { PipelineItemBaseService } from "./item-base.service"

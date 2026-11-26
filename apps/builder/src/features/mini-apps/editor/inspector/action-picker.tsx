@@ -5,15 +5,15 @@ import {
   type MiniAppAction,
   type MiniAppActionName,
   readMiniAppAction,
-} from "@chatbotx.io/mini-app"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+} from "@inboxos.io/mini-app"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
+} from "@inboxos.io/ui/components/ui/select"
 import { useTranslations } from "next-intl"
 import { actionLabelKey } from "../../lib/labels"
 import { useMiniAppEditor } from "../editor-context"

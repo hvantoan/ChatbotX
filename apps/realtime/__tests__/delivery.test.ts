@@ -1,4 +1,4 @@
-import { REALTIME_CLOSE_CODE } from "@chatbotx.io/realtime-protocol"
+import { REALTIME_CLOSE_CODE } from "@inboxos.io/realtime-protocol"
 import { describe, expect, test, vi } from "vitest"
 
 const { loggerWarnMock } = vi.hoisted(() => ({

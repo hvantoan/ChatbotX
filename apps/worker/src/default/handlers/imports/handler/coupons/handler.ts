@@ -1,9 +1,9 @@
-import { couponService } from "@chatbotx.io/business"
+import { couponService } from "@inboxos.io/business"
 import {
   type CouponImportMeta,
   couponImportMetaSchema,
   couponTopicStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { logger } from "../../../../../lib/logger"
 import type {
   BatchResult,

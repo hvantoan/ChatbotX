@@ -1,12 +1,12 @@
 "use client"
 
-import type { MiniAppOption } from "@chatbotx.io/mini-app"
+import type { MiniAppOption } from "@inboxos.io/mini-app"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/ui/components/ui/popover"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { CheckIcon, ChevronDownIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"

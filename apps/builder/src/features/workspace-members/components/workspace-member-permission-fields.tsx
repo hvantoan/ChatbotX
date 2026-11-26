@@ -1,7 +1,7 @@
 "use client"
 
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
-import { SwitchField } from "@chatbotx.io/ui/components/form/switch-field"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
+import { SwitchField } from "@inboxos.io/ui/components/form/switch-field"
 import { useTranslations } from "next-intl"
 import type { UseFormReturn } from "react-hook-form"
 import { isCommunity } from "@/env"

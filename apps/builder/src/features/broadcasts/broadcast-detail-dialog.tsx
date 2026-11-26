@@ -7,13 +7,13 @@ import {
   isRecurrenceRun,
   isRecurringTemplate,
   resolveBroadcastSendRatePerMinute,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { format } from "date-fns"
 import Link from "next/link"
 import { useFormatter, useTranslations } from "next-intl"

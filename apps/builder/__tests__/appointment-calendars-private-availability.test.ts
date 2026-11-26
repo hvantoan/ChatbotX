@@ -55,7 +55,7 @@ vi.mock("@/middlewares/auth", () => ({ workspaceAuthorizedMidddleware }))
 vi.mock("@/features/contacts/permissions", () => ({
   requireContactAccessForMember: mocks.requireContactAccessForMember,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   appointmentCalendarService: { listForFlow: vi.fn() },
   appointmentService: { checkAvailability: mocks.checkAvailability },
 }))

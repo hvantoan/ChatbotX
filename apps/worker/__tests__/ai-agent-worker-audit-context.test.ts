@@ -1,4 +1,4 @@
-import { getAuditActor } from "@chatbotx.io/business/audit"
+import { getAuditActor } from "@inboxos.io/business/audit"
 import { beforeAll, beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -21,13 +21,13 @@ const mocks = vi.hoisted(() => ({
   workerOptions: undefined as Record<string, unknown> | undefined,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => {
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/worker-config")>()
+    await importOriginal<typeof import("@inboxos.io/worker-config")>()
   return {
     ...actual,
     defaultWorkerOptions: {},
@@ -76,7 +76,7 @@ vi.mock("bullmq", () => {
   }
 })
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   runWithWebhookExecutionContext: mocks.runWithWebhookExecutionContext,
 }))
 

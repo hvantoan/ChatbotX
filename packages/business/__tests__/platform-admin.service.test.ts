@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
-import type { ChatbotXException } from "../src/errors"
+import type { InboxOSException } from "../src/errors"
 import { platformAdminService } from "../src/platform-admin/service"
 
 const mocks = vi.hoisted(() => ({
@@ -17,14 +17,14 @@ const mocks = vi.hoisted(() => ({
     accountCredentialsEmailTemplate: null,
     appUrl: "https://app.test/",
     logoLightUrl: "https://app.test/logo.svg",
-    name: "ChatbotX",
+    name: "InboxOS",
   })),
   resolvePlatformSmtpTransport: vi.fn(),
   sendAccountCredentials: vi.fn(),
   upsertRole: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   platformAdminRepository: {
     deleteByUserId: mocks.deleteByUserId,
     findForAuth: mocks.findForAuth,
@@ -35,8 +35,8 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
     insertWithCredential: mocks.insertWithCredential,
   },
 }))
-vi.mock("@chatbotx.io/mail", () => ({
-  DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT: "Your ChatbotX account is ready",
+vi.mock("@inboxos.io/mail", () => ({
+  DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT: "Your InboxOS account is ready",
   sendAccountCredentials: mocks.sendAccountCredentials,
 }))
 vi.mock("../src/logger", () => ({
@@ -158,7 +158,7 @@ describe("platformAdminService.add", () => {
         email: "admin@example.com",
         role: "support",
       }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       code: "platformAdminAssignmentConflict",
       httpStatusCode: 409,
     })
@@ -194,7 +194,7 @@ describe("platformAdminService.add", () => {
         email: "fb-9@facebook.placeholder.invalid",
         role: "support",
       }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       code: "invalidEmail",
       httpStatusCode: 400,
     })
@@ -211,7 +211,7 @@ describe("platformAdminService.add", () => {
         email: "admin@example.com",
         role: "support",
       }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       httpStatusCode: 403,
     })
 
@@ -227,7 +227,7 @@ describe("platformAdminService.add", () => {
         email: "admin@example.com",
         role: "support",
       }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       code: "cannotRemoveSelf",
       httpStatusCode: 400,
     })
@@ -239,7 +239,7 @@ describe("platformAdminService.remove", () => {
   test("refuses self-removal", async () => {
     await expect(
       platformAdminService.remove({ actorId: "user-1", userId: "user-1" }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       code: "cannotRemoveSelf",
       httpStatusCode: 400,
     })
@@ -254,7 +254,7 @@ describe("platformAdminService.remove", () => {
         actorId: "actor-1",
         userId: "user-1",
       }),
-    ).rejects.toMatchObject<Partial<ChatbotXException>>({
+    ).rejects.toMatchObject<Partial<InboxOSException>>({
       httpStatusCode: 403,
     })
 

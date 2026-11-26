@@ -1,5 +1,5 @@
-import type { OpenaiCompatibleProviderPreset } from "@chatbotx.io/ai"
-import type { IntegrationOpenaiCompatibleModel } from "@chatbotx.io/database/types"
+import type { OpenaiCompatibleProviderPreset } from "@inboxos.io/ai"
+import type { IntegrationOpenaiCompatibleModel } from "@inboxos.io/database/types"
 
 export type IntegrationOpenaiCompatibleResource = Pick<
   IntegrationOpenaiCompatibleModel,

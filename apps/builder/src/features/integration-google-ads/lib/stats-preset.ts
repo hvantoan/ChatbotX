@@ -1,4 +1,4 @@
-import type { PresetOption } from "@chatbotx.io/analytics-nextjs/schemas"
+import type { PresetOption } from "@inboxos.io/analytics-nextjs/schemas"
 import { formatInTimeZone } from "date-fns-tz"
 
 // The shared `resolvePresetOption` classifies against the runtime's LOCAL

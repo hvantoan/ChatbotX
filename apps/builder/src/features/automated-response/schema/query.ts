@@ -1,10 +1,10 @@
 import {
   type AutomatedResponseType,
   automatedResponseTypes,
-} from "@chatbotx.io/database/partials"
-import type { AutomatedResponseModel } from "@chatbotx.io/database/types"
-import { getSortingStateParser } from "@chatbotx.io/ui/lib/parsers"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import type { AutomatedResponseModel } from "@inboxos.io/database/types"
+import { getSortingStateParser } from "@inboxos.io/ui/lib/parsers"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import {
   createSearchParamsCache,
   parseAsInteger,

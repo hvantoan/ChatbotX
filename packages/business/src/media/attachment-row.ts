@@ -1,4 +1,4 @@
-import type { IMessageRepository } from "@chatbotx.io/database/repositories"
+import type { IMessageRepository } from "@inboxos.io/database/repositories"
 
 /**
  * Updates an attachment row and fails when no row matched. Every caller has

@@ -35,14 +35,14 @@ const getMarketingMessagesAdAccounts = vi.fn(
     ]),
 )
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   createMessageCampaign,
   getMarketingMessagesAdAccounts,
 }))
 const findTargetableAudience = vi.fn(
   (): Promise<{ id: string } | null> => Promise.resolve({ id: "aud-row-1" }),
 )
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   facebookMarketingMessagesService: { create, findTargetableAudience },
 }))
 vi.mock("@/features/facebook-marketing-messages/lib/media-attachment", () => ({

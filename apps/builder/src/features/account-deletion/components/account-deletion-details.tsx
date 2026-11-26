@@ -2,7 +2,7 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
+} from "@inboxos.io/ui/components/ui/alert"
 import { TriangleAlertIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { OwnedWorkspaceList } from "./owned-workspace-list"

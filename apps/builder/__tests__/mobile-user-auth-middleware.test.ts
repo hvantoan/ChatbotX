@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   findUserById: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userService: { findById: mocks.findUserById },
   workspaceMemberService: { findMembership: vi.fn() },
 }))
@@ -21,11 +21,11 @@ vi.mock("@/lib/rate-limit/guest-rate-limit", () => ({
   getGuestClientIp: () => "203.0.113.9",
 }))
 vi.mock("@/lib/auth/auth", () => ({ auth: {} }))
-vi.mock("@chatbotx.io/auth/mobile-resource", () => ({
+vi.mock("@inboxos.io/auth/mobile-resource", () => ({
   MobileTokenVerificationUnavailableError: class extends Error {},
   verifyMobileAccessToken: mocks.verifyMobileAccessToken,
 }))
-vi.mock("@chatbotx.io/auth/mobile-resource-candidate", () => ({
+vi.mock("@inboxos.io/auth/mobile-resource-candidate", () => ({
   isMobileAccessTokenCandidate: (token: string) => token === MOBILE_TOKEN,
 }))
 

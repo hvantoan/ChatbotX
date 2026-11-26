@@ -1,4 +1,4 @@
-import { lineIntegrationService } from "@chatbotx.io/business"
+import { lineIntegrationService } from "@inboxos.io/business"
 import { z } from "zod"
 import {
   possibleErrorsOnConnectingLine,

@@ -24,14 +24,14 @@ vi.mock("@/lib/safe-action", () => {
 vi.mock("@/lib/log", () => ({
   logger: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   platformCredentialService: {
     findDecrypted: findDecryptedSpy,
     remove: removeSpy,
     upsert: upsertSpy,
   },
 }))
-vi.mock("@chatbotx.io/integration-whatsapp/api/app-subscriptions", () => ({
+vi.mock("@inboxos.io/integration-whatsapp/api/app-subscriptions", () => ({
   ensureAppWebhookFields: ensureAppWebhookFieldsSpy,
   WHATSAPP_APP_SUBSCRIPTION_OBJECT: {
     WHATSAPP_BUSINESS_ACCOUNT: "whatsapp_business_account",
@@ -50,7 +50,7 @@ vi.mock("../src/features/platform-credentials/scope", () => ({
   resolveCredentialScopedUserId: resolveSpy,
 }))
 const { whatsappCredentialUpdateSchema } = await import(
-  "@chatbotx.io/database/partials"
+  "@inboxos.io/database/partials"
 )
 const { deleteWhatsappSettingsAction } = await import(
   "../src/features/platform-credentials/whatsapp/delete-whatsapp-settings.action"

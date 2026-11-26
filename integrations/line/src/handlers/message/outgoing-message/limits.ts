@@ -1,4 +1,4 @@
-import { CHANNEL_FLOW_POLICIES } from "@chatbotx.io/flow-config"
+import { CHANNEL_FLOW_POLICIES } from "@inboxos.io/flow-config"
 
 const lineFlowLimits = CHANNEL_FLOW_POLICIES.line.limits
 

@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   CONNECTION_TO_INBOX_DISCONNECT_REASON,
   type ConnectionStatus,
@@ -7,19 +7,19 @@ import {
   inboxStatuses,
   isProviderOffboardedConnection,
   type ProviderAccountEventKind,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   aiHandoverBulkRunRepository,
   aiHandoverSettingsRepository,
   type ConnectionListInput,
   connectionRepository,
   inboxRepository,
-} from "@chatbotx.io/database/repositories"
-import type { connectionModel } from "@chatbotx.io/database/schema"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
+} from "@inboxos.io/database/repositories"
+import type { connectionModel } from "@inboxos.io/database/schema"
+import type { ConnectionModel } from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
-import { ChatbotXException, channelLimitReachedException } from "../errors"
+import { channelLimitReachedException, InboxOSException } from "../errors"
 import { inboxService } from "../inbox/service"
 import { logger } from "../logger"
 import { quotaEnforcementService } from "../quota-enforcement/service"
@@ -47,7 +47,7 @@ import {
 const floorToSecond = (date: Date): Date =>
   new Date(Math.floor(date.getTime() / 1000) * 1000)
 
-class ConnectionNotFoundException extends ChatbotXException {
+class ConnectionNotFoundException extends InboxOSException {
   constructor(id: string) {
     super(`Connection ${id} not found`, "notFound", 404)
   }
@@ -120,7 +120,7 @@ type WorkspaceUsageRelease = "decrement" | "rollback" | "skip"
 /**
  * DB-backed reads/writes over the `Connection` table plus its `Inbox`
  * legacy-status mirror. Deliberately **registry-free** — it never imports
- * `@chatbotx.io/connections` — so it stays safe to call from `markOffline`
+ * `@inboxos.io/connections` — so it stays safe to call from `markOffline`
  * hooks and webhook handlers that must not pull in the full provider
  * registry's module graph. Registry-aware orchestration (provider
  * `disconnect`/`webhook.unsubscribe` calls and store-binding CRUD) lives in

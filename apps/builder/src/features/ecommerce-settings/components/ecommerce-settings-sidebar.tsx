@@ -1,7 +1,7 @@
 "use client"
 
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { LinkPendingSpinner } from "@/components/navigation-pending"

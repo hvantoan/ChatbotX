@@ -1,4 +1,4 @@
-import type { AIFileProcessingRunErrorCode } from "@chatbotx.io/database/partials"
+import type { AIFileProcessingRunErrorCode } from "@inboxos.io/database/partials"
 import { UnrecoverableError } from "bullmq"
 
 /**

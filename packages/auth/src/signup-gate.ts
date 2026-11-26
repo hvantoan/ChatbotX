@@ -1,4 +1,4 @@
-import { invitationService } from "@chatbotx.io/business"
+import { invitationService } from "@inboxos.io/business"
 import type { BetterAuthOptions } from "better-auth"
 import { isSignUpDisabled } from "./keys"
 import { getTenantId } from "./tenant-context"
@@ -14,7 +14,7 @@ type UserCreateBeforeHook = NonNullable<
 export type SignUpGateContext = NonNullable<Parameters<UserCreateBeforeHook>[1]>
 
 /** httpOnly, 10 min, path `/`, sameSite lax, secure in production. */
-export const INVITATION_COOKIE_NAME = "chatbotx_invitation"
+export const INVITATION_COOKIE_NAME = "inboxos_invitation"
 export const INVITATION_COOKIE_MAX_AGE_SECONDS = 10 * 60
 
 /** The OAuth callback error code for a signup rejected by the lockdown. */

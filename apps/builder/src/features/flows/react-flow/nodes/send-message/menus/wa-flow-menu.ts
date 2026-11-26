@@ -1,5 +1,5 @@
-import type { ListInboxesResponse } from "@chatbotx.io/business"
-import { stepTypes, whatsappFlowDefaultButton } from "@chatbotx.io/flow-config"
+import type { ListInboxesResponse } from "@inboxos.io/business"
+import { stepTypes, whatsappFlowDefaultButton } from "@inboxos.io/flow-config"
 import { WorkflowIcon } from "lucide-react"
 import type { WhatsappFlowResource } from "@/features/integration-whatsapp/flows/schema/resource"
 import type { MenuData, MenuItem, TranslationFn } from "../../types"

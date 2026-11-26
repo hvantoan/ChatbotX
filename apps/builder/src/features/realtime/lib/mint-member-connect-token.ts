@@ -1,9 +1,9 @@
 import {
   conversationMemberScope,
   resolveBroadcastSecret,
-} from "@chatbotx.io/business"
-import type { WorkspaceMemberPermissions } from "@chatbotx.io/database/partials"
-import { signMemberConnectToken } from "@chatbotx.io/realtime-protocol/auth"
+} from "@inboxos.io/business"
+import type { WorkspaceMemberPermissions } from "@inboxos.io/database/partials"
+import { signMemberConnectToken } from "@inboxos.io/realtime-protocol/auth"
 
 /**
  * Mints the short-lived (60s) realtime connect token bound to

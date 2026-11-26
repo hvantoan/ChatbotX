@@ -3,11 +3,11 @@
 import {
   integrationMetaCatalogService,
   platformCredentialService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { metaCatalogSyncScopes } from "@chatbotx.io/database/partials"
-import { generateCatalogAuthUrl } from "@chatbotx.io/integration-meta-catalog"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { metaCatalogSyncScopes } from "@inboxos.io/database/partials"
+import { generateCatalogAuthUrl } from "@inboxos.io/integration-meta-catalog"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { z } from "zod"
@@ -38,7 +38,7 @@ export const connectMetaCatalogAction = workspaceActionClient
     })
     if (!credential) {
       const t = await getTranslations("metaCatalog.errors")
-      throw new ChatbotXException(t("invalidAppSettings"))
+      throw new InboxOSException(t("invalidAppSettings"))
     }
     const redirectUrl = await buildProviderCallbackUrl(
       credential,
@@ -135,7 +135,7 @@ export const syncToMetaCatalogAction = workspaceActionClient
   .action(async ({ bindArgsParsedInputs: [workspaceId], parsedInput }) => {
     if (!isMetaCatalogSyncScopeComplete(parsedInput)) {
       const t = await getTranslations("metaCatalog.errors")
-      throw new ChatbotXException(t("emptyScope"))
+      throw new InboxOSException(t("emptyScope"))
     }
     return await syncProductsToMetaCatalog({
       workspaceId,

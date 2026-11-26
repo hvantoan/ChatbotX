@@ -1,7 +1,7 @@
 import {
   type GoogleAdsConversionErrorCode,
   googleAdsConversionErrorCodes,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 
 /**
  * Exhaustive over {@link GoogleAdsConversionErrorCode}: a new code is a compile

@@ -1,7 +1,7 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { Fragment, useState } from "react"

@@ -1,9 +1,9 @@
 import {
   pipelineReferenceRepository,
   pipelineRepository,
-} from "@chatbotx.io/database/repositories"
-import type { PipelineMemberModel } from "@chatbotx.io/database/types"
-import { ChatbotXException, notFoundException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import type { PipelineMemberModel } from "@inboxos.io/database/types"
+import { InboxOSException, notFoundException } from "../errors"
 import {
   normalizePipelinePermissions,
   type PipelineAccessScope,
@@ -92,7 +92,7 @@ export class PipelineMemberService extends PipelineBaseService {
       !scope.isWorkspaceAdmin &&
       scope.workspaceMemberId === input.workspaceMemberId
     ) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You cannot grant permissions you do not hold or change your own",
         "forbidden",
         403,
@@ -133,7 +133,7 @@ export class PipelineMemberService extends PipelineBaseService {
       Object.keys(input.granted) as Array<keyof PipelinePermissions>
     ).some((flag) => input.granted[flag] && !held[flag])
     if (exceeds || input.target === scope.workspaceMemberId) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "You cannot grant permissions you do not hold or change your own",
         "forbidden",
         403,

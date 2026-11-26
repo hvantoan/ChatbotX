@@ -1,4 +1,4 @@
-import type { AdsEligibleChannelType } from "@chatbotx.io/utils/channel"
+import type { AdsEligibleChannelType } from "@inboxos.io/utils/channel"
 import { formatWhatsappIntegrationLabel } from "@/features/integration-whatsapp/libs/integration-label"
 import type {
   AdsSwitcherChannelIntegration,

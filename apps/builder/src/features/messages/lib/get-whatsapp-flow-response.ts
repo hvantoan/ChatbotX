@@ -3,10 +3,10 @@ import {
   integrationWhatsappService,
   messageService,
   resolveSentWhatsappFlow,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
-import { getWhatsappFlowResponse } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
+import { getWhatsappFlowResponse } from "@inboxos.io/sdk"
 import { buildWhatsappContext } from "@/features/integration-whatsapp/flows/lib/whatsapp-flow-operations"
 import { integrations } from "@/integration"
 import { logger } from "@/lib/log"
@@ -42,7 +42,7 @@ const findIntegrationWhatsapp = async (props: {
 
 /**
  * The labels of the Flow a response answers. Every miss — a token from
- * outside ChatbotX, a deleted Flow or number, Meta unreachable — returns no
+ * outside InboxOS, a deleted Flow or number, Meta unreachable — returns no
  * labels, so the response still shows with humanized keys.
  */
 const loadFlowResponseLabels = async (props: {

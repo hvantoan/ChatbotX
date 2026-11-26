@@ -1,4 +1,4 @@
-import { getChildLogger } from "@chatbotx.io/logger"
+import { getChildLogger } from "@inboxos.io/logger"
 import { z } from "zod"
 import { env } from "./env"
 import { fetchWithTimeout } from "./http"
@@ -60,7 +60,7 @@ const cacheResult = (
 const getPositiveCacheTtl = (token: string): number => {
   const payload = token.split(".")[1]
   if (!payload) {
-    return env.CHATBOTX_SPEC_TTL_MS
+    return env.INBOXOS_SPEC_TTL_MS
   }
 
   try {
@@ -68,15 +68,15 @@ const getPositiveCacheTtl = (token: string): number => {
       Buffer.from(payload, "base64url").toString("utf8"),
     ) as { exp?: unknown }
     if (typeof decoded.exp !== "number" || !Number.isFinite(decoded.exp)) {
-      return env.CHATBOTX_SPEC_TTL_MS
+      return env.INBOXOS_SPEC_TTL_MS
     }
 
     return Math.max(
       0,
-      Math.min(env.CHATBOTX_SPEC_TTL_MS, decoded.exp * 1000 - Date.now()),
+      Math.min(env.INBOXOS_SPEC_TTL_MS, decoded.exp * 1000 - Date.now()),
     )
   } catch {
-    return env.CHATBOTX_SPEC_TTL_MS
+    return env.INBOXOS_SPEC_TTL_MS
   }
 }
 
@@ -99,9 +99,9 @@ export const introspectToken = async (
       headers.set("x-workspace-id", workspaceId)
     }
     const response = await fetchWithTimeout(
-      `${env.CHATBOTX_API_URL}/v1/token`,
+      `${env.INBOXOS_API_URL}/v1/token`,
       { headers },
-      env.CHATBOTX_HTTP_TIMEOUT_MS,
+      env.INBOXOS_HTTP_TIMEOUT_MS,
     )
     if (response.status === 401) {
       return cacheResult(

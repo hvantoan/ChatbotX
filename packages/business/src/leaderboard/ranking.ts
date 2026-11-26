@@ -1,11 +1,11 @@
-import { db } from "@chatbotx.io/database/client"
-import { LEADERBOARD_MAX_SCORE } from "@chatbotx.io/database/partials"
+import { db } from "@inboxos.io/database/client"
+import { LEADERBOARD_MAX_SCORE } from "@inboxos.io/database/partials"
 import {
   type LeaderboardRankedRow,
   type LeaderboardRankingPageRow,
   leaderboardParticipantRepository,
-} from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
 import {
   distributedLock,
   encodeRankValue,
@@ -13,12 +13,12 @@ import {
   type LeaderboardStats,
   leaderboardStore,
   tieSecondsSince,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 import {
   LeaderboardJobAction,
   leaderboardQueue,
   leaderboardRebuildJobId,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { leaderboardDayKey, leaderboardDayStart } from "./day"
 

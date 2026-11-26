@@ -1,6 +1,6 @@
-import { integrationWhatsappResource } from "@chatbotx.io/business"
-import { whatsappTemplateStatusSchema } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { integrationWhatsappResource } from "@inboxos.io/business"
+import { whatsappTemplateStatusSchema } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import {
   metaCatalogItemPublicResource,

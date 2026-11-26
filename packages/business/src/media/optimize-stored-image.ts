@@ -1,23 +1,23 @@
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
-import { uploader } from "@chatbotx.io/filesystem"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
+import { uploader } from "@inboxos.io/filesystem"
 import {
   optimizeImageForStorage,
   readImageDimensions,
-} from "@chatbotx.io/utils/image-optimize"
+} from "@inboxos.io/utils/image-optimize"
 import {
   getImageOptimizationSettings,
   isStoredImageOptimizationEnabled,
-} from "@chatbotx.io/utils/image-optimize-settings"
+} from "@inboxos.io/utils/image-optimize-settings"
 import {
   isStoredImageOptimizationTarget,
   type StoredImageOptimization,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { contactService } from "../contact/service"
 import { updateAttachmentOrThrow } from "./attachment-row"
 
 /**
  * Server-only (pulls in sharp): imported by the heavy worker through the
- * `@chatbotx.io/business/media/optimize-stored-image` subpath, never the
+ * `@inboxos.io/business/media/optimize-stored-image` subpath, never the
  * package barrel, so request-serving processes do not load the native addon.
  *
  * Re-encodes an already stored image off the hot path. The object is

@@ -2,29 +2,29 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const decodeRef = vi.fn()
 const encodeRef = vi.fn()
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   decodeRef,
   encodeRef,
 }))
 
 const creditReferral = vi.fn()
 const findUnscoped = vi.fn()
-vi.mock("@chatbotx.io/business/leaderboard", () => ({
+vi.mock("@inboxos.io/business/leaderboard", () => ({
   leaderboardScoringService: { creditReferral },
   leaderboardService: { findUnscoped },
 }))
 
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   canShareMinigame: (channel: string) => channel !== "webchat",
 }))
 
-vi.mock("@chatbotx.io/business/minigame", () => ({
+vi.mock("@inboxos.io/business/minigame", () => ({
   minigameService: { findUnscoped: vi.fn() },
   minigameContactService: { creditSharedLinkReferral: vi.fn() },
 }))
 
 const findOrFail = vi.fn()
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail,
 }))
 
@@ -32,7 +32,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
 // `queries/contact-filter`, which touches many unrelated schema tables at
 // module scope. A Proxy sentinel satisfies vitest's "does this export
 // exist" check for any table name without listing the whole schema.
-vi.mock("@chatbotx.io/database/schema", () => {
+vi.mock("@inboxos.io/database/schema", () => {
   const overrides = {
     flowModel: { id: "flowModel.id" },
     flowVersionModel: { id: "flowVersionModel.id" },
@@ -46,21 +46,21 @@ vi.mock("@chatbotx.io/database/schema", () => {
 })
 
 const emit = vi.fn()
-vi.mock("@chatbotx.io/event-bus", () => ({ emit }))
+vi.mock("@inboxos.io/event-bus", () => ({ emit }))
 
 const emitContactReferredANewContact = vi.fn()
 const emitContactReferredExistingContact = vi.fn()
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactReferredANewContact,
   emitContactReferredExistingContact,
 }))
 
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "channel",
 }))
 
 const integrationQueueAdd = vi.fn()
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     sendFlow: "sendFlow",
   },

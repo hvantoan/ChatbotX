@@ -1,5 +1,5 @@
-import type { TriggerEventType } from "@chatbotx.io/database/partials"
-import { isNumericId } from "@chatbotx.io/utils/id"
+import type { TriggerEventType } from "@inboxos.io/database/partials"
+import { isNumericId } from "@inboxos.io/utils/id"
 import { z } from "zod"
 
 /**

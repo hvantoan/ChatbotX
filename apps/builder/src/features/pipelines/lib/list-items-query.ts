@@ -1,8 +1,8 @@
-import { activityKindsOf } from "@chatbotx.io/database/partials"
+import { activityKindsOf } from "@inboxos.io/database/partials"
 import type {
   PipelineItemFilter,
   PipelineItemSort,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type { z } from "zod"
 import type {
   listItemsPublicRequest,

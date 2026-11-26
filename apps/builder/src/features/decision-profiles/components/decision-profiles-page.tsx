@@ -1,20 +1,20 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/ui/components/ui/card"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/ui/components/ui/dialog"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import { useLocale, useTranslations } from "next-intl"
 import { use, useMemo, useState } from "react"
 import type { listDecisionConnections } from "@/features/decision-connections/queries/list-decision-connections.query"

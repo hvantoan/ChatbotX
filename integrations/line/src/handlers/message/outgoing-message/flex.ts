@@ -1,4 +1,4 @@
-import { type ButtonStyle, LINE_BUTTON_STYLES } from "@chatbotx.io/flow-config"
+import { type ButtonStyle, LINE_BUTTON_STYLES } from "@inboxos.io/flow-config"
 import type { LineAction, LineButton } from "./actions"
 import { LINE_LIMITS, truncate } from "./limits"
 

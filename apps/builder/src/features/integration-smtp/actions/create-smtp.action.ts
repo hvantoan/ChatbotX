@@ -1,7 +1,7 @@
 "use server"
 
-import { integrationSmtpService, workspaceService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { integrationSmtpService, workspaceService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { prepareSmtpAuth } from "../lib/prepare-smtp-auth"
@@ -23,7 +23,7 @@ export const createSmtpAction = workspaceActionClient
       where: { id: workspaceId },
     })
     if (!workspace) {
-      throw new ChatbotXException("Workspace not found")
+      throw new InboxOSException("Workspace not found")
     }
 
     const { inbox } = await integrationSmtpService.connect({

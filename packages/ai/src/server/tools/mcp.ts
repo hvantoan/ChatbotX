@@ -1,9 +1,9 @@
-import { assertSafeMcpEndpoint } from "@chatbotx.io/business"
-import { db } from "@chatbotx.io/database/client"
+import { assertSafeMcpEndpoint } from "@inboxos.io/business"
+import { db } from "@inboxos.io/database/client"
 import {
   type AIMcpServerAuth,
   aiMcpServerAuth,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { jsonSchema, type ToolSet, tool } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"

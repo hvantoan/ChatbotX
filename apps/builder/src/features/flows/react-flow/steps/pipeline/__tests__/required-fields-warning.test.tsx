@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { pipelineStepDefaultFn } from "@chatbotx.io/flow-config"
+import { pipelineStepDefaultFn } from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import {
@@ -38,13 +38,13 @@ vi.mock("../due-date-fields", () => ({ PipelineDueDateFields: () => null }))
 vi.mock("@/components/tiptap/plain-text-editor-field", () => ({
   PlainTextEditorField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/multi-select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/multi-select-field", () => ({
   MultiSelectField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: () => null,
 }))
-vi.mock("@chatbotx.io/ui/components/form/combobox-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/combobox-field", () => ({
   ComboboxField: ({ name }: { name: string }) => (
     <span data-testid="field-row">{name}</span>
   ),

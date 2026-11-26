@@ -3,9 +3,9 @@
 import {
   hasWorkspaceAccess,
   integrationWebchatService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { authActionClient } from "@/lib/safe-action"
 import { createWebchatRequest } from "../schema/mutation"
 
@@ -21,7 +21,7 @@ export const createWebchatAction = authActionClient
         user: ctx.user,
       }))
     ) {
-      throw new ChatbotXException("Workspace not found", "notFound", 404)
+      throw new InboxOSException("Workspace not found", "notFound", 404)
     }
 
     const result = await integrationWebchatService.createWithWorkspace({

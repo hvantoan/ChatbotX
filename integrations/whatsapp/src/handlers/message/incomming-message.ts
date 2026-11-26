@@ -1,4 +1,4 @@
-import { deriveAdSourcePlatform } from "@chatbotx.io/business/referral"
+import { deriveAdSourcePlatform } from "@inboxos.io/business/referral"
 import {
   contentTypes,
   echoOrigins,
@@ -8,8 +8,8 @@ import {
   type MessageHandlers,
   type MessageReferral,
   messageTypes,
-} from "@chatbotx.io/sdk"
-import { extractInvisibleGoogleClick } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/sdk"
+import { extractInvisibleGoogleClick } from "@inboxos.io/utils/google-click"
 import type { ServerMessage, ServerMessageTypes } from "whatsapp-api-js/types"
 import { z } from "zod"
 import { getWhatsappClient } from "../../client"

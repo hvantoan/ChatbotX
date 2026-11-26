@@ -2,9 +2,9 @@ import {
   platformCredentialService,
   templateInstallIntentService,
   tenantService,
-} from "@chatbotx.io/business"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound, redirect } from "next/navigation"
 import InboxSelectCard from "@/features/inboxes/components/inbox-select-card"
 import { CreateApiForm } from "@/features/integration-api/components/create-api-form"

@@ -1,10 +1,10 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import type {
   CommentAutomationType,
   CommentPostType,
-} from "@chatbotx.io/database/partials"
-import { commentAutomationModel } from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { commentAutomationModel } from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { listAutomationAccounts } from "../../comment-automation/account-scope"
 import {
   dependenciesOn,

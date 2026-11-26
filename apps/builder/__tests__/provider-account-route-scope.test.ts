@@ -8,7 +8,7 @@ const { addMock, continuesFlowMock, loggerError } = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: {
     providerAccountEvent: "providerAccountEvent",
     messageStatus: "messageStatus",
@@ -16,7 +16,7 @@ vi.mock("@chatbotx.io/worker-config", () => ({
   enqueueIntegrationJob: (job: { type: string }, options: unknown) =>
     addMock(job.type, job, options),
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   messageStatusBranchService: { continuesFlow: continuesFlowMock },
 }))
 vi.mock("@/lib/log", () => ({

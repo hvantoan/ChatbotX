@@ -1,4 +1,4 @@
-import { NOT_PROVIDED_CONSENT } from "@chatbotx.io/database/partials"
+import { NOT_PROVIDED_CONSENT } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import { toConsentView } from "@/features/integration-google-ads/lib/to-consent-view"
 

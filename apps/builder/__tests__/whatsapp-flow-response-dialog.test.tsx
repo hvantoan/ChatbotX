@@ -29,7 +29,7 @@ vi.mock("@/lib/orpc/query", () => ({
 
 // The real dialog portals through Base UI; rendering its children inline
 // keeps the assertions on what the dialog shows, not how it mounts.
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({ open, children }: { open: boolean; children: ReactNode }) =>
     open ? <div role="dialog">{children}</div> : null,
   DialogContent: ({ children }: { children: ReactNode }) => children,

@@ -7,24 +7,24 @@ import {
   whatsappBusinessAccountService,
   workspaceMemberService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   connectSessionExpiredException,
   credentialMissingException,
   notWorkspaceMemberException,
-} from "@chatbotx.io/business/errors"
-import type { WhatsappCredential } from "@chatbotx.io/database/partials"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/errors"
+import type { WhatsappCredential } from "@inboxos.io/database/partials"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
 import {
   addSystemUser,
   shareCreditLine,
   type WhatsappAuthValue,
-} from "@chatbotx.io/integration-whatsapp"
-import { appAccessToken } from "@chatbotx.io/integration-whatsapp/api/auth"
-import { normalizeWhatsappDisplayPhoneNumber } from "@chatbotx.io/integration-whatsapp/api/phone-number"
-import { subscribeWebhook } from "@chatbotx.io/integration-whatsapp/api/webhook"
-import { distributedLock, invalidateCacheByTags } from "@chatbotx.io/redis"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/integration-whatsapp"
+import { appAccessToken } from "@inboxos.io/integration-whatsapp/api/auth"
+import { normalizeWhatsappDisplayPhoneNumber } from "@inboxos.io/integration-whatsapp/api/phone-number"
+import { subscribeWebhook } from "@inboxos.io/integration-whatsapp/api/webhook"
+import { distributedLock, invalidateCacheByTags } from "@inboxos.io/redis"
+import { createId } from "@inboxos.io/utils"
 import { toConnectActionFailure } from "@/features/channel-connect/lib/connect-action-outcomes"
 import { logger } from "@/lib/log"
 import { resolvePlatformOwnerId } from "@/lib/platform-credential-owner"

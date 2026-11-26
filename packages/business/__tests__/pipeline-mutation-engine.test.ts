@@ -2,7 +2,7 @@ import type {
   PipelineItemModel,
   PipelineModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -14,11 +14,11 @@ const mocks = vi.hoisted(() => ({
   primaryFromSets: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitPipelineItemEvent: mocks.emitPipelineItemEvent,
 }))
 vi.mock("../src/platform/realtime-broadcast", () => ({
@@ -27,12 +27,12 @@ vi.mock("../src/platform/realtime-broadcast", () => ({
 vi.mock("../src/conversation/service", () => ({
   conversationService: { assignByContactIds: mocks.assignByContactIds },
 }))
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: (run: (tx: object) => Promise<unknown>) => run({}),
   },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   acquirePipelineAdvisoryLock: mocks.acquirePipelineAdvisoryLock,
 }))
 vi.mock("../src/pipeline/item-assignees", () => ({

@@ -1,5 +1,5 @@
-import { inboxService } from "@chatbotx.io/business"
-import { dispatchAuditRecordSafely } from "@chatbotx.io/business/audit"
+import { inboxService } from "@inboxos.io/business"
+import { dispatchAuditRecordSafely } from "@inboxos.io/business/audit"
 import {
   type ConnectionAdapter,
   type ConnectionQuotaConsumption,
@@ -7,27 +7,27 @@ import {
   toChannelType,
   upsertConnectionRow,
   withQuotaCompensation,
-} from "@chatbotx.io/business/connection"
+} from "@inboxos.io/business/connection"
 import {
   connectionNotConfiguredException,
   notFoundException,
   validationException,
-} from "@chatbotx.io/business/errors"
-import { db } from "@chatbotx.io/database/client"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/errors"
+import { db } from "@inboxos.io/database/client"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
+import type { ConnectionModel } from "@inboxos.io/database/types"
 import type {
   AuthValue,
   ConnectionCandidate,
   ConnectionConfigField,
   ConnectionDescriptor,
   ConnectionStrategy,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   authValueSchema,
   ConnectionProviderRejectedError,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import { logger } from "./logger"
 import { CONNECTION_REGISTRY } from "./registry"

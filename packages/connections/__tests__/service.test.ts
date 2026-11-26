@@ -1,8 +1,8 @@
 import {
-  ChatbotXException,
   channelLimitReachedException,
-} from "@chatbotx.io/business/errors"
-import { ConnectionProviderRejectedError, SdkException } from "@chatbotx.io/sdk"
+  InboxOSException,
+} from "@inboxos.io/business/errors"
+import { ConnectionProviderRejectedError, SdkException } from "@inboxos.io/sdk"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 const SESSION_STATE_PATTERN = /^[^.]+\.nonce-abc$/
@@ -85,7 +85,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     findById: mocks.findById,
@@ -99,29 +99,29 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
   isUniqueViolationError: mocks.isUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptUtils: {
     encryptObject: mocks.encryptObject,
     decryptObject: mocks.decryptObject,
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceMemberService: {
     findOwnerUserIdByWorkspaceId: mocks.findOwnerUserIdByWorkspaceId,
   },
   inboxService: { create: mocks.inboxCreate },
 }))
-vi.mock("@chatbotx.io/business/workspace", () => ({
+vi.mock("@inboxos.io/business/workspace", () => ({
   compensateWorkspaceQuotaConsumption: mocks.compensateWorkspaceQuota,
 }))
 
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: (auth: {
     authType: string
     tokens?: { expiresAt?: string }
@@ -137,13 +137,13 @@ vi.mock("@chatbotx.io/business/connection", () => ({
     recordAuthSaved: mocks.recordAuthSaved,
   },
   InvalidConnectionTransitionException: Error,
-  // These six are real (unmocked) functions from `@chatbotx.io/business/
+  // These six are real (unmocked) functions from `@inboxos.io/business/
   // connection`'s `upsert.ts` — this file mocks that whole package so
   // `connect-session-flow.ts`, `lifecycle.ts`, and `credentials.ts`'s
   // other imports from it (`connectionStateService`, the exception
   // classes) stay test doubles too, which means these six can't be
   // individually un-mocked via `importOriginal` without pulling in
-  // `upsert.ts`'s real `@chatbotx.io/database/*` imports (schema, pool) for
+  // `upsert.ts`'s real `@inboxos.io/database/*` imports (schema, pool) for
   // real. So they're hand-mirrored here, wired to this file's own
   // `mocks.*` stand-ins for the DB/quota primitives they call.
   // `withQuotaCompensation`'s actual logic has its own direct unit tests in
@@ -401,7 +401,7 @@ vi.mock("@chatbotx.io/business/connection", () => ({
     status === "connected" || status === "degraded",
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     create: mocks.createSession,
     findByNonce: mocks.findByNonce,
@@ -419,8 +419,8 @@ vi.mock("@chatbotx.io/business/connect-session", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => {
-  class TestChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => {
+  class TestInboxOSException extends Error {
     code: string
     httpStatusCode: number
     constructor(message: string, code: string, httpStatusCode = 400) {
@@ -430,85 +430,85 @@ vi.mock("@chatbotx.io/business/errors", () => {
     }
   }
   return {
-    ChatbotXException: TestChatbotXException,
+    InboxOSException: TestInboxOSException,
     channelLimitReachedException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "Channel limit reached for this plan",
         "channelLimitReached",
         409,
       ),
     connectionInactiveException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "This connection is not active.",
         "connectionInactive",
         409,
       ),
     connectionNotConfiguredException: (provider: string) =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         `Connection provider "${provider}" is not configured.`,
         "connectionNotConfigured",
         400,
       ),
     connectionNotRefreshableException: (provider: string) =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         `Connection provider "${provider}" does not support refresh.`,
         "connectionNotRefreshable",
         400,
       ),
     connectionAlreadyConnectedException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "This provider is already connected in this workspace.",
         "connectionAlreadyConnected",
         409,
       ),
     connectionWrongStrategyException: (provider: string) =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         `Connection provider "${provider}" does not accept direct credentials.`,
         "connectionWrongStrategy",
         400,
       ),
     connectionCredentialsRejectedException: (message: string) =>
-      new TestChatbotXException(message, "connectionCredentialsRejected", 400),
+      new TestInboxOSException(message, "connectionCredentialsRejected", 400),
     connectionProviderUnavailableException: (httpStatusCode: 502 | 503) =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "The provider is temporarily unavailable. Please try again.",
         "connectionProviderUnavailable",
         httpStatusCode,
       ),
     connectionNotOAuthException: (provider: string) =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         `Connection provider "${provider}" does not support an OAuth connect flow.`,
         "connectionNotOAuth",
         400,
       ),
     connectionStateMismatchException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "This connect session could not be verified.",
         "connectionStateMismatch",
         400,
       ),
     connectionNoCandidatesException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "No connectable accounts were found for this authorization.",
         "connectionNoCandidates",
         400,
       ),
     connectionIdentityMismatchException: () =>
-      new TestChatbotXException(
+      new TestInboxOSException(
         "The reauthorized account does not match the connection being reconnected.",
         "connectionIdentityMismatch",
         400,
       ),
     connectSessionExpiredException: (message: string) =>
-      new TestChatbotXException(message, "connectSessionExpired", 400),
+      new TestInboxOSException(message, "connectSessionExpired", 400),
     validationException: (field: string, message: string) => {
-      const error = new TestChatbotXException(message, "validation", 422)
+      const error = new TestInboxOSException(message, "validation", 422)
       return Object.assign(error, { field })
     },
     toPublicErrorMessage: (error: unknown, fallback: string) =>
       error instanceof Error ? error.message : fallback,
     notFoundException: (message: string) =>
-      new TestChatbotXException(message, "notFound", 404),
+      new TestInboxOSException(message, "notFound", 404),
   }
 })
 
@@ -1137,7 +1137,7 @@ describe("ConnectionService.connectFromCredentials", () => {
   it("rethrows an openaiCompatible ssrfBlocked rejection in place instead of wrapping it as a credential failure", async () => {
     mockAdapter.store.configColumns = ["baseURL"]
     mocks.fromCredentials.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "OpenAI-compatible base URL is not allowed.",
         "ssrfBlocked",
         400,
@@ -1162,7 +1162,7 @@ describe("ConnectionService.connectFromCredentials", () => {
 
   it("strips an internal (code …) suffix from the openaiCompatible ssrfBlocked message", async () => {
     mocks.fromCredentials.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "OpenAI-compatible base URL is not allowed. (code connectionProviderRejected)",
         "ssrfBlocked",
         400,
@@ -1183,7 +1183,7 @@ describe("ConnectionService.connectFromCredentials", () => {
 
   it("keeps wrapping ssrfBlocked as connectionCredentialsRejected for legacy providers", async () => {
     mocks.fromCredentials.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "OpenAI-compatible base URL is not allowed.",
         "ssrfBlocked",
         400,

@@ -1,9 +1,9 @@
 "use client"
 
-import { countMpmProducts, waTemplateMpmLimits } from "@chatbotx.io/flow-config"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { countMpmProducts, waTemplateMpmLimits } from "@inboxos.io/flow-config"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { Plus, X } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"

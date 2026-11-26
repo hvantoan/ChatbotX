@@ -1,5 +1,5 @@
-import { ROOT_TENANT_ID } from "@chatbotx.io/database/partials"
-import type { WorkspaceModel } from "@chatbotx.io/database/types"
+import { ROOT_TENANT_ID } from "@inboxos.io/database/partials"
+import type { WorkspaceModel } from "@inboxos.io/database/types"
 import { tenantService } from "../enterprise/tenant/service"
 import { notFoundException } from "../errors"
 import { workspaceService } from "../workspace/service"

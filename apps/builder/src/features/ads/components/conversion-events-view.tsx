@@ -4,8 +4,8 @@ import type {
   AdsConversionRuleResource,
   AdsConversionRuleTrigger,
   AdsConversionRuleTriggerType,
-} from "@chatbotx.io/business"
-// Narrow subpath import (not the `@chatbotx.io/business` barrel): this is a
+} from "@inboxos.io/business"
+// Narrow subpath import (not the `@inboxos.io/business` barrel): this is a
 // "use client" component, and the barrel re-exports `service.ts`, which
 // eagerly pulls the DB client (`env.DATABASE_URL`) into the client bundle —
 // see the comment atop `channel-fields.ts`. Type-only imports above stay on
@@ -14,24 +14,24 @@ import {
   ADS_INTEGRATION_FK_BY_CHANNEL,
   type AdsEligibleChannel,
   perChannelIntegrationIdsOrNull,
-} from "@chatbotx.io/business/ads-conversion/channel-fields"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+} from "@inboxos.io/business/ads-conversion/channel-fields"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { Switch } from "@chatbotx.io/ui/components/ui/switch"
+} from "@inboxos.io/ui/components/ui/select"
+import { Switch } from "@inboxos.io/ui/components/ui/switch"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@chatbotx.io/ui/components/ui/tabs"
+} from "@inboxos.io/ui/components/ui/tabs"
 import {
   ContactIcon,
   DownloadIcon,

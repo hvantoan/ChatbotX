@@ -1,6 +1,6 @@
-import { aiMcpServerAuth } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
-import { parseBotFieldVariableText } from "@chatbotx.io/variables/bot-field-variable"
+import { aiMcpServerAuth } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
+import { parseBotFieldVariableText } from "@inboxos.io/variables/bot-field-variable"
 import { z } from "zod"
 import { aiMcpServerResource } from "./resource"
 

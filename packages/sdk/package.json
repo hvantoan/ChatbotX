@@ -1,19 +1,19 @@
 {
-  "name": "@chatbotx.io/sdk",
+  "name": "@inboxos.io/sdk",
   "version": "0.1.0",
   "type": "module",
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
   "dependencies": {
-    "@chatbotx.io/flow-config": "workspace:*",
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/realtime-protocol": "workspace:*",
-    "@chatbotx.io/utils": "workspace:*",
+    "@inboxos.io/flow-config": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/realtime-protocol": "workspace:*",
+    "@inboxos.io/utils": "workspace:*",
     "zod": "catalog:"
   },
   "exports": {

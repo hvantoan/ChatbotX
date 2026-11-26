@@ -1,5 +1,5 @@
-import { shippingTypes } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { shippingTypes } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import { publicContactIdentifier } from "@/lib/public-api/contact-identifier"
 

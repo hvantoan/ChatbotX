@@ -1,5 +1,5 @@
-import { roundToMoneyScale } from "@chatbotx.io/database/partials"
-import { pipelineActivityRepository } from "@chatbotx.io/database/repositories"
+import { roundToMoneyScale } from "@inboxos.io/database/partials"
+import { pipelineActivityRepository } from "@inboxos.io/database/repositories"
 import {
   enumerateDateKeys,
   parseAnalyticsDateRange,

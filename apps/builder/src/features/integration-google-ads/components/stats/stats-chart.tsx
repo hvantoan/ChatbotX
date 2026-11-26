@@ -1,9 +1,9 @@
 "use client"
 
-import type { GoogleAdsStatsResponse } from "@chatbotx.io/business"
-import { toStatBuckets } from "@chatbotx.io/business/google-ads/stat-buckets"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { GoogleAdsStatsResponse } from "@inboxos.io/business"
+import { toStatBuckets } from "@inboxos.io/business/google-ads/stat-buckets"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import {
   type ChartConfig,
   ChartContainer,
@@ -11,7 +11,7 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@chatbotx.io/ui/components/ui/chart"
+} from "@inboxos.io/ui/components/ui/chart"
 import {
   Table,
   TableBody,
@@ -20,7 +20,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"

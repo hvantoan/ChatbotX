@@ -1,4 +1,4 @@
-import { distributedStore } from "@chatbotx.io/redis"
+import { distributedStore } from "@inboxos.io/redis"
 import { logger } from "../logger"
 
 /** How long a click on "Create a new workspace" on a share page is remembered. */

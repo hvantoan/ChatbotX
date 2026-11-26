@@ -1,8 +1,8 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type {
   ChannelType,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { headers } from "next/headers"
 import Image from "next/image"
 import { redirect } from "next/navigation"
@@ -20,7 +20,7 @@ import type { ResolvedConnectSessionBinding } from "./resolve-connect-session"
 import { resolveConnectSessionForSelect } from "./resolve-connect-session"
 
 /** The workspace an owner-verified session belonged to (`resolveConnectSessionCore`), if any. */
-function workspaceIdOf(err: ChatbotXException): string | undefined {
+function workspaceIdOf(err: InboxOSException): string | undefined {
   const workspaceId = err.data?.workspaceId
   return typeof workspaceId === "string" ? workspaceId : undefined
 }
@@ -64,7 +64,7 @@ export async function resolveSelectSession(input: {
     })
     return { sessionId, resolved }
   } catch (err) {
-    if (err instanceof ChatbotXException) {
+    if (err instanceof InboxOSException) {
       if (err.code === "connectSessionCancelled") {
         // Never follows `ConnectSession.returnUrl` (regression): that field
         // is always this very `/select` page's own URL for a builder-UI

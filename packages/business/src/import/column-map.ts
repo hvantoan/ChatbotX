@@ -1,11 +1,11 @@
 import type {
   ContactImportColumnMap,
   ProductImportColumnMap,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   matchContactImportHeaders,
   matchProductImportHeaders,
-} from "@chatbotx.io/imports"
+} from "@inboxos.io/imports"
 import { validationException } from "../errors"
 import { peekImportHeaders } from "./peek-headers"
 

@@ -1,9 +1,9 @@
 "use client"
 
-import { WORKING_HOURS_MAX_DATE_OVERRIDES } from "@chatbotx.io/database/partials"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { WORKING_HOURS_MAX_DATE_OVERRIDES } from "@inboxos.io/database/partials"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks"
 import { ClockIcon, Loader2Icon, PlusIcon } from "lucide-react"
 import Link from "next/link"

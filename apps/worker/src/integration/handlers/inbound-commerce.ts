@@ -1,9 +1,9 @@
-import { productMessageService } from "@chatbotx.io/business"
-import type { ContactInboxModel, InboxModel } from "@chatbotx.io/database/types"
+import { productMessageService } from "@inboxos.io/business"
+import type { ContactInboxModel, InboxModel } from "@inboxos.io/database/types"
 import {
   emitShoppingCartSent,
   emitUserAskedAboutProduct,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   getInboundOrder,
   getReferredProduct,
@@ -12,7 +12,7 @@ import {
   type MessageInboundOrderEntity,
   messageTypes,
   type ResolvedInboundProductReference,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 
 type CommerceEventKind = IncomingCommerceEvent["kind"]
 type IncomingCommerceEventOf<Kind extends CommerceEventKind> = Extract<

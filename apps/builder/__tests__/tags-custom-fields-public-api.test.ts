@@ -60,7 +60,7 @@ const customFieldService = {
   update: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ tagService, customFieldService }))
+vi.mock("@inboxos.io/business", () => ({ tagService, customFieldService }))
 
 await import("@/features/tags/api/public")
 await import("@/features/custom-fields/api/public")

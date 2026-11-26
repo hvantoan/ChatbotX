@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   emptyTemplateUninstallCounts,
   isActiveInstallation,
@@ -6,19 +6,19 @@ import {
   type TemplateUninstallCounts,
   type TemplateUninstallRequester,
   type TemplateUninstallState,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateInstallationRepository,
   templateInstallationSyncRepository,
   templateRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import type { TemplateModel } from "@chatbotx.io/database/types"
-import { getChildLogger } from "@chatbotx.io/logger"
-import { enqueueUninstallTemplate } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import type { TemplateModel } from "@inboxos.io/database/types"
+import { getChildLogger } from "@inboxos.io/logger"
+import { enqueueUninstallTemplate } from "@inboxos.io/worker-config"
 import { getAuditActor } from "../audit/context"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { workspaceService } from "../workspace"
 import { UNINSTALL_HANDLER_BY_KIND } from "./adapters/uninstall-handlers"
 import { assertCanViewInstallation } from "./installation-visibility"
@@ -67,7 +67,7 @@ export type TemplateUninstallPublisherResult = {
 }
 
 const tooLargeException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This installation tracks too many items to uninstall in one go",
     "templateUninstallTooLarge",
     422,

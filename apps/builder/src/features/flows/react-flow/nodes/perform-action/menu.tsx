@@ -1,4 +1,3 @@
-import { stepTypes } from "@chatbotx.io/flow-config"
 import {
   SiClaude,
   SiGooglegemini,
@@ -7,6 +6,7 @@ import {
   SiMeta,
   SiN8n,
 } from "@icons-pack/react-simple-icons"
+import { stepTypes } from "@inboxos.io/flow-config"
 import {
   ArchiveIcon,
   ArrowRightLeftIcon,

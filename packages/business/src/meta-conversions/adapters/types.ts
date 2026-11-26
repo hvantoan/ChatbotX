@@ -1,5 +1,5 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import type { EncryptedData } from "@chatbotx.io/encryption"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import type { EncryptedData } from "@inboxos.io/encryption"
 import type {
   CapiConnectChannel,
   CapiScopeCheckInput,

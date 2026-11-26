@@ -1,20 +1,20 @@
-import type { OrderStatus } from "@chatbotx.io/database/partials"
-import { ChatbotXException } from "../errors"
+import type { OrderStatus } from "@inboxos.io/database/partials"
+import { InboxOSException } from "../errors"
 
 export const orderEmptyException = () =>
-  new ChatbotXException("An order needs at least one item.", "orderEmpty")
+  new InboxOSException("An order needs at least one item.", "orderEmpty")
 
 export const orderingUnavailableException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The store is not taking orders right now.",
     "orderingUnavailable",
   )
 
 export const orderProductUnavailableException = (detail: string) =>
-  new ChatbotXException(detail, "orderProductUnavailable")
+  new InboxOSException(detail, "orderProductUnavailable")
 
 export const orderOutOfStockException = (productName: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `Not enough stock for "${productName}".`,
     "orderOutOfStock",
   )
@@ -23,7 +23,7 @@ export const orderOutOfStockException = (productName: string) => {
 }
 
 export const orderBelowMinimumException = (minimum: number) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `The order total is below the store minimum of ${minimum}.`,
     "orderBelowMinimum",
   )
@@ -35,7 +35,7 @@ export const orderInvalidStatusTransitionException = (
   from: OrderStatus,
   to: OrderStatus,
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `An order that is ${from} cannot become ${to}.`,
     "orderInvalidStatusTransition",
     409,
@@ -48,7 +48,7 @@ export const orderBelowVendorMinimumException = (
   vendorName: string,
   minimum: number,
 ) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `The items from "${vendorName}" are below its minimum order of ${minimum}.`,
     "orderBelowVendorMinimum",
   )
@@ -58,7 +58,7 @@ export const orderBelowVendorMinimumException = (
 
 /** An online order is accepted only once its payment came in. */
 export const orderAwaitingPaymentException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "The order is waiting for its online payment.",
     "orderAwaitingPayment",
     409,
@@ -66,7 +66,7 @@ export const orderAwaitingPaymentException = () =>
 
 /** The payment could not be sent back, so the order stays as it was. */
 export const orderRefundFailedException = (provider: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `${provider} could not refund the payment, so the order was not cancelled. Try again in a moment.`,
     "orderRefundFailed",
     502,
@@ -77,7 +77,7 @@ export const orderRefundFailedException = (provider: string) => {
 
 /** Paid, but the provider has not settled it yet: nothing to refund yet. */
 export const orderPaymentProcessingException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "A payment for this order is still being processed. Try again later.",
     "orderPaymentProcessing",
     409,
@@ -85,14 +85,14 @@ export const orderPaymentProcessingException = () =>
 
 /** The provider's page sends the customer back to their own order. */
 export const orderPaymentContactRequiredException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "An order paid online needs a contact (the customer).",
     "orderPaymentContactRequired",
   )
 
 /** Only a pending online order still waiting for its money can be paid. */
 export const orderPaymentNotOpenException = (reason: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     "This order cannot be paid online now.",
     "orderPaymentNotOpen",
     409,
@@ -103,14 +103,14 @@ export const orderPaymentNotOpenException = (reason: string) => {
 
 /** Deleting a paid online order would keep the money without an order. */
 export const orderPaidOnlineException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This order was paid online. Cancel it first: cancelling refunds the payment.",
     "orderPaidOnline",
     409,
   )
 
 export const orderShippingTypeUnavailableException = (shippingType: string) => {
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `The store does not offer ${shippingType}.`,
     "orderShippingTypeUnavailable",
   )

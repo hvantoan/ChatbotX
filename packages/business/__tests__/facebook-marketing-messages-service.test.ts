@@ -17,7 +17,7 @@ const campaignRepository = {
   remove: vi.fn(),
 }
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   facebookMarketingMessagesAuthRepository: authRepository,
   facebookMarketingMessageRepository: campaignRepository,
 }))
@@ -29,7 +29,7 @@ vi.mock("../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   // Passthrough stand-in for the real `EncryptedData` validator: these tests
   // exercise the service's branching, not the envelope format.
   encryptedDataSchema: { parse: (value: unknown) => value },
@@ -116,7 +116,7 @@ describe("decryptAuth", () => {
   })
 
   test("returns null instead of throwing when the blob cannot be decrypted", async () => {
-    const { encryptUtils } = await import("@chatbotx.io/encryption")
+    const { encryptUtils } = await import("@inboxos.io/encryption")
     vi.mocked(encryptUtils.decryptObject).mockRejectedValueOnce(
       new Error("bad key"),
     )
@@ -198,7 +198,7 @@ describe("assertContentEditable (content lock, spec D10)", () => {
 
 describe("assertContentEditable with a form round-trip (name/budget-only edit)", () => {
   test("content re-submitted by the edit form passes the lock", async () => {
-    const { mmContentSchema } = await import("@chatbotx.io/database/partials")
+    const { mmContentSchema } = await import("@inboxos.io/database/partials")
     const stored = mmContentSchema.parse({
       templateType: "button",
       text: "Hello",

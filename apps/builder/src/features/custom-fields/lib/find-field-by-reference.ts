@@ -1,8 +1,8 @@
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import {
   FieldReferenceKind,
   parseFieldReference,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { BotFieldResource } from "@/features/bot-fields/schema/resource"
 import type { CustomFieldResource } from "../schema/resource"
 

@@ -1,6 +1,6 @@
 "use client"
 
-import type { MiniAppDefaultText } from "@chatbotx.io/mini-app"
+import type { MiniAppDefaultText } from "@inboxos.io/mini-app"
 import { useTranslations } from "next-intl"
 import { useCallback } from "react"
 import { defaultTextKey } from "./labels"

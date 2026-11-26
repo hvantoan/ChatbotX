@@ -1,9 +1,9 @@
-import { leaderboardService } from "@chatbotx.io/business/leaderboard"
-import { fileStatuses } from "@chatbotx.io/database/partials"
-import { createUpload } from "@chatbotx.io/filesystem/node-upload"
-import { toUploadWriter } from "@chatbotx.io/filesystem/upload-writer"
-import { type CsvCell, toCsvRow, UTF8_BOM } from "@chatbotx.io/utils/csv"
-import type { JobExportLeaderboardParticipants } from "@chatbotx.io/worker-config"
+import { leaderboardService } from "@inboxos.io/business/leaderboard"
+import { fileStatuses } from "@inboxos.io/database/partials"
+import { createUpload } from "@inboxos.io/filesystem/node-upload"
+import { toUploadWriter } from "@inboxos.io/filesystem/upload-writer"
+import { type CsvCell, toCsvRow, UTF8_BOM } from "@inboxos.io/utils/csv"
+import type { JobExportLeaderboardParticipants } from "@inboxos.io/worker-config"
 
 type ExportData = JobExportLeaderboardParticipants["data"]
 type ParticipantRow = Awaited<

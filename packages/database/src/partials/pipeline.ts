@@ -1,5 +1,5 @@
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
-import { normalizeForMatch } from "@chatbotx.io/utils/normalize-for-match"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
+import { normalizeForMatch } from "@inboxos.io/utils/normalize-for-match"
 import z from "zod"
 
 export const pipelineTypes = z.enum(["opportunity", "ticket", "custom"])

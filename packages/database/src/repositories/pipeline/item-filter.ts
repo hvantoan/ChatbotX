@@ -1,4 +1,4 @@
-import type { SQL } from "@chatbotx.io/database/client"
+import type { SQL } from "@inboxos.io/database/client"
 import {
   and,
   eq,
@@ -11,14 +11,14 @@ import {
   lte,
   or,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactModel,
   pipelineItemActivityModel,
   pipelineItemAssigneeModel,
   pipelineItemModel,
-} from "@chatbotx.io/database/schema"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/schema"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import type { AnyPgColumn } from "drizzle-orm/pg-core"
 import {
   isSingleValueOperator,

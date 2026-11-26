@@ -22,7 +22,7 @@ vi.mock("@/lib/auth/require-workspace-permission", () => ({
   resolveGuardedWorkspaceId: mocks.resolveGuardedWorkspaceId,
 }))
 vi.mock("next/navigation", () => ({ notFound: mocks.notFound }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   googleAdsConversionService: {
     getStats: mocks.getStats,
     hasAnyEvent: mocks.hasAnyEvent,

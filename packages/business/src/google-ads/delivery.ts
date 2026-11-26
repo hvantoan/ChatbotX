@@ -3,9 +3,9 @@ import {
   type GoogleAdsMatchingSnapshot,
   type GoogleAdsProcessingDetail,
   googleAdsEventOptionsSchema,
-} from "@chatbotx.io/database/partials"
-import { googleAdsConversionEventRepository } from "@chatbotx.io/database/repositories"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import { googleAdsConversionEventRepository } from "@inboxos.io/database/repositories"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import {
   GOOGLE_ADS_FAILURE_MESSAGES,
   type GoogleAdsAuthValue,
@@ -19,8 +19,8 @@ import {
   parseScopes,
   parseUploadMethod,
   sanitizeGoogleAdsError,
-} from "@chatbotx.io/integration-google-ads"
-import { AuthException, AuthRefreshException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-google-ads"
+import { AuthException, AuthRefreshException } from "@inboxos.io/sdk"
 import { z } from "zod"
 import { logProviderError } from "../error-log/service"
 import {

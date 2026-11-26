@@ -1,4 +1,4 @@
-import { integrationMuseService } from "@chatbotx.io/business"
+import { integrationMuseService } from "@inboxos.io/business"
 import type { IntegrationMuseResource } from "../schema/resource"
 
 export const findIntegrationMuse = async ({

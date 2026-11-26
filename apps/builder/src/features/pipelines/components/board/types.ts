@@ -1,12 +1,12 @@
 import type {
   PipelineBoardStage,
   PipelineItemView,
-} from "@chatbotx.io/business/pipeline"
+} from "@inboxos.io/business/pipeline"
 import type {
   PipelineSettings,
   PipelineType,
-} from "@chatbotx.io/database/partials"
-import type { CustomFieldType } from "@chatbotx.io/utils/custom-field"
+} from "@inboxos.io/database/partials"
+import type { CustomFieldType } from "@inboxos.io/utils/custom-field"
 import type { z } from "zod"
 import type {
   boardFilterState,

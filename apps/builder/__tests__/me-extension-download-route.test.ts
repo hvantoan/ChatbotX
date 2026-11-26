@@ -5,11 +5,11 @@ const buildMeExport = vi.fn()
 const loadServableWorkspace = vi.fn()
 const ensureContactAvatarMirrored = vi.fn()
 
-vi.mock("@chatbotx.io/channel-registry/media-hydration", () => ({
+vi.mock("@inboxos.io/channel-registry/media-hydration", () => ({
   ensureContactAvatarMirrored,
 }))
 
-vi.mock("@chatbotx.io/business/system-field", () => ({
+vi.mock("@inboxos.io/business/system-field", () => ({
   systemFieldService: {
     buildMeExport,
   },

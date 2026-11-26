@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useFormatter, useTranslations } from "next-intl"
 import { useState } from "react"
 import { ModerationLogCard } from "./moderation-log-card"

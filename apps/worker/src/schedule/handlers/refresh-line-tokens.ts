@@ -1,6 +1,6 @@
-import { lineIntegrationService } from "@chatbotx.io/business"
-import type { LineAuthValue } from "@chatbotx.io/integration-line"
-import { AuthException } from "@chatbotx.io/sdk"
+import { lineIntegrationService } from "@inboxos.io/business"
+import type { LineAuthValue } from "@inboxos.io/integration-line"
+import { AuthException } from "@inboxos.io/sdk"
 import { integrations } from "../../services/integrations"
 import { refreshWithErrorHandling, runRefreshBatch } from "./refresh-runner"
 

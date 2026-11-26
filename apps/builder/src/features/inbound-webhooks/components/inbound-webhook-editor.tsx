@@ -3,20 +3,20 @@
 import {
   INBOUND_WEBHOOK_LIMITS,
   inboundWebhookActionTypes,
-} from "@chatbotx.io/database/partials"
-import type { InboundWebhookModel } from "@chatbotx.io/database/types"
-import { Button, buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/database/partials"
+import type { InboundWebhookModel } from "@inboxos.io/database/types"
+import { Button, buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
-import { Textarea } from "@chatbotx.io/ui/components/ui/textarea"
-import { isJsonbStorable } from "@chatbotx.io/utils/json-path"
+} from "@inboxos.io/ui/components/ui/card"
+import { Form } from "@inboxos.io/ui/components/ui/form"
+import { Label } from "@inboxos.io/ui/components/ui/label"
+import { Textarea } from "@inboxos.io/ui/components/ui/textarea"
+import { isJsonbStorable } from "@inboxos.io/utils/json-path"
 import {
   BarChart3Icon,
   BracesIcon,

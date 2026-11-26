@@ -1,7 +1,7 @@
 import {
   wooCommerceOrderSchema,
   wooCommerceProductSchema,
-} from "@chatbotx.io/integration-woocommerce"
+} from "@inboxos.io/integration-woocommerce"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -18,10 +18,10 @@ const mocks = vi.hoisted(() => ({
   storeSource: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({ invalidateCacheByTags: vi.fn() }))
 vi.mock("../../audit/dispatcher", () => ({ dispatchAuditRecord: vi.fn() }))
 vi.mock("../../logger", () => ({ logger: { warn: vi.fn() } }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   woocommerceRepository: {
     findIntegration: (...args: unknown[]) => mocks.findIntegration(...args),
     updateIntegration: vi.fn(),
@@ -41,7 +41,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   productCategoryRepository: { createMissingByName: async () => [] },
   vendorRepository: { createMissing: vi.fn(), findByNames: async () => [] },
 }))
-vi.mock("@chatbotx.io/integration-woocommerce", async (importOriginal) => ({
+vi.mock("@inboxos.io/integration-woocommerce", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   getWooCommerceProduct: (...args: unknown[]) => mocks.getProduct(...args),
   getWooCommerceOrder: (...args: unknown[]) => mocks.getOrder(...args),

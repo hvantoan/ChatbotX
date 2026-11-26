@@ -3,7 +3,7 @@
 import {
   TEMPLATE_STORE_MAX_CATEGORIES,
   TEMPLATE_STORE_MAX_LISTINGS,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"

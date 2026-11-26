@@ -3,17 +3,17 @@
 import {
   NavMain,
   type PortalNavItem,
-} from "@chatbotx.io/ui/components/portal/nav-main"
+} from "@inboxos.io/ui/components/portal/nav-main"
 import {
   PortalPricingNavItem,
   type PortalPricingState,
-} from "@chatbotx.io/ui/components/portal/pricing-nav-item"
+} from "@inboxos.io/ui/components/portal/pricing-nav-item"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-} from "@chatbotx.io/ui/components/ui/sidebar"
+} from "@inboxos.io/ui/components/ui/sidebar"
 import type { ReactNode } from "react"
 
 type Props = {

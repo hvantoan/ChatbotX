@@ -49,7 +49,7 @@ const workingHoursService = {
   updateHoliday: vi.fn(),
   deleteHoliday: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ workingHoursService }))
+vi.mock("@inboxos.io/business", () => ({ workingHoursService }))
 
 const assertWorkspaceNotBlocked = vi.fn()
 vi.mock("@/lib/workspace-quota", () => ({ assertWorkspaceNotBlocked }))

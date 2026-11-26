@@ -1,5 +1,5 @@
-import type { ContactInboxModel } from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
+import type { ContactInboxModel } from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
 import { conversationService } from "../conversation/service"
 import { logger } from "../logger"
 import { workspaceService } from "../workspace/service"

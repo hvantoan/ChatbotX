@@ -1,15 +1,15 @@
 import type {
   GoogleAdsConversionActionCacheEntry,
   GoogleAdsSetupError,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   connectionRepository,
   integrationGoogleAdsRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ConnectionModel,
   IntegrationGoogleAdsModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   type GoogleAdsAuthValue,
   GoogleAdsException,
@@ -18,8 +18,8 @@ import {
   NOT_ALLOWLISTED_REASON,
   sanitizeGoogleAdsError,
   uploadMethodOf,
-} from "@chatbotx.io/integration-google-ads"
-import { AuthException, AuthRefreshException } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-google-ads"
+import { AuthException, AuthRefreshException } from "@inboxos.io/sdk"
 import { BaseService } from "../base.service"
 import { isActiveConnectionStatus } from "../connection/state"
 import {

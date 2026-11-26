@@ -10,7 +10,7 @@ type FakeRealtimeSocket = {
   reconnectNow: ReturnType<typeof vi.fn>
 }
 
-vi.mock("@chatbotx.io/realtime-protocol", () => ({
+vi.mock("@inboxos.io/realtime-protocol", () => ({
   RealtimeSocket: class {
     close = vi.fn()
     connect = vi.fn()

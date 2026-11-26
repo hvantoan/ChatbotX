@@ -7,8 +7,8 @@ import {
   type MiniAppFileAnswer,
   type MiniAppNode,
   nodeName,
-} from "@chatbotx.io/mini-app"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+} from "@inboxos.io/mini-app"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { FileTextIcon, ImageIcon, Loader2Icon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { createContext, useContext, useId, useRef, useState } from "react"

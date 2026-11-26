@@ -1,8 +1,8 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq } from "@chatbotx.io/database/client"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { integrationModel } from "@chatbotx.io/database/schema"
-import { type AuthValue, authValueSchema, SdkException } from "@chatbotx.io/sdk"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq } from "@inboxos.io/database/client"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { integrationModel } from "@inboxos.io/database/schema"
+import { type AuthValue, authValueSchema, SdkException } from "@inboxos.io/sdk"
 import type { InferInsertModel, SQL } from "drizzle-orm"
 import type { AnyPgColumn, PgTable } from "drizzle-orm/pg-core"
 import {

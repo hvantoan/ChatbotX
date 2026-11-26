@@ -25,7 +25,7 @@ vi.mock("@xyflow/react", () => ({
   getBezierPath: () => ["M0,0", 0, 0],
   useReactFlow: () => ({ deleteElements: vi.fn() }),
 }))
-vi.mock("@chatbotx.io/ui/components/ui/button", () => ({
+vi.mock("@inboxos.io/ui/components/ui/button", () => ({
   Button: (props: Record<string, unknown>) => (
     <button type="button" {...props} />
   ),

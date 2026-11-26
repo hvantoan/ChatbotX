@@ -44,7 +44,7 @@ const notFound = Object.assign(new Error("not found"), { code: "notFound" })
 
 const commentAutomationService = { findOrFail: vi.fn() }
 const contactInboxService = { findManyByIds: vi.fn() }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService,
   contactInboxService,
 }))
@@ -52,7 +52,7 @@ vi.mock("@chatbotx.io/business", () => ({
 const commentAutomationAnalyticsService = {
   getContacts: vi.fn(),
 }
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService,
 }))
 

@@ -10,17 +10,17 @@ const mocks = vi.hoisted(() => ({
   authorizeUrl: vi.fn(() => "https://provider.test/authorize"),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: mocks.transaction },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {},
   integrationInstagramRepository: {},
 }))
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { create: mocks.createSession },
 }))
-vi.mock("@chatbotx.io/business/connection", () => ({
+vi.mock("@inboxos.io/business/connection", () => ({
   authExpiresAtOf: vi.fn(),
   connectionStateService: {},
   isActiveConnectionStatus: () => false,
@@ -29,7 +29,7 @@ vi.mock("@chatbotx.io/business/connection", () => ({
   saveOrInsertSatellite: vi.fn(),
   withQuotaCompensation: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
+vi.mock("@inboxos.io/business/errors", () => ({
   connectionAlreadyConnectedException: vi.fn(),
   connectionCredentialsRejectedException: vi.fn(),
   connectionIdentityMismatchException: vi.fn(),
@@ -42,13 +42,13 @@ vi.mock("@chatbotx.io/business/errors", () => ({
   notFoundException: vi.fn(),
   toPublicErrorMessage: vi.fn(),
 }))
-vi.mock("@chatbotx.io/business/template-install-dispatch", () => ({
+vi.mock("@inboxos.io/business/template-install-dispatch", () => ({
   dispatchStagedInstalls: mocks.dispatchStagedInstalls,
 }))
-vi.mock("@chatbotx.io/business/workspace", () => ({
+vi.mock("@inboxos.io/business/workspace", () => ({
   compensateWorkspaceQuotaConsumption: mocks.compensate,
 }))
-vi.mock("@chatbotx.io/encryption", () => ({ encryptUtils: {} }))
+vi.mock("@inboxos.io/encryption", () => ({ encryptUtils: {} }))
 vi.mock("../src/connect-targets", () => ({ failSession: vi.fn() }))
 vi.mock("../src/logger", () => ({ logger: {} }))
 vi.mock("../src/internal", () => ({

@@ -1,4 +1,4 @@
-import { sequenceService } from "@chatbotx.io/business/sequence"
+import { sequenceService } from "@inboxos.io/business/sequence"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type {
   ListSequencesRequest,

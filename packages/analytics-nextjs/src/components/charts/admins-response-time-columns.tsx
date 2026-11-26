@@ -1,13 +1,13 @@
 "use client"
 
-import type { HumanAgentStats } from "@chatbotx.io/analytics"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
+import type { HumanAgentStats } from "@inboxos.io/analytics"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
-import type { ColumnDef } from "@chatbotx.io/ui/types/data-table"
+} from "@inboxos.io/ui/components/ui/tooltip"
+import type { ColumnDef } from "@inboxos.io/ui/types/data-table"
 import { ClockIcon, InfoIcon } from "lucide-react"
 import type { useTranslations } from "next-intl"
 import { formatDuration } from "../../utils/format-duration"

@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { connectionStateService } from "../state-service"
 
@@ -30,7 +30,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: {
     findById: mocks.findById,
     findByIdForWorkspace: mocks.findByIdForWorkspace,
@@ -53,13 +53,13 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   aiHandoverBulkRunRepository: { cancelLive: mocks.cancelLive },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: vi.fn(async (fn: (tx: unknown) => unknown) => fn({})),
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   workspaceUsageModel: {},
 }))
 

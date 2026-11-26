@@ -33,11 +33,11 @@ const mocks = vi.hoisted(() => ({
 
 const tx = { name: "tx" }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (...args: unknown[]) => mocks.transaction(...args) },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   orderRepository: {
     find: (...args: unknown[]) => mocks.findOrder(...args),
     findForUpdate: (...args: unknown[]) => mocks.findOrderForUpdate(...args),
@@ -81,11 +81,11 @@ vi.mock("../../platform/settings", () => ({
     mocks.resolveWorkspaceAppUrl(...args),
 }))
 
-vi.mock("@chatbotx.io/encryption/shop-token", () => ({
+vi.mock("@inboxos.io/encryption/shop-token", () => ({
   signShopToken: (...args: unknown[]) => mocks.signShopToken(...args),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
 }))
 
@@ -393,7 +393,7 @@ describe("orderPaymentService.handleWebhookEvent", () => {
     expect(mocks.warn).toHaveBeenCalled()
   })
 
-  test("a payment ChatbotX did not make is never touched", async () => {
+  test("a payment InboxOS did not make is never touched", async () => {
     mocks.findAttemptByReference.mockResolvedValue(undefined)
     await webhook({ metadata: null })
     await webhook({

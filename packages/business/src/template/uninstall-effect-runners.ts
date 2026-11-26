@@ -1,9 +1,9 @@
 import {
   mediaLibraryFileRepository,
   savedReplyImageRepository,
-} from "@chatbotx.io/database/repositories"
-import { removeTriggerCache } from "@chatbotx.io/events"
-import { uploader } from "@chatbotx.io/filesystem"
+} from "@inboxos.io/database/repositories"
+import { removeTriggerCache } from "@inboxos.io/events"
+import { uploader } from "@inboxos.io/filesystem"
 import { aiAgentService } from "../ai-agent/service"
 import { aiFileService } from "../ai-file/service"
 import { automatedResponseService } from "../automated-response/service"

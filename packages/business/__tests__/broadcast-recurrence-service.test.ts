@@ -1,4 +1,4 @@
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const insertedRuns = vi.fn()
@@ -53,17 +53,17 @@ const getStatsByOccurrenceBucket = vi.fn()
 const getBatchStats = vi.fn()
 const copyTargetsSpy = vi.fn()
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: async (run: (t: typeof tx) => unknown) => await run(tx) },
   eq: (a: unknown, b: unknown) => ({ __eq: [a, b] }),
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRecurrenceRepository: repo,
   broadcastRepository: {
     findByIdOrName: (...a: unknown[]) => findByIdOrName(...a),
   },
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {
     id: "b.id",
     parentBroadcastId: "b.parentBroadcastId",
@@ -71,7 +71,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
   broadcastTargetModel: {},
 }))
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: {
     getStatsByOccurrenceBucket: (...a: unknown[]) =>
       getStatsByOccurrenceBucket(...a),
@@ -112,7 +112,7 @@ const {
 const {
   BROADCAST_PLAN_LIMIT_CODE,
   BroadcastValidationException,
-  ChatbotXException,
+  InboxOSException,
 } = await import("../src/errors")
 
 const DAY = 86_400_000
@@ -442,11 +442,7 @@ describe("materializeOccurrence", () => {
     })
 
     const activeBroadcastsLimit = () => {
-      const error = new ChatbotXException(
-        "full",
-        BROADCAST_PLAN_LIMIT_CODE,
-        403,
-      )
+      const error = new InboxOSException("full", BROADCAST_PLAN_LIMIT_CODE, 403)
       error.data = { reason: "activeBroadcasts" }
       return error
     }
@@ -1416,7 +1412,7 @@ describe("setOccurrenceExcluded", () => {
         dates: ["2026-10-15"],
         excluded: true,
       }),
-    ).rejects.toBeInstanceOf(ChatbotXException)
+    ).rejects.toBeInstanceOf(InboxOSException)
   })
 })
 

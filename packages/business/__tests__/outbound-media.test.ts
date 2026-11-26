@@ -10,11 +10,11 @@ const REHOSTED_PATH_RE = /^public\/ws\/ws_1\/2026\/11\/05\/outbound-media\//
 const mockUploadFileFromUrl = vi.fn()
 const mockAssertPublicUrl = vi.fn(async () => undefined)
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedStore: { get: mockGet, put: mockPut },
 }))
 
-vi.mock("@chatbotx.io/filesystem", async () => {
+vi.mock("@inboxos.io/filesystem", async () => {
   const { normalizeMimeType } = await import(
     "../../filesystem/src/lib/mime-type"
   )
@@ -34,7 +34,7 @@ vi.mock("../src/net/ssrf-guard", () => ({
   assertPublicUrl: mockAssertPublicUrl,
 }))
 
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({
     debug: vi.fn(),
     error: vi.fn(),
@@ -47,7 +47,7 @@ const { resolveOutboundMediaUrl } = await import(
   "../src/outbound-media/service"
 )
 
-const STORAGE_URL = "https://cdn.chatbotx.test/bucket"
+const STORAGE_URL = "https://cdn.inboxos.test/bucket"
 const IMAGE_RULES = {
   allowedMimeTypes: ["image/jpeg", "image/png", "image/webp"],
   maxBytes: 5 * 1024 * 1024,

@@ -1,8 +1,8 @@
-import { integrationThreadsService } from "@chatbotx.io/business"
+import { integrationThreadsService } from "@inboxos.io/business"
 import {
   listThreadsPosts,
   type ThreadsAuthValue,
-} from "@chatbotx.io/integration-threads"
+} from "@inboxos.io/integration-threads"
 import { filterIntegrationsByAccount } from "@/features/shared/comment-automation/lib/account-filter"
 import { resolvePostPreviewImage } from "@/features/shared/comment-automation/lib/post-preview-image"
 import { collectSettled } from "@/lib/collect-settled"

@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
@@ -169,7 +169,7 @@ describe("InstagramFacebookSelectPage", () => {
 
   test("redirects to channel creation with the mapped error code when resolveConnectSessionForSelect throws a known session exception (regression: an expired/invalid session previously 500'd this page instead of redirecting)", async () => {
     mockResolveConnectSessionForSelect.mockRejectedValue(
-      new ChatbotXException("expired", "connectSessionExpired"),
+      new InboxOSException("expired", "connectSessionExpired"),
     )
 
     await expect(InstagramFacebookSelectPage(pageArgs)).rejects.toThrow(

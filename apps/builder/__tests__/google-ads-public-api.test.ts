@@ -22,7 +22,7 @@ const {
   googleAdsSettingsService: { getConsent: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", async () => {
+vi.mock("@inboxos.io/business", async () => {
   // The real response schema (pure zod) so output parsing is exercised.
   const { googleAdsStatsResponse } = await import(
     "../../../packages/business/src/google-ads/stats-schema"
@@ -39,7 +39,7 @@ vi.mock("@chatbotx.io/business", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   withCache: vi.fn((_key: string, loader: () => unknown) => loader()),
   invalidateCacheByTags: vi.fn(),
 }))

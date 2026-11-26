@@ -1,12 +1,12 @@
-import { processStreamingText } from "@chatbotx.io/ai"
-import { aiContextService } from "@chatbotx.io/ai/server"
-import type { SalesPromptProduct } from "@chatbotx.io/business"
+import { processStreamingText } from "@inboxos.io/ai"
+import { aiContextService } from "@inboxos.io/ai/server"
+import type { SalesPromptProduct } from "@inboxos.io/business"
 import type {
   AIAgentSalesProfile,
   ConversationSalesState,
-} from "@chatbotx.io/database/partials"
-import { emit } from "@chatbotx.io/event-bus"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/partials"
+import { emit } from "@inboxos.io/event-bus"
+import { createId } from "@inboxos.io/utils"
 import type { LanguageModel } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../../lib/logger"

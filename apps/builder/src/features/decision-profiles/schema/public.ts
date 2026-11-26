@@ -1,5 +1,5 @@
-import { decisionProfileFormSchema } from "@chatbotx.io/decision-config"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { decisionProfileFormSchema } from "@inboxos.io/decision-config"
+import { zodBigintAsString } from "@inboxos.io/utils"
 
 /**
  * A profile is returned in the same authoring shape it accepts on create and

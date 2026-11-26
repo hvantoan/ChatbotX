@@ -1,12 +1,12 @@
-import type { ShopifySyncScope } from "@chatbotx.io/database/partials"
+import type { ShopifySyncScope } from "@inboxos.io/database/partials"
 import {
   externalStoreRepository,
   type OrderItemInsertValues,
   productCategoryRepository,
   shopifyRepository,
   vendorRepository,
-} from "@chatbotx.io/database/repositories"
-import type { IntegrationShopifyModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { IntegrationShopifyModel } from "@inboxos.io/database/types"
 import {
   getShopifyCodeDiscount,
   getShopifyInventoryItemProductId,
@@ -21,8 +21,8 @@ import {
   type ShopifyCredentials,
   type ShopifyOrder,
   type ShopifyProduct,
-} from "@chatbotx.io/integration-shopify"
-import { roundMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/integration-shopify"
+import { roundMoney } from "@inboxos.io/utils/money"
 import { BaseService } from "../base.service"
 import { ecommerceSettingsService } from "../ecommerce-settings/service"
 import { adoptExternalStoreCurrency } from "../ecommerce-settings/store-source"

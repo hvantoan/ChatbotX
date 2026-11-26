@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import type * as ChatbotxUtilsModule from "@chatbotx.io/utils"
+import type * as ChatbotxUtilsModule from "@inboxos.io/utils"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // ---------------------------------------------------------------------------
@@ -70,7 +70,7 @@ vi.mock("next/navigation", () => ({
 // The mock request objects below only carry `nextUrl`, not the real
 // `url`/`headers` a NextRequest would have — resolve the public URL (used
 // to pin the connect session's `originHost`) straight from `nextUrl`.
-vi.mock("@chatbotx.io/utils", async (importOriginal) => {
+vi.mock("@inboxos.io/utils", async (importOriginal) => {
   const actual = await importOriginal<typeof ChatbotxUtilsModule>()
   return {
     ...actual,
@@ -78,7 +78,7 @@ vi.mock("@chatbotx.io/utils", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceService: {
     findById: mockFindWorkspaceById,
     create: mockWorkspaceCreate,
@@ -86,13 +86,13 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({}))
+vi.mock("@inboxos.io/business/audit", () => ({}))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { updateReturnUrl: mockUpdateReturnUrl },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   connectionService: { startSession: mockStartSession },
   failSession: mockFailSession,
 }))
@@ -251,7 +251,7 @@ describe.each([
 
   test("rethrows createFirstWorkspace's plan-limit redirect instead of swallowing it as a generic session-start failure (regression: createWorkspace's own NEXT_REDIRECT was caught by this route's own catch and replaced with the generic /channels/create?error=sessionExpired page)", async () => {
     const { workspaceLimitReachedException } = await import(
-      "@chatbotx.io/business/errors"
+      "@inboxos.io/business/errors"
     )
     mockWorkspaceCreate.mockRejectedValueOnce(workspaceLimitReachedException())
     // Mirrors what the real `startSession` does inside its own transaction:

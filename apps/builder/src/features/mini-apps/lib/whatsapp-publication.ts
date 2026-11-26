@@ -1,20 +1,20 @@
 import {
   integrationWhatsappService,
   whatsappFlowService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   notFoundException,
   validationException,
-} from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business/errors"
 import {
   miniAppPublicationService,
   miniAppService,
-} from "@chatbotx.io/business/mini-app"
-import type { PublishFlowJsonResult } from "@chatbotx.io/integration-whatsapp/api/flow"
+} from "@inboxos.io/business/mini-app"
+import type { PublishFlowJsonResult } from "@inboxos.io/integration-whatsapp/api/flow"
 import {
   hasContactVariables,
   type MiniAppDefinition,
-} from "@chatbotx.io/mini-app"
+} from "@inboxos.io/mini-app"
 import { getTranslations } from "next-intl/server"
 import { buildWhatsappContext } from "@/features/integration-whatsapp/flows/lib/whatsapp-flow-operations"
 import { integrations } from "@/integration"

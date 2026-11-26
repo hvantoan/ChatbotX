@@ -4,10 +4,10 @@ import {
   isNoAvatarSentinelFresh,
   parseNoAvatarSentinel,
   resolveTenantSettings,
-} from "@chatbotx.io/business"
-import { getPublicFileUrl } from "@chatbotx.io/business/utils"
-import { resolveFreshContactAvatarUrl } from "@chatbotx.io/channel-registry/media-hydration"
-import { toLogSafeError } from "@chatbotx.io/logger"
+} from "@inboxos.io/business"
+import { getPublicFileUrl } from "@inboxos.io/business/utils"
+import { resolveFreshContactAvatarUrl } from "@inboxos.io/channel-registry/media-hydration"
+import { toLogSafeError } from "@inboxos.io/logger"
 import { type NextRequest, NextResponse } from "next/server"
 import { httpLogger } from "@/lib/log"
 import {

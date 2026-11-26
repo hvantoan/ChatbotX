@@ -10,7 +10,7 @@ description: >-
 
 # Drizzle Database
 
-Package: `packages/database` (`@chatbotx.io/database`)
+Package: `packages/database` (`@inboxos.io/database`)
 
 ## Table Definition
 
@@ -57,7 +57,7 @@ export const myModel = pgTable(
 - `bigintAsString()` custom type: stores `bigint` in DB, exposes as `string` in app
 - FK pattern: `.references(() => otherModel.id, { onDelete, onUpdate })`
 - Index naming: `TableName_columnName_idx` or `TableName_column_key` for unique
-- Every FK column must lead an index so RI cascade lookups do not scan child tables. `pnpm --filter @chatbotx.io/database test` runs `workspace-purge-coverage.test.ts`, which rejects any newly unindexed FK.
+- Every FK column must lead an index so RI cascade lookups do not scan child tables. `pnpm --filter @inboxos.io/database test` runs `workspace-purge-coverage.test.ts`, which rejects any newly unindexed FK.
 - A new table with `workspaceId` requires the `workspace-purge` skill. Partitioned-table indexes use the per-partition recipe in `20260924105732_add_contact_inbox_fk_indexes`.
 
 ### Enums
@@ -182,12 +182,12 @@ When adding a new channel or integration type:
 
 ## Query Patterns
 
-**Important:** Direct `db` usage is only allowed inside `packages/database/src/repositories/` and `packages/business/src/`. App-layer code (`apps/`, `integrations/`) calls a service from `@chatbotx.io/business`, never `db` (lint-enforced) and not a repository unless it is a pure read with no business logic. See `.agents/rules/data-access.md`.
+**Important:** Direct `db` usage is only allowed inside `packages/database/src/repositories/` and `packages/business/src/`. App-layer code (`apps/`, `integrations/`) calls a service from `@inboxos.io/business`, never `db` (lint-enforced) and not a repository unless it is a pure read with no business logic. See `.agents/rules/data-access.md`.
 
 ### Relational Queries (inside a service or repository)
 
 ```typescript
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 
 const items = await db.query.myModel.findMany({
   where: { workspaceId },
@@ -203,8 +203,8 @@ const item = await db.query.myModel.findFirst({
 ### SQL Builder (inside a service or repository)
 
 ```typescript
-import { db, eq, and, inArray } from "@chatbotx.io/database/client"
-import { myModel } from "@chatbotx.io/database/schema"
+import { db, eq, and, inArray } from "@inboxos.io/database/client"
+import { myModel } from "@inboxos.io/database/schema"
 
 await db
   .update(myModel)
@@ -217,8 +217,8 @@ await db.insert(myModel).values({ name, workspaceId })
 ### Helpers (inside a service or repository)
 
 ```typescript
-import { findOrFail } from "@chatbotx.io/database/client"
-import { myModel } from "@chatbotx.io/database/schema"
+import { findOrFail } from "@inboxos.io/database/client"
+import { myModel } from "@inboxos.io/database/schema"
 
 const item = await findOrFail({ table: myModel, where: { id } })
 ```
@@ -239,7 +239,7 @@ soft-delete state.
 **Rule:** Use `db.transaction()` whenever an action performs 2 or more write operations (INSERT, UPDATE, DELETE) so all succeed or fail together.
 
 ```typescript
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 
 await db.transaction(async (tx) => {
   const product = await productService.create({ data, tx })
@@ -259,8 +259,8 @@ await db.transaction(async (tx) => {
 
 | What | Import from |
 |------|-------------|
-| `db`, `eq`, `and`, `inArray`, etc. | `@chatbotx.io/database/client` |
-| Table models | `@chatbotx.io/database/schema` |
-| TypeScript types | `@chatbotx.io/database/types` |
-| Partials, Zod enums | `@chatbotx.io/database/partials` |
+| `db`, `eq`, `and`, `inArray`, etc. | `@inboxos.io/database/client` |
+| Table models | `@inboxos.io/database/schema` |
+| TypeScript types | `@inboxos.io/database/types` |
+| Partials, Zod enums | `@inboxos.io/database/partials` |
 | `sharedColumns`, `bigintAsString` | `../partials/shared` (within package) |

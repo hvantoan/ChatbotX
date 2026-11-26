@@ -3,10 +3,10 @@
 import type {
   PlaceCategoryListItem,
   PlaceLocationItem,
-} from "@chatbotx.io/business"
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/business"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import { useTranslations } from "next-intl"
 import { useMemo, useState } from "react"
 import { DeleteLocationDialog } from "./delete-location-dialog"

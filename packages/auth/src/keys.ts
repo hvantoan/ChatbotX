@@ -149,7 +149,7 @@ export const isSignUpDisabled = (): boolean => env.AUTH_DISABLE_SIGNUP
 
 const trailingColonPattern = /:$/
 
-const DEFAULT_MOBILE_APP_SCHEMES = ["chatconnectxapp", "chatbotxmobileapp"]
+const DEFAULT_MOBILE_APP_SCHEMES = ["chatconnectxapp", "inboxosmobileapp"]
 
 /**
  * Audience of mobile access JWTs: the REST API (`<builder>/api`), kept apart

@@ -1,7 +1,7 @@
-import { and, db, eq } from "@chatbotx.io/database/client"
-import { miniAppPublicationModel } from "@chatbotx.io/database/schema"
-import type { MiniAppPublicationModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+import { and, db, eq } from "@inboxos.io/database/client"
+import { miniAppPublicationModel } from "@inboxos.io/database/schema"
+import type { MiniAppPublicationModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 
 /** One Mini App on one WhatsApp number. */

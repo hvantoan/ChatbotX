@@ -12,9 +12,9 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "@chatbotx.io/logger": "workspace:*",
-    "@chatbotx.io/realtime-protocol": "workspace:*",
-    "@chatbotx.io/redis": "workspace:*",
+    "@inboxos.io/logger": "workspace:*",
+    "@inboxos.io/realtime-protocol": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "ky": "catalog:",
     "tsx": "catalog:",
@@ -22,8 +22,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "dotenv-cli": "catalog:",
     "jose": "catalog:",

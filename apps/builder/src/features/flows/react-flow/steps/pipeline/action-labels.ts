@@ -1,4 +1,4 @@
-import type { PipelineStepAction } from "@chatbotx.io/flow-config"
+import type { PipelineStepAction } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 
 /** Literal keys only: dynamic `t(\`...${x}\`)` keys are invisible to i18n:check. */

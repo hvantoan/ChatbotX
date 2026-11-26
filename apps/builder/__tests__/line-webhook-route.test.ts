@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { SdkException } from "@chatbotx.io/sdk"
+import { SdkException } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const findByChannelId = vi.fn()
@@ -8,7 +8,7 @@ const lineHandleRequest = vi.fn()
 const loggerError = vi.fn()
 const loggerWarn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     markUnhealthyByIdentifier: vi.fn(),
     markLegacyInboxUnhealthy: vi.fn(),
@@ -24,13 +24,13 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceMemberService: { findOwnerUserIdByWorkspaceId: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/channel-registry/registry", () => ({
+vi.mock("@inboxos.io/channel-registry/registry", () => ({
   integrationService: {
     identifyInboxAndIntegrationAuthFromIdentifier: vi.fn(),
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { providerAccountEvent: "providerAccountEvent" },
   integrationQueue: { add: vi.fn() },
 }))

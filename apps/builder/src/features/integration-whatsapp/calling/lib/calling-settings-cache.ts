@@ -1,4 +1,4 @@
-import { invalidateCacheKeys } from "@chatbotx.io/redis"
+import { invalidateCacheKeys } from "@inboxos.io/redis"
 import { logger } from "@/lib/log"
 
 /**

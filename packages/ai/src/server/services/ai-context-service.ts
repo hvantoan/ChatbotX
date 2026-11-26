@@ -1,16 +1,16 @@
 import { createHash } from "node:crypto"
-import { isMessageStorageError } from "@chatbotx.io/database/errors"
+import { isMessageStorageError } from "@inboxos.io/database/errors"
 import {
   type AIAgentProviderModels,
   aiMessageRoles,
   senderTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   findConversationAIContextState,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import { AIJobAction, aiAgentQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/repositories"
+import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import type { ModelMessage } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import {

@@ -1,5 +1,5 @@
-import { folderService } from "@chatbotx.io/business"
-import type { FolderType } from "@chatbotx.io/database/partials"
+import { folderService } from "@inboxos.io/business"
+import type { FolderType } from "@inboxos.io/database/partials"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type {
   GetCurrentFolderSchema,

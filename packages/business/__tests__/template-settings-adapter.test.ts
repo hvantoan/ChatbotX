@@ -30,7 +30,7 @@ const {
   mockInsertReturning: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     query: {
       savedReplyModel: { findMany: mockSavedReplyFindMany },
@@ -39,7 +39,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   mediaLibraryFileRepository: { create: mockCreateFile },
   savedReplyImageRepository: {
     replaceForSavedReply: mockReplaceImages,
@@ -47,7 +47,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploader: { copyObject: mockCopyObject },
 }))
 
@@ -55,12 +55,12 @@ vi.mock("../src/logger", () => ({
   logger: { warn: vi.fn(), error: vi.fn(), info: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   savedReplyModel: { table: "SavedReply" },
 }))
 
-vi.mock("@chatbotx.io/utils", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/utils")>()),
+vi.mock("@inboxos.io/utils", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/utils")>()),
   createId: mockCreateId,
 }))
 
@@ -73,7 +73,7 @@ vi.mock("../src/bot-field/service", () => ({
       fields: { name: string; type: string }[]
     }) => {
       const { planCustomFieldResolution } = await import(
-        "@chatbotx.io/utils/custom-field"
+        "@inboxos.io/utils/custom-field"
       )
       const found = await mockFindByNameAndType(props)
       const [field] = props.fields

@@ -1,5 +1,5 @@
-import type { ContactInboxModel, InboxModel } from "@chatbotx.io/database/types"
-import type { IncomingMessage } from "@chatbotx.io/sdk"
+import type { ContactInboxModel, InboxModel } from "@inboxos.io/database/types"
+import type { IncomingMessage } from "@inboxos.io/sdk"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
   warn: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   GOOGLE_CLICK_LOOKUP_TIMEOUT_MS: 5000,
   isGoogleClickLookupCandidate: mocks.isGoogleClickLookupCandidate,
   claimGoogleClickLookup: mocks.claimGoogleClickLookup,

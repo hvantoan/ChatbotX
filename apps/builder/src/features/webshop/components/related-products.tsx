@@ -1,6 +1,6 @@
 "use client"
 
-import type { WebshopProductView } from "@chatbotx.io/database/partials"
+import type { WebshopProductView } from "@inboxos.io/database/partials"
 import { SparklesIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { ShopProduct } from "../lib/shop-product"

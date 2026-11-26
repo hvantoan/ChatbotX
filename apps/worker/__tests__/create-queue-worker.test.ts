@@ -30,7 +30,7 @@ vi.mock("bullmq", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   defaultWorkerOptions: {
     concurrency: 5,
     removeOnComplete: { count: 1000 },

@@ -19,8 +19,8 @@ cd "$ROOT"
 
 LOCAL_DB='postgresql://chatbotx:secretkey@localhost:25432/chatbotx?schema=public'
 BUILDER_PORT=3123
-LOG=/tmp/chatbotx-dev.log
-PIDFILE=/tmp/chatbotx-dev.pid
+LOG=/tmp/inboxos-dev.log
+PIDFILE=/tmp/inboxos-dev.pid
 
 DEMO_EMAIL=demo@example.com
 DEMO_PASSWORD='Demo@1234'
@@ -44,9 +44,9 @@ stop_dev() {
   fi
   # pkill the stragglers turbo spawned — scoped to this checkout so other
   # projects' tsx/next/turbo processes survive.
-  pkill -f "ChatbotX.*turbo.*dev" 2>/dev/null || true
-  pkill -f "ChatbotX.*next dev" 2>/dev/null || true
-  pkill -f "ChatbotX.*tsx --watch" 2>/dev/null || true
+  pkill -f "InboxOS.*turbo.*dev" 2>/dev/null || true
+  pkill -f "InboxOS.*next dev" 2>/dev/null || true
+  pkill -f "InboxOS.*tsx --watch" 2>/dev/null || true
   rm -f "$PIDFILE"
 }
 
@@ -61,7 +61,7 @@ log "docker compose up (postgres redis filesystem mailhog)…"
 docker compose up -d postgres redis filesystem mailhog >/dev/null
 log "waiting for postgres…"
 for i in $(seq 1 30); do
-  docker exec chatbotx-postgres-1 pg_isready -U chatbotx -d chatbotx >/dev/null 2>&1 && break
+  docker exec inboxos-postgres-1 pg_isready -U inboxos -d inboxos >/dev/null 2>&1 && break
   [[ $i == 30 ]] && die "postgres did not become ready"
   sleep 1
 done
@@ -88,7 +88,7 @@ fi
 
 # ── 4. migrations onto the LOCAL db ─────────────────────────────────────────
 log "applying pending migrations to local db…"
-DATABASE_URL="$LOCAL_DB" pnpm --filter @chatbotx.io/database db:migrate 2>&1 | tail -3
+DATABASE_URL="$LOCAL_DB" pnpm --filter @inboxos.io/database db:migrate 2>&1 | tail -3
 
 # ── 5. start turbo dev ──────────────────────────────────────────────────────
 stop_dev  # clean any previous run (also frees port 3123)

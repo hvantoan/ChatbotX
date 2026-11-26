@@ -1,12 +1,12 @@
-import type { ListInboxesResponse, RefConfig } from "@chatbotx.io/business"
+import type { ListInboxesResponse, RefConfig } from "@inboxos.io/business"
 import {
   buildInboxLink,
   buildInboxProfileLink,
   isLinkableChannel,
   isProfileLinkChannel,
-} from "@chatbotx.io/business/utils"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { InboxWithIntegrations } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/utils"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { InboxWithIntegrations } from "@inboxos.io/database/types"
 import { useTenantSettings } from "@/features/tenant"
 import { useInboxList } from "./inbox-hook"
 

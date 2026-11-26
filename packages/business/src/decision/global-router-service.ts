@@ -1,14 +1,14 @@
-import { db } from "@chatbotx.io/database/client"
-import { decisionRepository } from "@chatbotx.io/database/repositories"
+import { db } from "@inboxos.io/database/client"
+import { decisionRepository } from "@inboxos.io/database/repositories"
 import type {
   DecisionConnectionModel,
   DecisionProfileModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   type GlobalRouterConfig,
   type GlobalRouterDestination,
   globalRouterConfigSchema,
-} from "@chatbotx.io/decision-config"
+} from "@inboxos.io/decision-config"
 import { normalizeError } from "universal-error-normalizer"
 import { contactCustomFieldService } from "../contact-custom-field/service"
 import { logger } from "../logger"

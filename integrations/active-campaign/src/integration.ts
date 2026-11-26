@@ -4,7 +4,7 @@ import {
   type IntegrationDefinition,
   isUnauthorizedStatusError,
   SdkException,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { activeCampaignRequest } from "./client"
 import {
   activeCampaignAccountsPath,

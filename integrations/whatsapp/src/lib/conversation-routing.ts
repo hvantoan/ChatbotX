@@ -9,7 +9,7 @@ import {
   type ThreadControlRole,
   type ThreadControlWebhookEvent,
   threadControlRoles,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { z } from "zod"
 import { logger } from "./logger"
 import { asString, isRecord } from "./value"

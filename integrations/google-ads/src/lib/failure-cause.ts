@@ -1,5 +1,5 @@
-import { AuthException } from "@chatbotx.io/sdk"
-import type { ConnectFailureCause } from "@chatbotx.io/utils/connection"
+import { AuthException } from "@inboxos.io/sdk"
+import type { ConnectFailureCause } from "@inboxos.io/utils/connection"
 import { GoogleAdsException } from "../exception"
 import { NOT_ALLOWLISTED_REASON } from "./upload-errors"
 

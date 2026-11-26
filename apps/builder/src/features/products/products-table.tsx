@@ -1,17 +1,17 @@
 "use client"
 
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableToolbar } from "@chatbotx.io/ui/components/data-table/data-table-toolbar"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableToolbar } from "@inboxos.io/ui/components/data-table/data-table-toolbar"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
-import type { DataTableRowAction } from "@chatbotx.io/ui/types/data-table"
+} from "@inboxos.io/ui/components/ui/card"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
+import type { DataTableRowAction } from "@inboxos.io/ui/types/data-table"
 import { PlusIcon } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"

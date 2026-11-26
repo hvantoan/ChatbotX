@@ -18,7 +18,7 @@ const mocks = vi.hoisted(() => ({
 // Runs through the mocked `db.transaction` and records the initial lock keys.
 const { lockOptionsSpy } = vi.hoisted(() => ({ lockOptionsSpy: vi.fn() }))
 vi.mock("../src/template/template-resource-locks", async () => {
-  const { db } = await import("@chatbotx.io/database/client")
+  const { db } = await import("@inboxos.io/database/client")
   return {
     withTemplateLockedTransaction: (
       run: (tx: unknown) => unknown,
@@ -40,7 +40,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   changedStoredContentKeys: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: mocks.transaction,
   },
@@ -50,7 +50,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isUniqueViolationError: mocks.isUniqueViolationError,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   appointmentCalendarRepository: {
     findBy: mocks.findBy,
     getForEdit: mocks.findBy,

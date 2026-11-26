@@ -1,7 +1,7 @@
 import {
   PIPELINE_LIMITS,
   PIPELINE_REFERENCE_NAME_MAX,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 type SuffixStyle = "name" | "referenceName"
 

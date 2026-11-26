@@ -2,7 +2,7 @@ import {
   JavascriptSandboxError,
   type JavascriptSandboxErrorCode,
   MAX_CODE_LENGTH,
-} from "@chatbotx.io/javascript-sandbox"
+} from "@inboxos.io/javascript-sandbox"
 import ivm from "isolated-vm"
 
 const MEMORY_LIMIT_MB = 8

@@ -1,7 +1,7 @@
 "use server"
 
-import { productService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { productService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 
 /** The product with its variants, for the read-only Shopify details dialog. */

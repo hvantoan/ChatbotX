@@ -110,10 +110,10 @@ export const PROVIDER_ACCOUNT_TARGET_BATCH_SIZE = 200
 
 /**
  * `Inbox.disconnectReason` predates this `Connection` domain and is narrower
- * than `ConnectionStatusReason`. Lives here (not `@chatbotx.io/database`) for
+ * than `ConnectionStatusReason`. Lives here (not `@inboxos.io/database`) for
  * the same reason `connectionStatusReasons` above does — re-exported from
- * `@chatbotx.io/database/partials` for existing backend importers (mirrors
- * the `inboxStatuses` precedent in `@chatbotx.io/utils/conversation`).
+ * `@inboxos.io/database/partials` for existing backend importers (mirrors
+ * the `inboxStatuses` precedent in `@inboxos.io/utils/conversation`).
  */
 export const inboxDisconnectReasons = z.enum([
   "manual",
@@ -554,7 +554,7 @@ const failureCauseCandidate = (error: object): unknown => {
 /**
  * The provider-specific failure cause carried by a thrown connect error, if
  * any: `ConnectionProviderRejectedError.failureCause` or the `cause` entry of
- * a `ChatbotXException.data`. Duck-typed so this package needs neither class.
+ * a `InboxOSException.data`. Duck-typed so this package needs neither class.
  */
 export const connectFailureCauseOf = (
   error: unknown,

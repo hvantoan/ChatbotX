@@ -1,5 +1,5 @@
-import { createSelectSchema, folderModel } from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { createSelectSchema, folderModel } from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 
 export const folderResource = createSelectSchema(folderModel, {

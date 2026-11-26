@@ -2,13 +2,13 @@ import {
   aiAgentService,
   decisionProfileService,
   workspaceService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type FileType,
   isSmartResponseDelayOption,
-} from "@chatbotx.io/database/partials"
-import { simpleQueue } from "@chatbotx.io/redis"
-import { AIJobAction, aiAgentQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/partials"
+import { simpleQueue } from "@inboxos.io/redis"
+import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import { getKey } from "./constants"
 import { type KeywordMatchInput, matchesAnyKeywordRule } from "./keyword-match"
 import { logger } from "./lib/logger"

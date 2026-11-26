@@ -1,1 +1,1 @@
-export { whatsappFlowService } from "@chatbotx.io/business"
+export { whatsappFlowService } from "@inboxos.io/business"

@@ -1,18 +1,18 @@
-import { and, eq, isNull } from "@chatbotx.io/database/client"
+import { and, eq, isNull } from "@inboxos.io/database/client"
 import type {
   FolderType,
   TemplateCategory,
-} from "@chatbotx.io/database/partials"
-import { rootFolderId } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
+import { rootFolderId } from "@inboxos.io/database/partials"
 import {
   folderModel,
   templateInstalledResourceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   TemplateExport,
   TemplateFolderManifestEntry,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { rebuildPipelineChildMappings } from "../../sync-pipeline-mapping"
 import { folderTypeToCategory } from "../registry"
 import type { TemplateInstallContext } from "../types"

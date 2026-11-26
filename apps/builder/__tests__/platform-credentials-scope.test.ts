@@ -1,5 +1,5 @@
 // @vitest-environment node
-import type { UserModel } from "@chatbotx.io/database/types"
+import type { UserModel } from "@inboxos.io/database/types"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import { resolveCredentialScopedUserId } from "../src/features/platform-credentials/scope"
 
@@ -8,7 +8,7 @@ const { canUseOwnCredentialsSpy, isSuperAdminSpy } = vi.hoisted(() => ({
   isSuperAdminSpy: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   canUseOwnCredentials: canUseOwnCredentialsSpy,
   isSuperAdmin: isSuperAdminSpy,
 }))

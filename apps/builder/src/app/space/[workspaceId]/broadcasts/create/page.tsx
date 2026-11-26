@@ -1,8 +1,8 @@
 import {
   broadcastPlanPolicyService,
   integrationWhatsappService,
-} from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import type { SearchParams } from "nuqs/server"
 import { CreateBroadcastForm } from "@/features/broadcasts/create-broadcast-form"

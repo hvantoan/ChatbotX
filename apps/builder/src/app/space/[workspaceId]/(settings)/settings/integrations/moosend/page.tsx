@@ -1,5 +1,5 @@
-import { integrationMoosendService } from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { integrationMoosendService } from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { ManageMoosend } from "@/features/integration-moosend/components/manage-moosend"
 

@@ -3,8 +3,8 @@
 import type {
   TemplateInstallationStatus,
   TemplateSyncStatus,
-} from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
+} from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
 import { useOptionalLabel } from "../lib/use-optional-label"
 
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline"

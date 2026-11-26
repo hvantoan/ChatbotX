@@ -60,8 +60,8 @@ vi.mock("@/lib/safe-action", () => ({
   workspaceActionClientAllowExpired: makeChain("allowExpired"),
 }))
 
-vi.mock("@chatbotx.io/business", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@chatbotx.io/business")>()
+vi.mock("@inboxos.io/business", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@inboxos.io/business")>()
   return {
     ...actual,
     workspaceApiTokenService: {
@@ -73,9 +73,9 @@ vi.mock("@chatbotx.io/business", async (importOriginal) => {
   }
 })
 
-vi.mock("@chatbotx.io/business/pipeline", async (importOriginal) => {
+vi.mock("@inboxos.io/business/pipeline", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/business/pipeline")>()
+    await importOriginal<typeof import("@inboxos.io/business/pipeline")>()
   return {
     ...actual,
     pipelineService: mocks.pipelineService,

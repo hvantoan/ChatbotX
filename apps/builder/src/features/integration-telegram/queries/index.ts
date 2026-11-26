@@ -1,5 +1,5 @@
-import { telegramIntegrationService } from "@chatbotx.io/business"
-import type { IntegrationTelegramModel } from "@chatbotx.io/database/types"
+import { telegramIntegrationService } from "@inboxos.io/business"
+import type { IntegrationTelegramModel } from "@inboxos.io/database/types"
 
 export const listIntegrationTelegrams = async ({
   where,

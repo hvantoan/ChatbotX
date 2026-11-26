@@ -23,7 +23,7 @@ const listTenantSuspendedWithoutConnectionByOwnerMock = vi.fn(
 )
 const invalidateCacheByTagsMock = vi.fn(async () => undefined)
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: vi.fn(() => ({
       set: vi.fn(() => ({
@@ -41,12 +41,12 @@ vi.mock("@chatbotx.io/database/client", () => ({
 
 // Partial mock: other modules in the import chain read real models off the
 // schema, so keep the originals and only override tenantModel.
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   tenantModel: { id: "tenant.id", ownerId: "tenant.ownerId" },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   connectionRepository: { listPausedByOwner: listPausedByOwnerMock },
   inboxRepository: {
     listTenantSuspendedWithoutConnectionByOwner:
@@ -57,7 +57,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
 // Partial mock for the same reason as the schema mock above: analytics
 // services in the import chain read real exports (e.g. bloomFilter) at
 // module scope.
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   withCache: (_key: string, fn: () => unknown) => fn(),
   invalidateCacheByTags: invalidateCacheByTagsMock,

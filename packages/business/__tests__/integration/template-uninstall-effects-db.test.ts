@@ -6,13 +6,13 @@
  * deleted; the installer's uploads and another installation's files are not.
  */
 
-import { db, eq } from "@chatbotx.io/database/client"
+import { db, eq } from "@inboxos.io/database/client"
 import {
   mediaLibraryFileModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const realDatabaseUrl = (): string | null => {
@@ -28,8 +28,8 @@ const realDatabaseUrl = (): string | null => {
 }
 
 const deleteObject = vi.hoisted(() => vi.fn().mockResolvedValue(undefined))
-vi.mock("@chatbotx.io/filesystem", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/filesystem")>()),
+vi.mock("@inboxos.io/filesystem", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/filesystem")>()),
   uploader: { deleteObject },
 }))
 vi.mock("../../src/audit/dispatcher", () => ({

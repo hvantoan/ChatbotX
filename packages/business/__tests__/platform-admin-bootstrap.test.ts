@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   keys: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   platformAdminRepository: {
     bootstrapRootAdmin: mocks.bootstrapRootAdmin,
   },

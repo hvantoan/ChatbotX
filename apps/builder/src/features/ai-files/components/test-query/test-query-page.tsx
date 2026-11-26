@@ -1,6 +1,6 @@
 "use client"
 
-import type { AIFileWithProcessing } from "@chatbotx.io/business"
+import type { AIFileWithProcessing } from "@inboxos.io/business"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"
 import { useQueryStates } from "nuqs"

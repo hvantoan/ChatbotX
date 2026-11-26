@@ -1,5 +1,5 @@
-import type { Oauth2AuthValue } from "@chatbotx.io/sdk"
-import { authValueSchema } from "@chatbotx.io/sdk"
+import type { Oauth2AuthValue } from "@inboxos.io/sdk"
+import { authValueSchema } from "@inboxos.io/sdk"
 import { inArray } from "drizzle-orm"
 import type { DatabaseClient } from "../../src/client"
 import type {
@@ -22,9 +22,9 @@ export const parseOauth2Auth = (authRaw: unknown): Oauth2AuthValue | null => {
 }
 
 /**
- * Mirrors `@chatbotx.io/business/connection`'s `authExpiresAtOf` — not
- * importable here (see the module doc comment: `@chatbotx.io/business`
- * already depends on `@chatbotx.io/database`, so the reverse import would be
+ * Mirrors `@inboxos.io/business/connection`'s `authExpiresAtOf` — not
+ * importable here (see the module doc comment: `@inboxos.io/business`
+ * already depends on `@inboxos.io/database`, so the reverse import would be
  * circular). Keep the two in sync if the `AuthValue` oauth2 shape changes.
  */
 export const authExpiresAtOf = (authRaw: unknown): Date | null => {
@@ -221,7 +221,7 @@ export const loadConnectionsByFk = async (
  *    `provider_revoked`/`refresh_failed` both collapse to the legacy
  *    `token_revoked` value) — translate the existing row's reason through
  *    `CONNECTION_TO_INBOX_DISCONNECT_REASON` (the authoritative 1-1 mapping
- *    from `@chatbotx.io/utils`, read-only here) before comparing.
+ *    from `@inboxos.io/utils`, read-only here) before comparing.
  */
 export const connectionAgreesWithCandidate = (
   existing: {

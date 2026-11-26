@@ -3,7 +3,7 @@ import {
   encodeTemplateFlowToken,
   TemplateFlowOrigin,
   type TemplateFlowToken,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const findBroadcastByIdForResponse = vi.fn()

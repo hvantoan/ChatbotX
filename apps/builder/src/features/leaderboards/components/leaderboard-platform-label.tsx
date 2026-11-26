@@ -1,6 +1,6 @@
 "use client"
 
-import type { LeaderboardPlatform } from "@chatbotx.io/database/partials"
+import type { LeaderboardPlatform } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import {
   LEADERBOARD_PLATFORM_ICON,

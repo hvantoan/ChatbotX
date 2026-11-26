@@ -2,7 +2,7 @@ import {
   type DripSubscribeSubscriberSchema,
   dripSubscribeSubscriberDefaultFn,
   dripSubscribeSubscriberSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import DripSubscribeSubscriberEditor from "./editor"
 import DripSubscribeSubscriberViewer from "./viewer"

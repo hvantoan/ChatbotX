@@ -1,4 +1,4 @@
-import { PRESENCE_REPORT_INTERVAL_MS } from "@chatbotx.io/realtime-protocol/presence"
+import { PRESENCE_REPORT_INTERVAL_MS } from "@inboxos.io/realtime-protocol/presence"
 import { createEnv } from "@t3-oss/env-core"
 import { z } from "zod"
 

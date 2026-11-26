@@ -2,8 +2,8 @@ import {
   type GoogleAdsEventOptions,
   type GoogleAdsEventStatus,
   googleAdsEventOptionsSchema,
-} from "@chatbotx.io/database/partials"
-import type { GoogleAdsConversionEventModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { GoogleAdsConversionEventModel } from "@inboxos.io/database/types"
 import type { GoogleAdsEventResource } from "../schema/events"
 import { maskClickId } from "./mask-click-id"
 

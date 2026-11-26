@@ -6,8 +6,8 @@ import {
   isNativeButtonType,
   normalizeDialablePhoneNumber,
   resolveSendTextLengthLimits,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import { mapStepButtons, readStepButtons } from "./step-buttons"
 

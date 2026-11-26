@@ -11,11 +11,11 @@ describe("buildMcpConnectSnippets", () => {
     expect(snippets.streamableUrl).toBe("https://app.chatbotx.io/mcp/messages")
     expect(snippets.sseUrl).toBe("https://app.chatbotx.io/mcp/sse")
     expect(snippets.claudeCode).toBe(
-      'claude mcp add chatbotx -t http -s user "https://app.chatbotx.io/mcp/messages"',
+      'claude mcp add inboxos -t http -s user "https://app.chatbotx.io/mcp/messages"',
     )
     expect(JSON.parse(snippets.claudeDesktop)).toEqual({
       mcpServers: {
-        chatbotx: {
+        inboxos: {
           type: "http",
           url: snippets.streamableUrl,
         },
@@ -23,7 +23,7 @@ describe("buildMcpConnectSnippets", () => {
     })
     expect(JSON.parse(snippets.cursor)).toEqual({
       mcpServers: {
-        chatbotx: {
+        inboxos: {
           type: "http",
           url: snippets.streamableUrl,
         },
@@ -31,7 +31,7 @@ describe("buildMcpConnectSnippets", () => {
     })
     expect(snippets.chatgpt).toBe(snippets.sseUrl)
     expect(snippets.stdio).toBe(
-      "CHATBOTX_API_URL=https://app.chatbotx.io/api CHATBOTX_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp",
+      "INBOXOS_API_URL=https://app.chatbotx.io/api INBOXOS_API_KEY=<workspace-token> npx -y @hvantoan/inboxos-mcp",
     )
   })
 })

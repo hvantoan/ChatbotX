@@ -7,14 +7,14 @@ const mocks = vi.hoisted(() => ({
   getModerationSummary: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   commentAutomationAnalyticsService: {
     listModerationLogs: mocks.listModerationLogs,
     getModerationSummary: mocks.getModerationSummary,
   },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   commentAutomationService: { findOrFail: mocks.findOrFail },
   contactInboxService: { findManyByIds: mocks.findManyByIds },
 }))

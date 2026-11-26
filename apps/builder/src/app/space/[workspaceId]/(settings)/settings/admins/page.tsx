@@ -1,15 +1,12 @@
-import {
-  quotaEnforcementService,
-  workspaceService,
-} from "@chatbotx.io/business"
-import { buttonVariants } from "@chatbotx.io/ui/components/ui/button"
+import { quotaEnforcementService, workspaceService } from "@inboxos.io/business"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@chatbotx.io/ui/components/ui/card"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/ui/components/ui/card"
+import { getIdFromParams } from "@inboxos.io/utils"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"

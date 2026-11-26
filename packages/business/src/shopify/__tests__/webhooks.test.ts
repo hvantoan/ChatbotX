@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   queueAdd: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   shopifyRepository: {
     findIntegration: (...args: unknown[]) => mocks.findIntegration(...args),
   },
@@ -21,7 +21,7 @@ vi.mock("../auth", () => ({
 }))
 vi.mock("../integration.service", () => ({ shopifyIntegrationService: {} }))
 vi.mock("../sync.service", () => ({ shopifySyncService: {} }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { shopifyWebhook: "shopifyWebhook" },
   getShopifyWebhookJobId: (id: string) => `shopify-webhook-${id}`,
   integrationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },

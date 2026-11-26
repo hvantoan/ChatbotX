@@ -1,12 +1,12 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
-import { and, db, eq, findOrFail, gt, sql } from "@chatbotx.io/database/client"
-import { inboxStatuses, integrationTypes } from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+import type { DatabaseClient } from "@inboxos.io/database/client"
+import { and, db, eq, findOrFail, gt, sql } from "@inboxos.io/database/client"
+import { inboxStatuses, integrationTypes } from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import {
   inboxModel,
   integrationTelegramModel,
-} from "@chatbotx.io/database/schema"
-import type { IntegrationTelegramModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/schema"
+import type { IntegrationTelegramModel } from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
 import {
   CONNECTION_STORE_BINDINGS,

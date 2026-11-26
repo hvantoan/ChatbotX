@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => ({
   updateAuth: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   tiktokIntegrationService: {
     findAll: mocks.findAll,
     findById: mocks.findById,
@@ -21,28 +21,28 @@ vi.mock("@chatbotx.io/business", () => ({
     markTokenRefreshError: mocks.markTokenRefreshError,
   },
 }))
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   auditService: { record: mocks.auditRecord },
 }))
-vi.mock("@chatbotx.io/business/error-log", () => ({
+vi.mock("@inboxos.io/business/error-log", () => ({
   logProviderError: mocks.logProviderError,
 }))
-vi.mock("@chatbotx.io/integration-tiktok", () => ({
+vi.mock("@inboxos.io/integration-tiktok", () => ({
   isRevokedTokenError: mocks.isRevokedTokenError,
 }))
-vi.mock("@chatbotx.io/integration-tiktok/apis/auth", () => ({
+vi.mock("@inboxos.io/integration-tiktok/apis/auth", () => ({
   refreshAccessToken: mocks.refreshAccessToken,
 }))
-vi.mock("@chatbotx.io/integration-tiktok/lib/scopes", () => ({
+vi.mock("@inboxos.io/integration-tiktok/lib/scopes", () => ({
   parseTiktokScopes: mocks.parseTiktokScopes,
 }))
-vi.mock("@chatbotx.io/integration-tiktok/lib/token-utils", () => ({
+vi.mock("@inboxos.io/integration-tiktok/lib/token-utils", () => ({
   buildTokenTimestamps: vi.fn(() => ({
     expiresAt: "2026-10-10T00:00:00.000Z",
     refreshExpiresAt: "2027-10-10T00:00:00.000Z",
   })),
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mocks.runExclusive },
 }))
 vi.mock("../../lib/logger", () => ({
@@ -60,7 +60,7 @@ vi.mock("../src/lib/run-job-with-audit-context", () => ({
 
 // Dynamic `import()` is required here, not a static import: the `vi.mock`
 // calls above must be registered before the SUT (and its
-// `@chatbotx.io/business`/`@chatbotx.io/integration-tiktok`/`@chatbotx.io/redis`
+// `@inboxos.io/business`/`@inboxos.io/integration-tiktok`/`@inboxos.io/redis`
 // dependencies) is evaluated, which only a post-`vi.mock` dynamic import
 // guarantees.
 const { refreshTiktokTokens } = await import(

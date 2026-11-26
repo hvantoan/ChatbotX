@@ -1,4 +1,4 @@
-import { resolveFilterTimezone } from "@chatbotx.io/utils/datetime"
+import { resolveFilterTimezone } from "@inboxos.io/utils/datetime"
 import {
   addDays,
   addMonths,

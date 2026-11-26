@@ -1,7 +1,7 @@
 import {
   getRealtimeStreamKey,
   getRealtimeStreamShard,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import { afterEach, describe, expect, test, vi } from "vitest"
 
 const { loggerErrorMock, loggerWarnMock } = vi.hoisted(() => ({

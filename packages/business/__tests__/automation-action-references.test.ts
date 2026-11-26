@@ -17,7 +17,7 @@ const mocks = vi.hoisted(() => ({
   listTeams: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   flowRepository: {
     listIdsByIds: mocks.listFlowIds,
     listCurrentVersionNodesByFlowIds: mocks.listNodes,

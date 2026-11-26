@@ -1,7 +1,7 @@
 "use client"
 
-import { MINI_APP_MAX_IMAGE_BASE64_LENGTH } from "@chatbotx.io/mini-app"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { MINI_APP_MAX_IMAGE_BASE64_LENGTH } from "@inboxos.io/mini-app"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { ImagePlusIcon, Loader2Icon, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useAction } from "next-safe-action/hooks"

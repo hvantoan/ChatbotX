@@ -1,9 +1,9 @@
 import "server-only"
 
-import { instagramIntegrationService } from "@chatbotx.io/business"
-import type { IntegrationInstagramModel } from "@chatbotx.io/database/types"
-import type { InstagramAuthValue } from "@chatbotx.io/integration-instagram"
-import { integration as integrationInstagram } from "@chatbotx.io/integration-instagram"
+import { instagramIntegrationService } from "@inboxos.io/business"
+import type { IntegrationInstagramModel } from "@inboxos.io/database/types"
+import type { InstagramAuthValue } from "@inboxos.io/integration-instagram"
+import { integration as integrationInstagram } from "@inboxos.io/integration-instagram"
 import { runBrandingFollowUps } from "@/features/channel-connect/lib/branding-follow-ups"
 import { connectSessionCandidate } from "@/features/channel-connect/lib/connect-session-candidate"
 import type { ResolvedConnectSession } from "@/features/channel-connect/lib/resolve-connect-session"

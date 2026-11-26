@@ -3,19 +3,19 @@ import {
   enqueueLeaderboardReverse,
   inboxHasLeaderboardRule,
   recordTelegramBotChatStatus,
-} from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business/leaderboard"
 import {
   type ContactSource,
   contactSources,
   type IntegrationType,
-} from "@chatbotx.io/database/partials"
-import type { InboxModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { InboxModel } from "@inboxos.io/database/types"
 import type {
   ChannelAudienceEvent,
   ChannelAudienceUser,
   IncomingContact,
-} from "@chatbotx.io/sdk"
-import type { IntegrationJobChannelAudienceEvent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import type { IntegrationJobChannelAudienceEvent } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 import {

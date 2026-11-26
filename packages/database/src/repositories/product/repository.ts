@@ -12,24 +12,24 @@ import {
   or,
   relationsFilterToSQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   inventoryPolicyTypes,
   type ProductStatus,
   type StoreSource,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   productCategoryModel,
   productModel,
   productVariantModel,
   vendorModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   likeContains,
   parseOrderByAsObject,
   parsePagination,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { alias } from "drizzle-orm/pg-core"
 import { vendorRepository } from "../vendor/repository"
 

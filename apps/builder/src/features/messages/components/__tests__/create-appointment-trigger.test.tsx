@@ -54,7 +54,7 @@ vi.mock(
   () => ({ createInboxBookingLinkAction: { bind: () => ({}) } }),
 )
 
-vi.mock("@chatbotx.io/ui/components/ui/dialog", () => ({
+vi.mock("@inboxos.io/ui/components/ui/dialog", () => ({
   Dialog: ({ open, children }: { open: boolean; children: React.ReactNode }) =>
     open ? <div data-testid="dialog">{children}</div> : null,
   DialogContent: ({ children }: { children: React.ReactNode }) => (

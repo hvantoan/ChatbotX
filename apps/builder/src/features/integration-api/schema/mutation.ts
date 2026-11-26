@@ -1,5 +1,5 @@
-import { apiConnectConfigSchema } from "@chatbotx.io/business/integration-api/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { apiConnectConfigSchema } from "@inboxos.io/business/integration-api/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import type { z } from "zod"
 
 export const createApiRequest = apiConnectConfigSchema.extend({

@@ -1,4 +1,4 @@
-import type { SendFlowStepData } from "@chatbotx.io/sdk"
+import type { SendFlowStepData } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { resolveStoredStepContent } from "../src/chat/utils/stored-step-content"
 

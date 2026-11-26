@@ -1,31 +1,31 @@
 import {
   conversationService,
   questionnaireSubmissionService,
-} from "@chatbotx.io/business"
-import { enqueueLeaderboardAward } from "@chatbotx.io/business/leaderboard"
-import type { ConversationAttributes } from "@chatbotx.io/database/partials"
+} from "@inboxos.io/business"
+import { enqueueLeaderboardAward } from "@inboxos.io/business/leaderboard"
+import type { ConversationAttributes } from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   getSafeSinceTime,
-} from "@chatbotx.io/database/repositories"
-import type { QuestionnaireQuestionModel } from "@chatbotx.io/database/types"
-import { webhookChannelOrigin } from "@chatbotx.io/events/context"
+} from "@inboxos.io/database/repositories"
+import type { QuestionnaireQuestionModel } from "@inboxos.io/database/types"
+import { webhookChannelOrigin } from "@inboxos.io/events/context"
 import {
   BUTTON_LABEL_MAX,
   MAX_QUICK_REPLIES,
   type QuestionnairesStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   MESSENGER_NATIVE_QUICK_REPLY,
   type MessageButtonTemplate,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   ChatJobAction,
   chatQueue,
   flowContinuationJobOptions,
   IntegrationJobAction,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { ExecuteStepProps } from "../../integration/handlers/flow-utils"
 import type { ExecuteStepResult } from "../../integration/handlers/step"
 import { waitForChatJobCompletion } from "../../integration/utils/message"

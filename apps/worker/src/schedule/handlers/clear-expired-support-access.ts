@@ -1,10 +1,10 @@
-import { workspaceSupportAccessService } from "@chatbotx.io/business"
-import { getChildLogger } from "@chatbotx.io/logger"
+import { workspaceSupportAccessService } from "@inboxos.io/business"
+import { getChildLogger } from "@inboxos.io/logger"
 import {
   distributedLock,
   distributedStore,
   isLockAcquisitionError,
-} from "@chatbotx.io/redis"
+} from "@inboxos.io/redis"
 
 const LOCK_KEY = "schedule:clear-expired-support-access"
 const log = getChildLogger("clear-expired-support-access")

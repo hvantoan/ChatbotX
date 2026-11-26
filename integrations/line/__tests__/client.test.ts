@@ -1,4 +1,4 @@
-import { AuthException } from "@chatbotx.io/sdk"
+import { AuthException } from "@inboxos.io/sdk"
 import { HttpResponse, http } from "msw/http"
 import { setupServer } from "msw/node"
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "vitest"

@@ -8,11 +8,11 @@
  * explicitly configured local database with the pipelines migration applied.
  */
 
-import { db, eq, inArray } from "@chatbotx.io/database/client"
+import { db, eq, inArray } from "@inboxos.io/database/client"
 import {
   pipelineActivityRepository,
   templateInstallationRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   contactModel,
   inboxTeamModel,
@@ -26,7 +26,7 @@ import {
   userModel,
   workspaceMemberModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
 import { barrier, heldBy, within } from "../helpers/template-concurrency"
 
@@ -50,7 +50,7 @@ const mocks = vi.hoisted(() => ({
   invalidateCacheByTags: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitPipelineItemEvent: mocks.emitPipelineItemEvent,
 }))
 vi.mock("../../src/platform/realtime-broadcast", () => ({
@@ -65,8 +65,8 @@ vi.mock("../../src/conversation/service", () => ({
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: mocks.invalidateCacheByTags,
 }))
@@ -75,8 +75,8 @@ vi.mock("../../src/ecommerce-settings/service", () => ({
     get: vi.fn().mockResolvedValue({ payments: { currency: "VND" } }),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   defaultQueue: {
     add: mocks.queueAdd,
     getJob: vi.fn().mockResolvedValue(null),

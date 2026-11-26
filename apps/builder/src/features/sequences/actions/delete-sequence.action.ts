@@ -1,7 +1,7 @@
 "use server"
 
-import { sequenceService } from "@chatbotx.io/business/sequence"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { sequenceService } from "@inboxos.io/business/sequence"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { workspaceActionClient } from "@/lib/safe-action"
 
 export const deleteSequenceAction = workspaceActionClient

@@ -70,7 +70,7 @@ vi.mock("@/features/minigames/lib/play-url", () => ({
   buildMinigamePlayUrl: (id: string) => `play:${id}`,
 }))
 
-vi.mock("@chatbotx.io/business/minigame", () => ({
+vi.mock("@inboxos.io/business/minigame", () => ({
   minigameService,
   minigameContactService,
 }))

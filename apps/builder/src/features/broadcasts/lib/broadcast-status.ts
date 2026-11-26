@@ -2,7 +2,7 @@ import {
   type BroadcastStatus,
   broadcastStatuses,
   isRecurringTemplate,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 
 /** Order of the left-panel filters (design). */
 export const BROADCAST_FILTER_STATUSES = [

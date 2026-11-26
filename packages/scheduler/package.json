@@ -1,5 +1,5 @@
 {
-  "name": "@chatbotx.io/scheduler",
+  "name": "@inboxos.io/scheduler",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -7,12 +7,12 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@chatbotx.io/redis": "workspace:*",
+    "@inboxos.io/redis": "workspace:*",
     "ioredis": "catalog:"
   },
   "devDependencies": {
-    "@chatbotx.io/typescript-config": "workspace:*",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/typescript-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

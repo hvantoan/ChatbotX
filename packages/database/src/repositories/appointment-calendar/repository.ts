@@ -7,19 +7,19 @@ import {
   ilike,
   inArray,
   isNull,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   appointmentCalendarAvailabilityModel,
   appointmentCalendarModel,
   appointmentCalendarReminderModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import {
   escapeLikePattern,
   getPaginationWithDefaults,
   likeContains,
   parseOrderBy,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 
 export type AppointmentCalendarListInput = {
   workspaceId: string

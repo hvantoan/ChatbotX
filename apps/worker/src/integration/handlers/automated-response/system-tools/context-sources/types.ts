@@ -1,7 +1,7 @@
 import type {
   AIConversationSourceModel,
   AttachmentModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 export type ConversationContextSourceType =
   | "document"

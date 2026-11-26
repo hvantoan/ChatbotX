@@ -1,9 +1,9 @@
-import { PRESENCE_TTL_MS } from "@chatbotx.io/realtime-protocol/presence"
-import { presenceStore } from "@chatbotx.io/redis"
+import { PRESENCE_TTL_MS } from "@inboxos.io/realtime-protocol/presence"
+import { presenceStore } from "@inboxos.io/redis"
 import { logger } from "../logger"
 import { workspaceMemberService } from "../workspace-member/service"
 
-export { PRESENCE_TTL_MS } from "@chatbotx.io/realtime-protocol/presence"
+export { PRESENCE_TTL_MS } from "@inboxos.io/realtime-protocol/presence"
 
 /**
  * Upper bound on how many members listOnlineMembers scans from Redis before

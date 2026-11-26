@@ -1,12 +1,12 @@
 "use client"
 
-import type { FlowNode, NodeType } from "@chatbotx.io/flow-config"
+import type { FlowNode, NodeType } from "@inboxos.io/flow-config"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
-} from "@chatbotx.io/ui/components/ui/sheet"
+} from "@inboxos.io/ui/components/ui/sheet"
 import { useReactFlow, useStore } from "@xyflow/react"
 import { LoaderCircleIcon } from "lucide-react"
 import { memo, useEffect, useMemo, useRef, useState } from "react"

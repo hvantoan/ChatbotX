@@ -1,6 +1,6 @@
 "use server"
 
-import { workingHoursService } from "@chatbotx.io/business"
+import { workingHoursService } from "@inboxos.io/business"
 import { workspaceIdAndIdRequestParams } from "@/features/common/schema"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 

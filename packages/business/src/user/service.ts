@@ -3,7 +3,7 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   auditLogRepository,
   authAccountRepository,
@@ -19,12 +19,12 @@ import {
   userDeviceTokenRepository,
   userRepository,
   workspaceRepository,
-} from "@chatbotx.io/database/repositories"
-import { userModel } from "@chatbotx.io/database/schema"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
-import type { UserModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import { userModel } from "@inboxos.io/database/schema"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
+import type { UserModel } from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
-import { ChatbotXException, notFoundException } from "../errors"
+import { InboxOSException, notFoundException } from "../errors"
 import { logger } from "../logger"
 import { resourceDeletionLogService } from "../resource-deletion-log/service"
 import { nextScheduledDeletionAt } from "../workspace/deletion-schedule"
@@ -82,7 +82,7 @@ class UserService extends BaseService {
     userId: string
   }): Promise<{ scheduledDeletionAt: Date }> {
     if (props.actor.userId !== props.userId) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Account deletion can only be requested for the current user",
         "forbidden",
         403,
@@ -105,7 +105,7 @@ class UserService extends BaseService {
 
       const ownedTenant = await tenantRepository.findByOwner(props.userId, tx)
       if (ownedTenant) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "Reseller accounts must contact support to delete their account",
           "accountDeletionSupportRequired",
           403,

@@ -1,7 +1,7 @@
 import {
   googleAdsConversionEventRepository,
   type ListGoogleAdsEventsInput,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import { type DeliverInput, deliverGoogleAdsConversion } from "./delivery"
 import {
   pollGoogleAdsProcessingStatus,

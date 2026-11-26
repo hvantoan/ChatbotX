@@ -1,16 +1,16 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import type {
   CredentialType,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/partials"
+import type { ConnectionModel } from "@inboxos.io/database/types"
 import type {
   AuthValue,
   ConnectionProvider,
   Integration,
   IntegrationDefinition,
-} from "@chatbotx.io/sdk"
-import type { SelfServeSecret } from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/sdk"
+import type { SelfServeSecret } from "@inboxos.io/utils/connection"
 import type { ConnectionStoreBinding } from "./store-bindings"
 
 export type ConnectionTeardownResult = {
@@ -24,7 +24,7 @@ export type ConnectionTeardownHook = (input: {
   auth: AuthValue
 }) => Promise<ConnectionTeardownResult>
 
-export type { SelfServeSecret } from "@chatbotx.io/utils/connection"
+export type { SelfServeSecret } from "@inboxos.io/utils/connection"
 
 export type SelfServeConnectActor =
   | { actorUserId: string; actorTokenId?: never }
@@ -41,7 +41,7 @@ export type SelfServeConnectHandler = (input: {
  * Everything the Connection domain needs for one `IntegrationType`: the
  * runtime `Integration` wrapper (refresh/disconnect), the provider's
  * connect/verify/webhook adapter, and its DB store binding.
- * `@chatbotx.io/connections` assembles `Record<IntegrationType, ConnectionAdapter | null>`
+ * `@inboxos.io/connections` assembles `Record<IntegrationType, ConnectionAdapter | null>`
  * from each `integrations/<provider>`'s `connection` export plus
  * `CONNECTION_STORE_BINDINGS` — `null` for types with no connect lifecycle
  * yet (for example `metaCatalog`, `outlookCalendar`, and `threads`).
@@ -69,7 +69,7 @@ export type ConnectionAdapter = {
   // biome-ignore lint/suspicious/noExplicitAny: heterogeneous registry, see comment above
   provider: ConnectionProvider<any, any>
   /**
-   * Absent only for `chatbotx` — the internal built-in channel has no
+   * Absent only for `inboxos` — the internal built-in channel has no
    * `Integration<Chatbotx>` satellite table; the `Inbox` row itself is the
    * whole connection, so there is nothing for a store binding to load/insert.
    */

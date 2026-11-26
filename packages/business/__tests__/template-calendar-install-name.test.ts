@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   replaceReminders: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", async (importOriginal) => ({
+vi.mock("@inboxos.io/database/repositories", async (importOriginal) => ({
   ...(await importOriginal<object>()),
   appointmentCalendarRepository: {
     create: mocks.create,

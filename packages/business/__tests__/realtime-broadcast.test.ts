@@ -47,7 +47,7 @@ vi.mock("../src/logger", () => ({
   logger: { error: loggerError, info: vi.fn(), warn: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   defaultQueue: { add: defaultQueueAdd },
   DefaultJobAction: {
     retryRealtimeMemberRevoke: "retryRealtimeMemberRevoke",

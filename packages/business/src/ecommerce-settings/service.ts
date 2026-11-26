@@ -1,4 +1,4 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   ECOMMERCE_SETTINGS_DEFAULTS,
   type EcommerceCheckoutSettings,
@@ -14,18 +14,18 @@ import {
   isOnlinePaymentMethod,
   type PaymentMethod,
   type StoreSource,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type EcommerceSettingsValues,
   ecommerceSettingsRepository,
   paymentProviderRepository,
-} from "@chatbotx.io/database/repositories"
-import type { EcommerceSettingsModel } from "@chatbotx.io/database/types"
-import { isPaypalCurrency } from "@chatbotx.io/payments"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/database/repositories"
+import type { EcommerceSettingsModel } from "@inboxos.io/database/types"
+import { isPaypalCurrency } from "@inboxos.io/payments"
+import { withCache } from "@inboxos.io/redis"
 import { BaseService } from "../base.service"
 import { ecommerceOpenHoursService } from "../ecommerce-open-hours/service"
-import { ChatbotXException, validationException } from "../errors"
+import { InboxOSException, validationException } from "../errors"
 import { flowService } from "../flow/service"
 import { logger } from "../logger"
 import {
@@ -297,7 +297,7 @@ class EcommerceSettingsService extends BaseService {
       }
     } catch (err) {
       if (
-        err instanceof ChatbotXException &&
+        err instanceof InboxOSException &&
         (err.code === "shopifySyncInProgress" ||
           err.code === "woocommerceSyncInProgress")
       ) {
@@ -435,7 +435,7 @@ class EcommerceSettingsService extends BaseService {
     const access = await this.resolveProFeatures(workspaceId)
     const denied = requested.find((feature) => !access[feature])
     if (denied) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         `The ${denied} setting needs a Pro plan.`,
         "ecommerceProFeatureRequired",
         403,

@@ -1,4 +1,4 @@
-import { getIdFromParams } from "@chatbotx.io/utils"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import { AIFunctionsTable } from "@/features/ai-functions/ai-functions-table"

@@ -1,3 +1,3 @@
-import type { IntegrationDeepseekModel } from "@chatbotx.io/database/types"
+import type { IntegrationDeepseekModel } from "@inboxos.io/database/types"
 
 export type IntegrationDeepseekResource = IntegrationDeepseekModel

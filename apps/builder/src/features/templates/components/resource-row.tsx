@@ -1,8 +1,8 @@
 "use client"
 
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Checkbox } from "@chatbotx.io/ui/components/ui/checkbox"
-import { Label } from "@chatbotx.io/ui/components/ui/label"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Checkbox } from "@inboxos.io/ui/components/ui/checkbox"
+import { Label } from "@inboxos.io/ui/components/ui/label"
 import { LockIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useOptionalLabel } from "../lib/use-optional-label"

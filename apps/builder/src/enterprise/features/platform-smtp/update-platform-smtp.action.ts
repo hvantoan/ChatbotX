@@ -3,11 +3,11 @@
 import {
   assertEnterpriseFeatures,
   platformCredentialService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   type SmtpCredential,
   smtpCredentialUpdateSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import { verifySmtpTransport } from "@/features/integration-smtp/lib/verify-connection"

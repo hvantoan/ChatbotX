@@ -1,6 +1,6 @@
 "use client"
 
-import type { AISpeechToTextProvider } from "@chatbotx.io/flow-config"
+import type { AISpeechToTextProvider } from "@inboxos.io/flow-config"
 import { useTranslations } from "next-intl"
 import { useWatch } from "react-hook-form"
 import { getAiProviderLabelKey } from "@/features/ai-agents/lib/ai-provider-label"

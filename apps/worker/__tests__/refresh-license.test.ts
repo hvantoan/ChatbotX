@@ -7,10 +7,10 @@ const runExclusive = vi.fn(async ({ fn }: { fn: () => Promise<unknown> }) =>
 const lockExists = vi.fn()
 const warn = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   refreshLicense: refreshLicenseToken,
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => {
+vi.mock("@inboxos.io/redis", async (importOriginal) => {
   const actual = await importOriginal()
   return {
     ...actual,
@@ -18,7 +18,7 @@ vi.mock("@chatbotx.io/redis", async (importOriginal) => {
     distributedStore: { exists: lockExists },
   }
 })
-vi.mock("@chatbotx.io/logger", () => ({
+vi.mock("@inboxos.io/logger", () => ({
   getChildLogger: () => ({ warn }),
 }))
 

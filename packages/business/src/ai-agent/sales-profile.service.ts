@@ -1,4 +1,4 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type AIAgentSalesProfile,
   type AIAgentSalesProfileVersionSource,
@@ -8,7 +8,7 @@ import {
   aiAgentTrainingMessageRoles,
   aiAgentTrainingProposalSchema,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type AIAgentSalesProfileVersionPage,
   type AIAgentTrainingMessagePage,
@@ -16,11 +16,11 @@ import {
   aiAgentTrainingMessageRepository,
   InvalidPipelineCursorError,
   productRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   AIAgentSalesProfileVersionModel,
   AIAgentTrainingMessageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { z } from "zod"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"

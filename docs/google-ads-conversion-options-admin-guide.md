@@ -7,7 +7,7 @@ works internally: `docs/google-ads-conversion-tracking.md`.
 
 ## 1. What "Avoid duplicate conversions" does
 
-Retries, duplicate webhooks and flow reruns can run a step more than once. ChatbotX
+Retries, duplicate webhooks and flow reruns can run a step more than once. InboxOS
 gives every conversion a stable identity, so repeats of the same thing are counted
 once, and a different thing is counted separately. You choose what "the same thing"
 means:
@@ -34,13 +34,13 @@ its own ID. Each different ID then counts as a new lead from the same click.
 ## 2b. Choose "Every time it runs" when each run is its own conversion
 
 Use it when you do not have an order or event ID and every run should count, for
-example a step placed after a "Qualified" tag that can be applied again. ChatbotX
+example a step placed after a "Qualified" tag that can be applied again. InboxOS
 identifies the run itself, so it needs no ID field. Two things to know:
 
-- Each run counts once, even if ChatbotX retries it. A loop that comes back to the step,
+- Each run counts once, even if InboxOS retries it. A loop that comes back to the step,
   or a flow that starts again, counts as a new run.
 - If the conversion action is set to count "One" conversion per click in Google Ads,
-  Google keeps only the first conversion of a click whatever ChatbotX sends.
+  Google keeps only the first conversion of a click whatever InboxOS sends.
 
 ## 3. Choose "Once per order or event ID" for purchases and repeatable events
 
@@ -64,7 +64,7 @@ Never use:
 - random values;
 - anything that is empty for some contacts.
 
-Using the same ID again is how you tell ChatbotX "this is the same purchase": it is
+Using the same ID again is how you tell InboxOS "this is the same purchase": it is
 counted once, even from a different step, trigger or rerun.
 
 ## 4. Funnels: one conversion action per stage
@@ -89,12 +89,12 @@ Things to know:
 - Give each order **its own time.** Google drops a second conversion with the same
   click and the same time, so two orders from one click with an identical timestamp (for example every
   order at `T00:00:00`) can collapse into one. With the Data Manager upload method the
-  second shows as Processed in the history (ChatbotX keeps an internal
+  second shows as Processed in the history (InboxOS keeps an internal
   `duplicateRecovery` flag for diagnostics but does not display it). With the legacy
   upload method Google answers the first attempt with a duplicate error, so the second
   shows as Failed at the delivery stage; only a replay of an event that was already
   sent is finished as Processed.
-- Google, not ChatbotX, decides whether a conversion is too old. ChatbotX only skips
+- Google, not InboxOS, decides whether a conversion is too old. InboxOS only skips
   an upload when the click is older than 90 days when it would be sent, or the
   conversion is later than the action's click-through window allows after the click.
   Back-dated conversions Google refuses show as failed with Google's reason.
@@ -106,7 +106,7 @@ In "Once per order or event ID" mode, an ID that is empty, still shows `{{...}}`
 the contact's data is filled in, or is longer than 64 characters stops the step:
 nothing is sent and nothing is recorded. A flow step writes the failure to **Error Log** and also follows its error branch;
 a trigger action only writes to **Error Log** (Google Ads, with the reason in plain
-language and the values that were resolved). ChatbotX never invents an ID in its place, so fix
+language and the values that were resolved). InboxOS never invents an ID in its place, so fix
 the field or the contact data and run it again.
 
 ## 7. Consent settings
@@ -116,11 +116,11 @@ your contacts agreed to share their data for advertising. It applies to every
 conversion this workspace sends, and stays saved if you disconnect and reconnect.
 Each setting (**Ad user data** and **Ad personalization**) can be:
 
-- **Not provided** (default): ChatbotX leaves the field out, so Google applies the
+- **Not provided** (default): InboxOS leaves the field out, so Google applies the
   default consent setting of your Google Ads account or data connection. If that
   default is "not consented", Google will not record the conversions.
 - **Always granted:** every conversion says the contact agreed. Only use it if you
-  collect consent before the chat; it is your statement, not ChatbotX's.
+  collect consent before the chat; it is your statement, not InboxOS's.
 - **Always denied:** every conversion says the contact did not agree. Google does not
   record conversions whose ad user data consent is denied.
 - **From a contact field:** read per contact. The field must hold `granted` or
@@ -135,7 +135,7 @@ later conversions; the history's **Consent snapshot** column shows what each one
 
 ## 8. Reading the dashboard
 
-Dashboard → Ads → **Google Ads** (super admins) shows the conversions ChatbotX sent, with a
+Dashboard → Ads → **Google Ads** (super admins) shows the conversions InboxOS sent, with a
 date range, channel and conversion action filter. It appears once the workspace has
 connected Google Ads or has any conversion history, and Settings → Integrations → Google
 Ads links to it ("View statistics").
@@ -187,7 +187,7 @@ Rules to know:
 - It is sent **only when Ad user data consent is granted** (Conversion data consent: "Always
   granted", or a contact field that says `granted`). With "Not provided" or "denied" nothing
   is sent, and the history shows "Withheld (no consent)".
-- Values are hashed on ChatbotX's servers before they leave. Phone numbers need the country
+- Values are hashed on InboxOS's servers before they leave. Phone numbers need the country
   code (`+84...`, or the digits `84...` as WhatsApp stores them).
   A number written without `+` is read as if it began with its country code (this is how
   WhatsApp stores it), so a national number such as `3612345678` in a custom field would be

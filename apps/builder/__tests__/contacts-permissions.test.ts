@@ -2,7 +2,7 @@
 
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/business/contact-utils", () => ({
+vi.mock("@inboxos.io/business/contact-utils", () => ({
   maskContactEmailAndPhone: vi.fn((contact: unknown) => contact),
 }))
 
@@ -19,7 +19,7 @@ const {
   resolveContactPermissionScope,
   stripContactPIIFields,
 } = await import("../src/features/contacts/permissions")
-const { getAssignedContactsUserId } = await import("@chatbotx.io/business")
+const { getAssignedContactsUserId } = await import("@inboxos.io/business")
 const { getCurrentUserAndTargetWorkspace } = await import("@/lib/auth/utils")
 
 const basePermissions = {

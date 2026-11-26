@@ -1,7 +1,7 @@
 import {
   type ConversationMemberScope,
   conversationMemberScope,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 
 export type MemberChatScope = Omit<ConversationMemberScope, "userId">
 

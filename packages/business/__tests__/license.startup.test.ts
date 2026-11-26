@@ -77,7 +77,7 @@ describe("assertLicenseAtStartup", () => {
     delete process.env.LICENSE_KEY
     delete process.env.NEXT_PUBLIC_EDITION
     vi.resetModules()
-    vi.doUnmock("@chatbotx.io/database/repositories")
+    vi.doUnmock("@inboxos.io/database/repositories")
     vi.doUnmock("../src/enterprise/license/public-keys")
     vi.restoreAllMocks()
   })

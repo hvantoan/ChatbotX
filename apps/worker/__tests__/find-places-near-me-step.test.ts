@@ -11,7 +11,7 @@ const mocks = vi.hoisted(() => ({
   info: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   findContactLocation: mocks.findContactLocation,
   placeLocationService: { findNearest: mocks.findNearest },
 }))

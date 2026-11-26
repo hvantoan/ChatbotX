@@ -1,8 +1,8 @@
 import {
   EXTERNAL_STORE_NAMES,
   type ExternalStoreSource,
-} from "@chatbotx.io/database/partials"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/partials"
+import { InboxOSException } from "../errors"
 
 /**
  * Products, categories, vendors, discount codes and orders mirrored from an
@@ -11,7 +11,7 @@ import { ChatbotXException } from "../errors"
  */
 export const externalStoreManagedException = (source: ExternalStoreSource) => {
   const name = EXTERNAL_STORE_NAMES[source]
-  const error = new ChatbotXException(
+  const error = new InboxOSException(
     `This store is managed in ${name}. Change it in ${name} and it syncs here.`,
     "externalStoreManaged",
     409,

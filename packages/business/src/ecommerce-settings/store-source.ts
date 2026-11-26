@@ -3,14 +3,14 @@ import {
   EXTERNAL_STORE_NAMES,
   type ExternalStoreSource,
   type StoreSource,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   ecommerceSettingsRepository,
   shopifyRepository,
   woocommerceRepository,
-} from "@chatbotx.io/database/repositories"
-import { invalidateCacheByTags, withCache } from "@chatbotx.io/redis"
-import { ChatbotXException } from "../errors"
+} from "@inboxos.io/database/repositories"
+import { invalidateCacheByTags, withCache } from "@inboxos.io/redis"
+import { InboxOSException } from "../errors"
 
 /** The tag every cached read of a workspace's store settings carries. */
 export const ecommerceSettingsCacheTag = (workspaceId: string) =>
@@ -47,7 +47,7 @@ export const assertExternalStoreConnected = async (
       : await woocommerceRepository.findIntegration(workspaceId)
   if (!connected) {
     const name = EXTERNAL_STORE_NAMES[source]
-    const error = new ChatbotXException(
+    const error = new InboxOSException(
       `Connect a ${name} store in Ecommerce → Settings → ${name} before selling from it.`,
       "externalStoreNotConnected",
       400,

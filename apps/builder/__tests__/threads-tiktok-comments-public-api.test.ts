@@ -52,7 +52,7 @@ const commentAutomationService = {
   updateTiktokAutomation: vi.fn(),
   deleteTiktokAutomation: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ commentAutomationService }))
+vi.mock("@inboxos.io/business", () => ({ commentAutomationService }))
 
 const listThreadsPostsForWorkspace = vi.fn()
 vi.mock("@/features/threads-comments/lib/threads-posts", () => ({

@@ -111,7 +111,7 @@ location in the chosen category, and sends it as a WhatsApp
 
 ## Builder's calls (decided by Claude, flag if wrong)
 
-- **Step type:** new step `findPlacesNearMe` in `@chatbotx.io/flow-config`
+- **Step type:** new step `findPlacesNearMe` in `@inboxos.io/flow-config`
   (`stepTypes`), schema `{ id, nodeId?, stepType, placeCategoryId: string |
   null /* null = All */ }`. Follow the
   `flow-step-development` skill; it is a plain action (no success/error

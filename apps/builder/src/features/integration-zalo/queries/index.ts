@@ -1,8 +1,8 @@
 import {
   type IntegrationZaloResource,
   zaloIntegrationService,
-} from "@chatbotx.io/business"
-import type { IntegrationZaloModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import type { IntegrationZaloModel } from "@inboxos.io/database/types"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 
 export const findIntegrationZalo = async ({

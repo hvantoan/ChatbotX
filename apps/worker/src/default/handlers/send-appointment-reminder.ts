@@ -1,8 +1,8 @@
-import { appointmentReminderService } from "@chatbotx.io/business"
+import { appointmentReminderService } from "@inboxos.io/business"
 import {
   type JobSendAppointmentReminderData,
   jobSendAppointmentReminderDataSchema,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 

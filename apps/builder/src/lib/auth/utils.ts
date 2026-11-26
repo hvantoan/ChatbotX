@@ -3,13 +3,13 @@
 import {
   resolveWorkspaceAccess,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type {
   UserModel,
   WorkspaceMemberModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { headers } from "next/headers"
 import { cache } from "react"
 import { getTenantSettings } from "@/features/tenant/utils"
@@ -17,7 +17,7 @@ import { auth } from "./auth"
 
 // `tenantId` is the white-label tenant key. It is deliberately never returned by
 // the auth session (see `additionalFields.tenantId.returned = false` in
-// `@chatbotx.io/auth/server`), so the session-derived user never carries it.
+// `@inboxos.io/auth/server`), so the session-derived user never carries it.
 export type SessionUser = Omit<
   UserModel,
   "tenantId" | "deletionRequestedAt" | "scheduledDeletionAt"
@@ -52,7 +52,7 @@ export const assertCurrentUserCanAccessChatbot = async (
   const userAndWorkspaces = await getCurrentUserAndTargetWorkspace(workspaceId)
 
   if (!userAndWorkspaces) {
-    throw new ChatbotXException("User is not associated with this workspace")
+    throw new InboxOSException("User is not associated with this workspace")
   }
 }
 

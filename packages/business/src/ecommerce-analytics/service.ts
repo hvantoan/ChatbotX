@@ -1,8 +1,8 @@
 import {
   orderAnalyticsRepository,
   type SalesScope,
-} from "@chatbotx.io/database/repositories"
-import { roundMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/repositories"
+import { roundMoney } from "@inboxos.io/utils/money"
 import { formatInTimeZone } from "date-fns-tz"
 import { parseAnalyticsDateRange } from "../ads-analytics/date-range"
 import { BaseService } from "../base.service"

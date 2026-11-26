@@ -1,4 +1,4 @@
-import { ChannelErrorCategory } from "@chatbotx.io/sdk"
+import { ChannelErrorCategory } from "@inboxos.io/sdk"
 import { describe, expect, test } from "vitest"
 import { WhatsappException } from "../src/exception"
 import {

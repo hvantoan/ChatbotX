@@ -8,11 +8,11 @@ const mocks = vi.hoisted(() => ({
   invalidate: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     name: "db",
     transaction: (fn: (tx: unknown) => unknown) => fn({ name: "tx" }),
@@ -21,7 +21,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
     (error as { code?: string } | undefined)?.code === "23505",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   placeCategoryRepository: {
     create: (...args: unknown[]) => mocks.create(...args),
     update: (...args: unknown[]) => mocks.update(...args),

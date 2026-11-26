@@ -1,6 +1,6 @@
 "use client"
 
-import type { AIProvider } from "@chatbotx.io/ai"
+import type { AIProvider } from "@inboxos.io/ai"
 import {
   claudeModelOptions,
   deepseekModelOptions,
@@ -8,12 +8,12 @@ import {
   museModelOptions,
   openaiModelOptions,
   openrouterModelOptions,
-} from "@chatbotx.io/ai"
-import { ComboboxField } from "@chatbotx.io/ui/components/form/combobox-field"
+} from "@inboxos.io/ai"
+import { ComboboxField } from "@inboxos.io/ui/components/form/combobox-field"
 import type {
   SelectFieldProps,
   SelectOption,
-} from "@chatbotx.io/ui/components/form/select-field"
+} from "@inboxos.io/ui/components/form/select-field"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import type { FieldValues } from "react-hook-form"

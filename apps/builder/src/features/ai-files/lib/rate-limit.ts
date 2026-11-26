@@ -1,4 +1,4 @@
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { getTranslations } from "next-intl/server"
 import { assertApiNotRateLimited } from "@/lib/rate-limit/api-rate-limit"
 
@@ -70,12 +70,9 @@ export async function assertAIFileActionNotRateLimited(
   try {
     await assertNotRateLimited[operation](workspaceId)
   } catch (error) {
-    if (
-      error instanceof ChatbotXException &&
-      error.code === "tooManyRequests"
-    ) {
+    if (error instanceof InboxOSException && error.code === "tooManyRequests") {
       const t = await getTranslations()
-      throw new ChatbotXException(
+      throw new InboxOSException(
         t(rateLimitedMessageKey[operation]),
         "tooManyRequests",
         429,

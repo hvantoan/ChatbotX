@@ -3,22 +3,22 @@ import {
   publishWorkspaceMemberRealtimeEvent,
   whatsappCallLifecycleService,
   whatsappVoipCallService,
-} from "@chatbotx.io/business"
-import { contactSources } from "@chatbotx.io/database/partials"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business"
+import { contactSources } from "@inboxos.io/database/partials"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
 import {
   emitIncomingCall,
   setWebhookExecutionContext,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   RealtimeEventType,
   type RealtimeEventWhatsappCallOutboundStatus,
-} from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/realtime-protocol"
 import {
   CALL_CANCELED_BY_BUSINESS_LAST_ERROR,
   type MessageWhatsappCallEntity,
-} from "@chatbotx.io/sdk"
-import type { IntegrationJobWhatsappCallEvent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/sdk"
+import type { IntegrationJobWhatsappCallEvent } from "@inboxos.io/worker-config"
 import { logger } from "../../lib/logger"
 import { integrationService } from "../../services/integrations"
 import { detectContactAndConversation } from "./received-message"

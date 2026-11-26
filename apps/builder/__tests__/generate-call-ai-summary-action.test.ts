@@ -26,7 +26,7 @@ vi.mock("@/lib/safe-action", () => {
   return { workspaceActionClient: chain }
 })
 
-vi.mock("@chatbotx.io/ai", async () => {
+vi.mock("@inboxos.io/ai", async () => {
   const { z } = await import("zod")
   return {
     aiProviders: z.enum([
@@ -40,24 +40,24 @@ vi.mock("@chatbotx.io/ai", async () => {
   }
 })
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   CallSummaryProviderNotConnectedError: class extends Error {},
   generateCallSummary: mocks.generateCallSummary,
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   whatsappCallTranscriptService: {
     getTranscriptTextForCall: mocks.getTranscriptTextForCall,
   },
   whatsappCallSummaryService: { attachSummary: mocks.attachSummary },
 }))
 
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
   summaryAlreadyGeneratingException: () => new Error("already generating"),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: {
     runExclusive: async ({ fn }: { fn: () => Promise<unknown> }) => await fn(),
   },

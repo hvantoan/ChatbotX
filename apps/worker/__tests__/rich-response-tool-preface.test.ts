@@ -1,4 +1,4 @@
-import { toFinalStepTextStream } from "@chatbotx.io/ai"
+import { toFinalStepTextStream } from "@inboxos.io/ai"
 import { describe, expect, it } from "vitest"
 import { parseRichResponse } from "../src/integration/handlers/rich-response"
 

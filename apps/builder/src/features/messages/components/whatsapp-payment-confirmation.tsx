@@ -1,6 +1,6 @@
 "use client"
 
-import type { MessageWhatsappPaymentMethodEntity } from "@chatbotx.io/sdk"
+import type { MessageWhatsappPaymentMethodEntity } from "@inboxos.io/sdk"
 import { CircleCheckIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 

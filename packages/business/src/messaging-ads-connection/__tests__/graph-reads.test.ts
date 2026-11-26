@@ -19,7 +19,7 @@ const mocks = vi.hoisted(() => ({
   ),
 }))
 
-vi.mock("@chatbotx.io/integration-facebook-ads", () => ({
+vi.mock("@inboxos.io/integration-facebook-ads", () => ({
   integration: { runAction: mocks.runAction },
   getGraphErrorCode: mocks.getGraphErrorCode,
 }))

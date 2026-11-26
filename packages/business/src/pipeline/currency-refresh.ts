@@ -1,5 +1,5 @@
-import { pipelineRepository } from "@chatbotx.io/database/repositories"
-import { RealtimeEventType } from "@chatbotx.io/realtime-protocol"
+import { pipelineRepository } from "@inboxos.io/database/repositories"
+import { RealtimeEventType } from "@inboxos.io/realtime-protocol"
 import { logger } from "../logger"
 import { queueWorkspaceRealtimeEvent } from "../platform/realtime-broadcast"
 

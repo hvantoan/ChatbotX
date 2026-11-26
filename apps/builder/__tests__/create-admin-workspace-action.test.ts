@@ -1,6 +1,6 @@
 // @vitest-environment node
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -14,23 +14,23 @@ const mocks = vi.hoisted(() => ({
   checkWorkspaceOwnerAccess: vi.fn().mockResolvedValue(null),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   isSuperAdmin: mocks.isSuperAdmin,
   assertEnterpriseFeatures: mocks.assertEnterpriseFeatures,
   adminWorkspaceService: { createWithMembers: mocks.createWithMembers },
 }))
 
-vi.mock("@chatbotx.io/business/audit", () => ({
+vi.mock("@inboxos.io/business/audit", () => ({
   getAuditActor: () => undefined,
   withAuditContext: (_actor: unknown, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   findOrFail: mocks.findOrFail,
   isDatabaseError: mocks.isDatabaseError,
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   userModel: {},
 }))
 
@@ -117,7 +117,7 @@ describe("createAdminWorkspaceAction", () => {
 
   test("rejects without a valid enterprise license", async () => {
     mocks.assertEnterpriseFeatures.mockRejectedValue(
-      new ChatbotXException(
+      new InboxOSException(
         "This feature requires an enterprise license",
         "enterpriseFeatureRequired",
         403,

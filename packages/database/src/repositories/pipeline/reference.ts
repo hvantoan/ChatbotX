@@ -4,14 +4,14 @@ import {
   db,
   eq,
   inArray,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactModel,
   inboxTeamModel,
   mediaLibraryFileModel,
   userModel,
   workspaceMemberModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 
 /**
  * Workspace-scoped existence lookups for ids a pipeline mutation references.

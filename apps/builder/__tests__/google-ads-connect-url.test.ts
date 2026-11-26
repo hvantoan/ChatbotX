@@ -16,14 +16,14 @@ vi.mock("@/lib/domain", () => ({
 vi.mock("@/lib/oauth-broker", () => ({
   getBrokerOrigin: () => "https://broker.test",
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   customDomainService: { findActiveByDomain: mocks.findActiveByDomain },
 }))
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: { updateReturnUrl: mocks.updateReturnUrl },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {},
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {},
 }))
 vi.mock("next-intl/server", () => ({
   getTranslations: vi.fn(async () => (key: string) => key),

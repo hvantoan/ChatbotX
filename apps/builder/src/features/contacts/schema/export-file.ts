@@ -1,4 +1,4 @@
-import { fileStatuses } from "@chatbotx.io/database/partials"
+import { fileStatuses } from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 const POSTGRES_BIGINT_MAX = 9_223_372_036_854_775_807n

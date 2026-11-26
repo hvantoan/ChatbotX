@@ -6,7 +6,7 @@ import {
   appointmentService,
   conversationService,
   SlotUnavailableException,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { requireContactAccessForMember } from "@/features/contacts/permissions"
 import { assertConversationAccessForCaller } from "@/lib/public-api/member-scope"

@@ -1,5 +1,5 @@
-import type { BaseConfig } from "@chatbotx.io/sdk"
-import { customAuthSchema } from "@chatbotx.io/sdk"
+import type { BaseConfig } from "@inboxos.io/sdk"
+import { customAuthSchema } from "@inboxos.io/sdk"
 import { z } from "zod"
 
 export type ApiConfig = BaseConfig

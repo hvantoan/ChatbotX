@@ -1,28 +1,28 @@
-import type { ConnectSessionActor } from "@chatbotx.io/business/connect-session"
+import type { ConnectSessionActor } from "@inboxos.io/business/connect-session"
 import {
   isActiveConnectionStatus,
   resolveOwnerId,
-} from "@chatbotx.io/business/connection"
+} from "@inboxos.io/business/connection"
 import {
-  ChatbotXException,
   connectionAlreadyConnectedException,
   connectionCredentialsRejectedException,
   connectionNotConfiguredException,
   connectionProviderUnavailableException,
   connectionWrongStrategyException,
+  InboxOSException,
   toPublicErrorMessage,
   validationException,
-} from "@chatbotx.io/business/errors"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { connectionRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business/errors"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { connectionRepository } from "@inboxos.io/database/repositories"
 import type {
   ConnectionModel,
   ConnectSessionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type {
   ConnectionCredential,
   ConnectSessionNextAction,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import { actorRefOf, startSession } from "./connect-session-flow"
 import {
   connectAndPersist,
@@ -42,14 +42,12 @@ const INTERNAL_ERROR_CODE_SUFFIX = /\s*\(code [^)]*\)\s*$/i
  * helpers append `(code …)` for diagnostics; strip it before the message can
  * reach a response body.
  */
-const stripInternalErrorCode = (
-  error: ChatbotXException,
-): ChatbotXException => {
+const stripInternalErrorCode = (error: InboxOSException): InboxOSException => {
   const message = error.message.replace(INTERNAL_ERROR_CODE_SUFFIX, "")
   if (message === error.message) {
     return error
   }
-  const sanitized = new ChatbotXException(
+  const sanitized = new InboxOSException(
     message,
     error.code,
     error.httpStatusCode,
@@ -144,7 +142,7 @@ export const connectFromCredentials = async (input: {
       // existing rejection mapping.
       if (
         input.provider === "openaiCompatible" &&
-        err instanceof ChatbotXException &&
+        err instanceof InboxOSException &&
         err.code === "ssrfBlocked"
       ) {
         throw stripInternalErrorCode(err)

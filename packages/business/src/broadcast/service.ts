@@ -1,5 +1,5 @@
-import { broadcastAnalyticsService } from "@chatbotx.io/analytics"
-import type { BroadcastEventType } from "@chatbotx.io/analytics/schemas"
+import { broadcastAnalyticsService } from "@inboxos.io/analytics"
+import type { BroadcastEventType } from "@inboxos.io/analytics/schemas"
 import {
   and,
   asc,
@@ -18,7 +18,7 @@ import {
   ne,
   type SQL,
   sql,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   BROADCAST_DISPATCH_WINDOW_MS,
   type BroadcastScheduleType,
@@ -54,7 +54,7 @@ import {
   type TemplateResourceKind,
   usesBroadcastTargets,
   withBroadcastTargets,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   buildContactInboxContactFilterSQL,
   type ContactFilterCriteriaInput,
@@ -62,7 +62,7 @@ import {
   contactInboxHasDmSQL,
   contactInboxInteractedWithin24hSQL,
   pruneEmailPhoneFilterConditions,
-} from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/queries"
 import {
   type BroadcastListInput,
   broadcastRecurrenceRepository,
@@ -70,7 +70,7 @@ import {
   contactRepository,
   hasBroadcastRecipients,
   purgeBroadcastRecipients,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   broadcastModel,
   broadcastTargetModel,
@@ -82,7 +82,7 @@ import {
   integrationWhatsappModel,
   messengerMessageTemplateModel,
   whatsappMessageTemplateModel,
-} from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/schema"
 import type {
   BroadcastModel,
   BroadcastRecurrenceModel,
@@ -92,13 +92,13 @@ import type {
   InboxModel,
   IntegrationMessengerModel,
   IntegrationWhatsappModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import {
   chunkById,
   escapeLikePattern,
   getPaginationWithDefaults,
   likeContains,
-} from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/utils"
 import {
   findPaymentRequestMismatches,
   findTemplateStartStep,
@@ -106,18 +106,18 @@ import {
   type TemplateComponent,
   type WaTemplateParams,
   waTemplateParamsSchema,
-} from "@chatbotx.io/flow-config"
-import { casStore } from "@chatbotx.io/redis"
-import type { ChannelErrorReason } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/flow-config"
+import { casStore } from "@inboxos.io/redis"
+import type { ChannelErrorReason } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import {
   type BroadcastDraftPurgeRequester,
   broadcastDraftPurgeJobId,
   broadcastPrepareJobId,
   ScheduleJobData,
   scheduleQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { startOfMinute } from "date-fns"
 import type { PgUpdateSetSource } from "drizzle-orm/pg-core"
 import { BaseService } from "../base.service"
@@ -130,7 +130,7 @@ import { type CountOutcome, countByMode } from "../count-mode"
 import {
   BroadcastValidationException,
   type BroadcastValidationField,
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
 } from "../errors"
 import { inboxService } from "../inbox/service"
@@ -457,7 +457,7 @@ export const resolveBroadcastTargetsToPersist = (
  * resend to a *different* audience than the one the filter describes.
  *
  * Every condition's `field` is checked against `contactFilterFields`
- * (`@chatbotx.io/database/partials`) — the same enum the SQL builder's
+ * (`@inboxos.io/database/partials`) — the same enum the SQL builder's
  * `buildConditionWhere` switch is written against. This is NOT optional:
  * `buildConditionWhere`'s `default` case returns `{}` for an unrecognised
  * field, `applyContactFilter` then filters out every empty where, and an
@@ -989,7 +989,7 @@ class BroadcastService extends BaseService {
       .where(input.where)
       .returning()
     if (!row) {
-      throw new ChatbotXException("Broadcast is not a draft")
+      throw new InboxOSException("Broadcast is not a draft")
     }
     return row
   }
@@ -1057,7 +1057,7 @@ class BroadcastService extends BaseService {
           })
 
         if (!row) {
-          throw new ChatbotXException("Broadcast is not a draft")
+          throw new InboxOSException("Broadcast is not a draft")
         }
 
         return row
@@ -1091,7 +1091,7 @@ class BroadcastService extends BaseService {
         .limit(1)
 
       if (!draft) {
-        throw new ChatbotXException("Broadcast is not a draft")
+        throw new InboxOSException("Broadcast is not a draft")
       }
 
       const restriction = broadcastPlanPolicyService.restrictionFor(
@@ -1165,7 +1165,7 @@ class BroadcastService extends BaseService {
         .where(scope)
         .limit(1)
       if (!draft) {
-        throw new ChatbotXException("Broadcast is not a draft")
+        throw new InboxOSException("Broadcast is not a draft")
       }
 
       const recurrence = input.recurrence
@@ -1274,7 +1274,7 @@ class BroadcastService extends BaseService {
       broadcastIds: [input.broadcastId],
     })
     if (!recurrence) {
-      throw new ChatbotXException(input.failure)
+      throw new InboxOSException(input.failure)
     }
     const [row] = await tx
       .update(broadcastModel)
@@ -1298,7 +1298,7 @@ class BroadcastService extends BaseService {
         sendRatePerMinute: broadcastModel.sendRatePerMinute,
       })
     if (!row) {
-      throw new ChatbotXException(input.failure)
+      throw new InboxOSException(input.failure)
     }
     return { recurrence, row }
   }
@@ -1381,7 +1381,7 @@ class BroadcastService extends BaseService {
       (await hasBroadcastRecipients(input.broadcastId))
     ) {
       await this.queueDraftRecipientsPurge({ ...input, requester: "draft" })
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Broadcast is still clearing recipients from its previous schedule. Try again in a moment.",
       )
     }
@@ -1708,7 +1708,7 @@ class BroadcastService extends BaseService {
         .returning({ id: broadcastModel.id })
 
       if (!row) {
-        throw new ChatbotXException("Broadcast is not stopped")
+        throw new InboxOSException("Broadcast is not stopped")
       }
       return row
     }
@@ -1729,7 +1729,7 @@ class BroadcastService extends BaseService {
         .limit(1)
 
       if (!stopped) {
-        throw new ChatbotXException("Broadcast is not stopped")
+        throw new InboxOSException("Broadcast is not stopped")
       }
 
       const restriction = broadcastPlanPolicyService.restrictionFor(
@@ -2459,7 +2459,7 @@ class BroadcastService extends BaseService {
         .limit(1)
 
       if (!draft) {
-        throw new ChatbotXException("Broadcast is not a draft")
+        throw new InboxOSException("Broadcast is not a draft")
       }
 
       return await this.activateWithinPlan(
@@ -2476,7 +2476,7 @@ class BroadcastService extends BaseService {
     })
 
     if (!row) {
-      throw new ChatbotXException("Broadcast is not a draft")
+      throw new InboxOSException("Broadcast is not a draft")
     }
 
     // Mirrors `createBroadcastAction`: only an immediate send is audited as a
@@ -2526,7 +2526,7 @@ class BroadcastService extends BaseService {
       .where(scope)
       .limit(1)
     if (!draft) {
-      throw new ChatbotXException("Broadcast is not a draft")
+      throw new InboxOSException("Broadcast is not a draft")
     }
     const recurrence = await broadcastRecurrenceService.upsertRule(tx, {
       workspaceId,
@@ -2544,7 +2544,7 @@ class BroadcastService extends BaseService {
       .where(scope)
       .returning()
     if (!updated) {
-      throw new ChatbotXException("Broadcast is not a draft")
+      throw new InboxOSException("Broadcast is not a draft")
     }
     await this.replaceTargets(tx, updated.id, data.targets ?? [])
 
@@ -3605,7 +3605,7 @@ class BroadcastService extends BaseService {
       (broadcast.status !== "sent" && broadcast.status !== "failed") ||
       isRecurringTemplate(broadcast)
     ) {
-      throw new ChatbotXException("Broadcast is not sent")
+      throw new InboxOSException("Broadcast is not sent")
     }
     return broadcast
   }

@@ -1,6 +1,6 @@
 "use server"
 
-import { aiFileService } from "@chatbotx.io/business"
+import { aiFileService } from "@inboxos.io/business"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { toAIFileCreateActionError } from "../lib/create-error-message"

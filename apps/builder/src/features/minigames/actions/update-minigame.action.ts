@@ -1,8 +1,8 @@
 "use server"
 
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { minigameService } from "@chatbotx.io/business/minigame"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { minigameService } from "@inboxos.io/business/minigame"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { getTranslations } from "next-intl/server"
 import { returnValidationErrors } from "next-safe-action"
 import { z } from "zod"
@@ -47,7 +47,7 @@ export const updateMinigameAction = workspaceActionClient
         })
       } catch (error) {
         if (
-          error instanceof ChatbotXException &&
+          error instanceof InboxOSException &&
           error.code === "nameAlreadyExists"
         ) {
           return returnValidationErrors(updateMinigameRequest, {

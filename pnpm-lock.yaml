@@ -173,7 +173,7 @@ importers:
       '@biomejs/biome':
         specifier: ^2.4.16
         version: 2.4.16
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:packages/vitest-config
       '@jridgewell/sourcemap-codec':
@@ -227,171 +227,6 @@ importers:
       '@bull-board/ui':
         specifier: ^9.10.1
         version: 9.10.1(bullmq@5.78.0)(typescript@5.9.3)
-      '@chatbotx.io/ai':
-        specifier: workspace:*
-        version: link:../../packages/ai
-      '@chatbotx.io/analytics':
-        specifier: workspace:*
-        version: link:../../packages/analytics
-      '@chatbotx.io/analytics-nextjs':
-        specifier: workspace:*
-        version: link:../../packages/analytics-nextjs
-      '@chatbotx.io/auth':
-        specifier: workspace:*
-        version: link:../../packages/auth
-      '@chatbotx.io/automated-response':
-        specifier: workspace:*
-        version: link:../../packages/automated-response
-      '@chatbotx.io/business':
-        specifier: workspace:*
-        version: link:../../packages/business
-      '@chatbotx.io/channel-registry':
-        specifier: workspace:*
-        version: link:../../packages/channel-registry
-      '@chatbotx.io/connections':
-        specifier: workspace:*
-        version: link:../../packages/connections
-      '@chatbotx.io/database':
-        specifier: workspace:*
-        version: link:../../packages/database
-      '@chatbotx.io/decision-config':
-        specifier: workspace:*
-        version: link:../../packages/decision-config
-      '@chatbotx.io/encryption':
-        specifier: workspace:*
-        version: link:../../packages/encryption
-      '@chatbotx.io/event-bus':
-        specifier: workspace:*
-        version: link:../../packages/event-bus
-      '@chatbotx.io/events':
-        specifier: workspace:*
-        version: link:../../packages/events
-      '@chatbotx.io/filesystem':
-        specifier: workspace:*
-        version: link:../../packages/filesystem
-      '@chatbotx.io/flow-config':
-        specifier: workspace:*
-        version: link:../../packages/flow-config
-      '@chatbotx.io/imports':
-        specifier: workspace:*
-        version: link:../../packages/imports
-      '@chatbotx.io/integration-active-campaign':
-        specifier: workspace:*
-        version: link:../../integrations/active-campaign
-      '@chatbotx.io/integration-api':
-        specifier: workspace:*
-        version: link:../../integrations/api
-      '@chatbotx.io/integration-chatbotx':
-        specifier: workspace:*
-        version: link:../../integrations/chatbotx
-      '@chatbotx.io/integration-drip':
-        specifier: workspace:*
-        version: link:../../integrations/drip
-      '@chatbotx.io/integration-facebook-ads':
-        specifier: workspace:*
-        version: link:../../integrations/facebook-ads
-      '@chatbotx.io/integration-get-response':
-        specifier: workspace:*
-        version: link:../../integrations/get-response
-      '@chatbotx.io/integration-google-calendar':
-        specifier: workspace:*
-        version: link:../../integrations/google-calendar
-      '@chatbotx.io/integration-google-sheets':
-        specifier: workspace:*
-        version: link:../../integrations/google-sheets
-      '@chatbotx.io/integration-instagram':
-        specifier: workspace:*
-        version: link:../../integrations/instagram
-      '@chatbotx.io/integration-instagram-facebook':
-        specifier: workspace:*
-        version: link:../../integrations/instagram-facebook
-      '@chatbotx.io/integration-klaviyo':
-        specifier: workspace:*
-        version: link:../../integrations/klaviyo
-      '@chatbotx.io/integration-line':
-        specifier: workspace:*
-        version: link:../../integrations/line
-      '@chatbotx.io/integration-mailchimp':
-        specifier: workspace:*
-        version: link:../../integrations/mailchimp
-      '@chatbotx.io/integration-mailer-lite':
-        specifier: workspace:*
-        version: link:../../integrations/mailer-lite
-      '@chatbotx.io/integration-messenger':
-        specifier: workspace:*
-        version: link:../../integrations/messenger
-      '@chatbotx.io/integration-meta-catalog':
-        specifier: workspace:*
-        version: link:../../integrations/meta-catalog
-      '@chatbotx.io/integration-meta-conversions':
-        specifier: workspace:*
-        version: link:../../integrations/meta-conversions
-      '@chatbotx.io/integration-moosend':
-        specifier: workspace:*
-        version: link:../../integrations/moosend
-      '@chatbotx.io/integration-sendgrid':
-        specifier: workspace:*
-        version: link:../../integrations/sendgrid
-      '@chatbotx.io/integration-smtp':
-        specifier: workspace:*
-        version: link:../../integrations/smtp
-      '@chatbotx.io/integration-telegram':
-        specifier: workspace:*
-        version: link:../../integrations/telegram
-      '@chatbotx.io/integration-threads':
-        specifier: workspace:*
-        version: link:../../integrations/threads
-      '@chatbotx.io/integration-tiktok':
-        specifier: workspace:*
-        version: link:../../integrations/tiktok
-      '@chatbotx.io/integration-webchat':
-        specifier: workspace:*
-        version: link:../../integrations/webchat
-      '@chatbotx.io/integration-whatsapp':
-        specifier: workspace:*
-        version: link:../../integrations/whatsapp
-      '@chatbotx.io/integration-zalo':
-        specifier: workspace:*
-        version: link:../../integrations/zalo
-      '@chatbotx.io/integration-zalo-personal':
-        specifier: workspace:*
-        version: link:../../integrations/zalo-personal
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/mail':
-        specifier: workspace:*
-        version: link:../../packages/mail
-      '@chatbotx.io/mini-app':
-        specifier: workspace:*
-        version: link:../../packages/mini-app
-      '@chatbotx.io/minigame-ui':
-        specifier: workspace:*
-        version: link:../../packages/minigame-ui
-      '@chatbotx.io/realtime-protocol':
-        specifier: workspace:*
-        version: link:../../packages/realtime-protocol
-      '@chatbotx.io/redis':
-        specifier: workspace:*
-        version: link:../../packages/redis
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
-      '@chatbotx.io/sequence-scheduler':
-        specifier: workspace:*
-        version: link:../../packages/sequence-scheduler
-      '@chatbotx.io/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      '@chatbotx.io/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
-      '@chatbotx.io/variables':
-        specifier: workspace:*
-        version: link:../../packages/variables
-      '@chatbotx.io/worker-config':
-        specifier: workspace:*
-        version: link:../../packages/worker-config
       '@codemirror/lang-css':
         specifier: ^6.3.1
         version: 6.3.1
@@ -434,6 +269,171 @@ importers:
       '@icons-pack/react-simple-icons':
         specifier: ^13.13.0
         version: 13.13.0(react@19.2.5)
+      '@inboxos.io/ai':
+        specifier: workspace:*
+        version: link:../../packages/ai
+      '@inboxos.io/analytics':
+        specifier: workspace:*
+        version: link:../../packages/analytics
+      '@inboxos.io/analytics-nextjs':
+        specifier: workspace:*
+        version: link:../../packages/analytics-nextjs
+      '@inboxos.io/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@inboxos.io/automated-response':
+        specifier: workspace:*
+        version: link:../../packages/automated-response
+      '@inboxos.io/business':
+        specifier: workspace:*
+        version: link:../../packages/business
+      '@inboxos.io/channel-registry':
+        specifier: workspace:*
+        version: link:../../packages/channel-registry
+      '@inboxos.io/connections':
+        specifier: workspace:*
+        version: link:../../packages/connections
+      '@inboxos.io/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@inboxos.io/decision-config':
+        specifier: workspace:*
+        version: link:../../packages/decision-config
+      '@inboxos.io/encryption':
+        specifier: workspace:*
+        version: link:../../packages/encryption
+      '@inboxos.io/event-bus':
+        specifier: workspace:*
+        version: link:../../packages/event-bus
+      '@inboxos.io/events':
+        specifier: workspace:*
+        version: link:../../packages/events
+      '@inboxos.io/filesystem':
+        specifier: workspace:*
+        version: link:../../packages/filesystem
+      '@inboxos.io/flow-config':
+        specifier: workspace:*
+        version: link:../../packages/flow-config
+      '@inboxos.io/imports':
+        specifier: workspace:*
+        version: link:../../packages/imports
+      '@inboxos.io/integration-active-campaign':
+        specifier: workspace:*
+        version: link:../../integrations/active-campaign
+      '@inboxos.io/integration-api':
+        specifier: workspace:*
+        version: link:../../integrations/api
+      '@inboxos.io/integration-drip':
+        specifier: workspace:*
+        version: link:../../integrations/drip
+      '@inboxos.io/integration-facebook-ads':
+        specifier: workspace:*
+        version: link:../../integrations/facebook-ads
+      '@inboxos.io/integration-get-response':
+        specifier: workspace:*
+        version: link:../../integrations/get-response
+      '@inboxos.io/integration-google-calendar':
+        specifier: workspace:*
+        version: link:../../integrations/google-calendar
+      '@inboxos.io/integration-google-sheets':
+        specifier: workspace:*
+        version: link:../../integrations/google-sheets
+      '@inboxos.io/integration-inboxos':
+        specifier: workspace:*
+        version: link:../../integrations/inboxos
+      '@inboxos.io/integration-instagram':
+        specifier: workspace:*
+        version: link:../../integrations/instagram
+      '@inboxos.io/integration-instagram-facebook':
+        specifier: workspace:*
+        version: link:../../integrations/instagram-facebook
+      '@inboxos.io/integration-klaviyo':
+        specifier: workspace:*
+        version: link:../../integrations/klaviyo
+      '@inboxos.io/integration-line':
+        specifier: workspace:*
+        version: link:../../integrations/line
+      '@inboxos.io/integration-mailchimp':
+        specifier: workspace:*
+        version: link:../../integrations/mailchimp
+      '@inboxos.io/integration-mailer-lite':
+        specifier: workspace:*
+        version: link:../../integrations/mailer-lite
+      '@inboxos.io/integration-messenger':
+        specifier: workspace:*
+        version: link:../../integrations/messenger
+      '@inboxos.io/integration-meta-catalog':
+        specifier: workspace:*
+        version: link:../../integrations/meta-catalog
+      '@inboxos.io/integration-meta-conversions':
+        specifier: workspace:*
+        version: link:../../integrations/meta-conversions
+      '@inboxos.io/integration-moosend':
+        specifier: workspace:*
+        version: link:../../integrations/moosend
+      '@inboxos.io/integration-sendgrid':
+        specifier: workspace:*
+        version: link:../../integrations/sendgrid
+      '@inboxos.io/integration-smtp':
+        specifier: workspace:*
+        version: link:../../integrations/smtp
+      '@inboxos.io/integration-telegram':
+        specifier: workspace:*
+        version: link:../../integrations/telegram
+      '@inboxos.io/integration-threads':
+        specifier: workspace:*
+        version: link:../../integrations/threads
+      '@inboxos.io/integration-tiktok':
+        specifier: workspace:*
+        version: link:../../integrations/tiktok
+      '@inboxos.io/integration-webchat':
+        specifier: workspace:*
+        version: link:../../integrations/webchat
+      '@inboxos.io/integration-whatsapp':
+        specifier: workspace:*
+        version: link:../../integrations/whatsapp
+      '@inboxos.io/integration-zalo':
+        specifier: workspace:*
+        version: link:../../integrations/zalo
+      '@inboxos.io/integration-zalo-personal':
+        specifier: workspace:*
+        version: link:../../integrations/zalo-personal
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/mail':
+        specifier: workspace:*
+        version: link:../../packages/mail
+      '@inboxos.io/mini-app':
+        specifier: workspace:*
+        version: link:../../packages/mini-app
+      '@inboxos.io/minigame-ui':
+        specifier: workspace:*
+        version: link:../../packages/minigame-ui
+      '@inboxos.io/realtime-protocol':
+        specifier: workspace:*
+        version: link:../../packages/realtime-protocol
+      '@inboxos.io/redis':
+        specifier: workspace:*
+        version: link:../../packages/redis
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+      '@inboxos.io/sequence-scheduler':
+        specifier: workspace:*
+        version: link:../../packages/sequence-scheduler
+      '@inboxos.io/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@inboxos.io/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      '@inboxos.io/variables':
+        specifier: workspace:*
+        version: link:../../packages/variables
+      '@inboxos.io/worker-config':
+        specifier: workspace:*
+        version: link:../../packages/worker-config
       '@next-safe-action/adapter-react-hook-form':
         specifier: ^2.0.6
         version: 2.0.6(@hookform/resolvers@5.4.0(react-hook-form@7.77.0(react@19.2.5)))(next-safe-action@8.7.3(next@16.4.6(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(next@16.4.6(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-hook-form@7.77.0(react@19.2.5))(react@19.2.5)
@@ -621,10 +621,10 @@ importers:
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
         version: 3.1063.0
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@lingual/i18n-check':
@@ -694,7 +694,7 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -718,10 +718,10 @@ importers:
 
   apps/javascript-executor:
     dependencies:
-      '@chatbotx.io/javascript-sandbox':
+      '@inboxos.io/javascript-sandbox':
         specifier: workspace:*
         version: link:../../packages/javascript-sandbox
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
       '@t3-oss/env-core':
@@ -737,10 +737,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -780,13 +780,13 @@ importers:
       '@ai-sdk/openai':
         specifier: 'catalog:'
         version: 4.0.106(zod@4.6.7)
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@orpc/zod':
@@ -816,13 +816,13 @@ importers:
 
   apps/realtime:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/realtime-protocol':
+      '@inboxos.io/realtime-protocol':
         specifier: workspace:*
         version: link:../../packages/realtime-protocol
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../../packages/redis
       '@t3-oss/env-core':
@@ -841,10 +841,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -865,159 +865,159 @@ importers:
       '@aws-sdk/client-s3':
         specifier: 'catalog:'
         version: 3.1063.0
-      '@chatbotx.io/ai':
-        specifier: workspace:*
-        version: link:../../packages/ai
-      '@chatbotx.io/analytics':
-        specifier: workspace:*
-        version: link:../../packages/analytics
-      '@chatbotx.io/automated-response':
-        specifier: workspace:*
-        version: link:../../packages/automated-response
-      '@chatbotx.io/business':
-        specifier: workspace:*
-        version: link:../../packages/business
-      '@chatbotx.io/channel-registry':
-        specifier: workspace:*
-        version: link:../../packages/channel-registry
-      '@chatbotx.io/database':
-        specifier: workspace:*
-        version: link:../../packages/database
-      '@chatbotx.io/encryption':
-        specifier: workspace:*
-        version: link:../../packages/encryption
-      '@chatbotx.io/event-bus':
-        specifier: workspace:*
-        version: link:../../packages/event-bus
-      '@chatbotx.io/events':
-        specifier: workspace:*
-        version: link:../../packages/events
-      '@chatbotx.io/filesystem':
-        specifier: workspace:*
-        version: link:../../packages/filesystem
-      '@chatbotx.io/flow-config':
-        specifier: workspace:*
-        version: link:../../packages/flow-config
-      '@chatbotx.io/imports':
-        specifier: workspace:*
-        version: link:../../packages/imports
-      '@chatbotx.io/integration-active-campaign':
-        specifier: workspace:*
-        version: link:../../integrations/active-campaign
-      '@chatbotx.io/integration-api':
-        specifier: workspace:*
-        version: link:../../integrations/api
-      '@chatbotx.io/integration-chatbotx':
-        specifier: workspace:*
-        version: link:../../integrations/chatbotx
-      '@chatbotx.io/integration-drip':
-        specifier: workspace:*
-        version: link:../../integrations/drip
-      '@chatbotx.io/integration-facebook-ads':
-        specifier: workspace:*
-        version: link:../../integrations/facebook-ads
-      '@chatbotx.io/integration-get-response':
-        specifier: workspace:*
-        version: link:../../integrations/get-response
-      '@chatbotx.io/integration-google-ads':
-        specifier: workspace:*
-        version: link:../../integrations/google-ads
-      '@chatbotx.io/integration-google-calendar':
-        specifier: workspace:*
-        version: link:../../integrations/google-calendar
-      '@chatbotx.io/integration-google-sheets':
-        specifier: workspace:*
-        version: link:../../integrations/google-sheets
-      '@chatbotx.io/integration-instagram':
-        specifier: workspace:*
-        version: link:../../integrations/instagram
-      '@chatbotx.io/integration-instagram-facebook':
-        specifier: workspace:*
-        version: link:../../integrations/instagram-facebook
-      '@chatbotx.io/integration-klaviyo':
-        specifier: workspace:*
-        version: link:../../integrations/klaviyo
-      '@chatbotx.io/integration-line':
-        specifier: workspace:*
-        version: link:../../integrations/line
-      '@chatbotx.io/integration-mailchimp':
-        specifier: workspace:*
-        version: link:../../integrations/mailchimp
-      '@chatbotx.io/integration-mailer-lite':
-        specifier: workspace:*
-        version: link:../../integrations/mailer-lite
-      '@chatbotx.io/integration-messenger':
-        specifier: workspace:*
-        version: link:../../integrations/messenger
-      '@chatbotx.io/integration-meta-catalog':
-        specifier: workspace:*
-        version: link:../../integrations/meta-catalog
-      '@chatbotx.io/integration-meta-conversions':
-        specifier: workspace:*
-        version: link:../../integrations/meta-conversions
-      '@chatbotx.io/integration-moosend':
-        specifier: workspace:*
-        version: link:../../integrations/moosend
-      '@chatbotx.io/integration-sendgrid':
-        specifier: workspace:*
-        version: link:../../integrations/sendgrid
-      '@chatbotx.io/integration-smtp':
-        specifier: workspace:*
-        version: link:../../integrations/smtp
-      '@chatbotx.io/integration-telegram':
-        specifier: workspace:*
-        version: link:../../integrations/telegram
-      '@chatbotx.io/integration-threads':
-        specifier: workspace:*
-        version: link:../../integrations/threads
-      '@chatbotx.io/integration-tiktok':
-        specifier: workspace:*
-        version: link:../../integrations/tiktok
-      '@chatbotx.io/integration-webchat':
-        specifier: workspace:*
-        version: link:../../integrations/webchat
-      '@chatbotx.io/integration-whatsapp':
-        specifier: workspace:*
-        version: link:../../integrations/whatsapp
-      '@chatbotx.io/integration-zalo':
-        specifier: workspace:*
-        version: link:../../integrations/zalo
-      '@chatbotx.io/integration-zalo-personal':
-        specifier: workspace:*
-        version: link:../../integrations/zalo-personal
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/mail':
-        specifier: workspace:*
-        version: link:../../packages/mail
-      '@chatbotx.io/realtime-protocol':
-        specifier: workspace:*
-        version: link:../../packages/realtime-protocol
-      '@chatbotx.io/redis':
-        specifier: workspace:*
-        version: link:../../packages/redis
-      '@chatbotx.io/scheduler':
-        specifier: workspace:*
-        version: link:../../packages/scheduler
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
-      '@chatbotx.io/sequence-scheduler':
-        specifier: workspace:*
-        version: link:../../packages/sequence-scheduler
-      '@chatbotx.io/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
-      '@chatbotx.io/variables':
-        specifier: workspace:*
-        version: link:../../packages/variables
-      '@chatbotx.io/worker-config':
-        specifier: workspace:*
-        version: link:../../packages/worker-config
       '@faker-js/faker':
         specifier: ^10.5.0
         version: 10.5.0
+      '@inboxos.io/ai':
+        specifier: workspace:*
+        version: link:../../packages/ai
+      '@inboxos.io/analytics':
+        specifier: workspace:*
+        version: link:../../packages/analytics
+      '@inboxos.io/automated-response':
+        specifier: workspace:*
+        version: link:../../packages/automated-response
+      '@inboxos.io/business':
+        specifier: workspace:*
+        version: link:../../packages/business
+      '@inboxos.io/channel-registry':
+        specifier: workspace:*
+        version: link:../../packages/channel-registry
+      '@inboxos.io/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@inboxos.io/encryption':
+        specifier: workspace:*
+        version: link:../../packages/encryption
+      '@inboxos.io/event-bus':
+        specifier: workspace:*
+        version: link:../../packages/event-bus
+      '@inboxos.io/events':
+        specifier: workspace:*
+        version: link:../../packages/events
+      '@inboxos.io/filesystem':
+        specifier: workspace:*
+        version: link:../../packages/filesystem
+      '@inboxos.io/flow-config':
+        specifier: workspace:*
+        version: link:../../packages/flow-config
+      '@inboxos.io/imports':
+        specifier: workspace:*
+        version: link:../../packages/imports
+      '@inboxos.io/integration-active-campaign':
+        specifier: workspace:*
+        version: link:../../integrations/active-campaign
+      '@inboxos.io/integration-api':
+        specifier: workspace:*
+        version: link:../../integrations/api
+      '@inboxos.io/integration-drip':
+        specifier: workspace:*
+        version: link:../../integrations/drip
+      '@inboxos.io/integration-facebook-ads':
+        specifier: workspace:*
+        version: link:../../integrations/facebook-ads
+      '@inboxos.io/integration-get-response':
+        specifier: workspace:*
+        version: link:../../integrations/get-response
+      '@inboxos.io/integration-google-ads':
+        specifier: workspace:*
+        version: link:../../integrations/google-ads
+      '@inboxos.io/integration-google-calendar':
+        specifier: workspace:*
+        version: link:../../integrations/google-calendar
+      '@inboxos.io/integration-google-sheets':
+        specifier: workspace:*
+        version: link:../../integrations/google-sheets
+      '@inboxos.io/integration-inboxos':
+        specifier: workspace:*
+        version: link:../../integrations/inboxos
+      '@inboxos.io/integration-instagram':
+        specifier: workspace:*
+        version: link:../../integrations/instagram
+      '@inboxos.io/integration-instagram-facebook':
+        specifier: workspace:*
+        version: link:../../integrations/instagram-facebook
+      '@inboxos.io/integration-klaviyo':
+        specifier: workspace:*
+        version: link:../../integrations/klaviyo
+      '@inboxos.io/integration-line':
+        specifier: workspace:*
+        version: link:../../integrations/line
+      '@inboxos.io/integration-mailchimp':
+        specifier: workspace:*
+        version: link:../../integrations/mailchimp
+      '@inboxos.io/integration-mailer-lite':
+        specifier: workspace:*
+        version: link:../../integrations/mailer-lite
+      '@inboxos.io/integration-messenger':
+        specifier: workspace:*
+        version: link:../../integrations/messenger
+      '@inboxos.io/integration-meta-catalog':
+        specifier: workspace:*
+        version: link:../../integrations/meta-catalog
+      '@inboxos.io/integration-meta-conversions':
+        specifier: workspace:*
+        version: link:../../integrations/meta-conversions
+      '@inboxos.io/integration-moosend':
+        specifier: workspace:*
+        version: link:../../integrations/moosend
+      '@inboxos.io/integration-sendgrid':
+        specifier: workspace:*
+        version: link:../../integrations/sendgrid
+      '@inboxos.io/integration-smtp':
+        specifier: workspace:*
+        version: link:../../integrations/smtp
+      '@inboxos.io/integration-telegram':
+        specifier: workspace:*
+        version: link:../../integrations/telegram
+      '@inboxos.io/integration-threads':
+        specifier: workspace:*
+        version: link:../../integrations/threads
+      '@inboxos.io/integration-tiktok':
+        specifier: workspace:*
+        version: link:../../integrations/tiktok
+      '@inboxos.io/integration-webchat':
+        specifier: workspace:*
+        version: link:../../integrations/webchat
+      '@inboxos.io/integration-whatsapp':
+        specifier: workspace:*
+        version: link:../../integrations/whatsapp
+      '@inboxos.io/integration-zalo':
+        specifier: workspace:*
+        version: link:../../integrations/zalo
+      '@inboxos.io/integration-zalo-personal':
+        specifier: workspace:*
+        version: link:../../integrations/zalo-personal
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/mail':
+        specifier: workspace:*
+        version: link:../../packages/mail
+      '@inboxos.io/realtime-protocol':
+        specifier: workspace:*
+        version: link:../../packages/realtime-protocol
+      '@inboxos.io/redis':
+        specifier: workspace:*
+        version: link:../../packages/redis
+      '@inboxos.io/scheduler':
+        specifier: workspace:*
+        version: link:../../packages/scheduler
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+      '@inboxos.io/sequence-scheduler':
+        specifier: workspace:*
+        version: link:../../packages/sequence-scheduler
+      '@inboxos.io/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      '@inboxos.io/variables':
+        specifier: workspace:*
+        version: link:../../packages/variables
+      '@inboxos.io/worker-config':
+        specifier: workspace:*
+        version: link:../../packages/worker-config
       '@mozilla/readability':
         specifier: ^0.6.0
         version: 0.6.0
@@ -1100,10 +1100,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@jridgewell/sourcemap-codec':
@@ -1139,10 +1139,10 @@ importers:
 
   apps/zalo-personal-gateway:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@t3-oss/env-core':
@@ -1164,10 +1164,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1191,10 +1191,10 @@ importers:
 
   integrations/active-campaign:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1207,10 +1207,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1225,19 +1225,19 @@ importers:
 
   integrations/api:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../../packages/business
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -1247,38 +1247,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
-        specifier: workspace:*
-        version: link:../../packages/vitest-config
-      '@types/node':
-        specifier: 24.x
-        version: 24.13.1
-      typescript:
-        specifier: ^5
-        version: 5.9.3
-      vitest:
-        specifier: 'catalog:'
-        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(@vitest/coverage-v8@5.1.0)(jsdom@25.0.1)(msw@3.0.7(@types/node@24.13.1)(graphql@16.14.1)(typescript@5.9.3)(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0)))(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0))
-
-  integrations/chatbotx:
-    dependencies:
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
-      ky:
-        specifier: 'catalog:'
-        version: 2.0.2
-      zod:
-        specifier: 4.6.7
-        version: 4.6.7
-    devDependencies:
-      '@chatbotx.io/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1293,10 +1265,10 @@ importers:
 
   integrations/drip:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1309,10 +1281,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1327,13 +1299,13 @@ importers:
 
   integrations/facebook-ads:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -1346,10 +1318,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1364,7 +1336,7 @@ importers:
 
   integrations/get-response:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1377,10 +1349,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1395,13 +1367,13 @@ importers:
 
   integrations/google-ads:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       google-auth-library:
@@ -1414,10 +1386,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1432,15 +1404,15 @@ importers:
 
   integrations/google-calendar:
     dependencies:
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
       '@googleapis/calendar':
         specifier: ^20.1.0
         version: 20.1.0
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
       google-auth-library:
         specifier: ^11.3.4
         version: 11.3.4
@@ -1454,10 +1426,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1472,15 +1444,15 @@ importers:
 
   integrations/google-sheets:
     dependencies:
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
       '@googleapis/sheets':
         specifier: ^18.1.2
         version: 18.1.2
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
       google-auth-library:
         specifier: ^11.3.4
         version: 11.3.4
@@ -1488,10 +1460,10 @@ importers:
         specifier: ^9.3.1
         version: 9.3.1
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1507,21 +1479,49 @@ importers:
         specifier: 'catalog:'
         version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(@vitest/coverage-v8@5.1.0)(jsdom@25.0.1)(msw@3.0.7(@types/node@24.13.1)(graphql@16.14.1)(typescript@5.9.3)(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0)))(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0))
 
-  integrations/instagram:
+  integrations/inboxos:
     dependencies:
-      '@chatbotx.io/business':
-        specifier: workspace:*
-        version: link:../../packages/business
-      '@chatbotx.io/flow-config':
-        specifier: workspace:*
-        version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      ky:
+        specifier: 'catalog:'
+        version: 2.0.2
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
+    devDependencies:
+      '@inboxos.io/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@inboxos.io/vitest-config':
+        specifier: workspace:*
+        version: link:../../packages/vitest-config
+      '@types/node':
+        specifier: 24.x
+        version: 24.13.1
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+      vitest:
+        specifier: 'catalog:'
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(@vitest/coverage-v8@5.1.0)(jsdom@25.0.1)(msw@3.0.7(@types/node@24.13.1)(graphql@16.14.1)(typescript@5.9.3)(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0)))(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0))
+
+  integrations/instagram:
+    dependencies:
+      '@inboxos.io/business':
+        specifier: workspace:*
+        version: link:../../packages/business
+      '@inboxos.io/flow-config':
+        specifier: workspace:*
+        version: link:../../packages/flow-config
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       cross-fetch:
@@ -1537,10 +1537,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1555,22 +1555,22 @@ importers:
 
   integrations/instagram-facebook:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../../packages/business
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/integration-instagram':
+      '@inboxos.io/integration-instagram':
         specifier: workspace:*
         version: link:../instagram
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       cross-fetch:
@@ -1586,10 +1586,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1604,7 +1604,7 @@ importers:
 
   integrations/klaviyo:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1617,10 +1617,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1635,19 +1635,19 @@ importers:
 
   integrations/line:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../../packages/business
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -1660,10 +1660,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1681,10 +1681,10 @@ importers:
 
   integrations/mailchimp:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       '@noble/hashes':
@@ -1700,10 +1700,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1718,7 +1718,7 @@ importers:
 
   integrations/mailer-lite:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1731,10 +1731,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1749,22 +1749,22 @@ importers:
 
   integrations/messenger:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../../packages/business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../../packages/database
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@types/node':
@@ -1783,10 +1783,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       msw:
@@ -1801,19 +1801,19 @@ importers:
 
   integrations/meta-catalog:
     dependencies:
-      '@chatbotx.io/integration-facebook-ads':
+      '@inboxos.io/integration-facebook-ads':
         specifier: workspace:*
         version: link:../facebook-ads
-      '@chatbotx.io/integration-messenger':
+      '@inboxos.io/integration-messenger':
         specifier: workspace:*
         version: link:../messenger
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -1823,10 +1823,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1841,7 +1841,7 @@ importers:
 
   integrations/meta-conversions:
     dependencies:
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -1851,10 +1851,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1869,7 +1869,7 @@ importers:
 
   integrations/moosend:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1879,10 +1879,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1900,17 +1900,17 @@ importers:
       '@ai-sdk/openai':
         specifier: 'catalog:'
         version: 4.0.106(zod@4.6.7)
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ai:
         specifier: 'catalog:'
         version: 7.0.159(zod@4.6.7)
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1928,7 +1928,7 @@ importers:
 
   integrations/sendgrid:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -1938,10 +1938,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1963,10 +1963,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -1981,7 +1981,7 @@ importers:
 
   integrations/smtp:
     dependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       nodemailer:
@@ -1991,10 +1991,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2009,16 +2009,16 @@ importers:
 
   integrations/telegram:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -2031,10 +2031,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2052,10 +2052,10 @@ importers:
 
   integrations/threads:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       ky:
@@ -2065,10 +2065,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2083,16 +2083,16 @@ importers:
 
   integrations/tiktok:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@types/node':
@@ -2108,10 +2108,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       msw:
@@ -2126,26 +2126,26 @@ importers:
 
   integrations/webchat:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../../packages/business
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
         specifier: 'catalog:'
         version: 2.0.2
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2160,30 +2160,30 @@ importers:
 
   integrations/whatsapp:
     dependencies:
-      '@chatbotx.io/business':
-        specifier: workspace:*
-        version: link:../../packages/business
-      '@chatbotx.io/filesystem':
-        specifier: workspace:*
-        version: link:../../packages/filesystem
-      '@chatbotx.io/flow-config':
-        specifier: workspace:*
-        version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../../packages/logger
-      '@chatbotx.io/sdk':
-        specifier: workspace:*
-        version: link:../../packages/sdk
-      '@chatbotx.io/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
-      '@chatbotx.io/worker-config':
-        specifier: workspace:*
-        version: link:../../packages/worker-config
       '@edenchazard/tiny-chunk-array':
         specifier: ^1.0.1
         version: 1.0.1
+      '@inboxos.io/business':
+        specifier: workspace:*
+        version: link:../../packages/business
+      '@inboxos.io/filesystem':
+        specifier: workspace:*
+        version: link:../../packages/filesystem
+      '@inboxos.io/flow-config':
+        specifier: workspace:*
+        version: link:../../packages/flow-config
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@inboxos.io/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+      '@inboxos.io/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+      '@inboxos.io/worker-config':
+        specifier: workspace:*
+        version: link:../../packages/worker-config
       '@types/node':
         specifier: 24.x
         version: 24.13.1
@@ -2206,10 +2206,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       msw:
@@ -2231,10 +2231,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2249,16 +2249,16 @@ importers:
 
   integrations/zalo:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       cross-fetch:
@@ -2277,10 +2277,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2298,16 +2298,16 @@ importers:
 
   integrations/zalo-personal:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../../packages/flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       ky:
@@ -2320,10 +2320,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
       '@types/node':
@@ -2356,25 +2356,25 @@ importers:
       '@ai-sdk/openai-compatible':
         specifier: ^3.0.82
         version: 3.0.82(zod@4.6.7)
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
       '@openrouter/ai-sdk-provider':
@@ -2402,10 +2402,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/mime-types':
@@ -2420,22 +2420,22 @@ importers:
 
   packages/analytics:
     dependencies:
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       date-fns:
@@ -2451,10 +2451,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -2472,24 +2472,24 @@ importers:
 
   packages/analytics-nextjs:
     dependencies:
-      '@chatbotx.io/analytics':
-        specifier: workspace:*
-        version: link:../analytics
-      '@chatbotx.io/database':
-        specifier: workspace:*
-        version: link:../database
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../logger
-      '@chatbotx.io/redis':
-        specifier: workspace:*
-        version: link:../redis
-      '@chatbotx.io/ui':
-        specifier: workspace:*
-        version: link:../ui
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.4.0(react-hook-form@7.77.0(react@19.2.5))
+      '@inboxos.io/analytics':
+        specifier: workspace:*
+        version: link:../analytics
+      '@inboxos.io/database':
+        specifier: workspace:*
+        version: link:../database
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../logger
+      '@inboxos.io/redis':
+        specifier: workspace:*
+        version: link:../redis
+      '@inboxos.io/ui':
+        specifier: workspace:*
+        version: link:../ui
       '@orpc/client':
         specifier: ^1.15.4
         version: 1.15.4(@opentelemetry/api@1.9.1)
@@ -2521,10 +2521,10 @@ importers:
         specifier: ^5.0.12
         version: 5.0.14(@types/react@19.2.14)(immer@11.1.15)(react@19.2.5)(use-sync-external-store@1.6.0(react@19.2.5))
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -2557,22 +2557,22 @@ importers:
       '@better-auth/oauth-provider':
         specifier: 'catalog:'
         version: 1.7.14(@better-auth/core@1.7.14(@better-auth/utils@0.5.1)(@better-fetch/fetch@1.3.3)(@opentelemetry/api@1.9.1)(better-call@1.4.4(zod@4.6.7))(jose@6.2.13)(kysely@0.28.17)(nanostores@1.4.2))(@better-auth/utils@0.5.1)(@better-fetch/fetch@1.3.3)(better-auth@1.7.14(@opentelemetry/api@1.9.1)(drizzle-kit@1.0.0-beta.22)(drizzle-orm@1.0.0-beta.22(@cloudflare/workers-types@4.20240718.0)(@opentelemetry/api@1.9.1)(@types/pg@8.20.0)(pg@8.21.0)(valibot@1.5.0(typescript@5.9.3))(zod@4.6.7))(next@16.4.6(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(pg@8.21.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(vitest@5.1.0))(better-call@1.4.4(zod@4.6.7))
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/mail':
+      '@inboxos.io/mail':
         specifier: workspace:*
         version: link:../mail
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       '@t3-oss/env-core':
@@ -2591,10 +2591,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       drizzle-orm:
@@ -2609,31 +2609,31 @@ importers:
 
   packages/automated-response:
     dependencies:
-      '@chatbotx.io/analytics':
+      '@inboxos.io/analytics':
         specifier: workspace:*
         version: link:../analytics
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/events':
+      '@inboxos.io/events':
         specifier: workspace:*
         version: link:../events
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
-      '@chatbotx.io/variables':
+      '@inboxos.io/variables':
         specifier: workspace:*
         version: link:../variables
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
       '@t3-oss/env-core':
@@ -2646,10 +2646,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -2664,85 +2664,85 @@ importers:
 
   packages/business:
     dependencies:
-      '@chatbotx.io/analytics':
+      '@inboxos.io/analytics':
         specifier: workspace:*
         version: link:../analytics
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/decision-config':
+      '@inboxos.io/decision-config':
         specifier: workspace:*
         version: link:../decision-config
-      '@chatbotx.io/encryption':
+      '@inboxos.io/encryption':
         specifier: workspace:*
         version: link:../encryption
-      '@chatbotx.io/event-bus':
+      '@inboxos.io/event-bus':
         specifier: workspace:*
         version: link:../event-bus
-      '@chatbotx.io/events':
+      '@inboxos.io/events':
         specifier: workspace:*
         version: link:../events
-      '@chatbotx.io/filesystem':
+      '@inboxos.io/filesystem':
         specifier: workspace:*
         version: link:../filesystem
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/imports':
+      '@inboxos.io/imports':
         specifier: workspace:*
         version: link:../imports
-      '@chatbotx.io/integration-facebook-ads':
+      '@inboxos.io/integration-facebook-ads':
         specifier: workspace:*
         version: link:../../integrations/facebook-ads
-      '@chatbotx.io/integration-google-ads':
+      '@inboxos.io/integration-google-ads':
         specifier: workspace:*
         version: link:../../integrations/google-ads
-      '@chatbotx.io/integration-google-calendar':
+      '@inboxos.io/integration-google-calendar':
         specifier: workspace:*
         version: link:../../integrations/google-calendar
-      '@chatbotx.io/integration-shopify':
+      '@inboxos.io/integration-shopify':
         specifier: workspace:*
         version: link:../../integrations/shopify
-      '@chatbotx.io/integration-tiktok':
+      '@inboxos.io/integration-tiktok':
         specifier: workspace:*
         version: link:../../integrations/tiktok
-      '@chatbotx.io/integration-woocommerce':
+      '@inboxos.io/integration-woocommerce':
         specifier: workspace:*
         version: link:../../integrations/woocommerce
-      '@chatbotx.io/javascript-sandbox':
+      '@inboxos.io/javascript-sandbox':
         specifier: workspace:*
         version: link:../javascript-sandbox
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/mail':
+      '@inboxos.io/mail':
         specifier: workspace:*
         version: link:../mail
-      '@chatbotx.io/mini-app':
+      '@inboxos.io/mini-app':
         specifier: workspace:*
         version: link:../mini-app
-      '@chatbotx.io/payments':
+      '@inboxos.io/payments':
         specifier: workspace:*
         version: link:../payments
-      '@chatbotx.io/realtime-protocol':
+      '@inboxos.io/realtime-protocol':
         specifier: workspace:*
         version: link:../realtime-protocol
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/scheduler':
+      '@inboxos.io/scheduler':
         specifier: workspace:*
         version: link:../scheduler
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/sequence-scheduler':
+      '@inboxos.io/sequence-scheduler':
         specifier: workspace:*
         version: link:../sequence-scheduler
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
       '@napi-rs/canvas':
@@ -2797,10 +2797,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -2824,113 +2824,113 @@ importers:
 
   packages/channel-registry:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/filesystem':
+      '@inboxos.io/filesystem':
         specifier: workspace:*
         version: link:../filesystem
-      '@chatbotx.io/integration-active-campaign':
+      '@inboxos.io/integration-active-campaign':
         specifier: workspace:*
         version: link:../../integrations/active-campaign
-      '@chatbotx.io/integration-api':
+      '@inboxos.io/integration-api':
         specifier: workspace:*
         version: link:../../integrations/api
-      '@chatbotx.io/integration-chatbotx':
-        specifier: workspace:*
-        version: link:../../integrations/chatbotx
-      '@chatbotx.io/integration-drip':
+      '@inboxos.io/integration-drip':
         specifier: workspace:*
         version: link:../../integrations/drip
-      '@chatbotx.io/integration-facebook-ads':
+      '@inboxos.io/integration-facebook-ads':
         specifier: workspace:*
         version: link:../../integrations/facebook-ads
-      '@chatbotx.io/integration-get-response':
+      '@inboxos.io/integration-get-response':
         specifier: workspace:*
         version: link:../../integrations/get-response
-      '@chatbotx.io/integration-google-ads':
+      '@inboxos.io/integration-google-ads':
         specifier: workspace:*
         version: link:../../integrations/google-ads
-      '@chatbotx.io/integration-google-calendar':
+      '@inboxos.io/integration-google-calendar':
         specifier: workspace:*
         version: link:../../integrations/google-calendar
-      '@chatbotx.io/integration-google-sheets':
+      '@inboxos.io/integration-google-sheets':
         specifier: workspace:*
         version: link:../../integrations/google-sheets
-      '@chatbotx.io/integration-instagram':
+      '@inboxos.io/integration-inboxos':
+        specifier: workspace:*
+        version: link:../../integrations/inboxos
+      '@inboxos.io/integration-instagram':
         specifier: workspace:*
         version: link:../../integrations/instagram
-      '@chatbotx.io/integration-instagram-facebook':
+      '@inboxos.io/integration-instagram-facebook':
         specifier: workspace:*
         version: link:../../integrations/instagram-facebook
-      '@chatbotx.io/integration-klaviyo':
+      '@inboxos.io/integration-klaviyo':
         specifier: workspace:*
         version: link:../../integrations/klaviyo
-      '@chatbotx.io/integration-line':
+      '@inboxos.io/integration-line':
         specifier: workspace:*
         version: link:../../integrations/line
-      '@chatbotx.io/integration-mailchimp':
+      '@inboxos.io/integration-mailchimp':
         specifier: workspace:*
         version: link:../../integrations/mailchimp
-      '@chatbotx.io/integration-mailer-lite':
+      '@inboxos.io/integration-mailer-lite':
         specifier: workspace:*
         version: link:../../integrations/mailer-lite
-      '@chatbotx.io/integration-messenger':
+      '@inboxos.io/integration-messenger':
         specifier: workspace:*
         version: link:../../integrations/messenger
-      '@chatbotx.io/integration-moosend':
+      '@inboxos.io/integration-moosend':
         specifier: workspace:*
         version: link:../../integrations/moosend
-      '@chatbotx.io/integration-sendgrid':
+      '@inboxos.io/integration-sendgrid':
         specifier: workspace:*
         version: link:../../integrations/sendgrid
-      '@chatbotx.io/integration-smtp':
+      '@inboxos.io/integration-smtp':
         specifier: workspace:*
         version: link:../../integrations/smtp
-      '@chatbotx.io/integration-telegram':
+      '@inboxos.io/integration-telegram':
         specifier: workspace:*
         version: link:../../integrations/telegram
-      '@chatbotx.io/integration-threads':
+      '@inboxos.io/integration-threads':
         specifier: workspace:*
         version: link:../../integrations/threads
-      '@chatbotx.io/integration-tiktok':
+      '@inboxos.io/integration-tiktok':
         specifier: workspace:*
         version: link:../../integrations/tiktok
-      '@chatbotx.io/integration-webchat':
+      '@inboxos.io/integration-webchat':
         specifier: workspace:*
         version: link:../../integrations/webchat
-      '@chatbotx.io/integration-whatsapp':
+      '@inboxos.io/integration-whatsapp':
         specifier: workspace:*
         version: link:../../integrations/whatsapp
-      '@chatbotx.io/integration-zalo':
+      '@inboxos.io/integration-zalo':
         specifier: workspace:*
         version: link:../../integrations/zalo
-      '@chatbotx.io/integration-zalo-personal':
+      '@inboxos.io/integration-zalo-personal':
         specifier: workspace:*
         version: link:../../integrations/zalo-personal
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -2948,113 +2948,113 @@ importers:
 
   packages/connections:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/encryption':
+      '@inboxos.io/encryption':
         specifier: workspace:*
         version: link:../encryption
-      '@chatbotx.io/integration-active-campaign':
+      '@inboxos.io/integration-active-campaign':
         specifier: workspace:*
         version: link:../../integrations/active-campaign
-      '@chatbotx.io/integration-api':
+      '@inboxos.io/integration-api':
         specifier: workspace:*
         version: link:../../integrations/api
-      '@chatbotx.io/integration-chatbotx':
-        specifier: workspace:*
-        version: link:../../integrations/chatbotx
-      '@chatbotx.io/integration-drip':
+      '@inboxos.io/integration-drip':
         specifier: workspace:*
         version: link:../../integrations/drip
-      '@chatbotx.io/integration-facebook-ads':
+      '@inboxos.io/integration-facebook-ads':
         specifier: workspace:*
         version: link:../../integrations/facebook-ads
-      '@chatbotx.io/integration-get-response':
+      '@inboxos.io/integration-get-response':
         specifier: workspace:*
         version: link:../../integrations/get-response
-      '@chatbotx.io/integration-google-ads':
+      '@inboxos.io/integration-google-ads':
         specifier: workspace:*
         version: link:../../integrations/google-ads
-      '@chatbotx.io/integration-google-calendar':
+      '@inboxos.io/integration-google-calendar':
         specifier: workspace:*
         version: link:../../integrations/google-calendar
-      '@chatbotx.io/integration-google-sheets':
+      '@inboxos.io/integration-google-sheets':
         specifier: workspace:*
         version: link:../../integrations/google-sheets
-      '@chatbotx.io/integration-instagram':
+      '@inboxos.io/integration-inboxos':
+        specifier: workspace:*
+        version: link:../../integrations/inboxos
+      '@inboxos.io/integration-instagram':
         specifier: workspace:*
         version: link:../../integrations/instagram
-      '@chatbotx.io/integration-instagram-facebook':
+      '@inboxos.io/integration-instagram-facebook':
         specifier: workspace:*
         version: link:../../integrations/instagram-facebook
-      '@chatbotx.io/integration-klaviyo':
+      '@inboxos.io/integration-klaviyo':
         specifier: workspace:*
         version: link:../../integrations/klaviyo
-      '@chatbotx.io/integration-line':
+      '@inboxos.io/integration-line':
         specifier: workspace:*
         version: link:../../integrations/line
-      '@chatbotx.io/integration-mailchimp':
+      '@inboxos.io/integration-mailchimp':
         specifier: workspace:*
         version: link:../../integrations/mailchimp
-      '@chatbotx.io/integration-mailer-lite':
+      '@inboxos.io/integration-mailer-lite':
         specifier: workspace:*
         version: link:../../integrations/mailer-lite
-      '@chatbotx.io/integration-messenger':
+      '@inboxos.io/integration-messenger':
         specifier: workspace:*
         version: link:../../integrations/messenger
-      '@chatbotx.io/integration-moosend':
+      '@inboxos.io/integration-moosend':
         specifier: workspace:*
         version: link:../../integrations/moosend
-      '@chatbotx.io/integration-sendgrid':
+      '@inboxos.io/integration-sendgrid':
         specifier: workspace:*
         version: link:../../integrations/sendgrid
-      '@chatbotx.io/integration-smtp':
+      '@inboxos.io/integration-smtp':
         specifier: workspace:*
         version: link:../../integrations/smtp
-      '@chatbotx.io/integration-telegram':
+      '@inboxos.io/integration-telegram':
         specifier: workspace:*
         version: link:../../integrations/telegram
-      '@chatbotx.io/integration-threads':
+      '@inboxos.io/integration-threads':
         specifier: workspace:*
         version: link:../../integrations/threads
-      '@chatbotx.io/integration-tiktok':
+      '@inboxos.io/integration-tiktok':
         specifier: workspace:*
         version: link:../../integrations/tiktok
-      '@chatbotx.io/integration-webchat':
+      '@inboxos.io/integration-webchat':
         specifier: workspace:*
         version: link:../../integrations/webchat
-      '@chatbotx.io/integration-whatsapp':
+      '@inboxos.io/integration-whatsapp':
         specifier: workspace:*
         version: link:../../integrations/whatsapp
-      '@chatbotx.io/integration-zalo':
+      '@inboxos.io/integration-zalo':
         specifier: workspace:*
         version: link:../../integrations/zalo
-      '@chatbotx.io/integration-zalo-personal':
+      '@inboxos.io/integration-zalo-personal':
         specifier: workspace:*
         version: link:../../integrations/zalo-personal
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       zod:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3072,22 +3072,22 @@ importers:
 
   packages/database:
     dependencies:
-      '@chatbotx.io/encryption':
+      '@inboxos.io/encryption':
         specifier: workspace:*
         version: link:../encryption
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/mini-app':
+      '@inboxos.io/mini-app':
         specifier: workspace:*
         version: link:../mini-app
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       '@t3-oss/env-core':
@@ -3115,10 +3115,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3149,10 +3149,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -3171,10 +3171,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3189,26 +3189,26 @@ importers:
 
   packages/event-bus:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
       zod:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3220,16 +3220,16 @@ importers:
 
   packages/events:
     dependencies:
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/worker-config':
+      '@inboxos.io/worker-config':
         specifier: workspace:*
         version: link:../worker-config
       lru-cache:
@@ -3239,10 +3239,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -3260,13 +3260,13 @@ importers:
       '@aws-sdk/lib-storage':
         specifier: ^3.1039.0
         version: 3.1063.0(@aws-sdk/client-s3@3.1063.0)
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       '@t3-oss/env-core':
@@ -3285,10 +3285,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3306,7 +3306,7 @@ importers:
 
   packages/flow-config:
     dependencies:
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       '@xyflow/react':
@@ -3322,10 +3322,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3343,10 +3343,10 @@ importers:
 
   packages/imports:
     dependencies:
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       csv-parse:
@@ -3362,10 +3362,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3387,10 +3387,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3412,10 +3412,10 @@ importers:
         specifier: ^10.3.1
         version: 10.3.1
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -3440,10 +3440,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/mjml':
@@ -3464,17 +3464,17 @@ importers:
 
   packages/mini-app:
     dependencies:
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       zod:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3489,7 +3489,7 @@ importers:
 
   packages/minigame-ui:
     dependencies:
-      '@chatbotx.io/ui':
+      '@inboxos.io/ui':
         specifier: workspace:*
         version: link:../ui
       lucide-react:
@@ -3499,7 +3499,7 @@ importers:
         specifier: 'catalog:'
         version: 19.2.5
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/react':
@@ -3515,10 +3515,10 @@ importers:
         specifier: ^22.1.0
         version: 22.2.0(@types/node@24.13.1)
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3543,10 +3543,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3561,7 +3561,7 @@ importers:
 
   packages/redis:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
       '@t3-oss/env-core':
@@ -3583,10 +3583,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       dotenv-cli:
@@ -3601,17 +3601,17 @@ importers:
 
   packages/scheduler:
     dependencies:
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
       ioredis:
         specifier: 'catalog:'
         version: 5.10.1
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -3623,26 +3623,26 @@ importers:
 
   packages/sdk:
     dependencies:
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/realtime-protocol':
+      '@inboxos.io/realtime-protocol':
         specifier: workspace:*
         version: link:../realtime-protocol
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       zod:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3657,26 +3657,26 @@ importers:
 
   packages/sequence-scheduler:
     dependencies:
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/scheduler':
+      '@inboxos.io/scheduler':
         specifier: workspace:*
         version: link:../scheduler
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       date-fns:
         specifier: 'catalog:'
         version: 4.4.0
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -3697,9 +3697,6 @@ importers:
       '@base-ui/react':
         specifier: ^1.6.0
         version: 1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@chatbotx.io/logger':
-        specifier: workspace:*
-        version: link:../logger
       '@dnd-kit/core':
         specifier: ^6.3.1
         version: 6.3.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -3712,6 +3709,9 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.5)
+      '@inboxos.io/logger':
+        specifier: workspace:*
+        version: link:../logger
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -3800,10 +3800,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@tailwindcss/postcss':
@@ -3842,7 +3842,7 @@ importers:
 
   packages/utils:
     dependencies:
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
       '@t3-oss/env-core':
@@ -3867,10 +3867,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3885,37 +3885,37 @@ importers:
 
   packages/variables:
     dependencies:
-      '@chatbotx.io/business':
+      '@inboxos.io/business':
         specifier: workspace:*
         version: link:../business
-      '@chatbotx.io/channel-registry':
+      '@inboxos.io/channel-registry':
         specifier: workspace:*
         version: link:../channel-registry
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/encryption':
+      '@inboxos.io/encryption':
         specifier: workspace:*
         version: link:../encryption
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/integration-instagram':
+      '@inboxos.io/integration-instagram':
         specifier: workspace:*
         version: link:../../integrations/instagram
-      '@chatbotx.io/integration-messenger':
+      '@inboxos.io/integration-messenger':
         specifier: workspace:*
         version: link:../../integrations/messenger
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       date-fns-tz:
@@ -3925,10 +3925,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       '@types/node':
@@ -3965,7 +3965,7 @@ importers:
         specifier: 'catalog:'
         version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@24.13.1)(@vitest/coverage-v8@5.1.0)(jsdom@25.0.1)(msw@3.0.7(@types/node@24.13.1)(graphql@16.14.1)(typescript@5.9.3)(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0)))(vite@7.3.8(@types/node@24.13.1)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.23.0)(yaml@2.9.0))
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
@@ -3977,25 +3977,25 @@ importers:
 
   packages/worker-config:
     dependencies:
-      '@chatbotx.io/analytics':
+      '@inboxos.io/analytics':
         specifier: workspace:*
         version: link:../analytics
-      '@chatbotx.io/database':
+      '@inboxos.io/database':
         specifier: workspace:*
         version: link:../database
-      '@chatbotx.io/flow-config':
+      '@inboxos.io/flow-config':
         specifier: workspace:*
         version: link:../flow-config
-      '@chatbotx.io/logger':
+      '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../logger
-      '@chatbotx.io/redis':
+      '@inboxos.io/redis':
         specifier: workspace:*
         version: link:../redis
-      '@chatbotx.io/sdk':
+      '@inboxos.io/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@chatbotx.io/utils':
+      '@inboxos.io/utils':
         specifier: workspace:*
         version: link:../utils
       '@t3-oss/env-nextjs':
@@ -4014,10 +4014,10 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
-      '@chatbotx.io/typescript-config':
+      '@inboxos.io/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@chatbotx.io/vitest-config':
+      '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../vitest-config
       typescript:
@@ -13480,7 +13480,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.5
+      picomatch: 4.0.7
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
       '@parcel/watcher-darwin-arm64': 2.5.6

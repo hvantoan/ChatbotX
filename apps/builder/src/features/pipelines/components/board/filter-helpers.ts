@@ -5,7 +5,7 @@ import {
   type PipelineActivityGroup,
   type PipelineActivityKind,
   pipelineActivityGroups,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { toLocalDateKey } from "@/features/ads/lib/ads-date-key"
 import {
   type DatePreset,

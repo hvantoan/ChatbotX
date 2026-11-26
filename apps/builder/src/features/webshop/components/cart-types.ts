@@ -1,4 +1,4 @@
-import type { DiscountType, ShippingType } from "@chatbotx.io/database/partials"
+import type { DiscountType, ShippingType } from "@inboxos.io/database/partials"
 
 export type CartLineView = {
   productId?: string | null

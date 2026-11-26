@@ -1,5 +1,5 @@
-import { triggerService } from "@chatbotx.io/business"
-import type { TriggerModel } from "@chatbotx.io/database/types"
+import { triggerService } from "@inboxos.io/business"
+import type { TriggerModel } from "@inboxos.io/database/types"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type { GetTriggersSchema, ListTriggersResponse } from "../schema/query"
 

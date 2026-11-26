@@ -1,20 +1,20 @@
 import {
   McpTokenVerificationUnavailableError,
   verifyMcpAccessToken,
-} from "@chatbotx.io/auth/mcp-resource"
-import { isMobileAccessTokenCandidate } from "@chatbotx.io/auth/mobile-resource-candidate"
+} from "@inboxos.io/auth/mcp-resource"
+import { isMobileAccessTokenCandidate } from "@inboxos.io/auth/mobile-resource-candidate"
 import {
   isWorkspaceScheduledForDeletion,
   mcpOAuthService,
   workspaceApiTokenService,
-} from "@chatbotx.io/business"
-import { withAuditContext } from "@chatbotx.io/business/audit"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { hashToken } from "@chatbotx.io/business/workspace-api-token/credentials"
+} from "@inboxos.io/business"
+import { withAuditContext } from "@inboxos.io/business/audit"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { hashToken } from "@inboxos.io/business/workspace-api-token/credentials"
 import type {
   WorkspaceApiTokenModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { ORPCError } from "@orpc/server"
 import { logger } from "@/lib/log"
 import { mobileCredentialId } from "@/lib/mobile-auth/mobile-credential-id"
@@ -123,7 +123,7 @@ export const workspaceTokenAuthMidddleware = base.middleware(
         // points at if a purge runs before the tag is invalidated — the
         // service's findById then throws notFound instead of returning. That's
         // an auth failure from the caller's perspective, not a server error.
-        if (error instanceof ChatbotXException && error.code === "notFound") {
+        if (error instanceof InboxOSException && error.code === "notFound") {
           logger.warn(
             { err: error, tokenHash },
             "Workspace token cache pointed at a purged workspace",

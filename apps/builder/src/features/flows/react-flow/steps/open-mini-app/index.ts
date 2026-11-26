@@ -2,7 +2,7 @@ import {
   type OpenMiniAppStepSchema,
   openMiniAppStepDefaultFn,
   openMiniAppStepSchema,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type { StepDefinition } from "../definition"
 import OpenMiniAppStepEditor from "./editor"
 import OpenMiniAppStepViewer from "./viewer"

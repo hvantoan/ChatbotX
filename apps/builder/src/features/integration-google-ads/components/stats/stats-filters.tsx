@@ -1,14 +1,14 @@
 "use client"
 
-import { DateRangePresetFilter } from "@chatbotx.io/analytics-nextjs/components/date-range-preset-filter"
+import { DateRangePresetFilter } from "@inboxos.io/analytics-nextjs/components/date-range-preset-filter"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@chatbotx.io/ui/components/ui/select"
-import { GOOGLE_ADS_CHANNEL_VALUES } from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/ui/components/ui/select"
+import { GOOGLE_ADS_CHANNEL_VALUES } from "@inboxos.io/utils/google-click"
 import { useTranslations } from "next-intl"
 import { parseLocalDateKey } from "@/features/ads/lib/ads-date-key"
 import { resolveRangePreset } from "../../lib/stats-preset"

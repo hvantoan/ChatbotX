@@ -3,10 +3,10 @@
 import {
   AnalysisChannelFilter,
   type AnalysisFilterOption,
-} from "@chatbotx.io/analytics-nextjs/components/channel-filter"
-import type { MultiSelectOption } from "@chatbotx.io/ui/components/ui/sersavan/multi-select"
-import { cn } from "@chatbotx.io/ui/lib/utils"
-import type { ChannelType } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/analytics-nextjs/components/channel-filter"
+import type { MultiSelectOption } from "@inboxos.io/ui/components/ui/sersavan/multi-select"
+import { cn } from "@inboxos.io/ui/lib/utils"
+import type { ChannelType } from "@inboxos.io/utils/channel"
 import { INBOX_ICON_CONFIG } from "@/features/inboxes/components/inbox-icon"
 
 type ChannelIcon = NonNullable<MultiSelectOption["icon"]>

@@ -1,8 +1,8 @@
 import {
   type DefaultTemplateScope,
   tenantDefaultTemplateService,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
 import type {
   DefaultTemplateRejectionReason,
   SaveDefaultTemplateOutcome,
@@ -32,7 +32,7 @@ export const saveDefaultTemplate = async (
     return { status: "saved" }
   } catch (error) {
     const reason =
-      error instanceof ChatbotXException
+      error instanceof InboxOSException
         ? REJECTION_BY_CODE[error.code]
         : undefined
     if (!reason) {

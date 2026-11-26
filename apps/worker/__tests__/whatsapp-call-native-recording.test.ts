@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   whatsappCallLifecycleService: {
     attachRecording: mocks.attachRecording,
     releaseRecordingStamp: mocks.releaseRecordingStamp,
@@ -52,7 +52,7 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   whatsappCallRepository: {
     findById: mocks.findById,
     findByWacid: mocks.findByWacid,
@@ -71,7 +71,7 @@ vi.mock("@chatbotx.io/database/repositories", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitCallRecorded: mocks.emitCallRecorded,
   setWebhookExecutionContext: vi.fn(),
 }))
@@ -83,7 +83,7 @@ vi.mock("../src/integration/handlers/whatsapp-voip-signaling", () => ({
 // `whatsapp-call-recording.ts` (the shared `attachRecordingAndNotify` this
 // handler reuses) also imports the transcription queue — mocked here purely
 // so the real BullMQ queue never gets instantiated in this unit test.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   callTranscriptionJobId: (callId: string) => `transcribe-${callId}`,
   callTranscriptionQueue: { add: vi.fn() },
 }))

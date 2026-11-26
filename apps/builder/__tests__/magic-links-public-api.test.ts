@@ -47,7 +47,7 @@ const magicLinkService = {
   update: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   magicLinkService,
   resolveTenantSettings: vi.fn(async () => ({
     appUrl: "https://app.tenant.test",

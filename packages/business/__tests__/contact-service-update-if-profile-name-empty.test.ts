@@ -28,7 +28,7 @@ const { mockDbUpdate, mockEmitContactInfoUpdated, mockEnqueueOptimizations } =
 
 const sqlCalls: Array<{ strings: readonly string[]; values: unknown[] }> = []
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...args: unknown[]) => ({ __and: args })),
   db: { update: mockDbUpdate },
   eq: vi.fn((left: unknown, right: unknown) => ({ __eq: [left, right] })),
@@ -41,36 +41,36 @@ vi.mock("@chatbotx.io/database/client", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/database/schema", async (importOriginal) => {
+vi.mock("@inboxos.io/database/schema", async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import("@chatbotx.io/database/schema")>()
+    await importOriginal<typeof import("@inboxos.io/database/schema")>()
   return actual
 })
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: vi.fn(),
   emitContactInfoUpdated: mockEmitContactInfoUpdated,
 }))
 
-vi.mock("@chatbotx.io/filesystem", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({
   uploadFileFromUrl: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   macAnalyticsService: {},
 }))
 
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   enqueueStoredImageOptimizations: mockEnqueueOptimizations,
 }))
 
@@ -87,9 +87,7 @@ vi.mock("../src/workspace/service", () => ({
 }))
 
 const { contactService } = await import("../src/contact/service")
-const { and: andMock, eq: eqMock } = await import(
-  "@chatbotx.io/database/client"
-)
+const { and: andMock, eq: eqMock } = await import("@inboxos.io/database/client")
 const { PROFILE_NAME_BLANK_CHARACTERS } = await import(
   "../src/contact/profile-refresh/rules"
 )

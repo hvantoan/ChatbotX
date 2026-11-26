@@ -2,8 +2,8 @@ import {
   type FlowNode,
   type QuickReplyNextStep,
   quickReplyNextStepFollowsEdge,
-} from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { clone } from "remeda"
 
 type MutableRecord = Record<string, unknown>

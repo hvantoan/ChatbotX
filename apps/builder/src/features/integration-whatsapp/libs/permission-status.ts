@@ -1,5 +1,5 @@
-import { isCapiScopeRequired } from "@chatbotx.io/business/meta-conversions/capi-scope-policy"
-import type { WhatsappCredentialPublic } from "@chatbotx.io/database/partials"
+import { isCapiScopeRequired } from "@inboxos.io/business/meta-conversions/capi-scope-policy"
+import type { WhatsappCredentialPublic } from "@inboxos.io/database/partials"
 
 export type PermissionStatus = "ready" | "missingPermission" | "unverified"
 

@@ -2,18 +2,18 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 // Import isolation only: these tests call `requireTemplateName` with the
 // template lookup stubbed, so no collaborator below is ever exercised.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {},
   broadcastDraftPurgeJobId: vi.fn(),
   scheduleQueue: { add: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: {},
   sequenceAnalyticsService: {},
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { query: {} },
   and: vi.fn(),
   asc: vi.fn(),
@@ -30,7 +30,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   sql: Object.assign(vi.fn(), { raw: vi.fn() }),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: {},
   broadcastTargetModel: {},
   contactInboxModel: {},
@@ -43,18 +43,18 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRecurrenceRepository: {},
   broadcastRepository: {},
 }))
 
-vi.mock("@chatbotx.io/flow-config", async (importOriginal) => ({
+vi.mock("@inboxos.io/flow-config", async (importOriginal) => ({
   ...(await importOriginal<Record<string, unknown>>()),
   findTemplateStartStep: vi.fn(),
 }))

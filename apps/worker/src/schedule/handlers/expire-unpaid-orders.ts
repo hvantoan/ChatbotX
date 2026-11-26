@@ -1,8 +1,8 @@
 import {
   orderPaymentService,
   withBlockedOwnerGuard,
-} from "@chatbotx.io/business"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/business"
+import { distributedLock } from "@inboxos.io/redis"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 

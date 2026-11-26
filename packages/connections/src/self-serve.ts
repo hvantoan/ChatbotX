@@ -1,11 +1,11 @@
-import { workspaceService } from "@chatbotx.io/business"
+import { workspaceService } from "@inboxos.io/business"
 import type {
   SelfServeConnectActor,
   SelfServeSecret,
-} from "@chatbotx.io/business/connection"
-import { connectionWrongStrategyException } from "@chatbotx.io/business/errors"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import type { ConnectionModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/business/connection"
+import { connectionWrongStrategyException } from "@inboxos.io/business/errors"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import type { ConnectionModel } from "@inboxos.io/database/types"
 import { resolveAdapter } from "./internal"
 
 export const connectSelfServeChannel = async (input: {

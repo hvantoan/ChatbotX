@@ -6,14 +6,14 @@ import {
   inArray,
   type RelationsFieldFilter,
   relationsFilterToSQL,
-} from "@chatbotx.io/database/client"
-import { aiFunctionModel } from "@chatbotx.io/database/schema"
-import type { AIFunctionModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/client"
+import { aiFunctionModel } from "@inboxos.io/database/schema"
+import type { AIFunctionModel } from "@inboxos.io/database/types"
 import {
   getPaginationWithDefaults,
   parseOrderByAsObject,
-} from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { isSameJsonValue } from "../audit/diff"
 import { BaseService } from "../base.service"
 import { notFoundException, validationException } from "../errors"

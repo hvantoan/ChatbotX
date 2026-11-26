@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto"
-import { withBlockedOwnerGuard } from "@chatbotx.io/business"
-import { channelTypes } from "@chatbotx.io/database/partials"
+import { withBlockedOwnerGuard } from "@inboxos.io/business"
+import { channelTypes } from "@inboxos.io/database/partials"
 import {
   AIJobAction,
   aiAgentQueue,
@@ -15,7 +15,7 @@ import {
   queueNames,
   WhatsappVoipSignalingJobAction,
   type WhatsappVoipSignalingJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import type { Job } from "bullmq"
 import { env } from "../env"
 import { createQueueWorker } from "../lib/create-queue-worker"

@@ -1,4 +1,4 @@
-import { parseCoordinatePair } from "@chatbotx.io/utils/coordinates"
+import { parseCoordinatePair } from "@inboxos.io/utils/coordinates"
 import { contactCustomFieldService } from "../contact-custom-field/service"
 
 /**

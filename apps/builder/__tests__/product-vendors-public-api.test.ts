@@ -37,7 +37,7 @@ const vendorService = {
   update: vi.fn(),
   delete: vi.fn(),
 }
-vi.mock("@chatbotx.io/business", () => ({ vendorService }))
+vi.mock("@inboxos.io/business", () => ({ vendorService }))
 
 await import("@/features/product-vendors/api/public")
 

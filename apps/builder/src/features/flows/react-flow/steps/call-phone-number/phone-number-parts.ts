@@ -1,4 +1,4 @@
-import { compactPhoneNumber } from "@chatbotx.io/flow-config"
+import { compactPhoneNumber } from "@inboxos.io/flow-config"
 import {
   AsYouType,
   type CountryCode,

@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   clear: vi.fn(),
 }))
 
-class FakeChatbotXException extends Error {
+class FakeInboxOSException extends Error {
   code: string
 
   constructor(message: string, code: string) {
@@ -16,11 +16,11 @@ class FakeChatbotXException extends Error {
   }
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   tenantDefaultTemplateService: { set: mocks.set, clear: mocks.clear },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: FakeChatbotXException,
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: FakeInboxOSException,
 }))
 // The clients are reduced to the handler they wrap, so the tests call the
 // exact function the server action runs.
@@ -122,7 +122,7 @@ describe("default template actions", () => {
     ["tenantDefaultTemplateUnavailable", "unavailable"],
     ["tenantDefaultTemplateShareDisabled", "shareDisabled"],
   ])("answers %s as a typed rejection, not a thrown message", async (code, reason) => {
-    mocks.set.mockRejectedValue(new FakeChatbotXException("English text", code))
+    mocks.set.mockRejectedValue(new FakeInboxOSException("English text", code))
 
     expect(
       await updateRootDefaultTemplateAction({
@@ -133,9 +133,7 @@ describe("default template actions", () => {
   })
 
   test("lets every other failure reach the safe-action error path", async () => {
-    mocks.set.mockRejectedValue(
-      new FakeChatbotXException("boom", "systemError"),
-    )
+    mocks.set.mockRejectedValue(new FakeInboxOSException("boom", "systemError"))
     await expect(
       updateRootDefaultTemplateAction({
         ctx: { user: { id: "admin-1" } },

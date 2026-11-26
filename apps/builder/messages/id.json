@@ -2423,7 +2423,7 @@
     },
     "fromName": {
       "label": "Nama Pengirim",
-      "placeholder": "ChatbotX"
+      "placeholder": "InboxOS"
     },
     "messageTemplate": {
       "label": "Templat Pesan"
@@ -3446,7 +3446,7 @@
     "title": "Umum"
   },
   "facebookMarketingMessages": {
-    "deleteWarning": "Ini menghapus kampanye pesan Meta dan menghapus kampanye dari ChatbotX. Jika Meta menolak penghapusan, kampanye tetap disimpan.",
+    "deleteWarning": "Ini menghapus kampanye pesan Meta dan menghapus kampanye dari InboxOS. Jika Meta menolak penghapusan, kampanye tetap disimpan.",
     "title": "Facebook Marketing Messages",
     "description": "Tingkatkan interaksi dan penjualan dengan pesan promosi yang dipersonalisasi di Messenger.",
     "create": "Buat Baru",
@@ -3487,7 +3487,7 @@
       "tosNotAccepted": "Untuk menggunakan fitur ini, setujui ketentuan objek khusus di {url}",
       "notFound": "Pesan marketing tidak ditemukan.",
       "audienceNotTargetable": "Audiens kustom yang dipilih belum siap atau bukan milik Halaman dan akun iklan ini.",
-      "connectFirst": "Hubungkan Marketing Messages di aplikasi ChatbotX terlebih dahulu.",
+      "connectFirst": "Hubungkan Marketing Messages di aplikasi InboxOS terlebih dahulu.",
       "mmInvalidState": "Tindakan ini tidak tersedia pada status kampanye saat ini.",
       "mmCampaignEnded": "Kampanye pesan Meta telah berakhir, sehingga tidak dapat dikirim atau dilanjutkan.",
       "mmPageNotConnected": "Halaman untuk kampanye ini tidak terhubung ke workspace ini.",
@@ -3507,7 +3507,7 @@
       "uploadMore": "Unggah lebih banyak baris",
       "empty": "Belum ada audiens kustom.",
       "deleteTitle": "Hapus audiens kustom",
-      "deleteWarning": "Tindakan ini menghapus audiens kustom \"{name}\" di Meta dan di ChatbotX. Tindakan ini tidak dapat dibatalkan.",
+      "deleteWarning": "Tindakan ini menghapus audiens kustom \"{name}\" di Meta dan di InboxOS. Tindakan ini tidak dapat dibatalkan.",
       "deleted": "Audiens kustom dihapus.",
       "pageDisconnected": "Halaman terputus",
       "status": {
@@ -5521,7 +5521,7 @@
         "title": "Kelayakan panggilan",
         "appSubscriptionMissing": "Konfigurasikan dahulu webhook WhatsApp untuk aplikasi ini di Meta App Dashboard, lalu coba lagi.",
         "appSubscriptionFailed": "Tidak dapat memverifikasi langganan webhook 'calls' aplikasi. Coba lagi sebentar.",
-        "callsNotSubscribed": "Aplikasi ini tidak berlangganan field webhook 'calls', sehingga peristiwa panggilan tidak dapat mencapai ChatbotX (error Meta 138018: prasyarat teknis belum terpenuhi — pastikan setidaknya satu aplikasi yang berlangganan WABA juga memiliki field webhook panggilan).",
+        "callsNotSubscribed": "Aplikasi ini tidak berlangganan field webhook 'calls', sehingga peristiwa panggilan tidak dapat mencapai InboxOS (error Meta 138018: prasyarat teknis belum terpenuhi — pastikan setidaknya satu aplikasi yang berlangganan WABA juga memiliki field webhook panggilan).",
         "fixButton": "Perbaiki",
         "fixSuccess": "Aplikasi sekarang berlangganan webhook panggilan WhatsApp.",
         "manualIntegrationNotice": "Nomor ini terhubung secara manual dan tidak memiliki kredensial aplikasi di sini. Berlangganan field webhook 'calls' untuk aplikasi Anda di Meta App Dashboard.",
@@ -8820,7 +8820,7 @@
     },
     "limitedDataUse": {
       "label": "Limited Data Use (US privacy)",
-      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by ChatbotX."
+      "description": "Restrict Meta's use of event data for users in applicable US states. Meta auto-detects the user's location from this event; no location data is sent by InboxOS."
     },
     "actionSource": {
       "label": "Sumber tindakan",
@@ -9315,8 +9315,8 @@
       },
       "googleReport": {
         "title": "Reported by Google Ads",
-        "description": "Conversions Google Ads itself recorded for these days, next to what ChatbotX sent and Google confirmed.",
-        "sent": "Confirmed by ChatbotX",
+        "description": "Conversions Google Ads itself recorded for these days, next to what InboxOS sent and Google confirmed.",
+        "sent": "Confirmed by InboxOS",
         "reported": "Reported by Google",
         "note": "Google can take hours to update its reports, and counts follow the action's own settings, so small gaps are normal.",
         "unavailable": "Google Ads reporting is not available right now."
@@ -10833,7 +10833,7 @@
         "label": "Sumber toko",
         "description": "Pilih sumber toko yang digunakan untuk mengelola produk, inventaris, dan pesanan Anda. Jika diatur ke Shopify / WooCommerce, semua produk dan pesanan dikelola langsung dari toko Shopify / WooCommerce Anda.",
         "options": {
-          "chatbotx": "ChatbotX",
+          "chatbotx": "InboxOS",
           "shopify": "Shopify",
           "woocommerce": "WooCommerce"
         }
@@ -11002,7 +11002,7 @@
       },
       "authKind": {
         "label": "Autentikasi",
-        "description": "Cara ChatbotX masuk ke toko Anda: dengan token akses Admin API dari aplikasi kustom, atau dengan Client ID dan secret dari aplikasi yang dibuat di Shopify Dev Dashboard.",
+        "description": "Cara InboxOS masuk ke toko Anda: dengan token akses Admin API dari aplikasi kustom, atau dengan Client ID dan secret dari aplikasi yang dibuat di Shopify Dev Dashboard.",
         "options": {
           "token": "Token akses Admin API",
           "clientCredentials": "Client ID dan secret (aplikasi Dev Dashboard)"
@@ -11913,8 +11913,8 @@
     "workspaceHint": "{clientName} hanya dapat bertindak di workspace ini. Untuk menggantinya nanti, putuskan lalu sambungkan kembali.",
     "noWorkspaces": "Anda bukan admin di workspace mana pun, jadi Anda tidak dapat mengotorisasi aplikasi ini."
   },
-  "chatbotxMcp": {
-    "title": "ChatbotX MCP",
+  "inboxosMcp": {
+    "title": "InboxOS MCP",
     "workspaceId": "Workspace ID",
     "streamableUrl": "Streamable HTTP URL",
     "sseUrl": "Legacy SSE URL",
@@ -12088,7 +12088,7 @@
     "channelSecretLabel": "Channel secret",
     "credentialsHelp": "Find both values in the LINE Developers console: open your Messaging API channel and go to Basic settings.",
     "webhookNotEnabled": "LINE is not delivering messages yet. In LINE Official Account Manager, turn on \"Use webhook\" and turn off \"Auto-reply messages\", then press Test webhook.",
-    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with ChatbotX's.",
+    "webhookReplaced": "The webhook URL previously set on this LINE channel ({url}) was replaced with InboxOS's.",
     "testWebhook": "Test webhook",
     "testWebhookSuccess": "LINE webhook is working.",
     "webhookTestFailed": "LINE's webhook test failed: {reason}",
@@ -12101,7 +12101,7 @@
     }
   },
   "deleteAccountPage": {
-    "title": "Hapus akun ChatbotX Anda",
+    "title": "Hapus akun InboxOS Anda",
     "intro": "Anda dapat menghapus akun beserta datanya dengan salah satu cara berikut.",
     "waysTitle": "Cara menghapus akun Anda",
     "wayMobile": "Di aplikasi seluler: Pengaturan → Hapus akun.",

@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@chatbotx.io/ui/components/ui/dialog"
+} from "@inboxos.io/ui/components/ui/dialog"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import { MiniAppRunner } from "../runner/mini-app-runner"

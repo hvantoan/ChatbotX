@@ -1,12 +1,12 @@
-import type { DatabaseClient } from "@chatbotx.io/database/client"
+import type { DatabaseClient } from "@inboxos.io/database/client"
 import {
   connectionRepository,
   integrationWhatsappRepository,
   whatsappSignupSessionRepository,
-} from "@chatbotx.io/database/repositories"
-import type { IntegrationWhatsappModel } from "@chatbotx.io/database/types"
-import type { AuthValue } from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import type { IntegrationWhatsappModel } from "@inboxos.io/database/types"
+import type { AuthValue } from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
 import { dispatchAuditRecordSafely } from "../audit/dispatcher"
 import {
   CONNECTION_STORE_BINDINGS,

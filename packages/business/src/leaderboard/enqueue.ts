@@ -1,10 +1,10 @@
-import type { LeaderboardRuleKey } from "@chatbotx.io/database/partials"
+import type { LeaderboardRuleKey } from "@inboxos.io/database/partials"
 import {
   type LeaderboardAwardContext,
   LeaderboardJobAction,
   leaderboardAwardJobId,
   leaderboardQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../logger"
 import { inboxHasLeaderboardRule, minigameHasLeaderboardRule } from "./scoring"
 

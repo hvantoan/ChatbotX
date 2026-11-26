@@ -1,6 +1,6 @@
 "use client"
 
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import { useQueries } from "@tanstack/react-query"
 import { createContext, type ReactNode, useContext } from "react"
 import { orpc } from "@/lib/orpc/query"

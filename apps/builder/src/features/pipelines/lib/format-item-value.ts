@@ -1,4 +1,4 @@
-import { MONEY_SCALE } from "@chatbotx.io/database/partials"
+import { MONEY_SCALE } from "@inboxos.io/database/partials"
 import { shortTimeAgo } from "@/features/conversations/lib/short-time-ago"
 import { formatPrice } from "@/lib/format-price"
 

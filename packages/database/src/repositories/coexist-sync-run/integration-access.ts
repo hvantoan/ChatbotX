@@ -1,4 +1,4 @@
-import type { CoexistChannel } from "@chatbotx.io/utils/channel"
+import type { CoexistChannel } from "@inboxos.io/utils/channel"
 import { and, type DatabaseClient, eq } from "../../client"
 import {
   integrationInstagramModel,

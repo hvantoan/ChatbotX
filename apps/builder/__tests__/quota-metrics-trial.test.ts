@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { planStatuses } from "@chatbotx.io/database/partials"
+import { planStatuses } from "@inboxos.io/database/partials"
 import { describe, expect, test } from "vitest"
 import {
   buildPlanNotice,

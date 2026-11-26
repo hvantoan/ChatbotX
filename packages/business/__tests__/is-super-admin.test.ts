@@ -10,7 +10,7 @@ vi.mock("../src/keys", () => ({
   isCloud: () => false,
   keys: mocks.keys,
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   platformAdminRepository: {
     findForAuth: mocks.findForAuth,
   },

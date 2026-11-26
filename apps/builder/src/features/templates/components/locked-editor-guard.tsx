@@ -1,4 +1,4 @@
-import type { TemplateResourceKind } from "@chatbotx.io/database/partials"
+import type { TemplateResourceKind } from "@inboxos.io/database/partials"
 import { getTranslations } from "next-intl/server"
 import type { ReactNode } from "react"
 import { listLockedTemplateResourceIds } from "../queries/list-locked-ids"

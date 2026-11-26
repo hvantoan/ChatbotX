@@ -22,13 +22,13 @@ vi.mock("../src/template/template-resource-locks", () => ({
     run(mocks.tx),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     transaction: vi.fn(async (cb: (tx: unknown) => unknown) => cb(mocks.tx)),
   },
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pollRepository: {
     findWithCandidates: mocks.findWithCandidates,
     insertWithCandidates: mocks.insertWithCandidates,

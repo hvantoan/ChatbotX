@@ -5,13 +5,13 @@ import {
   messengerIntegrationService,
   tiktokIntegrationService,
   tiktokPostDetailsCacheTag,
-} from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import type { ChannelType } from "@chatbotx.io/database/partials"
-import type { InstagramAuthValue } from "@chatbotx.io/integration-instagram"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger/schema"
-import type { ThreadsAuthValue } from "@chatbotx.io/integration-threads"
-import { withCache } from "@chatbotx.io/redis"
+} from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import type { ChannelType } from "@inboxos.io/database/partials"
+import type { InstagramAuthValue } from "@inboxos.io/integration-instagram"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger/schema"
+import type { ThreadsAuthValue } from "@inboxos.io/integration-threads"
+import { withCache } from "@inboxos.io/redis"
 import { resolvePostPreviewImage } from "@/features/shared/comment-automation/lib/post-preview-image"
 import { integrations } from "@/integration"
 import { type PostDetails, supportsPostDetails } from "../schema/query"
@@ -59,7 +59,7 @@ export async function getPostDetailsQuery(props: {
   const { workspaceId, inboxId, postId, channel } = props
 
   if (!supportsPostDetails(channel)) {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       `Post details are not available for the ${channel} channel`,
     )
   }

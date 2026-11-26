@@ -63,7 +63,7 @@ const { refreshTokens, refreshService, userService } = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   mobileRefreshTokenService: refreshService,
   userService,
 }))
@@ -71,7 +71,7 @@ vi.mock("@chatbotx.io/business", () => ({
 vi.mock("../src/keys", () => ({
   getBuilderOrigin: () => ISSUER,
   getMobileApiAudience: () => AUDIENCE,
-  getMobileAppSchemes: () => ["chatbotxmobileapp"],
+  getMobileAppSchemes: () => ["inboxosmobileapp"],
 }))
 
 vi.mock("../src/logger", () => ({
@@ -352,7 +352,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
 
     const response = await callback(
       {
-        redirect_uri: "chatbotxmobileapp://auth-callback",
+        redirect_uri: "inboxosmobileapp://auth-callback",
         device_id: "install-9",
         state: "xyz",
       },
@@ -362,7 +362,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
     expect(response.status).toBe(302)
     const location = new URL(response.headers.get("location") ?? "")
     expect(`${location.protocol}//${location.host}`).toBe(
-      "chatbotxmobileapp://auth-callback",
+      "inboxosmobileapp://auth-callback",
     )
     expect(location.searchParams.get("state")).toBe("xyz")
     expect(location.searchParams.get("code")).toBeTruthy()
@@ -377,7 +377,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
     const user = await seedUser(auth)
     const response = await callback(
       {
-        redirect_uri: "chatbotxmobileapp://auth-callback",
+        redirect_uri: "inboxosmobileapp://auth-callback",
         device_id: "install-9",
       },
       await sessionCookie(auth),
@@ -400,7 +400,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
     await seedUser(auth)
     const code = codeFrom(
       await callback(
-        { redirect_uri: "chatbotxmobileapp://auth-callback" },
+        { redirect_uri: "inboxosmobileapp://auth-callback" },
         await sessionCookie(auth),
       ),
     )
@@ -420,7 +420,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
     const missingChallenge = await auth.handler(
       new Request(
         `${ISSUER}/api/auth/mobile/callback?${new URLSearchParams({
-          redirect_uri: "chatbotxmobileapp://auth-callback",
+          redirect_uri: "inboxosmobileapp://auth-callback",
         })}`,
         { headers: { cookie: await sessionCookie(auth) } },
       ),
@@ -430,7 +430,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
 
     const code = codeFrom(
       await callback(
-        { redirect_uri: "chatbotxmobileapp://auth-callback" },
+        { redirect_uri: "inboxosmobileapp://auth-callback" },
         await sessionCookie(auth),
       ),
     )
@@ -448,7 +448,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
     await seedUser(auth)
     const code = codeFrom(
       await callback(
-        { redirect_uri: "chatbotxmobileapp://auth-callback" },
+        { redirect_uri: "inboxosmobileapp://auth-callback" },
         await sessionCookie(auth),
       ),
     )
@@ -472,7 +472,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
       codeFrom(
         await callback(
           {
-            redirect_uri: "chatbotxmobileapp://auth-callback",
+            redirect_uri: "inboxosmobileapp://auth-callback",
             code_challenge: challenge,
           },
           await sessionCookie(auth),
@@ -533,7 +533,7 @@ describe("social flow — /mobile/callback and exchange_code", () => {
 
   test("without a session it redirects back with error=access_denied and mints no code", async () => {
     const response = await callback({
-      redirect_uri: "chatbotxmobileapp://auth-callback",
+      redirect_uri: "inboxosmobileapp://auth-callback",
       state: "s1",
     })
 

@@ -1,6 +1,6 @@
 "use client"
 
-import type { ChannelType } from "@chatbotx.io/database/partials"
+import type { ChannelType } from "@inboxos.io/database/partials"
 import { useTranslations } from "next-intl"
 import type { ContactFilterCriteria } from "../schema"
 import {

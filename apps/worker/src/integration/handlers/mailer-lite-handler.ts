@@ -2,17 +2,17 @@ import { createHash } from "node:crypto"
 import {
   buildContext,
   integrationMailerLiteService,
-} from "@chatbotx.io/business"
-import { systemFieldTypes } from "@chatbotx.io/database/partials"
-import { encryptedDataSchema, encryptUtils } from "@chatbotx.io/encryption"
-import type { MailerLiteAddSubscriberSchema } from "@chatbotx.io/flow-config"
+} from "@inboxos.io/business"
+import { systemFieldTypes } from "@inboxos.io/database/partials"
+import { encryptedDataSchema, encryptUtils } from "@inboxos.io/encryption"
+import type { MailerLiteAddSubscriberSchema } from "@inboxos.io/flow-config"
 import {
   MAILER_LITE_HTTP_TIMEOUT_MS,
   MailerLiteApiError,
   mailerLiteAuthSchema,
   integration as mailerLiteIntegration,
-} from "@chatbotx.io/integration-mailer-lite"
-import { distributedLock } from "@chatbotx.io/redis"
+} from "@inboxos.io/integration-mailer-lite"
+import { distributedLock } from "@inboxos.io/redis"
 import { normalizeError } from "universal-error-normalizer"
 import { logger } from "../../lib/logger"
 import { getContactFieldMap } from "./contact-field-map"

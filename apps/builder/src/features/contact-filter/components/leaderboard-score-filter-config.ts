@@ -1,4 +1,4 @@
-import type { OperatorType } from "@chatbotx.io/database/partials"
+import type { OperatorType } from "@inboxos.io/database/partials"
 import { LEADERBOARD_SCORE_OPERATORS } from "../schema/leaderboard-score-filter"
 import type { ConditionOption, FieldConfig } from "./contact-filter-config"
 import type { CustomFieldValueInputConfig } from "./custom-field-filter-config"

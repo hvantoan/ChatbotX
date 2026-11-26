@@ -16,11 +16,11 @@ const {
   runAction: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationWhatsappService: { findByIdForWorkspace },
   whatsappFlowService: { markRemovedOnMeta },
 }))
-vi.mock("@chatbotx.io/business/mini-app", () => ({
+vi.mock("@inboxos.io/business/mini-app", () => ({
   miniAppPublicationService: { listForMiniApps },
   miniAppService: { deleteMany },
 }))

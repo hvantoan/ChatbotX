@@ -6,14 +6,14 @@ const onConflictDoNothing = vi.fn().mockResolvedValue(undefined)
 const values = vi.fn(() => ({ onConflictDoNothing }))
 const insert = vi.fn(() => ({ values }))
 
-vi.mock("@chatbotx.io/database/client", async () => ({
+vi.mock("@inboxos.io/database/client", async () => ({
   db: { execute, insert, query: {} },
   sql: (await import("./helpers/fake-sql")).fakeSql,
 }))
-vi.mock("@chatbotx.io/database/queries/date-bucket", () => ({
+vi.mock("@inboxos.io/database/queries/date-bucket", () => ({
   resolvedTimezone: (timezone: string) => timezone,
 }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   analyticsContactEventModel: {},
   analyticsMessageEventModel: {},
   analyticsBotMessageEventModel: {},

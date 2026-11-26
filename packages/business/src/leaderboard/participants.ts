@@ -1,20 +1,20 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   LEADERBOARD_MAX_SCORE,
   type LeaderboardAuditAction,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type LeaderboardScoreChangeResult,
   leaderboardAuditLogRepository,
   leaderboardParticipantRepository,
   leaderboardRepository,
   leaderboardScoreEventRepository,
-} from "@chatbotx.io/database/repositories"
-import type { LeaderboardModel } from "@chatbotx.io/database/types"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import type { LeaderboardModel } from "@inboxos.io/database/types"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
-  ChatbotXException,
+  InboxOSException,
   notFoundException,
   validationException,
 } from "../errors"
@@ -65,14 +65,14 @@ const assertContactInWorkspace = async (
 
 const assertEditable = (leaderboard: LeaderboardModel) => {
   if (leaderboard.status === "finished") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Scores are locked because the leaderboard has finished",
       "leaderboardFinished",
       409,
     )
   }
   if (leaderboard.status === "draft") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Publish the leaderboard before editing scores",
       "leaderboardNotPublished",
       409,
@@ -89,13 +89,13 @@ const assertManualChangeApplied = (result: LeaderboardScoreChangeResult) => {
     return result
   }
   if (result.status === "closed") {
-    throw new ChatbotXException(
+    throw new InboxOSException(
       "Scores are locked because the leaderboard has finished",
       "leaderboardFinished",
       409,
     )
   }
-  throw new ChatbotXException(
+  throw new InboxOSException(
     "This participant is banned",
     "leaderboardParticipantBanned",
     409,
@@ -326,7 +326,7 @@ class LeaderboardParticipantService extends BaseService {
       return { score: 0 }
     }
     if (participant.isBanned) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "This participant is banned",
         "leaderboardParticipantBanned",
         409,

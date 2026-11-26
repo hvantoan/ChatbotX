@@ -2,8 +2,8 @@
 
 import { describe, expect, test, vi } from "vitest"
 
-vi.mock("@chatbotx.io/database/client", () => ({ inArray: vi.fn() }))
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/client", () => ({ inArray: vi.fn() }))
+vi.mock("@inboxos.io/database/schema", () => ({
   customFieldModel: { id: "id", name: "name" },
 }))
 

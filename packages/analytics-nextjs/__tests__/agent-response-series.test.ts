@@ -1,5 +1,5 @@
 // @vitest-environment node
-import type { AgentResponseSeriesRow } from "@chatbotx.io/analytics"
+import type { AgentResponseSeriesRow } from "@inboxos.io/analytics"
 import { describe, expect, test } from "vitest"
 import {
   buildAdminLabels,

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { FieldOperationType } from "@chatbotx.io/flow-config"
+import { FieldOperationType } from "@inboxos.io/flow-config"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { FormProvider, useForm } from "react-hook-form"
@@ -38,7 +38,7 @@ vi.mock("@/features/custom-fields/components/custom-field-value-input", () => ({
 
 // The real select is a Radix popover; a flat stand-in is enough to read the
 // name, the options and the placeholder it is given.
-vi.mock("@chatbotx.io/ui/components/form/select-field", () => ({
+vi.mock("@inboxos.io/ui/components/form/select-field", () => ({
   SelectField: ({
     name,
     options,

@@ -8,12 +8,12 @@ vi.mock("../src/audit/dispatcher", () => ({
   dispatchAuditRecord: (...args: unknown[]) => mockDispatchAuditRecord(...args),
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   emit: (...args: unknown[]) => mockEmit(...args),
 }))
 
 const { contactInboxRepository } = await import(
-  "@chatbotx.io/database/repositories"
+  "@inboxos.io/database/repositories"
 )
 const { contactService } = await import("../src/contact/service")
 

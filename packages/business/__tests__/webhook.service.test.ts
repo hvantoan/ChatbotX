@@ -38,7 +38,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     $count: mocks.count,
     transaction: mocks.transaction,
@@ -51,17 +51,17 @@ vi.mock("@chatbotx.io/database/client", () => ({
   inArray: vi.fn(() => "inArray"),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   webhookModel: mocks.webhookModel,
   conditionModel: mocks.conditionModel,
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   listWebhooksPaginated: mocks.listWebhooksPaginated,
   conditionRepository: { listByWebhookIds: mocks.listByWebhookIds },
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   updateWebhookCache: vi.fn(async () => undefined),
   removeWebhookCache: vi.fn(async () => undefined),
 }))
@@ -71,10 +71,10 @@ const distributedLock = {
     async ({ fn }: { fn: () => Promise<unknown> }) => await fn(),
   ),
 }
-vi.mock("@chatbotx.io/redis", () => ({ distributedLock }))
+vi.mock("@inboxos.io/redis", () => ({ distributedLock }))
 
 let idCounter = 0
-vi.mock("@chatbotx.io/utils", () => ({
+vi.mock("@inboxos.io/utils", () => ({
   createId: vi.fn(() => `generated-id-${++idCounter}`),
 }))
 
@@ -104,7 +104,7 @@ vi.mock("../src/trigger/condition-columns", () => ({
 }))
 
 const { updateWebhookCache, removeWebhookCache } = await import(
-  "@chatbotx.io/events"
+  "@inboxos.io/events"
 )
 const { webhookService, MAX_WEBHOOKS_PER_WORKSPACE } = await import(
   "../src/webhook/service"

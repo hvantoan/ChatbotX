@@ -1,16 +1,16 @@
 "use client"
 
-import type { FileType } from "@chatbotx.io/database/partials"
-import { FormFieldWrapper } from "@chatbotx.io/ui/components/form/field-wrapper"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import type { FileType } from "@inboxos.io/database/partials"
+import { FormFieldWrapper } from "@inboxos.io/ui/components/form/field-wrapper"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
-import { DirectUploadButton } from "@chatbotx.io/ui/components/uploader/direct-upload-button"
+} from "@inboxos.io/ui/components/ui/popover"
+import { DirectUploadButton } from "@inboxos.io/ui/components/uploader/direct-upload-button"
 import {
   CodeXml,
   FileIcon,

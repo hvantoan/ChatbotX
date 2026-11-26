@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   skipBlocked: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/template-uninstall/execute", () => ({
+vi.mock("@inboxos.io/business/template-uninstall/execute", () => ({
   templateUninstallExecuteService: {
     claim: mocks.claim,
     run: mocks.run,
@@ -19,8 +19,8 @@ vi.mock("@chatbotx.io/business/template-uninstall/execute", () => ({
     skipBlocked: mocks.skipBlocked,
   },
 }))
-vi.mock("@chatbotx.io/business/errors", () => ({
-  ChatbotXException: class ChatbotXException extends Error {
+vi.mock("@inboxos.io/business/errors", () => ({
+  InboxOSException: class InboxOSException extends Error {
     code: string
     constructor(message: string, code = "systemError") {
       super(message)
@@ -32,7 +32,7 @@ vi.mock("../src/lib/logger", () => ({
   logger: { error: vi.fn(), warn: vi.fn(), info: vi.fn() },
 }))
 
-const { ChatbotXException } = await import("@chatbotx.io/business/errors")
+const { InboxOSException } = await import("@inboxos.io/business/errors")
 const { uninstallTemplate, skipBlockedTemplateUninstall } = await import(
   "../src/default/handlers/uninstall-template"
 )
@@ -68,7 +68,7 @@ describe("uninstallTemplate", () => {
 
   test("a lost claim is dropped without failing or releasing the row", async () => {
     mocks.run.mockRejectedValue(
-      new ChatbotXException("lost", "templateUninstallLeaseLost"),
+      new InboxOSException("lost", "templateUninstallLeaseLost"),
     )
 
     await expect(uninstallTemplate(data, jobOn(0))).resolves.toBeUndefined()
@@ -79,7 +79,7 @@ describe("uninstallTemplate", () => {
 
   test("a permanent failure fails the row and is not retried", async () => {
     mocks.run.mockRejectedValue(
-      new ChatbotXException("no", "templateUninstallNotGranted"),
+      new InboxOSException("no", "templateUninstallNotGranted"),
     )
 
     await expect(uninstallTemplate(data, jobOn(0))).rejects.toBeInstanceOf(

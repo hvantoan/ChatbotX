@@ -1,4 +1,4 @@
-import { timezoneCandidates } from "@chatbotx.io/utils/timezone"
+import { timezoneCandidates } from "@inboxos.io/utils/timezone"
 import { formatInTimeZone, fromZonedTime } from "date-fns-tz"
 
 // Exported so the shared `DateRangePresetFilter` bridge (Ads is URL-driven,

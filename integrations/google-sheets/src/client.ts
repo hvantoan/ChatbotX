@@ -1,5 +1,5 @@
-import type { Oauth2AuthValue } from "@chatbotx.io/sdk"
 import { sheets } from "@googleapis/sheets"
+import type { Oauth2AuthValue } from "@inboxos.io/sdk"
 import { OAuth2Client } from "google-auth-library"
 
 import { GOOGLE_SHEETS_SCOPES } from "./constants"

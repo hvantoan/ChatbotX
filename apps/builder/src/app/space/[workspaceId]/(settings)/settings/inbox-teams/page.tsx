@@ -2,8 +2,8 @@ import {
   responseSlaService,
   workingHoursService,
   workspaceMemberService,
-} from "@chatbotx.io/business"
-import { getIdFromParams } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { getIdFromParams } from "@inboxos.io/utils"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import { ListInboxTeams } from "@/enterprise/features/inbox-teams/list-inbox-teams"

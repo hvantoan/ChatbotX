@@ -1,7 +1,7 @@
-import { emailTopicService } from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { rootFolderId } from "@chatbotx.io/database/partials"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { emailTopicService } from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { rootFolderId } from "@inboxos.io/database/partials"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnCreatingEmailTopic,

@@ -1,9 +1,9 @@
-import { notFoundException } from "@chatbotx.io/business/errors"
+import { notFoundException } from "@inboxos.io/business/errors"
 import {
   createImportUpload,
   importService,
   suggestContactImportColumnMap,
-} from "@chatbotx.io/business/import"
+} from "@inboxos.io/business/import"
 import {
   buildContactsImportTemplateCsv,
   CONTACTS_IMPORT_TEMPLATE_FILENAME,

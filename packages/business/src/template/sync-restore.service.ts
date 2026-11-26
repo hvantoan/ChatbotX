@@ -1,14 +1,14 @@
 import {
   isActiveInstallation,
   type TemplateResourceCategory,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   templateInstallationRepository,
   templateInstallationSyncRepository,
   templateResourceBackupRepository,
   templateUninstallStateRepository,
-} from "@chatbotx.io/database/repositories"
-import { setLocalStatementTimeout } from "@chatbotx.io/database/statement-timeout"
+} from "@inboxos.io/database/repositories"
+import { setLocalStatementTimeout } from "@inboxos.io/database/statement-timeout"
 import { notFoundException } from "../errors"
 import { getTemplateAdapter } from "./adapters/registry"
 import { isUpdatable } from "./adapters/shared"
@@ -32,9 +32,9 @@ const TEMPLATE_SYNC_STATEMENT_TIMEOUT = "60s"
 /**
  * Restoring a backup is a request/transaction service (the member clicked it
  * and waits for the answer), not worker execution: it lives apart from
- * `@chatbotx.io/business/template-sync/execute`, which only the worker may
+ * `@inboxos.io/business/template-sync/execute`, which only the worker may
  * import (AGENTS.md invariant 25), and is reached through
- * `@chatbotx.io/business/template-sync/restore`.
+ * `@inboxos.io/business/template-sync/restore`.
  */
 export const templateSyncRestoreService = {
   /**

@@ -2,16 +2,16 @@ import {
   type DatabaseClient,
   db,
   isForeignKeyViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   pipelineItemRepository,
   pipelineReferenceRepository,
   pipelineStageRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   PipelineItemModel,
   PipelineStageModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { BaseService } from "../base.service"
 import {
   conflictException,

@@ -2,14 +2,14 @@ import {
   buildContext,
   channelPostService,
   tiktokIntegrationService,
-} from "@chatbotx.io/business"
-import type { ThreadsAuthValue } from "@chatbotx.io/integration-threads"
+} from "@inboxos.io/business"
+import type { ThreadsAuthValue } from "@inboxos.io/integration-threads"
 import {
   type TiktokAuthValue,
   tiktokCanListVideos,
-} from "@chatbotx.io/integration-tiktok"
-import { distributedStore } from "@chatbotx.io/redis"
-import type { AuthValue, ChannelPostDetails } from "@chatbotx.io/sdk"
+} from "@inboxos.io/integration-tiktok"
+import { distributedStore } from "@inboxos.io/redis"
+import type { AuthValue, ChannelPostDetails } from "@inboxos.io/sdk"
 import { logger } from "../../../lib/logger"
 import {
   allIntegrations,

@@ -1,5 +1,5 @@
-import { isBulkOutboundMetadata } from "@chatbotx.io/flow-config"
-import { ChatJobAction, type ChatJobData } from "@chatbotx.io/worker-config"
+import { isBulkOutboundMetadata } from "@inboxos.io/flow-config"
+import { ChatJobAction, type ChatJobData } from "@inboxos.io/worker-config"
 import { settleCommentAutomationFailure } from "../../lib/comment-automation-anchor"
 import { logger } from "../../lib/logger"
 import { recordMessageSendError } from "./send-message"

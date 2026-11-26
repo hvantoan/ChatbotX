@@ -7,13 +7,13 @@ import {
   type InboundWebhookIdentifier,
   type InboundWebhookInboxResolution,
   type InboundWebhookMappedFieldKind,
-} from "@chatbotx.io/database/partials"
-import { TemporalInputParsing } from "@chatbotx.io/utils/datetime"
-import type { ContactIdentityKind } from "@chatbotx.io/utils/inbound-webhook-channel"
+} from "@inboxos.io/database/partials"
+import { TemporalInputParsing } from "@inboxos.io/utils/datetime"
+import type { ContactIdentityKind } from "@inboxos.io/utils/inbound-webhook-channel"
 import {
   readJsonPath,
   stringifyJsonPathValue,
-} from "@chatbotx.io/utils/json-path"
+} from "@inboxos.io/utils/json-path"
 import z from "zod"
 import {
   type ContactInboxIdentities,
@@ -24,7 +24,7 @@ import {
 import { normalizeIdentityPhoneToE164 } from "../contact/phone"
 import { isRichSystemContactField } from "../contact/service"
 import { normalizeCustomFieldValueForStorage } from "../contact-custom-field/normalize"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 const MAX_CHANNEL_USER_ID_LENGTH = 255
 const MAX_FULL_NAME_LENGTH = 255
@@ -158,7 +158,7 @@ const checkCustomFieldValue = async (
       ? { value: null, error: "invalidValue" }
       : { value: raw, error: null }
   } catch (error) {
-    if (error instanceof ChatbotXException) {
+    if (error instanceof InboxOSException) {
       return { value: null, error: "invalidValue" }
     }
     throw error

@@ -3,8 +3,8 @@ import {
   normalizeDialablePhoneNumber,
   type SendTextStepSchema,
   stepTypes,
-} from "@chatbotx.io/flow-config"
-import { resolveContactVariablesDeep } from "@chatbotx.io/variables"
+} from "@inboxos.io/flow-config"
+import { resolveContactVariablesDeep } from "@inboxos.io/variables"
 import { logger } from "../../lib/logger"
 import type { ExecuteStepProps } from "./flow"
 

@@ -8,13 +8,13 @@ const auditContext = vi.fn()
 const warn = vi.fn()
 const error = vi.fn()
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   broadcastRecurrenceService: {
     materializeOccurrence: (...a: unknown[]) => materializeOccurrence(...a),
     skipOccurrence: (...a: unknown[]) => skipOccurrence(...a),
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   MATERIALIZE_ITEM_CONCURRENCY: 3,
   ScheduleJobData: { prepareBroadcast: "prepareBroadcast" },
   scheduleQueue: { add: (...a: unknown[]) => queueAdd(...a) },

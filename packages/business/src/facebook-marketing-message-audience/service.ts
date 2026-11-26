@@ -1,14 +1,14 @@
 import {
   facebookMarketingMessageAudienceRepository,
   facebookMarketingMessageRepository,
-} from "@chatbotx.io/database/repositories"
-import type { FacebookMarketingMessageAudienceModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { FacebookMarketingMessageAudienceModel } from "@inboxos.io/database/types"
 import {
   deleteCustomAudience,
   getMarketingMessagesAudiences,
   getNotificationMessageTokenAudienceIds,
   type MarketingMessagesAudience,
-} from "@chatbotx.io/integration-facebook-ads"
+} from "@inboxos.io/integration-facebook-ads"
 import { BaseService } from "../base.service"
 import { logger } from "../logger"
 import { audienceError } from "./errors"

@@ -10,20 +10,20 @@ const mocks = vi.hoisted(() => ({
   downloadWithByteLimit: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiProviders: {
     enum: { openai: "openai", gemini: "gemini", muse: "muse" },
   },
   aiTimeouts: { aiTotal: 30_000 },
 }))
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   aiIntegrationService: { findBy: mocks.aiFindBy },
   createAIImageModelInstance: mocks.createAIImageModelInstance,
 }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   resolveTenantSettings: vi.fn(async () => ({ storageUrl: "https://cdn" })),
 }))
-vi.mock("@chatbotx.io/business/utils", () => ({
+vi.mock("@inboxos.io/business/utils", () => ({
   getPublicFileUrl: (path: string, base: string) => `${base}/${path}`,
 }))
 vi.mock("ai", () => ({ generateImage: mocks.generateImage }))

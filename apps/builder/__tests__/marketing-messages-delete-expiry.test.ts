@@ -38,7 +38,7 @@ const quota = vi.hoisted(() => ({
   isAtLimit: vi.fn(async () => false),
 }))
 vi.mock("@/env", () => ({ isCloud: quota.isCloud }))
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   userQuotaService: { getAccessState: quota.getAccessState },
   quotaEnforcementService: { isAtLimit: quota.isAtLimit },
 }))

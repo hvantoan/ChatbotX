@@ -8,7 +8,7 @@ const mocks = vi.hoisted(() => ({
   loadSettingsSession: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   integrationGoogleAdsService: {
     getSetup: mocks.getSetup,
     isConfigured: mocks.isConfigured,

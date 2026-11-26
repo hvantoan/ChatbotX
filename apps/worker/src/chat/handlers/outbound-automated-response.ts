@@ -1,5 +1,5 @@
-import { replyByOutboundAutomatedResponse } from "@chatbotx.io/automated-response"
-import type { ChatJobCheckOutboundAutomatedResponse } from "@chatbotx.io/worker-config"
+import { replyByOutboundAutomatedResponse } from "@inboxos.io/automated-response"
+import type { ChatJobCheckOutboundAutomatedResponse } from "@inboxos.io/worker-config"
 
 export const checkOutboundAutomatedResponse = async (
   data: ChatJobCheckOutboundAutomatedResponse["data"],

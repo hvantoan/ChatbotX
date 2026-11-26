@@ -1,13 +1,13 @@
 import {
   decodeButtonPayload,
   isTemplateFlowToken,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import type {
   IncomingMessage,
   MessageWhatsappCallPermissionReplyEntity,
   MessageWhatsappFlowResponseEntity,
   MessageWhatsappPaymentMethodEntity,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import type {
   ServerButtonMessage,
   ServerInteractiveMessage,

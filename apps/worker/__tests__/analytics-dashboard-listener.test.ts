@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   loggerError: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({
   EVENT_BUS_MESSAGE_ID: "__eventBusMessageId",
 }))
 

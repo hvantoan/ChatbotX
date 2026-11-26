@@ -1,5 +1,5 @@
-import { triggerActions } from "@chatbotx.io/database/partials"
-import { createSelectSchema, triggerModel } from "@chatbotx.io/database/schema"
+import { triggerActions } from "@inboxos.io/database/partials"
+import { createSelectSchema, triggerModel } from "@inboxos.io/database/schema"
 import { z } from "zod"
 
 // Real shapes instead of `z.any()` so the published OpenAPI spec documents

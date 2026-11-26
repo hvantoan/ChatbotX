@@ -26,7 +26,7 @@ const aiFileService = {
   reindex: vi.fn(),
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   workspaceApiTokenService: { findWorkspaceByTokenHash },
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
@@ -36,7 +36,7 @@ vi.mock("@chatbotx.io/business", () => ({
 }))
 
 const searchAIFiles = vi.fn()
-vi.mock("@chatbotx.io/ai/server", () => ({ searchAIFiles }))
+vi.mock("@inboxos.io/ai/server", () => ({ searchAIFiles }))
 vi.mock("@/lib/log", () => ({ logger: { warn: vi.fn(), error: vi.fn() } }))
 vi.mock("@/env", () => ({ isCloud: () => true }))
 vi.mock("@/middlewares/auth", () => ({ authMiddleware: vi.fn() }))

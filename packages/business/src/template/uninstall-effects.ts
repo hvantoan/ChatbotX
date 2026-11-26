@@ -1,5 +1,5 @@
-import type { TemplateUninstallEffect } from "@chatbotx.io/database/partials"
-import { getChildLogger } from "@chatbotx.io/logger"
+import type { TemplateUninstallEffect } from "@inboxos.io/database/partials"
+import { getChildLogger } from "@inboxos.io/logger"
 
 const log = getChildLogger("template-uninstall-effects")
 

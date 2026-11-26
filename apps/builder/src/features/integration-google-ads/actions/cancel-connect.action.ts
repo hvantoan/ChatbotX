@@ -1,6 +1,6 @@
 "use server"
 
-import { connectSessionService } from "@chatbotx.io/business/connect-session"
+import { connectSessionService } from "@inboxos.io/business/connect-session"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClientAllowExpired } from "@/lib/safe-action"
 import { assertCanManageGoogleAds } from "../lib/assert-can-manage-google-ads"

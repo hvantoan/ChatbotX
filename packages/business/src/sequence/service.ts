@@ -1,5 +1,5 @@
-import { sequenceAnalyticsService } from "@chatbotx.io/analytics"
-import type { SequenceStepEventType } from "@chatbotx.io/analytics/schemas"
+import { sequenceAnalyticsService } from "@inboxos.io/analytics"
+import type { SequenceStepEventType } from "@inboxos.io/analytics/schemas"
 import {
   and,
   type DatabaseClient,
@@ -8,18 +8,18 @@ import {
   findOrFail,
   inArray,
   isUniqueViolationError,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   type SequenceListInput,
   sequenceRepository,
-} from "@chatbotx.io/database/repositories"
-import { sequenceModel, sequenceStepModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/database/repositories"
+import { sequenceModel, sequenceStepModel } from "@inboxos.io/database/schema"
 import type {
   SequenceModel,
   SequenceStepModel,
-} from "@chatbotx.io/database/types"
-import { getPaginationWithDefaults } from "@chatbotx.io/database/utils"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/types"
+import { getPaginationWithDefaults } from "@inboxos.io/database/utils"
+import { createId } from "@inboxos.io/utils"
 import { BaseService } from "../base.service"
 import {
   mapStatsContactRow,

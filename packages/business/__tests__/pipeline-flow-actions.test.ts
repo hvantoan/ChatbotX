@@ -30,7 +30,7 @@ vi.mock("../src/pipeline/item.service", () => ({
 vi.mock("../src/pipeline/item-content.service", () => ({
   pipelineItemContentService: { addComment: mocks.addComment },
 }))
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   pipelineRepository: {
     findById: mocks.findPipeline,
     listFields: mocks.listFields,
@@ -49,8 +49,8 @@ vi.mock("../src/contact-custom-field/value-service", () => ({
 }))
 
 const { pipelineActionCanSkip, pipelineStepDefaultFn, pipelineStepActions } =
-  await import("@chatbotx.io/flow-config")
-const { ChatbotXException, notFoundException } = await import("../src/errors")
+  await import("@inboxos.io/flow-config")
+const { InboxOSException, notFoundException } = await import("../src/errors")
 const {
   runPipelineAction,
   runPipelineFlowAction,
@@ -248,7 +248,7 @@ describe("runPipelineFlowAction", () => {
 
   test("a service conflict routes to error with its message", async () => {
     mocks.create.mockRejectedValue(
-      new ChatbotXException("limit reached", "conflict", 409),
+      new InboxOSException("limit reached", "conflict", 409),
     )
     const result = await runPipelineFlowAction(
       step("addToPipeline", { title: "x" }),

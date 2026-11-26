@@ -32,7 +32,7 @@ vi.mock("bullmq", () => ({
     }
   },
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   MarketingMessageJobAction: { processCampaign: "processCampaign" },
   queueNames: { enum: { marketingMessage: "marketingMessage" } },
   defaultWorkerOptions: { concurrency: 5 },

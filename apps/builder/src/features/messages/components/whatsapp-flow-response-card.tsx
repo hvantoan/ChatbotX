@@ -1,6 +1,6 @@
 "use client"
 
-import type { MessageWhatsappFlowResponseEntity } from "@chatbotx.io/sdk"
+import type { MessageWhatsappFlowResponseEntity } from "@inboxos.io/sdk"
 import {
   ImageIcon,
   ListChecksIcon,

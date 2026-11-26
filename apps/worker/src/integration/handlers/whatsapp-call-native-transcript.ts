@@ -1,14 +1,14 @@
 import {
   contactInboxService,
   whatsappCallLifecycleService,
-} from "@chatbotx.io/business"
-import type { WhatsappCallTranscriptSegments } from "@chatbotx.io/database/partials"
-import { whatsappCallRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business"
+import type { WhatsappCallTranscriptSegments } from "@inboxos.io/database/partials"
+import { whatsappCallRepository } from "@inboxos.io/database/repositories"
 import {
   emitCallTranscribed,
   setWebhookExecutionContext,
-} from "@chatbotx.io/events"
-import type { IntegrationJobWhatsappCallNativeTranscriptFetch } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/events"
+import type { IntegrationJobWhatsappCallNativeTranscriptFetch } from "@inboxos.io/worker-config"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"
 import { isBlockedWorkspace } from "../../lib/is-blocked-workspace"

@@ -10,13 +10,13 @@ const mocks = vi.hoisted(() => ({
 }))
 
 // The service queues draft cleanups; these suites never reach that path.
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   ScheduleJobData: {},
   broadcastDraftPurgeJobId: vi.fn(),
   scheduleQueue: { add: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: (...conditions: unknown[]) => ({ and: conditions }),
   db: {
     select: (...args: unknown[]) => mocks.select(...args),
@@ -28,19 +28,19 @@ vi.mock("@chatbotx.io/database/client", () => ({
   isNull: (column: unknown) => ({ isNull: column }),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({}))
+vi.mock("@inboxos.io/database/partials", () => ({}))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactInboxContactFilterSQL: vi.fn(),
   contactInboxInteractedWithin24hSQL: vi.fn(),
   pruneEmailPhoneFilterConditions: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   broadcastRepository: {},
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   broadcastModel: { id: "broadcast.id", workspaceId: "broadcast.workspaceId" },
   broadcastTargetModel: {},
   contactInboxModel: {},
@@ -53,7 +53,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   whatsappMessageTemplateModel: {},
 }))
 
-vi.mock("@chatbotx.io/database/utils", () => ({
+vi.mock("@inboxos.io/database/utils", () => ({
   chunkById: vi.fn(),
   escapeLikePattern: (value: string) => value,
   getPaginationWithDefaults: vi.fn(),
@@ -66,7 +66,7 @@ vi.mock("../src/template/uninstall-references", () => ({
   contactFilterParentsOf: vi.fn(() => []),
 }))
 
-vi.mock("@chatbotx.io/flow-config", () => ({
+vi.mock("@inboxos.io/flow-config", () => ({
   findTemplateStartStep: vi.fn(),
   stepTypes: {
     enum: {
@@ -76,7 +76,7 @@ vi.mock("@chatbotx.io/flow-config", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/analytics", () => ({
+vi.mock("@inboxos.io/analytics", () => ({
   broadcastAnalyticsService: { getContacts: mocks.getContacts },
 }))
 

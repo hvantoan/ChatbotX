@@ -1,18 +1,18 @@
 "use client"
 
-import { DEFAULT_AI_AGENT_ACTION_PROMPT } from "@chatbotx.io/database/partials"
-import { TextareaField } from "@chatbotx.io/ui/components/form/textarea-field"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import { DEFAULT_AI_AGENT_ACTION_PROMPT } from "@inboxos.io/database/partials"
+import { TextareaField } from "@inboxos.io/ui/components/form/textarea-field"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@chatbotx.io/ui/components/ui/popover"
+} from "@inboxos.io/ui/components/ui/popover"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@chatbotx.io/ui/components/ui/tooltip"
+} from "@inboxos.io/ui/components/ui/tooltip"
 import { InfoIcon, SlidersHorizontalIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

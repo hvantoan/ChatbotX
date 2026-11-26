@@ -5,7 +5,7 @@
 From builder or other apps:
 
 ```typescript
-import { myQueue, MyQueueJobAction } from "@chatbotx.io/worker-config"
+import { myQueue, MyQueueJobAction } from "@inboxos.io/worker-config"
 
 await myQueue.add("processItem", {
   type: MyQueueJobAction.processItem,

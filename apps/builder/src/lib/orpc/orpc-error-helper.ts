@@ -1,11 +1,11 @@
-import { BROADCAST_PLAN_LIMIT_CODE } from "@chatbotx.io/business/errors"
+import { BROADCAST_PLAN_LIMIT_CODE } from "@inboxos.io/business/errors"
 import {
   broadcastPlanLimitDataSchema,
   IMAGES_NOT_SUPPORTED_ON_CHANNEL_CODE,
   imagesNotSupportedOnChannelDataSchema,
   PRODUCT_MESSAGE_UNRESOLVABLE_CODE,
   productMessageUnresolvableDataSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { ErrorMap } from "@orpc/server"
 import { z } from "zod"
 import { DENIAL_MESSAGES } from "@/lib/workspace/authorize-workspace-access"
@@ -118,13 +118,13 @@ export const commonApiErrors = {
     status: 422,
     data: z.looseObject({ issues: z.array(validationIssue) }),
   },
-  /** Business-level validation, via `validationException` in @chatbotx.io/business. */
+  /** Business-level validation, via `validationException` in @inboxos.io/business. */
   validation: {
     message: "Validation error",
     status: 422,
   },
   /**
-   * The default code of a `ChatbotXException` thrown without one (status 400).
+   * The default code of a `InboxOSException` thrown without one (status 400).
    * `toKnownOrpcError` forwards that code as-is, so without this entry every
    * such rejection on a public route was returned as an undeclared error
    * (`defined: false`). Routes with an expected, specific failure still throw
@@ -176,7 +176,7 @@ export const possibleErrorsOnListingResource = {
 
 /**
  * A count that outruns its statement timeout answers 503 `countTimeout`
- * (`countTimeoutException` in `@chatbotx.io/business`); the caller retries
+ * (`countTimeoutException` in `@inboxos.io/business`); the caller retries
  * with `countMode: "bounded"`.
  */
 const countTimeout = {
@@ -191,7 +191,7 @@ export const possibleErrorsOnCounting = {
 
 /**
  * A report that outruns its statement timeout answers 503 `reportTimeout`
- * (`reportTimeoutException` in `@chatbotx.io/business`); the caller retries
+ * (`reportTimeoutException` in `@inboxos.io/business`); the caller retries
  * with a shorter date range or a narrower channel.
  */
 const reportTimeout = {
@@ -622,7 +622,7 @@ export const possibleErrorsOnDisconnectingMetaCatalog = {
 } satisfies ErrorMap
 
 /**
- * Booking/cancel/delete on appointments can throw five `ChatbotXException`
+ * Booking/cancel/delete on appointments can throw five `InboxOSException`
  * codes at status 409 that no other route set covers — `slotUnavailable`,
  * `appointmentAvailabilityChanged`, `appointmentAlreadyScheduled` (booking),
  * `appointmentNotCancellable` (cancel), `appointmentDeleteBlocked` (delete).
@@ -709,7 +709,7 @@ export const possibleErrorsOnDisconnectingExternalCalendar = {
 
 /**
  * Appointment calendar create/update/rename/duplicate can throw two more
- * `ChatbotXException` codes at 409 — `nameAlreadyExists`
+ * `InboxOSException` codes at 409 — `nameAlreadyExists`
  * (`throwMappedUniqueError` in
  * `packages/business/src/appointment-calendar/service.ts`) and
  * `duplicateReminder` (same file, `update`, on a duplicate reminder
@@ -742,7 +742,7 @@ export const possibleErrorsOnMutatingAppointmentCalendar = {
 
 /**
  * `ContactScanService.schedule` (packages/business/src/contact-scan/service.ts) throws six
- * distinct `ChatbotXException` codes, two of them 409 — same declare-or-vanish rule as
+ * distinct `InboxOSException` codes, two of them 409 — same declare-or-vanish rule as
  * `possibleErrorsOnBookingAppointment` above.
  */
 export const possibleErrorsOnSchedulingContactScan = {
@@ -796,7 +796,7 @@ export const possibleErrorsOnMutatingMinigame = {
 } satisfies ErrorMap
 
 /**
- * Leaderboard status machine and score edits (`@chatbotx.io/business/leaderboard`)
+ * Leaderboard status machine and score edits (`@inboxos.io/business/leaderboard`)
  * reject out-of-state operations with these codes. Same declare-or-vanish
  * rule as the minigame pair above.
  */
@@ -871,14 +871,14 @@ export const possibleErrorsOnMutatingEmailTopic = {
 /**
  * `refresh`/`verify` on a `Connection` whose status is not `connected`/
  * `degraded` throws `connectionInactive` (409) — see `ConnectionService` in
- * `@chatbotx.io/connections`.
+ * `@inboxos.io/connections`.
  */
 const connectionInactive = {
   message: "This connection is not active",
   status: 409,
 }
 
-/** `refresh`/`verify`/connect called against a provider with no `ConnectionAdapter`/store binding — an expected unsupported operation (e.g. a built-in connection with no satellite store), not a server failure. See `connectionNotConfiguredException` in `@chatbotx.io/business/errors`. */
+/** `refresh`/`verify`/connect called against a provider with no `ConnectionAdapter`/store binding — an expected unsupported operation (e.g. a built-in connection with no satellite store), not a server failure. See `connectionNotConfiguredException` in `@inboxos.io/business/errors`. */
 const connectionNotConfigured = {
   message: "This connection provider is not configured",
   status: 400,
@@ -920,7 +920,7 @@ export const possibleErrorsOnVerifyingConnection = {
   ...possibleIdempotencyErrors,
 } satisfies ErrorMap
 
-/** `connectFromCredentials`'s config-validation/live-check failures — see `ConnectionService` in `@chatbotx.io/connections`. */
+/** `connectFromCredentials`'s config-validation/live-check failures — see `ConnectionService` in `@inboxos.io/connections`. */
 const connectionWrongStrategy = {
   message: "This connection provider does not accept direct credentials",
   status: 400,
@@ -936,7 +936,7 @@ const connectionNotOAuth = {
   status: 400,
 }
 
-/** The provider's OAuth code exchange or live credential-check failed with a transient upstream/transport error — see `connectionProviderUnavailableException` in `@chatbotx.io/business/errors`, thrown by `packages/connections`'s `credentials.ts` and `connect-session-flow.ts`. The exception itself carries either 502 or 503; this map documents the common 502 case. */
+/** The provider's OAuth code exchange or live credential-check failed with a transient upstream/transport error — see `connectionProviderUnavailableException` in `@inboxos.io/business/errors`, thrown by `packages/connections`'s `credentials.ts` and `connect-session-flow.ts`. The exception itself carries either 502 or 503; this map documents the common 502 case. */
 const connectionProviderUnavailable = {
   message: "The provider is temporarily unavailable. Please try again.",
   status: 502,

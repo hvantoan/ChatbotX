@@ -1,4 +1,4 @@
-import type { LeaderboardBreakdown } from "@chatbotx.io/database/partials"
+import type { LeaderboardBreakdown } from "@inboxos.io/database/partials"
 
 const DAY_MS = 86_400_000
 

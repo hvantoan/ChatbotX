@@ -2,8 +2,8 @@ import {
   createSelectSchema,
   mediaLibraryFileModel,
   mediaLibraryFolderModel,
-} from "@chatbotx.io/database/schema"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 
 export const mediaLibraryFolderResource = createSelectSchema(

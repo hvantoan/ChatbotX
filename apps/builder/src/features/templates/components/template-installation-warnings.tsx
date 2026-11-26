@@ -1,8 +1,8 @@
 "use client"
 
-import type { TemplateInstallationWarningGroup } from "@chatbotx.io/business"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateInstallationWarningGroup } from "@inboxos.io/business"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { useOptionalLabel } from "../lib/use-optional-label"

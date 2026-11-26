@@ -1,4 +1,4 @@
-import { workspaceDeletionRecordService } from "@chatbotx.io/business"
+import { workspaceDeletionRecordService } from "@inboxos.io/business"
 import { getTranslations } from "next-intl/server"
 import { DeletionRecordEvidence } from "./deletion-record-evidence"
 

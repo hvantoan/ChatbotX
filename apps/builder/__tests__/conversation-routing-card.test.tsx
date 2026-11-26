@@ -57,7 +57,7 @@ vi.mock("@/features/sequences/components/flow-selector", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ui/components/ui/tooltip", () => ({
+vi.mock("@inboxos.io/ui/components/ui/tooltip", () => ({
   Tooltip: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="tooltip">{children}</div>
   ),

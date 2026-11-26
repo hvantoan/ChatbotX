@@ -1,11 +1,11 @@
 ---
 name: security-review
-description: Use before committing changes to auth, workspace scoping, channel webhooks, AI tools/MCP, permission settings, or anything handling untrusted channel content in ChatbotX. A repo-specific security checklist covering tenant isolation, prompt injection via channel content, the Bash permission allowlist, and secret handling. Read before security-sensitive work; pair with the global security-reviewer agent for deep dives.
+description: Use before committing changes to auth, workspace scoping, channel webhooks, AI tools/MCP, permission settings, or anything handling untrusted channel content in InboxOS. A repo-specific security checklist covering tenant isolation, prompt injection via channel content, the Bash permission allowlist, and secret handling. Read before security-sensitive work; pair with the global security-reviewer agent for deep dives.
 ---
 
-# Security Review (ChatbotX)
+# Security Review (InboxOS)
 
-A focused, repo-specific checklist. For OWASP-depth analysis dispatch the global `security-reviewer` agent; this skill is the ChatbotX-specific surface map and the things that bite here.
+A focused, repo-specific checklist. For OWASP-depth analysis dispatch the global `security-reviewer` agent; this skill is the InboxOS-specific surface map and the things that bite here.
 
 ## 1. Tenant isolation (the #1 risk in a multi-workspace product)
 
@@ -29,7 +29,7 @@ Invariants: `hasWorkspacePermission` treats missing jsonb keys as **denied** (fa
 - Tokens are stored **hash-only** (SHA-256 `tokenHash` in `WorkspaceApiToken`); the sole plaintext-recoverable row is the `isDefault` token backing `{{api_key}}` (AES-GCM `encryptedToken`, AAD-bound to its workspace). Never persist, cache, or log a raw token or its hash — handler context only ever sees the projected `RequestApiToken`.
 - Every workspace-token endpoint MUST use `workspaceTokenAuthAPIForScope("<scope>")` — there is no unscoped stack export. `permission: "read_only"` tokens are limited to GET/HEAD in the middleware; mutations additionally pass the owner-quota gate.
 - Since every operation now ships a public procedure (AGENTS.md invariant 23), check each new one picks the scope of the **resource it acts on** (not the nearest convenient one), and that a result-returning operation with side effects — test send, test run, flow run, paid AI generation, anything spending quota — is `POST`, never `GET`, so a `read_only` token cannot trigger it. A result that is a shareable link (like `botSimulator.getLink`) must not embed a raw token or secret.
-- All bearer-credential material comes from `@chatbotx.io/business/workspace-api-token/credentials` (CSPRNG). Flag any token/secret minted from `Math.random()`-backed helpers.
+- All bearer-credential material comes from `@inboxos.io/business/workspace-api-token/credentials` (CSPRNG). Flag any token/secret minted from `Math.random()`-backed helpers.
 - Minting/revoking tokens requires workspace `superAdmin` (`requireWorkspaceTokenSuperAdmin`) — a granular member must not escalate via a `full` token.
 
 ## 2. Prompt injection (untrusted channel content → agent context)

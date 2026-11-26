@@ -1,6 +1,6 @@
-import { contactSequenceService } from "@chatbotx.io/business/contact-sequence"
-import { MAX_SEQUENCES_PER_TRIGGER_ACTION } from "@chatbotx.io/database/partials"
-import baseLogger from "@chatbotx.io/logger"
+import { contactSequenceService } from "@inboxos.io/business/contact-sequence"
+import { MAX_SEQUENCES_PER_TRIGGER_ACTION } from "@inboxos.io/database/partials"
+import baseLogger from "@inboxos.io/logger"
 import { z } from "zod"
 import { skipped, succeeded, type TriggerActionHandler } from "./types"
 

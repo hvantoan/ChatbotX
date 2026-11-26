@@ -1,4 +1,4 @@
-import type { PipelineSettings } from "@chatbotx.io/database/partials"
+import type { PipelineSettings } from "@inboxos.io/database/partials"
 
 type HideableFeature = "value" | "priority" | "dueDate"
 

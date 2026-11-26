@@ -1,16 +1,16 @@
-import { connectionStateService } from "@chatbotx.io/business"
-import type { SelfServeSecret } from "@chatbotx.io/connections"
+import { connectionStateService } from "@inboxos.io/business"
+import type { SelfServeSecret } from "@inboxos.io/connections"
 import type {
   ChannelType,
   ConnectionKind,
   ConnectionStatus,
   ConnectSessionOutcome,
   IntegrationType,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   ConnectionModel,
   ConnectSessionModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import { toConnectSessionResource } from "./connect-session-resource"
 import { toConnectionResource } from "./resolve-provider"
 

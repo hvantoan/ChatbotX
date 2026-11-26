@@ -1,5 +1,5 @@
 {
-  "name": "chatbotx-monorepo",
+  "name": "inboxos-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -19,12 +19,12 @@
     "clean": "pnpm store prune && pnpm dlx rimraf --glob '**/{node_modules,.next,.turbo}'",
     "check:circular": "pnpm dlx madge --circular --extensions ts,tsx --exclude generated {apps/**/src,packages/**/src}",
     "check:unused": "knip",
-    "db:migrate": "pnpm --filter @chatbotx.io/database db:migrate",
-    "db:seed": "pnpm --filter @chatbotx.io/database db:seed"
+    "db:migrate": "pnpm --filter @inboxos.io/database db:migrate",
+    "db:seed": "pnpm --filter @inboxos.io/database db:seed"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.16",
-    "@chatbotx.io/vitest-config": "workspace:*",
+    "@inboxos.io/vitest-config": "workspace:*",
     "@jridgewell/sourcemap-codec": "^1.5.5",
     "@types/node": "catalog:",
     "dependency-cruiser": "^17.3.10",

@@ -6,12 +6,12 @@ import {
   isOnlinePaymentMethod,
   type OnlinePaymentProvider,
   paymentMethods,
-} from "@chatbotx.io/database/partials"
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
-import { InputNumberField } from "@chatbotx.io/ui/components/form/input-number-field"
-import { MultiSelectField } from "@chatbotx.io/ui/components/form/multi-select-field"
-import { SelectField } from "@chatbotx.io/ui/components/form/select-field"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
+} from "@inboxos.io/database/partials"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
+import { InputNumberField } from "@inboxos.io/ui/components/form/input-number-field"
+import { MultiSelectField } from "@inboxos.io/ui/components/form/multi-select-field"
+import { SelectField } from "@inboxos.io/ui/components/form/select-field"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { TriangleAlertIcon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"

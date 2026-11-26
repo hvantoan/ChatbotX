@@ -28,11 +28,11 @@ const {
   mockListOnShiftUserIds: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 30_000 },
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   aiAgentService: { findByIdForWorkspace: mockFindAgent },
   conversationService: { claimAssignmentIfUnassigned: vi.fn() },
   decisionEvaluationService: {
@@ -61,15 +61,15 @@ vi.mock("@chatbotx.io/business", () => ({
   workspaceMemberService: { findMembership: vi.fn() },
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: mockEmit }))
-vi.mock("@chatbotx.io/events/context", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: mockEmit }))
+vi.mock("@inboxos.io/events/context", () => ({
   webhookChannelOrigin: () => "webhook",
 }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive: mockRunExclusive },
   isLockAcquisitionError: () => false,
 }))
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   IntegrationJobAction: { sendFlow: "sendFlow" },
   integrationQueue: { add: mockIntegrationQueueAdd },
 }))
@@ -387,7 +387,7 @@ describe("Global Router worker boundary", () => {
   })
 
   test("passes the source channel to human handoff analytics", async () => {
-    const business = await import("@chatbotx.io/business")
+    const business = await import("@inboxos.io/business")
     vi.mocked(business.workspaceMemberService.findMembership).mockResolvedValue(
       {} as never,
     )
@@ -425,7 +425,7 @@ describe("Global Router worker boundary", () => {
     )
   })
   test("routes to the fallback without a handoff when the user destination is off shift", async () => {
-    const business = await import("@chatbotx.io/business")
+    const business = await import("@inboxos.io/business")
     vi.mocked(business.workspaceMemberService.findMembership).mockResolvedValue(
       {} as never,
     )

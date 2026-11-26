@@ -1,11 +1,11 @@
 import {
   messengerIntegrationService,
   workspaceService,
-} from "@chatbotx.io/business"
-import { auditService } from "@chatbotx.io/business/audit"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { disconnectMessengerConnection } from "@chatbotx.io/connections/messenger-teardown"
-import type { MessengerAuthValue } from "@chatbotx.io/integration-messenger"
+} from "@inboxos.io/business"
+import { auditService } from "@inboxos.io/business/audit"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { disconnectMessengerConnection } from "@inboxos.io/connections/messenger-teardown"
+import type { MessengerAuthValue } from "@inboxos.io/integration-messenger"
 
 export const disconnectMessenger = async (ctx: {
   workspaceId: string

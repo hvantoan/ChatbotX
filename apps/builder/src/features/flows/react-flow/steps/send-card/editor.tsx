@@ -1,7 +1,7 @@
 "use client"
 
-import { buttonContainers } from "@chatbotx.io/flow-config"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
+import { buttonContainers } from "@inboxos.io/flow-config"
+import { Input } from "@inboxos.io/ui/components/ui/input"
 import { useParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useFormContext } from "react-hook-form"

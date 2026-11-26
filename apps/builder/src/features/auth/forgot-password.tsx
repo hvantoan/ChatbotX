@@ -1,19 +1,19 @@
 "use client"
 
-import { InputField } from "@chatbotx.io/ui/components/form/input-field"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { InputField } from "@inboxos.io/ui/components/form/input-field"
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+} from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   Card,
   CardContent,
   CardHeader,
-} from "@chatbotx.io/ui/components/ui/card"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/ui/components/ui/card"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { CheckCircle2Icon, Loader2Icon } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"

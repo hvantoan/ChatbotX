@@ -323,7 +323,7 @@ export async function executeTool(
         },
         method: tool.method,
       },
-      env.CHATBOTX_HTTP_TIMEOUT_MS,
+      env.INBOXOS_HTTP_TIMEOUT_MS,
     )
 
     let result: unknown

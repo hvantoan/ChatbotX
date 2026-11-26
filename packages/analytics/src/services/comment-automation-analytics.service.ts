@@ -1,4 +1,4 @@
-import { db } from "@chatbotx.io/database/client"
+import { db } from "@inboxos.io/database/client"
 import {
   type CommentAutomationEventStatus,
   type CommentAutomationMissReason,
@@ -7,19 +7,19 @@ import {
   type CommentReplyType,
   commentAutomationChannelSupportsPrivateReply,
   commentAutomationTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   CommentAutomationEventInsert,
   CommentAutomationMissInsert,
   CommentModerationLogInsert,
   CommentModerationLogModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 import type {
   FlowClickedPayload,
   MessageSeenPayload,
-} from "@chatbotx.io/flow-config"
-import { logDiagnostic } from "@chatbotx.io/logger"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/flow-config"
+import { logDiagnostic } from "@inboxos.io/logger"
+import { createId } from "@inboxos.io/utils"
 import { toDate } from "../lib/date"
 import { logger } from "../lib/logger"
 import {

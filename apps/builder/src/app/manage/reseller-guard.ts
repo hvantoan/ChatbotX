@@ -2,7 +2,7 @@ import {
   hasOwnCredentialAccess,
   tenantService,
   userQuotaService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { notFound } from "next/navigation"
 import { cache } from "react"
 import { getCurrentUser } from "@/lib/auth/utils"

@@ -17,7 +17,7 @@ type LockProps = {
 const runAction = vi.fn(async () => undefined)
 const runExclusive = vi.fn(async (props: LockProps) => await props.fn())
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   buildContext: vi.fn(async ({ integration }: { integration: unknown }) => ({
     auth: state.auth,
     integration,
@@ -27,20 +27,20 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/encryption", () => ({
+vi.mock("@inboxos.io/encryption", () => ({
   encryptedDataSchema: { parse: vi.fn((value: unknown) => value) },
   encryptUtils: {
     decryptObject: vi.fn(async () => state.auth),
   },
 }))
 
-vi.mock("@chatbotx.io/integration-drip", () => ({
+vi.mock("@inboxos.io/integration-drip", () => ({
   DRIP_HTTP_TIMEOUT_MS: 15_000,
   dripAuthSchema: {},
   integration: { runAction },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   distributedLock: { runExclusive },
 }))
 

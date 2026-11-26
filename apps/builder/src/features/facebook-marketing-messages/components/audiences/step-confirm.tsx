@@ -1,8 +1,8 @@
 "use client"
 
-import type { AudienceUploadResult } from "@chatbotx.io/business/facebook-marketing-message-audience"
-import { Alert, AlertDescription } from "@chatbotx.io/ui/components/ui/alert"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { AudienceUploadResult } from "@inboxos.io/business/facebook-marketing-message-audience"
+import { Alert, AlertDescription } from "@inboxos.io/ui/components/ui/alert"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import { CheckIcon, InfoIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

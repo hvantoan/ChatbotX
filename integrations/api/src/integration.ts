@@ -1,4 +1,4 @@
-import { apiConnectConfigSchema } from "@chatbotx.io/business/integration-api/schema"
+import { apiConnectConfigSchema } from "@inboxos.io/business/integration-api/schema"
 import {
   type BaseConfig,
   type HandleRequestProps,
@@ -6,8 +6,8 @@ import {
   type IntegrationDefinition,
   type Oauth2AuthValue,
   selfServeConnection,
-} from "@chatbotx.io/sdk"
-import { zodToConfigFields } from "@chatbotx.io/utils/connection"
+} from "@inboxos.io/sdk"
+import { zodToConfigFields } from "@inboxos.io/utils/connection"
 import { conversationHandlers } from "./handlers/conversation"
 import { messageHandlers } from "./handlers/message"
 import type { ApiActions, ApiAuthValue } from "./schema"

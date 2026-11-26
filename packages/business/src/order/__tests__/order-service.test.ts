@@ -1,4 +1,4 @@
-import { ECOMMERCE_SETTINGS_DEFAULTS } from "@chatbotx.io/database/partials"
+import { ECOMMERCE_SETTINGS_DEFAULTS } from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -44,7 +44,7 @@ vi.mock("../../order-payment/settle", () => ({
     mocks.assertDeletable(...args),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitOrderStatus: (...args: unknown[]) => mocks.emitOrderStatus(...args),
   emitProductOrdered: (...args: unknown[]) => mocks.emitProductOrdered(...args),
 }))
@@ -59,16 +59,16 @@ vi.mock("../../discount-code/service", () => ({
 
 const tx = { name: "tx" }
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: { transaction: (...args: unknown[]) => mocks.transaction(...args) },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => mocks.invalidate(...args),
   withCache: (_key: string, fn: () => unknown) => fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   ecommerceSettingsRepository: {
     nextOrderNumber: (...args: unknown[]) => mocks.nextOrderNumber(...args),
     find: (...args: unknown[]) => mocks.findSettings(...args),
@@ -100,7 +100,7 @@ vi.mock("../../ecommerce-settings/service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   NotificationJobAction: { notifyNewOrder: "notifyNewOrder" },
   getNewOrderNotificationJobId: (orderId: string) => `new-order-${orderId}`,
   notificationQueue: { add: (...args: unknown[]) => mocks.queueAdd(...args) },
@@ -1133,9 +1133,9 @@ describe("orderService — discount codes", () => {
   })
 
   test("an unusable code refuses the order", async () => {
-    const { ChatbotXException } = await import("../../errors")
+    const { InboxOSException } = await import("../../errors")
     mocks.resolveDiscount.mockRejectedValue(
-      new ChatbotXException("expired", "discountCodeExpired"),
+      new InboxOSException("expired", "discountCodeExpired"),
     )
     await expect(
       orderService.place(placeInput({ discountCode: "OLD" })),
@@ -1144,10 +1144,10 @@ describe("orderService — discount codes", () => {
   })
 
   test("the quote reports an unusable typed code and prices without it", async () => {
-    const { ChatbotXException } = await import("../../errors")
+    const { InboxOSException } = await import("../../errors")
     mocks.resolveDiscount
       .mockRejectedValueOnce(
-        new ChatbotXException("used", "discountCodeUsageLimitReached"),
+        new InboxOSException("used", "discountCodeUsageLimitReached"),
       )
       .mockResolvedValueOnce(null)
     const quote = await orderService.quote({

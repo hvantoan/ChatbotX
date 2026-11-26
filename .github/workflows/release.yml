@@ -4,7 +4,7 @@ on:
   # Tags and manual dispatches only: a build on every push to main burned
   # Actions minutes on a private repo and produced images nobody deployed.
   # Build locally instead (same Dockerfiles, root context):
-  #   docker build -f apps/<app>/docker/Dockerfile -t chatbotx-<app>:local .
+  #   docker build -f apps/<app>/docker/Dockerfile -t inboxos-<app>:local .
   push:
     tags: ["v*"]
   workflow_dispatch:
@@ -78,11 +78,11 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: |
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/chatbotx-builder
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/chatbotx-worker
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/chatbotx-realtime
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/chatbotx-mcp
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/chatbotx-javascript-executor
+            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-builder
+            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-worker
+            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-realtime
+            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-mcp
+            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-javascript-executor
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
@@ -130,23 +130,23 @@ jobs:
           # provisioned label is confirmed (`gh api /orgs/ChatbotXIO/actions/
           # runner-groups` needs admin:org). Then it is a one-word change here.
           - label: builder
-            image: chatbotx-builder
+            image: inboxos-builder
             dockerfile: ./apps/builder/docker/Dockerfile
             runner: ubuntu-latest
           - label: worker
-            image: chatbotx-worker
+            image: inboxos-worker
             dockerfile: ./apps/worker/docker/Dockerfile
             runner: ubuntu-latest
           - label: realtime
-            image: chatbotx-realtime
+            image: inboxos-realtime
             dockerfile: ./apps/realtime/docker/Dockerfile
             runner: ubuntu-latest
           - label: mcp-server
-            image: chatbotx-mcp
+            image: inboxos-mcp
             dockerfile: ./apps/mcp-server/docker/Dockerfile
             runner: ubuntu-latest
           - label: javascript-executor
-            image: chatbotx-javascript-executor
+            image: inboxos-javascript-executor
             dockerfile: ./apps/javascript-executor/docker/Dockerfile
             runner: ubuntu-latest
     # Baseline builder leg was ~16 min and the others ~1-2 min. Bounds a hung
@@ -281,23 +281,23 @@ jobs:
           REGISTRY="${{ env.DOCKER_REGISTRY }}/${{ needs.prepare-metadata.outputs.image_namespace }}"
           if [[ "${{ github.ref_name }}" == "main" ]]; then
             printf '%s\n' \
-              "Builder image (main): ${REGISTRY}/chatbotx-builder:main" \
-              "Worker image (main): ${REGISTRY}/chatbotx-worker:main" \
-              "Realtime image (main): ${REGISTRY}/chatbotx-realtime:main" \
-              "MCP Server image (main): ${REGISTRY}/chatbotx-mcp:main" \
-              "JavaScript Executor image (main): ${REGISTRY}/chatbotx-javascript-executor:main"
+              "Builder image (main): ${REGISTRY}/inboxos-builder:main" \
+              "Worker image (main): ${REGISTRY}/inboxos-worker:main" \
+              "Realtime image (main): ${REGISTRY}/inboxos-realtime:main" \
+              "MCP Server image (main): ${REGISTRY}/inboxos-mcp:main" \
+              "JavaScript Executor image (main): ${REGISTRY}/inboxos-javascript-executor:main"
           elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             printf '%s\n' \
-              "Builder image (version): ${REGISTRY}/chatbotx-builder:${VERSION}" \
-              "Builder image (latest): ${REGISTRY}/chatbotx-builder:latest" \
-              "Worker image (version): ${REGISTRY}/chatbotx-worker:${VERSION}" \
-              "Worker image (latest): ${REGISTRY}/chatbotx-worker:latest" \
-              "Realtime image (version): ${REGISTRY}/chatbotx-realtime:${VERSION}" \
-              "Realtime image (latest): ${REGISTRY}/chatbotx-realtime:latest" \
-              "MCP Server image (version): ${REGISTRY}/chatbotx-mcp:${VERSION}" \
-              "MCP Server image (latest): ${REGISTRY}/chatbotx-mcp:latest" \
-              "JavaScript Executor image (version): ${REGISTRY}/chatbotx-javascript-executor:${VERSION}" \
-              "JavaScript Executor image (latest): ${REGISTRY}/chatbotx-javascript-executor:latest"
+              "Builder image (version): ${REGISTRY}/inboxos-builder:${VERSION}" \
+              "Builder image (latest): ${REGISTRY}/inboxos-builder:latest" \
+              "Worker image (version): ${REGISTRY}/inboxos-worker:${VERSION}" \
+              "Worker image (latest): ${REGISTRY}/inboxos-worker:latest" \
+              "Realtime image (version): ${REGISTRY}/inboxos-realtime:${VERSION}" \
+              "Realtime image (latest): ${REGISTRY}/inboxos-realtime:latest" \
+              "MCP Server image (version): ${REGISTRY}/inboxos-mcp:${VERSION}" \
+              "MCP Server image (latest): ${REGISTRY}/inboxos-mcp:latest" \
+              "JavaScript Executor image (version): ${REGISTRY}/inboxos-javascript-executor:${VERSION}" \
+              "JavaScript Executor image (latest): ${REGISTRY}/inboxos-javascript-executor:latest"
           else
             echo "No publish tags for ref ${GITHUB_REF}."
           fi

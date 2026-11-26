@@ -14,10 +14,10 @@ export async function register() {
     // This node-only module reaches the database, so it cannot be statically
     // traced into the Edge instrumentation bundle.
     const { assertLicenseAtStartup } = await import(
-      "@chatbotx.io/business/license-startup"
+      "@inboxos.io/business/license-startup"
     )
     const { bootstrapPlatformAdminAtStartup } = await import(
-      "@chatbotx.io/business/platform-admin/startup"
+      "@inboxos.io/business/platform-admin/startup"
     )
     await assertLicenseAtStartup()
     await bootstrapPlatformAdminAtStartup()

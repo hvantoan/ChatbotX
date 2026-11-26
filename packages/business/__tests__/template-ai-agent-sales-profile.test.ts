@@ -3,7 +3,7 @@
 import {
   type AIAgentSalesProfile,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import {
   aiAgentsAdapter,

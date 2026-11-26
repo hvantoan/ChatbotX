@@ -1,4 +1,4 @@
-import { createId } from "@chatbotx.io/utils"
+import { createId } from "@inboxos.io/utils"
 import { and, type DatabaseClient, db, eq, isNull, sql } from "../../client"
 import { conversationModel } from "../../schema"
 import type { ConversationModel } from "../../types"

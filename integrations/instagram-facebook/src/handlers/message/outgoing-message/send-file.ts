@@ -1,8 +1,8 @@
 import type {
   SendAudioStepSchema,
   SendFileStepSchema,
-} from "@chatbotx.io/flow-config"
-import type { SendFlowStepProps } from "@chatbotx.io/sdk"
+} from "@inboxos.io/flow-config"
+import type { SendFlowStepProps } from "@inboxos.io/sdk"
 import { uploadAttachment } from "../../../apis/attachment"
 import type { InstagramAuthValue } from "../../../schema"
 import { convertMediaType } from "./send-attachment"

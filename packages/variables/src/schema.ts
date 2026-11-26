@@ -1,11 +1,11 @@
-import type { PipelineVariableTarget } from "@chatbotx.io/business/pipeline/variable-targets"
-import type { CustomFieldType } from "@chatbotx.io/database/partials"
+import type { PipelineVariableTarget } from "@inboxos.io/business/pipeline/variable-targets"
+import type { CustomFieldType } from "@inboxos.io/database/partials"
 import type {
   ContactInboxModel,
   ContactModel,
   ConversationModel,
   WorkspaceModel,
-} from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/types"
 
 export type ContactCustomFieldValue = {
   key: string
@@ -42,7 +42,7 @@ export type ReplaceVariableProps = ContactVariableContext & {
   customFieldsMap: Map<string, ContactCustomFieldValue>
   /**
    * Workspace-level Account Fields (Bot Fields), keyed by id — matches the
-   * `bot_field:<id>` reference token (see `@chatbotx.io/flow-config`'s
+   * `bot_field:<id>` reference token (see `@inboxos.io/flow-config`'s
    * `parseFieldReference`). Optional so the many test fixtures and call
    * sites built before Account Fields existed keep type-checking; a missing
    * map simply means no `bot_field:` tokens resolve, same as an empty one.

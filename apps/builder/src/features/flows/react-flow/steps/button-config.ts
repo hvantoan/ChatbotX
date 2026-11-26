@@ -2,7 +2,7 @@ import {
   type ButtonType,
   buttonTypes,
   isNativeButtonType,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   AppWindowIcon,
   CopyIcon,

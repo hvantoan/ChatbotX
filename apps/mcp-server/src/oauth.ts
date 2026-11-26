@@ -3,7 +3,7 @@ import { env } from "./env"
 import { resolveHeaderValue } from "./http-headers"
 
 // Keep in sync with MCP_OAUTH_SCOPES in packages/auth/src/mcp-config.ts;
-// mcp-server does not depend on @chatbotx.io/auth.
+// mcp-server does not depend on @inboxos.io/auth.
 const oauthScopes = ["openid", "profile", "email", "offline_access"]
 export const protectedResourcePrefix = "/.well-known/oauth-protected-resource"
 const apiPathSuffixPattern = /\/api\/?$/
@@ -11,12 +11,12 @@ const trailingSlashPattern = /\/$/
 
 const resolveIssuer = () =>
   (
-    env.CHATBOTX_MCP_OAUTH_ISSUER ??
-    env.CHATBOTX_API_URL.replace(apiPathSuffixPattern, "")
+    env.INBOXOS_MCP_OAUTH_ISSUER ??
+    env.INBOXOS_API_URL.replace(apiPathSuffixPattern, "")
   ).replace(trailingSlashPattern, "")
 
 const resolvePublicOrigin = (req: IncomingMessage): string => {
-  const publicUrl = env.CHATBOTX_MCP_PUBLIC_URL
+  const publicUrl = env.INBOXOS_MCP_PUBLIC_URL
   if (publicUrl) {
     return new URL(publicUrl).origin
   }
@@ -50,7 +50,7 @@ export const buildWwwAuthenticate = (
   pathSuffix: string,
   error?: "invalid_token",
 ) => {
-  const metadataPath = env.CHATBOTX_MCP_PUBLIC_URL
+  const metadataPath = env.INBOXOS_MCP_PUBLIC_URL
     ? `${protectedResourcePrefix}/mcp${pathSuffix}`
     : `${protectedResourcePrefix}${pathSuffix}`
   const metadataUrl = resolveMetadataUrl(req, metadataPath)

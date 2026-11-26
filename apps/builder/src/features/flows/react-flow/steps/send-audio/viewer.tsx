@@ -1,7 +1,7 @@
 "use client"
 
-import type { SendAudioStepSchema } from "@chatbotx.io/flow-config"
-import { Card, CardContent } from "@chatbotx.io/ui/components/ui/card"
+import type { SendAudioStepSchema } from "@inboxos.io/flow-config"
+import { Card, CardContent } from "@inboxos.io/ui/components/ui/card"
 import { Volume2Icon } from "lucide-react"
 import { ButtonGroupViewer } from "../button/viewer"
 

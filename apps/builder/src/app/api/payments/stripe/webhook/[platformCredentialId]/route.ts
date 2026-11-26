@@ -1,4 +1,4 @@
-import { receiveStripeWebhook } from "@chatbotx.io/business"
+import { receiveStripeWebhook } from "@inboxos.io/business"
 import { type NextRequest, NextResponse } from "next/server"
 import { logger } from "@/lib/log"
 

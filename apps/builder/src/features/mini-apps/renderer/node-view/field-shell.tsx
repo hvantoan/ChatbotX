@@ -1,4 +1,4 @@
-import type { MiniAppOption } from "@chatbotx.io/mini-app"
+import type { MiniAppOption } from "@inboxos.io/mini-app"
 import type { ReactNode } from "react"
 
 export const inputClassName =

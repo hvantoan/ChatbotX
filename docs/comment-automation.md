@@ -217,7 +217,7 @@ Delivery and state are two different things, and a comment splits them:
   Every message after that one — later in the same step, or in a later step — is a plain
   DM, which Meta only accepts inside the 24-hour window the contact's own message opens.
   A comment does not open one, so each channel's `sendFlowStep` calls
-  `assertCommentPrivateReplyFollowUpDeliverable` (`@chatbotx.io/sdk`) against
+  `assertCommentPrivateReplyFollowUpDeliverable` (`@inboxos.io/sdk`) against
   `contact.lastIncomingMessageAt` first: inside the window it sends normally, outside it
   throws `comment_private_reply_already_used`, which `sendFlowStep`'s catch records as the
   message's `sendError` so the inbox says why the rest of the flow never arrived. Before
@@ -549,7 +549,7 @@ Two text-heuristic caveats follow, and both are expected behaviour:
 `hasEmoji` is a regex on the comment text and works on every channel that can hide.
 `hasGif` needs attachment data, which only two channels expose — the builder shows the
 switch only there, and the service pins `hasGif` off on Instagram writes
-(`commentAutomationChannelSupportsHideGif` in `@chatbotx.io/database/partials`):
+(`commentAutomationChannelSupportsHideGif` in `@inboxos.io/database/partials`):
 
 | Channel | GIF source |
 |---|---|
@@ -656,7 +656,7 @@ A comment written before its automation existed (or whose webhook was lost) is n
 answered. The **Process missed comments** row action replays the last 7 days of
 comments on the automation's post through **that automation only**. It is offered only
 when the automation targets exactly one specific post (`canProcessMissedComments` in
-`@chatbotx.io/database/partials`), on all four comment tables.
+`@inboxos.io/database/partials`), on all four comment tables.
 
 Flow: `processMissedCommentsAction` (`features/shared/comment-automation/actions/`) →
 `processMissedComments` (`lib/missed-comments/process-missed-comments.ts`):

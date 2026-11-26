@@ -1,17 +1,17 @@
 "use client"
 
-import type { TemplateListItem } from "@chatbotx.io/business"
-import { DataTable } from "@chatbotx.io/ui/components/data-table/data-table"
-import { DataTableColumnHeader } from "@chatbotx.io/ui/components/data-table/data-table-column-header"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
+import type { TemplateListItem } from "@inboxos.io/business"
+import { DataTable } from "@inboxos.io/ui/components/data-table/data-table"
+import { DataTableColumnHeader } from "@inboxos.io/ui/components/data-table/data-table-column-header"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@chatbotx.io/ui/components/ui/dropdown-menu"
-import { useDataTable } from "@chatbotx.io/ui/hooks/use-data-table"
+} from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { useDataTable } from "@inboxos.io/ui/hooks/use-data-table"
 import type { ColumnDef } from "@tanstack/react-table"
 import {
   MoreHorizontalIcon,

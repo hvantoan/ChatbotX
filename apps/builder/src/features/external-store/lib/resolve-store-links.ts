@@ -3,12 +3,12 @@ import "server-only"
 import {
   shopifyIntegrationService,
   wooCommerceIntegrationService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import {
   EXTERNAL_STORE_NAMES,
   isExternalStoreSource,
   type StoreSource,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type { ExternalStoreLinks } from "./store-links"
 
 /**

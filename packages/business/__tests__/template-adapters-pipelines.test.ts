@@ -18,7 +18,7 @@ const {
   remapFlowGraphReferences,
   pipelineStepDefaultFn,
   templateManifestsSchema,
-} = await import("@chatbotx.io/flow-config")
+} = await import("@inboxos.io/flow-config")
 
 const entry = {
   name: "Sales",

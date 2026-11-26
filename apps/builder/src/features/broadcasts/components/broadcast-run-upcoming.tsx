@@ -1,9 +1,9 @@
 "use client"
 
-import { isRecurringTemplate } from "@chatbotx.io/database/partials"
-import { Badge } from "@chatbotx.io/ui/components/ui/badge"
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { listUpcomingSlots } from "@chatbotx.io/utils/recurrence"
+import { isRecurringTemplate } from "@inboxos.io/database/partials"
+import { Badge } from "@inboxos.io/ui/components/ui/badge"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { listUpcomingSlots } from "@inboxos.io/utils/recurrence"
 import { Loader2Icon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useFormatter, useTranslations } from "next-intl"

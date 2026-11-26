@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   resolveTemplates: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   contactInboxRepository: {
     findModelByIdForWorkspace: mocks.findModelByIdForWorkspace,
   },
@@ -57,7 +57,7 @@ describe("buildMatchingSnapshot", () => {
 
   test("a recorded snapshot always passes the stored-options schema, whatever the step held", async () => {
     const { googleAdsMatchingSnapshotSchema } = await import(
-      "@chatbotx.io/database/partials"
+      "@inboxos.io/database/partials"
     )
     const longest = `{{${"a".repeat(196)}}}`
     const snapshot = buildMatchingSnapshot({

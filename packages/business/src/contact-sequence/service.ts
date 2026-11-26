@@ -5,16 +5,16 @@ import {
   eq,
   inArray,
   type Transaction,
-} from "@chatbotx.io/database/client"
+} from "@inboxos.io/database/client"
 import {
   contactsOnSequenceModel,
   sequenceModel,
-} from "@chatbotx.io/database/schema"
-import { isBigintId } from "@chatbotx.io/database/utils"
+} from "@inboxos.io/database/schema"
+import { isBigintId } from "@inboxos.io/database/utils"
 import {
   emitSequenceSubscribed,
   emitSequenceUnsubscribed,
-} from "@chatbotx.io/events"
+} from "@inboxos.io/events"
 import {
   calculateNextRunAtFromStep,
   cancelPendingDispatches,
@@ -23,7 +23,7 @@ import {
   getContactInboxes,
   removeDispatchesFromSchedule,
   sequenceDispatchUtils,
-} from "@chatbotx.io/sequence-scheduler"
+} from "@inboxos.io/sequence-scheduler"
 import { BaseService } from "../base.service"
 import { type ContactAccessScope, contactService } from "../contact/service"
 import { notFoundException } from "../errors"

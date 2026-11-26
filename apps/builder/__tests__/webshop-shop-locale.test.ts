@@ -8,7 +8,7 @@ const { getStorefront, resolveShopSession } = vi.hoisted(() => ({
   resolveShopSession: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   webshopService: { getStorefront },
 }))
 vi.mock("../src/features/webshop/lib/shop-session", () => ({

@@ -7,7 +7,7 @@ the public API keep working on the mirrored rows.
 
 ## Store source
 
-`EcommerceSettings.storeSource` is `chatbotx` (the default, our own catalog),
+`EcommerceSettings.storeSource` is `inboxos` (the default, our own catalog),
 `shopify` or `woocommerce` (see `docs/woocommerce.md`; both external stores
 share the rules below). Every catalog row carries the source it came from
 (`Product`, `ProductCategory`, `Vendor`, `DiscountCode` — `source`, plus
@@ -28,7 +28,7 @@ Shopify or WooCommerce (from any other source) queues a full sync of that
 store (`syncSwitchedStore` in `ecommerceSettingsService.update`), so its
 catalog and recent orders are current from the start; a sync already running
 covers it, and a failure to queue one does not undo the switch. Disconnecting
-Shopify switches a store selling from Shopify back to `chatbotx` (one selling
+Shopify switches a store selling from Shopify back to `inboxos` (one selling
 from WooCommerce is left as it is).
 
 Mirrored rows are read-only here (`externalStoreManaged`, 409, with

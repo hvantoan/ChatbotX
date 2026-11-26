@@ -1,4 +1,4 @@
-import type { PollVoteBreakdownRow } from "@chatbotx.io/database/repositories"
+import type { PollVoteBreakdownRow } from "@inboxos.io/database/repositories"
 
 export type PollCandidateAnalytics = {
   id: string

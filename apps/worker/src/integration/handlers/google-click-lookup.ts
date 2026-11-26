@@ -5,14 +5,14 @@ import {
   integrationGoogleAdsService,
   isGoogleClickLookupCandidate,
   markGoogleClickLookupDone,
-} from "@chatbotx.io/business"
-import type { ContactInboxModel, InboxModel } from "@chatbotx.io/database/types"
-import { toLogSafeError } from "@chatbotx.io/logger"
-import type { IncomingMessage, MessageReferral } from "@chatbotx.io/sdk"
+} from "@inboxos.io/business"
+import type { ContactInboxModel, InboxModel } from "@inboxos.io/database/types"
+import { toLogSafeError } from "@inboxos.io/logger"
+import type { IncomingMessage, MessageReferral } from "@inboxos.io/sdk"
 import {
   resolveGoogleClickCaptureSource,
   withoutRepeatedGoogleClick,
-} from "@chatbotx.io/utils/google-click"
+} from "@inboxos.io/utils/google-click"
 import { logger } from "../../lib/logger"
 import { resolveIntegrationContextFromContactInbox } from "../../services/integrations"
 

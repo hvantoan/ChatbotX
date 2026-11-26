@@ -1,9 +1,9 @@
 import {
   integrationWhatsappService,
   whatsappFlowService,
-} from "@chatbotx.io/business"
-import { notFoundException } from "@chatbotx.io/business/errors"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+} from "@inboxos.io/business"
+import { notFoundException } from "@inboxos.io/business/errors"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import { z } from "zod"
 import {
   possibleErrorsOnFindingResource,

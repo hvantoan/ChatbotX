@@ -1,6 +1,6 @@
 "use client"
 
-import type { ConnectErrorQueryCode } from "@chatbotx.io/utils/connection"
+import type { ConnectErrorQueryCode } from "@inboxos.io/utils/connection"
 import type { GoogleAdsSettingsView } from "../lib/to-settings-view"
 import type { GoogleAdsConsentView } from "../schema/integration"
 import { AccountPicker } from "./account-picker"

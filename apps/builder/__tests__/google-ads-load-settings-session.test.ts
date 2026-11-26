@@ -6,7 +6,7 @@ const mocks = vi.hoisted(() => ({
   findLatestInFlightByProvider: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business/connect-session", () => ({
+vi.mock("@inboxos.io/business/connect-session", () => ({
   connectSessionService: {
     findByIdForWorkspace: mocks.findByIdForWorkspace,
     findLatestInFlightByProvider: mocks.findLatestInFlightByProvider,

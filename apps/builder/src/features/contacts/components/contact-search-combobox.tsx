@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@chatbotx.io/ui/components/ui/button"
-import { Input } from "@chatbotx.io/ui/components/ui/input"
-import { useDebouncedCallback } from "@chatbotx.io/ui/hooks/use-debounced-callback"
-import { cn } from "@chatbotx.io/ui/lib/utils"
+import { Button } from "@inboxos.io/ui/components/ui/button"
+import { Input } from "@inboxos.io/ui/components/ui/input"
+import { useDebouncedCallback } from "@inboxos.io/ui/hooks/use-debounced-callback"
+import { cn } from "@inboxos.io/ui/lib/utils"
 import { useQuery } from "@tanstack/react-query"
 import { SearchIcon } from "lucide-react"
 import { useTranslations } from "next-intl"

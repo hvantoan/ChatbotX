@@ -1,7 +1,7 @@
-import { broadcastService } from "@chatbotx.io/business"
-import { BROADCAST_PAYLOAD_TYPE } from "@chatbotx.io/flow-config"
-import { casStore } from "@chatbotx.io/redis"
-import { ChannelError, isAccountSendBlocked } from "@chatbotx.io/sdk"
+import { broadcastService } from "@inboxos.io/business"
+import { BROADCAST_PAYLOAD_TYPE } from "@inboxos.io/flow-config"
+import { casStore } from "@inboxos.io/redis"
+import { ChannelError, isAccountSendBlocked } from "@inboxos.io/sdk"
 import { logger } from "../../lib/logger"
 import type { ChannelSendErrorContext } from "./channel-send-error-types"
 

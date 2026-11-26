@@ -1,5 +1,5 @@
-import { emailTopicService } from "@chatbotx.io/business"
-import { zodBigintAsString } from "@chatbotx.io/utils"
+import { emailTopicService } from "@inboxos.io/business"
+import { zodBigintAsString } from "@inboxos.io/utils"
 import z from "zod"
 import { withWorkspaceIdSchema } from "@/features/workspaces/schema/resource"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"

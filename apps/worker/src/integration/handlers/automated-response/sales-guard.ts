@@ -1,18 +1,18 @@
-import type { SalesPromptProduct } from "@chatbotx.io/business"
-import { conversationService } from "@chatbotx.io/business"
+import type { SalesPromptProduct } from "@inboxos.io/business"
+import { conversationService } from "@inboxos.io/business"
 import {
   type AIAgentSalesProfile,
   type ConversationSalesStage,
   type ConversationSalesState,
   DEFAULT_SALES_PROFILE_HANDOFF_MESSAGE,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   AIAgentModel,
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
-import { percentOf, roundMoney } from "@chatbotx.io/utils/money"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
+import { percentOf, roundMoney } from "@inboxos.io/utils/money"
 import { generateText, type LanguageModel, type ModelMessage, Output } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"

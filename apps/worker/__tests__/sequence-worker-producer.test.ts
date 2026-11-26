@@ -40,21 +40,21 @@ const {
   withLockSpy: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   sequenceDispatchRepository: {
     listPendingWorkspaceIds: findPendingWorkspaceIdsSpy,
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   sequenceConnections: { useExisting: useExistingSpy },
 }))
 
-vi.mock("@chatbotx.io/scheduler", () => ({
+vi.mock("@inboxos.io/scheduler", () => ({
   SchedulerClient: class {
     addToRetry = addToRetrySpy
     batchAddToSchedule = batchAddToScheduleSpy
@@ -69,7 +69,7 @@ vi.mock("@chatbotx.io/scheduler", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   getSequenceSchedulerQueue: getSequenceSchedulerQueueSpy,
 }))
 

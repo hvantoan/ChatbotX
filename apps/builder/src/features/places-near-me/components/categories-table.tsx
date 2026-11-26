@@ -1,6 +1,6 @@
 "use client"
 
-import type { PlaceCategoryListItem } from "@chatbotx.io/business"
+import type { PlaceCategoryListItem } from "@inboxos.io/business"
 import {
   Table,
   TableBody,
@@ -8,7 +8,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@chatbotx.io/ui/components/ui/table"
+} from "@inboxos.io/ui/components/ui/table"
 import {
   flexRender,
   getCoreRowModel,

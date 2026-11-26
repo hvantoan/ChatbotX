@@ -3,8 +3,8 @@ import {
   type ChannelAudienceEventJobData,
   type ChannelAudienceUser,
   type HandleRequestProps,
-} from "@chatbotx.io/sdk"
-import { timingSafeStringEqual } from "@chatbotx.io/utils/crypto"
+} from "@inboxos.io/sdk"
+import { timingSafeStringEqual } from "@inboxos.io/utils/crypto"
 import { TelegramWebhookException } from "../exception"
 import type {
   TelegramChatMember,

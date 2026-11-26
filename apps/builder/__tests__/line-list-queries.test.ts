@@ -18,7 +18,7 @@ const row = {
   },
 }
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   lineIntegrationService: { listByWorkspace: vi.fn(async () => [row]) },
 }))
 

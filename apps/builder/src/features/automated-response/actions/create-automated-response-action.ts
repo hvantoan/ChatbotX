@@ -1,8 +1,8 @@
 "use server"
 
-import { automatedResponseService } from "@chatbotx.io/business"
-import { ChatbotXException } from "@chatbotx.io/business/errors"
-import { automatedResponseTypes } from "@chatbotx.io/database/partials"
+import { automatedResponseService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { automatedResponseTypes } from "@inboxos.io/database/partials"
 import { returnValidationErrors } from "next-safe-action"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
@@ -28,7 +28,7 @@ export const createAutomatedResponseAction = workspaceActionClient
       })
     } catch (error) {
       if (
-        error instanceof ChatbotXException &&
+        error instanceof InboxOSException &&
         error.code === "validation" &&
         error.field
       ) {

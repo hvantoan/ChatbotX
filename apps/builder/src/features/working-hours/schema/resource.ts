@@ -2,7 +2,7 @@ import {
   workingHoursDateRangesSchema,
   workingHoursIntervalSchema,
   workingHoursLocalDateSchema,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { z } from "zod"
 
 const workingHoursDateOverrideResource = z.object({

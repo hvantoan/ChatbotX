@@ -1,11 +1,11 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type SpreadsheetClearRowSchema,
   spreadsheetClearRowSchema,
-} from "@chatbotx.io/flow-config"
-import { Form } from "@chatbotx.io/ui/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
+} from "@inboxos.io/flow-config"
+import { Form } from "@inboxos.io/ui/components/ui/form"
 import { useCallback } from "react"
 import { useForm, useFormContext, useWatch } from "react-hook-form"
 import { SpreadsheetDialog } from "../spreadsheet/components/dialog"

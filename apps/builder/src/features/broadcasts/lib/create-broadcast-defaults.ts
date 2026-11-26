@@ -8,12 +8,12 @@ import {
   broadcastSubactions,
   type ChannelType,
   channelTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import type {
   BroadcastModel,
   BroadcastTargetModel,
-} from "@chatbotx.io/database/types"
-import type { RecurrenceRule } from "@chatbotx.io/utils/recurrence"
+} from "@inboxos.io/database/types"
+import type { RecurrenceRule } from "@inboxos.io/utils/recurrence"
 import { z } from "zod"
 import {
   type ContactFilterCriteria,

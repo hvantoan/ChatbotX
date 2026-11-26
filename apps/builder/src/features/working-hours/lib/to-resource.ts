@@ -1,5 +1,5 @@
-import type { WorkingHoursWithRelations } from "@chatbotx.io/database/repositories"
-import type { WorkingHoursDateOverrideModel } from "@chatbotx.io/database/types"
+import type { WorkingHoursWithRelations } from "@inboxos.io/database/repositories"
+import type { WorkingHoursDateOverrideModel } from "@inboxos.io/database/types"
 import type {
   WorkingHoursDateOverrideResource,
   WorkingHoursHolidayResource,

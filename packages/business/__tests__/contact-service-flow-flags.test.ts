@@ -30,7 +30,7 @@ const { mockDbUpdate } = vi.hoisted(() => ({
   mockDbUpdate: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   and: vi.fn((...args: unknown[]) => ({ __and: args })),
   db: { update: mockDbUpdate },
   eq: vi.fn((left: unknown, right: unknown) => ({ __eq: [left, right] })),
@@ -43,7 +43,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   })),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   contactInboxModel: { id: "ci.id", contactId: "ci.contactId" },
   contactModel: {
     id: "contact.id",
@@ -57,22 +57,22 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   inboxModel: { id: "inbox.id" },
 }))
 
-vi.mock("@chatbotx.io/database/queries", () => ({
+vi.mock("@inboxos.io/database/queries", () => ({
   buildContactWhere: vi.fn(),
   contactFilterHasPredicate: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/event-bus", () => ({ emit: vi.fn() }))
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/event-bus", () => ({ emit: vi.fn() }))
+vi.mock("@inboxos.io/events", () => ({
   emitContactCreated: vi.fn(),
   emitContactInfoUpdated: vi.fn(),
 }))
-vi.mock("@chatbotx.io/filesystem", () => ({ uploadFileFromUrl: vi.fn() }))
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/filesystem", () => ({ uploadFileFromUrl: vi.fn() }))
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: vi.fn(),
   withCache: vi.fn(),
 }))
-vi.mock("@chatbotx.io/analytics", () => ({ macAnalyticsService: {} }))
+vi.mock("@inboxos.io/analytics", () => ({ macAnalyticsService: {} }))
 vi.mock("../src/quota-enforcement/service", () => ({
   quotaEnforcementService: {},
 }))
@@ -83,7 +83,7 @@ vi.mock("../src/message-cleanup/service", () => ({ messageCleanupService: {} }))
 
 const { contactService } = await import("../src/contact/service")
 const { isNull: isNullMock, sql: sqlMock } = await import(
-  "@chatbotx.io/database/client"
+  "@inboxos.io/database/client"
 )
 
 const buildUpdateClient = (returningRows: { id: string }[] = [{ id: "c" }]) => {

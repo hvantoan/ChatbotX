@@ -1,7 +1,7 @@
 import {
   type ButtonStepProps,
   getChannelFlowPolicy,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import { describe, expect, test, vi } from "vitest"
 import { convertMessage } from "../src/handlers/message/outgoing-message"
 import { getButtonTemplate } from "../src/handlers/message/outgoing-message/send-button"

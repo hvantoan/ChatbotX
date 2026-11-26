@@ -17,7 +17,7 @@ vi.mock("@/lib/safe-action", () => {
   return { workspaceActionClientAllowExpired: chain }
 })
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   listConnectedCallSummaryProviders: listConnectedCallSummaryProvidersMock,
 }))
 

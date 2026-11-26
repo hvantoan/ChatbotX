@@ -2,7 +2,7 @@ import { getProperty } from "dot-prop"
 import { BaseService } from "../base.service"
 import { contactService } from "../contact/service"
 import { contactCustomFieldService } from "../contact-custom-field/service"
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 import { checkSsrfSafety } from "../net/ssrf-guard"
 
 const REQUEST_TIMEOUT_MS = 15_000
@@ -92,7 +92,7 @@ class ExternalRequestService extends BaseService {
     // sending Host against the original hostname.
     const ssrfCheck = await checkSsrfSafety(input.url)
     if (ssrfCheck.unsafe) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "This URL is not allowed for external requests",
         "ssrfBlocked",
         400,
@@ -124,7 +124,7 @@ class ExternalRequestService extends BaseService {
       headers.set("Content-Type", "application/x-www-form-urlencoded")
     } else if (input.body?.bodyType === "allContactData") {
       if (!contactId) {
-        throw new ChatbotXException(
+        throw new InboxOSException(
           "This request requires a contact and cannot be tested without one",
           "contactRequired",
           400,
@@ -170,7 +170,7 @@ class ExternalRequestService extends BaseService {
     await response.body?.cancel()
 
     if (redirectsLeft <= 0) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "Too many redirects for this external request",
         "ssrfBlocked",
         400,
@@ -179,7 +179,7 @@ class ExternalRequestService extends BaseService {
 
     const location = response.headers.get("location")
     if (!location) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "This URL is not allowed for external requests",
         "ssrfBlocked",
         400,
@@ -189,7 +189,7 @@ class ExternalRequestService extends BaseService {
     const redirectUrl = new URL(location, url).href
     const ssrfCheck = await checkSsrfSafety(redirectUrl)
     if (ssrfCheck.unsafe) {
-      throw new ChatbotXException(
+      throw new InboxOSException(
         "This URL is not allowed for external requests",
         "ssrfBlocked",
         400,

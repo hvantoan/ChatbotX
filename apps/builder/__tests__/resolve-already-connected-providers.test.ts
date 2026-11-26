@@ -19,14 +19,14 @@ const {
   })),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   connectionStateService: {
     listProvidersWithStatus: mockListProvidersWithStatus,
   },
   platformCredentialService: { resolveForOwner: mockResolveForOwner },
 }))
 
-vi.mock("@chatbotx.io/connections", () => ({
+vi.mock("@inboxos.io/connections", () => ({
   isCredentialStrategy: (strategy: string) =>
     strategy === "token" || strategy === "api_key" || strategy === "self_serve",
   toChannelType: (provider: string) =>

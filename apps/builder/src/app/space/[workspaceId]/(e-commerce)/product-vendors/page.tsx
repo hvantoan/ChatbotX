@@ -2,7 +2,7 @@ import {
   ecommerceOpenHoursService,
   productCategoryService,
   vendorService,
-} from "@chatbotx.io/business"
+} from "@inboxos.io/business"
 import { ProductVendorsTable } from "@/features/product-vendors/product-vendors-table"
 import { listProductVendorsSearchParams } from "@/features/product-vendors/schema/query"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"

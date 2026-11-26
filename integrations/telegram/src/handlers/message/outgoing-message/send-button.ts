@@ -3,9 +3,9 @@ import {
   buttonTypes,
   encodeButtonPayload,
   sendsAsNativeCopyButton,
-} from "@chatbotx.io/flow-config"
-import type { MessageButtonTemplate } from "@chatbotx.io/sdk"
-import { channelTypes } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/flow-config"
+import type { MessageButtonTemplate } from "@inboxos.io/sdk"
+import { channelTypes } from "@inboxos.io/utils/channel"
 import { chunk } from "remeda"
 import { MAX_INLINE_BUTTONS_PER_ROW } from "../../../constants"
 import type {

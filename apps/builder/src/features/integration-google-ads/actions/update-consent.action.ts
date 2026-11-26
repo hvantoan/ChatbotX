@@ -1,7 +1,7 @@
 "use server"
 
-import { googleAdsSettingsService } from "@chatbotx.io/business"
-import { googleAdsConsentSchema } from "@chatbotx.io/database/partials"
+import { googleAdsSettingsService } from "@inboxos.io/business"
+import { googleAdsConsentSchema } from "@inboxos.io/database/partials"
 import { workspaceIdrequestParams } from "@/features/common/schema"
 import { workspaceActionClient } from "@/lib/safe-action"
 import { assertCanManageGoogleAds } from "../lib/assert-can-manage-google-ads"

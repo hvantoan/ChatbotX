@@ -3,15 +3,15 @@ import {
   leaderboardScoringService,
   leaderboardService,
   triggerLeaderboardRewards,
-} from "@chatbotx.io/business/leaderboard"
+} from "@inboxos.io/business/leaderboard"
 import {
   type LeaderboardRuleKey,
   leaderboardRuleKeys,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   LeaderboardJobAction,
   type LeaderboardJobData,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../lib/logger"
 import { buildLeaderboardFollowerCheck } from "./follower-check"
 

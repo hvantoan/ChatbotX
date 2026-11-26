@@ -26,7 +26,7 @@ const {
   xtrim: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   createRedisConnection,
 }))
 
@@ -38,7 +38,7 @@ vi.mock("../src/platform/settings", () => ({
   resolveRealtimeRedisUrl: () => "redis://realtime.test",
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   defaultQueue: { add: vi.fn() },
   DefaultJobAction: {
     retryRealtimeMemberRevoke: "retryRealtimeMemberRevoke",
@@ -310,7 +310,7 @@ describe("realtime stream publisher Redis connection", () => {
 
   test("advances a revoke marker through an atomic compare-and-set", async () => {
     const { getRealtimeMemberRevokedKey } = await import(
-      "@chatbotx.io/realtime-protocol"
+      "@inboxos.io/realtime-protocol"
     )
     const { markRealtimeMemberRevoked } = await import(
       "../src/platform/realtime-stream-publisher"
@@ -340,7 +340,7 @@ describe("realtime stream publisher Redis connection", () => {
 
   test("appends with the Redis stream retention arguments", async () => {
     const { getRealtimeStreamKey } = await import(
-      "@chatbotx.io/realtime-protocol"
+      "@inboxos.io/realtime-protocol"
     )
     const { revokeWorkspaceMemberRealtimeConnections } = await import(
       "../src/platform/realtime-broadcast"

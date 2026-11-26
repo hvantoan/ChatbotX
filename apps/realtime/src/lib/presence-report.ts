@@ -1,8 +1,8 @@
-import { signPresenceReportToken } from "@chatbotx.io/realtime-protocol/auth"
+import { signPresenceReportToken } from "@inboxos.io/realtime-protocol/auth"
 import {
   hashPresenceUserIds,
   truncatePresenceUserIds,
-} from "@chatbotx.io/realtime-protocol/presence"
+} from "@inboxos.io/realtime-protocol/presence"
 import ky from "ky"
 import { logger } from "../logger"
 

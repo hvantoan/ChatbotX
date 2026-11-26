@@ -12,14 +12,14 @@
  * from it) afterwards. Needs the template migrations applied locally.
  */
 
-import { db, eq, sql } from "@chatbotx.io/database/client"
+import { db, eq, sql } from "@inboxos.io/database/client"
 import {
   templateInstallationRepository,
   templateRepository,
   templateResourceBackupRepository,
   templateUninstallStateRepository,
   templateVersionRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import {
   flowModel,
   flowVersionModel,
@@ -30,9 +30,9 @@ import {
   triggerModel,
   userModel,
   workspaceModel,
-} from "@chatbotx.io/database/schema"
-import { parseTemplateExport } from "@chatbotx.io/flow-config"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/schema"
+import { parseTemplateExport } from "@inboxos.io/flow-config"
+import { createId } from "@inboxos.io/utils"
 import { afterEach, describe, expect, test, vi } from "vitest"
 import {
   barrier,
@@ -56,17 +56,17 @@ const realDatabaseUrl = (): string | null => {
 vi.mock("../../src/audit/dispatcher", () => ({
   dispatchAuditRecord: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/redis", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/redis")>()),
+vi.mock("@inboxos.io/redis", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/redis")>()),
   withCache: (_key: string, fn: () => Promise<unknown>) => fn(),
   invalidateCacheByTags: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/events", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/events")>()),
+vi.mock("@inboxos.io/events", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/events")>()),
   updateTriggerCache: vi.fn().mockResolvedValue(undefined),
 }))
-vi.mock("@chatbotx.io/worker-config", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@chatbotx.io/worker-config")>()),
+vi.mock("@inboxos.io/worker-config", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@inboxos.io/worker-config")>()),
   enqueueUninstallTemplate: vi.fn().mockResolvedValue(undefined),
 }))
 vi.mock("../../src/template/uninstall-effect-runners", () => ({}))

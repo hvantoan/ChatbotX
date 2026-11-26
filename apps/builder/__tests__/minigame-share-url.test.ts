@@ -11,7 +11,7 @@ const { mockFindWithIntegrationsById, mockResolveTenantSettings } = vi.hoisted(
   }),
 )
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   inboxService: { findWithIntegrationsById: mockFindWithIntegrationsById },
   resolveTenantSettings: mockResolveTenantSettings,
 }))

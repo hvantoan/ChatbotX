@@ -10,11 +10,11 @@ const mocks = vi.hoisted(() => ({
   dispatchAuditRecord: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/partials", () => ({
+vi.mock("@inboxos.io/database/partials", () => ({
   ROOT_TENANT_ID: "1",
 }))
 
-vi.mock("@chatbotx.io/database/repositories", () => ({
+vi.mock("@inboxos.io/database/repositories", () => ({
   userRepository: { findIdByEmail: mocks.findIdByEmail },
 }))
 

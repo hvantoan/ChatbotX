@@ -42,7 +42,7 @@ Download button is **out of scope** (see Non-goals).
 - Pixel / offsite conversions (`actions`, `action_values`,
   `website_purchase_roas`).
 - A campaign-status column.
-- Campaigns created outside ChatbotX (e.g. directly in Ads Manager).
+- Campaigns created outside InboxOS (e.g. directly in Ads Manager).
 - Sorting by metric columns.
 - Clicking a row (no navigation, no Ads Manager link). Rows are read-only.
 - Persisting insights in our database / a sync worker.

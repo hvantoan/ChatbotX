@@ -5,11 +5,11 @@ import {
   extractMetadata,
   getButtonLinkUrl,
   type MetadataPayload,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   getCanonicalReplyPayload,
   type MessageButtonTemplate,
-} from "@chatbotx.io/sdk"
+} from "@inboxos.io/sdk"
 import {
   ActionButtons,
   ActionCTA,

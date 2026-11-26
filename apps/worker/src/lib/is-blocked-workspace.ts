@@ -1,4 +1,4 @@
-import { withBlockedOwnerGuard } from "@chatbotx.io/business"
+import { withBlockedOwnerGuard } from "@inboxos.io/business"
 
 export async function isBlockedWorkspace(
   workspaceId: string | undefined,

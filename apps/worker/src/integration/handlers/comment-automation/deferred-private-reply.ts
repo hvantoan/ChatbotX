@@ -1,14 +1,14 @@
 import {
   commentAutomationService,
   contactInboxService,
-} from "@chatbotx.io/business"
-import type { IntegrationType } from "@chatbotx.io/database/partials"
-import { createMessageRepository } from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/business"
+import type { IntegrationType } from "@inboxos.io/database/partials"
+import { createMessageRepository } from "@inboxos.io/database/repositories"
 import {
   IntegrationJobAction,
   type IntegrationJobDeferredCommentPrivateReply,
   integrationQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { logger } from "../../../lib/logger"
 import { integrationService } from "../../../services/integrations"
 import {

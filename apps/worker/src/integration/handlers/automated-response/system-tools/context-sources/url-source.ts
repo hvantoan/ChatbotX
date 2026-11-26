@@ -1,17 +1,17 @@
 import {
   aiConversationSourceStatuses,
   aiConversationSourceTypes,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createConversationEmbeddingRepository,
   createConversationSourceRepository,
-} from "@chatbotx.io/database/repositories"
-import { createId } from "@chatbotx.io/utils"
+} from "@inboxos.io/database/repositories"
+import { createId } from "@inboxos.io/utils"
 import {
   AIJobAction,
   type AIJobData,
   aiAgentQueue,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { embed } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { z } from "zod"

@@ -1,4 +1,4 @@
-import { igStoryAutomationService } from "@chatbotx.io/business"
+import { igStoryAutomationService } from "@inboxos.io/business"
 import { assertCurrentUserCanAccessChatbot } from "@/lib/auth/utils"
 import type {
   ListIgStoriesRequest,

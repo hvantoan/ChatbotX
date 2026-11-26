@@ -16,7 +16,7 @@ vi.mock("../src/template/installed-resource.service", async () => ({
   }),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => ({
+vi.mock("@inboxos.io/database/client", () => ({
   db: {
     update: (...args: unknown[]) => {
       dbUpdate(...args)
@@ -42,7 +42,7 @@ vi.mock("@chatbotx.io/database/client", () => ({
   findOrFail: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   tagModel: {},
 }))
 
@@ -52,13 +52,13 @@ vi.mock("../src/tag/sync.service", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/redis", () => ({
+vi.mock("@inboxos.io/redis", () => ({
   invalidateCacheByTags: (...args: unknown[]) => invalidateCacheByTags(...args),
   withCache: async (_key: string, callback: () => Promise<unknown>) =>
     await callback(),
 }))
 
-vi.mock("@chatbotx.io/events", () => ({
+vi.mock("@inboxos.io/events", () => ({
   emitTagApplied: vi.fn(),
   emitTagRemoved: vi.fn(),
 }))

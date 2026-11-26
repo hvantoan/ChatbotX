@@ -1,18 +1,18 @@
 import type {
   WhatsappCallAiSummary,
   WhatsappCallTranscriptSegments,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   createMessageRepository,
   whatsappCallRepository,
-} from "@chatbotx.io/database/repositories"
-import type { WhatsappCallModel } from "@chatbotx.io/database/types"
+} from "@inboxos.io/database/repositories"
+import type { WhatsappCallModel } from "@inboxos.io/database/types"
 import {
   RealtimeEventType,
   routeForConversation,
-} from "@chatbotx.io/realtime-protocol"
-import { distributedLock, isLockAcquisitionError } from "@chatbotx.io/redis"
-import { getWhatsappCallEntity } from "@chatbotx.io/sdk"
+} from "@inboxos.io/realtime-protocol"
+import { distributedLock, isLockAcquisitionError } from "@inboxos.io/redis"
+import { getWhatsappCallEntity } from "@inboxos.io/sdk"
 import { contactService } from "../contact/service"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"

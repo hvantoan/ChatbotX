@@ -1,7 +1,7 @@
 import { nodeName, walkNodes } from "./tree"
 import type { MiniAppDefinition, MiniAppNode } from "./types"
 
-export { sanitizeFileName } from "@chatbotx.io/utils/sanitize-file-name"
+export { sanitizeFileName } from "@inboxos.io/utils/sanitize-file-name"
 
 /**
  * Rules for files a visitor uploads through a Mini App's web link

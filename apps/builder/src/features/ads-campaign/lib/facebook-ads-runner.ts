@@ -1,6 +1,6 @@
-import { buildMessagingAdsContext } from "@chatbotx.io/business"
-import type { MessagingAdChannel } from "@chatbotx.io/database/partials"
-import { integration as facebookAdsIntegration } from "@chatbotx.io/integration-facebook-ads"
+import { buildMessagingAdsContext } from "@inboxos.io/business"
+import type { MessagingAdChannel } from "@inboxos.io/database/partials"
+import { integration as facebookAdsIntegration } from "@inboxos.io/integration-facebook-ads"
 
 /**
  * Resolves the decrypted Facebook Ads context + the `Integration` dispatcher

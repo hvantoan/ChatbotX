@@ -11,29 +11,29 @@ import {
   type ThreadControlState,
   threadControlRoles,
   toThreadControlTimestamp,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   contactInboxRepository,
   createMessageRepository,
   inboxRepository,
-} from "@chatbotx.io/database/repositories"
+} from "@inboxos.io/database/repositories"
 import type {
   ContactInboxModel,
   InboxModel,
   MessageModel,
-} from "@chatbotx.io/database/types"
-import { RealtimeEventType } from "@chatbotx.io/realtime-protocol"
+} from "@inboxos.io/database/types"
+import { RealtimeEventType } from "@inboxos.io/realtime-protocol"
 import type {
   ThreadControlContext,
   ThreadControlDelivery,
   ThreadOwnerResult,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { supportsArchiveRelease } from "@chatbotx.io/utils/channel"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { supportsArchiveRelease } from "@inboxos.io/utils/channel"
 import {
   enqueueIntegrationJob,
   IntegrationJobAction,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { BaseService } from "../base.service"
 import { contactInboxService } from "../contact-inbox/service"
 import { conversationService } from "../conversation/service"
@@ -162,7 +162,7 @@ export type ThreadControlChannelResult = {
 /**
  * The channel side of take/release/pass, supplied by the caller. `packages/
  * business` cannot import the channel registry (which imports this package),
- * so the registry-aware wrapper (`@chatbotx.io/channel-registry/thread-control`)
+ * so the registry-aware wrapper (`@inboxos.io/channel-registry/thread-control`)
  * resolves the integration and hands its handler in here.
  */
 export type ThreadControlChannelCall = (

@@ -4,10 +4,10 @@
 
 | #   | File                                       | Edit                                                                                                                                           |
 | --- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `apps/builder/src/integration.ts`          | Add `import { integration as integration<Channel> } from "@chatbotx.io/integration-<channel>"` AND `<channel>: integration<Channel>` in object |
+| 1   | `apps/builder/src/integration.ts`          | Add `import { integration as integration<Channel> } from "@inboxos.io/integration-<channel>"` AND `<channel>: integration<Channel>` in object |
 | 2   | `apps/worker/src/services/integrations.ts` | Add `import ...` AND `<channel>: integration<Channel>` in `allIntegrations`                                                                    |
-| 3   | `apps/builder/package.json`                | Add `"@chatbotx.io/integration-<channel>": "workspace:*"` to dependencies                                                                      |
-| 4   | `apps/worker/package.json`                 | Add `"@chatbotx.io/integration-<channel>": "workspace:*"` to dependencies                                                                      |
+| 3   | `apps/builder/package.json`                | Add `"@inboxos.io/integration-<channel>": "workspace:*"` to dependencies                                                                      |
+| 4   | `apps/worker/package.json`                 | Add `"@inboxos.io/integration-<channel>": "workspace:*"` to dependencies                                                                      |
 
 **CRITICAL — verify imports:** After each edit to `integration.ts` and `integrations.ts`, immediately read back lines 1-10 to confirm the import line is actually present. The `import` and the usage are TWO separate edits.
 

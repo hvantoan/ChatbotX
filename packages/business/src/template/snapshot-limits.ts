@@ -1,4 +1,4 @@
-import { ChatbotXException } from "../errors"
+import { InboxOSException } from "../errors"
 
 export const MAX_PAYLOAD_RESOURCES = 200
 // `payload` is a jsonb column, not S3 — a row-count cap alone doesn't bound
@@ -6,19 +6,19 @@ export const MAX_PAYLOAD_RESOURCES = 200
 export const MAX_PAYLOAD_BYTES = 10 * 1024 * 1024
 
 export const templateSaveValidationException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "One or more selected resources could not be found in this workspace",
     "templateSaveInvalidSelection",
   )
 
 export const templatePayloadTooLargeException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template selection is too large to save",
     "templatePayloadTooLarge",
   )
 
 export const templatePayloadTooManyBytesException = () =>
-  new ChatbotXException(
+  new InboxOSException(
     "This template's data is too large to save",
     "templatePayloadTooManyBytes",
   )

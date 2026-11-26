@@ -4,13 +4,13 @@ import {
   messageService,
   messageStatusBranchService,
   queueMessageCreatedEvent,
-} from "@chatbotx.io/business"
-import type { messageModel } from "@chatbotx.io/database/schema"
+} from "@inboxos.io/business"
+import type { messageModel } from "@inboxos.io/database/schema"
 import type {
   ContactInboxModel,
   ConversationModel,
-} from "@chatbotx.io/database/types"
-import { emit } from "@chatbotx.io/event-bus"
+} from "@inboxos.io/database/types"
+import { emit } from "@inboxos.io/event-bus"
 import {
   bindWaTemplateQuickReplyButtons,
   extractTemplateParams,
@@ -21,22 +21,22 @@ import {
   stepTypes,
   type TemplateComponent,
   type WaTemplateStatusBranch,
-} from "@chatbotx.io/flow-config"
+} from "@inboxos.io/flow-config"
 import {
   ChannelError,
   ChannelErrorCategory,
   type MessageTemplateEntity,
   parseSdkError,
   shouldAddressBySourceUserId,
-} from "@chatbotx.io/sdk"
-import { createId } from "@chatbotx.io/utils"
-import { resolveStackFrames } from "@chatbotx.io/utils/error-log"
-import { contactVariableService } from "@chatbotx.io/variables"
+} from "@inboxos.io/sdk"
+import { createId } from "@inboxos.io/utils"
+import { resolveStackFrames } from "@inboxos.io/utils/error-log"
+import { contactVariableService } from "@inboxos.io/variables"
 import type {
   BotResponseTrackingContext,
   ChatJobSendWhatsappTemplateMessage,
   ChatJobSendWhatsappTemplateToConversation,
-} from "@chatbotx.io/worker-config"
+} from "@inboxos.io/worker-config"
 import { assertPaymentRequestsSendable } from "../../integration/handlers/wa-payment-request-guard"
 import {
   replaceWhatsappTemplateVariables,

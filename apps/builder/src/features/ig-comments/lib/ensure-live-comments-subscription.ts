@@ -1,15 +1,15 @@
 import "server-only"
 
-import { instagramIntegrationService } from "@chatbotx.io/business"
+import { instagramIntegrationService } from "@inboxos.io/business"
 import {
   type CommentPost,
   type IgCommentAutomationType,
   isLiveCommentAutomation,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import {
   type InstagramAuthValue,
   subscribePageToInstagramWebhook,
-} from "@chatbotx.io/integration-instagram"
+} from "@inboxos.io/integration-instagram"
 import { collectSettled } from "@/lib/collect-settled"
 
 /**

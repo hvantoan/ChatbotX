@@ -1,5 +1,5 @@
-import { db } from "@chatbotx.io/database/client"
-import { adsEligibleChannelTypes } from "@chatbotx.io/utils/channel"
+import { db } from "@inboxos.io/database/client"
+import { adsEligibleChannelTypes } from "@inboxos.io/utils/channel"
 import { type AnyColumn, sql } from "drizzle-orm"
 import { BaseService } from "../base.service"
 import { notFoundException } from "../errors"

@@ -6,14 +6,14 @@ import { beforeEach, describe, expect, test, vi } from "vitest"
 
 const runPipelineFlowAction = vi.fn()
 
-vi.mock("@chatbotx.io/business/pipeline", () => ({ runPipelineFlowAction }))
+vi.mock("@inboxos.io/business/pipeline", () => ({ runPipelineFlowAction }))
 
 const getAll = vi.fn(async () => ({ name: "Ada" }))
 const replaceAll = vi.fn(
   async ({ text, variables }: { text: string; variables: { name: string } }) =>
     text.replace("{{name}}", variables.name),
 )
-vi.mock("@chatbotx.io/variables", () => ({
+vi.mock("@inboxos.io/variables", () => ({
   contactVariableService: { getAll, replaceAll },
 }))
 
@@ -25,7 +25,7 @@ const { handlePipelineStep } = await import(
   "../src/integration/handlers/pipeline"
 )
 const { pipelineStepActions, pipelineStepDefaultFn } = await import(
-  "@chatbotx.io/flow-config"
+  "@inboxos.io/flow-config"
 )
 
 const run = (

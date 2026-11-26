@@ -1,11 +1,11 @@
-import { type DatabaseClient, db } from "@chatbotx.io/database/client"
+import { type DatabaseClient, db } from "@inboxos.io/database/client"
 import {
   type IntegrationType,
   isCoexistChannel,
   type ProviderAccountEventDetail,
   type ProviderAccountEventKind,
   type ProviderAccountTarget,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import { coexistService } from "../coexist/service"
 import { logger } from "../logger"
 import {
