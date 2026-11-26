@@ -36,6 +36,10 @@ export function MasterAgentDraftCard({
   const t = useTranslations("masterAgent")
   const format = useFormatter()
   const isDraft = draft.status === "draft"
+  // The session view returns the draft whatever happened to it afterwards, so a
+  // stopped or failed reminder is not a freshly confirmed one.
+  const isScheduled =
+    draft.status === "scheduled" || draft.status === "recurring"
 
   return (
     <Card>
@@ -73,33 +77,38 @@ export function MasterAgentDraftCard({
           <span>{draft.flowId ?? t("fields.noFlow")}</span>
         </div>
       </CardContent>
-      <CardFooter>
-        {isDraft && !canConfirm ? (
-          // A member without the broadcasts + flows permissions cannot
-          // schedule anything, so the card shows no Confirm action at all.
-          <span className="text-muted-foreground text-sm">
-            {t("fields.missingPermission")}
-          </span>
-        ) : null}
-        {isDraft && canConfirm ? (
-          <Button
-            disabled={isConfirming}
-            onClick={() => onConfirm(draft.id)}
-            size="sm"
-            type="button"
-          >
-            {isConfirming ? (
-              <Loader2Icon className="animate-spin" data-icon="inline-start" />
-            ) : null}
-            {t("confirm")}
-          </Button>
-        ) : null}
-        {isDraft ? null : (
-          <span className="text-muted-foreground text-sm">
-            {t("confirmed")}
-          </span>
-        )}
-      </CardFooter>
+      {isDraft || isScheduled ? (
+        <CardFooter>
+          {isDraft && !canConfirm ? (
+            // A member without the broadcasts + flows permissions cannot
+            // schedule anything, so the card shows no Confirm action at all.
+            <span className="text-muted-foreground text-sm">
+              {t("fields.missingPermission")}
+            </span>
+          ) : null}
+          {isDraft && canConfirm ? (
+            <Button
+              disabled={isConfirming}
+              onClick={() => onConfirm(draft.id)}
+              size="sm"
+              type="button"
+            >
+              {isConfirming ? (
+                <Loader2Icon
+                  className="animate-spin"
+                  data-icon="inline-start"
+                />
+              ) : null}
+              {t("confirm")}
+            </Button>
+          ) : null}
+          {isScheduled ? (
+            <span className="text-muted-foreground text-sm">
+              {t("confirmed")}
+            </span>
+          ) : null}
+        </CardFooter>
+      ) : null}
     </Card>
   )
 }

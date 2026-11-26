@@ -119,4 +119,12 @@ describe("MasterAgentDraftCard", () => {
     expect(rendered.querySelector("button")).toBeNull()
     expect(rendered.textContent).toContain("Scheduled")
   })
+
+  test("a reminder that stopped or failed is not labelled as confirmed", () => {
+    const rendered = render({ status: "cancelled" })
+
+    expect(rendered.querySelector("button")).toBeNull()
+    expect(rendered.textContent).not.toContain("Scheduled")
+    expect(rendered.textContent).toContain("Cancelled")
+  })
 })
