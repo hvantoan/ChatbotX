@@ -80,6 +80,7 @@ const HITL_NONE_WRITE_ALLOWLIST: Record<string, true> = {
   "contacts.search": true,
   "flows.validate": true,
   "inboundWebhooks.previewMapping": true,
+  "masterAgent.sendMessage": true,
   "miniApps.validate": true,
   "templates.listLockedResources": true,
   "templates.previewDependencies": true,
@@ -95,8 +96,11 @@ const HITL_NONE_WRITE_ALLOWLIST: Record<string, true> = {
 // integration without a `search_tools` round trip. Bumped 48 -> 52 when
 // `pipelines.list`/`pipelines.listItems`/`pipelines.createItem`/
 // `pipelines.moveItem` joined the default set so an agent can drive a CRM
-// board without a `search_tools` round trip.
-const MAX_DEFAULT_VISIBLE_OPERATIONS = 52
+// board without a `search_tools` round trip. Bumped 52 -> 54 when
+// `masterAgent.sendMessage`/`masterAgent.getSession` joined the default set so
+// an agent can draft a reminder broadcast from a Zoom summary and read the
+// session back without a `search_tools` round trip.
+const MAX_DEFAULT_VISIBLE_OPERATIONS = 54
 
 const MCP_SERVER_ROOT = join(import.meta.dirname, "..", "..", "mcp-server")
 const MCP_README_PATH = join(MCP_SERVER_ROOT, "README.md")

@@ -2323,6 +2323,16 @@ exports[`public API spec — operation naming guard > operation list (operationI
     "path": "/v1/magic-links/{id}",
   },
   {
+    "method": "GET",
+    "operationId": "masterAgent.getSession",
+    "path": "/v1/master-agent/sessions/{sessionId}",
+  },
+  {
+    "method": "POST",
+    "operationId": "masterAgent.sendMessage",
+    "path": "/v1/master-agent/messages",
+  },
+  {
     "method": "POST",
     "operationId": "me.changePassword",
     "path": "/v1/me/password",

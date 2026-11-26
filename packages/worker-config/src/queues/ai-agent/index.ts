@@ -34,6 +34,7 @@ export const AIJobAction = {
   commentModeration: "commentModeration",
   processStoryReplyAutomation: "processStoryReplyAutomation",
   processStoryMentionAutomation: "processStoryMentionAutomation",
+  processMasterAgent: "processMasterAgent",
 } as const
 
 export const aiJobSummarizeConversationDataSchema = z.object({
@@ -164,6 +165,20 @@ const aiJobProcessStoryMentionAutomationSchema = z.object({
   }),
 })
 
+/**
+ * One Master Agent turn. `messageId` is the pending assistant row the write
+ * path inserted: the consumer fills it in when the agent finishes, so a client
+ * polling the session sees the reply without a second history row.
+ */
+const aiJobProcessMasterAgentSchema = z.object({
+  type: z.literal(AIJobAction.processMasterAgent),
+  data: z.object({
+    workspaceId: z.string().min(1),
+    sessionId: z.string().min(1),
+    messageId: z.string().min(1),
+  }),
+})
+
 export const aiJobDataSchema = z.discriminatedUnion("type", [
   aiJobProcessFileSchema,
   aiJobProcessPendingEmbeddingSchema,
@@ -176,6 +191,7 @@ export const aiJobDataSchema = z.discriminatedUnion("type", [
   aiJobCommentModerationSchema,
   aiJobProcessStoryReplyAutomationSchema,
   aiJobProcessStoryMentionAutomationSchema,
+  aiJobProcessMasterAgentSchema,
 ])
 
 export type AIJobData = z.infer<typeof aiJobDataSchema>
@@ -207,6 +223,9 @@ export type AIJobProcessStoryReplyAutomation = z.infer<
 >
 export type AIJobProcessStoryMentionAutomation = z.infer<
   typeof aiJobProcessStoryMentionAutomationSchema
+>
+export type AIJobProcessMasterAgent = z.infer<
+  typeof aiJobProcessMasterAgentSchema
 >
 
 export const aiAgentQueue = isNoRedisEnv()

@@ -71,7 +71,7 @@ Every `tools/list` definition also includes a human-readable `title` and explici
 
 ## Available tools
 
-Tool names are derived from the OpenAPI `operationId` converted to `snake_case` (e.g. `tags.list` → `tags_list`). The current default set has 52 tools:
+Tool names are derived from the OpenAPI `operationId` converted to `snake_case` (e.g. `tags.list` → `tags_list`). The current default set has 54 tools:
 
 ### Capabilities
 
@@ -166,6 +166,13 @@ For `connections_create` with `provider: "api"`, the response includes a one-tim
 | Tool | Description |
 |---|---|
 | `keywords_list` | List keywords (automated responses) |
+
+### Master Agent
+
+| Tool | Description |
+|---|---|
+| `master_agent_send_message` | Send a message to the Master Agent |
+| `master_agent_get_session` | Get a Master Agent session |
 
 ### Messages
 

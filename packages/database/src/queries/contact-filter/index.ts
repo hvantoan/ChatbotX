@@ -474,6 +474,16 @@ function buildConditionWhere(
   const { field, operator, value } = condition
 
   switch (field) {
+    // Exact contact targeting for audiences a system composes itself (a
+    // reminder draft aimed at one group contact). Only equality/in makes
+    // sense on an id; anything else fails closed instead of dropping the
+    // condition, which would widen the audience to every contact.
+    case "contactId":
+      return operator === operatorTypes.enum.eq ||
+        operator === operatorTypes.enum.in
+        ? buildColumnWhere("id", operator, value)
+        : { RAW: () => sql`false` }
+
     case "fullName":
     case "email":
       return buildColumnWhere(field, operator, value, {

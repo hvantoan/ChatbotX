@@ -130,6 +130,7 @@ import { leaderboardRelations } from "./leaderboard"
 import { leaderboardAuditLogRelations } from "./leaderboard-audit-log"
 import { leaderboardParticipantRelations } from "./leaderboard-participant"
 import { magicLinkRelations } from "./magic-link"
+import { masterAgentMessageRelations } from "./master-agent-message"
 import { mediaLibraryFileRelations } from "./media-library-file"
 import { mediaLibraryFolderRelations } from "./media-library-folder"
 import { messageRelations } from "./message"
@@ -382,6 +383,7 @@ export const relations = {
   ...whatsappSignupSessionRelations,
   ...automationThrottleRelations,
   ...miniAppRelations,
+  ...masterAgentMessageRelations,
   ...minigameRelations,
   ...minigameContactRelations,
   ...minigamePlayRelations,

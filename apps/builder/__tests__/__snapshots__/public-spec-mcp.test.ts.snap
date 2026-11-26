@@ -42,6 +42,8 @@ exports[`default tool set > operation ids match the curated snapshot 1`] = `
   "flows.updateDraft",
   "flows.validate",
   "keywords.list",
+  "masterAgent.getSession",
+  "masterAgent.sendMessage",
   "messages.list",
   "miniApps.create",
   "miniApps.list",

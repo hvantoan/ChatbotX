@@ -13,6 +13,8 @@ export type AIAgentSalesProfileVersionModel =
   typeof schema.aiAgentSalesProfileVersionModel.$inferSelect
 export type AIAgentTrainingMessageModel =
   typeof schema.aiAgentTrainingMessageModel.$inferSelect
+export type MasterAgentMessageModel =
+  typeof schema.masterAgentMessageModel.$inferSelect
 export type AIFunctionModel = typeof schema.aiFunctionModel.$inferSelect
 export type AIMCPServerModel = typeof schema.aiMCPServerModel.$inferSelect
 export type AdsConversionRuleModel =

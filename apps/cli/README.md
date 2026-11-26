@@ -1071,6 +1071,17 @@ Click stats: `inboxos analytics magic-links-stats --linkId <id>`.
 
 ---
 
+### `master-agent`
+
+```bash
+chatbotx master-agent send-message --message "<pasted Zoom summary>"   # [--sessionId]; runs one agent turn, returns the session
+chatbotx master-agent get-session <sessionId>                          # Poll until status is completed/failed; drafts included
+```
+
+The agent only drafts broadcasts: `drafts[].status` stays `draft` until a member confirms it with `chatbotx broadcasts schedule add <id>`. Send times are read as `Asia/Saigon`.
+
+---
+
 ### `media-library`
 
 ```bash

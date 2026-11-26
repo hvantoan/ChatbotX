@@ -222,6 +222,10 @@ const COMMAND_NAME_OVERRIDES: Readonly<Record<string, string>> = {
   "POST /v1/mini-apps/{id}/whatsapp-draft/publish":
     "mini-apps:whatsapp-draft:publish",
   "GET /v1/mini-apps/{id}/whatsapp-preview": "mini-apps:whatsapp-preview",
+  // `GET /v1/master-agent/sessions/{sessionId}` otherwise derives to
+  // `master-agent:find-by-sessions`; name both sides of the group explicitly.
+  "POST /v1/master-agent/messages": "master-agent:send-message",
+  "GET /v1/master-agent/sessions/{sessionId}": "master-agent:get-session",
   "GET /v1/conversations/{conversationId}/messages/{messageId}/flow-response":
     "conversations:flow-response:get",
   // Pipeline actions are verbs on the pipeline or item, not sub-resources to "add".
