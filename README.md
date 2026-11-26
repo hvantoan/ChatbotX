@@ -14,11 +14,8 @@
   </a>
 </p>
 
-<h3 align="center"><strong><a href="https://chatbotx.io/lifetime/?ref=github">NEW: Get a Lifetime Deal on InboxOS Cloud</a></strong></h3>
-<h3 align="center"><strong><a href="https://github.com/ChatbotXIO/chatbotx-agent">NEW: get 500+ MCP and CLI Tools for Your AI Agents</a></strong></h3>
-
 <p align="center">
-  <strong>Agentic chat marketing platform built for OpenClaw, Hermes, and Claude</strong>
+  <strong>Open-source omnichannel chatbot platform</strong>
   <br>
   An alternative to ManyChat, Chatfuel, Wati, Respond, etc...
 </p>
@@ -65,11 +62,6 @@
 </p>
 
 <p align="center">
-  <a href="https://youtube.com/@inboxosofficial" rel="dofollow"><strong>Watch the YouTube Tutorials»</strong></a>
-  <br />
-</p>
-
-<p align="center">
   <a href="https://app.chatbotx.io">Register</a>
   ·
   <a href="https://chatbotx.io/docs/cli/introduction">CLI</a>
@@ -83,12 +75,6 @@
   <a href="https://chatbotx.io/docs/integrations/n8n">N8N custom node</a>
   ·
   <a href="https://chatbotx.io/docs/integrations/make">Make.com integration</a>
-</p>
-
-<p align="center">
-  <a href="https://youtu.be/lB2MRuWoiKI" target="_blank">
-    <img alt="InboxOS Omnichannel" src=".github/assets/readme/inboxos-hero.png?v=1786238500653">
-  </a>
 </p>
 
 ## ✨ Features
@@ -110,24 +96,6 @@
 - **Growth Tools:** Generate conversation starter links for each platform
 - **Analytics:** Track performance metrics, user engagement, and campaign results
 - **APIs, CLI, and MCP:** Build advanced agent workflows with MCP-compatible clients
-
-| ![AI Agents and Flows](.github/assets/readme/1-ai-agents-and-flows.webp) | ![Live Chat and Team](.github/assets/readme/2-live-chat-and-team.webp) |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| ![Broadcast and Sequence](.github/assets/readme/3-broadcast-and-sequence.webp) | ![Growth Tools](.github/assets/readme/4-growth-tools.webp) |
-| ![Import Contacts](.github/assets/readme/5-import-contacts.webp) | ![OpenClaw and Hermes](.github/assets/readme/6-openclaw-hermes.webp) |
-
-## Why InboxOS?
-
-| Feature | ManyChat | InboxOS |
-|---|---:|---:|
-| Self-Hosted | ❌ | ✅ |
-| White Label | ❌ | ✅ |
-| CLI & MCP | ❌ | ✅ |
-| Cost Growth | ✅ | ❌ |
-| Public API | Limited | ✅ |
-| Omnichannel | Limited | ✅ |
-| AI Agents | Limited | ✅ |
-| AI Credits | Add-on | BYOK |
 
 ## Tech Stack
 
@@ -153,41 +121,18 @@ To have the project up and running, please follow the [Quick Start Guide](https:
 ```text
 .
 |-- apps/
-|   |-- builder/       # Next.js web app and product builder
-|   |-- worker/        # background workers for chat, AI, triggers, webhooks, analytics, sequences
-|   |-- realtime/      # realtime server
-|   |-- cli/           # InboxOS command line client
-|   `-- mcp-server/    # MCP server backed by public APIs
-|-- integrations/
-|   |-- whatsapp/
-|   |-- messenger/
-|   |-- instagram/
-|   |-- threads/
-|   |-- telegram/
-|   |-- zalo/
-|   |-- tiktok/
-|   |-- webchat/
-|   |-- smtp/
-|   |-- openai/
-|   |-- google-sheets/
-|   `-- ...           # email/CRM: mailchimp, klaviyo, active-campaign, drip, get-response, mailer-lite, moosend, sendgrid
-|-- packages/
-|   |-- database/
-|   |-- ai/
-|   |-- auth/
-|   |-- business/
-|   |-- automated-response/
-|   |-- analytics/
-|   |-- event-bus/
-|   |-- mail/
-|   |-- imports/
-|   |-- flow-config/
-|   |-- variables/
-|   |-- sdk/
-|   |-- scheduler/
-|   |-- sequence-scheduler/
-|   |-- ui/
-|   `-- worker-config/
+|   |-- builder/                # Next.js product UI and API surface
+|   |-- worker/                 # background jobs: chat, AI, triggers, webhooks, analytics, sequences
+|   |-- realtime/               # uWebSockets.js gateway over Redis Streams
+|   |-- cli/                    # inboxos command line client
+|   |-- mcp-server/             # MCP server backed by the public APIs
+|   |-- javascript-executor/    # isolated-vm service for flow-step JavaScript
+|   `-- zalo-personal-gateway/  # gateway for Zalo personal accounts
+|-- integrations/               # one package per channel or vendor: WhatsApp, Messenger,
+|                               # Instagram, Threads, TikTok, Telegram, Zalo, LINE, Webchat,
+|                               # SMTP, Shopify, WooCommerce, OpenAI, Google Ads, Google Sheets, ...
+|-- packages/                   # shared libraries: database, business, ai, auth, payments, sdk,
+|                               # ui, worker-config, and other workspace packages
 |-- docker-compose.yml
 |-- pnpm-workspace.yaml
 `-- turbo.json
@@ -198,6 +143,8 @@ To have the project up and running, please follow the [Quick Start Guide](https:
 ```bash
 pnpm dev              # run turbo dev
 pnpm build            # build all packages/apps through Turborepo
+pnpm test             # run the test suites
+pnpm check-types      # typecheck all workspaces
 pnpm lint             # run Ultracite lint
 pnpm fix              # run Ultracite fix
 pnpm check:circular   # check circular dependencies
@@ -246,11 +193,11 @@ The default Docker Compose stack includes:
 - RustFS object storage on `9000` and console on `9001`
 - MailHog SMTP on `1025` and UI on `8025`
 - Adminer on `8080`
+- Zalo personal gateway on `3220`
 
 ## Support
 
 If InboxOS helps you avoid expensive chatbot automation tools, please give us a ⭐ on GitHub.
-We're also working hard to bring open-source mobile apps to **iOS and Android** this year
 
 ## License
 
