@@ -1,4 +1,5 @@
-import { MASTER_AGENT_TIMEZONE, masterAgentService } from "@inboxos.io/business"
+import { masterAgentService } from "@inboxos.io/business"
+import { MASTER_AGENT_TIMEZONE } from "@inboxos.io/database/partials"
 import { type ToolSet, tool } from "ai"
 import { z } from "zod"
 
