@@ -12196,5 +12196,30 @@
         "revert": "Khôi phục"
       }
     }
+  },
+  "masterAgent": {
+    "title": "Master agent",
+    "description": "Dán tóm tắt buổi Zoom, trợ lý sẽ soạn bản nháp nhắc lịch để bạn xác nhận.",
+    "empty": "Chưa có tin nhắn. Dán tóm tắt Zoom để bắt đầu.",
+    "thinking": "Đang soạn nhắc lịch...",
+    "emptyReply": "Không có phản hồi.",
+    "placeholder": "Dán tóm tắt Zoom: nhóm nào, gửi lúc nào, nhắc nội dung gì.",
+    "send": "Gửi",
+    "draftsTitle": "Bản nháp nhắc lịch",
+    "confirm": "Xác nhận",
+    "confirmed": "Đã lên lịch",
+    "fields": {
+      "group": "Nhóm",
+      "groupUnknown": "Không tìm thấy nhóm",
+      "sendTime": "Giờ gửi",
+      "timezone": "Asia/Saigon (GMT+7)",
+      "flow": "Flow",
+      "noFlow": "Chưa chọn flow",
+      "missingPermission": "Bạn cần quyền broadcasts và flows để xác nhận."
+    },
+    "errors": {
+      "sendFailed": "Không gửi được tin nhắn.",
+      "confirmFailed": "Không lên lịch được bản nháp."
+    }
   }
 }

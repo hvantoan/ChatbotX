@@ -78,8 +78,32 @@ reminder tools pull the business/database graph with them.
 | Surface | Name |
 |---|---|
 | oRPC | `masterAgent.sendMessage` (`POST /v1/master-agent/messages`), `masterAgent.getSession` (`GET /v1/master-agent/sessions/{sessionId}`) — scope `broadcasts` |
+| Builder UI | `/space/{workspaceId}/master-agent` chat page (route `app/space/[workspaceId]/master-agent/page.tsx`), private router `masterAgentAPIs` |
 | CLI | `inboxos master-agent send-message`, `inboxos master-agent get-session` |
 | MCP | `master_agent_send_message`, `master_agent_get_session` (default visibility) |
+
+## UI (builder)
+
+A member needs both the `broadcasts` section (`broadcast` permission flag) and
+`flows`; the service itself checks no member permissions, so every entry point
+gates: the page (`requireMasterAgentPageAccess`), and the three private
+procedures (`masterAgentForbidden`, 403). A non-member gets the repo-wide 404
+from the page and 401 from `workspaceAuthorizedMidddleware` on the API.
+
+| Private procedure | method + path |
+|---|---|
+| `sendMasterAgentMessageAPI` | `POST /workspaces/{workspaceId}/master-agent/messages` |
+| `getMasterAgentSessionAPI` | `GET /workspaces/{workspaceId}/master-agent/sessions/{sessionId}` |
+| `confirmMasterAgentDraftAPI` | `POST /workspaces/{workspaceId}/master-agent/drafts/{broadcastId}/confirm` |
+
+`sendMessage` passes `memberId: context.user.id`; `confirmDraft` is the only
+draft → scheduled path in the UI and takes no schedule data: it reads the draft
+through `masterAgentService.getReminder` (workspace-scoped, 404 otherwise),
+refuses anything not `draft`, then calls `broadcastService.scheduleDraft` with
+the draft's own `schedulesType`/`schedulesAt`. Both session procedures add the
+draft's `group` (`{contactId, name, sourceId}`) from `masterAgentService.listGroups`
+so the card names the `group:` contact; the chat formats the send time in
+`Asia/Saigon`.
 
 ## Tests
 
@@ -91,3 +115,11 @@ reminder tools pull the business/database graph with them.
   a tool call reaches the service (LLM mocked).
 - `apps/builder/__tests__/master-agent-public-api.test.ts` — 401/403, input
   validation, token-workspace isolation.
+- `apps/builder/__tests__/master-agent-private-api.test.ts` — 401/403 for the
+  private procedures, `memberId` attribution, confirm schedules only a `draft`
+  of the same workspace with its own stored schedule.
+- `apps/builder/__tests__/master-agent-page-access.test.ts` — page gate: 404 for
+  a non-member, 403 without `broadcasts` or without `flows`.
+- `apps/builder/__tests__/master-agent-draft-card.test.tsx` — the card shows the
+  group and the `Asia/Saigon` time; Confirm is absent without the permissions,
+  disabled while the request runs, and gone once the draft is scheduled.

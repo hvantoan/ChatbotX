@@ -12196,5 +12196,30 @@
         "revert": "Revert"
       }
     }
+  },
+  "masterAgent": {
+    "title": "Master agent",
+    "description": "Paste the Zoom summary and the agent drafts a reminder for you to confirm.",
+    "empty": "No messages yet. Paste a Zoom summary to start.",
+    "thinking": "Drafting the reminder...",
+    "emptyReply": "No reply.",
+    "placeholder": "Paste the Zoom summary: the group, when to send, and what to remind them of.",
+    "send": "Send",
+    "draftsTitle": "Reminder drafts",
+    "confirm": "Confirm",
+    "confirmed": "Scheduled",
+    "fields": {
+      "group": "Group",
+      "groupUnknown": "Group contact not found",
+      "sendTime": "Send time",
+      "timezone": "Asia/Saigon (GMT+7)",
+      "flow": "Flow",
+      "noFlow": "No flow",
+      "missingPermission": "You need the broadcasts and flows permissions to confirm."
+    },
+    "errors": {
+      "sendFailed": "The message could not be sent.",
+      "confirmFailed": "The draft could not be scheduled."
+    }
   }
 }

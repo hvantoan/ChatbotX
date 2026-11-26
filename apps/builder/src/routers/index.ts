@@ -52,6 +52,11 @@ export const router = {
       default: m.broadcastAPIs,
     })),
   ),
+  masterAgentAPIs: lazy(() =>
+    import("@/features/master-agent/api").then((m) => ({
+      default: m.masterAgentAPIs,
+    })),
+  ),
   conversationsAPI: lazy(() =>
     import("@/features/conversations/api").then((m) => ({
       default: m.conversationsAPI,

@@ -18,6 +18,7 @@ import {
   PhoneCallIcon,
   RadioIcon,
   SlidersHorizontalIcon,
+  SparklesIcon,
   SquareKanbanIcon,
   UsersIcon,
   WebhookIcon,
@@ -34,6 +35,7 @@ import { NavMain } from "@/components/nav-main"
 import { NavUsage, type QuotaSummary } from "@/components/nav-usage"
 import { NavUser } from "@/components/nav-user"
 import { WorkspaceSwitcher } from "@/components/workspace-switcher"
+import { canUseMasterAgent } from "@/features/master-agent/lib/access"
 import type { WorkspaceResource } from "@/features/workspaces/schema/resource"
 import { authClient } from "@/lib/auth/auth-client"
 import {
@@ -125,6 +127,15 @@ export function AppSidebar({
         url: `/space/${workspaceId}/ai-agents`,
         icon: BrainIcon,
         permission: PERMISSION_NAV.flows,
+      },
+      {
+        title: t("masterAgent.title"),
+        url: `/space/${workspaceId}/master-agent`,
+        icon: SparklesIcon,
+        permission: PERMISSION_NAV.broadcasts,
+        // Both flags, not just the section's: the chat schedules broadcasts
+        // that send a flow.
+        visible: canUseMasterAgent(permissions),
       },
       {
         title: t("whatsapp.calls.page.title"),
