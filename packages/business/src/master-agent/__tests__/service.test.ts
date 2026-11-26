@@ -23,6 +23,7 @@ const mocks = vi.hoisted(() => ({
   broadcastMoveToDraft: vi.fn(),
   broadcastStop: vi.fn(),
   broadcastList: vi.fn(),
+  broadcastFindMany: vi.fn(),
 }))
 
 vi.mock("@chatbotx.io/database/client", () => {
@@ -34,7 +35,7 @@ vi.mock("@chatbotx.io/database/client", () => {
       },
       contactModel: { findFirst: mocks.findFirstContact },
       contactInboxModel: { findFirst: mocks.findFirstContactInbox },
-      broadcastModel: { findMany: vi.fn() },
+      broadcastModel: { findMany: mocks.broadcastFindMany },
       aiAgentModel: { findFirst: vi.fn() },
     },
     transaction: (callback: (tx: unknown) => Promise<unknown>) => callback(db),
@@ -362,6 +363,89 @@ describe("draftReminder", () => {
       }),
     ).rejects.toThrow("That contact is not a group contact.")
     expect(mocks.broadcastCreate).not.toHaveBeenCalled()
+  })
+})
+
+describe("listReminders", () => {
+  test("filters statuses in the query and includes in-flight reminders", async () => {
+    mocks.broadcastFindMany.mockResolvedValue([
+      { ...draftBroadcast, status: "sending" },
+    ])
+
+    const reminders = await masterAgentService.listReminders({
+      workspaceId: "ws-1",
+    })
+
+    expect(mocks.broadcastFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          workspaceId: "ws-1",
+          status: expect.objectContaining({
+            in: expect.arrayContaining(["sending"]),
+          }),
+        }),
+        limit: 25,
+      }),
+    )
+    // `sending` is listable, so stopReminder can be aimed at it.
+    expect(reminders.map((reminder) => reminder.status)).toEqual(["sending"])
+  })
+})
+
+describe("one draft per turn", () => {
+  test("refuses a second draft instead of replacing the first", async () => {
+    mocks.findFirstMessage.mockResolvedValue({ broadcastId: "b-1" })
+
+    await expect(
+      masterAgentService.draftReminder({
+        workspaceId: "ws-1",
+        messageId: "a-1",
+        contactId: "c-1",
+        flowId: "flow-1",
+        scheduledAt: "2026-11-27 20:00",
+      }),
+    ).rejects.toThrow("already drafted a reminder")
+    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
+  })
+})
+
+describe("updateReminderDraft", () => {
+  test("keeps the draft's delivery range and rate", async () => {
+    mocks.broadcastFind.mockResolvedValue({
+      ...draftBroadcast,
+      audienceRangeStart: 1,
+      audienceRangeEnd: 100,
+      sendRatePerMinute: 30,
+    })
+    mocks.broadcastUpdateDraft.mockResolvedValue({
+      id: "b-1",
+      status: "draft",
+    })
+    mocks.broadcastFind
+      .mockResolvedValueOnce({
+        ...draftBroadcast,
+        audienceRangeStart: 1,
+        audienceRangeEnd: 100,
+        sendRatePerMinute: 30,
+      })
+      .mockResolvedValueOnce({ ...draftBroadcast, status: "draft" })
+
+    await masterAgentService.updateReminderDraft({
+      workspaceId: "ws-1",
+      broadcastId: "b-1",
+      scheduledAt: "2026-11-28 09:00",
+    })
+
+    expect(mocks.broadcastUpdateDraft).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          audienceRangeStart: 1,
+          audienceRangeEnd: 100,
+          sendRatePerMinute: 30,
+          schedulesAt: "2026-11-28T02:00:00.000Z",
+        }),
+      }),
+    )
   })
 })
 

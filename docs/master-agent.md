@@ -12,8 +12,11 @@ broadcast for a course group. It never schedules and never sends: a member with
    `pending` assistant row in `MasterAgentMessage` and enqueues
    `processMasterAgent` on the existing `aiAgent` queue.
 2. The worker consumer runs the workspace's **non-default** agent
-   (`AIAgent.isDefault = false`, oldest first) with the session history as the
-   prompt and only the five reminder tools. The reply is written back into the
+   (`AIAgent.isDefault = false`, oldest first) with the session history up to
+   this turn as the prompt and only the five reminder tools. History stops at
+   the turn's own row, so a follow-up queued behind it is never answered twice.
+   The turn is operator-initiated, so the integration's "AI Auto Reply" switch
+   does not gate it (enablement still must be on). The reply is written back into the
    pending row (`completed`, or `failed` with empty content).
 3. `GET /v1/master-agent/sessions/{sessionId}` returns the session: messages,
    the latest turn's status, and the reminder drafts linked to it.
@@ -31,6 +34,12 @@ worker all call `masterAgentService` (`packages/business/src/master-agent`).
 | `updateReminderDraft` | Edits group / flow / name / send time of a **draft** only. |
 | `stopReminder` | Scheduled → back to `draft`; sending or recurring → stopped. |
 
+One turn drafts at most one reminder: the turn row carries a single
+`broadcastId`, so a second `draftReminder` in the same turn is refused with a
+message telling the model to edit the draft it already created. `listReminders`
+includes `sending`, so `stopReminder` can be aimed at a broadcast already in
+flight.
+
 There is deliberately no `schedule`, `sendNow`, or `delete` tool. The tools run
 in-process against the workspace (`getMasterAgentTools` in
 `packages/ai/src/server/tools/master-agent.ts`); the agent never holds a
@@ -40,7 +49,11 @@ workspace token and never calls HTTP/MCP.
 
 - A reminder's audience is pinned with a `field: "contactId"` filter condition
   plus `lastInteraction` (either state), because a group contact has no DM and
-  the default DM requirement would drop it.
+  the default DM requirement would drop it. `contactId` is a first-class
+  member of the contact-filter field enum and a schema branch in the builder's
+  filter, but it is never offered in the condition picker: a filter the UI
+  cannot parse is replaced by an empty one on the next save (and dropped by
+  resend), which would widen the audience to every contact with a direct chat.
 - Times are read as `Asia/Saigon` wall-clock: `YYYY-MM-DD HH:mm` is parsed as
   `+07:00`, never as server-local time. Vietnam has no DST.
 - The draft's channel is `omnichannel` (`allContacts`), which resolves every

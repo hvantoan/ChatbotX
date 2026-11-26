@@ -10,6 +10,10 @@ import {
   botFieldConditionSchema,
 } from "./bot-field-filter"
 import {
+  type ContactIdCondition,
+  contactIdConditionSchema,
+} from "./contact-id-filter"
+import {
   type CouponTopicCondition,
   couponTopicConditionSchema,
 } from "./coupon-topic-filter"
@@ -43,6 +47,10 @@ export {
   type BotFieldCondition,
   botFieldConditionSchema,
 } from "./bot-field-filter"
+export {
+  type ContactIdCondition,
+  contactIdConditionSchema,
+} from "./contact-id-filter"
 export {
   type CouponTopicCondition,
   couponTopicConditionSchema,
@@ -96,6 +104,7 @@ export type ContactFilterCondition =
   | z.infer<(typeof contactFilterConditionSchemas)[number]>
   | CustomFieldCondition
   | BotFieldCondition
+  | ContactIdCondition
   | CouponTopicCondition
   | LeaderboardScoreCondition
   | PipelineItemCondition
@@ -104,6 +113,7 @@ export type ContactFilterCondition =
 const dynamicConditionSchemas = [
   customFieldConditionSchema,
   botFieldConditionSchema,
+  contactIdConditionSchema,
   couponTopicConditionSchema,
   leaderboardScoreConditionSchema,
   pipelineItemConditionSchema,

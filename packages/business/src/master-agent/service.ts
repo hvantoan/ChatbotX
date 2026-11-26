@@ -10,6 +10,7 @@ import {
   type MasterAgentMessageStatus,
   masterAgentMessageRoles,
   masterAgentMessageStatuses,
+  normalizeBroadcastSendLimit,
 } from "@chatbotx.io/database/partials"
 import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
 import {
@@ -36,11 +37,16 @@ const SESSION_MESSAGE_LIMIT = 200
 const REMINDER_LIST_LIMIT = 25
 const GROUP_LIST_LIMIT = 200
 
-/** Statuses a reminder draft may be in once the assistant has touched it. */
+/**
+ * Statuses the assistant may act on. `sending` is included because
+ * `stopReminder` can stop an in-flight broadcast, which means the agent must be
+ * able to discover its id from `listReminders`.
+ */
 const reminderStatuses: readonly BroadcastStatus[] = [
   broadcastStatuses.enum.draft,
   broadcastStatuses.enum.scheduled,
   broadcastStatuses.enum.recurring,
+  broadcastStatuses.enum.sending,
   broadcastStatuses.enum.cancelled,
 ]
 
@@ -357,16 +363,20 @@ class MasterAgentService {
   async listReminders(input: {
     workspaceId: string
   }): Promise<MasterAgentReminderView[]> {
-    const { data } = await broadcastService.list({
-      workspaceId: input.workspaceId,
-      page: 1,
-      perPage: REMINDER_LIST_LIMIT,
-      sort: [{ id: "schedulesAt", desc: true }],
+    // The status filter is part of the query, not applied after the limit:
+    // filtering afterwards let unrelated statuses (`sent`, `failed`) consume
+    // the 25 slots and hid the reminders the agent could actually act on.
+    const rows = await db.query.broadcastModel.findMany({
+      where: {
+        workspaceId: input.workspaceId,
+        deletedAt: { isNull: true },
+        status: { in: [...reminderStatuses] },
+      },
+      orderBy: { schedulesAt: "desc", id: "desc" },
+      limit: REMINDER_LIST_LIMIT,
     })
 
-    return data
-      .filter((row) => reminderStatuses.includes(row.status as BroadcastStatus))
-      .map((row) => this.toReminderView(row))
+    return rows.map((row) => this.toReminderView(row))
   }
 
   /** One reminder, scoped to the workspace. Unknown id → 404. */
@@ -394,6 +404,25 @@ class MasterAgentService {
     name?: string | null
     scheduledAt: string
   }): Promise<MasterAgentReminderView> {
+    // One reminder per turn: the turn row carries a single `broadcastId`, so a
+    // second draft would silently replace the first in the session view. The
+    // agent is told to edit the draft it already created instead.
+    if (input.messageId) {
+      const turn = await db.query.masterAgentMessageModel.findFirst({
+        where: {
+          id: input.messageId,
+          workspaceId: input.workspaceId,
+        },
+        columns: { broadcastId: true },
+      })
+      if (turn?.broadcastId) {
+        throw validationException(
+          "messageId",
+          "This turn already drafted a reminder. Change it with updateReminderDraft, or ask for a new turn.",
+        )
+      }
+    }
+
     await this.assertGroupContact({
       workspaceId: input.workspaceId,
       contactId: input.contactId,
@@ -476,6 +505,10 @@ class MasterAgentService {
       data: {
         channel: existing.channel as ChannelType,
         subaction: existing.subaction as BroadcastSubaction,
+        // `updateDraft` replaces the whole payload, so an omitted range/rate
+        // would reset to "everyone". Carry the stored limits through an edit
+        // the tool does not touch them in.
+        ...normalizeBroadcastSendLimit(existing),
         flowId,
         schedulesType: broadcastScheduleTypes.enum.future,
         schedulesAt: input.scheduledAt
@@ -496,11 +529,22 @@ class MasterAgentService {
         })
 
     if (input.messageId) {
-      await this.linkDraft({
-        workspaceId: input.workspaceId,
-        messageId: input.messageId,
-        broadcastId: existing.id,
+      // Editing an older draft keeps the turn's own draft as the one the chat
+      // returns; only a turn without one adopts the edited draft.
+      const turn = await db.query.masterAgentMessageModel.findFirst({
+        where: {
+          id: input.messageId,
+          workspaceId: input.workspaceId,
+        },
+        columns: { broadcastId: true },
       })
+      if (!turn?.broadcastId) {
+        await this.linkDraft({
+          workspaceId: input.workspaceId,
+          messageId: input.messageId,
+          broadcastId: existing.id,
+        })
+      }
     }
     return reminder
   }

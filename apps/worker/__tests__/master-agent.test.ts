@@ -103,6 +103,36 @@ describe("processMasterAgent", () => {
     })
   })
 
+  test("a follow-up queued behind the turn is not answered by it", async () => {
+    mocks.getSession.mockResolvedValue({
+      sessionId: "s-1",
+      status: "pending",
+      messages: [
+        message(),
+        message({ id: "a-1", role: "assistant", content: "" }),
+        message({ id: "u-2", content: "Tóm tắt Zoom: nhóm K3" }),
+      ],
+      drafts: [],
+    })
+    mocks.generateText.mockResolvedValue({ text: "ok" })
+
+    await processMasterAgent(data)
+
+    expect(mocks.generateText.mock.calls[0]?.[0].messages).toEqual([
+      { role: "user", content: "Tóm tắt Zoom: nhóm K5, nhắc 20:00 ngày 27/11" },
+    ])
+  })
+
+  test("treats the operator-initiated turn as independent of AI Auto Reply", async () => {
+    mocks.generateText.mockResolvedValue({ text: "ok" })
+
+    await processMasterAgent(data)
+
+    expect(mocks.createReplyModel).toHaveBeenCalledWith(
+      expect.objectContaining({ workspaceId: "ws-1", requireAutoReply: false }),
+    )
+  })
+
   test("a tool the model calls runs through the shared service", async () => {
     mocks.generateText.mockImplementation(async (options) => {
       await options.tools.listGroups.execute({})

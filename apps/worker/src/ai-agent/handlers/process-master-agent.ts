@@ -47,8 +47,15 @@ export async function processMasterAgent(
       return
     }
 
-    const messages: ModelMessage[] = session.messages
-      .filter((message) => message.id !== messageId)
+    // History stops at this turn's own row: a follow-up sent while this job was
+    // queued must not be answered by it (and must not be answered twice when
+    // its own job runs).
+    const turnIndex = session.messages.findIndex(
+      (message) => message.id === messageId,
+    )
+    const history =
+      turnIndex === -1 ? session.messages : session.messages.slice(0, turnIndex)
+    const messages: ModelMessage[] = history
       .filter((message) => message.status === "completed")
       .map((message) => ({
         role: message.role,
@@ -63,7 +70,13 @@ export async function processMasterAgent(
     let replyText: string | null = null
     const providers = agent.models as AIAgentProviderModels
     for (const providerInfo of providers) {
-      const modelConfig = await createReplyModel({ workspaceId, providerInfo })
+      // The turn is operator-initiated, so the workspace's "AI Auto Reply"
+      // switch (which gates automated customer replies) must not silence it.
+      const modelConfig = await createReplyModel({
+        workspaceId,
+        providerInfo,
+        requireAutoReply: false,
+      })
       if (!modelConfig) {
         continue
       }
