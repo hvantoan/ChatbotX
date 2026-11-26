@@ -115,11 +115,13 @@ stop_host_dev() {
     fi
     rm -f /tmp/inboxos-dev.pid
   fi
-  if pgrep -f "InboxOS.*(turbo.*dev|next dev|tsx --watch)" >/dev/null 2>&1; then
+  # Match on this checkout's node_modules/apps paths, not a hardcoded repo
+  # name — the folder may still be ChatbotX after the InboxOS rename. The
+  # scripts/ prefix is excluded so this script can never kill itself.
+  local pat="${ROOT}/(node_modules|apps)"
+  if pgrep -f "$pat" >/dev/null 2>&1; then
     log "stopping leftover host dev processes holding stack ports…"
-    pkill -f "InboxOS.*turbo.*dev" 2>/dev/null || true
-    pkill -f "InboxOS.*next dev" 2>/dev/null || true
-    pkill -f "InboxOS.*tsx --watch" 2>/dev/null || true
+    pkill -f "$pat" 2>/dev/null || true
     for _ in $(seq 1 10); do
       lsof -i :3123 -i :1999 2>/dev/null | grep -q LISTEN || break
       sleep 1
@@ -138,7 +140,7 @@ down() {
 
 wait_for_builder() {
   log "waiting for builder on :$BUILDER_PORT (first image build can take several minutes)…"
-  for i in $(seq 1 300); do
+  for _ in $(seq 1 300); do
     if curl -sf -m 3 "$HEALTH_URL" >/dev/null 2>&1; then
       log "builder healthy: http://localhost:$BUILDER_PORT"
       return 0

@@ -44,9 +44,9 @@ stop_dev() {
   fi
   # pkill the stragglers turbo spawned — scoped to this checkout so other
   # projects' tsx/next/turbo processes survive.
-  pkill -f "InboxOS.*turbo.*dev" 2>/dev/null || true
-  pkill -f "InboxOS.*next dev" 2>/dev/null || true
-  pkill -f "InboxOS.*tsx --watch" 2>/dev/null || true
+  pkill -f "$ROOT.*turbo.*dev" 2>/dev/null || true
+  pkill -f "$ROOT.*next dev" 2>/dev/null || true
+  pkill -f "$ROOT.*tsx --watch" 2>/dev/null || true
   rm -f "$PIDFILE"
 }
 
@@ -61,7 +61,7 @@ log "docker compose up (postgres redis filesystem mailhog)…"
 docker compose up -d postgres redis filesystem mailhog >/dev/null
 log "waiting for postgres…"
 for i in $(seq 1 30); do
-  docker exec inboxos-postgres-1 pg_isready -U inboxos -d inboxos >/dev/null 2>&1 && break
+  docker exec chatbotx-postgres-1 pg_isready -U chatbotx -d chatbotx >/dev/null 2>&1 && break
   [[ $i == 30 ]] && die "postgres did not become ready"
   sleep 1
 done
