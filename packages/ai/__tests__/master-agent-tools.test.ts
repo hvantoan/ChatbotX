@@ -1,6 +1,9 @@
 import type { ToolSet } from "ai"
 import { beforeEach, describe, expect, test, vi } from "vitest"
-import { getMasterAgentTools, masterAgentToolNames } from "../src/server/tools"
+import {
+  getMasterAgentTools,
+  masterAgentToolNames,
+} from "../src/server/tools/master-agent"
 
 const mocks = vi.hoisted(() => ({
   listGroups: vi.fn(),

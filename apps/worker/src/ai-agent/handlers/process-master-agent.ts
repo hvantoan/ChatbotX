@@ -1,5 +1,5 @@
 import { aiTimeouts } from "@inboxos.io/ai"
-import { getMasterAgentTools } from "@inboxos.io/ai/server"
+import { getMasterAgentTools } from "@inboxos.io/ai/master-agent-tools"
 import {
   MASTER_AGENT_DEFAULT_PROMPT,
   masterAgentService,

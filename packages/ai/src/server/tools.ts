@@ -1,6 +1,5 @@
 export * from "./tools/files"
 export * from "./tools/functions"
-export * from "./tools/master-agent"
 export * from "./tools/mcp"
 export * from "./tools/system-functions"
 export * from "./tools/web-search-policy"

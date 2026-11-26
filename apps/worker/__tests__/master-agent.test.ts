@@ -24,7 +24,7 @@ vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 60_000 },
 }))
 
-vi.mock("@inboxos.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/master-agent-tools", () => ({
   getMasterAgentTools: mocks.getMasterAgentTools,
 }))
 

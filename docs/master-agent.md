@@ -45,6 +45,11 @@ in-process against the workspace (`getMasterAgentTools` in
 `packages/ai/src/server/tools/master-agent.ts`); the agent never holds a
 workspace token and never calls HTTP/MCP.
 
+They are imported from their own subpath, `@inboxos.io/ai/master-agent-tools`,
+and are **not** re-exported by the shared `@inboxos.io/ai/server` tools barrel:
+that barrel is loaded by every AI consumer (and by test mocks of it), and the
+reminder tools pull the business/database graph with them.
+
 ## Audience and time
 
 - A reminder's audience is pinned with a `field: "contactId"` filter condition
