@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: [
       {
         rel: "icon",
-        url: faviconUrl ?? "/brand/favicon/favicon-96x96.png",
+        url: faviconUrl ?? "/brand/favicon/favicon-32x32.png",
         type: "image/png",
       },
       {

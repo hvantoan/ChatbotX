@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => ({
   resolvePlatformSettings: vi.fn(async () => ({
     accountCredentialsEmailTemplate: null,
     appUrl: "https://app.test/",
-    logoLightUrl: "https://app.test/logo.svg",
+    logoDarkUrl: "https://app.test/logo.svg",
     name: "InboxOS",
   })),
   resolvePlatformSmtpTransport: vi.fn(),

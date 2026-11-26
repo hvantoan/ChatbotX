@@ -1,21 +1,19 @@
 {
-  "name": "InboxOS",
-  "short_name": "InboxOS",
+  "name": "inboxOS — Unified Workspace",
+  "short_name": "inboxOS",
   "icons": [
     {
-      "src": "/brand/favicon/favicon-192x192.png",
+      "src": "/brand/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
     },
     {
-      "src": "/brand/favicon/favicon-512x512.png",
+      "src": "/brand/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#10B981",
   "background_color": "#ffffff",
   "display": "standalone"
 }
