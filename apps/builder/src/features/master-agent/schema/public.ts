@@ -3,7 +3,7 @@ import {
   broadcastStatuses,
   masterAgentMessageRoles,
   masterAgentMessageStatuses,
-} from "@chatbotx.io/database/partials"
+} from "@inboxos.io/database/partials"
 import z from "zod"
 
 export const sendMasterAgentMessageRequest = z.object({

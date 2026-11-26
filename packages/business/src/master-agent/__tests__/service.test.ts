@@ -26,7 +26,7 @@ const mocks = vi.hoisted(() => ({
   broadcastFindMany: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/database/client", () => {
+vi.mock("@inboxos.io/database/client", () => {
   const db = {
     query: {
       masterAgentMessageModel: {
@@ -79,7 +79,7 @@ vi.mock("@chatbotx.io/database/client", () => {
   }
 })
 
-vi.mock("@chatbotx.io/database/schema", () => ({
+vi.mock("@inboxos.io/database/schema", () => ({
   masterAgentMessageModel: {
     id: "MasterAgentMessage.id",
     workspaceId: "MasterAgentMessage.workspaceId",
@@ -118,7 +118,7 @@ vi.mock("@chatbotx.io/database/schema", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/worker-config", () => ({
+vi.mock("@inboxos.io/worker-config", () => ({
   AIJobAction: { processMasterAgent: "processMasterAgent" },
   aiAgentQueue: { add: mocks.queueAdd },
 }))

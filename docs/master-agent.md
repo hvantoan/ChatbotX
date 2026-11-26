@@ -73,7 +73,7 @@ workspace token and never calls HTTP/MCP.
 | Surface | Name |
 |---|---|
 | oRPC | `masterAgent.sendMessage` (`POST /v1/master-agent/messages`), `masterAgent.getSession` (`GET /v1/master-agent/sessions/{sessionId}`) — scope `broadcasts` |
-| CLI | `chatbotx master-agent send-message`, `chatbotx master-agent get-session` |
+| CLI | `inboxos master-agent send-message`, `inboxos master-agent get-session` |
 | MCP | `master_agent_send_message`, `master_agent_get_session` (default visibility) |
 
 ## Tests

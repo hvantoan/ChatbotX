@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   stopReminder: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   MASTER_AGENT_TIMEZONE: "Asia/Saigon",
   masterAgentService: {
     listGroups: mocks.listGroups,

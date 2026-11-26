@@ -1,7 +1,4 @@
-import {
-  MASTER_AGENT_TIMEZONE,
-  masterAgentService,
-} from "@chatbotx.io/business"
+import { MASTER_AGENT_TIMEZONE, masterAgentService } from "@inboxos.io/business"
 import { type ToolSet, tool } from "ai"
 import { z } from "zod"
 

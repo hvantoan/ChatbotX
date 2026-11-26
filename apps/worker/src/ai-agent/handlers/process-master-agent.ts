@@ -1,11 +1,11 @@
-import { aiTimeouts } from "@chatbotx.io/ai"
-import { getMasterAgentTools } from "@chatbotx.io/ai/server"
+import { aiTimeouts } from "@inboxos.io/ai"
+import { getMasterAgentTools } from "@inboxos.io/ai/server"
 import {
   MASTER_AGENT_DEFAULT_PROMPT,
   masterAgentService,
-} from "@chatbotx.io/business"
-import type { AIAgentProviderModels } from "@chatbotx.io/database/partials"
-import type { AIJobProcessMasterAgent } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/business"
+import type { AIAgentProviderModels } from "@inboxos.io/database/partials"
+import type { AIJobProcessMasterAgent } from "@inboxos.io/worker-config"
 import { generateText, isStepCount, type ModelMessage } from "ai"
 import { normalizeError } from "universal-error-normalizer"
 import { createReplyModel, getProviderName } from "../../lib/ai/reply-model"

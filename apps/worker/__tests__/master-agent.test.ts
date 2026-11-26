@@ -10,7 +10,7 @@ const mocks = vi.hoisted(() => ({
   getMasterAgentTools: vi.fn(),
 }))
 
-vi.mock("@chatbotx.io/business", () => ({
+vi.mock("@inboxos.io/business", () => ({
   MASTER_AGENT_DEFAULT_PROMPT: "default prompt",
   masterAgentService: {
     getSession: mocks.getSession,
@@ -20,11 +20,11 @@ vi.mock("@chatbotx.io/business", () => ({
   },
 }))
 
-vi.mock("@chatbotx.io/ai", () => ({
+vi.mock("@inboxos.io/ai", () => ({
   aiTimeouts: { aiTotal: 60_000 },
 }))
 
-vi.mock("@chatbotx.io/ai/server", () => ({
+vi.mock("@inboxos.io/ai/server", () => ({
   getMasterAgentTools: mocks.getMasterAgentTools,
 }))
 

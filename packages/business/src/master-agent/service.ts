@@ -1,4 +1,4 @@
-import { and, asc, db, eq, like } from "@chatbotx.io/database/client"
+import { and, asc, db, eq, like } from "@inboxos.io/database/client"
 import {
   type BroadcastScheduleType,
   type BroadcastStatus,
@@ -11,16 +11,16 @@ import {
   masterAgentMessageRoles,
   masterAgentMessageStatuses,
   normalizeBroadcastSendLimit,
-} from "@chatbotx.io/database/partials"
-import type { ContactFilterCriteriaInput } from "@chatbotx.io/database/queries"
+} from "@inboxos.io/database/partials"
+import type { ContactFilterCriteriaInput } from "@inboxos.io/database/queries"
 import {
   contactInboxModel,
   contactModel,
   inboxModel,
   masterAgentMessageModel,
-} from "@chatbotx.io/database/schema"
-import { createId } from "@chatbotx.io/utils"
-import { AIJobAction, aiAgentQueue } from "@chatbotx.io/worker-config"
+} from "@inboxos.io/database/schema"
+import { createId } from "@inboxos.io/utils"
+import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import { broadcastService } from "../broadcast"
 import { notFoundException, validationException } from "../errors"
 

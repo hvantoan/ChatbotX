@@ -1,4 +1,4 @@
-import { masterAgentService } from "@chatbotx.io/business"
+import { masterAgentService } from "@inboxos.io/business"
 import { mcpSpec } from "@/lib/orpc/mcp-annotations"
 import {
   possibleErrorsOnFindingResource,
