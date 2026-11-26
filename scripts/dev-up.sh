@@ -7,9 +7,10 @@
 #   5. wait for the builder, then verify the demo login end-to-end
 #
 # Usage:
-#   ./scripts/dev-up.sh            # start everything, tail the log path
-#   ./scripts/dev-up.sh --install  # pnpm install first (after pulling code)
-#   ./scripts/dev-up.sh --stop     # stop the dev processes it started
+#   ./scripts/dev-up.sh                # start everything, tail the log path
+#   ./scripts/dev-up.sh --install      # pnpm install first (after pulling code)
+#   ./scripts/dev-up.sh --skip-migrate # start without touching the local DB
+#   ./scripts/dev-up.sh --stop         # stop the dev processes it started
 #
 # Demo login (seeded): demo@example.com / Demo@1234 → http://localhost:3123
 set -euo pipefail
@@ -42,13 +43,20 @@ stop_dev() {
       fi
     fi
   fi
-  # pkill the stragglers turbo spawned — scoped to this checkout so other
-  # projects' tsx/next/turbo processes survive.
-  pkill -f "InboxOS.*turbo.*dev" 2>/dev/null || true
-  pkill -f "InboxOS.*next dev" 2>/dev/null || true
-  pkill -f "InboxOS.*tsx --watch" 2>/dev/null || true
+  # Fallback for stragglers when there is no pidfile. Scoped by working
+  # directory so another project's dev server is never killed.
+  for pid in $(pgrep -f 'turbo (run )?dev|next dev|tsx --watch' 2>/dev/null || true); do
+    if [[ "$(readlink -f "/proc/$pid/cwd" 2>/dev/null)" == "$ROOT"* ]]; then
+      kill -TERM "$pid" 2>/dev/null || true
+    fi
+  done
   rm -f "$PIDFILE"
 }
+
+SKIP_MIGRATE=false
+for arg in "$@"; do
+  if [[ "$arg" == "--skip-migrate" ]]; then SKIP_MIGRATE=true; fi
+done
 
 if [[ "${1:-}" == "--stop" ]]; then
   stop_dev
@@ -61,7 +69,7 @@ log "docker compose up (postgres redis filesystem mailhog)…"
 docker compose up -d postgres redis filesystem mailhog >/dev/null
 log "waiting for postgres…"
 for i in $(seq 1 30); do
-  docker exec inboxos-postgres-1 pg_isready -U inboxos -d inboxos >/dev/null 2>&1 && break
+  docker compose exec -T postgres pg_isready -U chatbotx -d chatbotx >/dev/null 2>&1 && break
   [[ $i == 30 ]] && die "postgres did not become ready"
   sleep 1
 done
@@ -87,8 +95,12 @@ if [[ "${1:-}" == "--install" ]]; then
 fi
 
 # ── 4. migrations onto the LOCAL db ─────────────────────────────────────────
-log "applying pending migrations to local db…"
-DATABASE_URL="$LOCAL_DB" pnpm --filter @inboxos.io/database db:migrate 2>&1 | tail -3
+if [[ "$SKIP_MIGRATE" == "true" ]]; then
+  log "skipping migrations (--skip-migrate)"
+else
+  log "applying pending migrations to local db…"
+  DATABASE_URL="$LOCAL_DB" pnpm --filter @inboxos.io/database db:migrate 2>&1 | tail -3
+fi
 
 # ── 5. start turbo dev ──────────────────────────────────────────────────────
 stop_dev  # clean any previous run (also frees port 3123)
