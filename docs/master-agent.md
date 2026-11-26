@@ -13,7 +13,7 @@ broadcast for a course group. It never schedules and never sends: a member with
    `processMasterAgent` on the existing `aiAgent` queue.
 2. The worker consumer runs the workspace's **non-default** agent
    (`AIAgent.isDefault = false`, oldest first) with the session history up to
-   this turn as the prompt and only the five reminder tools. History stops at
+   this turn as the prompt and only the six reminder tools. History stops at
    the turn's own row, so a follow-up queued behind it is never answered twice.
    The turn is operator-initiated, so the integration's "AI Auto Reply" switch
    does not gate it (enablement still must be on). The reply is written back into the
@@ -29,9 +29,10 @@ worker all call `masterAgentService` (`packages/business/src/master-agent`).
 | Tool | Effect |
 |---|---|
 | `listGroups` | Group contacts discovered by `ContactInbox.sourceId LIKE 'group:%'` — a new K group needs no code change. |
+| `listFlows` | The workspace's published, active flows (`id`, `name`) — the agent picks the reminder's flow by name instead of hard-coding an id (PO item 28 `e656`). |
 | `listReminders` | Reminder broadcasts (`draft` / `scheduled` / `recurring` / `cancelled`). |
-| `draftReminder` | Creates the broadcast as `draft` for one group contact, `schedulesType: "future"`, `saveAsDraft: true`. |
-| `updateReminderDraft` | Edits group / flow / name / send time of a **draft** only. |
+| `draftReminder` | Creates the broadcast as `draft` for one group contact, `schedulesType: "future"`, `saveAsDraft: true`. The `flowId` must exist in the workspace (`flowService.exists`), otherwise the tool errors before any draft is written. |
+| `updateReminderDraft` | Edits group / flow / name / send time of a **draft** only; a new `flowId` is re-checked against the workspace. |
 | `stopReminder` | Scheduled → back to `draft`; sending or recurring → stopped. |
 
 One turn drafts at most one reminder: the turn row carries a single
@@ -40,8 +41,12 @@ message telling the model to edit the draft it already created. `listReminders`
 includes `sending`, so `stopReminder` can be aimed at a broadcast already in
 flight.
 
-There is deliberately no `schedule`, `sendNow`, or `delete` tool. The tools run
-in-process against the workspace (`getMasterAgentTools` in
+The toolset is **six** tools: the three read-only lookups above plus the three
+reminder actions. The original spec said "exactly five"; PO added `listFlows`
+(item 28, `e656`), so the allowlist is six — the safety constraint is unchanged:
+no `schedule`, no `sendNow`, no `delete`.
+
+The tools run in-process against the workspace (`getMasterAgentTools` in
 `packages/ai/src/server/tools/master-agent.ts`); the agent never holds a
 workspace token and never calls HTTP/MCP.
 
@@ -63,7 +68,8 @@ reminder tools pull the business/database graph with them.
   `+07:00`, never as server-local time. Vietnam has no DST.
 - The draft's channel is `omnichannel` (`allContacts`), which resolves every
   inbox of the workspace; a broadcast sends a **flow**, so `flowId` is required
-  and the reminder's message text lives in that flow.
+  (the agent picks it from `listFlows`) and the reminder's message text lives in
+  that flow.
 
 ## Isolation
 
@@ -108,9 +114,10 @@ so the card names the `group:` contact; the chat formats the send time in
 ## Tests
 
 - `packages/business/src/master-agent/__tests__/service.test.ts` — workspace
-  scoping, draft-only creation, timezone parsing.
-- `packages/ai/__tests__/master-agent-tools.test.ts` — exactly five tools, no
-  schedule/send/delete.
+  scoping, draft-only creation, timezone parsing, and a `flowId` outside the
+  workspace refused before a draft is written.
+- `packages/ai/__tests__/master-agent-tools.test.ts` — exactly six tools
+  (`listFlows` included), no schedule/send/delete.
 - `apps/worker/__tests__/master-agent.test.ts` — consumer writes the reply and
   a tool call reaches the service (LLM mocked).
 - `apps/builder/__tests__/master-agent-public-api.test.ts` — 401/403, input

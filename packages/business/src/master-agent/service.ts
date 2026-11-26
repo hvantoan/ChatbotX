@@ -23,6 +23,7 @@ import { createId } from "@inboxos.io/utils"
 import { AIJobAction, aiAgentQueue } from "@inboxos.io/worker-config"
 import { broadcastService } from "../broadcast"
 import { notFoundException, validationException } from "../errors"
+import { flowService } from "../flow"
 
 /**
  * The one timezone every reminder is written and read in. Vietnam has no DST,
@@ -55,7 +56,7 @@ const reminderStatuses: readonly BroadcastStatus[] = [
 export const MASTER_AGENT_DEFAULT_PROMPT = [
   "You are the Master Agent, an assistant that turns a pasted Zoom summary into a reminder broadcast for a course group.",
   "Answer in the language the user writes in.",
-  "Never schedule or send anything. Use `listGroups` to resolve the group by name, `draftReminder` to create the DRAFT, and `updateReminderDraft` for corrections; the user confirms the draft in the UI.",
+  "Never schedule or send anything. Use `listGroups` to resolve the group by name and `listFlows` to pick the flow that sends the reminder (by name; never guess an id), `draftReminder` to create the DRAFT, and `updateReminderDraft` for corrections; the user confirms the draft in the UI.",
   `Always state the send time in ${MASTER_AGENT_TIMEZONE} (24h, dd/MM/yyyy HH:mm).`,
 ].join("\n")
 
@@ -360,6 +361,19 @@ class MasterAgentService {
     }))
   }
 
+  /**
+   * The flows a reminder can send: published and active in this workspace,
+   * discovered by the agent itself so no flow id is ever hard-coded. `draftReminder`
+   * re-checks the picked id against the workspace.
+   */
+  async listFlows(input: {
+    workspaceId: string
+  }): Promise<Array<{ id: string; name: string }>> {
+    return await flowService.listPublishedOptions({
+      workspaceId: input.workspaceId,
+    })
+  }
+
   /** Reminder broadcasts of the workspace, newest schedule first. */
   async listReminders(input: {
     workspaceId: string
@@ -427,6 +441,10 @@ class MasterAgentService {
     await this.assertGroupContact({
       workspaceId: input.workspaceId,
       contactId: input.contactId,
+    })
+    await this.assertWorkspaceFlow({
+      workspaceId: input.workspaceId,
+      flowId: input.flowId,
     })
 
     const broadcast = await broadcastService.create({
@@ -497,6 +515,12 @@ class MasterAgentService {
         "flowId",
         "The reminder has no flow; choose the flow that sends the reminder.",
       )
+    }
+    if (input.flowId) {
+      await this.assertWorkspaceFlow({
+        workspaceId: input.workspaceId,
+        flowId: input.flowId,
+      })
     }
 
     await broadcastService.updateDraft({
@@ -646,6 +670,24 @@ class MasterAgentService {
       throw validationException(
         "contactId",
         "That contact is not a group contact.",
+      )
+    }
+  }
+
+  /**
+   * A reminder sends a flow of this workspace. An id from another workspace (or
+   * one that does not exist) is refused here, before a draft is written, so the
+   * agent gets a clear tool error instead of a broadcast that can never send.
+   */
+  private async assertWorkspaceFlow(input: {
+    workspaceId: string
+    flowId: string
+  }): Promise<void> {
+    const exists = await flowService.exists(input.workspaceId, input.flowId)
+    if (!exists) {
+      throw validationException(
+        "flowId",
+        "Flow not found in this workspace. Use `listFlows` to pick one.",
       )
     }
   }

@@ -11,13 +11,16 @@ import { normalizeError } from "universal-error-normalizer"
 import { createReplyModel, getProviderName } from "../../lib/ai/reply-model"
 import { logger } from "../../lib/logger"
 
-/** A turn may call a tool, read the result, then answer — five steps is slack. */
-const MASTER_AGENT_MAX_STEPS = 5
+/**
+ * A turn looks up the group and the flow, drafts (or edits), then answers — six
+ * steps leaves slack for one correction before the ceiling truncates it.
+ */
+const MASTER_AGENT_MAX_STEPS = 6
 
 /**
  * Runs one Master Agent turn: the chat's own history is the prompt, the agent
  * is the workspace's non-default agent (never the one answering customers),
- * and the five reminder tools are the only actions it can take. The reply is
+ * and the six reminder tools are the only actions it can take. The reply is
  * written back into the pending assistant row, so the session read returns it
  * without a second history record.
  */

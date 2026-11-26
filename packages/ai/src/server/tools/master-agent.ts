@@ -3,13 +3,15 @@ import { type ToolSet, tool } from "ai"
 import { z } from "zod"
 
 /**
- * The complete tool surface of the Master Agent. There is deliberately no
- * `schedule`, `sendNow`, or `delete` tool: a reminder leaves `draft` only when
- * a member confirms it in the UI, so the agent cannot make anything reach a
- * customer on its own.
+ * The complete tool surface of the Master Agent: six tools, the three read-only
+ * lookups (`listGroups`, `listFlows`, `listReminders`) plus the three reminder
+ * actions. There is deliberately no `schedule`, `sendNow`, or `delete` tool: a
+ * reminder leaves `draft` only when a member confirms it in the UI, so the
+ * agent cannot make anything reach a customer on its own.
  */
 export const masterAgentToolNames = [
   "listGroups",
+  "listFlows",
   "listReminders",
   "draftReminder",
   "updateReminderDraft",
@@ -34,7 +36,7 @@ const reminderShape = {
 }
 
 /**
- * The five tools, each a thin call into `masterAgentService`. They run inside
+ * The six tools, each a thin call into `masterAgentService`. They run inside
  * the worker process against the workspace directly — never over HTTP and
  * never with a workspace token — so the agent has no credential at all.
  */
@@ -58,6 +60,13 @@ export function getMasterAgentTools(context: MasterAgentToolContext): ToolSet {
       execute: async () => await masterAgentService.listGroups({ workspaceId }),
     }),
 
+    listFlows: tool({
+      description:
+        "List the workspace's published flows with their id and name. Use it to pick the flow that sends the reminder and pass its id as `flowId`; never guess a flow id.",
+      inputSchema: z.object({}),
+      execute: async () => await masterAgentService.listFlows({ workspaceId }),
+    }),
+
     listReminders: tool({
       description:
         "List the workspace's reminder broadcasts with their status (draft, scheduled, recurring, cancelled) and send time. Use it before updating or stopping one.",
@@ -68,7 +77,7 @@ export function getMasterAgentTools(context: MasterAgentToolContext): ToolSet {
 
     draftReminder: tool({
       description:
-        "Create a DRAFT reminder broadcast for one group contact. It does not schedule or send anything: the user reviews the draft and confirms it themselves. Use `listGroups` for `contactId` and the workspace's reminder flow for `flowId`.",
+        "Create a DRAFT reminder broadcast for one group contact. It does not schedule or send anything: the user reviews the draft and confirms it themselves. Use `listGroups` for `contactId` and `listFlows` for `flowId`.",
       inputSchema: z.object({
         contactId: z
           .string()
@@ -78,7 +87,7 @@ export function getMasterAgentTools(context: MasterAgentToolContext): ToolSet {
           .string()
           .min(1)
           .describe(
-            "Id of the flow whose message the reminder sends (a broadcast sends a flow, not free text).",
+            "Id of the flow whose message the reminder sends, from `listFlows` (a broadcast sends a flow, not free text).",
           ),
         name: z
           .string()
@@ -114,7 +123,7 @@ export function getMasterAgentTools(context: MasterAgentToolContext): ToolSet {
           .string()
           .min(1)
           .optional()
-          .describe("New flow id for the reminder message."),
+          .describe("New flow id for the reminder message, from `listFlows`."),
         name: z.string().min(1).optional().describe("New draft name."),
         scheduledAt: scheduledAtSchema.optional(),
       }),

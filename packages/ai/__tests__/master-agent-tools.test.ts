@@ -7,6 +7,7 @@ import {
 
 const mocks = vi.hoisted(() => ({
   listGroups: vi.fn(),
+  listFlows: vi.fn(),
   listReminders: vi.fn(),
   draftReminder: vi.fn(),
   updateReminderDraft: vi.fn(),
@@ -17,6 +18,7 @@ vi.mock("@inboxos.io/business", () => ({
   MASTER_AGENT_TIMEZONE: "Asia/Saigon",
   masterAgentService: {
     listGroups: mocks.listGroups,
+    listFlows: mocks.listFlows,
     listReminders: mocks.listReminders,
     draftReminder: mocks.draftReminder,
     updateReminderDraft: mocks.updateReminderDraft,
@@ -47,9 +49,10 @@ beforeEach(() => {
 })
 
 describe("Master Agent tool surface", () => {
-  test("exposes exactly the five reminder tools", () => {
+  test("exposes exactly the six reminder tools", () => {
     expect(masterAgentToolNames).toEqual([
       "listGroups",
+      "listFlows",
       "listReminders",
       "draftReminder",
       "updateReminderDraft",
@@ -94,16 +97,28 @@ describe("draftReminder tool", () => {
 })
 
 describe("read-only tools", () => {
-  test("listGroups and listReminders stay inside the tool's workspace", async () => {
+  test("the lookups stay inside the tool's workspace", async () => {
     mocks.listGroups.mockResolvedValue([])
+    mocks.listFlows.mockResolvedValue([])
     mocks.listReminders.mockResolvedValue([])
     const tools = getMasterAgentTools(context)
 
     await execute(tools, "listGroups", {})
+    await execute(tools, "listFlows", {})
     await execute(tools, "listReminders", {})
 
     expect(mocks.listGroups).toHaveBeenCalledWith({ workspaceId: "ws-1" })
+    expect(mocks.listFlows).toHaveBeenCalledWith({ workspaceId: "ws-1" })
     expect(mocks.listReminders).toHaveBeenCalledWith({ workspaceId: "ws-1" })
+  })
+
+  test("listFlows returns the flows the model picks a reminder flow from", async () => {
+    mocks.listFlows.mockResolvedValue([{ id: "flow-1", name: "Nhắc lịch" }])
+
+    const result = await execute(getMasterAgentTools(context), "listFlows", {})
+
+    expect(result).toEqual([{ id: "flow-1", name: "Nhắc lịch" }])
+    expect(mocks.draftReminder).not.toHaveBeenCalled()
   })
 
   test("stopReminder targets the broadcast the model named", async () => {

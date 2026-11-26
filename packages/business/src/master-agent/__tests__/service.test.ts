@@ -24,6 +24,8 @@ const mocks = vi.hoisted(() => ({
   broadcastStop: vi.fn(),
   broadcastList: vi.fn(),
   broadcastFindMany: vi.fn(),
+  flowListPublished: vi.fn(),
+  flowExists: vi.fn(),
 }))
 
 vi.mock("@inboxos.io/database/client", () => {
@@ -123,6 +125,13 @@ vi.mock("@inboxos.io/worker-config", () => ({
   aiAgentQueue: { add: mocks.queueAdd },
 }))
 
+vi.mock("../../flow", () => ({
+  flowService: {
+    listPublishedOptions: mocks.flowListPublished,
+    exists: mocks.flowExists,
+  },
+}))
+
 vi.mock("../../broadcast", () => ({
   broadcastService: {
     create: mocks.broadcastCreate,
@@ -157,6 +166,9 @@ const draftBroadcast = {
 
 beforeEach(() => {
   vi.resetAllMocks()
+  // Every reminder flow in these tests exists in the workspace unless a case
+  // says otherwise.
+  mocks.flowExists.mockResolvedValue(true)
   mocks.insertValues.length = 0
   mocks.insertReturning
     .mockResolvedValueOnce([{ id: "u-1" }])
@@ -350,6 +362,26 @@ describe("draftReminder", () => {
     expect(mocks.broadcastCreate).not.toHaveBeenCalled()
   })
 
+  test("refuses a flow that is not in the workspace, before writing a draft", async () => {
+    mocks.findFirstContact.mockResolvedValue({ id: "c-1" })
+    mocks.findFirstContactInbox.mockResolvedValue({ id: "ci-1" })
+    mocks.flowExists.mockResolvedValue(false)
+
+    await expect(
+      masterAgentService.draftReminder({
+        workspaceId: "ws-1",
+        contactId: "c-1",
+        flowId: "flow-of-another-workspace",
+        scheduledAt: "2026-11-27 20:00",
+      }),
+    ).rejects.toThrow("Flow not found in this workspace")
+    expect(mocks.flowExists).toHaveBeenCalledWith(
+      "ws-1",
+      "flow-of-another-workspace",
+    )
+    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
+  })
+
   test("refuses a workspace contact that is not a group", async () => {
     mocks.findFirstContact.mockResolvedValue({ id: "c-1" })
     mocks.findFirstContactInbox.mockResolvedValue(undefined)
@@ -363,6 +395,21 @@ describe("draftReminder", () => {
       }),
     ).rejects.toThrow("That contact is not a group contact.")
     expect(mocks.broadcastCreate).not.toHaveBeenCalled()
+  })
+})
+
+describe("listFlows", () => {
+  test("lists only the workspace's published flows, so no id is hard-coded", async () => {
+    mocks.flowListPublished.mockResolvedValue([
+      { id: "flow-1", name: "Nhắc lịch K5" },
+    ])
+
+    const flows = await masterAgentService.listFlows({ workspaceId: "ws-1" })
+
+    expect(mocks.flowListPublished).toHaveBeenCalledWith({
+      workspaceId: "ws-1",
+    })
+    expect(flows).toEqual([{ id: "flow-1", name: "Nhắc lịch K5" }])
   })
 })
 
@@ -446,6 +493,42 @@ describe("updateReminderDraft", () => {
         }),
       }),
     )
+  })
+})
+
+describe("updateReminderDraft flow validation", () => {
+  test("a new flowId outside the workspace is refused before the draft is written", async () => {
+    mocks.broadcastFind.mockResolvedValue({
+      ...draftBroadcast,
+      status: "draft",
+    })
+    mocks.flowExists.mockResolvedValue(false)
+
+    await expect(
+      masterAgentService.updateReminderDraft({
+        workspaceId: "ws-1",
+        broadcastId: "b-1",
+        flowId: "flow-of-another-workspace",
+      }),
+    ).rejects.toThrow("Flow not found in this workspace")
+    expect(mocks.broadcastUpdateDraft).not.toHaveBeenCalled()
+  })
+
+  test("keeping the draft's own flow does not re-check it", async () => {
+    mocks.broadcastFind.mockResolvedValue({
+      ...draftBroadcast,
+      status: "draft",
+    })
+    mocks.broadcastUpdateDraft.mockResolvedValue({ id: "b-1", status: "draft" })
+
+    await masterAgentService.updateReminderDraft({
+      workspaceId: "ws-1",
+      broadcastId: "b-1",
+      name: "Nhắc lịch K5 (đổi tên)",
+    })
+
+    expect(mocks.flowExists).not.toHaveBeenCalled()
+    expect(mocks.broadcastUpdateDraft).toHaveBeenCalled()
   })
 })
 
