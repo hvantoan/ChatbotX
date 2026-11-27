@@ -244,6 +244,10 @@ export const broadcastsPublicRouter = {
         "Starts a broadcast as a draft or scheduled send for the supplied audience. Set `schedulesType: recurring` with a `recurrence` rule to repeat it daily, weekly or monthly; check the rule first with `broadcasts.previewRecurrence`. For a template broadcast, fill the template with `templateParams` (keys from the template's `parameters`) instead of building `templateData`. Use `broadcasts.list` to avoid duplicates, then use `broadcasts.schedule` to control its send time.",
       successStatus: 201,
       tags: ["Broadcasts"],
+      // A create can schedule delivery (`saveAsDraft: false`); even when the
+      // workspace auto-approves reviewable diffs, member-facing sends always
+      // stay behind human approval.
+      spec: mcpSpec({ hitlPolicy: "confirm_outbound" }),
     })
     .input(createBroadcastPublicRequest)
     .output(publicBroadcastResource)
@@ -299,6 +303,9 @@ export const broadcastsPublicRouter = {
       description:
         "Replaces a draft's complete payload and can schedule it when `saveAsDraft` is false. Call `broadcasts.get` to inspect the draft first, or use `broadcasts.schedule` to keep its payload. Scheduling it is refused like `broadcasts.schedule` (400, retry shortly) while a draft moved back mid-preparation is still clearing its previous recipients.",
       tags: ["Broadcasts"],
+      // The same payload replacement can either save a draft or schedule the
+      // send; the policy must cover the scheduling-capable case.
+      spec: mcpSpec({ hitlPolicy: "confirm_outbound" }),
     })
     .input(
       createBroadcastPublicRequest.and(
@@ -336,6 +343,9 @@ export const broadcastsPublicRouter = {
       description:
         "Moves a draft broadcast to its scheduled state using the provided schedule; for `schedulesType: recurring` it starts the repeating schedule (send `recurrence` to replace the saved rule, or omit it to keep it). Call `broadcasts.get` to inspect it first, or use `broadcasts.updateDraft` to change its payload. A draft moved back from `scheduled` mid-preparation may still be clearing its previous recipients; it then fails with 400 and a message to retry shortly, and succeeds once the cleanup finishes.",
       tags: ["Broadcasts"],
+      // Already matched by the outbound-name inference; stated explicitly so
+      // the approval guarantee does not depend on a route rename.
+      spec: mcpSpec({ hitlPolicy: "confirm_outbound" }),
     })
     .input(
       scheduleBroadcastSchema.and(

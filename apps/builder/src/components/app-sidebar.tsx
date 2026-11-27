@@ -18,6 +18,7 @@ import {
   PhoneCallIcon,
   RadioIcon,
   SlidersHorizontalIcon,
+  SparklesIcon,
   SquareKanbanIcon,
   UsersIcon,
   WebhookIcon,
@@ -125,6 +126,15 @@ export function AppSidebar({
         url: `/space/${workspaceId}/ai-agents`,
         icon: BrainIcon,
         permission: PERMISSION_NAV.flows,
+      },
+      {
+        title: t("masterAgent.title"),
+        url: `/space/${workspaceId}/master-agent`,
+        icon: SparklesIcon,
+        // No permission gate: every member may open the Master Agent page —
+        // each operation carries its own permission check server-side.
+        permission: PERMISSION_NAV.broadcasts,
+        visible: true,
       },
       {
         title: t("whatsapp.calls.page.title"),

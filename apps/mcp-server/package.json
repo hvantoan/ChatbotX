@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@ai-sdk/openai": "catalog:",
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@inboxos.io/flow-config": "workspace:*",
     "@inboxos.io/logger": "workspace:*",
     "@inboxos.io/vitest-config": "workspace:*",

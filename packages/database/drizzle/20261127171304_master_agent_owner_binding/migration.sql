@@ -1,0 +1,4 @@
+ALTER TABLE "MasterAgentMessage" ADD COLUMN "createdByTokenId" bigint;--> statement-breakpoint
+CREATE INDEX "MasterAgentMessage_createdByTokenId_idx" ON "MasterAgentMessage" ("createdByTokenId") WHERE "createdByTokenId" IS NOT NULL;--> statement-breakpoint
+ALTER TABLE "MasterAgentMessage" ADD CONSTRAINT "MasterAgentMessage_createdByTokenId_WorkspaceApiToken_id_fkey" FOREIGN KEY ("createdByTokenId") REFERENCES "WorkspaceApiToken"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "MasterAgentMessage" DROP CONSTRAINT "MasterAgentMessage_createdById_User_id_fkey", ADD CONSTRAINT "MasterAgentMessage_createdById_User_id_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

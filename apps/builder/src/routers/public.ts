@@ -80,6 +80,7 @@ import { zaloPersonalChannelsPublicRouter } from "@/features/integration-zalo-pe
 import { integrationsPublicRouter } from "@/features/integrations/api/public"
 import { leaderboardsPublicRouter } from "@/features/leaderboards/api/public"
 import { magicLinksPublicRouter } from "@/features/magic-links/api/public"
+import { masterAgentPublicRouter } from "@/features/master-agent/api/public"
 import { mePublicRouter } from "@/features/me/api/public"
 import { mediaLibraryPublicRouter } from "@/features/media-library/api/public"
 import { messagesPublicRouter } from "@/features/messages/api/public"
@@ -189,6 +190,7 @@ export const publicRouter = {
   integrations: integrationsPublicRouter,
   keywords: keywordsPublicRouter,
   magicLinks: magicLinksPublicRouter,
+  masterAgent: masterAgentPublicRouter,
   me: mePublicRouter,
   mediaLibrary: mediaLibraryPublicRouter,
   messages: messagesPublicRouter,

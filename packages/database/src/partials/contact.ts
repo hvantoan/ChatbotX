@@ -244,6 +244,13 @@ export const contactInfoFilterValues = z.enum([
 export type ContactInfoFilterValue = z.infer<typeof contactInfoFilterValues>
 
 export const contactFilterFields = z.enum([
+  // Pin the audience to specific contacts, by id. Set by server-side flows
+  // (a Master Agent reminder aimed at one group contact); not offered in the
+  // builder's condition picker. It must be a member here because
+  // `isContactFilterShape` (broadcast resend) drops a whole filter whose
+  // condition field is unknown, which would widen a pinned audience to every
+  // eligible contact.
+  "contactId",
   "fullName",
   "country",
   "continent",

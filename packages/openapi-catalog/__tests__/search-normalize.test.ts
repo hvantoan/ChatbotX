@@ -6,7 +6,7 @@ import {
   normalizeSearchText,
   stem,
   stripLiterals,
-} from "../src/server/search/normalize"
+} from "../src/search/normalize"
 
 describe("normalizeSearchText", () => {
   test("strips Vietnamese diacritics and lowercases", () => {

@@ -17,6 +17,11 @@ export const env = createEnv({
     // connect (broker origin, falling back to the builder URL).
     NEXT_PUBLIC_BROKER_URL: z.url().optional(),
     NEXT_PUBLIC_BUILDER_URL: z.url().default("http://localhost:3123"),
+    // Signs the Master Agent's short-lived internal credential — the same
+    // secret the builder verifies with. Optional because the rest of the
+    // worker never needs it; a Master Agent turn without it fails with a
+    // clear message instead of a confusing 401 loop.
+    BETTER_AUTH_SECRET: z.string().optional(),
     QUOTA_SYNC_INTERVAL_SECONDS: z.coerce.number().int().min(10).default(60),
     // How often the sequence producer polls each of its buckets. Idle Redis
     // cost is `buckets x 2 x 1000 / interval` ZRANGEBYSCORE per second (256

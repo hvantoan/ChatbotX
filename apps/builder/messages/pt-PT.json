@@ -12199,5 +12199,52 @@
         "revert": "Revert"
       }
     }
+  },
+  "masterAgent": {
+    "title": "Master agent",
+    "description": "Your assistant operates the workspace through its API: contacts, flows, broadcasts, AI agents — with your approval where it matters.",
+    "empty": "No messages yet. Tell the agent what to do to start.",
+    "thinking": "Working on it...",
+    "emptyReply": "No reply.",
+    "placeholder": "Describe the task, e.g. paste a Zoom summary with the group and the reminder time.",
+    "send": "Send",
+    "pendingActionsTitle": "Waiting for your approval",
+    "confirm": "Confirm",
+    "reject": "Reject",
+    "approved": "Executed",
+    "rejected": "Rejected",
+    "expired": "Expired",
+    "failed": "Failed",
+    "proposedArgs": "Proposed changes",
+    "currentState": "Current state",
+    "noCurrentState": "No current state available.",
+    "openResource": "Open resource",
+    "policy": {
+      "confirm_diff": "Review the change before it runs.",
+      "confirm_outbound": "Reaches your contacts — needs approval.",
+      "confirm_destructive": "Destructive — needs approval."
+    },
+    "config": {
+      "title": "Configuration",
+      "enabled": "Enabled",
+      "autoApproveDiff": "Auto-approve reviewable changes",
+      "autoApproveDiffHint": "Outbound and destructive actions always need approval either way.",
+      "prompt": "Extra instructions",
+      "promptHint": "Appended after the built-in instructions.",
+      "models": "Provider models",
+      "includeModel": "Include {provider} in the fallback order",
+      "modelsRequired": "An enabled Master Agent needs at least one model.",
+      "save": "Save configuration",
+      "notConfigured": "The Master Agent is not configured yet — save this form to enable it.",
+      "openSettings": "Settings"
+    },
+    "errors": {
+      "sendFailed": "The message could not be sent.",
+      "confirmFailed": "The action could not be confirmed.",
+      "confirmExecutionFailed": "The action was approved, but the API rejected it.",
+      "rejectFailed": "The action could not be rejected.",
+      "saveConfigFailed": "The configuration could not be saved."
+    },
+    "pending": "Pending"
   }
 }

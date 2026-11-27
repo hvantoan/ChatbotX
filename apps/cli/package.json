@@ -43,6 +43,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@inboxos.io/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/yargs": "^17.0.35",

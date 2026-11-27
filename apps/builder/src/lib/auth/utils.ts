@@ -98,7 +98,7 @@ const getCachedCurrentUserAndAllLinkedWorkspaces = cache(
 export const getCurrentUserAndAllLinkedWorkspaces = async () =>
   getCachedCurrentUserAndAllLinkedWorkspaces()
 
-type CurrentUserAndTargetWorkspace = {
+export type CurrentUserAndTargetWorkspace = {
   user: SessionUser
   targetWorkspace: WorkspaceModel
   targetWorkspaceMember: WorkspaceMemberModel

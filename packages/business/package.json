@@ -77,7 +77,8 @@
     "./workspace-api-token/credentials": "./src/workspace-api-token/credentials.ts",
     "./workspace-lifecycle/predicates": "./src/workspace-lifecycle/predicates.ts",
     "./workspace-member/predicates": "./src/workspace-member/predicates.ts",
-    "./workspace-member/permissions": "./src/workspace-member/permissions.ts"
+    "./workspace-member/permissions": "./src/workspace-member/permissions.ts",
+    "./master-agent/internal-credential": "./src/master-agent/internal-credential.ts"
   },
   "dependencies": {
     "@inboxos.io/analytics": "workspace:*",

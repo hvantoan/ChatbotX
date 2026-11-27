@@ -1,4 +1,4 @@
-import type { DynamicTool } from "../../openapi-loader"
+import type { DynamicTool } from "../types"
 import {
   expandSearchQuery,
   normalizeSearchText,

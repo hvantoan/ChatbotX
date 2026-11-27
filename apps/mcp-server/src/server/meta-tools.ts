@@ -1,3 +1,9 @@
+import {
+  distinctResourceGroups,
+  expandSearchQuery,
+  looksNonEnglish,
+  rankTools,
+} from "@inboxos.io/openapi-catalog"
 import { getGuide, guideNames, isGuideName } from "../guides"
 import {
   type DynamicTool,
@@ -12,8 +18,6 @@ import {
   type RequestCredentials,
   type ToolCallResult,
 } from "./execute-tool"
-import { expandSearchQuery, looksNonEnglish } from "./search/normalize"
-import { distinctResourceGroups, rankTools } from "./search/rank"
 
 /**
  * Static tool definitions for the two meta-tools that give an agent access

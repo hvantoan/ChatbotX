@@ -32,6 +32,7 @@ import { runJobWithAuditContext } from "../lib/run-job-with-audit-context"
 import { runWorker } from "../lib/shutdown"
 import { processConversationSource } from "./handlers/process-conversation-source"
 import { processConversationSourceEmbedding } from "./handlers/process-conversation-source-embedding"
+import { processMasterAgent } from "./handlers/process-master-agent"
 import { processPendingEmbedding } from "./handlers/process-pending-embeddings"
 import { handleSummarizeConversation } from "./handlers/summarize-conversation"
 import { markEmbeddingChunkFailed } from "./lib/mark-embedding-chunk-failed"
@@ -137,6 +138,9 @@ function startAIAgentWorker() {
               return
             case AIJobAction.processStoryMentionAutomation:
               await processStoryMentionAutomation(jobData.data)
+              return
+            case AIJobAction.processMasterAgent:
+              await processMasterAgent(jobData.data)
               return
             default: {
               const _exhaustive: never = jobData

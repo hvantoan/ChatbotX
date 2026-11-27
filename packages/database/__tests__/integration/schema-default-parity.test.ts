@@ -56,6 +56,7 @@ const DEFAULTS_MISSING_FROM_DATABASE = [
   "IntegrationWebchat.authorizedDomains",
   "IntegrationWebchat.conversationStarters",
   "IntegrationWebchat.persistentMenus",
+  "MasterAgentConfig.models",
   "Trigger.actions",
   "UserPersistentMenu.menus",
 ] as const

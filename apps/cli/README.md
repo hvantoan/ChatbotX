@@ -1071,6 +1071,23 @@ Click stats: `inboxos analytics magic-links-stats --linkId <id>`.
 
 ---
 
+### `master-agent`
+
+```bash
+inboxos master-agent send-message --message "<task description>"    # [--sessionId]; runs one agent turn, returns the session
+inboxos master-agent get-session <sessionId>                          # Poll until status is completed/failed; pendingActions included
+inboxos master-agent get-config                                       # Read the agent configuration
+inboxos master-agent update-config --enabled --autoApproveDiff        # Write it (models/prompt flags)
+inboxos master-agent confirm-pending-action <actionId>                # Approve: executes the stored call with your identity
+inboxos master-agent reject-pending-action <actionId>                 # Reject: the call never runs
+```
+
+The agent operates the workspace through the public API itself. Actions the
+spec marks as needing approval become rows in `pendingActions[]` — nothing
+executes until a human confirms one. Times are read as `Asia/Saigon`.
+
+---
+
 ### `media-library`
 
 ```bash

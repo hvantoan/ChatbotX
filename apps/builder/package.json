@@ -67,6 +67,7 @@
     "@inboxos.io/mail": "workspace:*",
     "@inboxos.io/mini-app": "workspace:*",
     "@inboxos.io/minigame-ui": "workspace:*",
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@inboxos.io/realtime-protocol": "workspace:*",
     "@inboxos.io/redis": "workspace:*",
     "@inboxos.io/sdk": "workspace:*",

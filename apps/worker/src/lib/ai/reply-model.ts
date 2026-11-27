@@ -32,11 +32,19 @@ export function getProviderName(
 export async function createReplyModel(props: {
   providerInfo: AIAgentModelConfig
   workspaceId: string
+  /**
+   * Whether the integration's "AI Auto Reply" switch must be on. Automated
+   * customer replies need it; an operator-initiated turn (Master Agent) does
+   * not — that switch governs unattended replies, not a model call the
+   * workspace member asked for.
+   */
+  requireAutoReply?: boolean
 }): Promise<null | {
   model: LanguageModel
   providerInstance?: AIProviderInstance
 }> {
   const { providerInfo, workspaceId } = props
+  const requireAutoReply = props.requireAutoReply ?? true
 
   if (isOpenaiCompatibleProviderModel(providerInfo)) {
     const integration =
@@ -45,7 +53,9 @@ export async function createReplyModel(props: {
         id: providerInfo.integrationId,
       })
 
-    if (!(integration?.enabled && integration.autoReply)) {
+    if (
+      !(integration?.enabled && (!requireAutoReply || integration.autoReply))
+    ) {
       logger.debug(
         {
           workspaceId,
@@ -70,7 +80,7 @@ export async function createReplyModel(props: {
   const integration = await getAIIntegrationInDB({
     workspaceId,
     provider: providerInfo.provider,
-    autoReply: true,
+    autoReply: requireAutoReply ? true : undefined,
   })
 
   if (!integration) {
