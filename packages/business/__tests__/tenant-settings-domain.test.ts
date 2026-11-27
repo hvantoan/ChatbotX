@@ -79,7 +79,7 @@ describe("resolveTenantSettingsByDomain", () => {
     expect(settings.publicRealtimeUrl).toBe(`https://${CUSTOM_DOMAIN}/ws/`)
     expect(settings.storageUrl).toBe(`https://${CUSTOM_DOMAIN}/storage/`)
     expect(settings.faviconUrl).toBe(
-      `https://${CUSTOM_DOMAIN}/brand/icon_black.svg`,
+      `https://${CUSTOM_DOMAIN}/brand/logo-icon.svg`,
     )
   })
 
@@ -181,7 +181,7 @@ describe("resolveTenantSettingsByDomain", () => {
     expect(settings.appUrl).toBe(BUILDER_URL)
     expect(settings.publicRealtimeUrl).toBe(`${BUILDER_URL}/ws/`)
     expect(settings.storageUrl).toBe("https://files.chatbotx.io/assets/")
-    expect(settings.logoDarkUrl).toBe(`${BUILDER_URL}/brand/logo_black.svg`)
+    expect(settings.logoDarkUrl).toBe(`${BUILDER_URL}/brand/logo-full-dark.svg`)
   })
 })
 

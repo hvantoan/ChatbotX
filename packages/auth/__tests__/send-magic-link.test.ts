@@ -102,7 +102,7 @@ describe("magicLink.sendMagicLink", () => {
     )
     mocks.resolveTenantSettingsByDomain.mockResolvedValue({
       name: "Brand",
-      logoLightUrl: null,
+      logoDarkUrl: null,
       magicLinkEmailTemplate: null,
     })
     mocks.resolvePlatformSmtpTransport.mockResolvedValue(null)

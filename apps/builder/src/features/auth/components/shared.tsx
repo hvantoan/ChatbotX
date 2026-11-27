@@ -32,10 +32,10 @@ export const AuthHeader = ({ title }: AuthHeaderProps) => {
             height={80}
             priority={true}
             src={logoUrl}
-            width={271}
+            width={305}
           />
         ) : (
-          <div className="h-20 w-[271px]" />
+          <div className="h-20 w-[305px]" />
         )}
       </div>
 

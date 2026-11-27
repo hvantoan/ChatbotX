@@ -226,7 +226,7 @@ const WorkspacesList = async ({
 
   const workspacesContent =
     hasWorkspaces || showCreateCard ? (
-      <ul className="flex list-none flex-wrap gap-5 p-0 pb-1">
+      <ul className="flex list-none flex-wrap gap-5 p-2">
         {showCreateCard && (
           <li className="list-none">
             <CreateWorkspaceCard

@@ -49,9 +49,9 @@ const buildDefaults = (helpItems: TenantHelpItemModel[]): TenantSettings => {
     publicRealtimeUrl: derived.publicRealtimeUrl,
     storageUrl: derived.storageUrl,
     name: "InboxOS",
-    logoLightUrl: `${derived.appUrl}/brand/logo_white.svg`,
-    logoDarkUrl: `${derived.appUrl}/brand/logo_black.svg`,
-    faviconUrl: `${derived.appUrl}/brand/icon_black.svg`,
+    logoLightUrl: `${derived.appUrl}/brand/logo-full.svg`,
+    logoDarkUrl: `${derived.appUrl}/brand/logo-full-dark.svg`,
+    faviconUrl: `${derived.appUrl}/brand/logo-icon.svg`,
     theme: null,
     customJS: null,
     customCSS: null,
@@ -97,9 +97,9 @@ const applyCustomDomain = (
     appUrl: derived.appUrl,
     publicRealtimeUrl: derived.publicRealtimeUrl,
     storageUrl: derived.storageUrl,
-    logoLightUrl: `${derived.appUrl}/brand/logo_white.svg`,
-    logoDarkUrl: `${derived.appUrl}/brand/logo_black.svg`,
-    faviconUrl: `${derived.appUrl}/brand/icon_black.svg`,
+    logoLightUrl: `${derived.appUrl}/brand/logo-full.svg`,
+    logoDarkUrl: `${derived.appUrl}/brand/logo-full-dark.svg`,
+    faviconUrl: `${derived.appUrl}/brand/logo-icon.svg`,
   }
 }
 

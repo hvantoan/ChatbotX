@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@inboxos.io/ui/components/ui/dropdown-menu"
+import { useDataTableLabels } from "@inboxos.io/ui/components/data-table/data-table-labels"
 import { cn } from "@inboxos.io/ui/lib/utils"
 
 interface DataTableColumnHeaderProps<TData, TValue>
@@ -24,6 +25,8 @@ export function DataTableColumnHeader<TData, TValue>({
   className,
   ...props
 }: DataTableColumnHeaderProps<TData, TValue>) {
+  const labels = useDataTableLabels()
+
   if (!column.getCanSort() && !column.getCanHide()) {
     return <div className={cn(className)}>{title}</div>
   }
@@ -56,7 +59,7 @@ export function DataTableColumnHeader<TData, TValue>({
               onClick={() => column.toggleSorting(false)}
             >
               <ChevronUp />
-              Asc
+              {labels.sortAscending ?? "Asc"}
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               className="relative pe-8 ps-2 [&>span:first-child]:end-2 [&>span:first-child]:start-auto [&_svg]:text-muted-foreground"
@@ -64,7 +67,7 @@ export function DataTableColumnHeader<TData, TValue>({
               onClick={() => column.toggleSorting(true)}
             >
               <ChevronDown />
-              Desc
+              {labels.sortDescending ?? "Desc"}
             </DropdownMenuCheckboxItem>
             {column.getIsSorted() && (
               <DropdownMenuItem
@@ -72,7 +75,7 @@ export function DataTableColumnHeader<TData, TValue>({
                 onClick={() => column.clearSorting()}
               >
                 <X />
-                Reset
+                {labels.resetSorting ?? "Reset"}
               </DropdownMenuItem>
             )}
           </>
@@ -84,7 +87,7 @@ export function DataTableColumnHeader<TData, TValue>({
             onClick={() => column.toggleVisibility(false)}
           >
             <EyeOff />
-            Hide
+            {labels.hideColumn ?? "Hide"}
           </DropdownMenuCheckboxItem>
         )}
       </DropdownMenuContent>

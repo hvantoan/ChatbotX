@@ -1,5 +1,5 @@
 import type { DeepLinkAppId } from "@inboxos.io/flow-config"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import { cn } from "@inboxos.io/ui/lib/utils"
 import { getTranslations } from "next-intl/server"
 

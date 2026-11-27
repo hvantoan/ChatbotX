@@ -16,6 +16,7 @@ vi.mock("../src/features/webshop/lib/shop-session", () => ({
 }))
 
 const { loadShop } = await import("../src/features/webshop/lib/load-shop")
+const { defaultLocale } = await import("../src/i18n/config")
 
 const storefront = (language: string) => ({
   storeName: "Shop",
@@ -48,9 +49,9 @@ describe("loadShop locale", () => {
     expect(loaded?.shop.locale).toBe("vi")
   })
 
-  test("falls back to English for a language the builder does not ship", async () => {
+  test("falls back to the default locale for a language the builder does not ship", async () => {
     getStorefront.mockResolvedValue(storefront("xx"))
     const loaded = await loadShop("12", "tok")
-    expect(loaded?.shop.locale).toBe("en")
+    expect(loaded?.shop.locale).toBe(defaultLocale)
   })
 })

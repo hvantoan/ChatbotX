@@ -2,6 +2,7 @@
 import { readdirSync } from "node:fs"
 import { describe, expect, test } from "vitest"
 import {
+  defaultLocale,
   isLocale,
   type Locale,
   localeMeta,
@@ -247,7 +248,8 @@ describe("locale resolution", () => {
     ["zh-hans", expectedSimplifiedChineseLocale],
     ["zh-Hans-CN", expectedSimplifiedChineseLocale],
     ["zh", expectedSimplifiedChineseLocale],
-    ["xx", "en"],
+    ["xx", defaultLocale],
+    [undefined as unknown as string, defaultLocale],
   ] as const)("resolves %s to %s", (input, expected) => {
     expect(resolveLocale(input)).toBe(expected)
   })

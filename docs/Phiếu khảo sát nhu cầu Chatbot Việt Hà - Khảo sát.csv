@@ -1,0 +1,229 @@
+Phiếu khảo sát nhu cầu Chatbot Việt Hà,,,,,
+"Chị Hà điền vào cột Trả lời. Câu có Bắt buộc = Có thì thiếu là bot chưa chạy được. Giai đoạn GĐ1 (tư vấn + hướng dẫn điền link đăng ký) điền trước, GĐ2 điền sau. Ảnh, file mẫu, đoạn chat gửi kèm qua Zalo.",,,,,
+,,,,,
+Mục,Câu hỏi,Trả lời,Bắt buộc,Thông tin đã có,Giai đoạn
+1. Khoá học,"Em thấy phiếu trước ghi tên khoá là ""Hành trình 90 ngày – Làm chủ Mạch Thương hiệu Viral"", còn mô tả dự án lại ghi ""Khoá đồng hành làm chủ thương hiệu Viral"". Chị cho em hỏi hai tên này có phải cùng một khoá không, và chị muốn bot gọi khoá bằng tên nào khi nói chuyện với khách?","Cùng là một khoá. Đổi tên gọi thành: Khoá Đồng hành 90 ngày – Làm chủ Mạch Thương hiệu Viral (gọi là ""khoá đồng hành"" để khách dễ hiểu).",Có,"Cấp 3 Mastermind, 90 ngày, 12 tuần. Giá gốc 27tr, ưu đãi 18tr đến hết 2026",GĐ1
+,"Với khoá Đồng hành Làm chủ Thương hiệu Viral, chị thấy những ai chưa nên tham gia (ví dụ người chưa có kênh, người không có thời gian làm 5 video/tuần)? Bot cần biết để từ chối khéo hoặc gợi ý khoá khác.","Chưa nên tham gia:
+- Người không sắp xếp được 5 clip/tuần. Đây là yêu cầu bắt buộc để đảm bảo cam kết kết quả của khoá: có clip viral và có chuyển đổi ra tiền.
+- Người không có tinh thần chủ động xây kênh, muốn ăn xổi, muốn có kết quả vội. Khoá này là xây thương hiệu lâu dài.
+- Người muốn đi đường chạy quảng cáo. Khoá này làm viral thuần, giúp xây kênh lâu dài mà tiết kiệm chi phí.
+
+Vì sao bắt buộc 5 clip/tuần: Hà đã đồng hành hơn 300 người, tư vấn hơn 800 người và thấy mọi người phải làm video thì mới có cơ hội cải thiện, chứ không nói được. Có làm thì mới biết thực sự có phù hợp không và phù hợp như thế nào. Khoá giúp học viên có tư duy để tự xây kênh viral có chuyển đổi.",,Dành cho người đã có kết quả ban đầu,GĐ1
+,"Khách đăng ký khoá Đồng hành Làm chủ Thương hiệu Viral có được trả góp hoặc chia học phí thành nhiều đợt không? Nếu có, chị chia thành mấy đợt và mỗi đợt đóng vào lúc nào?","Có. Chia tối đa 2 đợt, mỗi đợt 50%. Thời điểm đóng mỗi đợt tuỳ khách nhưng phải có thời hạn, và phải hoàn thành 100% học phí trước khi khoá học bắt đầu.",,,GĐ1
+,"Mỗi đợt khoá Đồng hành Làm chủ Thương hiệu Viral chị nhận tối đa bao nhiêu học viên, và đợt tiếp theo dự kiến khai giảng ngày nào? Khi khách hỏi ""còn chỗ không"", chị muốn bot trả lời ra sao?","Mỗi đợt nhận tối đa 5 người. Đợt tới khai giảng vào năm 2027.
+Khi khách hỏi ""còn chỗ không"": nhờ khách điền form, bên mình sẽ chủ động liên hệ.",,Nhóm 5 người đồng hành,GĐ1
+,Khoá video quay sẵn có tên chính thức là gì? Chị muốn bot giới thiệu khoá này với khách bằng một câu như thế nào?,"Tên chính thức: Xác định Thương hiệu tạo chuyển đổi.
+Giới thiệu: Xây kênh là để kiếm tiền, nên mục tiêu cuối cùng của làm thương hiệu là phải ra được tiền. Và phải xác định trước mình thể hiện mình là ai thì mới ra được tiền.",Có,Xác định Thương Hiệu tạo chuyển đổi,GĐ1
+,"Khoá video quay sẵn phù hợp nhất với ai? Chị mô tả giúp em chân dung học viên lý tưởng: họ đang làm nghề gì, đã có kênh chưa, đang gặp khó khăn gì.","Phù hợp với:
+- Chủ shop, người kinh doanh nhỏ, chuyên gia, freelancer muốn làm kênh để bán hàng/dịch vụ nhưng chưa biết mình nên thể hiện là ai.
+- Người đã có kênh nhưng video lan man, có view mà không ra đơn.
+- Người tự học được, muốn học theo nhịp của mình, xem lại nhiều lần.
+- Người muốn thử cách làm của Hà với chi phí thấp trước khi vào khoá đồng hành.
+- Người ngân sách còn hạn chế, chưa sẵn sàng đầu tư khoá kèm sát.",Có,,GĐ1
+,Có trường hợp nào chị không muốn khách mua khoá video quay sẵn không? Ví dụ người cần được kèm sát thì nên chuyển sang khoá đồng hành.,"Không phù hợp với:
+- Người muốn được kèm sát, sửa từng video, có người cầm tay chỉ việc (nên vào khoá đồng hành).
+- Người không dành thời gian tự học và làm bài tập. Khoá quay sẵn chỉ hiệu quả khi tự giác.
+- Người muốn kết quả nhanh, muốn được hứa viral hay hứa ra đơn ngay.
+- Người chỉ muốn học kỹ thuật quay dựng hay chạy quảng cáo, không phải xác định thương hiệu.",,,GĐ1
+,"Khoá video quay sẵn gồm bao nhiêu video, tổng thời lượng bao lâu? Học viên xem trên nền tảng nào, được xem trong bao lâu, và có được hỏi đáp hay hỗ trợ thêm không?","Gồm 1 video giới thiệu + 6 video bài học (2 module, mỗi module 3 bài), tổng khoảng 50 phút. Kèm video thực hành mẫu và video của các học viên đã thực hành để dễ hiểu hơn.
+Nền tảng: xem qua web bên Hà gửi.
+Thời hạn: học mãi mãi; có kiến thức mới Hà sẽ cập nhật thêm.
+Hỗ trợ: có nhóm để hỏi đáp, chia sẻ với nhau cách xác định danh tính; có buổi Q&A để sửa bài tập, làm bài tập cùng mọi người.
+
+Chi tiết nhóm Zalo và Q&A:
+- Nhóm Zalo ""Xác định THƯƠNG HIỆU viral tạo chuyển đổi"": https://zalo.me/g/nwh6bqonoffng0ygkw3k
+- Nhóm chỉ duyệt những bạn đã nộp Bản đồ thương hiệu (nộp ở bài cuối của khoá). Tên Zalo xin vào nhóm cần trùng với tên Zalo ghi trong bài tập.
+- Không có hạn nộp Bản đồ: làm xong lúc nào nộp lúc đó.
+- Q&A: mỗi tháng 2 buổi qua Zoom, tối thứ 4 lúc 20:30 (có thể tăng thêm tuỳ số câu hỏi). Ngày cụ thể và link Zoom gửi trong nhóm Zalo.
+- Buổi Q&A cùng sửa những Bản đồ đã nộp; không phải cứ đăng ký là bài được mang ra sửa.",Có,,GĐ1
+,Chị liệt kê giúp em các bài học hoặc chương chính của khoá video quay sẵn. Mỗi bài học viên sẽ làm được gì sau khi học?,"Phần 1 – Bắt đầu khoá học: Cùng là xây kênh, vì sao có người viral và chốt đơn đều, có người viral triệu view mà không ra đơn? Bắt đầu từ đây để hiểu thương hiệu tạo ra khác biệt thế nào.
+Phần 2 – Module 1. Chọn 5 DANH–TÍNH để xây dựng thương hiệu: Tìm những vai trò và tính cách thật của bạn, rồi chọn 5 DANH–TÍNH hỗ trợ đúng sản phẩm bạn muốn chuyển đổi.
+Phần 3 – Module 2. Chọn 5 video topic phù hợp để bắt đầu làm nội dung (3 bài học): Từ 5 DANH–TÍNH, tìm 5 video viral để tham khảo: vừa đúng với con người bạn, vừa là việc bạn làm được.
+Phần 4 – Hiểu sâu: Xem video phân tích trực tiếp cùng khách hàng: Xem Hà phân tích trực tiếp cùng học viên: một video vài phút chốt được khoá học nhờ DANH–TÍNH nào.
+Phần 5 – Nộp Bản đồ, tham gia cộng đồng và Q&A: Nộp Bản đồ thương hiệu của mình, vào nhóm Zalo của khoá và cùng mọi người sửa bài, đưa ra góc nhìn cho nhau trong buổi Q&A.
+
+Kết quả sau khoá học:
+• Hiểu thương hiệu là gì và vì sao thương hiệu là cốt lõi khi xây kênh
+• Hiểu mối liên hệ giữa thương hiệu, viral và chuyển đổi
+• Tìm ra các DANH–TÍNH có sẵn từ chính cuộc sống của bạn
+• Chọn được 5 DANH–TÍNH và 3 danh tính ưu tiên thể hiện trước
+• Có 5 video topic phù hợp với bản thân, mỗi topic kèm video viral tham khảo
+• Biết chọn video viral tham khảo đúng tiêu chí: đăng dưới 1 năm, lượt xem vượt trội so với kênh
+• Biết khai thác tiếp mỗi topic bằng chất liệu của chính mình
+• Có Bản đồ thương hiệu viral và chuyển đổi của riêng bạn để bắt đầu làm nội dung
+
+Trang khoá học: http://xac-dinh-thuong-hieu-chuyen-doi.soloexpert.cv",,,GĐ1
+,"Ngoài video, học viên khoá video quay sẵn còn nhận được gì thêm (tài liệu, file mẫu, nhóm hỗ trợ, buổi zoom...)?","Tài liệu, nhóm hỗ trợ, buổi Zoom, file bài tập để làm.",,,GĐ1
+,Khoá video quay sẵn có giá gốc và giá ưu đãi là bao nhiêu? Giá ưu đãi áp dụng đến ngày nào?,"Giá gốc: 2.999.000đ
+Giá ưu đãi: 1.499.000đ, áp dụng đến hết năm 2026.",Có,,GĐ1
+,Khách mua khoá video quay sẵn có được trả góp hoặc chia đợt thanh toán không?,Không. Thanh toán 100%.,,,GĐ1
+,"Khách muốn mua khoá video quay sẵn thì đăng ký thế nào: điền form rồi phỏng vấn như khoá đồng hành, hay chuyển khoản là học được ngay? Ai là người xác nhận thanh toán?","Không cần điền form phỏng vấn. Khách vào link đăng ký mua trực tiếp, sau đó nhấn vào số Zalo để được xác nhận thanh toán.
+Link đăng ký mua: http://xac-dinh-thuong-hieu-chuyen-doi.soloexpert.cv",Có,,GĐ1
+,"Sau khi thanh toán, học viên khoá video quay sẵn nhận khoá học bằng cách nào và mất bao lâu (gửi link, cấp tài khoản, thêm vào nhóm...)?","Nhận nội dung khoá trong vòng 24 giờ, gửi trực tiếp qua link. Học viên tự chủ động vào nhóm (thông tin nhóm có sẵn trong video giới thiệu).",,,GĐ1
+,"Với khoá video quay sẵn, chị cam kết kết quả gì với học viên? Bot được phép nói đến mức nào, và câu nào tuyệt đối không được hứa?","Cam kết: khách chủ động xác định được 5 danh tính phù hợp với thương hiệu, có khả năng tạo chuyển đổi cho sản phẩm mình mong muốn. Có thắc mắc thì inbox hoặc hỏi trong nhóm trao đổi.
+Tuyệt đối không hứa: không cam kết viral, không cam kết chuyển đổi.",,,GĐ1
+,Khoá đồng hành 1:1 VIP có tên chính thức là gì? Chị muốn bot giới thiệu khoá này với khách bằng một câu như thế nào?,,Có,"Đồng hành 1:1, 3–6 tháng",GĐ1
+,"Khoá đồng hành 1:1 VIP dành cho ai? Chị mô tả giúp em chân dung khách phù hợp: quy mô kinh doanh, mức sẵn sàng đầu tư, mục tiêu họ muốn đạt.",,Có,,GĐ1
+,"Theo chị, những ai chưa nên tham gia khoá đồng hành 1:1 VIP? Khi gặp những khách này, bot nên gợi ý họ điều gì?",,,,GĐ1
+,"Gói 3 tháng và gói 6 tháng của khoá VIP khác nhau thế nào? Mỗi tuần chị làm việc với học viên mấy buổi, qua hình thức gì (zoom, nhắn tin, gặp trực tiếp)?",,Có,,GĐ1
+,"Trong khoá đồng hành 1:1 VIP, chị cùng học viên làm những việc gì? Chị kể giúp em các giai đoạn chính từ lúc bắt đầu đến khi kết thúc.",,,,GĐ1
+,Học viên khoá VIP nhận được những quyền lợi gì mà hai khoá còn lại không có?,,,,GĐ1
+,"Gói 3 tháng và gói 6 tháng của khoá VIP có giá gốc, giá ưu đãi là bao nhiêu, và ưu đãi áp dụng đến ngày nào?",,Có,,GĐ1
+,Khách đăng ký khoá VIP có được trả góp hoặc chia đợt thanh toán không?,,,,GĐ1
+,"Khách muốn đăng ký khoá VIP thì quy trình thế nào: điền form, phỏng vấn với chị, hay gọi tư vấn riêng trước?",,Có,,GĐ1
+,"Mỗi tháng chị nhận tối đa bao nhiêu học viên VIP? Khi đã kín chỗ, chị muốn bot trả lời khách thế nào?",,,,GĐ1
+,"Với khoá VIP, chị cam kết kết quả gì với học viên? Bot được phép nói đến mức nào?",,,,GĐ1
+1. Chọn khoá,"Khi nói chuyện với khách, dựa vào dấu hiệu nào thì bot nên gợi ý khoá Đồng hành Làm chủ Thương hiệu Viral, khoá video quay sẵn hay khoá 1:1 VIP? Chị cho em ví dụ một khách điển hình của từng khoá.","Khách hỏi chung chung (""bên mình có những khoá nào"", ""học gì"", ""cho em xin thông tin khoá học""): bot giới thiệu ngắn các khoá, rồi hỏi 5 câu tìm hiểu khách để gợi ý đúng khoá.
+
+Gợi ý khoá Đồng hành 90 ngày khi khách: đã có kênh và có kết quả ban đầu; sắp xếp được 5 clip/tuần; muốn được kèm sát; sẵn sàng đầu tư xây thương hiệu lâu dài.
+Ví dụ: chủ shop đã có kênh, video có view nhưng ít đơn, muốn được kèm 90 ngày để ra chuyển đổi.
+
+Gợi ý khoá video quay sẵn khi khách: chưa biết mình nên thể hiện là ai; mới bắt đầu hoặc chưa có kênh; ít thời gian, muốn tự học; ngân sách còn hạn chế; hoặc còn phân vân chưa rõ hợp khoá nào.
+Ví dụ: freelancer mới mở kênh, chưa biết nói gì để ra khách.
+
+Khoá VIP: khi khách hỏi đích danh hoặc muốn được kèm riêng 1:1 thì giới thiệu sơ và gửi form đăng ký phỏng vấn.",Có,,GĐ1
+,"Nếu khách chưa rõ mình hợp khoá nào, chị muốn bot giới thiệu khoá nào trước?","Giới thiệu khoá video quay sẵn (Xác định Thương hiệu tạo chuyển đổi) trước, để khách xem có phù hợp với cách chia sẻ của Hà không, đồng thời giúp khách xác định trước một phần danh tính trước khi có cơ hội vào khoá đồng hành sau. Chi phí khoá cũng phù hợp với người muốn thử nghiệm, để xác định thương hiệu của mình.",,,GĐ1
+,"Khi khách chê khoá Đồng hành Làm chủ Thương hiệu Viral đắt, bot có được gợi ý khoá video quay sẵn giá thấp hơn không, hay phải chuyển cho chị xử lý?","Bot tự gợi ý khoá video quay sẵn, không cần chuyển cho chị Hà.",,,GĐ1
+,"Khi khách hỏi về khoá 1:1 VIP, chị muốn bot tự tư vấn đầy đủ hay chỉ giới thiệu sơ rồi chuyển ngay cho chị?","Chỉ giới thiệu sơ, rồi gửi form đăng ký để phỏng vấn (vì đằng nào cũng phải phỏng vấn).",Có,,GĐ1
+,"Học viên đã học một khoá của chị, nếu muốn học thêm khoá khác thì có được ưu đãi gì không?","Hiện tại không có ưu đãi khi học thêm khoá khác.
+Riêng học viên khoá Đồng hành 90 ngày – Làm chủ Mạch Thương hiệu Viral được tặng khoá video quay sẵn. Các khoá còn lại thì không.",,,GĐ1
+2. Tư vấn & chốt,"Trên Zalo: bot dùng Zalo cá nhân hay Zalo OA? Trên Facebook: chỉ trả lời Messenger của Fanpage, hay cả bình luận dưới bài đăng?","Zalo: dùng Zalo cá nhân của trợ lý.
+Facebook: nếu được thì trả lời cả Messenger của Fanpage và bình luận dưới bài đăng.",Có,Giai đoạn đầu: Zalo và Facebook,GĐ1
+,"Khách thường biết đến chị từ đâu (clip TikTok, giới thiệu, quảng cáo)?","Đa phần từ clip TikTok, Facebook và người quen giới thiệu. Hiện chưa chạy quảng cáo.",,TikTok: Hà Bờm Phiêu Lưu Ký,GĐ1
+,"3–5 câu bot cần hỏi để hiểu khách trước khi giới thiệu khoá (ngành nghề, đã có kênh chưa, mục tiêu...)","1. Chị đang làm ngành nghề gì ạ?
+2. Chị đã có kênh chưa ạ? Kênh của chị là gì (chị gửi em link nha)?
+3. Mục tiêu xây kênh của chị là gì ạ?
+4. Hiện tại chị đang gặp khó khăn gì nhất với kênh ạ?
+5. Mỗi tuần chị dành được khoảng bao nhiêu thời gian để làm video ạ? (giúp bot biết nên gợi ý khoá đồng hành – yêu cầu 5 clip/tuần – hay khoá video quay sẵn)",Có,,GĐ1
+,"Khách hỏi xong rồi im lặng: bot nhắn lại sau bao lâu, tối đa mấy lần?","Nhắn lại tối đa 2 lần: lần 1 sau 2 tiếng, lần 2 sang ngày hôm sau.",,,GĐ1
+,Nội dung nhắn lại (follow-up) chị muốn bot dùng,"Lần 1 (sau 2 tiếng): Chị ơi, chị còn băn khoăn chỗ nào về khoá học không ạ? Chị cứ nhắn em, em giải đáp liền cho chị nha ❤️
+Lần 2 (ngày hôm sau): Chào chị, hôm qua mình đang trao đổi dở về khoá học. Không biết chị đã cân nhắc thêm chưa ạ? Nếu chị chưa chắc khoá nào hợp với mình, chị có thể bắt đầu từ khoá video quay sẵn để xem cách Hà chia sẻ có hợp với chị không nha 🥰",,,GĐ1
+,"Khi nào coi là ""chốt"": khách điền form / đã phỏng vấn / đã chuyển khoản?",Khách đã chuyển khoản thì mới coi là chốt.,Có,,GĐ1
+,"Sau phỏng vấn, bot có cần nhắn khách gì tiếp không (kết quả, hướng dẫn thanh toán...)?","Sau phỏng vấn, bot chỉ cảm ơn khách và báo bên mình sẽ liên hệ kết quả sớm nhất. Bot không gửi kết quả hay hướng dẫn thanh toán: chị Hà tự chốt và tự gửi.",,,GĐ1
+,Bot có cần lưu danh sách khách tiềm năng vào Google Sheet không? Cần những cột gì?,"Có. Lưu toàn bộ khách để tổng kết mỗi ngày có bao nhiêu khách và khách thuộc kiểu gì.
+Cột: Ngày, Tên, Số điện thoại, Ngành nghề, Khoá quan tâm, Mục tiêu / vấn đề khách mong muốn, Mức độ tiềm năng (5 cao nhất → 1 thấp nhất).",,,GĐ1
+,Chị muốn bot hỏi xin số điện thoại khách ở bước nào?,"Xin số điện thoại khi khách đã hỏi giá và hỏi cách đăng ký, trước khi gửi link form.
+Câu mẫu: Chị cho em xin số điện thoại để bên em tiện liên hệ hỗ trợ chị nha ❤️",,,GĐ1
+3. Link đăng ký,Link Google Form đăng ký. Mỗi khoá một form riêng hay dùng chung 1 form?,"Mỗi khoá một form riêng.
+Khoá Đồng hành 90 ngày: https://docs.google.com/forms/d/e/1FAIpQLSfApadmPqcSbGqcxsy05EtprgKxBflaBNGXe7_mD7fGv-ng0w/viewform?usp=sharing&ouid=112562164803678744893
+Khoá VIP: chị Hà gửi link sau.
+Khoá video quay sẵn: không dùng form, khách mua trực tiếp qua link trang khoá học.",Có,"Bot gửi link Google Form để khách điền, chốt lịch phỏng vấn",GĐ1
+,Form có những câu hỏi nào? Chị chia sẻ quyền xem form cho em,Chị Hà sẽ chia sẻ quyền xem form sau.,Có,,GĐ1
+,"Bot gửi link vào lúc nào: khi khách hỏi cách đăng ký, sau khi tư vấn xong, hay ngay khi khách hỏi giá?",Sau khi tư vấn xong.,Có,,GĐ1
+,"Câu dẫn chị muốn bot nói kèm link (ví dụ: ""Chị điền giúp em form này, mất khoảng 3 phút..."")","Chị điền giúp em form đăng ký này nha, mất khoảng 3–5 phút thôi ạ. Thông tin chị điền giúp bên em hiểu kênh của chị kỹ hơn trước buổi phỏng vấn ❤️
+[link form]",,,GĐ1
+,Câu nào trong form khách hay thắc mắc? Bot giải thích thế nào?,Hiện chưa có.,,,GĐ1
+,Khách không mở được link hoặc ngại điền form: bot có được nhận thông tin qua chat rồi chuyển cho trợ lý không?,"Có. Bot nhận thông tin qua chat rồi chuyển cho trợ lý, hoặc gửi vào nhóm tổng để mọi người cùng nắm.",,,GĐ1
+,Bot có cần biết khách đã điền form chưa? (cần chia sẻ Google Sheet kết quả form cho bot),"Có, cần nắm.",,,GĐ1
+,"Khách đã nhận link mà chưa điền: bot nhắc lại sau bao lâu, tối đa mấy lần?",Nhắc tối đa 2 lần: sau 2 tiếng và sau 1 ngày.,,,GĐ1
+,"Khách điền xong thì bot nói gì? Ai liên hệ hẹn lịch phỏng vấn, trong bao lâu?","Cảm ơn khách và báo: bên em sẽ liên hệ lại sớm nhất cho chị. Nói lịch sự, đúng giọng Hà Bờm; không hứa lịch phỏng vấn cụ thể.",Có,Bot không được hứa lịch phỏng vấn cụ thể,GĐ1
+,"Có khách điền form thì bot báo ai, qua đâu (nhóm Business Việt Hà, Zalo trợ lý...)?","Báo vào nhóm Business Việt Hà, qua Zalo cá nhân của trợ lý.",Có,,GĐ1
+4. Nền tảng,"Bot chạy bằng tài khoản Zalo nào: Zalo cá nhân mới, Zalo của trợ lý, hay Zalo OA?",Zalo cá nhân của trợ lý.,Có,,GĐ1
+,"Facebook: tên và link Fanpage bot sẽ trả lời; chị cấp quyền quản trị Fanpage cho em để kết nối bot được không? (TikTok, website để giai đoạn sau)","Đồng ý cấp quyền quản trị Fanpage để kết nối bot.
+Tên Fanpage: Hà Bờm Phiêu Lưu Ký
+Link Fanpage: https://www.facebook.com/share/19j7hjLBTZ/?mibextid=wwXIfr",Có,,GĐ1
+,"Google Form, Google Sheet bot sẽ dùng: ai là chủ, chị chia sẻ quyền cho em được không?",Chủ là nick của Hà. Đồng ý chia sẻ quyền.,,,GĐ1
+,"Khi bot lỗi hoặc cần sửa nội dung, chị muốn báo em qua đâu?",Qua nhóm Business Việt Hà.,,,GĐ1
+,"Ai trong đội được quyền ra lệnh cho bot (cập nhật giá, đổi link form, tạm dừng bot)?",Chỉ 2 người: Hà và chị Quyền.,Có,,GĐ1
+5. Còn trống,Hotline / Zalo liên hệ,038 575 1235 (số Zalo của trợ lý),Có,,GĐ1
+,Số tài khoản DUY NHẤT bot được gửi cho khách,,Có,,GĐ1
+,Họ tên + Zalo của trợ lý riêng,Nick Zalo: Trợ lý Việt Hà – 038 575 1235,Có,,GĐ1
+,Ảnh bảng giá / ảnh giới thiệu khoá (gửi Zalo),Gửi qua Zalo.,,,GĐ1
+,"20–50 đoạn chat tư vấn tốt (quan trọng nhất, gửi Zalo, che tên và SĐT khách)","Gửi qua Zalo, che tên và số điện thoại khách.",,,GĐ1
+,10–30 câu khách hay hỏi + câu trả lời chuẩn,Hiện chưa có.,,,GĐ1
+,"Cách trả lời khi khách chê đắt, chần chừ, so sánh với chỗ khác","Khi khách chê đắt: Cảm ơn chị đã chia sẻ thật lòng ạ. Khoá đồng hành là 90 ngày Hà kèm trực tiếp, làm viral thuần nên về lâu dài chị tiết kiệm được chi phí quảng cáo. Học phí cũng chia được 2 đợt, mỗi đợt 50%. Nếu hiện tại chị muốn bắt đầu nhẹ hơn, chị có thể học khoá video Xác định Thương hiệu tạo chuyển đổi (ưu đãi 1.499.000đ) trước nha ❤️
+
+Khi khách chần chừ: Chị còn băn khoăn điều gì nhất ạ? Chị cứ nói em nghe, em giải đáp cho chị rõ rồi chị hãy quyết định nha. (Không ép khách; sau đó nhắn lại theo lịch follow-up.)
+
+Khi khách so sánh với chỗ khác: Không chê chỗ khác. Nói điểm riêng của Hà: xây thương hiệu viral đúng bản sắc, làm viral thuần không phụ thuộc quảng cáo, nhóm nhỏ 5 người được kèm sát; Hà đã đồng hành hơn 300 người, tư vấn hơn 800 người. Mỗi chỗ một cách làm, chị chọn nơi hợp với mình nhất nha.
+
+Luôn nói thật về mình.",,,GĐ1
+,"Chính sách ""Không đáp ứng: remove 24h · refund 72h"" nghĩa là gì? Khách hỏi hoàn tiền thì bot trả lời thế nào?","Chính sách đang thay đổi, chị Hà chốt vào thứ Sáu (27/11/2026) rồi cập nhật.
+Chính sách cũ: học viên không đáp ứng 5 clip/tuần thì bị mời ra khỏi nhóm sau 24 giờ, hoàn tiền sau 72 giờ.",,Hỏi hoàn tiền: chuyển cho chị Hà/trợ lý,GĐ1
+6. Thử nghiệm,Chị muốn chạy thử bao lâu trước khi dùng thật (ví dụ 1–2 tuần)?,1 tuần.,,,GĐ1
+,Ai sẽ đóng vai khách để test phần tư vấn?,Nhóm thí điểm.,,,GĐ1
+,"Bot đạt thế nào thì chị coi là ổn (trả lời đúng giá, gợi ý đúng khoá, gửi đúng link đăng ký...)?","Trả lời đúng giá, gợi ý đúng khoá, gửi đúng link đăng ký, nói chuyện thân thiện, vui vẻ.",Có,,GĐ1
+,Ngày chị muốn bot bắt đầu tư vấn khách thật,05/12/2026,,,GĐ1
+7. Nhắc lịch nhóm,"Nhóm K3: tên nhóm Zalo chính xác, khoá học, ngày bắt đầu – kết thúc, ai quản lý","Tên Zalo: K3 - LÀM CHỦ MẠCH THƯƠNG HIỆU VIRAL
+Khoá học: LÀM CHỦ MẠCH THƯƠNG HIỆU VIRAL
+Ngày bắt đầu: 05/09/2026
+Ngày kết thúc: 05/12/2026
+Người quản lý: Việt Hà",Có,"5 học viên: Kim Hiền, Huyền, Minh Hy, Minh Hiền, Như Ngọc",GĐ2
+,"Nhóm K4: tên nhóm Zalo chính xác, khoá học, ngày bắt đầu – kết thúc, ai quản lý","Tên Zalo: K4 - LÀM CHỦ MẠCH THƯƠNG HIỆU VIRAL
+Khoá học: LÀM CHỦ MẠCH THƯƠNG HIỆU VIRAL
+Ngày bắt đầu: 19/10/2026
+Ngày kết thúc: 19/01/2027
+Người quản lý: Việt Hà",Có,"4 học viên: Bích, Huyên, Thy, Phượng",GĐ2
+,Nhóm khác (nếu có),"Tên Zalo: Hiện tại chưa đặt tên
+Khoá học: Chị Sha - Đồng Hành 1:1 VIP - Làm Chủ Thương Hiệu Viral 
+Ngày bắt đầu: 5/9/2026
+Ngày kết thúc: 31/12/2026
+Người quản lý: Việt Hà""
+
+Tên Zalo: Hiện tại chưa đặt tên
+Khoá học: Chị Duyên - Đồng Hành 1:1 VIP - Làm Chủ Thương Hiệu Viral 
+Ngày bắt đầu: 5/10/2026
+Ngày kết thúc: 5/1/2026
+Người quản lý: Việt Hà",,,GĐ2
+,"Nhắc thêm link bài đăng: ngày nào, mấy giờ, nhóm nào? Gửi mỗi ngày hay một số ngày trong tuần?","Nhắc mỗi ngày
+Lúc 08:00 SA
+Nhóm cần nhắc:
+K3 - Nhóm Tổng
+K4 - Nhóm Tổng",Có,"Đã có mẫu tin K3, K4",GĐ2
+,Học viên tự điền link vào ngay tin nhắn đó (copy rồi điền) hay gửi riêng?,"Học viên tự điền link vào ngay tin nhắn đó (copy rồi điền)
+Người tiếp theo sẽ copy và điền vào tin nhắn của người đã điền trước đó",Có,,GĐ2
+,"Nhắc lịch Zoom: ngày nào, mấy giờ, nhóm nào, mẫu câu","K3: 20h30 Thứ Bảy hàng tuần
+K4: 20h30 Thứ Hai hàng tuần
+Nhắc lịch: Trước 1 ngày (Nhóm Tổng + Nhóm Cá nhân)
+Mẫu câu đang sử dụng: @All Cả nhà ơi! 
+Ngày mai - Thứ Hai, Cả nhà có lịch Zoom lúc 20h30 nhé❤️",Có,Trước 1 ngày và trước 1 giờ,GĐ2
+,"Lịch Zoom cố định hằng tuần hay đổi theo tuần? Nếu đổi, ai báo bot và báo bằng cách nào? Link Zoom cố định hay mỗi buổi một link?","K3, K4: Lịch Zoom cố định hàng tuần
+Link Zoom cố định ( 1 Khoá - 1 Link Zoom)",Có,,GĐ2
+,"Nhắc lịch bài tập: ngày nào, mấy giờ, nhóm nào, mẫu câu","Gửi lại nội dung bài tập sau buổi Zoom (Nhóm Tổng + Nhóm Cá nhân)
+
+Nhắc lịch bài tập: 2 ngày trước deadline, sau deadline (Nhóm Cá nhân)
+
+Mẫu câu đang sử dụng:
+- Sau buổi Zoom: 
+Nhóm Tổng: @All Cả nhà ơi, Em gửi lại phần nội dung bài tập sau buổi Zoom nhé ❤️
+Nhóm Cá nhân: 
+Anh/ Chị [Tên] ơi,
+Em gửi lại phần bài tập sau buổi Zoom nhé❤️
+- 2 Ngày trước deadline: 
+Anh/ Chị [Tên] ơi,
+Đừng quên hoàn thành bài tập anh/ chị nhee🥰
+Deadline: 23h59 ngày .../... (Thứ ...)
+- Sau deadline: 
+Anh/ Chị [Tên] ơi, Anh/ Chị đã hoàn thành xong bài tập chưa heng🥰
+
+
+",Có,"Sau buổi Zoom, trước hạn nộp 2 ngày, sau deadline",GĐ2
+,"Nhắc lịch học: ngày nào, mấy giờ, nhóm nào, mẫu câu",,Có,,GĐ2
+,"Nhắc khác (phản biện nhóm, sự kiện...)",,,,GĐ2
+,"Khi có học viên mới vào hoặc nghỉ, ai cập nhật danh sách cho bot?",,,,GĐ2
+,"Ngày lễ, nghỉ Tết thì bot có dừng nhắc không?",,,,GĐ2
+,"Chị đồng ý thêm tài khoản bot vào nhóm K3, K4 và nhóm tổng, có quyền đăng tin không?",,Có,,GĐ2
+8. Theo dõi clip,Mục tiêu tối thiểu bao nhiêu clip/tuần? Mỗi người một mục tiêu riêng đúng không?,"K3: mục tiêu riêng
+K4: 7 clips/ người",Có,"Phiếu trước ghi 5 clips/tuần, mẫu nhắc ghi 7 clips; K3 chị Huyền 5 clips",GĐ2
+,Tuần tính từ thứ mấy đến thứ mấy?,,Có,Mẫu: 09/11 – 15/11 (thứ 2 → Chủ nhật),GĐ2
+,"Bot đếm dựa trên gì: số link học viên dán vào nhóm, hay tự vào kênh TikTok/FB đếm?",Dựa vào link học viên dán vào nhóm - tự vào Kênh kiểm tra lại - thiếu sẽ tự cập nhật,Có,,GĐ2
+,Đăng cùng 1 clip lên cả TikTok và FB thì tính 1 hay 2 clip?,Tính 1 clip,,,GĐ2
+,Link TikTok/FB/Fanpage của từng học viên (gửi file Excel riêng),,,,GĐ2
+,"Tin cập nhật số clip gửi ngày nào, mấy giờ? Nhắn riêng hay trong nhóm?","Thứ 2 hàng tuần
+Gửi Nhóm Cá nhân",Có,Đã có mẫu tin nhắn riêng,GĐ2
+,Người đạt mục tiêu thì bot nhắn khen hay không cần? Câu khen mẫu?,Cần khen,,,GĐ2
+,"Người 2 tuần liền không đạt thì bot làm gì (nhắc mạnh hơn, báo chị)?",,,,GĐ2
+,"Bot có cần ghi nhận lượt xem, tương tác của clip không, hay chỉ đếm số lượng?",,,,GĐ2
+9. Báo cáo,"Báo cáo ngày: gửi nhóm nào (tên chính xác), mấy giờ, ai đọc?",,Có,Nhóm Business Việt Hà?,GĐ2
+,"Báo cáo tuần: gửi nhóm nào, ngày nào, mấy giờ, ai đọc?",,Có,,GĐ2
+,"Báo cáo ngày cần những nội dung nào: khách mới, khoá khách quan tâm, số form đã gửi, khách cần người xử lý, câu bot chưa trả lời được, bài nộp, số clip...?",,Có,,GĐ2
+,Báo cáo tuần cần những nội dung nào?,,Có,,GĐ2
+,Báo cáo ngắn gọn (vài dòng số liệu) hay chi tiết tên từng người?,,,,GĐ2
+,Có cần lưu báo cáo vào Google Sheet để xem lại theo tháng không?,,,,GĐ2
+,Ngày không có gì mới thì bot vẫn gửi hay bỏ qua?,,,,GĐ2
+,Chị có mẫu báo cáo đang dùng không? (gửi qua Zalo),,,,GĐ2
+10. Bài tập học viên,2–3 bài mẫu ĐÚNG và 2–3 bài mẫu SAI (gửi Zalo),,Có,,GĐ2
+,Format cụ thể của bài nộp qua tin nhắn (các dòng bắt buộc),,Có,"Đúng số lượng, đúng deadline, đúng format",GĐ2
+,Bot nhắn 24/7: có cần tránh nhắn nhắc bài sau 22h không?,,,Phiếu trước: 24/7,GĐ2
+,Bot nhận xét nội dung bài theo tiêu chí nào? Chị gửi 1–2 nhận xét mẫu,,,,GĐ2
+,Lớp thí điểm: tên Zalo từng người; mọi người đã kết bạn với Zalo của bot chưa?,,,"Hà, Toàn",GĐ2

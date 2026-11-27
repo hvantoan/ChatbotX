@@ -6,6 +6,7 @@
   "exports": {
     ".": "./src/index.tsx",
     "./postcss.config": "./postcss.config.mjs",
+    "./components/ui/button-variants": "./src/components/ui/button-variants.ts",
     "./components/*": "./src/components/*.tsx",
     "./lib/*": "./src/lib/*.ts",
     "./styles/*": "./src/styles/*",

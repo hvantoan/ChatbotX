@@ -14,6 +14,10 @@ export type DataTablePaginationLabels = {
 
 export type DataTableLabels = DataTablePaginationLabels & {
   noResults?: string
+  sortAscending?: string
+  sortDescending?: string
+  resetSorting?: string
+  hideColumn?: string
 }
 
 /**

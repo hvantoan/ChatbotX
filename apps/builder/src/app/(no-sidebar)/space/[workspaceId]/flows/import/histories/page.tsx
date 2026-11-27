@@ -1,5 +1,5 @@
 import { importTypes } from "@inboxos.io/database/partials"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import { getIdFromParams } from "@inboxos.io/utils"
 import { ArrowLeftIcon } from "lucide-react"
 import Link from "next/link"

@@ -771,13 +771,13 @@ export function createAuth(config: AuthConfig) {
 
         const {
           name: brandName,
-          logoLightUrl,
+          logoDarkUrl,
           forgotPasswordEmailTemplate,
         } = platformInfo
 
         const props = {
           brandName,
-          brandLogoUrl: logoLightUrl,
+          brandLogoUrl: logoDarkUrl,
           brandUrl: new URL("/", originUrl).toString(),
           subject: DEFAULT_FORGOT_PASSWORD_SUBJECT,
           userName: user.name ?? user.email,
@@ -817,13 +817,13 @@ export function createAuth(config: AuthConfig) {
 
         const {
           name: brandName,
-          logoLightUrl,
+          logoDarkUrl,
           signupEmailTemplate,
         } = platformInfo
 
         const props = {
           brandName,
-          brandLogoUrl: logoLightUrl,
+          brandLogoUrl: logoDarkUrl,
           brandUrl: new URL("/", originUrl).toString(),
           subject: DEFAULT_SIGNUP_SUBJECT,
           userName: user.name ?? user.email,
@@ -868,7 +868,7 @@ export function createAuth(config: AuthConfig) {
 
           const {
             name: brandName,
-            logoLightUrl,
+            logoDarkUrl,
             magicLinkEmailTemplate,
           } = platformInfo
 
@@ -903,7 +903,7 @@ export function createAuth(config: AuthConfig) {
 
           const props = {
             brandName,
-            brandLogoUrl: logoLightUrl,
+            brandLogoUrl: logoDarkUrl,
             brandUrl: new URL("/", originUrl).toString(),
             subject: DEFAULT_MAGIC_LINK_SUBJECT,
             userName: user.name ?? email,
