@@ -48,7 +48,6 @@
     "eval:search": "tsx evals/search-audit.ts"
   },
   "dependencies": {
-    "@inboxos.io/openapi-catalog": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.32.0",
     "@t3-oss/env-core": "catalog:",
     "dotenv": "^17.4.2",
@@ -56,6 +55,7 @@
   },
   "devDependencies": {
     "@ai-sdk/openai": "catalog:",
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@inboxos.io/flow-config": "workspace:*",
     "@inboxos.io/logger": "workspace:*",
     "@inboxos.io/vitest-config": "workspace:*",

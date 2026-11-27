@@ -687,9 +687,6 @@ importers:
 
   apps/cli:
     dependencies:
-      '@inboxos.io/openapi-catalog':
-        specifier: workspace:*
-        version: link:../../packages/openapi-catalog
       '@t3-oss/env-core':
         specifier: 'catalog:'
         version: 0.13.11(typescript@5.9.3)(valibot@1.5.0(typescript@5.9.3))(zod@4.6.7)
@@ -700,6 +697,9 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
+      '@inboxos.io/openapi-catalog':
+        specifier: workspace:*
+        version: link:../../packages/openapi-catalog
       '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
@@ -770,9 +770,6 @@ importers:
 
   apps/mcp-server:
     dependencies:
-      '@inboxos.io/openapi-catalog':
-        specifier: workspace:*
-        version: link:../../packages/openapi-catalog
       '@modelcontextprotocol/sdk':
         specifier: ^1.32.0
         version: 1.32.0(zod@4.6.7)
@@ -795,6 +792,9 @@ importers:
       '@inboxos.io/logger':
         specifier: workspace:*
         version: link:../../packages/logger
+      '@inboxos.io/openapi-catalog':
+        specifier: workspace:*
+        version: link:../../packages/openapi-catalog
       '@inboxos.io/vitest-config':
         specifier: workspace:*
         version: link:../../packages/vitest-config
