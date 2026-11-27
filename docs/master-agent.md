@@ -17,9 +17,9 @@ member / workspace-token caller
   → worker consumer (apps/worker/src/ai-agent/handlers/process-master-agent.ts)
       loads the session, the MasterAgentConfig and the API catalog
       mints a 5-minute internal credential for the turn
-      runs generateText with the three meta-tools
+      runs generateText with the catalog meta-tools
   → meta-tools (apps/worker/src/lib/master-agent/run.ts)
-      search_tools / call_tool / get_guide
+      search_tools / inspect_tool / call_tool / get_guide
       call_tool enforces hitlPolicy server-side before any HTTP call
   → HTTP to the workspace's own public API
 ```
@@ -37,11 +37,14 @@ same form; writing it requires the `flows` permission.
 
 ### The catalog is the toolset
 
-The agent is never handed hundreds of tools. It gets three meta-tools, exactly
-like the MCP server:
+The agent is never handed hundreds of tools. It searches and inspects the
+catalog through meta-tools:
 
 - `search_tools` — full-text search over the catalog (rank + multilingual
   normalization live in the shared `packages/openapi-catalog` package).
+- `inspect_tool` — exact-name lookup of one operation's usage description,
+  input schema, method/path and approval policy before the agent builds
+  arguments.
 - `call_tool` — executes one operation by name.
 - `get_guide` — returns the operational guide of a resource group
   (`inbox-and-handover`, `contacts-and-pipelines`, `flows-and-automation`) so
@@ -128,13 +131,18 @@ A session started by a member belongs to that member: another member reading
 it would see API results fetched with the initiator's scopes (contact details,
 message bodies) that their own permission flags may mask. The service enforces
 this on both the send and the read path — a foreign session id is a 404, the
-same as an unknown one. A superAdmin may review any session, and a
-token-started session has no member to bind to, so it stays workspace-level
-(every caller is still bounded by the token's scopes). The worker reads with
+same as an unknown one. A superAdmin may review any session. A token-started
+session binds to the exact `WorkspaceApiToken` that started it
+(`createdByTokenId`): another token or member with the session id gets the
+same 404, because the stored results may have been fetched with the first
+token's scopes. Rows that can be bound to neither a member nor a real token
+fail closed instead of becoming workspace-shared. The worker reads with
 `asSystem: true`: the job it runs is exactly the turn it was handed. The
 decision paths are bound the same way: a pending action inherits its session's
-visibility, so only the member who owns the session (or a superAdmin) may
-confirm or reject it — knowing another member's action id is not enough.
+visibility, so only the principal who owns the session (or a superAdmin) may
+confirm or reject it — knowing another principal's action id is not enough.
+Member-owned message rows cascade on account deletion; an ownerless row is
+never reinterpreted as a token session.
 
 ### Caller identity
 
@@ -163,7 +171,7 @@ Private counterparts power the chat page under the same service methods.
 ## Data model
 
 - `MasterAgentMessage` — session history (workspace, sessionId, role, content,
-  status, createdById).
+  status, createdById / createdByTokenId owner binding).
 - `MasterAgentConfig` — one row per workspace.
 - `MasterAgentPendingAction` — approval queue (status `pending`/`approved`/
   `rejected`/`expired`/`failed`, frozen execution, result, decidedById,

@@ -12,6 +12,7 @@ import { z } from "zod"
 import { createReplyModel, getProviderName } from "../../lib/ai/reply-model"
 import { logger } from "../../lib/logger"
 import {
+  inspectCatalogTool,
   type MasterAgentTurnContext,
   readGuide,
   runCatalogTool,
@@ -69,9 +70,17 @@ const buildMetaTools = (context: MasterAgentTurnContext) => ({
     }),
     execute: async ({ query }) => await searchCatalogTools(query),
   }),
+  inspect_tool: tool({
+    description:
+      "Inspect one catalog operation by the exact name search_tools returned. Always use this before call_tool when the operation has arguments: it returns the full inputSchema, usage description, HTTP method/path and approval policy.",
+    inputSchema: z.object({
+      name: z.string().describe("Exact tool name returned by search_tools"),
+    }),
+    execute: async ({ name }) => await inspectCatalogTool(name),
+  }),
   call_tool: tool({
     description:
-      "Execute an operation from the catalog by the exact name search_tools returned. Arguments must match the operation's inputSchema. Some actions need human approval: when the result says the action is pending, report that to the user and stop — do not retry the same operation in this turn.",
+      "Execute an operation from the catalog by the exact name search_tools returned. Arguments must match the inputSchema returned by inspect_tool. Some actions need human approval: when the result says the action is pending, report that to the user and stop — do not retry the same operation in this turn.",
     inputSchema: z.object({
       name: z.string().describe("Exact tool name returned by search_tools"),
       arguments: z

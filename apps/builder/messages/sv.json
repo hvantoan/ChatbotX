@@ -12232,6 +12232,7 @@
       "prompt": "Extra instructions",
       "promptHint": "Appended after the built-in instructions.",
       "models": "Provider models",
+      "includeModel": "Include {provider} in the fallback order",
       "save": "Save configuration",
       "notConfigured": "The Master Agent is not configured yet — save this form to enable it.",
       "openSettings": "Settings"
@@ -12239,6 +12240,7 @@
     "errors": {
       "sendFailed": "The message could not be sent.",
       "confirmFailed": "The action could not be confirmed.",
+      "confirmExecutionFailed": "The action was approved, but the API rejected it.",
       "rejectFailed": "The action could not be rejected.",
       "saveConfigFailed": "The configuration could not be saved."
     },

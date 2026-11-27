@@ -277,9 +277,11 @@ describe("x-mcp outbound policy", () => {
     expect(outboundOperationIds).toEqual([
       "ads.publishCampaign",
       "appointments.book",
+      "broadcasts.create",
       "broadcasts.resend",
       "broadcasts.resume",
       "broadcasts.schedule",
+      "broadcasts.updateDraft",
       "channels.sendMessage",
       "contacts.bulkSubscribeSequences",
       "contacts.sendFlow",

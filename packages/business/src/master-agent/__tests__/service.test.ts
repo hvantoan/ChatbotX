@@ -112,6 +112,8 @@ beforeEach(() => {
       role: "user",
       content: "hi",
       status: "completed",
+      createdById: "member-1",
+      createdByTokenId: null,
       createdAt: new Date("2026-11-26T10:00:00.000Z"),
     },
   ])
@@ -134,6 +136,7 @@ describe("sendMessage", () => {
       content: "hello there",
       status: "completed",
       createdById: "member-1",
+      createdByTokenId: null,
     })
     expect(mocks.insertValues[1]).toMatchObject({
       role: "assistant",
@@ -216,6 +219,18 @@ describe("sendMessage", () => {
   })
 
   test("token-originated chats pass the token id into the job", async () => {
+    mocks.findManyMessage.mockResolvedValue([
+      {
+        id: "u-1",
+        role: "user",
+        content: "hi",
+        status: "completed",
+        createdById: null,
+        createdByTokenId: "tok-1",
+        createdAt: new Date("2026-11-26T10:00:00.000Z"),
+      },
+    ])
+
     await masterAgentService.sendMessage({
       workspaceId: "ws-1",
       memberId: null,
@@ -224,6 +239,10 @@ describe("sendMessage", () => {
       sessionId: null,
     })
 
+    expect(mocks.insertValues[0]).toMatchObject({
+      createdById: null,
+      createdByTokenId: "tok-1",
+    })
     expect(mocks.queueAdd).toHaveBeenCalledWith(
       "processMasterAgent",
       expect.objectContaining({
@@ -233,12 +252,64 @@ describe("sendMessage", () => {
     )
   })
 
-  test("a new turn expires the session's unanswered pending actions first", async () => {
-    mocks.findFirstMessage.mockResolvedValue({ id: "u-0" })
+  test("another token cannot continue a token-owned session", async () => {
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "m-1",
+      createdById: null,
+      createdByTokenId: "tok-1",
+    })
+
+    await expect(
+      masterAgentService.sendMessage({
+        workspaceId: "ws-1",
+        memberId: null,
+        tokenId: "tok-2",
+        message: "hi",
+        sessionId: "s-1",
+      }),
+    ).rejects.toThrow("Session not found")
+    expect(mocks.insertValues).toHaveLength(0)
+  })
+
+  test("the same token can continue its own token-owned session", async () => {
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "m-1",
+      createdById: null,
+      createdByTokenId: "tok-1",
+    })
+    mocks.findManyMessage.mockResolvedValue([
+      {
+        id: "u-1",
+        role: "user",
+        content: "hi",
+        status: "completed",
+        createdById: null,
+        createdByTokenId: "tok-1",
+        createdAt: new Date("2026-11-26T10:00:00.000Z"),
+      },
+    ])
 
     await masterAgentService.sendMessage({
       workspaceId: "ws-1",
-      memberId: "m-1",
+      memberId: null,
+      tokenId: "tok-1",
+      message: "hi",
+      sessionId: "s-1",
+    })
+
+    expect(mocks.insertValues).toHaveLength(2)
+  })
+
+  test("a new turn expires the session's unanswered pending actions first", async () => {
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "u-0",
+      createdById: "member-1",
+      createdByTokenId: null,
+    })
+
+    await masterAgentService.sendMessage({
+      workspaceId: "ws-1",
+      memberId: "member-1",
       tokenId: null,
       message: "next question",
       sessionId: "s-existing",
@@ -280,6 +351,61 @@ describe("sendMessage", () => {
       }),
     ).rejects.toThrow()
     expect(mocks.queueAdd).not.toHaveBeenCalled()
+  })
+})
+
+describe("getSession visibility", () => {
+  const tokenOwnedRows = [
+    {
+      id: "u-1",
+      role: "user",
+      content: "hi",
+      status: "completed",
+      createdById: null,
+      createdByTokenId: "tok-1",
+      createdAt: new Date("2026-11-26T10:00:00.000Z"),
+    },
+  ]
+
+  test("another token cannot read a token-owned session", async () => {
+    mocks.findManyMessage.mockResolvedValue(tokenOwnedRows)
+
+    await expect(
+      masterAgentService.getSession({
+        workspaceId: "ws-1",
+        sessionId: "s-1",
+        viewerTokenId: "tok-2",
+      }),
+    ).rejects.toThrow("Session not found")
+  })
+
+  test("the owning token can read its own session", async () => {
+    mocks.findManyMessage.mockResolvedValue(tokenOwnedRows)
+
+    const view = await masterAgentService.getSession({
+      workspaceId: "ws-1",
+      sessionId: "s-1",
+      viewerTokenId: "tok-1",
+    })
+
+    expect(view.sessionId).toBe("s-1")
+  })
+
+  test("an ownerless session fails closed for ordinary callers", async () => {
+    mocks.findManyMessage.mockResolvedValue([
+      {
+        ...tokenOwnedRows[0],
+        createdByTokenId: null,
+      },
+    ])
+
+    await expect(
+      masterAgentService.getSession({
+        workspaceId: "ws-1",
+        sessionId: "s-1",
+        viewerMemberId: "member-1",
+      }),
+    ).rejects.toThrow("Session not found")
   })
 })
 
@@ -387,7 +513,7 @@ describe("createPendingAction", () => {
       toolName: "broadcasts_schedule",
       status: "pending",
     })
-    expect(view.resourcePath).toBe("/broadcasts/b-1")
+    expect(view.resourcePath).toBe("/broadcasts/b-1/edit")
   })
 })
 
@@ -432,6 +558,7 @@ describe("claimPendingActionForExecution", () => {
     mocks.findFirstMessage.mockResolvedValue({
       id: "u-0",
       createdById: "member-1",
+      createdByTokenId: null,
     })
     mocks.updateReturning.push([{ id: "pa-1", status: "approved" }])
 

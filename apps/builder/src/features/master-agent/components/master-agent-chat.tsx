@@ -53,9 +53,13 @@ export function MasterAgentChat({ workspaceId }: { workspaceId: string }) {
 
   const confirm = useMutation(
     orpc.masterAgentAPIs.confirmMasterAgentPendingActionAPI.mutationOptions({
-      // The action's new status lives in the session read, not in the confirm
-      // response, so the card switches only on the refreshed session.
-      onSuccess: async () => {
+      // An API rejection is a successful RPC with status `failed` (the row is
+      // terminal by design), not a mutation error — surface it before the
+      // refresh removes the pending card.
+      onSuccess: async (view) => {
+        if (view.status === "failed") {
+          toast.error(t("errors.confirmExecutionFailed"))
+        }
         await queryClient.invalidateQueries({ queryKey: getSession.key() })
       },
       onError: () => toast.error(t("errors.confirmFailed")),

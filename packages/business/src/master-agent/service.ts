@@ -43,7 +43,7 @@ export const MASTER_AGENT_DEFAULT_PROMPT = [
   "You are the Master Agent, the workspace operator's assistant. You manage the workspace through its public API: contacts, flows, broadcasts, AI agents, inbox, pipelines and everything else the catalog exposes.",
   "Answer in the language the user writes in.",
   `All dates and times are read and written as ${MASTER_AGENT_TIMEZONE} wall clock (24h, dd/MM/yyyy HH:mm).`,
-  "Use search_tools to find the operation you need, read its inputSchema, and call it with call_tool. Before your first mutation on a resource group you have not worked with in this session, call get_guide for that group's operational procedure.",
+  "Use search_tools to find the operation you need, then call inspect_tool with its exact name to read its inputSchema before calling it with call_tool. Before your first mutation on a resource group you have not worked with in this session, call get_guide for that group's operational procedure.",
   "Never guess resource ids: resolve them with list/search operations first.",
   "Some actions need a human's approval: when a call returns a pending-approval notice, tell the user the action is waiting for their review and stop retrying it — do NOT call the same operation again in this turn.",
   "There is no `_confirm` argument. Never pass one: confirmation is a human decision made in the UI, not something you can supply yourself.",
@@ -105,6 +105,17 @@ export type MasterAgentConfigView = {
  */
 const SINGLE_RESOURCE_ID_PARAMS = ["id", "broadcastId", "flowId"]
 
+/**
+ * Explicit operation-resource → builder-editor map. Deriving editor paths by
+ * stringing together `/<resource>/<id>` produces plausible-looking 404s (the
+ * broadcast editor lives under `/edit`), so an operation without a verified
+ * route deliberately gets no link.
+ */
+const RESOURCE_EDITOR_PATHS: Readonly<Record<string, (id: string) => string>> =
+  {
+    broadcasts: (id) => `/broadcasts/${encodeURIComponent(id)}/edit`,
+  }
+
 const toResourcePath = (
   operationId: string,
   args: unknown,
@@ -114,7 +125,8 @@ const toResourcePath = (
     return null
   }
   const resource = operationId.split(".")[0]
-  if (!resource) {
+  const toEditorPath = resource ? RESOURCE_EDITOR_PATHS[resource] : undefined
+  if (!toEditorPath) {
     return null
   }
   const argRecord =
@@ -129,7 +141,7 @@ const toResourcePath = (
   if (!idParam) {
     return null
   }
-  return `/${resource}/${String(argRecord[idParam])}`
+  return toEditorPath(String(argRecord[idParam]))
 }
 
 const toPendingActionView = (
@@ -184,7 +196,7 @@ class MasterAgentService {
           sessionId: requestedSessionId,
         },
         orderBy: { createdAt: "asc", id: "asc" },
-        columns: { id: true, createdById: true },
+        columns: { id: true, createdById: true, createdByTokenId: true },
       })
       if (!existing) {
         throw notFoundException("Session not found")
@@ -192,7 +204,9 @@ class MasterAgentService {
       this.assertSessionVisible({
         workspaceId: input.workspaceId,
         sessionOwnerId: existing.createdById ?? null,
+        sessionOwnerTokenId: existing.createdByTokenId ?? null,
         viewerMemberId: input.memberId ?? null,
+        viewerTokenId: input.tokenId ?? null,
         viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
       })
     }
@@ -213,6 +227,7 @@ class MasterAgentService {
       )
 
     const createdById = input.memberId ?? null
+    const createdByTokenId = input.tokenId ?? null
     const [, assistant] = await db.transaction(async (tx) => {
       const userMessage = await tx
         .insert(masterAgentMessageModel)
@@ -223,6 +238,7 @@ class MasterAgentService {
           content,
           status: masterAgentMessageStatuses.enum.completed,
           createdById,
+          createdByTokenId,
         })
         .returning({ id: masterAgentMessageModel.id })
       const pending = await tx
@@ -234,6 +250,7 @@ class MasterAgentService {
           content: "",
           status: masterAgentMessageStatuses.enum.pending,
           createdById,
+          createdByTokenId,
         })
         .returning({ id: masterAgentMessageModel.id })
       return [userMessage[0], pending[0]]
@@ -259,29 +276,41 @@ class MasterAgentService {
       workspaceId: input.workspaceId,
       sessionId,
       viewerMemberId: input.memberId ?? null,
+      viewerTokenId: input.tokenId ?? null,
       viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
     })
   }
 
   /**
-   * A session started by a member belongs to that member: another member
-   * reading it would see API results fetched with the initiator's scopes
-   * (contact details, conversation content) that their own permission flags
-   * may mask. A superAdmin may review any session in the workspace, and a
-   * token-started session (`createdById` null) has no member to bind to, so
-   * it stays workspace-level — every caller is already bounded by the
-   * token's scopes.
+   * A session belongs to the exact principal that started it: a member-owned
+   * chat can contain API results fetched with that member's permission scope,
+   * and a token-owned chat can contain results fetched with that token's
+   * scopes. Neither may be read by a different principal just because it knows
+   * the session id. Ownerless rows fail closed: they are visible only to a
+   * superAdmin (principals a synthetic caller could not be bound to are not
+   * workspace-shared).
    */
   private assertSessionVisible(input: {
     workspaceId: string
     sessionOwnerId: string | null
+    sessionOwnerTokenId: string | null
     viewerMemberId: string | null
+    viewerTokenId: string | null
     viewerIsSuperAdmin: boolean
   }): void {
-    if (input.sessionOwnerId === null || input.viewerIsSuperAdmin) {
+    if (input.viewerIsSuperAdmin) {
       return
     }
-    if (input.viewerMemberId === input.sessionOwnerId) {
+    if (
+      input.sessionOwnerId !== null &&
+      input.viewerMemberId === input.sessionOwnerId
+    ) {
+      return
+    }
+    if (
+      input.sessionOwnerTokenId !== null &&
+      input.viewerTokenId === input.sessionOwnerTokenId
+    ) {
       return
     }
     throw notFoundException("Session not found")
@@ -296,6 +325,7 @@ class MasterAgentService {
     workspaceId: string
     sessionId: string
     viewerMemberId: string | null
+    viewerTokenId: string | null
     viewerIsSuperAdmin: boolean
   }): Promise<void> {
     const owner = await db.query.masterAgentMessageModel.findFirst({
@@ -304,28 +334,30 @@ class MasterAgentService {
         sessionId: input.sessionId,
       },
       orderBy: { createdAt: "asc", id: "asc" },
-      columns: { createdById: true },
+      columns: { createdById: true, createdByTokenId: true },
     })
     this.assertSessionVisible({
       workspaceId: input.workspaceId,
       sessionOwnerId: owner?.createdById ?? null,
+      sessionOwnerTokenId: owner?.createdByTokenId ?? null,
       viewerMemberId: input.viewerMemberId,
+      viewerTokenId: input.viewerTokenId,
       viewerIsSuperAdmin: input.viewerIsSuperAdmin,
     })
   }
 
   /**
    * Session history with its pending actions. Unknown session or foreign
-   * workspace → 404. A member-started session is readable only by the member
-   * who started it (and a superAdmin); a token-started session is
-   * workspace-shared, because a token has no member identity to bind to.
-   * The worker reads with `asSystem: true` — it has no viewer, and the job it
-   * runs is exactly the turn it was handed.
+   * workspace → 404. A member-started session is readable only by that member,
+   * a token-started one only by the same token, and either kind by a
+   * superAdmin. The worker reads with `asSystem: true` — it has no viewer,
+   * and the job it runs is exactly the turn it was handed.
    */
   async getSession(input: {
     workspaceId: string
     sessionId: string
     viewerMemberId?: string | null
+    viewerTokenId?: string | null
     viewerIsSuperAdmin?: boolean
     asSystem?: boolean
   }): Promise<MasterAgentSessionView> {
@@ -352,7 +384,9 @@ class MasterAgentService {
       this.assertSessionVisible({
         workspaceId: input.workspaceId,
         sessionOwnerId: rows[0]?.createdById ?? null,
+        sessionOwnerTokenId: rows[0]?.createdByTokenId ?? null,
         viewerMemberId: input.viewerMemberId ?? null,
+        viewerTokenId: input.viewerTokenId ?? null,
         viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
       })
     }
@@ -540,6 +574,7 @@ class MasterAgentService {
     actionId: string
     decidedById: string | null
     viewerMemberId?: string | null
+    viewerTokenId?: string | null
     viewerIsSuperAdmin?: boolean
   }): Promise<MasterAgentPendingActionModel | null> {
     const row = await db.query.masterAgentPendingActionModel.findFirst({
@@ -551,6 +586,7 @@ class MasterAgentService {
         workspaceId: input.workspaceId,
         sessionId: row.sessionId,
         viewerMemberId: input.viewerMemberId ?? null,
+        viewerTokenId: input.viewerTokenId ?? null,
         viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
       })
     }
@@ -614,6 +650,7 @@ class MasterAgentService {
     actionId: string
     decidedById: string | null
     viewerMemberId?: string | null
+    viewerTokenId?: string | null
     viewerIsSuperAdmin?: boolean
   }): Promise<MasterAgentPendingActionView> {
     const existing = await db.query.masterAgentPendingActionModel.findFirst({
@@ -625,6 +662,7 @@ class MasterAgentService {
         workspaceId: input.workspaceId,
         sessionId: existing.sessionId,
         viewerMemberId: input.viewerMemberId ?? null,
+        viewerTokenId: input.viewerTokenId ?? null,
         viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
       })
     }

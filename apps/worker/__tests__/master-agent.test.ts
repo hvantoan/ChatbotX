@@ -68,7 +68,9 @@ vi.mock("../src/lib/logger", () => ({
 const { processMasterAgent } = await import(
   "../src/ai-agent/handlers/process-master-agent"
 )
-const { runCatalogTool } = await import("../src/lib/master-agent/run")
+const { inspectCatalogTool, runCatalogTool } = await import(
+  "../src/lib/master-agent/run"
+)
 
 const message = (overrides: Record<string, unknown> = {}) => ({
   id: "u-1",
@@ -168,6 +170,7 @@ describe("processMasterAgent", () => {
       { role: "user", content: "Tóm tắt Zoom: nhóm K5, nhắc 20:00 ngày 27/11" },
     ])
     expect(call.tools.search_tools).toBeDefined()
+    expect(call.tools.inspect_tool).toBeDefined()
     expect(call.tools.call_tool).toBeDefined()
     expect(call.tools.get_guide).toBeDefined()
     expect(mocks.completeTurn).toHaveBeenCalledWith({
@@ -211,6 +214,29 @@ describe("processMasterAgent", () => {
     expect(mocks.completeTurn).toHaveBeenCalledWith(
       expect.objectContaining({ status: "failed" }),
     )
+  })
+})
+
+describe("inspectCatalogTool", () => {
+  test("returns the exact tool's input schema and usage metadata", async () => {
+    const tool = toolFixture({
+      inputSchema: {
+        type: "object",
+        properties: { schedulesAt: { type: "string" } },
+        required: ["schedulesAt"],
+      },
+    })
+    mocks.findCatalogToolByName.mockReturnValue(tool)
+
+    const result = await inspectCatalogTool(tool.name)
+
+    expect(result).toMatchObject({
+      name: tool.name,
+      operationId: tool.operationId,
+      inputSchema: expect.objectContaining({
+        required: ["schedulesAt"],
+      }),
+    })
   })
 })
 

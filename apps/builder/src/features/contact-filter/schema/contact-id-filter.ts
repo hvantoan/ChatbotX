@@ -12,19 +12,39 @@ import { z } from "zod"
  * replaced with an empty one on the next save — which would silently widen the
  * audience to every contact with a direct chat.
  */
-export const contactIdConditionSchema = z.object({
-  field: z
-    .literal("contactId")
-    .describe("Always `contactId`: pins the audience to these contacts."),
-  operator: z
-    .enum(["eq", "in"])
-    .describe("`eq` for one contact id, `in` for several."),
-  value: z
-    .union([
-      z.string().trim().min(1),
-      z.array(z.string().trim().min(1)).min(1).max(500),
-    ])
-    .describe("Contact id (or ids) the audience is pinned to."),
-})
+// Digit strings compare lexicographically at equal length, so the signed
+// bigint ceiling needs no BigInt() call (which throws on non-digits).
+const MAX_SIGNED_BIGINT = "9223372036854775807"
+
+const contactIdValueSchema = z
+  .string()
+  .trim()
+  .regex(/^\d{1,19}$/u, "Contact id must be a positive bigint.")
+  .refine(
+    (value) => value.length < 19 || value <= MAX_SIGNED_BIGINT,
+    "Contact id must fit in a signed bigint.",
+  )
+  .describe("Contact id as a decimal bigint string.")
+
+const contactIdFieldSchema = z
+  .literal("contactId")
+  .describe("Always `contactId`: pins the audience to these contacts.")
+
+export const contactIdConditionSchema = z.discriminatedUnion("operator", [
+  z.object({
+    field: contactIdFieldSchema,
+    operator: z.literal("eq").describe("`eq` pins exactly one contact."),
+    value: contactIdValueSchema,
+  }),
+  z.object({
+    field: contactIdFieldSchema,
+    operator: z.literal("in").describe("`in` pins several contacts."),
+    value: z
+      .array(contactIdValueSchema)
+      .min(1)
+      .max(500)
+      .describe("Contact ids the audience is pinned to."),
+  }),
+])
 
 export type ContactIdCondition = z.infer<typeof contactIdConditionSchema>

@@ -205,10 +205,48 @@ export const searchCatalogTools = async (
   return {
     matches: matches.map((tool) => ({
       name: tool.name,
-      description: tool.annotations.title,
+      description: tool.description || tool.annotations.title,
     })),
     totalMatches: matches.length,
     resourceGroups: distinctResourceGroups(catalog),
+  }
+}
+
+export type InspectCatalogToolResult =
+  | {
+      name: string
+      operationId: string
+      description: string
+      method: string
+      pathTemplate: string
+      hitlPolicy: DynamicTool["hitlPolicy"]
+      inputSchema: DynamicTool["inputSchema"]
+    }
+  | { error: string }
+
+/**
+ * Exact-name schema lookup. Search results stay compact; the agent calls this
+ * before `call_tool` so nested fields, valid values and optional parameters
+ * are never guessed.
+ */
+export const inspectCatalogTool = async (
+  name: string,
+): Promise<InspectCatalogToolResult> => {
+  await loadMasterAgentCatalog()
+  const tool = findCatalogToolByName(name)
+  if (!tool) {
+    return {
+      error: `Unknown tool: ${name}. Use search_tools to find the exact name.`,
+    }
+  }
+  return {
+    name: tool.name,
+    operationId: tool.operationId,
+    description: tool.description,
+    method: tool.method,
+    pathTemplate: tool.pathTemplate,
+    hitlPolicy: tool.hitlPolicy,
+    inputSchema: tool.inputSchema,
   }
 }
 

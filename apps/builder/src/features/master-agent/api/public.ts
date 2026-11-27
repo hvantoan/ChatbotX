@@ -108,6 +108,9 @@ export const masterAgentPublicRouter = {
           sessionId: input.sessionId,
           viewerMemberId:
             context.user?.id ?? oauthCallerUserId(context.apiToken),
+          viewerTokenId: context.user
+            ? null
+            : realWorkspaceTokenId(context.apiToken),
           viewerIsSuperAdmin: context.member?.permissions.superAdmin === true,
         }),
     ),
@@ -216,6 +219,7 @@ export const masterAgentPublicRouter = {
         actionId: input.actionId,
         decidedById: memberId,
         viewerMemberId: memberId,
+        viewerTokenId: memberId ? null : realWorkspaceTokenId(context.apiToken),
         viewerIsSuperAdmin: context.member?.permissions.superAdmin === true,
       })
     }),

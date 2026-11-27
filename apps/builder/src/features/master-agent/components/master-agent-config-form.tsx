@@ -19,12 +19,14 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 import { getAiProviderLabelKey } from "@/features/ai-agents/lib/ai-provider-label"
-import {
-  buildOpenaiCompatibleAgentModels,
-  getOpenaiCompatibleIntegrationLabel,
-} from "@/features/ai-agents/openai-compatible-models"
+import { getOpenaiCompatibleIntegrationLabel } from "@/features/ai-agents/openai-compatible-models"
 import type { IntegrationOpenaiCompatibleResource } from "@/features/integration-openai-compatible/schema/resource"
 import { orpc } from "@/lib/orpc/query"
+import {
+  buildEditableMasterAgentModels,
+  collectSelectedMasterAgentModels,
+  masterAgentModelKey,
+} from "../lib/model-selection"
 
 export type MasterAgentConfigFormData = {
   configured: boolean
@@ -39,32 +41,7 @@ type ProviderModelEntry = Extract<
   { provider: string }
 >
 
-/**
- * The provider rows of a stored/normalized models list keyed for editing:
- * one row per known chat provider plus one per connected openai-compatible
- * integration, each carrying its chosen model. Mirrors what the AI agent
- * dialog does for `agent.models` so both surfaces edit the same shape.
- */
-const buildEditableModels = (
-  storedModels: unknown[],
-  integrations: IntegrationOpenaiCompatibleResource[],
-): AIAgentProviderModels => {
-  const stored = storedModels as AIAgentProviderModels
-  const normalizedProviders = aiChatProviders.map((provider) => ({
-    provider: provider.provider,
-    model:
-      stored.find(
-        (model) => "provider" in model && model.provider === provider.provider,
-      )?.model ?? provider.defaultModel,
-  }))
-  return [
-    ...normalizedProviders,
-    ...buildOpenaiCompatibleAgentModels({
-      integrations,
-      storedModels: stored,
-    }),
-  ] as AIAgentProviderModels
-}
+type EditableModelEntry = AIAgentProviderModels[number]
 
 /**
  * The workspace's Master Agent settings: enablement, approval mode, extra
@@ -89,8 +66,25 @@ export function MasterAgentConfigForm({
     initialConfig.autoApproveDiff,
   )
   const [prompt, setPrompt] = useState(initialConfig.prompt ?? "")
-  const [models, setModels] = useState<AIAgentProviderModels>(() =>
-    buildEditableModels(initialConfig.models, openaiCompatibleIntegrations),
+  const [models, setModels] = useState<AIAgentProviderModels>(() => {
+    const editable = buildEditableMasterAgentModels({
+      storedModels: initialConfig.models,
+      integrations: openaiCompatibleIntegrations,
+      selectAllWhenEmpty: !initialConfig.configured,
+    })
+    return editable.rows
+  })
+  const [selectedModelKeys, setSelectedModelKeys] = useState<
+    ReadonlySet<string>
+  >(
+    () =>
+      new Set(
+        buildEditableMasterAgentModels({
+          storedModels: initialConfig.models,
+          integrations: openaiCompatibleIntegrations,
+          selectAllWhenEmpty: !initialConfig.configured,
+        }).selectedKeys,
+      ),
   )
 
   const getConfig = orpc.masterAgentAPIs.getMasterAgentConfigAPI
@@ -116,14 +110,70 @@ export function MasterAgentConfigForm({
     )
   }
 
+  const toggleModel = (key: string, selected: boolean) => {
+    setSelectedModelKeys((current) => {
+      const next = new Set(current)
+      if (selected) {
+        next.add(key)
+      } else {
+        next.delete(key)
+      }
+      return next
+    })
+  }
+
   const submit = () => {
     save.mutate({
       workspaceId,
       enabled,
       autoApproveDiff,
       prompt: prompt.trim() ? prompt.trim() : null,
-      models,
+      models: collectSelectedMasterAgentModels(models, selectedModelKeys),
     })
+  }
+
+  const renderModelPicker = (
+    entry: EditableModelEntry,
+    index: number,
+    label: string,
+    options: Array<{ label: string; value: string }>,
+  ) => {
+    const key = masterAgentModelKey(entry)
+    const selected = selectedModelKeys.has(key)
+    const hasCurrentOption = options.some(
+      (option) => option.value === entry.model,
+    )
+    return (
+      <div className="flex items-center justify-between gap-4" key={key}>
+        <Label className="min-w-0 flex-1">{label}</Label>
+        <div className="flex items-center gap-2">
+          <Switch
+            aria-label={t("config.includeModel", { provider: label })}
+            checked={selected}
+            onCheckedChange={(checked) => toggleModel(key, checked)}
+          />
+          <Select
+            disabled={!selected}
+            onValueChange={(value) => updateModel(index, value as string)}
+            value={entry.model}
+          >
+            <SelectTrigger className="w-56">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+              {hasCurrentOption ? null : (
+                <SelectItem value={entry.model}>{entry.model}</SelectItem>
+              )}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -187,33 +237,11 @@ export function MasterAgentConfigForm({
             const label = integration
               ? getOpenaiCompatibleIntegrationLabel(integration)
               : entry.integrationId
-            return (
-              <div
-                className="flex items-center justify-between gap-4"
-                key={`${entry.kind}-${entry.integrationId}`}
-              >
-                <Label className="min-w-0 flex-1">{label}</Label>
-                <Select
-                  onValueChange={(value) => updateModel(index, value as string)}
-                  value={entry.model}
-                >
-                  <SelectTrigger className="w-56">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {(presetConfig?.modelOptions ?? []).map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                    {presetConfig?.modelOptions.some(
-                      (option) => option.value === entry.model,
-                    ) ? null : (
-                      <SelectItem value={entry.model}>{entry.model}</SelectItem>
-                    )}
-                  </SelectContent>
-                </Select>
-              </div>
+            return renderModelPicker(
+              entry,
+              index,
+              label,
+              presetConfig?.modelOptions ?? [],
             )
           }
 
@@ -224,30 +252,11 @@ export function MasterAgentConfigForm({
           if (!provider) {
             return null
           }
-          return (
-            <div
-              className="flex items-center justify-between gap-4"
-              key={providerEntry.provider}
-            >
-              <Label className="min-w-0 flex-1">
-                {tFields(getAiProviderLabelKey(provider.provider) as never)}
-              </Label>
-              <Select
-                onValueChange={(value) => updateModel(index, value as string)}
-                value={providerEntry.model}
-              >
-                <SelectTrigger className="w-56">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {provider.modelOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          return renderModelPicker(
+            providerEntry,
+            index,
+            tFields(getAiProviderLabelKey(provider.provider) as never),
+            provider.modelOptions,
           )
         })}
       </div>

@@ -3,7 +3,10 @@ import {
   mintMasterAgentCredential,
 } from "@inboxos.io/business"
 import { notFoundException } from "@inboxos.io/business/errors"
-import { executeOperationShape } from "@inboxos.io/openapi-catalog"
+import {
+  apiBaseUrlFromBuilderUrl,
+  executeOperationShape,
+} from "@inboxos.io/openapi-catalog"
 import { ORPCError } from "@orpc/server"
 import { env } from "@/env"
 
@@ -29,6 +32,7 @@ export const executePendingActionConfirmation = async (input: {
     actionId: input.actionId,
     decidedById,
     viewerMemberId: input.viewerMemberId ?? null,
+    viewerTokenId: input.tokenId ?? null,
     viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
   })
   if (!claimed) {
@@ -63,7 +67,7 @@ export const executePendingActionConfirmation = async (input: {
     const outcome = await executeOperationShape(
       {
         method: claimed.execution.method,
-        baseUrl: env.NEXT_PUBLIC_BUILDER_URL,
+        baseUrl: apiBaseUrlFromBuilderUrl(env.NEXT_PUBLIC_BUILDER_URL),
         pathTemplate: claimed.execution.pathTemplate,
         pathParamNames: claimed.execution.pathParamNames,
         queryParamNames: claimed.execution.queryParamNames,

@@ -127,6 +127,15 @@ describe("pathAndMethodToCommandName — operations that used to collide get dis
     ).toBe("contacts:bulk-tags-remove")
   })
 
+  test("master-agent config read and write do not collide", () => {
+    expect(pathAndMethodToCommandName("/v1/master-agent/config", "GET")).toBe(
+      "master-agent:get-config",
+    )
+    expect(pathAndMethodToCommandName("/v1/master-agent/config", "PUT")).toBe(
+      "master-agent:update-config",
+    )
+  })
+
   test("ads and flow-stats operations each get their own command", () => {
     const names = [
       pathAndMethodToCommandName("/v1/ads/campaigns", "GET"),

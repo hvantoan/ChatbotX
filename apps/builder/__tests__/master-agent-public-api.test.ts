@@ -383,6 +383,7 @@ describe("pending action decisions", () => {
       actionId: "pa-1",
       decidedById: null,
       viewerMemberId: null,
+      viewerTokenId: "token-1",
       viewerIsSuperAdmin: false,
     })
   })

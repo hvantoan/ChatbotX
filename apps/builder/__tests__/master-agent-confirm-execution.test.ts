@@ -26,6 +26,7 @@ vi.mock("@inboxos.io/business", () => ({
 }))
 
 vi.mock("@inboxos.io/openapi-catalog", () => ({
+  apiBaseUrlFromBuilderUrl: (url: string) => `${url}/api`,
   executeOperationShape,
 }))
 
@@ -91,7 +92,7 @@ describe("executePendingActionConfirmation", () => {
         method: "POST",
         // The replay always targets this deployment's own public API, never
         // whatever baseUrl a stale spec had when the action was proposed.
-        baseUrl: "https://builder.example.com",
+        baseUrl: "https://builder.example.com/api",
         pathTemplate: "/v1/broadcasts/{id}/schedule",
         pathParamNames: ["id"],
         queryParamNames: [],

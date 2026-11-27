@@ -20,7 +20,7 @@ const action: MasterAgentPendingActionCardData = {
   policy: "confirm_outbound",
   currentState: { id: "b-1", status: "draft" },
   status: "pending",
-  resourcePath: "/broadcasts/b-1",
+  resourcePath: "/broadcasts/b-1/edit",
 }
 
 describe("MasterAgentPendingActionCard", () => {
@@ -81,7 +81,7 @@ describe("MasterAgentPendingActionCard", () => {
     render()
 
     const link = container.querySelector("a")
-    expect(link?.getAttribute("href")).toBe("/space/ws-1/broadcasts/b-1")
+    expect(link?.getAttribute("href")).toBe("/space/ws-1/broadcasts/b-1/edit")
   })
 
   test("no edit link is rendered without a resource hint", () => {

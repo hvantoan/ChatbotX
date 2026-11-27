@@ -1,4 +1,8 @@
-import { createSpecLoader, type DynamicTool } from "@inboxos.io/openapi-catalog"
+import {
+  apiBaseUrlFromBuilderUrl,
+  createSpecLoader,
+  type DynamicTool,
+} from "@inboxos.io/openapi-catalog"
 import { env } from "../../env"
 import { logger } from "../logger"
 
@@ -11,7 +15,7 @@ const SPEC_TTL_MS = 30_000
  * queue a turn that queues a turn.
  */
 const specLoader = createSpecLoader({
-  apiUrl: env.NEXT_PUBLIC_BUILDER_URL,
+  apiUrl: apiBaseUrlFromBuilderUrl(env.NEXT_PUBLIC_BUILDER_URL),
   ttlMs: SPEC_TTL_MS,
   httpTimeoutMs: 15_000,
   excludeOperationIdPrefixes: ["masterAgent."],
