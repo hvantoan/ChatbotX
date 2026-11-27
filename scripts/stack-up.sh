@@ -115,10 +115,13 @@ stop_host_dev() {
     fi
     rm -f /tmp/inboxos-dev.pid
   fi
-  # Match on this checkout's node_modules/apps paths, not a hardcoded repo
-  # name — the folder may still be ChatbotX after the InboxOS rename. The
-  # scripts/ prefix is excluded so this script can never kill itself.
-  local pat="${ROOT}/(node_modules|apps)"
+  # Match the dev commands under this checkout's path, not a hardcoded repo
+  # name — the folder may still be ChatbotX after the InboxOS rename. Only the
+  # dev servers are matched so editor tooling (tsserver, Biome LSP) and test
+  # runs from the same checkout survive.
+  local root_re pat
+  root_re=$(printf '%s' "$ROOT" | sed 's/[][\.*^$()+?{}|]/\\&/g')
+  pat="${root_re}/.*(turbo.*dev|next dev|tsx --watch)"
   if pgrep -f "$pat" >/dev/null 2>&1; then
     log "stopping leftover host dev processes holding stack ports…"
     pkill -f "$pat" 2>/dev/null || true
