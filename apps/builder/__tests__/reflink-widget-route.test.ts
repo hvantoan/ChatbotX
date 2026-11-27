@@ -109,8 +109,8 @@ describe("GET /api/reflink-widget/[reflinkId]", () => {
         logoUrl: null,
         logoBackgroundColor: "#111827",
         logoForegroundColor: "#ffffff",
-        poweredByLabel: "by",
-        toggleLabel: "Chat with us",
+        poweredByLabel: "bởi",
+        toggleLabel: "Trò chuyện với chúng tôi",
       },
     })
   })
@@ -132,8 +132,8 @@ describe("GET /api/reflink-widget/[reflinkId]", () => {
         "https://files.acme.test/public/space/ws-1/media-library/logo123",
       logoBackgroundColor: "#111827",
       logoForegroundColor: "#ffffff",
-      poweredByLabel: "by",
-      toggleLabel: "Chat with us",
+      poweredByLabel: "bởi",
+      toggleLabel: "Trò chuyện với chúng tôi",
     })
   })
 
@@ -227,9 +227,9 @@ describe("GET /api/reflink-widget/[reflinkId]", () => {
 
   test("translates the powered-by label to the visitor's language", async () => {
     const res = await callGet("https://example.com", "10", {
-      "accept-language": "vi-VN,vi;q=0.9,en;q=0.8",
+      "accept-language": "en-US,en;q=0.9,vi;q=0.8",
     })
 
-    expect((await res.json()).brand.poweredByLabel).toBe("bởi")
+    expect((await res.json()).brand.poweredByLabel).toBe("by")
   })
 })
