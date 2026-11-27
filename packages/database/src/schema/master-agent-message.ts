@@ -8,7 +8,6 @@ import {
 } from "../partials/master-agent"
 import { bigintAsString, sharedColumns } from "../partials/shared"
 import { userModel } from "./auth-user"
-import { broadcastModel } from "./broadcast"
 import { workspaceModel } from "./workspace"
 
 export const masterAgentMessageRole = pgEnum(
@@ -34,8 +33,7 @@ export const masterAgentMessageStatus = pgEnum(
  *
  * An assistant row is inserted as `pending` before the agent job runs and is
  * updated in place when the job finishes, which is what makes the pending turn
- * visible to a client polling the session. `broadcastId` links the draft
- * broadcast the turn created, when a tool created one.
+ * visible to a client polling the session.
  */
 export const masterAgentMessageModel = pgTable(
   "MasterAgentMessage",
@@ -51,10 +49,6 @@ export const masterAgentMessageModel = pgTable(
     role: masterAgentMessageRole().notNull(),
     content: text().notNull(),
     status: masterAgentMessageStatus().notNull().default("completed"),
-    broadcastId: bigintAsString().references(() => broadcastModel.id, {
-      onDelete: "set null",
-      onUpdate: "cascade",
-    }),
     createdById: bigintAsString().references(() => userModel.id, {
       onDelete: "set null",
       onUpdate: "cascade",
@@ -68,9 +62,6 @@ export const masterAgentMessageModel = pgTable(
       sql`${table.createdAt} ASC`,
       sql`${table.id} ASC`,
     ),
-    index("MasterAgentMessage_broadcastId_idx")
-      .on(table.broadcastId)
-      .where(sql`${table.broadcastId} IS NOT NULL`),
     index("MasterAgentMessage_createdById_idx")
       .on(table.createdById)
       .where(sql`${table.createdById} IS NOT NULL`),

@@ -1,70 +1,34 @@
-import {
-  broadcastService,
-  type MasterAgentSessionView,
-  masterAgentService,
-} from "@inboxos.io/business"
-import {
-  InboxOSException,
-  notFoundException,
-} from "@inboxos.io/business/errors"
-import { broadcastStatuses } from "@inboxos.io/database/partials"
-import type { PermissionsInput } from "@/lib/auth/permission-routes"
+import { masterAgentService } from "@inboxos.io/business"
+import { InboxOSException } from "@inboxos.io/business/errors"
+import { hasWorkspacePermission } from "@/lib/auth/permission-routes"
+import { executePendingActionConfirmation } from "@/lib/master-agent/execute-pending-action"
 import { workspaceAuthorizedMidddleware } from "@/middlewares/auth"
 import { authorizedAPI } from "@/orpc"
-import { canUseMasterAgent } from "../lib/access"
 import {
-  confirmMasterAgentDraftRequest,
-  confirmMasterAgentDraftResponse,
   getMasterAgentSessionPrivateRequest,
   masterAgentChatSessionResource,
+  masterAgentPendingActionIdRequest,
+  masterAgentWorkspaceRequest,
   sendMasterAgentMessagePrivateRequest,
+  updateMasterAgentConfigPrivateRequest,
 } from "../schema/private"
+import {
+  decideMasterAgentPendingActionResponse,
+  masterAgentConfigResource,
+  masterAgentPendingActionResource,
+} from "../schema/public"
 
 /**
- * A session's drafts plus the `group:` contact each one targets. Resolved from
- * `listGroups` so the card reads the group name the agent used; a contact that
- * is not a group contact (or was deleted) stays `null` and the card falls back
- * to the draft name.
+ * Changing the agent's brain (models, prompt, approval mode) is an
+ * administrative operation: only members with the flows permission — the
+ * section that owns automation in the workspace — may write it. Every member
+ * can still chat and review; the public API enforces the real per-operation
+ * permissions through the credential scopes.
  */
-async function withDraftGroups(
-  workspaceId: string,
-  session: MasterAgentSessionView,
-) {
-  if (session.drafts.length === 0) {
-    return { ...session, drafts: [] }
-  }
-  const groups = await masterAgentService.listGroups({ workspaceId })
-  const groupsByContactId = new Map(
-    groups.map((group) => [
-      group.contactId,
-      {
-        contactId: group.contactId,
-        name: group.name,
-        sourceId: group.groupSourceId,
-      },
-    ]),
-  )
-  return {
-    ...session,
-    drafts: session.drafts.map((draft) => ({
-      ...draft,
-      group:
-        draft.contactIds
-          .map((contactId) => groupsByContactId.get(contactId))
-          .find((group) => group !== undefined) ?? null,
-    })),
-  }
-}
-
-/**
- * Master Agent is a broadcast-authoring surface: a member needs `broadcasts`
- * AND `flows` (the draft sends a flow), on every procedure including the
- * confirm step. The service deliberately does not check member permissions.
- */
-function requireMasterAgentPermissions(permissions: PermissionsInput): void {
-  if (!canUseMasterAgent(permissions)) {
+function requireMasterAgentAdmin(permissions: unknown): void {
+  if (!hasWorkspacePermission(permissions as never, "flows")) {
     throw new InboxOSException(
-      "You need the broadcasts and flows permissions to use the Master Agent.",
+      "You need the flows permission to configure the Master Agent.",
       "masterAgentForbidden",
       403,
     )
@@ -82,18 +46,17 @@ export const masterAgentPrivateAPIs = {
     .input(sendMasterAgentMessagePrivateRequest)
     .output(masterAgentChatSessionResource)
     .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
-    .handler(async ({ context, input }) => {
-      requireMasterAgentPermissions(context.workspaceMember.permissions)
-      return await withDraftGroups(
-        context.workspace.id,
+    .handler(
+      async ({ context, input }) =>
         await masterAgentService.sendMessage({
           workspaceId: context.workspace.id,
           memberId: context.user.id,
+          viewerIsSuperAdmin:
+            context.workspaceMember.permissions.superAdmin === true,
           message: input.message,
           sessionId: input.sessionId ?? null,
         }),
-      )
-    }),
+    ),
 
   getMasterAgentSessionAPI: authorizedAPI
     .route({
@@ -105,49 +68,90 @@ export const masterAgentPrivateAPIs = {
     .input(getMasterAgentSessionPrivateRequest)
     .output(masterAgentChatSessionResource)
     .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
-    .handler(async ({ context, input }) => {
-      requireMasterAgentPermissions(context.workspaceMember.permissions)
-      return await withDraftGroups(
-        context.workspace.id,
+    .handler(
+      async ({ context, input }) =>
         await masterAgentService.getSession({
           workspaceId: context.workspace.id,
           sessionId: input.sessionId,
+          viewerMemberId: context.user.id,
+          viewerIsSuperAdmin:
+            context.workspaceMember.permissions.superAdmin === true,
         }),
-      )
-    }),
+    ),
 
-  /**
-   * The only path from a draft to a scheduled broadcast in the UI. It takes no
-   * schedule data: the draft's own `schedulesType`/`schedulesAt` are what gets
-   * scheduled, exactly like `POST /v1/broadcasts/{id}/schedule` schedules a
-   * draft it read from the database.
-   */
-  confirmMasterAgentDraftAPI: authorizedAPI
+  getMasterAgentConfigAPI: authorizedAPI
     .route({
-      method: "POST",
-      path: "/workspaces/{workspaceId}/master-agent/drafts/{broadcastId}/confirm",
-      summary: "Confirm Master Agent draft",
+      method: "GET",
+      path: "/workspaces/{workspaceId}/master-agent/config",
+      summary: "Get Master Agent configuration",
       tags: ["Master Agent"],
     })
-    .input(confirmMasterAgentDraftRequest)
-    .output(confirmMasterAgentDraftResponse)
+    .input(masterAgentWorkspaceRequest)
+    .output(masterAgentConfigResource)
+    .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
+    .handler(
+      async ({ context }) =>
+        await masterAgentService.getConfigView({
+          workspaceId: context.workspace.id,
+        }),
+    ),
+
+  updateMasterAgentConfigAPI: authorizedAPI
+    .route({
+      method: "PUT",
+      path: "/workspaces/{workspaceId}/master-agent/config",
+      summary: "Update Master Agent configuration",
+      tags: ["Master Agent"],
+    })
+    .input(updateMasterAgentConfigPrivateRequest)
+    .output(masterAgentConfigResource)
     .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
     .handler(async ({ context, input }) => {
-      requireMasterAgentPermissions(context.workspaceMember.permissions)
-      const draft = await masterAgentService.getReminder({
+      requireMasterAgentAdmin(context.workspaceMember.permissions)
+      return await masterAgentService.upsertConfig({
         workspaceId: context.workspace.id,
-        broadcastId: input.broadcastId,
-      })
-      if (draft.status !== broadcastStatuses.enum.draft) {
-        // Already confirmed, or never a reminder draft: the confirm step is
-        // not a second scheduling path for a broadcast the UI did not show.
-        throw notFoundException("Draft not found")
-      }
-      return await broadcastService.scheduleDraft({
-        workspaceId: context.workspace.id,
-        broadcastId: draft.id,
-        schedulesType: draft.schedulesType,
-        schedulesAt: draft.schedulesAt,
+        enabled: input.enabled,
+        autoApproveDiff: input.autoApproveDiff,
+        prompt: input.prompt,
+        models: input.models,
       })
     }),
+
+  confirmMasterAgentPendingActionAPI: authorizedAPI
+    .route({
+      method: "POST",
+      path: "/workspaces/{workspaceId}/master-agent/pending-actions/{actionId}/confirm",
+      summary: "Confirm pending Master Agent action",
+      tags: ["Master Agent"],
+    })
+    .input(masterAgentPendingActionIdRequest)
+    .output(decideMasterAgentPendingActionResponse)
+    .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
+    .handler(
+      async ({ context, input }) =>
+        await executePendingActionConfirmation({
+          workspaceId: context.workspace.id,
+          actionId: input.actionId,
+          memberId: context.user.id,
+        }),
+    ),
+
+  rejectMasterAgentPendingActionAPI: authorizedAPI
+    .route({
+      method: "POST",
+      path: "/workspaces/{workspaceId}/master-agent/pending-actions/{actionId}/reject",
+      summary: "Reject pending Master Agent action",
+      tags: ["Master Agent"],
+    })
+    .input(masterAgentPendingActionIdRequest)
+    .output(masterAgentPendingActionResource)
+    .use(workspaceAuthorizedMidddleware, (input) => input.workspaceId)
+    .handler(
+      async ({ context, input }) =>
+        await masterAgentService.rejectPendingAction({
+          workspaceId: context.workspace.id,
+          actionId: input.actionId,
+          decidedById: context.user.id,
+        }),
+    ),
 }

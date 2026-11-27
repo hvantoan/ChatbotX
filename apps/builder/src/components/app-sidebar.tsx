@@ -35,7 +35,6 @@ import { NavMain } from "@/components/nav-main"
 import { NavUsage, type QuotaSummary } from "@/components/nav-usage"
 import { NavUser } from "@/components/nav-user"
 import { WorkspaceSwitcher } from "@/components/workspace-switcher"
-import { canUseMasterAgent } from "@/features/master-agent/lib/access"
 import type { WorkspaceResource } from "@/features/workspaces/schema/resource"
 import { authClient } from "@/lib/auth/auth-client"
 import {
@@ -132,10 +131,10 @@ export function AppSidebar({
         title: t("masterAgent.title"),
         url: `/space/${workspaceId}/master-agent`,
         icon: SparklesIcon,
+        // No permission gate: every member may open the Master Agent page —
+        // each operation carries its own permission check server-side.
         permission: PERMISSION_NAV.broadcasts,
-        // Both flags, not just the section's: the chat schedules broadcasts
-        // that send a flow.
-        visible: canUseMasterAgent(permissions),
+        visible: true,
       },
       {
         title: t("whatsapp.calls.page.title"),

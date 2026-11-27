@@ -77,6 +77,20 @@ class WorkspaceApiTokenRepository {
     return { ...row, scopes: normalizeWorkspaceApiTokenScopes(row.scopes) }
   }
 
+  async findByIdAndWorkspaceId(
+    id: string,
+    workspaceId: string,
+    tx: DatabaseClient = db,
+  ): Promise<WorkspaceApiTokenModel | null> {
+    const row = await tx.query.workspaceApiTokenModel.findFirst({
+      where: { id, workspaceId },
+    })
+    if (!row) {
+      return null
+    }
+    return { ...row, scopes: normalizeWorkspaceApiTokenScopes(row.scopes) }
+  }
+
   async listByWorkspaceId(
     workspaceId: string,
     tx: DatabaseClient = db,

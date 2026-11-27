@@ -1,31 +1,22 @@
 import { beforeEach, describe, expect, test, vi } from "vitest"
 import {
-  buildContactFilterForContact,
+  MASTER_AGENT_PENDING_ACTION_TTL_MS,
   MASTER_AGENT_TIMEZONE,
   masterAgentService,
-  parseAsiaSaigonDateTime,
 } from "../service"
 
 const mocks = vi.hoisted(() => ({
   findFirstMessage: vi.fn(),
   findManyMessage: vi.fn(),
-  findFirstContact: vi.fn(),
-  findFirstContactInbox: vi.fn(),
+  findFirstConfig: vi.fn(),
+  findManyPendingAction: vi.fn(),
+  findFirstPendingAction: vi.fn(),
   insertValues: [] as Record<string, unknown>[],
   insertReturning: vi.fn(),
-  updateSet: vi.fn(),
-  updateWhere: vi.fn(),
+  insertOnConflict: vi.fn(),
+  updates: [] as { set: Record<string, unknown>; where: unknown }[],
+  updateReturning: [] as Record<string, unknown>[][],
   queueAdd: vi.fn(),
-  broadcastCreate: vi.fn(),
-  broadcastFind: vi.fn(),
-  broadcastUpdate: vi.fn(),
-  broadcastUpdateDraft: vi.fn(),
-  broadcastMoveToDraft: vi.fn(),
-  broadcastStop: vi.fn(),
-  broadcastList: vi.fn(),
-  broadcastFindMany: vi.fn(),
-  flowListPublished: vi.fn(),
-  flowExists: vi.fn(),
 }))
 
 vi.mock("@inboxos.io/database/client", () => {
@@ -35,49 +26,42 @@ vi.mock("@inboxos.io/database/client", () => {
         findFirst: mocks.findFirstMessage,
         findMany: mocks.findManyMessage,
       },
-      contactModel: { findFirst: mocks.findFirstContact },
-      contactInboxModel: { findFirst: mocks.findFirstContactInbox },
-      broadcastModel: { findMany: mocks.broadcastFindMany },
-      aiAgentModel: { findFirst: vi.fn() },
+      masterAgentConfigModel: { findFirst: mocks.findFirstConfig },
+      masterAgentPendingActionModel: {
+        findMany: mocks.findManyPendingAction,
+        findFirst: mocks.findFirstPendingAction,
+      },
     },
     transaction: (callback: (tx: unknown) => Promise<unknown>) => callback(db),
     insert: () => ({
       values: (value: Record<string, unknown>) => {
         mocks.insertValues.push(value)
-        return { returning: mocks.insertReturning }
-      },
-    }),
-    update: () => ({
-      set: (value: Record<string, unknown>) => {
-        mocks.updateSet(value)
         return {
-          where: (where: unknown) => {
-            mocks.updateWhere(where)
-            return Promise.resolve()
-          },
+          returning: mocks.insertReturning,
+          onConflictDoUpdate: mocks.insertOnConflict,
         }
       },
     }),
-    select: () => {
-      const builder = {
-        from: () => builder,
-        innerJoin: () => builder,
-        where: () => builder,
-        orderBy: () => builder,
-        limit: () => Promise.resolve([]),
-      }
-      return builder
-    },
+    update: () => ({
+      set: (setValue: Record<string, unknown>) => ({
+        where: (whereValue: unknown) => {
+          mocks.updates.push({ set: setValue, where: whereValue })
+          const returningRows = mocks.updateReturning.shift() ?? []
+          // Drizzle's update builder is itself a promise when awaited without
+          // `.returning()`: model it as one, with the method attached.
+          return Object.assign(Promise.resolve(undefined), {
+            returning: () => Promise.resolve(returningRows),
+          })
+        },
+      }),
+    }),
   }
   return {
     db,
     and: (...args: unknown[]) => ({ __and: args }),
-    asc: (value: unknown) => ({ __asc: value }),
-    desc: (value: unknown) => ({ __desc: value }),
     eq: (left: unknown, right: unknown) => ({ __eq: [left, right] }),
-    inArray: (left: unknown, right: unknown) => ({ __in: [left, right] }),
-    isNull: (value: unknown) => ({ __isNull: value }),
-    like: (left: unknown, right: unknown) => ({ __like: [left, right] }),
+    gt: (left: unknown, right: unknown) => ({ __gt: [left, right] }),
+    lt: (left: unknown, right: unknown) => ({ __lt: [left, right] }),
   }
 })
 
@@ -89,34 +73,23 @@ vi.mock("@inboxos.io/database/schema", () => ({
     role: "MasterAgentMessage.role",
     content: "MasterAgentMessage.content",
     status: "MasterAgentMessage.status",
-    broadcastId: "MasterAgentMessage.broadcastId",
     createdAt: "MasterAgentMessage.createdAt",
   },
-  contactModel: {
-    id: "Contact.id",
-    workspaceId: "Contact.workspaceId",
-    fullName: "Contact.fullName",
-    email: "Contact.email",
-    createdAt: "Contact.createdAt",
+  masterAgentConfigModel: {
+    id: "MasterAgentConfig.id",
+    workspaceId: "MasterAgentConfig.workspaceId",
+    enabled: "MasterAgentConfig.enabled",
+    autoApproveDiff: "MasterAgentConfig.autoApproveDiff",
+    prompt: "MasterAgentConfig.prompt",
+    models: "MasterAgentConfig.models",
   },
-  contactInboxModel: {
-    contactId: "ContactInbox.contactId",
-    inboxId: "ContactInbox.inboxId",
-    sourceId: "ContactInbox.sourceId",
-    channel: "ContactInbox.channel",
-  },
-  inboxModel: { id: "Inbox.id", name: "Inbox.name" },
-  broadcastModel: {
-    id: "Broadcast.id",
-    name: "Broadcast.name",
-    status: "Broadcast.status",
-    schedulesType: "Broadcast.schedulesType",
-    schedulesAt: "Broadcast.schedulesAt",
-    flowId: "Broadcast.flowId",
-    contactFilter: "Broadcast.contactFilter",
-    workspaceId: "Broadcast.workspaceId",
-    deletedAt: "Broadcast.deletedAt",
-    createdAt: "Broadcast.createdAt",
+  masterAgentPendingActionModel: {
+    id: "MasterAgentPendingAction.id",
+    workspaceId: "MasterAgentPendingAction.workspaceId",
+    sessionId: "MasterAgentPendingAction.sessionId",
+    status: "MasterAgentPendingAction.status",
+    expiresAt: "MasterAgentPendingAction.expiresAt",
+    createdAt: "MasterAgentPendingAction.createdAt",
   },
 }))
 
@@ -125,106 +98,40 @@ vi.mock("@inboxos.io/worker-config", () => ({
   aiAgentQueue: { add: mocks.queueAdd },
 }))
 
-vi.mock("../../flow", () => ({
-  flowService: {
-    listPublishedOptions: mocks.flowListPublished,
-    exists: mocks.flowExists,
-  },
-}))
-
-vi.mock("../../broadcast", () => ({
-  broadcastService: {
-    create: mocks.broadcastCreate,
-    findByIdOrName: mocks.broadcastFind,
-    update: mocks.broadcastUpdate,
-    updateDraft: mocks.broadcastUpdateDraft,
-    moveToDraft: mocks.broadcastMoveToDraft,
-    stopSending: mocks.broadcastStop,
-    list: mocks.broadcastList,
-  },
-}))
-
-const message = (overrides: Record<string, unknown>) => ({
-  id: "m-1",
-  role: "user",
-  content: "hi",
-  status: "completed",
-  broadcastId: null,
-  createdAt: new Date("2026-11-26T10:00:00.000Z"),
-  ...overrides,
-})
-
-const draftBroadcast = {
-  id: "b-1",
-  name: "Nhắc lịch K5",
-  status: "draft",
-  schedulesType: "future",
-  schedulesAt: new Date("2026-11-27T13:00:00.000Z"),
-  flowId: "flow-1",
-  contactFilter: buildContactFilterForContact("c-1"),
-}
-
 beforeEach(() => {
   vi.resetAllMocks()
-  // Every reminder flow in these tests exists in the workspace unless a case
-  // says otherwise.
-  mocks.flowExists.mockResolvedValue(true)
   mocks.insertValues.length = 0
+  mocks.updates.length = 0
+  mocks.updateReturning.length = 0
   mocks.insertReturning
     .mockResolvedValueOnce([{ id: "u-1" }])
     .mockResolvedValueOnce([{ id: "a-1" }])
-})
-
-describe("Asia/Saigon time handling", () => {
-  test("a wall-clock time is read as +07:00, not server-local time", () => {
-    expect(parseAsiaSaigonDateTime("2026-11-27 20:00").toISOString()).toBe(
-      "2026-11-27T13:00:00.000Z",
-    )
-    expect(MASTER_AGENT_TIMEZONE).toBe("Asia/Saigon")
-  })
-
-  test("rejects an unparseable time instead of silently sending now", () => {
-    expect(() => parseAsiaSaigonDateTime("tomorrow evening")).toThrow()
-  })
-})
-
-describe("draft audience", () => {
-  test("pins the audience to one contact and lifts the DM requirement", () => {
-    expect(buildContactFilterForContact("c-1")).toEqual({
-      operator: "and",
-      conditions: [
-        { field: "contactId", operator: "eq", value: "c-1" },
-        { field: "lastInteraction", operator: "isNotEmpty" },
-      ],
-    })
-  })
+  mocks.findManyMessage.mockResolvedValue([
+    {
+      id: "u-1",
+      role: "user",
+      content: "hi",
+      status: "completed",
+      createdAt: new Date("2026-11-26T10:00:00.000Z"),
+    },
+  ])
+  mocks.findManyPendingAction.mockResolvedValue([])
 })
 
 describe("sendMessage", () => {
-  test("stores both turns in the workspace and queues one turn", async () => {
-    const getSession = vi
-      .spyOn(masterAgentService, "getSession")
-      .mockResolvedValue({
-        sessionId: "s-1",
-        status: "pending",
-        messages: [],
-        drafts: [],
-      })
-
-    const result = await masterAgentService.sendMessage({
+  test("inserts user and pending assistant rows, queues the turn with member identity", async () => {
+    await masterAgentService.sendMessage({
       workspaceId: "ws-1",
       memberId: "member-1",
-      message: "  Tóm tắt Zoom K5, nhắc 20:00 ngày 27/11  ",
+      tokenId: null,
+      message: "  hello there  ",
       sessionId: null,
     })
 
-    expect(result.status).toBe("pending")
-    expect(mocks.insertValues).toHaveLength(2)
     expect(mocks.insertValues[0]).toMatchObject({
       workspaceId: "ws-1",
-      sessionId: expect.any(String),
       role: "user",
-      content: "Tóm tắt Zoom K5, nhắc 20:00 ngày 27/11",
+      content: "hello there",
       status: "completed",
       createdById: "member-1",
     })
@@ -233,326 +140,314 @@ describe("sendMessage", () => {
       content: "",
       status: "pending",
     })
-    const sessionId = mocks.insertValues[0]?.sessionId
-    expect(typeof sessionId).toBe("string")
     expect(mocks.queueAdd).toHaveBeenCalledWith(
       "processMasterAgent",
-      {
-        type: "processMasterAgent",
-        data: { workspaceId: "ws-1", sessionId, messageId: "a-1" },
-      },
+      expect.objectContaining({
+        data: expect.objectContaining({
+          workspaceId: "ws-1",
+          messageId: "a-1",
+          memberId: "member-1",
+          tokenId: null,
+        }),
+      }),
       { jobId: "master-agent-a-1" },
     )
-    expect(String(mocks.queueAdd.mock.calls[0]?.[2]?.jobId)).not.toContain(":")
-    getSession.mockRestore()
   })
 
-  test("refuses an empty message before writing anything", async () => {
+  test("another member cannot continue someone else's session", async () => {
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "m-1",
+      createdById: "member-1",
+    })
+
     await expect(
       masterAgentService.sendMessage({
         workspaceId: "ws-1",
-        message: "   ",
+        memberId: "member-2",
+        message: "hi",
+        sessionId: "s-1",
       }),
-    ).rejects.toThrow("Message must not be empty.")
+    ).rejects.toThrow("Session not found")
+    expect(mocks.insertValues).toHaveLength(0)
+  })
+
+  test("a superAdmin may continue another member's session", async () => {
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "m-1",
+      createdById: "member-1",
+    })
+
+    await masterAgentService.sendMessage({
+      workspaceId: "ws-1",
+      memberId: "admin-1",
+      viewerIsSuperAdmin: true,
+      message: "hi",
+      sessionId: "s-1",
+    })
+
+    expect(mocks.insertValues).toHaveLength(2)
+  })
+
+  test("token-originated chats pass the token id into the job", async () => {
+    await masterAgentService.sendMessage({
+      workspaceId: "ws-1",
+      memberId: null,
+      tokenId: "tok-1",
+      message: "hi",
+      sessionId: null,
+    })
+
+    expect(mocks.queueAdd).toHaveBeenCalledWith(
+      "processMasterAgent",
+      expect.objectContaining({
+        data: expect.objectContaining({ tokenId: "tok-1", memberId: null }),
+      }),
+      expect.anything(),
+    )
+  })
+
+  test("a new turn expires the session's unanswered pending actions first", async () => {
+    mocks.findFirstMessage.mockResolvedValue({ id: "u-0" })
+
+    await masterAgentService.sendMessage({
+      workspaceId: "ws-1",
+      memberId: "m-1",
+      tokenId: null,
+      message: "next question",
+      sessionId: "s-existing",
+    })
+
+    // The first UPDATE of the call is the expiry sweep on the session's
+    // pending rows — before the insert of the new turn.
+    const expiry = mocks.updates[0]
+    expect(expiry?.set).toEqual({ status: "expired" })
+    const where = JSON.stringify(expiry?.where)
+    expect(where).toContain("pending")
+    expect(where).toContain("s-existing")
+  })
+
+  test("an empty message is a validation error before any write", async () => {
+    await expect(
+      masterAgentService.sendMessage({
+        workspaceId: "ws-1",
+        memberId: "m-1",
+        tokenId: null,
+        message: "   ",
+        sessionId: null,
+      }),
+    ).rejects.toThrow()
     expect(mocks.insertValues).toHaveLength(0)
     expect(mocks.queueAdd).not.toHaveBeenCalled()
   })
 
-  test("refuses a sessionId from another workspace", async () => {
+  test("an unknown session id is a 404", async () => {
     mocks.findFirstMessage.mockResolvedValue(undefined)
 
     await expect(
       masterAgentService.sendMessage({
-        workspaceId: "ws-2",
-        message: "hello",
-        sessionId: "session-of-ws-1",
+        workspaceId: "ws-1",
+        memberId: "m-1",
+        tokenId: null,
+        message: "hi",
+        sessionId: "s-missing",
       }),
-    ).rejects.toThrow("Session not found")
-    expect(mocks.findFirstMessage).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: { workspaceId: "ws-2", sessionId: "session-of-ws-1" },
-      }),
-    )
-    expect(mocks.insertValues).toHaveLength(0)
+    ).rejects.toThrow()
+    expect(mocks.queueAdd).not.toHaveBeenCalled()
   })
 })
 
-describe("getSession", () => {
-  test("reads only the caller's workspace and reports the latest turn status", async () => {
-    // The query returns the newest window first; the service reverses it.
-    mocks.findManyMessage.mockResolvedValue([
-      message({ id: "a-1", role: "assistant", status: "pending", content: "" }),
-      message({ id: "u-1" }),
-    ])
+describe("config", () => {
+  test("getConfigView reports configured=false without a row", async () => {
+    mocks.findFirstConfig.mockResolvedValue(undefined)
 
-    const result = await masterAgentService.getSession({
+    const view = await masterAgentService.getConfigView({ workspaceId: "ws-1" })
+
+    expect(view).toEqual({
+      configured: false,
+      enabled: false,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+  })
+
+  test("getConfigView maps a stored row", async () => {
+    mocks.findFirstConfig.mockResolvedValue({
+      enabled: true,
+      autoApproveDiff: true,
+      prompt: "custom",
+      models: [{ provider: "openai", model: "gpt-x" }],
+    })
+
+    const view = await masterAgentService.getConfigView({ workspaceId: "ws-1" })
+
+    expect(view).toMatchObject({
+      configured: true,
+      enabled: true,
+      autoApproveDiff: true,
+      prompt: "custom",
+    })
+  })
+
+  test("upsertConfig writes the row on the workspace conflict key", async () => {
+    mocks.findFirstConfig.mockResolvedValue({
+      enabled: true,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+
+    await masterAgentService.upsertConfig({
+      workspaceId: "ws-1",
+      enabled: true,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+
+    expect(mocks.insertValues.at(-1)).toMatchObject({
+      workspaceId: "ws-1",
+      enabled: true,
+    })
+    expect(mocks.insertOnConflict).toHaveBeenCalledWith({
+      target: "MasterAgentConfig.workspaceId",
+      set: expect.objectContaining({ enabled: true }),
+    })
+  })
+})
+
+describe("createPendingAction", () => {
+  test("freezes the execution shape, policy and expiry into the row", async () => {
+    const row = {
+      id: "pa-1",
+      sessionId: "s-1",
+      operationId: "broadcasts.schedule",
+      args: { id: "b-1" },
+      policy: "confirm_outbound",
+      currentState: null,
+      status: "pending",
+      result: null,
+      decidedById: null,
+      createdAt: new Date(),
+      expiresAt: new Date(Date.now() + MASTER_AGENT_PENDING_ACTION_TTL_MS),
+      execution: {
+        method: "POST",
+        baseUrl: "https://api.example.com",
+        pathTemplate: "/v1/broadcasts/{id}/schedule",
+        pathParamNames: ["id"],
+        queryParamNames: [],
+        bodyParamNames: [],
+        toolName: "broadcasts_schedule",
+      },
+    }
+    mocks.insertReturning.mockReset()
+    mocks.insertReturning.mockResolvedValue([row])
+
+    const view = await masterAgentService.createPendingAction({
       workspaceId: "ws-1",
       sessionId: "s-1",
-    })
-
-    expect(mocks.findManyMessage).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: { workspaceId: "ws-1", sessionId: "s-1" },
-      }),
-    )
-    expect(result.status).toBe("pending")
-    expect(result.messages.map((entry) => entry.id)).toEqual(["u-1", "a-1"])
-  })
-
-  test("a session of another workspace is a 404, not an empty answer", async () => {
-    mocks.findManyMessage.mockResolvedValue([])
-
-    await expect(
-      masterAgentService.getSession({
-        workspaceId: "ws-2",
-        sessionId: "s-1",
-      }),
-    ).rejects.toThrow("Session not found")
-  })
-})
-
-describe("draftReminder", () => {
-  test("only ever creates a draft: no schedule, no send, no job", async () => {
-    mocks.findFirstContact.mockResolvedValue({ id: "c-1" })
-    mocks.findFirstContactInbox.mockResolvedValue({ id: "ci-1" })
-    mocks.broadcastCreate.mockResolvedValue(draftBroadcast)
-
-    const reminder = await masterAgentService.draftReminder({
-      workspaceId: "ws-1",
       messageId: "a-1",
-      contactId: "c-1",
-      flowId: "flow-1",
-      scheduledAt: "2026-11-27 20:00",
+      operationId: "broadcasts.schedule",
+      args: { id: "b-1" },
+      policy: "confirm_outbound",
+      currentState: null,
+      execution: row.execution as never,
     })
 
-    expect(mocks.broadcastCreate).toHaveBeenCalledWith(
-      expect.objectContaining({
-        workspaceId: "ws-1",
-        channel: "omnichannel",
-        subaction: "allContacts",
-        flowId: "flow-1",
-        schedulesType: "future",
-        schedulesAt: "2026-11-27T13:00:00.000Z",
-        saveAsDraft: true,
-        contactFilter: buildContactFilterForContact("c-1"),
-      }),
-    )
-    expect(reminder).toMatchObject({
-      id: "b-1",
-      status: "draft",
-      contactIds: ["c-1"],
+    expect(view).toMatchObject({
+      id: "pa-1",
+      operationId: "broadcasts.schedule",
+      toolName: "broadcasts_schedule",
+      status: "pending",
     })
-    // The turn is linked to the draft; nothing is enqueued or scheduled.
-    expect(mocks.updateSet).toHaveBeenCalledWith({ broadcastId: "b-1" })
-    expect(mocks.queueAdd).not.toHaveBeenCalled()
-    expect(mocks.broadcastUpdateDraft).not.toHaveBeenCalled()
-  })
-
-  test("refuses a contact that is not in the workspace", async () => {
-    mocks.findFirstContact.mockResolvedValue(undefined)
-
-    await expect(
-      masterAgentService.draftReminder({
-        workspaceId: "ws-1",
-        contactId: "c-other",
-        flowId: "flow-1",
-        scheduledAt: "2026-11-27 20:00",
-      }),
-    ).rejects.toThrow("Group contact not found")
-    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
-  })
-
-  test("refuses a flow that is not in the workspace, before writing a draft", async () => {
-    mocks.findFirstContact.mockResolvedValue({ id: "c-1" })
-    mocks.findFirstContactInbox.mockResolvedValue({ id: "ci-1" })
-    mocks.flowExists.mockResolvedValue(false)
-
-    await expect(
-      masterAgentService.draftReminder({
-        workspaceId: "ws-1",
-        contactId: "c-1",
-        flowId: "flow-of-another-workspace",
-        scheduledAt: "2026-11-27 20:00",
-      }),
-    ).rejects.toThrow("Flow not found in this workspace")
-    expect(mocks.flowExists).toHaveBeenCalledWith(
-      "ws-1",
-      "flow-of-another-workspace",
-    )
-    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
-  })
-
-  test("refuses a workspace contact that is not a group", async () => {
-    mocks.findFirstContact.mockResolvedValue({ id: "c-1" })
-    mocks.findFirstContactInbox.mockResolvedValue(undefined)
-
-    await expect(
-      masterAgentService.draftReminder({
-        workspaceId: "ws-1",
-        contactId: "c-1",
-        flowId: "flow-1",
-        scheduledAt: "2026-11-27 20:00",
-      }),
-    ).rejects.toThrow("That contact is not a group contact.")
-    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
+    expect(view.resourcePath).toBe("/broadcasts/b-1")
   })
 })
 
-describe("listFlows", () => {
-  test("lists only the workspace's published flows, so no id is hard-coded", async () => {
-    mocks.flowListPublished.mockResolvedValue([
-      { id: "flow-1", name: "Nhắc lịch K5" },
+describe("claimPendingActionForExecution", () => {
+  test("the claim is a conditional update on status=pending and expiry in the future", async () => {
+    mocks.updateReturning.push([{ id: "pa-1", status: "approved" }])
+
+    const row = await masterAgentService.claimPendingActionForExecution({
+      workspaceId: "ws-1",
+      actionId: "pa-1",
+      decidedById: "m-9",
+    })
+
+    expect(row).toMatchObject({ id: "pa-1" })
+    const claim = mocks.updates.at(-1)
+    expect(claim?.set).toMatchObject({
+      status: "approved",
+      decidedById: "m-9",
+    })
+    // The single-winner guard: both the pending-status and the expiry
+    // predicates land in one UPDATE's WHERE, so a loser of the race gets
+    // zero rows back.
+    const where = JSON.stringify(claim?.where)
+    expect(where).toContain("pending")
+    expect(where).toContain("__gt")
+  })
+
+  test("a lost race returns null — the caller refuses to execute twice", async () => {
+    mocks.updateReturning.push([])
+
+    const row = await masterAgentService.claimPendingActionForExecution({
+      workspaceId: "ws-1",
+      actionId: "pa-1",
+      decidedById: "m-9",
+    })
+
+    expect(row).toBeNull()
+  })
+})
+
+describe("rejectPendingAction", () => {
+  test("an already-decided action reports the conflict", async () => {
+    mocks.updateReturning.push([])
+
+    await expect(
+      masterAgentService.rejectPendingAction({
+        workspaceId: "ws-1",
+        actionId: "pa-1",
+        decidedById: "m-9",
+      }),
+    ).rejects.toThrow()
+  })
+
+  test("a win marks the action rejected with the decider", async () => {
+    mocks.updateReturning.push([
+      {
+        id: "pa-1",
+        sessionId: "s-1",
+        operationId: "broadcasts.schedule",
+        args: {},
+        policy: "confirm_diff",
+        currentState: null,
+        status: "rejected",
+        result: null,
+        decidedById: "m-9",
+        createdAt: new Date(),
+        expiresAt: new Date(),
+        execution: null,
+      },
     ])
 
-    const flows = await masterAgentService.listFlows({ workspaceId: "ws-1" })
-
-    expect(mocks.flowListPublished).toHaveBeenCalledWith({
+    const view = await masterAgentService.rejectPendingAction({
       workspaceId: "ws-1",
+      actionId: "pa-1",
+      decidedById: "m-9",
     })
-    expect(flows).toEqual([{ id: "flow-1", name: "Nhắc lịch K5" }])
+
+    expect(view.status).toBe("rejected")
+    expect(mocks.updates.at(-1)?.set).toMatchObject({
+      status: "rejected",
+      decidedById: "m-9",
+    })
   })
 })
 
-describe("listReminders", () => {
-  test("filters statuses in the query and includes in-flight reminders", async () => {
-    mocks.broadcastFindMany.mockResolvedValue([
-      { ...draftBroadcast, status: "sending" },
-    ])
-
-    const reminders = await masterAgentService.listReminders({
-      workspaceId: "ws-1",
-    })
-
-    expect(mocks.broadcastFindMany).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: expect.objectContaining({
-          workspaceId: "ws-1",
-          status: expect.objectContaining({
-            in: expect.arrayContaining(["sending"]),
-          }),
-        }),
-        limit: 25,
-      }),
-    )
-    // `sending` is listable, so stopReminder can be aimed at it.
-    expect(reminders.map((reminder) => reminder.status)).toEqual(["sending"])
-  })
-})
-
-describe("one draft per turn", () => {
-  test("refuses a second draft instead of replacing the first", async () => {
-    mocks.findFirstMessage.mockResolvedValue({ broadcastId: "b-1" })
-
-    await expect(
-      masterAgentService.draftReminder({
-        workspaceId: "ws-1",
-        messageId: "a-1",
-        contactId: "c-1",
-        flowId: "flow-1",
-        scheduledAt: "2026-11-27 20:00",
-      }),
-    ).rejects.toThrow("already drafted a reminder")
-    expect(mocks.broadcastCreate).not.toHaveBeenCalled()
-  })
-})
-
-describe("updateReminderDraft", () => {
-  test("keeps the draft's delivery range and rate", async () => {
-    mocks.broadcastFind.mockResolvedValue({
-      ...draftBroadcast,
-      audienceRangeStart: 1,
-      audienceRangeEnd: 100,
-      sendRatePerMinute: 30,
-    })
-    mocks.broadcastUpdateDraft.mockResolvedValue({
-      id: "b-1",
-      status: "draft",
-    })
-    mocks.broadcastFind
-      .mockResolvedValueOnce({
-        ...draftBroadcast,
-        audienceRangeStart: 1,
-        audienceRangeEnd: 100,
-        sendRatePerMinute: 30,
-      })
-      .mockResolvedValueOnce({ ...draftBroadcast, status: "draft" })
-
-    await masterAgentService.updateReminderDraft({
-      workspaceId: "ws-1",
-      broadcastId: "b-1",
-      scheduledAt: "2026-11-28 09:00",
-    })
-
-    expect(mocks.broadcastUpdateDraft).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          audienceRangeStart: 1,
-          audienceRangeEnd: 100,
-          sendRatePerMinute: 30,
-          schedulesAt: "2026-11-28T02:00:00.000Z",
-        }),
-      }),
-    )
-  })
-})
-
-describe("updateReminderDraft flow validation", () => {
-  test("a new flowId outside the workspace is refused before the draft is written", async () => {
-    mocks.broadcastFind.mockResolvedValue({
-      ...draftBroadcast,
-      status: "draft",
-    })
-    mocks.flowExists.mockResolvedValue(false)
-
-    await expect(
-      masterAgentService.updateReminderDraft({
-        workspaceId: "ws-1",
-        broadcastId: "b-1",
-        flowId: "flow-of-another-workspace",
-      }),
-    ).rejects.toThrow("Flow not found in this workspace")
-    expect(mocks.broadcastUpdateDraft).not.toHaveBeenCalled()
-  })
-
-  test("keeping the draft's own flow does not re-check it", async () => {
-    mocks.broadcastFind.mockResolvedValue({
-      ...draftBroadcast,
-      status: "draft",
-    })
-    mocks.broadcastUpdateDraft.mockResolvedValue({ id: "b-1", status: "draft" })
-
-    await masterAgentService.updateReminderDraft({
-      workspaceId: "ws-1",
-      broadcastId: "b-1",
-      name: "Nhắc lịch K5 (đổi tên)",
-    })
-
-    expect(mocks.flowExists).not.toHaveBeenCalled()
-    expect(mocks.broadcastUpdateDraft).toHaveBeenCalled()
-  })
-})
-
-describe("stopReminder", () => {
-  test("a scheduled reminder goes back to draft instead of being sent", async () => {
-    mocks.broadcastFind.mockResolvedValue({
-      ...draftBroadcast,
-      status: "scheduled",
-    })
-    mocks.broadcastMoveToDraft.mockResolvedValue({ id: "b-1" })
-    vi.spyOn(masterAgentService, "getReminder").mockResolvedValue({
-      ...draftBroadcast,
-      contactIds: ["c-1"],
-    } as never)
-
-    await masterAgentService.stopReminder({
-      workspaceId: "ws-1",
-      broadcastId: "b-1",
-    })
-
-    expect(mocks.broadcastMoveToDraft).toHaveBeenCalledWith({
-      workspaceId: "ws-1",
-      broadcastId: "b-1",
-    })
-    expect(mocks.broadcastStop).not.toHaveBeenCalled()
+describe("timezone", () => {
+  test("the master agent is pinned to Asia/Saigon", () => {
+    expect(MASTER_AGENT_TIMEZONE).toBe("Asia/Saigon")
   })
 })

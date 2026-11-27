@@ -1,17 +1,22 @@
+import { notFound } from "next/navigation"
 import {
-  hasWorkspacePermission,
-  type PermissionsInput,
-} from "@/lib/auth/permission-routes"
+  type CurrentUserAndTargetWorkspace,
+  getCurrentUserAndTargetWorkspace,
+} from "@/lib/auth/utils"
 
 /**
- * A Master Agent turn drafts broadcasts for a group and the draft sends a flow,
- * so a member needs BOTH the `broadcasts` section (`broadcast` flag) and flows.
- * Applied by the private API, the confirm procedure and the chat page — the
- * service does not check member permissions itself.
+ * Every workspace member may open the Master Agent page: chatting executes
+ * nothing by itself, and every operation the agent runs is permission-checked
+ * server-side through the turn's credential. Not a member (or signed out) is
+ * a 404, the same as every other workspace page, so the page's existence is
+ * not leaked.
  */
-export function canUseMasterAgent(permissions: PermissionsInput): boolean {
-  return (
-    hasWorkspacePermission(permissions, "broadcast") &&
-    hasWorkspacePermission(permissions, "flows")
-  )
+export async function requireMasterAgentPageAccess(
+  workspaceId: string,
+): Promise<CurrentUserAndTargetWorkspace> {
+  const access = await getCurrentUserAndTargetWorkspace(workspaceId)
+  if (!access) {
+    notFound()
+  }
+  return access
 }

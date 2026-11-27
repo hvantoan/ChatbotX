@@ -12199,27 +12199,46 @@
   },
   "masterAgent": {
     "title": "Master agent",
-    "description": "Dán tóm tắt buổi Zoom, trợ lý sẽ soạn bản nháp nhắc lịch để bạn xác nhận.",
-    "empty": "Chưa có tin nhắn. Dán tóm tắt Zoom để bắt đầu.",
-    "thinking": "Đang soạn nhắc lịch...",
+    "description": "Trợ lý điều hành workspace qua API: liên hệ, flow, broadcast, AI agent — có phê duyệt của bạn ở những chỗ quan trọng.",
+    "empty": "Chưa có tin nhắn. Hãy mô tả việc cần làm để bắt đầu.",
+    "thinking": "Đang xử lý...",
     "emptyReply": "Không có phản hồi.",
-    "placeholder": "Dán tóm tắt Zoom: nhóm nào, gửi lúc nào, nhắc nội dung gì.",
+    "placeholder": "Mô tả công việc, ví dụ dán tóm tắt buổi Zoom kèm nhóm và giờ nhắc.",
     "send": "Gửi",
-    "draftsTitle": "Bản nháp nhắc lịch",
+    "pendingActionsTitle": "Đang chờ bạn phê duyệt",
     "confirm": "Xác nhận",
-    "confirmed": "Đã lên lịch",
-    "fields": {
-      "group": "Nhóm",
-      "groupUnknown": "Không tìm thấy nhóm",
-      "sendTime": "Giờ gửi",
-      "timezone": "Asia/Saigon (GMT+7)",
-      "flow": "Flow",
-      "noFlow": "Chưa chọn flow",
-      "missingPermission": "Bạn cần quyền broadcasts và flows để xác nhận."
+    "reject": "Từ chối",
+    "approved": "Đã thực hiện",
+    "rejected": "Đã từ chối",
+    "expired": "Hết hạn",
+    "failed": "Thất bại",
+    "proposedArgs": "Thay đổi đề xuất",
+    "currentState": "Hiện trạng",
+    "noCurrentState": "Không có hiện trạng.",
+    "openResource": "Mở tài nguyên",
+    "policy": {
+      "confirm_diff": "Xem lại thay đổi trước khi chạy.",
+      "confirm_outbound": "Chạm tới khách hàng — cần phê duyệt.",
+      "confirm_destructive": "Phá hủy dữ liệu — cần phê duyệt."
+    },
+    "config": {
+      "title": "Cấu hình",
+      "enabled": "Bật",
+      "autoApproveDiff": "Tự duyệt thay đổi thông thường",
+      "autoApproveDiffHint": "Thao tác gửi ra ngoài hoặc phá hủy luôn cần phê duyệt.",
+      "prompt": "Chỉ dẫn bổ sung",
+      "promptHint": "Nối sau chỉ dẫn mặc định của hệ thống.",
+      "models": "Model AI",
+      "save": "Lưu cấu hình",
+      "notConfigured": "Master Agent chưa được cấu hình — lưu biểu mẫu này để bật.",
+      "openSettings": "Cài đặt"
     },
     "errors": {
       "sendFailed": "Không gửi được tin nhắn.",
-      "confirmFailed": "Không lên lịch được bản nháp."
-    }
+      "confirmFailed": "Không xác nhận được thao tác.",
+      "rejectFailed": "Không từ chối được thao tác.",
+      "saveConfigFailed": "Không lưu được cấu hình."
+    },
+    "pending": "Đang chờ"
   }
 }

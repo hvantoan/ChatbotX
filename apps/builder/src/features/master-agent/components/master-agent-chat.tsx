@@ -9,22 +9,16 @@ import { useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 import { orpc } from "@/lib/orpc/query"
-import { MasterAgentDraftCard } from "./master-agent-draft-card"
+import { MasterAgentPendingActionCard } from "./master-agent-pending-action-card"
 
 const POLL_INTERVAL_MS = 2000
 
 /**
- * The Master Agent chat: paste a Zoom summary, watch the turn run, then confirm
- * the reminder draft it produced. Confirming is the ONLY way a draft becomes a
- * scheduled broadcast here — the agent has no scheduling tool.
+ * The Master Agent chat: describe the task, watch the turn run, then approve
+ * the actions it proposed. Confirming is the ONLY way a gated action executes
+ * — the agent itself never runs one.
  */
-export function MasterAgentChat({
-  workspaceId,
-  canConfirm,
-}: {
-  workspaceId: string
-  canConfirm: boolean
-}) {
+export function MasterAgentChat({ workspaceId }: { workspaceId: string }) {
   const t = useTranslations("masterAgent")
   const queryClient = useQueryClient()
   const [message, setMessage] = useState("")
@@ -58,20 +52,33 @@ export function MasterAgentChat({
   )
 
   const confirm = useMutation(
-    orpc.masterAgentAPIs.confirmMasterAgentDraftAPI.mutationOptions({
+    orpc.masterAgentAPIs.confirmMasterAgentPendingActionAPI.mutationOptions({
+      // The action's new status lives in the session read, not in the confirm
+      // response, so the card switches only on the refreshed session.
       onSuccess: async () => {
-        // The draft's new status lives in the session read, not in the confirm
-        // response, so the card switches only on the refreshed session.
         await queryClient.invalidateQueries({ queryKey: getSession.key() })
       },
       onError: () => toast.error(t("errors.confirmFailed")),
     }),
   )
 
-  const working =
-    send.isPending || session.data?.status === "pending" || confirm.isPending
+  const reject = useMutation(
+    orpc.masterAgentAPIs.rejectMasterAgentPendingActionAPI.mutationOptions({
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: getSession.key() })
+      },
+      onError: () => toast.error(t("errors.rejectFailed")),
+    }),
+  )
+  // The confirm executes the stored API call server-side; the session read
+  // only reflects the settled row once it finishes, so the card disables
+  // both buttons while either decision is in flight.
+  const deciding = confirm.isPending || reject.isPending
+  const working = send.isPending || session.data?.status === "pending"
   const messages = session.data?.messages ?? []
-  const drafts = session.data?.drafts ?? []
+  const pendingActions = (session.data?.pendingActions ?? []).filter(
+    (action) => action.status === "pending",
+  )
 
   const submit = () => {
     const text = message.trim()
@@ -130,20 +137,23 @@ export function MasterAgentChat({
         </Button>
       </div>
 
-      {drafts.length === 0 ? null : (
+      {pendingActions.length === 0 ? null : (
         <div className="flex flex-col gap-2">
-          <h2 className="font-medium text-sm">{t("draftsTitle")}</h2>
-          {drafts.map((draft) => (
-            <MasterAgentDraftCard
-              canConfirm={canConfirm}
-              draft={draft}
-              isConfirming={
-                confirm.isPending && confirm.variables?.broadcastId === draft.id
+          <h2 className="font-medium text-sm">{t("pendingActionsTitle")}</h2>
+          {pendingActions.map((action) => (
+            <MasterAgentPendingActionCard
+              action={action}
+              isDeciding={
+                deciding &&
+                (confirm.variables?.actionId === action.id ||
+                  reject.variables?.actionId === action.id)
               }
-              key={draft.id}
-              onConfirm={(broadcastId) =>
-                confirm.mutate({ workspaceId, broadcastId })
+              key={action.id}
+              onConfirm={(actionId) =>
+                confirm.mutate({ workspaceId, actionId })
               }
+              onReject={(actionId) => reject.mutate({ workspaceId, actionId })}
+              workspaceId={workspaceId}
             />
           ))}
         </div>

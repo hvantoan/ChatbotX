@@ -10,13 +10,22 @@ import {
 } from "@inboxos.io/business"
 import { withAuditContext } from "@inboxos.io/business/audit"
 import { InboxOSException } from "@inboxos.io/business/errors"
+import {
+  MASTER_AGENT_CREDENTIAL_PREFIX,
+  verifyMasterAgentCredential,
+} from "@inboxos.io/business/master-agent/internal-credential"
 import { hashToken } from "@inboxos.io/business/workspace-api-token/credentials"
 import type {
   WorkspaceApiTokenModel,
   WorkspaceModel,
 } from "@inboxos.io/database/types"
 import { ORPCError } from "@orpc/server"
+import { env } from "@/env"
 import { logger } from "@/lib/log"
+import {
+  type MasterAgentWorkspacePrincipal,
+  resolveMasterAgentWorkspacePrincipal,
+} from "@/lib/master-agent/resolve-master-agent-principal"
 import { mobileCredentialId } from "@/lib/mobile-auth/mobile-credential-id"
 import {
   type MobileWorkspacePrincipal,
@@ -104,14 +113,37 @@ export const workspaceTokenAuthMidddleware = base.middleware(
       | { workspace: WorkspaceModel; apiToken: WorkspaceApiTokenModel }
       | undefined
 
-    if (bearerToken && isMobileAccessTokenCandidate(bearerToken)) {
-      mobile = await resolveMobileWorkspacePrincipal({
-        bearerToken,
-        requestedWorkspaceId,
-        method: procedure["~orpc"].route.method,
-        path: procedure["~orpc"].route.path,
-      })
-    } else {
+    let masterAgent: MasterAgentWorkspacePrincipal | undefined
+    if (bearerToken && bearerToken.split(".").length === JWT_SEGMENT_COUNT) {
+      // A mobile access token is tried first — its verifier is equally
+      // cheap. Failing both, the master-agent credential (HS256, purpose
+      // "master-agent") is verified with WebCrypto; wrong-signature or
+      // wrong-purpose tokens fall through to API-token / MCP resolution
+      // exactly as before, so this adds no observable behavior for them.
+      if (isMobileAccessTokenCandidate(bearerToken)) {
+        mobile = await resolveMobileWorkspacePrincipal({
+          bearerToken,
+          requestedWorkspaceId,
+          method: procedure["~orpc"].route.method,
+          path: procedure["~orpc"].route.path,
+        })
+      } else if (bearerToken.startsWith(MASTER_AGENT_CREDENTIAL_PREFIX)) {
+        // Prefixed master-agent credentials never fall through: an expired or
+        // tampered one is a hard 401, not an API-token lookup.
+        const payload = await verifyMasterAgentCredential(
+          bearerToken,
+          env.BETTER_AUTH_SECRET,
+        )
+        if (!payload) {
+          throw invalidTokenError()
+        }
+        masterAgent = await resolveMasterAgentWorkspacePrincipal({
+          payload,
+          requestedWorkspaceId,
+        })
+      }
+    }
+    if (!(mobile || masterAgent)) {
       const tokenHash = await hashToken(token)
       try {
         workspaceTokenAuth =
@@ -155,6 +187,12 @@ export const workspaceTokenAuthMidddleware = base.middleware(
           userId: workspaceTokenAuth.workspace.ownerId,
           source: `api-token:${workspaceTokenAuth.apiToken.id}`,
         },
+      }
+    } else if (masterAgent) {
+      resolved = {
+        workspace: masterAgent.workspace,
+        apiToken: masterAgent.apiToken,
+        audit: masterAgent.audit,
       }
     } else if (mobile) {
       resolved = {
@@ -297,6 +335,13 @@ export const workspaceTokenAuthMidddleware = base.middleware(
               user: mobile.user,
               member: mobile.member,
               mobileDeviceId: mobile.deviceId ?? undefined,
+              requestIssuedAtMs,
+            }),
+            ...(masterAgent?.member && {
+              user: masterAgent.user as NonNullable<
+                MasterAgentWorkspacePrincipal["user"]
+              >,
+              member: masterAgent.member,
               requestIssuedAtMs,
             }),
           } satisfies Partial<BaseContext>,

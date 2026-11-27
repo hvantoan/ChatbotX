@@ -2,12 +2,6 @@
 
 import { beforeEach, describe, expect, test, vi } from "vitest"
 
-type MemberPermissions = {
-  superAdmin?: boolean
-  broadcast?: boolean
-  flows?: boolean
-}
-
 const {
   authGetSession,
   findMembership,
@@ -17,9 +11,10 @@ const {
   isAtLimit,
   sendMessage,
   getSession,
-  getReminder,
-  listGroups,
-  scheduleDraft,
+  getConfigView,
+  upsertConfig,
+  rejectPendingAction,
+  executePendingActionConfirmation,
 } = vi.hoisted(() => ({
   authGetSession: vi.fn(),
   findMembership: vi.fn(),
@@ -29,9 +24,10 @@ const {
   isAtLimit: vi.fn().mockResolvedValue(false),
   sendMessage: vi.fn(),
   getSession: vi.fn(),
-  getReminder: vi.fn(),
-  listGroups: vi.fn(),
-  scheduleDraft: vi.fn(),
+  getConfigView: vi.fn(),
+  upsertConfig: vi.fn(),
+  rejectPendingAction: vi.fn(),
+  executePendingActionConfirmation: vi.fn(),
 }))
 
 vi.mock("@inboxos.io/business", () => ({
@@ -40,8 +36,17 @@ vi.mock("@inboxos.io/business", () => ({
   isWorkspaceScheduledForDeletion,
   userQuotaService: { getAccessState },
   quotaEnforcementService: { isAtLimit },
-  masterAgentService: { sendMessage, getSession, getReminder, listGroups },
-  broadcastService: { scheduleDraft },
+  masterAgentService: {
+    sendMessage,
+    getSession,
+    getConfigView,
+    upsertConfig,
+    rejectPendingAction,
+  },
+}))
+
+vi.mock("@/lib/master-agent/execute-pending-action", () => ({
+  executePendingActionConfirmation,
 }))
 
 vi.mock("@inboxos.io/business/audit", () => ({
@@ -72,19 +77,6 @@ const { masterAgentPrivateAPIs } = await import(
 const WORKSPACE_ID = "ws-1"
 const USER_ID = "user-1"
 
-const memberWith = (permissions: MemberPermissions) => ({
-  workspace: { id: WORKSPACE_ID, ownerId: "owner-1" },
-  workspaceId: WORKSPACE_ID,
-  userId: USER_ID,
-  permissions,
-})
-
-/** A member who may open the chat: both flags the Master Agent requires. */
-const AUTHORIZED_PERMISSIONS: MemberPermissions = {
-  broadcast: true,
-  flows: true,
-}
-
 const session = {
   sessionId: "s-1",
   status: "pending" as const,
@@ -92,31 +84,20 @@ const session = {
     {
       id: "u-1",
       role: "user" as const,
-      content: "Tóm tắt Zoom K5, nhắc 20:00 ngày 27/11",
+      content: "Tóm tắt Zoom K5",
       status: "completed" as const,
-      broadcastId: null,
       createdAt: new Date("2026-11-26T10:00:00.000Z"),
     },
   ],
-  drafts: [],
+  pendingActions: [],
 }
 
-const draft = {
-  id: "b-1",
-  name: "Nhắc lịch K5",
-  status: "draft" as const,
-  schedulesType: "future" as const,
-  schedulesAt: new Date("2026-11-27T13:00:00.000Z"),
-  flowId: "flow-1",
-  contactIds: ["contact-1"],
-}
-
-/** Every procedure's input fields, so a loop exercises all three through the gate. */
-const everyProcedureInput = {
-  workspaceId: WORKSPACE_ID,
-  message: "tóm tắt Zoom",
-  sessionId: "s-1",
-  broadcastId: "b-1",
+const configView = {
+  configured: true,
+  enabled: true,
+  autoApproveDiff: false,
+  prompt: null,
+  models: [],
 }
 
 const invoke = (procedure: unknown, input: unknown) =>
@@ -124,25 +105,19 @@ const invoke = (procedure: unknown, input: unknown) =>
     context: { headers: new Headers({ authorization: "Bearer test-token" }) },
   })
 
-/** The gate may surface as the raw domain error or as its mapped ORPCError. */
-const expectForbidden = async (promise: Promise<unknown>) => {
-  const error = (await promise.catch((thrown: unknown) => thrown)) as {
-    code?: string
-    status?: number
-    httpStatusCode?: number
-  }
-  expect(error.code).toBe("masterAgentForbidden")
-  expect(error.status ?? error.httpStatusCode).toBe(403)
-}
-
 const signIn = () =>
   authGetSession.mockResolvedValue({
     session: { id: "session-1", ipAddress: null, userAgent: null },
     user: { id: USER_ID },
   })
 
-const memberOf = (permissions: MemberPermissions) => {
-  const member = memberWith(permissions)
+const memberOf = (permissions: Record<string, boolean>) => {
+  const member = {
+    workspace: { id: WORKSPACE_ID, ownerId: "owner-1" },
+    workspaceId: WORKSPACE_ID,
+    userId: USER_ID,
+    permissions,
+  }
   findMembership.mockResolvedValue(member)
   resolveWorkspaceAccess.mockResolvedValue({
     workspace: member.workspace,
@@ -151,16 +126,27 @@ const memberOf = (permissions: MemberPermissions) => {
   })
 }
 
+/** Every procedure's input fields, so a loop exercises them all through the gate. */
+const everyProcedureInput = {
+  workspaceId: WORKSPACE_ID,
+  message: "tóm tắt Zoom",
+  sessionId: "s-1",
+  actionId: "pa-1",
+  enabled: true,
+  autoApproveDiff: false,
+  prompt: null,
+  models: [],
+}
+
 beforeEach(() => {
   vi.clearAllMocks()
   isWorkspaceScheduledForDeletion.mockReturnValue(false)
   getAccessState.mockResolvedValue({ blocked: false })
   isAtLimit.mockResolvedValue(false)
-  listGroups.mockResolvedValue([])
 })
 
 describe("Master Agent private API access control", () => {
-  test("a signed-out caller gets 401 on every procedure and nothing is written", async () => {
+  test("a signed-out caller gets 401 on every procedure and nothing runs", async () => {
     authGetSession.mockResolvedValue(null)
 
     for (const procedure of Object.values(masterAgentPrivateAPIs)) {
@@ -171,10 +157,9 @@ describe("Master Agent private API access control", () => {
 
     expect(sendMessage).not.toHaveBeenCalled()
     expect(getSession).not.toHaveBeenCalled()
-    expect(scheduleDraft).not.toHaveBeenCalled()
   })
 
-  test("a signed-in user who is not a workspace member is refused before any service call", async () => {
+  test("a signed-in user outside the workspace is refused before any service call", async () => {
     signIn()
     findMembership.mockResolvedValue(undefined)
     resolveWorkspaceAccess.mockResolvedValue(undefined)
@@ -187,60 +172,34 @@ describe("Master Agent private API access control", () => {
 
     expect(sendMessage).not.toHaveBeenCalled()
     expect(getSession).not.toHaveBeenCalled()
-    expect(getReminder).not.toHaveBeenCalled()
   })
 
-  test("a member without the broadcasts flag gets 403 on every procedure", async () => {
+  test("any member may chat and read sessions — per-operation rights come from the credential", async () => {
     signIn()
-    memberOf({ flows: true })
+    memberOf({})
+    sendMessage.mockResolvedValue(session)
 
-    for (const procedure of Object.values(masterAgentPrivateAPIs)) {
-      await expectForbidden(invoke(procedure, everyProcedureInput))
-    }
+    const result = await invoke(
+      masterAgentPrivateAPIs.sendMasterAgentMessageAPI,
+      { workspaceId: WORKSPACE_ID, message: "chào" },
+    )
 
-    expect(sendMessage).not.toHaveBeenCalled()
-    expect(getSession).not.toHaveBeenCalled()
-    expect(scheduleDraft).not.toHaveBeenCalled()
-  })
-
-  test("a member without the flows flag gets 403 on every procedure", async () => {
-    signIn()
-    memberOf({ broadcast: true })
-
-    for (const procedure of Object.values(masterAgentPrivateAPIs)) {
-      await expectForbidden(invoke(procedure, everyProcedureInput))
-    }
-
-    expect(sendMessage).not.toHaveBeenCalled()
-    expect(getReminder).not.toHaveBeenCalled()
-    expect(scheduleDraft).not.toHaveBeenCalled()
+    expect(result).toMatchObject({ sessionId: "s-1" })
+    expect(sendMessage).toHaveBeenCalledWith(
+      expect.objectContaining({
+        workspaceId: WORKSPACE_ID,
+        memberId: USER_ID,
+        message: "chào",
+        sessionId: null,
+      }),
+    )
   })
 })
 
 describe("sendMasterAgentMessageAPI", () => {
   beforeEach(() => {
     signIn()
-    memberOf(AUTHORIZED_PERMISSIONS)
-  })
-
-  test("runs the shared service with the context workspace and the caller as the author", async () => {
-    sendMessage.mockResolvedValue(session)
-
-    const result = await invoke(
-      masterAgentPrivateAPIs.sendMasterAgentMessageAPI,
-      {
-        workspaceId: WORKSPACE_ID,
-        message: "Tóm tắt Zoom K5, nhắc 20:00 ngày 27/11",
-      },
-    )
-
-    expect(sendMessage).toHaveBeenCalledWith({
-      workspaceId: WORKSPACE_ID,
-      memberId: USER_ID,
-      message: "Tóm tắt Zoom K5, nhắc 20:00 ngày 27/11",
-      sessionId: null,
-    })
-    expect(result).toMatchObject({ sessionId: "s-1", status: "pending" })
+    memberOf({})
   })
 
   test("continues an existing session", async () => {
@@ -266,52 +225,12 @@ describe("sendMasterAgentMessageAPI", () => {
     ).rejects.toMatchObject({ code: "invalidRequestData" })
     expect(sendMessage).not.toHaveBeenCalled()
   })
-
-  test("labels each draft with the group contact it targets", async () => {
-    sendMessage.mockResolvedValue({ ...session, drafts: [draft] })
-    listGroups.mockResolvedValue([
-      {
-        contactId: "contact-1",
-        name: "Khoá K5",
-        groupSourceId: "group:k5-demo",
-        inboxId: "inbox-1",
-        inboxName: "Khoá học",
-        channel: "zalo_personal",
-      },
-    ])
-
-    const result = (await invoke(
-      masterAgentPrivateAPIs.sendMasterAgentMessageAPI,
-      { workspaceId: WORKSPACE_ID, message: "nhắc K5" },
-    )) as { drafts: { group: unknown }[] }
-
-    expect(listGroups).toHaveBeenCalledWith({ workspaceId: WORKSPACE_ID })
-    expect(result.drafts[0]?.group).toEqual({
-      contactId: "contact-1",
-      name: "Khoá K5",
-      sourceId: "group:k5-demo",
-    })
-  })
-
-  test("does not look up groups when the turn drafted nothing", async () => {
-    sendMessage.mockResolvedValue(session)
-
-    await invoke(masterAgentPrivateAPIs.sendMasterAgentMessageAPI, {
-      workspaceId: WORKSPACE_ID,
-      message: "chào",
-    })
-
-    expect(listGroups).not.toHaveBeenCalled()
-  })
 })
 
 describe("getMasterAgentSessionAPI", () => {
-  beforeEach(() => {
+  test("reads the session scoped to the workspace", async () => {
     signIn()
-    memberOf(AUTHORIZED_PERMISSIONS)
-  })
-
-  test("reads the session through the shared service, scoped to the workspace", async () => {
+    memberOf({})
     getSession.mockResolvedValue(session)
 
     await invoke(masterAgentPrivateAPIs.getMasterAgentSessionAPI, {
@@ -319,66 +238,125 @@ describe("getMasterAgentSessionAPI", () => {
       sessionId: "s-1",
     })
 
-    expect(getSession).toHaveBeenCalledWith({
+    expect(getSession).toHaveBeenCalledWith(
+      expect.objectContaining({
+        workspaceId: WORKSPACE_ID,
+        sessionId: "s-1",
+        viewerMemberId: "user-1",
+      }),
+    )
+  })
+})
+
+describe("config procedures", () => {
+  test("any member may read the config", async () => {
+    signIn()
+    memberOf({})
+    getConfigView.mockResolvedValue(configView)
+
+    const result = await invoke(
+      masterAgentPrivateAPIs.getMasterAgentConfigAPI,
+      {
+        workspaceId: WORKSPACE_ID,
+      },
+    )
+
+    expect(result).toMatchObject({ configured: true, enabled: true })
+  })
+
+  test("updateConfig requires the flows permission", async () => {
+    signIn()
+    memberOf({ contacts: true })
+
+    await expect(
+      invoke(masterAgentPrivateAPIs.updateMasterAgentConfigAPI, {
+        workspaceId: WORKSPACE_ID,
+        enabled: true,
+        autoApproveDiff: false,
+        prompt: null,
+        models: [],
+      }),
+    ).rejects.toMatchObject({ code: "masterAgentForbidden" })
+    expect(upsertConfig).not.toHaveBeenCalled()
+  })
+
+  test("a flows-permission member may update the config", async () => {
+    signIn()
+    memberOf({ flows: true })
+    upsertConfig.mockResolvedValue({ ...configView, autoApproveDiff: true })
+
+    const result = await invoke(
+      masterAgentPrivateAPIs.updateMasterAgentConfigAPI,
+      {
+        workspaceId: WORKSPACE_ID,
+        enabled: true,
+        autoApproveDiff: true,
+        prompt: "be brief",
+        models: [{ provider: "openai", model: "gpt-x" }],
+      },
+    )
+
+    expect(result).toMatchObject({ autoApproveDiff: true })
+    expect(upsertConfig).toHaveBeenCalledWith({
       workspaceId: WORKSPACE_ID,
-      sessionId: "s-1",
+      enabled: true,
+      autoApproveDiff: true,
+      prompt: "be brief",
+      models: [{ provider: "openai", model: "gpt-x" }],
     })
   })
 })
 
-describe("confirmMasterAgentDraftAPI", () => {
+describe("pending action decisions", () => {
   beforeEach(() => {
     signIn()
-    memberOf(AUTHORIZED_PERMISSIONS)
+    memberOf({})
   })
 
-  test("schedules the draft with its own stored schedule, never client input", async () => {
-    getReminder.mockResolvedValue(draft)
-    scheduleDraft.mockResolvedValue({ id: "b-1" })
+  test("confirm runs the stored call with the reviewer as the executor", async () => {
+    executePendingActionConfirmation.mockResolvedValue({
+      id: "pa-1",
+      status: "approved",
+      result: { ok: true },
+    })
 
     const result = await invoke(
-      masterAgentPrivateAPIs.confirmMasterAgentDraftAPI,
-      { workspaceId: WORKSPACE_ID, broadcastId: "b-1" },
+      masterAgentPrivateAPIs.confirmMasterAgentPendingActionAPI,
+      { workspaceId: WORKSPACE_ID, actionId: "pa-1" },
     )
 
-    expect(getReminder).toHaveBeenCalledWith({
+    expect(result).toMatchObject({ id: "pa-1", status: "approved" })
+    expect(executePendingActionConfirmation).toHaveBeenCalledWith({
       workspaceId: WORKSPACE_ID,
-      broadcastId: "b-1",
+      actionId: "pa-1",
+      memberId: USER_ID,
     })
-    expect(scheduleDraft).toHaveBeenCalledWith({
-      workspaceId: WORKSPACE_ID,
-      broadcastId: "b-1",
-      schedulesType: "future",
-      schedulesAt: draft.schedulesAt,
-    })
-    expect(result).toEqual({ id: "b-1" })
   })
 
-  test("a draft of another workspace is a 404 and is never scheduled", async () => {
-    const notFound = Object.assign(new Error("Reminder not found"), {
-      code: "notFound",
-      httpStatusCode: 404,
+  test("reject marks the action rejected with the reviewer as the decider", async () => {
+    rejectPendingAction.mockResolvedValue({
+      id: "pa-1",
+      operationId: "broadcasts.schedule",
+      toolName: "broadcasts_schedule",
+      args: {},
+      policy: "confirm_outbound",
+      currentState: null,
+      status: "rejected",
+      result: null,
+      resourcePath: null,
+      expiresAt: new Date(),
+      createdAt: new Date(),
     })
-    getReminder.mockRejectedValue(notFound)
 
-    await expect(
-      invoke(masterAgentPrivateAPIs.confirmMasterAgentDraftAPI, {
-        workspaceId: WORKSPACE_ID,
-        broadcastId: "b-other-workspace",
-      }),
-    ).rejects.toMatchObject({ code: "notFound" })
-    expect(scheduleDraft).not.toHaveBeenCalled()
-  })
+    await invoke(masterAgentPrivateAPIs.rejectMasterAgentPendingActionAPI, {
+      workspaceId: WORKSPACE_ID,
+      actionId: "pa-1",
+    })
 
-  test("a broadcast that is no longer a draft cannot be re-scheduled here", async () => {
-    getReminder.mockResolvedValue({ ...draft, status: "scheduled" })
-
-    await expect(
-      invoke(masterAgentPrivateAPIs.confirmMasterAgentDraftAPI, {
-        workspaceId: WORKSPACE_ID,
-        broadcastId: "b-1",
-      }),
-    ).rejects.toMatchObject({ code: "notFound" })
-    expect(scheduleDraft).not.toHaveBeenCalled()
+    expect(rejectPendingAction).toHaveBeenCalledWith({
+      workspaceId: WORKSPACE_ID,
+      actionId: "pa-1",
+      decidedById: USER_ID,
+    })
   })
 })

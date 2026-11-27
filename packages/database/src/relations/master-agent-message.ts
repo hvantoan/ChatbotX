@@ -9,10 +9,6 @@ export const masterAgentMessageRelations = defineRelationsPart(schema, (r) => ({
       to: r.workspaceModel.id,
       optional: false,
     }),
-    broadcast: r.one.broadcastModel({
-      from: r.masterAgentMessageModel.broadcastId,
-      to: r.broadcastModel.id,
-    }),
     createdBy: r.one.userModel({
       from: r.masterAgentMessageModel.createdById,
       to: r.userModel.id,

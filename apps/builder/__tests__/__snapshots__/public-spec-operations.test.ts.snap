@@ -2323,14 +2323,34 @@ exports[`public API spec — operation naming guard > operation list (operationI
     "path": "/v1/magic-links/{id}",
   },
   {
+    "method": "POST",
+    "operationId": "masterAgent.confirmPendingAction",
+    "path": "/v1/master-agent/pending-actions/{actionId}/confirm",
+  },
+  {
+    "method": "GET",
+    "operationId": "masterAgent.getConfig",
+    "path": "/v1/master-agent/config",
+  },
+  {
     "method": "GET",
     "operationId": "masterAgent.getSession",
     "path": "/v1/master-agent/sessions/{sessionId}",
   },
   {
     "method": "POST",
+    "operationId": "masterAgent.rejectPendingAction",
+    "path": "/v1/master-agent/pending-actions/{actionId}/reject",
+  },
+  {
+    "method": "POST",
     "operationId": "masterAgent.sendMessage",
     "path": "/v1/master-agent/messages",
+  },
+  {
+    "method": "PUT",
+    "operationId": "masterAgent.updateConfig",
+    "path": "/v1/master-agent/config",
   },
   {
     "method": "POST",

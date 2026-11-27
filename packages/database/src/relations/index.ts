@@ -130,7 +130,9 @@ import { leaderboardRelations } from "./leaderboard"
 import { leaderboardAuditLogRelations } from "./leaderboard-audit-log"
 import { leaderboardParticipantRelations } from "./leaderboard-participant"
 import { magicLinkRelations } from "./magic-link"
+import { masterAgentConfigRelations } from "./master-agent-config"
 import { masterAgentMessageRelations } from "./master-agent-message"
+import { masterAgentPendingActionRelations } from "./master-agent-pending-action"
 import { mediaLibraryFileRelations } from "./media-library-file"
 import { mediaLibraryFolderRelations } from "./media-library-folder"
 import { messageRelations } from "./message"
@@ -384,6 +386,8 @@ export const relations = {
   ...automationThrottleRelations,
   ...miniAppRelations,
   ...masterAgentMessageRelations,
+  ...masterAgentConfigRelations,
+  ...masterAgentPendingActionRelations,
   ...minigameRelations,
   ...minigameContactRelations,
   ...minigamePlayRelations,

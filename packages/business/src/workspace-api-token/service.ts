@@ -97,6 +97,35 @@ class WorkspaceApiTokenService extends BaseService {
     )
   }
 
+  /**
+   * Resolves one token row by id, scoped to its workspace — the lookup the
+   * master-agent credential branch needs: the credential carries a token id,
+   * never the token itself. Deliberately uncached: the auth gate must see a
+   * revocation immediately.
+   */
+  async findWorkspaceAndTokenById(props: {
+    tokenId: string
+    workspaceId: string
+    tx?: DatabaseClient
+  }): Promise<
+    { workspace: WorkspaceModel; apiToken: WorkspaceApiTokenModel } | undefined
+  > {
+    const { tokenId, workspaceId, tx = db } = props
+    const apiToken = await workspaceApiTokenRepository.findByIdAndWorkspaceId(
+      tokenId,
+      workspaceId,
+      tx,
+    )
+    if (!apiToken) {
+      return
+    }
+    const workspace = await workspaceService.findById({
+      id: apiToken.workspaceId,
+      tx,
+    })
+    return { workspace, apiToken }
+  }
+
   async listTokens(props: {
     workspaceId: string
     tx?: DatabaseClient

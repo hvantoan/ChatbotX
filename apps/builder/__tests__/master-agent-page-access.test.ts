@@ -16,7 +16,7 @@ vi.mock("next/navigation", () => ({ notFound }))
 // Imports follow the `vi.mock` calls so the mocked modules are in place when
 // the guard module loads its dependencies.
 const { requireMasterAgentPageAccess } = await import(
-  "../src/features/master-agent/lib/require-master-agent-page-access"
+  "../src/features/master-agent/lib/access"
 )
 
 const accessWith = (permissions: Record<string, boolean>) => ({
@@ -39,36 +39,17 @@ describe("requireMasterAgentPageAccess", () => {
     )
   })
 
-  test("a member without the broadcasts permission is refused with 403", async () => {
-    getCurrentUserAndTargetWorkspace.mockResolvedValue(
-      accessWith({ flows: true }),
-    )
-
-    await expect(requireMasterAgentPageAccess("ws-1")).rejects.toMatchObject({
-      code: "masterAgentForbidden",
-      httpStatusCode: 403,
-    })
-  })
-
-  test("a member without the flows permission is refused with 403", async () => {
-    getCurrentUserAndTargetWorkspace.mockResolvedValue(
-      accessWith({ broadcast: true }),
-    )
-
-    await expect(requireMasterAgentPageAccess("ws-1")).rejects.toMatchObject({
-      code: "masterAgentForbidden",
-      httpStatusCode: 403,
-    })
-  })
-
-  test("a super admin passes, like every other permission gate", async () => {
-    const access = accessWith({ superAdmin: true })
+  test("any member may open the page — permissions gate the operations, not the chat", async () => {
+    // Even a member with zero explicit permissions: the chat itself executes
+    // nothing, and the turn's derived scopes already exclude every operation
+    // they are not allowed to run.
+    const access = accessWith({})
     getCurrentUserAndTargetWorkspace.mockResolvedValue(access)
 
     await expect(requireMasterAgentPageAccess("ws-1")).resolves.toBe(access)
   })
 
-  test("a member holding both permissions reaches the chat", async () => {
+  test("a member with permissions reaches the page too", async () => {
     const access = accessWith({ broadcast: true, flows: true })
     getCurrentUserAndTargetWorkspace.mockResolvedValue(access)
 

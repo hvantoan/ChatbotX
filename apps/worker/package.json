@@ -78,6 +78,7 @@
     "@inboxos.io/integration-zalo-personal": "workspace:*",
     "@inboxos.io/logger": "workspace:*",
     "@inboxos.io/mail": "workspace:*",
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@inboxos.io/realtime-protocol": "workspace:*",
     "@inboxos.io/redis": "workspace:*",
     "@inboxos.io/scheduler": "workspace:*",

@@ -9,7 +9,6 @@
     "./sam": "./src/server/sam.ts",
     "./sales-profile-proposer": "./src/server/services/sales-profile-proposer.ts",
     "./server": "./src/server.ts",
-    "./master-agent-tools": "./src/server/tools/master-agent.ts",
     "./utils": "./src/utils/index.ts"
   },
   "dependencies": {

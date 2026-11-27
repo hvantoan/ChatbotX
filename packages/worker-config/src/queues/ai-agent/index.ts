@@ -176,6 +176,13 @@ const aiJobProcessMasterAgentSchema = z.object({
     workspaceId: z.string().min(1),
     sessionId: z.string().min(1),
     messageId: z.string().min(1),
+    /**
+     * Who started the chat — exactly one of the two. The worker mints the
+     * turn's short-lived credential with it, so member chats act with the
+     * member's permissions and token chats with the token's scopes.
+     */
+    memberId: z.string().nullable().default(null),
+    tokenId: z.string().nullable().default(null),
   }),
 })
 

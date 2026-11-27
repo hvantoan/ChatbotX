@@ -1,7 +1,7 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "2567ed04-bef9-4377-a506-084bad804061",
+  "id": "10fdb6c4-28b8-44ea-8825-e01998a33be7",
   "prevIds": [
     "270f0faf-3c69-4cea-81f3-0ca8936fc8b5"
   ],
@@ -1131,6 +1131,28 @@
         "failed"
       ],
       "name": "masterAgentMessageStatus",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "confirm_diff",
+        "confirm_outbound",
+        "confirm_destructive"
+      ],
+      "name": "masterAgentHitlPolicy",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "pending",
+        "approved",
+        "rejected",
+        "expired",
+        "failed"
+      ],
+      "name": "masterAgentPendingActionStatus",
       "entityType": "enums",
       "schema": "public"
     },
@@ -2708,7 +2730,19 @@
     },
     {
       "isRlsEnabled": false,
+      "name": "MasterAgentConfig",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
       "name": "MasterAgentMessage",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "MasterAgentPendingAction",
       "entityType": "tables",
       "schema": "public"
     },
@@ -29898,6 +29932,110 @@
       "name": "id",
       "entityType": "columns",
       "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "bigint",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "workspaceId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 1,
+      "default": "",
+      "generated": null,
+      "identity": null,
+      "name": "models",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "prompt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "enabled",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "name": "autoApproveDiff",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "type": "bigint",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
       "table": "MasterAgentMessage"
     },
     {
@@ -29999,10 +30137,75 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "broadcastId",
+      "name": "createdById",
       "entityType": "columns",
       "schema": "public",
       "table": "MasterAgentMessage"
+    },
+    {
+      "type": "bigint",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "bigint",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "workspaceId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "sessionId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
     },
     {
       "type": "bigint",
@@ -30012,10 +30215,140 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "createdById",
+      "name": "messageId",
       "entityType": "columns",
       "schema": "public",
-      "table": "MasterAgentMessage"
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "operationId",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "args",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "execution",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "masterAgentHitlPolicy",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "policy",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "currentState",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "masterAgentPendingActionStatus",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'pending'",
+      "generated": null,
+      "identity": null,
+      "name": "status",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "bigint",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "decidedById",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "decidedAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "type": "timestamp(6) with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expiresAt",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
     },
     {
       "type": "bigint",
@@ -58212,6 +58545,27 @@
           "opclass": null
         }
       ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentConfig_workspaceId_key",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentConfig"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "workspaceId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
       "isUnique": false,
       "where": null,
       "with": "",
@@ -58268,27 +58622,6 @@
       "nameExplicit": true,
       "columns": [
         {
-          "value": "broadcastId",
-          "isExpression": false,
-          "asc": true,
-          "nullsFirst": false,
-          "opclass": null
-        }
-      ],
-      "isUnique": false,
-      "where": "\"broadcastId\" IS NOT NULL",
-      "with": "",
-      "method": "btree",
-      "concurrently": false,
-      "name": "MasterAgentMessage_broadcastId_idx",
-      "entityType": "indexes",
-      "schema": "public",
-      "table": "MasterAgentMessage"
-    },
-    {
-      "nameExplicit": true,
-      "columns": [
-        {
           "value": "createdById",
           "isExpression": false,
           "asc": true,
@@ -58305,6 +58638,125 @@
       "entityType": "indexes",
       "schema": "public",
       "table": "MasterAgentMessage"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "workspaceId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentPendingAction_workspaceId_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "workspaceId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "sessionId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentPendingAction_workspaceId_sessionId_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "messageId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": "\"messageId\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentPendingAction_messageId_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "decidedById",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": "\"decidedById\" IS NOT NULL",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentPendingAction_decidedById_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "workspaceId",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "status",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": "\"status\" = 'pending'",
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "MasterAgentPendingAction_workspaceId_status_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
     },
     {
       "nameExplicit": true,
@@ -72105,24 +72557,24 @@
       ],
       "onUpdate": "CASCADE",
       "onDelete": "CASCADE",
-      "name": "MasterAgentMessage_workspaceId_Workspace_id_fkey",
+      "name": "MasterAgentConfig_workspaceId_Workspace_id_fkey",
       "entityType": "fks",
       "schema": "public",
-      "table": "MasterAgentMessage"
+      "table": "MasterAgentConfig"
     },
     {
       "nameExplicit": false,
       "columns": [
-        "broadcastId"
+        "workspaceId"
       ],
       "schemaTo": "public",
-      "tableTo": "Broadcast",
+      "tableTo": "Workspace",
       "columnsTo": [
         "id"
       ],
       "onUpdate": "CASCADE",
-      "onDelete": "SET NULL",
-      "name": "MasterAgentMessage_broadcastId_Broadcast_id_fkey",
+      "onDelete": "CASCADE",
+      "name": "MasterAgentMessage_workspaceId_Workspace_id_fkey",
       "entityType": "fks",
       "schema": "public",
       "table": "MasterAgentMessage"
@@ -72143,6 +72595,40 @@
       "entityType": "fks",
       "schema": "public",
       "table": "MasterAgentMessage"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "workspaceId"
+      ],
+      "schemaTo": "public",
+      "tableTo": "Workspace",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "CASCADE",
+      "name": "MasterAgentPendingAction_workspaceId_Workspace_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "decidedById"
+      ],
+      "schemaTo": "public",
+      "tableTo": "User",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "CASCADE",
+      "onDelete": "SET NULL",
+      "name": "MasterAgentPendingAction_decidedById_User_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "MasterAgentPendingAction"
     },
     {
       "nameExplicit": false,
@@ -77975,9 +78461,29 @@
         "id"
       ],
       "nameExplicit": false,
+      "name": "MasterAgentConfig_pkey",
+      "schema": "public",
+      "table": "MasterAgentConfig",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
       "name": "MasterAgentMessage_pkey",
       "schema": "public",
       "table": "MasterAgentMessage",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "MasterAgentPendingAction_pkey",
+      "schema": "public",
+      "table": "MasterAgentPendingAction",
       "entityType": "pks"
     },
     {
