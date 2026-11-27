@@ -118,7 +118,8 @@ services:
   # ─────────────────────────────────────────────
   builder:
     <<: *service-common
-    image: ${INBOXOS_BUILDER_IMAGE:-${CHATBOTX_BUILDER_IMAGE:-inboxos-builder:latest}}
+    image: "${INBOXOS_BUILDER_IMAGE:-\
+      ${CHATBOTX_BUILDER_IMAGE:-inboxos-builder:latest}}"
     build:
       context: ..
       dockerfile: apps/builder/docker/Dockerfile
@@ -150,7 +151,8 @@ services:
 
   worker:
     <<: *service-common
-    image: ${INBOXOS_WORKER_IMAGE:-${CHATBOTX_WORKER_IMAGE:-inboxos-worker:latest}}
+    image: "${INBOXOS_WORKER_IMAGE:-\
+      ${CHATBOTX_WORKER_IMAGE:-inboxos-worker:latest}}"
     build:
       context: ..
       dockerfile: apps/worker/docker/Dockerfile
@@ -180,7 +182,8 @@ services:
   javascript-executor:
     platform: linux/amd64
     restart: always
-    image: ${INBOXOS_JS_EXECUTOR_IMAGE:-${CHATBOTX_JS_EXECUTOR_IMAGE:-inboxos-javascript-executor:latest}}
+    image: "${INBOXOS_JS_EXECUTOR_IMAGE:-\
+      ${CHATBOTX_JS_EXECUTOR_IMAGE:-inboxos-javascript-executor:latest}}"
     build:
       context: ..
       dockerfile: apps/javascript-executor/docker/Dockerfile
@@ -211,7 +214,8 @@ services:
 
   realtime:
     <<: *service-common
-    image: ${INBOXOS_REALTIME_IMAGE:-${CHATBOTX_REALTIME_IMAGE:-inboxos-realtime:latest}}
+    image: "${INBOXOS_REALTIME_IMAGE:-\
+      ${CHATBOTX_REALTIME_IMAGE:-inboxos-realtime:latest}}"
     build:
       context: ..
       dockerfile: apps/realtime/docker/Dockerfile
@@ -228,8 +232,8 @@ services:
 
   zalo-personal-gateway:
     <<: *service-common
-    image: "${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-\
-      chatbotx-zalo-personal-gateway:latest}"
+    image: "${INBOXOS_ZALO_PERSONAL_GATEWAY_IMAGE:-\
+      ${CHATBOTX_ZALO_PERSONAL_GATEWAY_IMAGE:-inboxos-zalo-personal-gateway:latest}}"
     build:
       context: ..
       dockerfile: apps/zalo-personal-gateway/docker/Dockerfile

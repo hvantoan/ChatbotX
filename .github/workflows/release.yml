@@ -71,18 +71,22 @@ jobs:
 
       - name: Set image namespace (GHCR requires lowercase)
         id: image_namespace
-        run: echo "owner_lc=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "owner_lc=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+          echo "OWNER_NS=${DOCKER_REGISTRY}/${GITHUB_REPOSITORY_OWNER,,}" \
+            >> "$GITHUB_ENV"
 
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v6
         with:
           images: |
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-builder
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-worker
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-realtime
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-mcp
-            ${{ env.DOCKER_REGISTRY }}/${{ steps.image_namespace.outputs.owner_lc }}/inboxos-javascript-executor
+            ${{ env.OWNER_NS }}/inboxos-builder
+            ${{ env.OWNER_NS }}/inboxos-worker
+            ${{ env.OWNER_NS }}/inboxos-realtime
+            ${{ env.OWNER_NS }}/inboxos-mcp
+            ${{ env.OWNER_NS }}/inboxos-javascript-executor
+            ${{ env.OWNER_NS }}/inboxos-zalo-personal-gateway
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
@@ -148,6 +152,10 @@ jobs:
           - label: javascript-executor
             image: inboxos-javascript-executor
             dockerfile: ./apps/javascript-executor/docker/Dockerfile
+            runner: ubuntu-latest
+          - label: zalo-personal-gateway
+            image: inboxos-zalo-personal-gateway
+            dockerfile: ./apps/zalo-personal-gateway/docker/Dockerfile
             runner: ubuntu-latest
     # Baseline builder leg was ~16 min and the others ~1-2 min. Bounds a hung
     # build, and an unprovisioned `runner` label, against the 24-hour default.
@@ -279,13 +287,16 @@ jobs:
         run: |
           VERSION="${{ needs.prepare-metadata.outputs.version }}"
           REGISTRY="${{ env.DOCKER_REGISTRY }}/${{ needs.prepare-metadata.outputs.image_namespace }}"
+          JSE="${REGISTRY}/inboxos-javascript-executor"
+          ZPG="${REGISTRY}/inboxos-zalo-personal-gateway"
           if [[ "${{ github.ref_name }}" == "main" ]]; then
             printf '%s\n' \
               "Builder image (main): ${REGISTRY}/inboxos-builder:main" \
               "Worker image (main): ${REGISTRY}/inboxos-worker:main" \
               "Realtime image (main): ${REGISTRY}/inboxos-realtime:main" \
               "MCP Server image (main): ${REGISTRY}/inboxos-mcp:main" \
-              "JavaScript Executor image (main): ${REGISTRY}/inboxos-javascript-executor:main"
+              "JavaScript Executor image (main): ${JSE}:main" \
+              "Zalo Personal Gateway image (main): ${ZPG}:main"
           elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             printf '%s\n' \
               "Builder image (version): ${REGISTRY}/inboxos-builder:${VERSION}" \
@@ -296,8 +307,10 @@ jobs:
               "Realtime image (latest): ${REGISTRY}/inboxos-realtime:latest" \
               "MCP Server image (version): ${REGISTRY}/inboxos-mcp:${VERSION}" \
               "MCP Server image (latest): ${REGISTRY}/inboxos-mcp:latest" \
-              "JavaScript Executor image (version): ${REGISTRY}/inboxos-javascript-executor:${VERSION}" \
-              "JavaScript Executor image (latest): ${REGISTRY}/inboxos-javascript-executor:latest"
+              "JavaScript Executor image (version): ${JSE}:${VERSION}" \
+              "JavaScript Executor image (latest): ${JSE}:latest" \
+              "Zalo Personal Gateway image (version): ${ZPG}:${VERSION}" \
+              "Zalo Personal Gateway image (latest): ${ZPG}:latest"
           else
             echo "No publish tags for ref ${GITHUB_REF}."
           fi
