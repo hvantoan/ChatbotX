@@ -6,6 +6,9 @@
 const TRAILING_SLASHES = /\/+$/u
 
 export const apiBaseUrlFromBuilderUrl = (builderUrl: string): string => {
+  if (!builderUrl) {
+    throw new Error("NEXT_PUBLIC_BUILDER_URL is not configured")
+  }
   const normalized = builderUrl.trim().replace(TRAILING_SLASHES, "")
   return normalized.endsWith("/api") ? normalized : `${normalized}/api`
 }

@@ -23,6 +23,8 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock("@inboxos.io/business", () => ({
   flushAllPendingWorkspaceRealtimeEvents: vi.fn(),
+  // Read at import time by the master-agent handler.
+  MASTER_AGENT_TIMEZONE: "Asia/Saigon",
 }))
 
 vi.mock("@inboxos.io/worker-config", async (importOriginal) => {

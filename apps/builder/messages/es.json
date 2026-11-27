@@ -12233,6 +12233,7 @@
       "promptHint": "Appended after the built-in instructions.",
       "models": "Provider models",
       "includeModel": "Include {provider} in the fallback order",
+      "modelsRequired": "An enabled Master Agent needs at least one model.",
       "save": "Save configuration",
       "notConfigured": "The Master Agent is not configured yet — save this form to enable it.",
       "openSettings": "Settings"

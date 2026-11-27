@@ -35,6 +35,12 @@ export type ParseToolsOptions = {
    */
   fallbackBaseUrl: string
   /**
+   * Forces the base URL tools fire against, ignoring the spec's advertised
+   * `servers[0].url`. A worker that reaches the API over an internal address
+   * must not execute against the public URL the spec advertises.
+   */
+  baseUrlOverride?: string
+  /**
    * Add the synthetic `_confirm` input to confirmation-gated tools. Only the
    * MCP server wants this: its hitl gate lets a model self-confirm. Every
    * other consumer (CLI, Master Agent worker) either ignores the policy or
@@ -321,7 +327,8 @@ export function parseToolsFromSpec(
   spec: OpenAPISpec,
   options: ParseToolsOptions,
 ): DynamicTool[] {
-  const baseUrl = spec.servers?.[0]?.url ?? options.fallbackBaseUrl
+  const baseUrl =
+    options.baseUrlOverride ?? spec.servers?.[0]?.url ?? options.fallbackBaseUrl
   const excluded =
     options.excludeOperationIdPrefixes ?? EXCLUDED_OPERATION_ID_PREFIXES
   const includeConfirmInput = options.includeConfirmInput === true

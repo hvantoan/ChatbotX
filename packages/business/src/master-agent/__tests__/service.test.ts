@@ -447,7 +447,7 @@ describe("config", () => {
       enabled: true,
       autoApproveDiff: false,
       prompt: null,
-      models: [],
+      models: [{ provider: "openai", model: "gpt-x" }],
     })
 
     await masterAgentService.upsertConfig({
@@ -455,7 +455,7 @@ describe("config", () => {
       enabled: true,
       autoApproveDiff: false,
       prompt: null,
-      models: [],
+      models: [{ provider: "openai", model: "gpt-x" }],
     })
 
     expect(mocks.insertValues.at(-1)).toMatchObject({
@@ -466,6 +466,38 @@ describe("config", () => {
       target: "MasterAgentConfig.workspaceId",
       set: expect.objectContaining({ enabled: true }),
     })
+  })
+
+  test("an enabled agent cannot be saved without a model", async () => {
+    await expect(
+      masterAgentService.upsertConfig({
+        workspaceId: "ws-1",
+        enabled: true,
+        autoApproveDiff: false,
+        prompt: null,
+        models: [],
+      }),
+    ).rejects.toThrow("at least one model")
+    expect(mocks.insertValues).toHaveLength(0)
+  })
+
+  test("a disabled agent may keep an empty model list", async () => {
+    mocks.findFirstConfig.mockResolvedValue({
+      enabled: false,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+
+    await masterAgentService.upsertConfig({
+      workspaceId: "ws-1",
+      enabled: false,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+
+    expect(mocks.insertValues.at(-1)).toMatchObject({ enabled: false })
   })
 })
 

@@ -47,4 +47,35 @@ describe("createSpecLoader api URL", () => {
       expect.anything(),
     )
   })
+
+  test("executes against the configured base, not the advertised server", async () => {
+    const fetchFn = vi.fn(
+      async () =>
+        new Response(
+          JSON.stringify({
+            openapi: "3.1.0",
+            info: { title: "test", version: "0" },
+            servers: [{ url: "https://public.example.com/api" }],
+            paths: {
+              "/contacts/{id}": {
+                get: { operationId: "contacts.get", responses: {} },
+              },
+            },
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        ),
+    ) as unknown as typeof fetch
+    const loader = createSpecLoader({
+      apiUrl: "http://builder:3000/api",
+      executionBaseUrl: "http://builder:3000/api",
+      ttlMs: 30_000,
+      httpTimeoutMs: 1000,
+      fetchFn,
+      log: () => undefined,
+    })
+
+    const tools = await loader.load()
+
+    expect(tools[0]?.baseUrl).toBe("http://builder:3000/api")
+  })
 })

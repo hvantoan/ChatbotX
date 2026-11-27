@@ -132,6 +132,11 @@ export function MasterAgentConfigForm({
     })
   }
 
+  const selectedModelCount = models.filter((entry) =>
+    selectedModelKeys.has(masterAgentModelKey(entry)),
+  ).length
+  const missingModel = enabled && selectedModelCount === 0
+
   const renderModelPicker = (
     entry: EditableModelEntry,
     index: number,
@@ -259,11 +264,16 @@ export function MasterAgentConfigForm({
             provider.modelOptions,
           )
         })}
+        {missingModel ? (
+          <p className="text-destructive text-xs">
+            {t("config.modelsRequired")}
+          </p>
+        ) : null}
       </div>
 
       <Button
         className="self-end"
-        disabled={save.isPending}
+        disabled={save.isPending || missingModel}
         onClick={submit}
         type="button"
       >

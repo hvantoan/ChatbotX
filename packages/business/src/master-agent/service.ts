@@ -489,6 +489,14 @@ class MasterAgentService {
     prompt: string | null
     models: unknown[]
   }): Promise<MasterAgentConfigView> {
+    // An enabled agent with no model fails every turn, so the write is
+    // rejected here: the form and the public API both come through this path.
+    if (input.enabled && input.models.length === 0) {
+      throw validationException(
+        "models",
+        "An enabled Master Agent needs at least one model.",
+      )
+    }
     await db
       .insert(masterAgentConfigModel)
       .values({

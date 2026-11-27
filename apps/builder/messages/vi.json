@@ -12233,6 +12233,7 @@
       "promptHint": "Nối sau chỉ dẫn mặc định của hệ thống.",
       "models": "Model AI",
       "includeModel": "Bao gồm {provider} trong thứ tự dự phòng",
+      "modelsRequired": "Bật Master Agent thì cần chọn ít nhất một model.",
       "save": "Lưu cấu hình",
       "notConfigured": "Master Agent chưa được cấu hình — lưu biểu mẫu này để bật.",
       "openSettings": "Cài đặt"

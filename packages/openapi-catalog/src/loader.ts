@@ -4,6 +4,12 @@ import type { DynamicTool, OpenAPISpec } from "./types"
 export type SpecLoaderOptions = {
   /** `/api` base URL the spec is fetched from (`<apiUrl>/public-spec.json`). */
   apiUrl: string
+  /**
+   * Base URL tools execute against, when it differs from the spec's advertised
+   * server. The worker reaches the builder over an internal address, so it
+   * must not call the public URL the spec advertises.
+   */
+  executionBaseUrl?: string
   /** Milliseconds before the cached spec is re-fetched in the background. */
   ttlMs: number
   /** Per-request HTTP timeout in milliseconds. */
@@ -58,6 +64,9 @@ export function createSpecLoader(options: SpecLoaderOptions): SpecLoader {
   const fetchFn: typeof fetch = options.fetchFn ?? ((...args) => fetch(...args))
   const log = options.log ?? defaultLog
   const parseOptions: Omit<ParseToolsOptions, "fallbackBaseUrl"> = {
+    ...(options.executionBaseUrl
+      ? { baseUrlOverride: options.executionBaseUrl }
+      : {}),
     includeConfirmInput: options.includeConfirmInput,
     ...(options.excludeOperationIdPrefixes
       ? { excludeOperationIdPrefixes: options.excludeOperationIdPrefixes }
