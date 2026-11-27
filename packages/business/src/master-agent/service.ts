@@ -183,6 +183,7 @@ class MasterAgentService {
           workspaceId: input.workspaceId,
           sessionId: requestedSessionId,
         },
+        orderBy: { createdAt: "asc", id: "asc" },
         columns: { id: true, createdById: true },
       })
       if (!existing) {
@@ -302,6 +303,7 @@ class MasterAgentService {
         workspaceId: input.workspaceId,
         sessionId: input.sessionId,
       },
+      orderBy: { createdAt: "asc", id: "asc" },
       columns: { createdById: true },
     })
     this.assertSessionVisible({
