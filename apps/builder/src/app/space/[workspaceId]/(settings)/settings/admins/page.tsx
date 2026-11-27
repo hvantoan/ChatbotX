@@ -1,5 +1,5 @@
 import { quotaEnforcementService, workspaceService } from "@inboxos.io/business"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import {
   Card,
   CardContent,

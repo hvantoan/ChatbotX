@@ -68,7 +68,7 @@ beforeEach(() => {
       subject: "Welcome to {{brandName}}",
     },
     appUrl: "https://app.reseller.test",
-    logoLightUrl: "https://reseller.test/logo.svg",
+    logoDarkUrl: "https://reseller.test/logo.svg",
     name: "Reseller Co",
   })
 })

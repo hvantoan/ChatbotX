@@ -30,10 +30,16 @@ describe("buildContactsImportTemplateCsv", () => {
 
   test("falls back to the English template for any language other than vi", () => {
     const fr = buildContactsImportTemplateCsv("fr")
-    const empty = buildContactsImportTemplateCsv("")
 
     expect(fr.slice(UTF8_BOM.length)).toBe(EN_TEMPLATE)
-    expect(empty.slice(UTF8_BOM.length)).toBe(EN_TEMPLATE)
+  })
+
+  test("resolves an empty language through the vi default locale", () => {
+    // resolveLocale("") falls back to defaultLocale ("vi"), so an empty input
+    // yields the Vietnamese template.
+    const empty = buildContactsImportTemplateCsv("")
+
+    expect(empty.slice(UTF8_BOM.length)).toBe(VI_TEMPLATE)
   })
 
   test("resolves regional variants to their base language", () => {

@@ -32,6 +32,8 @@ export type PlainTextEditorFieldProps = {
   description?: string
   /** Single-line layout with the variable picker inline (e.g. filter value inputs). */
   inline?: boolean
+  /** Keep typed Markdown syntax verbatim instead of letting tiptap convert it to formatting. */
+  plainText?: boolean
 }
 
 export const PlainTextEditorField = ({
@@ -50,6 +52,7 @@ export const PlainTextEditorField = ({
   includeBotFieldVariables = false,
   showEmojiPicker = true,
   inline = false,
+  plainText = false,
 }: PlainTextEditorFieldProps) => {
   const { control, getValues } = useFormContext()
   const t = useTranslations("fields")
@@ -90,6 +93,7 @@ export const PlainTextEditorField = ({
               inline={inline}
               onChange={field.onChange}
               placeholder={placeholder}
+              plainText={plainText}
               showEmojiPicker={showEmojiPicker}
             />
           </FormControl>

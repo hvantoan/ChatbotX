@@ -29,7 +29,7 @@ export async function PublicTemplateHeader({
             height={32}
             priority={true}
             src={logoDarkUrl}
-            width={108}
+            width={122}
           />
           <Image
             alt={name}
@@ -37,7 +37,7 @@ export async function PublicTemplateHeader({
             height={32}
             priority={true}
             src={logoLightUrl}
-            width={108}
+            width={122}
           />
         </div>
         {showSignIn ? (

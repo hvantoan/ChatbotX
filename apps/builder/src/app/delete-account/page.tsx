@@ -1,4 +1,4 @@
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"

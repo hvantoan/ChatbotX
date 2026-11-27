@@ -4,6 +4,7 @@ import { DonutChart } from "@inboxos.io/ui/components/charts/donut-chart"
 import { useTranslations } from "next-intl"
 import { useMemo } from "react"
 import { useAnalysisStore } from "../../provider/analysis-store-context"
+import { channelDimensionLabel } from "../../utils/dimension-label"
 
 export function AllContactsByChannelChart() {
   const t = useTranslations()
@@ -14,7 +15,7 @@ export function AllContactsByChannelChart() {
   const data = useMemo(
     () =>
       allContactsByChannel.map((item) => ({
-        name: item.dimension || t("analytics.unknown"),
+        name: channelDimensionLabel(t, item.dimension),
         value: item.uniqueContacts,
       })),
     [allContactsByChannel, t],

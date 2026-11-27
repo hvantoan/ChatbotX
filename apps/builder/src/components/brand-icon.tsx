@@ -47,7 +47,7 @@ export const BrandIcon = ({
         alt={alt}
         className={cn(
           className,
-          "brand-collapsed hidden h-8 w-(--sidebar-width-icon) group-data-[collapsible=icon]:block dark:invert",
+          "brand-collapsed hidden h-8 w-(--sidebar-width-icon) group-data-[collapsible=icon]:block",
         )}
         height={5}
         loading="eager"

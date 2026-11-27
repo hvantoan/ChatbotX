@@ -47,7 +47,7 @@ export async function findOrProvisionRootUser(
     email,
     {
       brandName: settings.name,
-      brandLogoUrl: settings.logoLightUrl,
+      brandLogoUrl: settings.logoDarkUrl,
       brandUrl: settings.appUrl,
       subject: DEFAULT_ACCOUNT_CREDENTIALS_SUBJECT,
       customTemplate: settings.accountCredentialsEmailTemplate,

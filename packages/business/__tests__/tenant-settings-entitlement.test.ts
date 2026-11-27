@@ -83,9 +83,9 @@ describe("resolveTenantSettings — enterprise entitlement gating", () => {
     const settings = await resolveTenantSettings({ workspaceId: "workspace-1" })
 
     expect(settings.name).toBe("InboxOS")
-    expect(settings.logoLightUrl).toBe(`${BUILDER_URL}/brand/logo_white.svg`)
-    expect(settings.logoDarkUrl).toBe(`${BUILDER_URL}/brand/logo_black.svg`)
-    expect(settings.faviconUrl).toBe(`${BUILDER_URL}/brand/icon_black.svg`)
+    expect(settings.logoLightUrl).toBe(`${BUILDER_URL}/brand/logo-full.svg`)
+    expect(settings.logoDarkUrl).toBe(`${BUILDER_URL}/brand/logo-full-dark.svg`)
+    expect(settings.faviconUrl).toBe(`${BUILDER_URL}/brand/logo-icon.svg`)
     expect(settings.theme).toBeNull()
     expect(settings.customJS).toBeNull()
     expect(settings.customCSS).toBeNull()

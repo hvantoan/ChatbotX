@@ -59,6 +59,30 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   async rewrites() {
     const alwaysRewrites = [
+      // Brand assets renamed in the inboxOS refresh. Emails already delivered
+      // and installed PWAs still point at the old filenames.
+      ...(
+        [
+          ["logo_white.svg", "logo-full.svg"],
+          ["logo_black.svg", "logo-full-dark.svg"],
+          ["logo.svg", "logo-full-dark.svg"],
+          ["icon_black.svg", "logo-icon.svg"],
+          ["icon_white.svg", "logo-icon.svg"],
+          ["icon_bg.svg", "logo-icon.svg"],
+          ["favicon/favicon-96x96.png", "favicon/favicon-32x32.png"],
+          [
+            "favicon/web-app-manifest-192x192.png",
+            "favicon/android-chrome-192x192.png",
+          ],
+          [
+            "favicon/web-app-manifest-512x512.png",
+            "favicon/android-chrome-512x512.png",
+          ],
+        ] as const
+      ).map(([from, to]) => ({
+        source: `/brand/${from}`,
+        destination: `/brand/${to}`,
+      })),
       {
         source: "/assets/:path*",
         destination: `${storageUrl}/:path*`,
