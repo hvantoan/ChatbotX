@@ -254,12 +254,55 @@ describe("master agent config procedures", () => {
     expect(upsertConfig).not.toHaveBeenCalled()
   })
 
-  test("a member with the flows permission can write the config", async () => {
+  test("a non-superAdmin member credential cannot reach masterAgent routes at all", async () => {
     userFindById.mockResolvedValue({ id: "m-1", deletionRequestedAt: null })
     findMembership.mockResolvedValue(undefined)
     resolveWorkspaceAccess.mockResolvedValue({
       workspace: { id: "ws-1", ownerId: "owner-1" },
       member: { permissions: { flows: true } },
+    })
+    upsertConfig.mockResolvedValue({
+      configured: true,
+      enabled: true,
+      autoApproveDiff: false,
+      prompt: null,
+      models: [],
+    })
+    const { mintMasterAgentCredential } = await import(
+      "@inboxos.io/business/master-agent/internal-credential"
+    )
+    const jwt = await mintMasterAgentCredential({
+      workspaceId: "ws-1",
+      memberId: "m-1",
+      sessionId: "s-1",
+      secret: TEST_SECRET,
+    })
+
+    // Member credentials share the mobile reviewed-route allowlist, which
+    // `masterAgent.*` operations are not part of — the agent's own catalog
+    // excludes them, and the member's chat runs through the private API.
+    // Even the flows permission does not open an unreviewed route.
+    await expect(
+      invoke(
+        masterAgentPublicRouter.updateConfig,
+        {
+          enabled: true,
+          autoApproveDiff: false,
+          prompt: null,
+          models: [],
+        },
+        new Headers({ Authorization: `Bearer ${jwt}` }),
+      ),
+    ).rejects.toMatchObject({ code: "FORBIDDEN" })
+    expect(upsertConfig).not.toHaveBeenCalled()
+  })
+
+  test("a superAdmin member credential reaches the handler", async () => {
+    userFindById.mockResolvedValue({ id: "m-1", deletionRequestedAt: null })
+    findMembership.mockResolvedValue(undefined)
+    resolveWorkspaceAccess.mockResolvedValue({
+      workspace: { id: "ws-1", ownerId: "owner-1" },
+      member: { permissions: { superAdmin: true } },
     })
     upsertConfig.mockResolvedValue({
       configured: true,
@@ -311,6 +354,8 @@ describe("pending action decisions", () => {
       actionId: "pa-1",
       memberId: null,
       tokenId: "token-1",
+      viewerMemberId: null,
+      viewerIsSuperAdmin: false,
     })
   })
 
@@ -337,6 +382,8 @@ describe("pending action decisions", () => {
       workspaceId: "ws-1",
       actionId: "pa-1",
       decidedById: null,
+      viewerMemberId: null,
+      viewerIsSuperAdmin: false,
     })
   })
 })

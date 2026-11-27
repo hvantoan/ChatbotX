@@ -184,15 +184,17 @@ export const masterAgentPublicRouter = {
     .input(masterAgentActionIdParam)
     .output(decideMasterAgentPendingActionResponse)
     .errors(possibleErrorsOnMutatingResource)
-    .handler(
-      async ({ context, input }) =>
-        await executePendingActionConfirmation({
-          workspaceId: context.workspace.id,
-          actionId: input.actionId,
-          memberId: context.user?.id ?? null,
-          tokenId: context.user ? null : realWorkspaceTokenId(context.apiToken),
-        }),
-    ),
+    .handler(async ({ context, input }) => {
+      const memberId = context.user?.id ?? oauthCallerUserId(context.apiToken)
+      return await executePendingActionConfirmation({
+        workspaceId: context.workspace.id,
+        actionId: input.actionId,
+        memberId,
+        tokenId: memberId ? null : realWorkspaceTokenId(context.apiToken),
+        viewerMemberId: memberId,
+        viewerIsSuperAdmin: context.member?.permissions.superAdmin === true,
+      })
+    }),
 
   rejectPendingAction: workspaceTokenAuthAPI
     .route({
@@ -207,12 +209,14 @@ export const masterAgentPublicRouter = {
     .input(masterAgentActionIdParam)
     .output(masterAgentSessionResource.shape.pendingActions.element)
     .errors(possibleErrorsOnMutatingResource)
-    .handler(
-      async ({ context, input }) =>
-        await masterAgentService.rejectPendingAction({
-          workspaceId: context.workspace.id,
-          actionId: input.actionId,
-          decidedById: context.user?.id ?? null,
-        }),
-    ),
+    .handler(async ({ context, input }) => {
+      const memberId = context.user?.id ?? oauthCallerUserId(context.apiToken)
+      return await masterAgentService.rejectPendingAction({
+        workspaceId: context.workspace.id,
+        actionId: input.actionId,
+        decidedById: memberId,
+        viewerMemberId: memberId,
+        viewerIsSuperAdmin: context.member?.permissions.superAdmin === true,
+      })
+    }),
 }

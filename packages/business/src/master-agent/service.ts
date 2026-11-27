@@ -254,7 +254,12 @@ class MasterAgentService {
       { jobId: `master-agent-${assistant.id}` },
     )
 
-    return await this.getSession({ workspaceId: input.workspaceId, sessionId })
+    return await this.getSession({
+      workspaceId: input.workspaceId,
+      sessionId,
+      viewerMemberId: input.memberId ?? null,
+      viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
+    })
   }
 
   /**
@@ -279,6 +284,32 @@ class MasterAgentService {
       return
     }
     throw notFoundException("Session not found")
+  }
+
+  /**
+   * A pending action inherits its session's visibility: deciding one is
+   * deciding on a call proposed with the initiator's scopes, so a member who
+   * is not that initiator must not be able to confirm or reject it.
+   */
+  private async assertPendingActionVisible(input: {
+    workspaceId: string
+    sessionId: string
+    viewerMemberId: string | null
+    viewerIsSuperAdmin: boolean
+  }): Promise<void> {
+    const owner = await db.query.masterAgentMessageModel.findFirst({
+      where: {
+        workspaceId: input.workspaceId,
+        sessionId: input.sessionId,
+      },
+      columns: { createdById: true },
+    })
+    this.assertSessionVisible({
+      workspaceId: input.workspaceId,
+      sessionOwnerId: owner?.createdById ?? null,
+      viewerMemberId: input.viewerMemberId,
+      viewerIsSuperAdmin: input.viewerIsSuperAdmin,
+    })
   }
 
   /**
@@ -506,7 +537,21 @@ class MasterAgentService {
     workspaceId: string
     actionId: string
     decidedById: string | null
+    viewerMemberId?: string | null
+    viewerIsSuperAdmin?: boolean
   }): Promise<MasterAgentPendingActionModel | null> {
+    const row = await db.query.masterAgentPendingActionModel.findFirst({
+      where: { workspaceId: input.workspaceId, id: input.actionId },
+      columns: { sessionId: true },
+    })
+    if (row) {
+      await this.assertPendingActionVisible({
+        workspaceId: input.workspaceId,
+        sessionId: row.sessionId,
+        viewerMemberId: input.viewerMemberId ?? null,
+        viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
+      })
+    }
     const rows = await db
       .update(masterAgentPendingActionModel)
       .set({
@@ -566,7 +611,21 @@ class MasterAgentService {
     workspaceId: string
     actionId: string
     decidedById: string | null
+    viewerMemberId?: string | null
+    viewerIsSuperAdmin?: boolean
   }): Promise<MasterAgentPendingActionView> {
+    const existing = await db.query.masterAgentPendingActionModel.findFirst({
+      where: { workspaceId: input.workspaceId, id: input.actionId },
+      columns: { sessionId: true },
+    })
+    if (existing) {
+      await this.assertPendingActionVisible({
+        workspaceId: input.workspaceId,
+        sessionId: existing.sessionId,
+        viewerMemberId: input.viewerMemberId ?? null,
+        viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
+      })
+    }
     const rows = await db
       .update(masterAgentPendingActionModel)
       .set({

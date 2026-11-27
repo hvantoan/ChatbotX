@@ -72,7 +72,15 @@ credential in `apps/builder/src/lib/master-agent/resolve-master-agent-principal.
 - a **member** turn resolves through `resolveWorkspaceAccess` (invariant 19,
   so support sessions work) and the member's permissions are derived into the
   same scope list a workspace token would carry — a member without `contacts`
-  can't read contacts even through the agent;
+  can't read contacts even through the agent. A non-superAdmin member
+  credential additionally shares the mobile **reviewed-route allowlist**
+  (`MOBILE_MEMBER_ROUTES` in `apps/builder/src/lib/mobile-auth/member-route-allowlist.ts`):
+  the public router's hundreds of operations are written for workspace-level
+  tokens, and only the reviewed ones apply member scoping (assigned contacts,
+  PII masking) in their handler, so everything else is a hard 403 — the model
+  sees the error as an ordinary tool result. A `superAdmin` member is exempt:
+  their derived scopes are the unrestricted token, the same privilege their
+  own UI session already has;
 - a **token** turn acts with exactly the scopes of the originating token;
 - a credential for another workspace, an expired credential, or a tampered
   payload is rejected before any service call.
@@ -123,7 +131,10 @@ this on both the send and the read path — a foreign session id is a 404, the
 same as an unknown one. A superAdmin may review any session, and a
 token-started session has no member to bind to, so it stays workspace-level
 (every caller is still bounded by the token's scopes). The worker reads with
-`asSystem: true`: the job it runs is exactly the turn it was handed.
+`asSystem: true`: the job it runs is exactly the turn it was handed. The
+decision paths are bound the same way: a pending action inherits its session's
+visibility, so only the member who owns the session (or a superAdmin) may
+confirm or reject it — knowing another member's action id is not enough.
 
 ### Caller identity
 

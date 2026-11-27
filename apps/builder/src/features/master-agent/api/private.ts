@@ -133,6 +133,9 @@ export const masterAgentPrivateAPIs = {
           workspaceId: context.workspace.id,
           actionId: input.actionId,
           memberId: context.user.id,
+          viewerMemberId: context.user.id,
+          viewerIsSuperAdmin:
+            context.workspaceMember.permissions.superAdmin === true,
         }),
     ),
 
@@ -152,6 +155,9 @@ export const masterAgentPrivateAPIs = {
           workspaceId: context.workspace.id,
           actionId: input.actionId,
           decidedById: context.user.id,
+          viewerMemberId: context.user.id,
+          viewerIsSuperAdmin:
+            context.workspaceMember.permissions.superAdmin === true,
         }),
     ),
 }

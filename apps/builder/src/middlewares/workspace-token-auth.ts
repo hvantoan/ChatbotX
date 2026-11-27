@@ -26,6 +26,7 @@ import {
   type MasterAgentWorkspacePrincipal,
   resolveMasterAgentWorkspacePrincipal,
 } from "@/lib/master-agent/resolve-master-agent-principal"
+import { isMobileMemberRoute } from "@/lib/mobile-auth/member-route-allowlist"
 import { mobileCredentialId } from "@/lib/mobile-auth/mobile-credential-id"
 import {
   type MobileWorkspacePrincipal,
@@ -286,6 +287,22 @@ export const workspaceTokenAuthMidddleware = base.middleware(
 
     const method = procedure["~orpc"].route.method
     const path = procedure["~orpc"].route.path
+
+    // A non-superAdmin member credential shares the mobile allowlist: the
+    // public router's hundreds of operations are written for workspace-level
+    // tokens, and only the reviewed routes apply member scoping in their
+    // handler (`lib/public-api/member-scope.ts`); everything else is closed
+    // (403) so `contacts.bulkDelete` or the export cannot act with the
+    // derived broad scope where the member's granular flags would deny it.
+    if (
+      masterAgent?.member &&
+      masterAgent.member.permissions.superAdmin !== true &&
+      !isMobileMemberRoute(method, path)
+    ) {
+      throw new ORPCError("FORBIDDEN", {
+        message: "This operation is not available to member principals",
+      })
+    }
 
     // Read-only tokens may only GET/HEAD (plus a narrow, explicit allowlist
     // of POST-for-read routes — see `READ_ONLY_TOKEN_ALLOWED_POST_PATHS`) —

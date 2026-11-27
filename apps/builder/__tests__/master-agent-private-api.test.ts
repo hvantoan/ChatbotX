@@ -330,6 +330,8 @@ describe("pending action decisions", () => {
       workspaceId: WORKSPACE_ID,
       actionId: "pa-1",
       memberId: USER_ID,
+      viewerMemberId: USER_ID,
+      viewerIsSuperAdmin: false,
     })
   })
 
@@ -357,6 +359,8 @@ describe("pending action decisions", () => {
       workspaceId: WORKSPACE_ID,
       actionId: "pa-1",
       decidedById: USER_ID,
+      viewerMemberId: USER_ID,
+      viewerIsSuperAdmin: false,
     })
   })
 })

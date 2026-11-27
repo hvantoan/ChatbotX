@@ -20,12 +20,16 @@ export const executePendingActionConfirmation = async (input: {
   actionId: string
   memberId?: string | null
   tokenId?: string | null
+  viewerMemberId?: string | null
+  viewerIsSuperAdmin?: boolean
 }): Promise<{ id: string; status: "approved" | "failed"; result: unknown }> => {
   const decidedById = input.memberId ?? null
   const claimed = await masterAgentService.claimPendingActionForExecution({
     workspaceId: input.workspaceId,
     actionId: input.actionId,
     decidedById,
+    viewerMemberId: input.viewerMemberId ?? null,
+    viewerIsSuperAdmin: input.viewerIsSuperAdmin ?? false,
   })
   if (!claimed) {
     // Either the action does not exist in this workspace (404 semantics) or

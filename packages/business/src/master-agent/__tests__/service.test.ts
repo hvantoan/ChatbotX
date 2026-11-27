@@ -154,6 +154,33 @@ describe("sendMessage", () => {
     )
   })
 
+  test("the returned session is read with the caller's own identity, not anonymously", async () => {
+    // Regression: the read path binds a member session to its owner, so the
+    // session rows report `createdById` — passing no viewer identity to the
+    // final `getSession` would throw "Session not found" after the write and
+    // leave the queued turn orphaned.
+    mocks.findManyMessage.mockResolvedValue([
+      {
+        id: "u-1",
+        role: "user",
+        content: "hi",
+        status: "completed",
+        createdById: "member-1",
+        createdAt: new Date("2026-11-26T10:00:00.000Z"),
+      },
+    ])
+
+    const view = await masterAgentService.sendMessage({
+      workspaceId: "ws-1",
+      memberId: "member-1",
+      tokenId: null,
+      message: "hi",
+      sessionId: null,
+    })
+
+    expect(view.messages).toHaveLength(1)
+  })
+
   test("another member cannot continue someone else's session", async () => {
     mocks.findFirstMessage.mockResolvedValue({
       id: "m-1",
@@ -398,6 +425,25 @@ describe("claimPendingActionForExecution", () => {
     })
 
     expect(row).toBeNull()
+  })
+
+  test("another member cannot claim an action from a foreign session", async () => {
+    mocks.findFirstPendingAction.mockResolvedValue({ sessionId: "s-1" })
+    mocks.findFirstMessage.mockResolvedValue({
+      id: "u-0",
+      createdById: "member-1",
+    })
+    mocks.updateReturning.push([{ id: "pa-1", status: "approved" }])
+
+    await expect(
+      masterAgentService.claimPendingActionForExecution({
+        workspaceId: "ws-1",
+        actionId: "pa-1",
+        decidedById: "member-2",
+        viewerMemberId: "member-2",
+      }),
+    ).rejects.toThrow("Session not found")
+    expect(mocks.updates).toHaveLength(0)
   })
 })
 
