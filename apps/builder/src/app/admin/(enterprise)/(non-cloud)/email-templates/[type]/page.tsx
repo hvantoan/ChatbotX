@@ -10,7 +10,7 @@ import {
   DEFAULT_SIGNUP_SUBJECT,
   DEFAULT_SIGNUP_TEMPLATE,
 } from "@inboxos.io/mail"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import { ArrowLeftIcon } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"

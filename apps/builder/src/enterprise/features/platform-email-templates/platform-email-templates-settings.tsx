@@ -1,6 +1,6 @@
 import type { TenantModel } from "@inboxos.io/database/types"
 import { Badge } from "@inboxos.io/ui/components/ui/badge"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import {
   Card,
   CardDescription,

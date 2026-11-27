@@ -3,7 +3,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@inboxos.io/ui/components/ui/alert"
-import { buttonVariants } from "@inboxos.io/ui/components/ui/button"
+import { buttonVariants } from "@inboxos.io/ui/components/ui/button-variants"
 import { AlertTriangleIcon } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
