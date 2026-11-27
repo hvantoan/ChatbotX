@@ -1,12 +1,14 @@
 import {
   createColumnHelper,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
 import { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, test } from "vitest"
 import { DataTable } from "../src/components/data-table/data-table"
+import { DataTableColumnHeader } from "../src/components/data-table/data-table-column-header"
 import {
   type DataTableLabels,
   DataTableLabelsProvider,
@@ -24,6 +26,10 @@ const PT_BR: DataTableLabels = {
   rowsPerPage: "Linhas por página",
   pageOf: (page, pageCount) => `Página ${page} de ${pageCount}`,
   nextPage: "Ir para a próxima página",
+  sortAscending: "Crescente",
+  sortDescending: "Decrescente",
+  resetSorting: "Redefinir ordenação",
+  hideColumn: "Ocultar coluna",
 }
 
 function Harness({
@@ -39,6 +45,21 @@ function Harness({
     getCoreRowModel: getCoreRowModel(),
   })
   return <DataTable labels={labels} table={table} />
+}
+
+function ColumnHeaderHarness() {
+  const table = useReactTable({
+    data: [{ id: "1", name: "Ada" }],
+    columns: COLUMNS,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    initialState: { sorting: [{ id: "name", desc: false }] },
+  })
+  const column = table.getColumn("name")
+  if (!column) {
+    throw new Error("missing name column")
+  }
+  return <DataTableColumnHeader column={column} title="Name" />
 }
 
 describe("DataTable labels", () => {
@@ -86,6 +107,32 @@ describe("DataTable labels", () => {
       container.querySelector('[aria-label="Ir para a próxima página"]'),
     ).not.toBeNull()
     expect(container.textContent).not.toContain("Rows per page")
+  })
+
+  test("uses provider labels in the column sorting menu", async () => {
+    act(() => {
+      root.render(
+        <DataTableLabelsProvider value={PT_BR}>
+          <ColumnHeaderHarness />
+        </DataTableLabelsProvider>,
+      )
+    })
+
+    const trigger = container.querySelector<HTMLElement>(
+      '[data-slot="dropdown-menu-trigger"]',
+    )
+    expect(trigger).not.toBeNull()
+
+    await act(async () => {
+      trigger?.click()
+      await Promise.resolve()
+    })
+
+    expect(document.body.textContent).toContain("Crescente")
+    expect(document.body.textContent).toContain("Decrescente")
+    expect(document.body.textContent).toContain("Ocultar coluna")
+    expect(document.body.textContent).toContain("Redefinir ordenação")
+    expect(document.body.textContent).not.toContain("Asc")
   })
 
   test("lets a table's own labels win key by key over the provider", () => {

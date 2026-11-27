@@ -24,6 +24,10 @@ export function DataTableLabelsBridge({ children }: { children: ReactNode }) {
       previousPage: t("analytics.pagination.previousPage"),
       nextPage: t("analytics.pagination.nextPage"),
       lastPage: t("analytics.pagination.lastPage"),
+      sortAscending: t("actions.sortAscending"),
+      sortDescending: t("actions.sortDescending"),
+      resetSorting: t("actions.reset"),
+      hideColumn: t("actions.hideColumn"),
     }),
     [t],
   )
