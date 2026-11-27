@@ -39,7 +39,6 @@ export async function generateMetadata(): Promise<Metadata> {
       {
         rel: "icon",
         url: faviconUrl ?? "/brand/favicon/favicon-32x32.png",
-        type: "image/png",
       },
       {
         rel: "apple-touch-icon",
