@@ -203,215 +203,227 @@ export function UpdateAIAgentDialog({
 
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
-      <DialogContent className="max-h-screen overflow-y-scroll lg:max-w-5xl">
-        <DialogHeader>
+      <DialogContent className="flex h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl lg:max-w-5xl">
+        <DialogHeader className="shrink-0 border-b px-4 py-4 pe-12 sm:px-6 sm:pe-14">
           <DialogTitle>
             {t("messages.editFeature", { feature: t("fields.aiAgent.label") })}
           </DialogTitle>
           <DialogDescription />
         </DialogHeader>
 
-        <Tabs defaultValue="general">
-          <TabsList className="mb-2 px-4">
-            <TabsTrigger className="py-2.5" value="general">
-              {t("aiAgentSalesTraining.tabs.general")}
-            </TabsTrigger>
-            <TabsTrigger className="py-2.5" value="training">
-              {t("aiAgentSalesTraining.tabs.training")}
-            </TabsTrigger>
-          </TabsList>
+        <Tabs className="min-h-0 flex-1 gap-0" defaultValue="general">
+          <div className="shrink-0 border-b px-4 sm:px-6">
+            <TabsList className="rounded-none border-0 bg-transparent p-0 shadow-none">
+              <TabsTrigger className="py-3" value="general">
+                {t("aiAgentSalesTraining.tabs.general")}
+              </TabsTrigger>
+              <TabsTrigger className="py-3" value="training">
+                {t("aiAgentSalesTraining.tabs.training")}
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
-          <TabsContent value="general">
+          <TabsContent className="flex min-h-0 flex-col" value="general">
             <Form {...form}>
               <form
-                className="flex flex-1 flex-col space-y-6"
+                className="flex min-h-0 flex-1 flex-col"
                 onSubmit={handleSubmitWithAction}
               >
-                <InputField
-                  label={t("fields.name.label")}
-                  name="name"
-                  required
-                />
+                <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-6">
+                  <div className="space-y-6">
+                    <InputField
+                      label={t("fields.name.label")}
+                      name="name"
+                      required
+                    />
 
-                <div>
-                  <div className="flex items-center gap-4">
-                    <div className="min-w-0 flex-1 font-medium text-sm">
-                      {t("fields.instructions.label")}
+                    <div>
+                      <div className="flex items-center gap-4">
+                        <div className="min-w-0 flex-1 font-medium text-sm">
+                          {t("fields.instructions.label")}
+                        </div>
+                        <Popover>
+                          <PopoverTrigger
+                            render={
+                              <Button
+                                aria-label={t("actions.moreSettings")}
+                                className="shrink-0"
+                                size="icon"
+                                type="button"
+                                variant="ghost"
+                              >
+                                <SlidersHorizontalIcon
+                                  aria-hidden
+                                  className="size-4"
+                                />
+                              </Button>
+                            }
+                          />
+                          <PopoverContent
+                            align="start"
+                            className="flex w-[340px] flex-col gap-6 overflow-y-auto overscroll-contain p-4"
+                            side="right"
+                            style={{
+                              maxHeight:
+                                "min(calc(var(--available-height) - 1rem), calc(100dvh - 2rem))",
+                            }}
+                          >
+                            {modelFields.map((field, index) => {
+                              if ("kind" in field) {
+                                const integration =
+                                  openaiCompatibleIntegrations.find(
+                                    (item) => item.id === field.integrationId,
+                                  )
+                                const presetConfig = integration
+                                  ? openaiCompatiblePresetConfigs[
+                                      integration.preset as keyof typeof openaiCompatiblePresetConfigs
+                                    ]
+                                  : undefined
+                                const providerLabel = integration
+                                  ? getOpenaiCompatibleIntegrationLabel(
+                                      integration,
+                                    )
+                                  : t("openaiCompatible.provider")
+                                const label = `${providerLabel} ${t("fields.model.label")}`
+                                if (
+                                  shouldUseCustomOpenaiCompatibleModelInput(
+                                    presetConfig,
+                                  )
+                                ) {
+                                  return (
+                                    <InputField
+                                      key={field.id}
+                                      label={label}
+                                      name={`models.${index}.model`}
+                                      required
+                                    />
+                                  )
+                                }
+                                return (
+                                  <SelectField
+                                    key={field.id}
+                                    label={label}
+                                    name={`models.${index}.model`}
+                                    options={presetConfig?.modelOptions ?? []}
+                                    required
+                                  />
+                                )
+                              }
+
+                              const provider = aiChatProviders.find(
+                                (item) => item.provider === field.provider,
+                              )
+                              if (!provider) {
+                                return null
+                              }
+                              return (
+                                <SelectField
+                                  key={field.id}
+                                  label={`${t(getAiProviderLabelKey(provider.provider))} ${t("fields.model.label")}`}
+                                  name={`models.${index}.model`}
+                                  options={provider.modelOptions}
+                                  required
+                                />
+                              )
+                            })}
+
+                            <SliderField
+                              label={t("fields.temperature.label")}
+                              max={2}
+                              min={0}
+                              name="temperature"
+                              step={0.1}
+                            />
+
+                            <SliderField
+                              label={t("fields.maxOutputTokens.label")}
+                              max={32_768}
+                              min={1}
+                              name="maxOutputTokens"
+                              step={1}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </div>
+
+                      <PlainTextEditorField
+                        editorClassName="min-h-40 font-mono"
+                        includeBotFieldVariables
+                        name="prompt"
+                        plainText
+                      />
                     </div>
-                    <Popover>
-                      <PopoverTrigger
-                        render={
+
+                    <div className="flex flex-col gap-3">
+                      <div className="font-medium text-sm">
+                        {t("fields.messages.label")}
+                      </div>
+
+                      {messageFields.map((item, index) => (
+                        <div
+                          className="relative rounded-md border border-input"
+                          key={item.id}
+                        >
+                          <div className="absolute start-3 top-3">
+                            <SelectField
+                              name={`messages.${index}.role`}
+                              options={messageRoleOptions}
+                            />
+                          </div>
+                          <div className="ps-3 pe-12 pt-14 pb-3">
+                            {/* No bot-field variables here: the runner interpolates
+                            only `prompt` — configured messages reach the model
+                            verbatim, so a token would never resolve. */}
+                            <PlainTextEditorField
+                              editorClassName="min-h-24 font-mono"
+                              name={`messages.${index}.content`}
+                              plainText
+                            />
+                          </div>
                           <Button
-                            aria-label={t("actions.moreSettings")}
-                            className="shrink-0"
+                            aria-label={t("actions.delete")}
+                            className="absolute end-1 top-1"
+                            onClick={() => removeMessage(index)}
                             size="icon"
                             type="button"
                             variant="ghost"
                           >
-                            <SlidersHorizontalIcon
-                              aria-hidden
-                              className="size-4"
-                            />
+                            <XIcon aria-hidden size={20} />
                           </Button>
-                        }
-                      />
-                      <PopoverContent
-                        align="start"
-                        className="flex w-[340px] flex-col gap-6 overflow-y-auto overscroll-contain p-4"
-                        side="right"
-                        style={{
-                          maxHeight:
-                            "min(calc(var(--available-height) - 1rem), calc(100vh - 2rem))",
-                        }}
-                      >
-                        {modelFields.map((field, index) => {
-                          if ("kind" in field) {
-                            const integration =
-                              openaiCompatibleIntegrations.find(
-                                (item) => item.id === field.integrationId,
-                              )
-                            const presetConfig = integration
-                              ? openaiCompatiblePresetConfigs[
-                                  integration.preset as keyof typeof openaiCompatiblePresetConfigs
-                                ]
-                              : undefined
-                            const providerLabel = integration
-                              ? getOpenaiCompatibleIntegrationLabel(integration)
-                              : t("openaiCompatible.provider")
-                            const label = `${providerLabel} ${t("fields.model.label")}`
-                            if (
-                              shouldUseCustomOpenaiCompatibleModelInput(
-                                presetConfig,
-                              )
-                            ) {
-                              return (
-                                <InputField
-                                  key={field.id}
-                                  label={label}
-                                  name={`models.${index}.model`}
-                                  required
-                                />
-                              )
-                            }
-                            return (
-                              <SelectField
-                                key={field.id}
-                                label={label}
-                                name={`models.${index}.model`}
-                                options={presetConfig?.modelOptions ?? []}
-                                required
-                              />
-                            )
-                          }
+                        </div>
+                      ))}
 
-                          const provider = aiChatProviders.find(
-                            (item) => item.provider === field.provider,
-                          )
-                          if (!provider) {
-                            return null
-                          }
-                          return (
-                            <SelectField
-                              key={field.id}
-                              label={`${t(getAiProviderLabelKey(provider.provider))} ${t("fields.model.label")}`}
-                              name={`models.${index}.model`}
-                              options={provider.modelOptions}
-                              required
-                            />
-                          )
-                        })}
-
-                        <SliderField
-                          label={t("fields.temperature.label")}
-                          max={2}
-                          min={0}
-                          name="temperature"
-                          step={0.1}
-                        />
-
-                        <SliderField
-                          label={t("fields.maxOutputTokens.label")}
-                          max={32_768}
-                          min={1}
-                          name="maxOutputTokens"
-                          step={1}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <PlainTextEditorField
-                    includeBotFieldVariables
-                    name="prompt"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <div className="font-medium text-sm">
-                    {t("fields.messages.label")}
-                  </div>
-
-                  {messageFields.map((item, index) => (
-                    <div
-                      className="relative rounded-md border border-input"
-                      key={item.id}
-                    >
-                      <div className="absolute start-3 top-3">
-                        <SelectField
-                          name={`messages.${index}.role`}
-                          options={messageRoleOptions}
-                        />
-                      </div>
-                      <div className="ps-3 pe-12 pt-14 pb-3">
-                        {/* No bot-field variables here: the runner interpolates
-                            only `prompt` — configured messages reach the model
-                            verbatim, so a token would never resolve. */}
-                        <PlainTextEditorField
-                          name={`messages.${index}.content`}
-                        />
-                      </div>
                       <Button
-                        aria-label={t("actions.delete")}
-                        className="absolute end-1 top-1"
-                        onClick={() => removeMessage(index)}
-                        size="icon"
+                        className="w-28"
+                        onClick={addOptions}
+                        size="sm"
                         type="button"
-                        variant="ghost"
+                        variant="outline"
                       >
-                        <XIcon aria-hidden size={20} />
+                        <PlusIcon aria-hidden />
+                        {t("actions.addMore")}
                       </Button>
                     </div>
-                  ))}
 
-                  <Button
-                    className="w-28"
-                    onClick={addOptions}
-                    size="sm"
-                    type="button"
-                    variant="outline"
-                  >
-                    <PlusIcon aria-hidden />
-                    {t("actions.addMore")}
-                  </Button>
-                </div>
-
-                <AIToolMultiSelect name="tools" />
-                <WebSearchAuthorizedDomainsField />
-                <AIActionsField options={actionOptions} />
-                <div>
-                  <div className="flex items-center gap-3">
-                    <Label>{t("fields.isRichResponse.label")}</Label>
-                    <SwitchField
-                      formItemClassName="w-auto"
-                      name="isRichResponse"
-                    />
+                    <AIToolMultiSelect name="tools" />
+                    <WebSearchAuthorizedDomainsField />
+                    <AIActionsField options={actionOptions} />
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <Label>{t("fields.isRichResponse.label")}</Label>
+                        <SwitchField
+                          formItemClassName="w-auto"
+                          name="isRichResponse"
+                        />
+                      </div>
+                      <p className="wrap-break-words mt-1.5 text-muted-foreground text-sm">
+                        {t("fields.isRichResponse.description")}
+                      </p>
+                    </div>
                   </div>
-                  <p className="wrap-break-words mt-1.5 text-muted-foreground text-sm">
-                    {t("fields.isRichResponse.description")}
-                  </p>
                 </div>
 
-                <DialogFooter className="justify-end gap-2 sm:gap-2">
+                <DialogFooter className="mx-0 mb-0 shrink-0 justify-end gap-2 px-4 py-4 sm:gap-2 sm:px-6">
                   <Button
                     onClick={() => onOpenChange(false)}
                     type="button"
@@ -438,7 +450,10 @@ export function UpdateAIAgentDialog({
             </Form>
           </TabsContent>
 
-          <TabsContent value="training">
+          <TabsContent
+            className="min-h-0 overflow-y-auto px-4 py-4 sm:px-6"
+            value="training"
+          >
             {agent ? (
               <TrainingChat aiAgentId={agent.id} workspaceId={workspaceId} />
             ) : null}
