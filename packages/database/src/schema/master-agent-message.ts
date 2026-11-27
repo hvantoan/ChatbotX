@@ -9,6 +9,7 @@ import {
 import { bigintAsString, sharedColumns } from "../partials/shared"
 import { userModel } from "./auth-user"
 import { workspaceModel } from "./workspace"
+import { workspaceApiTokenModel } from "./workspace-api-token"
 
 export const masterAgentMessageRole = pgEnum(
   "masterAgentMessageRole",
@@ -49,10 +50,23 @@ export const masterAgentMessageModel = pgTable(
     role: masterAgentMessageRole().notNull(),
     content: text().notNull(),
     status: masterAgentMessageStatus().notNull().default("completed"),
+    // A member-owned chat is deleted with that member's account. `set null`
+    // would orphan it into an ownerless row, and ownerless rows must fail
+    // closed — never become workspace-shared.
     createdById: bigintAsString().references(() => userModel.id, {
-      onDelete: "set null",
+      onDelete: "cascade",
       onUpdate: "cascade",
     }),
+    // Token-started sessions bind to the exact workspace API token that
+    // created them; another token (or a member) must not read results fetched
+    // with this token's scopes just by learning the session id.
+    createdByTokenId: bigintAsString().references(
+      () => workspaceApiTokenModel.id,
+      {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      },
+    ),
   },
   (table) => [
     index("MasterAgentMessage_workspaceId_idx").on(table.workspaceId),
@@ -65,5 +79,8 @@ export const masterAgentMessageModel = pgTable(
     index("MasterAgentMessage_createdById_idx")
       .on(table.createdById)
       .where(sql`${table.createdById} IS NOT NULL`),
+    index("MasterAgentMessage_createdByTokenId_idx")
+      .on(table.createdByTokenId)
+      .where(sql`${table.createdByTokenId} IS NOT NULL`),
   ],
 )

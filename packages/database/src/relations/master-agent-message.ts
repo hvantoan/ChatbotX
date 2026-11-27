@@ -13,5 +13,9 @@ export const masterAgentMessageRelations = defineRelationsPart(schema, (r) => ({
       from: r.masterAgentMessageModel.createdById,
       to: r.userModel.id,
     }),
+    createdByToken: r.one.workspaceApiTokenModel({
+      from: r.masterAgentMessageModel.createdByTokenId,
+      to: r.workspaceApiTokenModel.id,
+    }),
   },
 }))
