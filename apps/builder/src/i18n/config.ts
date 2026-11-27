@@ -23,7 +23,7 @@ export const locales = [
 ] as const
 
 export type Locale = (typeof locales)[number]
-export const defaultLocale: Locale = "en"
+export const defaultLocale: Locale = "vi"
 
 export const localeMeta: Record<
   Locale,
