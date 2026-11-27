@@ -224,7 +224,7 @@ See **`.agents/rules/git.md`** for the full canonical rules (commit format, bran
 - Pipelines (CRM kanban boards: data model, access scope/ACL, mutation engine and post-commit effects, locking order, queued stage deletion, keyset cursors, caching policy, pipelineItem* events/webhooks/realtime, Pipelines flow step, `pipelineItem` contact filter, `{{pipelines.*}}` variables, templates, public API/CLI/MCP, analytics, limits): `docs/pipelines.md`
 - InboxOS rename (v2.0.0: breaking command and env changes, identifiers that stay on the old name, codemod replay for open branches): `docs/inboxos-rename.md`
 - AI Agent sales persona and goal (chat-taught sales profile, immutable version history, persisted training chat, 4-section runtime prompt compiler, per-conversation `salesState`, buffered 2-tier reply guard with deterministic price verification and structured judge, single rewrite/fallback/handoff, template remapping, public API/CLI/MCP): `docs/ai-agent-sales-profile.md`
-- Master Agent (reminder drafting chat: session history table, shared service, `aiAgent` queue job, the five reminder tools, draft → confirm, `Asia/Saigon` times, non-default agent isolation, public API/CLI/MCP): `docs/master-agent.md`
+- Master Agent (workspace operator assistant: `MasterAgentConfig` per workspace, public API catalog as tools via `search_tools`/`call_tool`/`get_guide`, 5-minute internal credential, server-side `hitlPolicy` approvals with `MasterAgentPendingAction`, lazy action expiry, public API/CLI/MCP): `docs/master-agent.md`
 
 When unsure, search the codebase for an existing feature that resembles the request and mirror its structure, imports, and error-handling style.
 
