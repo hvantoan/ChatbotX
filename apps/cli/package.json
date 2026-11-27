@@ -38,6 +38,7 @@
     "command-line"
   ],
   "dependencies": {
+    "@inboxos.io/openapi-catalog": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "yargs": "^18.0.0",
     "zod": "catalog:"
